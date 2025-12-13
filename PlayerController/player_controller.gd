@@ -3,16 +3,18 @@ extends CharacterBody2D
 #Movement
 const walk_speed : int = 600
 const jump_velocity : int = 1500
+const max_fall_speed : int = 1500
 const normal_gravity : int = 50
 const bunny_hop_speed : float = 200
 #Wall Jump
 const wall_jump_vertical_velocity : float = 1500
 const wall_jump_horizontal_velocity : float = 600
 #Dive
-const dive_horizontal_velocity : float = 600
+const dive_horizontal_additive_velocity : float = 600
+const dive_horizontal_default_velocity : float = 1000
 const dive_vertical_velocity : float = 1000
 const dive_bonk_horizontal_velocity : float = 500
-const dive_bonk_vertical_velocity : float = 700
+const dive_bonk_vertical_velocity : float = 600
 #Timers
 const jump_input_buffer_patience : float = 0.2 #seconds
 const coyote_time_patience : float = 0.5 #seconds
@@ -63,7 +65,7 @@ func _ready() -> void:
 	add_child(wall_jump_control_regain)
 
 func _physics_process(_delta: float) -> void:
-	if abs(velocity.x) < 600:
+	if abs(velocity.x) < walk_speed:
 		bunny_hops = 0
 	if not diving:
 		has_bonked = false
@@ -98,7 +100,7 @@ func _physics_process(_delta: float) -> void:
 			bunny_hops += 1
 		elif (not grounded and is_on_wall()):
 			velocity.x = wall_jump_horizontal_velocity * get_wall_normal().x
-	if velocity.y < 1500 and !grounded: #Apply Gravity
+	if velocity.y < max_fall_speed and !grounded: #Apply Gravity
 		velocity.y += normal_gravity
 #endregion
 	
@@ -108,10 +110,10 @@ func _physics_process(_delta: float) -> void:
 		jump_input_buffer.stop()
 		coyote_jump_available = false
 		diving = true
-		if velocity.x > dive_horizontal_velocity:
-			velocity.x = (velocity.x + dive_horizontal_velocity) * horizontal_input
+		if abs(velocity.x) > dive_horizontal_default_velocity:
+			velocity.x += dive_horizontal_additive_velocity * horizontal_input
 		else:
-			velocity.x = dive_horizontal_velocity * horizontal_input
+			velocity.x = dive_horizontal_default_velocity * horizontal_input
 		velocity.y = -dive_vertical_velocity
 	if diving && is_on_wall():
 		if has_bonked == false:
