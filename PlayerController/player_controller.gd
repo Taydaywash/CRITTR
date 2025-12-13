@@ -57,15 +57,15 @@ func _physics_process(_delta: float) -> void:
 #region Jumping Logic
 	if Input.is_action_just_pressed("jump"):
 		jump_input_buffer.start()
-	if not Input.is_action_pressed("jump"):
+	if not Input.is_action_pressed("jump"): #Jump Variation
 		if velocity.y < 100:
 			velocity.y += normal_gravity * 3
 	if is_on_floor():
 		if grounded == false: # just landed
 			bunny_hop.start()
-		grounded = true
 		if bunny_hop.time_left == 0:
 			bunny_hops = 0
+		grounded = true
 		coyote_jump_available = true
 		diving = false
 	else:
@@ -73,16 +73,17 @@ func _physics_process(_delta: float) -> void:
 			if coyote_jump_available == true:
 				coyote_time.start()
 		grounded = false
-	if (jump_input_buffer.time_left > 0) and (grounded || coyote_time.time_left > 0):
+	if (jump_input_buffer.time_left > 0) and (grounded or coyote_time.time_left > 0): #Jumping
 		coyote_time.stop()
 		jump_input_buffer.stop()
 		coyote_jump_available = false
 		velocity.y = -jump_velocity
 		bunny_hops += 1
-	if velocity.y < 1500 && !grounded:
+	if velocity.y < 1500 and !grounded: #Apply Gravity
 		velocity.y += normal_gravity
 #endregion
 	
+#region Diving Logic
 	if Input.is_action_just_pressed("dive"):
 		diving = true
 		if velocity.x > 1000:
@@ -95,6 +96,9 @@ func _physics_process(_delta: float) -> void:
 			velocity.x = (-500) * horizontal_input
 			velocity.y = -700
 		has_bonked = true
+#endregion
+	
+#region Crouching Logic
 	#if Input.is_action_pressed("move_down"):
 		#if grounded:
 			#player_sprite.scale.x = lerp(scale.x, 44.0, 1)
@@ -111,4 +115,5 @@ func _physics_process(_delta: float) -> void:
 		#player_sprite.scale.y = 44.0
 		#crouched_hitbox.disabled = true
 		#normal_hitbox.disabled = false
+#endregion
 	move_and_slide()
