@@ -1,17 +1,27 @@
 extends CharacterBody2D
 
-#Constants that can be configured in the node view
-@export var walk_speed : int = 600
-@export var jump_velocity : int = 1500
-@export var normal_gravity : int = 50
-@export var jump_input_buffer_patience : float = 0.2 #seconds
-@export var coyote_time_patience : float = 0.5 #seconds
-@export var bunny_hop_patience : float = 0.1
-@export var bunny_hop_speed : float = 200
-
+#Movement
+const walk_speed : int = 600
+const jump_velocity : int = 1500
+const normal_gravity : int = 50
+const bunny_hop_speed : float = 200
+#Wall Jump
+const wall_jump_vertical_velocity : float = 1500
+const wall_jump_horizontal_velocity : float = 600
+#Dive
+const dive_horizontal_velocity : float = 600
+const dive_vertical_velocity : float = 1000
+const dive_bonk_horizontal_velocity : float = 500
+const dive_bonk_vertical_velocity : float = 700
+#Timers
+const jump_input_buffer_patience : float = 0.2 #seconds
+const coyote_time_patience : float = 0.5 #seconds
+const bunny_hop_patience : float = 0.1 #seconds
+const wall_jump_control_regain_delay : float = 0.5 #seconds
 var jump_input_buffer : Timer
 var coyote_time : Timer
 var bunny_hop : Timer
+var wall_jump_control_regain : Timer
 
 var bunny_hops : int = 0
 var coyote_jump_available : bool = true
@@ -45,6 +55,12 @@ func _ready() -> void:
 	bunny_hop.wait_time = bunny_hop_patience
 	bunny_hop.one_shot = true
 	add_child(bunny_hop)
+	
+	#Wall Jump Control Regain timer setup:
+	wall_jump_control_regain = Timer.new()
+	wall_jump_control_regain.wait_time = wall_jump_control_regain_delay
+	wall_jump_control_regain.one_shot = true
+	add_child(wall_jump_control_regain)
 
 func _physics_process(_delta: float) -> void:
 	if abs(velocity.x) < 600:
@@ -73,12 +89,15 @@ func _physics_process(_delta: float) -> void:
 			if coyote_jump_available == true:
 				coyote_time.start()
 		grounded = false
-	if (jump_input_buffer.time_left > 0) and (grounded or coyote_time.time_left > 0): #Jumping
-		coyote_time.stop()
-		jump_input_buffer.stop()
-		coyote_jump_available = false
-		velocity.y = -jump_velocity
-		bunny_hops += 1
+	if jump_input_buffer.time_left > 0: #Jumping
+		if (grounded or coyote_time.time_left > 0):
+			coyote_time.stop()
+			jump_input_buffer.stop()
+			coyote_jump_available = false
+			velocity.y = -jump_velocity
+			bunny_hops += 1
+		elif (not grounded and is_on_wall()):
+			velocity.x = wall_jump_horizontal_velocity * get_wall_normal().x
 	if velocity.y < 1500 and !grounded: #Apply Gravity
 		velocity.y += normal_gravity
 #endregion
@@ -89,15 +108,15 @@ func _physics_process(_delta: float) -> void:
 		jump_input_buffer.stop()
 		coyote_jump_available = false
 		diving = true
-		if velocity.x > 1000:
-			velocity.x = (velocity.x + 600) * horizontal_input
+		if velocity.x > dive_horizontal_velocity:
+			velocity.x = (velocity.x + dive_horizontal_velocity) * horizontal_input
 		else:
-			velocity.x = 1000 * horizontal_input
-		velocity.y = -1000
+			velocity.x = dive_horizontal_velocity * horizontal_input
+		velocity.y = -dive_vertical_velocity
 	if diving && is_on_wall():
 		if has_bonked == false:
-			velocity.x = (-500) * horizontal_input
-			velocity.y = -700
+			velocity.x = -dive_bonk_horizontal_velocity * horizontal_input
+			velocity.y = -dive_bonk_vertical_velocity
 		has_bonked = true
 #endregion
 	
