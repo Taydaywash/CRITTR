@@ -84,7 +84,10 @@ func _physics_process(_delta: float) -> void:
 #endregion
 	
 #region Diving Logic
-	if Input.is_action_just_pressed("dive"):
+	if Input.is_action_just_pressed("dive") and !diving:
+		coyote_time.stop()
+		jump_input_buffer.stop()
+		coyote_jump_available = false
 		diving = true
 		if velocity.x > 1000:
 			velocity.x = (velocity.x + 600) * horizontal_input

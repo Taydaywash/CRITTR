@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://s1l25pe1fhgb"]
 
-[ext_resource type="PackedScene" uid="uid://d2mfvc5tpbska" path="res://Rooms/room_000.tscn" id="1_folwd"]
+[ext_resource type="PackedScene" uid="uid://d2mfvc5tpbska" path="res://Rooms/Room001.tscn" id="1_folwd"]
 
 [node name="World" type="Node2D"]
 
