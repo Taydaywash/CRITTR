@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://4ip81nticvcd"]
+
+[ext_resource type="Script" uid="uid://dtp8hkcunkkg8" path="res://PlayerController/player_animation_controller.gd" id="1_c4fll"]
+[ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://camera_controller.gd" id="2_c4fll"]
+[ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4fll"]
+size = Vector2(0.6740392, 0.7541509)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1nwm"]
+size = Vector2(38.555046, 44.070656)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ves0u"]
+size = Vector2(38.925766, 21.257618)
+
+[node name="PlayerController" type="CharacterBody2D"]
+scale = Vector2(2.697442, 3.8574424)
+floor_max_angle = 0.0
+script = ExtResource("1_c4fll")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.355, 0.355)
+texture = ExtResource("2_ves0u")
+offset = Vector2(0, -0.5008029)
+
+[node name="DamageHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.3707205, 0.2592297)
+scale = Vector2(44, 43.99998)
+shape = SubResource("RectangleShape2D_c4fll")
+disabled = true
+
+[node name="NormalHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(1.7677382e-07, -0.25924426)
+scale = Vector2(1, 0.9999995)
+shape = SubResource("RectangleShape2D_g1nwm")
+
+[node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.18535991, 10.888037)
+scale = Vector2(1, 0.999999)
+shape = SubResource("RectangleShape2D_ves0u")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.36, 0.36)
+script = ExtResource("2_c4fll")
+
+[node name="Player" type="AnimationPlayer" parent="."]

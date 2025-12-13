@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://4ip81nticvcd"]
-
-[ext_resource type="Script" uid="uid://cqcieb8msselh" path="res://PlayerController/player_controller.gd" id="1_fusio"]
-
-[node name="PlayerController" type="Node2D"]
-script = ExtResource("1_fusio")
