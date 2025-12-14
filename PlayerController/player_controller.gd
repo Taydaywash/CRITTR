@@ -75,6 +75,8 @@ func _physics_process(_delta: float) -> void:
 		horizontal_input = Input.get_axis("move_left","move_right")
 		velocity.x = (walk_speed + (bunny_hop_speed * bunny_hops)) * horizontal_input 
 #region wall jump
+	if is_on_wall():
+		wall_cling = true
 #endregion
 #region Jumping Logic
 	if Input.is_action_just_pressed("jump"):
@@ -125,6 +127,8 @@ func _physics_process(_delta: float) -> void:
 		else:
 			velocity.x = dive_horizontal_default_velocity * horizontal_input
 		velocity.y = -dive_vertical_velocity
+		if grounded:
+			velocity.x += dive_horizontal_additive_velocity * horizontal_input
 	if diving && is_on_wall():
 		if has_bonked == false:
 			velocity.x = -dive_bonk_horizontal_velocity * horizontal_input

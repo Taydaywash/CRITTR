@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=8 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dtp8hkcunkkg8" path="res://PlayerController/player_animation_controller.gd" id="1_c4fll"]
+[ext_resource type="Script" uid="uid://cqcieb8msselh" path="res://PlayerController/player_controller.gd" id="1_ves0u"]
 [ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://camera_controller.gd" id="2_c4fll"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
 
@@ -16,12 +17,13 @@ size = Vector2(38.925766, 21.257618)
 [node name="PlayerController" type="CharacterBody2D"]
 scale = Vector2(2.697442, 3.8574424)
 floor_max_angle = 0.0
-script = ExtResource("1_c4fll")
+script = ExtResource("1_ves0u")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.355, 0.355)
 texture = ExtResource("2_ves0u")
 offset = Vector2(0, -0.5008029)
+script = ExtResource("1_c4fll")
 
 [node name="DamageHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.3707205, 0.2592297)
