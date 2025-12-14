@@ -7,8 +7,8 @@ const max_fall_speed : int = 2000
 const normal_gravity : int = 65
 const bunny_hop_speed : int = 200
 #Wall Jump
-const wall_jump_vertical_velocity : int = 1200
-const wall_jump_horizontal_velocity : int = 800
+const wall_jump_vertical_velocity : int = 1000
+const wall_jump_horizontal_velocity : int = 1000
 const wall_cling_gravity : int = 10
 var wall_cling : bool = false
 var wall_on_left : bool = false
@@ -69,17 +69,20 @@ func _ready() -> void:
 	wall_jump_control_regain.one_shot = true
 	add_child(wall_jump_control_regain)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if abs(velocity.x) < walk_speed:
 		bunny_hops = 0
 	if not diving:
 		if wall_jump_control_regain.time_left == 0:
 			has_bonked = false
 			horizontal_input = Input.get_axis("move_left","move_right")
-			velocity.x = (walk_speed + (bunny_hop_speed * bunny_hops)) * horizontal_input 
+			if horizontal_input != 0:
+				velocity.x = (walk_speed + (bunny_hop_speed * bunny_hops)) * horizontal_input 
+			else:
+				velocity.x = velocity.move_toward(Vector2(0,0),100).x
 #region wall jump
-	wall_on_right = _ray_hit(Vector2(70,0),1)
-	wall_on_left = _ray_hit(Vector2(-70,0),1)
+	wall_on_right = _ray_hit(Vector2(65,0),1)
+	wall_on_left = _ray_hit(Vector2(-65,0),1)
 	wall_cling = is_on_wall() and velocity.y > 0 and (wall_on_left or wall_on_right)
 #endregion
 #region Jumping Logic
