@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6tgehyvfiy28"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xoon"]
+size = Vector2(128, 128)
+
+[node name="RespawnPoint" type="Node2D"]
+
+[node name="DirectionalLight2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5xoon")
+disabled = true
+debug_color = Color(0.9933763, 0, 0.2452861, 0.41960785)

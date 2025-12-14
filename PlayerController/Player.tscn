@@ -155,7 +155,7 @@ position = Vector2(-20, 0)
 target_position = Vector2(0, -35)
 
 [node name="NudgeRightRangeRight" type="RayCast2D" parent="CornerNudging"]
-position = Vector2(-10, 0)
+position = Vector2(-8, 0)
 target_position = Vector2(0, -35)
 
 [node name="NudgeLeftRangeRight" type="RayCast2D" parent="CornerNudging"]
@@ -163,7 +163,7 @@ position = Vector2(20, 0)
 target_position = Vector2(0, -35)
 
 [node name="NudgeLeftRangeLeft" type="RayCast2D" parent="CornerNudging"]
-position = Vector2(10, 0)
+position = Vector2(8, 0)
 target_position = Vector2(0, -35)
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]

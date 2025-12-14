@@ -20,6 +20,11 @@ var horizontal_input : int = 0
 @onready var right_ray: RayCast2D = $"../../WallJumpRayReference/RightRay"
 @onready var left_ray: RayCast2D = $"../../WallJumpRayReference/LeftRay"
 
+@onready var nudge_right_range_left: RayCast2D = $"../../CornerNudging/NudgeRightRangeLeft"
+@onready var nudge_right_range_right: RayCast2D = $"../../CornerNudging/NudgeRightRangeRight"
+@onready var nudge_left_range_right: RayCast2D = $"../../CornerNudging/NudgeLeftRangeRight"
+@onready var nudge_left_range_left: RayCast2D = $"../../CornerNudging/NudgeLeftRangeLeft"
+
 @export var jump_input_buffer_patience : float
 
 var jump_input_buffer : Timer
@@ -60,6 +65,11 @@ func process_physics(delta) -> State:
 	
 	if parent.velocity.y > 0:
 		return falling_state
+	elif parent.velocity.y < 0:
+		if nudge_right_range_left.is_colliding() and !nudge_right_range_right.is_colliding():
+			parent.position.x += 12
+		if nudge_left_range_right.is_colliding() and !nudge_left_range_left.is_colliding():
+			parent.position.x -= 12
 	if parent.is_on_floor():
 		if jump_input_buffer.time_left > 0:
 			return self

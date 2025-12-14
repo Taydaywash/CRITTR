@@ -59,6 +59,7 @@ func process_physics(delta) -> State:
 		parent.velocity.x += air_acceleration_speed * delta * horizontal_input
 	if horizontal_input == 0:
 		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
+	
 	parent.move_and_slide()
 	
 	if parent.velocity.y > 0:
