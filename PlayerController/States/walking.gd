@@ -29,7 +29,7 @@ func process_input(_event : InputEvent) -> State:
 
 func process_physics(delta) -> State:
 	if parent.velocity.y < max_falling_speed:
-		parent.velocity.y += gravity
+		parent.velocity.y += gravity * delta
 	
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
 	if (abs(parent.velocity.x) < walk_speed) or (sign(horizontal_input) != sign(parent.velocity.x)):

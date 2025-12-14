@@ -3,20 +3,19 @@ extends State
 #States that Jumping can transition to:
 @export var falling_state : State
 @export var diving_state : State
+@export var wall_jumping_state : State
+@export var idle_state : State
+@export var walking_state : State
 
 @export var air_control : int
 @export var jump_velocity : int
+@export var jump_cancellation : int
 @export var air_acceleration_speed : int
 @export var air_decceleration_speed : int
-@export var bunny_hop_speed_boost: int
-
-@export var neutral_wall_jump_horizontal_velocity : int
-@export var neutral_wall_jump_vertical_velocity : int
 
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
-var bunny_hops : int = 0
 
 @onready var right_ray: RayCast2D = $"../../WallJumpRayReference/RightRay"
 @onready var left_ray: RayCast2D = $"../../WallJumpRayReference/LeftRay"
@@ -37,25 +36,20 @@ func activate(last_state : State) -> void:
 	gravity = parent.normal_gravity
 	parent.velocity.y = -jump_velocity
 	max_falling_speed = parent.max_falling_speed
-	#if last_state == $"../Falling":
-		#bunny_hops += 1
-	#else:
-		#bunny_hops = 0
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
-	#parent.velocity.x += bunny_hop_speed_boost * bunny_hops * horizontal_input
 
 func process_input(_event : InputEvent) -> State:
 	if Input.is_action_just_pressed("jump"):
 		jump_input_buffer.start()
 	if Input.is_action_just_released("jump"):
-		parent.velocity.y = parent.velocity.y / 4
+		parent.velocity.y = parent.velocity.y / jump_cancellation
 	if Input.is_action_just_pressed("dive"):
 		return diving_state
 	return null
 
 func process_physics(delta) -> State:
 	if parent.velocity.y < max_falling_speed:
-		parent.velocity.y += gravity
+		parent.velocity.y += gravity * delta
 	
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
 	if (abs(parent.velocity.x) < air_control) or (sign(horizontal_input) != sign(parent.velocity.x)):
@@ -70,9 +64,10 @@ func process_physics(delta) -> State:
 		if jump_input_buffer.time_left > 0:
 			return self
 		else:
-			return falling_state
-	if left_ray.is_colliding() and jump_input_buffer.time_left > 0:
-		parent.velocity.x += neutral_wall_jump_horizontal_velocity 
-	elif right_ray.is_colliding() and jump_input_buffer.time_left > 0:
-		parent.velocity.x -= neutral_wall_jump_horizontal_velocity 
+			if abs(parent.velocity.x) > 0:
+				return walking_state
+			else:
+				return idle_state
+	if (left_ray.is_colliding()  or right_ray.is_colliding()) and jump_input_buffer.time_left > 0:
+		return wall_jumping_state
 	return null

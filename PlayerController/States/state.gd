@@ -8,18 +8,18 @@ var placeholder_animation_color : Color
 
 var parent : CharacterBody2D
 
-func activate(last_state : State) -> void:
+func activate(_last_state : State) -> void:
 	#replace parent.modulate with this once animations are added
 	#parent.animations.play(animation_name)
 	parent.modulate = placeholder_animation_color
 
-func process_input(event) -> State:
+func process_input(_event) -> State:
 	return null
 
-func process_physics(delta) -> State:
+func process_physics(_delta) -> State:
 	return null
 
-func process_frame(delta) -> State:
+func process_frame(_delta) -> State:
 	return null
 
 func deactivate() -> void:

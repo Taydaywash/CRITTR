@@ -25,9 +25,9 @@ func process_input(_event : InputEvent) -> State:
 		return jumping_state
 	return null
 
-func process_physics(_delta) -> State:
+func process_physics(delta) -> State:
 	if parent.velocity.y < max_falling_speed:
-		parent.velocity.y += gravity
+		parent.velocity.y += gravity * delta
 	parent.move_and_slide()
 	
 	if !parent.is_on_floor():

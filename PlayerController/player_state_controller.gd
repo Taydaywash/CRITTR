@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @onready var state_machine = $StateMachine
 
-@export var normal_gravity : int = 65
-@export var max_falling_speed : int = 2000
+@export var normal_gravity : int
+@export var max_falling_speed : int
 
 func _ready() -> void:
 	state_machine.initialize(self)

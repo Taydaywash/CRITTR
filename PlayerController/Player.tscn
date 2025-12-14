@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=17 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://camera_controller.gd" id="2_c4fll"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://waa4aoe22gbi" path="res://PlayerController/States/jumping.gd" id="8_2fk5g"]
 [ext_resource type="Script" uid="uid://lykwwg352q0l" path="res://PlayerController/States/diving.gd" id="9_gnv43"]
 [ext_resource type="Script" uid="uid://dm8obalvft0u8" path="res://PlayerController/States/bonked.gd" id="9_v55cd"]
+[ext_resource type="Script" uid="uid://ql7kjpt3i6d" path="res://PlayerController/States/wall_jumping.gd" id="10_dpx4d"]
 [ext_resource type="Script" uid="uid://l4dt3d54fbjt" path="res://PlayerController/States/wall_cling.gd" id="10_xnjby"]
 [ext_resource type="Script" uid="uid://x1weuat5in2g" path="res://PlayerController/States/falling.gd" id="11_v55cd"]
 
@@ -28,6 +29,8 @@ size = Vector2(30.028448, 20.88804)
 scale = Vector2(2.697442, 3.8574424)
 floor_max_angle = 0.0
 script = ExtResource("1_4bhr5")
+normal_gravity = 3250
+max_falling_speed = 2000
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("5_v55cd")
@@ -53,17 +56,18 @@ decceleration_speed = 10000
 animation_name = "walking"
 placeholder_animation_color = Color(0, 0, 0.798921, 1)
 
-[node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state")]
+[node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state")]
 script = ExtResource("8_2fk5g")
 falling_state = NodePath("../Falling")
 diving_state = NodePath("../Diving")
+wall_jumping_state = NodePath("../WallJumping")
+idle_state = NodePath("../Idle")
+walking_state = NodePath("../Walking")
 air_control = 800
 jump_velocity = 1500
+jump_cancellation = 2
 air_acceleration_speed = 10000
 air_decceleration_speed = 10000
-bunny_hop_speed_boost = 100
-neutral_wall_jump_horizontal_velocity = 800
-neutral_wall_jump_vertical_velocity = 1000
 jump_input_buffer_patience = 0.2
 placeholder_animation_color = Color(0, 1, 0, 1)
 
@@ -76,27 +80,31 @@ dive_horizontal_additive_velocity = 100
 dive_horizontal_default_velocity = 800
 dive_vertical_velocity = 800
 jump_input_buffer_patience = 0.2
+idle_dive_sprite = Color(0.14890742, 0.14890742, 0.14890742, 1)
 
-[node name="WallCling" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "jumping_state", "walking_state")]
+[node name="WallCling" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "jumping_state", "walking_state", "wall_jumping_state")]
 script = ExtResource("10_xnjby")
 falling_state = NodePath("../Falling")
 jumping_state = NodePath("../Jumping")
 walking_state = NodePath("../Walking")
+wall_jumping_state = NodePath("../WallJumping")
 walk_speed = 80
 acceleration_speed = 20000
 decceleration_speed = 20000
-wall_jump_horizontal_velocity = 2000
-wall_jump_vertical_velocity = 1500
-wall_cling_gravity = 10
+wall_jump_horizontal_velocity = 800
+wall_jump_vertical_velocity = 600
+wall_cling_gravity = 100
+max_wall_cling_fall_speed = 500
 placeholder_animation_color = Color(0, 0.8901186, 0.9043261, 1)
 
-[node name="Falling" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walking_state", "diving_state", "wall_cling_state", "jumping_state")]
+[node name="Falling" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walking_state", "diving_state", "wall_cling_state", "jumping_state", "wall_jumping_state")]
 script = ExtResource("11_v55cd")
 idle_state = NodePath("../Idle")
 walking_state = NodePath("../Walking")
 diving_state = NodePath("../Diving")
 wall_cling_state = NodePath("../WallCling")
 jumping_state = NodePath("../Jumping")
+wall_jumping_state = NodePath("../WallJumping")
 air_control = 800
 air_acceleration_speed = 10000
 air_decceleration_speed = 10000
@@ -104,12 +112,29 @@ jump_input_buffer_patience = 0.2
 coyote_time_patience = 0.1
 placeholder_animation_color = Color(1, 0, 0, 1)
 
-[node name="Bonked" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="Bonked" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jumping_state")]
 script = ExtResource("9_v55cd")
 idle_state = NodePath("../Idle")
+jumping_state = NodePath("../Jumping")
 dive_bonk_horizontal_velocity = 500
 dive_bonk_vertical_velocity = 600
+jump_input_buffer_patience = 0.2
 placeholder_animation_color = Color(0.3282248, 0.39151636, 0.4222509, 1)
+
+[node name="WallJumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "idle_state", "walking_state", "diving_state")]
+script = ExtResource("10_dpx4d")
+falling_state = NodePath("../Falling")
+idle_state = NodePath("../Idle")
+walking_state = NodePath("../Walking")
+diving_state = NodePath("../Diving")
+air_control = 800
+wall_jump_horizontal_velocity = 1000
+wall_jump_vertical_velocity = 1000
+jump_cancellation = 2
+air_acceleration_speed = 2000
+air_decceleration_speed = 1000
+jump_input_buffer_patience = 0.2
+placeholder_animation_color = Color(0.6553385, 0.74060166, 0.67189306, 1)
 
 [node name="WallJumpRayReference" type="Node2D" parent="."]
 scale = Vector2(1, 0.9999999)
@@ -121,6 +146,25 @@ target_position = Vector2(-30, 0)
 [node name="RightRay" type="RayCast2D" parent="WallJumpRayReference"]
 position = Vector2(0, 10)
 target_position = Vector2(30, 0)
+
+[node name="CornerNudging" type="Node2D" parent="."]
+scale = Vector2(1, 0.99999994)
+
+[node name="NudgeRightRangeLeft" type="RayCast2D" parent="CornerNudging"]
+position = Vector2(-20, 0)
+target_position = Vector2(0, -35)
+
+[node name="NudgeRightRangeRight" type="RayCast2D" parent="CornerNudging"]
+position = Vector2(-10, 0)
+target_position = Vector2(0, -35)
+
+[node name="NudgeLeftRangeRight" type="RayCast2D" parent="CornerNudging"]
+position = Vector2(20, 0)
+target_position = Vector2(0, -35)
+
+[node name="NudgeLeftRangeLeft" type="RayCast2D" parent="CornerNudging"]
+position = Vector2(10, 0)
+target_position = Vector2(0, -35)
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.355, 0.35499996)
