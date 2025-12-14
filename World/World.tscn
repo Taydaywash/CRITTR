@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://s1l25pe1fhgb"]
+[gd_scene load_steps=4 format=3 uid="uid://s1l25pe1fhgb"]
 
 [ext_resource type="PackedScene" uid="uid://d2mfvc5tpbska" path="res://Rooms/Room001.tscn" id="1_folwd"]
+[ext_resource type="PackedScene" uid="uid://4ip81nticvcd" path="res://PlayerController/Player.tscn" id="2_y6flb"]
+[ext_resource type="PackedScene" uid="uid://btyweu8dlfrmk" path="res://Rooms/Room002.tscn" id="3_mlekv"]
 
 [node name="World" type="Node2D"]
 
+[node name="PlayerController" parent="." instance=ExtResource("2_y6flb")]
+position = Vector2(256, -127.99999)
+
 [node name="Room001" parent="." instance=ExtResource("1_folwd")]
 position = Vector2(1536, 0)
+
+[node name="Room002" parent="." instance=ExtResource("3_mlekv")]
+position = Vector2(7040, -1024)

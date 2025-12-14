@@ -41,7 +41,7 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate() as defined in state.gd and then also do:
 	gravity = parent.normal_gravity
 	max_falling_speed = parent.max_falling_speed
-	if(last_state == $"../Walking" or last_state == $"../WallCling"):
+	if(last_state == $"../Walking"):
 		coyote_time.start()
 
 func process_input(_event : InputEvent) -> State:

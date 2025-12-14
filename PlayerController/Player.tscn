@@ -94,7 +94,7 @@ acceleration_speed = 20000
 decceleration_speed = 20000
 wall_jump_horizontal_velocity = 800
 wall_jump_vertical_velocity = 600
-wall_cling_gravity = 100
+wall_cling_gravity = 500
 max_wall_cling_fall_speed = 500
 placeholder_animation_color = Color(0, 0.8901186, 0.9043261, 1)
 
@@ -134,7 +134,7 @@ wall_jump_vertical_velocity = 1000
 jump_cancellation = 2
 air_acceleration_speed = 2000
 air_decceleration_speed = 1000
-jump_input_buffer_patience = 0.2
+jump_input_buffer_patience = 0.1
 placeholder_animation_color = Color(0.6553385, 0.74060166, 0.67189306, 1)
 
 [node name="Dashing" type="Node" parent="StateMachine" node_paths=PackedStringArray("walking_state", "jumping_state", "falling_state", "diving_state", "wall_cling_state")]
@@ -165,7 +165,7 @@ position = Vector2(-20, 0)
 target_position = Vector2(0, -35)
 
 [node name="NudgeRightRangeRight" type="RayCast2D" parent="CornerNudging"]
-position = Vector2(-10, 0)
+position = Vector2(-8, 0)
 target_position = Vector2(0, -35)
 
 [node name="NudgeLeftRangeRight" type="RayCast2D" parent="CornerNudging"]
@@ -173,7 +173,7 @@ position = Vector2(20, 0)
 target_position = Vector2(0, -35)
 
 [node name="NudgeLeftRangeLeft" type="RayCast2D" parent="CornerNudging"]
-position = Vector2(10, 0)
+position = Vector2(8, 0)
 target_position = Vector2(0, -35)
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -186,13 +186,28 @@ position = Vector2(1.7677382e-07, -0.25924426)
 scale = Vector2(1, 0.9999995)
 shape = SubResource("RectangleShape2D_g1nwm")
 
+[node name="TriggerHitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Collider" type="CollisionShape2D" parent="TriggerHitbox"]
+position = Vector2(1.7677382e-07, -0.25924423)
+scale = Vector2(1, 0.9999994)
+shape = SubResource("RectangleShape2D_g1nwm")
+
 [node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.18535991, 10.888037)
 scale = Vector2(1, 0.999999)
 shape = SubResource("RectangleShape2D_ves0u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -3.0517578e-05)
 zoom = Vector2(0.36, 0.36)
+limit_left = -2048
+limit_top = -1600
+limit_bottom = 800
+limit_smoothed = true
+position_smoothing_enabled = true
 script = ExtResource("2_c4fll")
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -216,5 +231,6 @@ shape = SubResource("RectangleShape2D_c7efg")
 disabled = true
 debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
 
+[connection signal="area_entered" from="TriggerHitbox" to="." method="_change_respawn_point"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="CrouchedHurtbox" to="." method="_on_crouched_hurtbox_body_entered"]

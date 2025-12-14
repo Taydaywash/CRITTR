@@ -19,8 +19,6 @@ func activate(last_state : State) -> void:
 func process_input(_event : InputEvent) -> State:
 	if Input.is_action_just_pressed("dive"):
 		return diving_state
-	if Input.get_axis("move_left","move_right") != 0:
-		return walking_state
 	if Input.is_action_just_pressed("jump") and parent.is_on_floor():
 		return jumping_state
 	return null
@@ -29,7 +27,8 @@ func process_physics(delta) -> State:
 	if parent.velocity.y < max_falling_speed:
 		parent.velocity.y += gravity * delta
 	parent.move_and_slide()
-	
+	if Input.get_axis("move_left","move_right") != 0:
+		return walking_state
 	if !parent.is_on_floor():
 		return falling_state
 	return null
