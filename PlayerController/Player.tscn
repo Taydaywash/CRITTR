@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=18 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://camera_controller.gd" id="2_c4fll"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dm8obalvft0u8" path="res://PlayerController/States/bonked.gd" id="9_v55cd"]
 [ext_resource type="Script" uid="uid://ql7kjpt3i6d" path="res://PlayerController/States/wall_jumping.gd" id="10_dpx4d"]
 [ext_resource type="Script" uid="uid://l4dt3d54fbjt" path="res://PlayerController/States/wall_cling.gd" id="10_xnjby"]
+[ext_resource type="Script" uid="uid://c8h0fivvgxc74" path="res://PlayerController/States/dashing.gd" id="11_hueom"]
 [ext_resource type="Script" uid="uid://x1weuat5in2g" path="res://PlayerController/States/falling.gd" id="11_v55cd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1nwm"]
@@ -135,6 +136,15 @@ air_acceleration_speed = 2000
 air_decceleration_speed = 1000
 jump_input_buffer_patience = 0.2
 placeholder_animation_color = Color(0.6553385, 0.74060166, 0.67189306, 1)
+
+[node name="Dashing" type="Node" parent="StateMachine" node_paths=PackedStringArray("walking_state", "jumping_state", "falling_state", "diving_state", "wall_cling_state")]
+script = ExtResource("11_hueom")
+walking_state = NodePath("../Walking")
+jumping_state = NodePath("../Jumping")
+falling_state = NodePath("../Falling")
+diving_state = NodePath("../Diving")
+wall_cling_state = NodePath("../WallCling")
+placeholder_animation_color = Color(0.23891038, 0.12174525, 0.0073752436, 1)
 
 [node name="WallJumpRayReference" type="Node2D" parent="."]
 scale = Vector2(1, 0.9999999)
