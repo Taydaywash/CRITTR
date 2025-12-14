@@ -1,25 +1,28 @@
 extends CharacterBody2D
 
 #Movement
-const walk_speed : int = 600
+const walk_speed : int = 800
 const jump_velocity : int = 1500
-const max_fall_speed : int = 1500
-const normal_gravity : int = 50
-const bunny_hop_speed : float = 200
+const max_fall_speed : int = 2000
+const normal_gravity : int = 65
+const bunny_hop_speed : int = 200
 #Wall Jump
-const wall_jump_vertical_velocity : float = 1500
-const wall_jump_horizontal_velocity : float = 600
+const wall_jump_vertical_velocity : int = 1500
+const wall_jump_horizontal_velocity : int = 1500
+const wall_cling_gravity : int = 10
+var wall_cling : bool = false
+var last_touched_wall_normal : int = 0
 #Dive
-const dive_horizontal_additive_velocity : float = 600
-const dive_horizontal_default_velocity : float = 1000
-const dive_vertical_velocity : float = 1000
-const dive_bonk_horizontal_velocity : float = 500
-const dive_bonk_vertical_velocity : float = 600
+const dive_horizontal_additive_velocity : int = 100
+const dive_horizontal_default_velocity : int = 800
+const dive_vertical_velocity : int = 800
+const dive_bonk_horizontal_velocity : int = 500
+const dive_bonk_vertical_velocity : int = 600
 #Timers
 const jump_input_buffer_patience : float = 0.2 #seconds
 const coyote_time_patience : float = 0.5 #seconds
 const bunny_hop_patience : float = 0.1 #seconds
-const wall_jump_control_regain_delay : float = 0.5 #seconds
+const wall_jump_control_regain_delay : float = 1 #seconds
 var jump_input_buffer : Timer
 var coyote_time : Timer
 var bunny_hop : Timer
@@ -67,15 +70,16 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if abs(velocity.x) < walk_speed:
 		bunny_hops = 0
-	if not diving:
+	if not (diving and wall_jump_control_regain.time_left == 0):
 		has_bonked = false
 		horizontal_input = Input.get_axis("move_left","move_right")
 		velocity.x = (walk_speed + (bunny_hop_speed * bunny_hops)) * horizontal_input 
-	
+#region wall jump
+#endregion
 #region Jumping Logic
 	if Input.is_action_just_pressed("jump"):
 		jump_input_buffer.start()
-	if not Input.is_action_pressed("jump"): #Jump Variation
+	if not Input.is_action_pressed("jump") and not diving: #Jump Variation
 		if velocity.y < 100:
 			velocity.y += normal_gravity * 3
 	if is_on_floor():
@@ -83,6 +87,7 @@ func _physics_process(_delta: float) -> void:
 			bunny_hop.start()
 		if bunny_hop.time_left == 0:
 			bunny_hops = 0
+		wall_cling = false
 		grounded = true
 		coyote_jump_available = true
 		diving = false
@@ -98,10 +103,15 @@ func _physics_process(_delta: float) -> void:
 			coyote_jump_available = false
 			velocity.y = -jump_velocity
 			bunny_hops += 1
-		elif (not grounded and is_on_wall()):
-			velocity.x = wall_jump_horizontal_velocity * get_wall_normal().x
 	if velocity.y < max_fall_speed and !grounded: #Apply Gravity
-		velocity.y += normal_gravity
+		if wall_cling:
+			velocity.y += wall_cling_gravity
+		else:
+			velocity.y += normal_gravity
+	
+	#if is_on_wall():
+		#print("touching wall")
+		#velocity.x = -get_wall_normal().x
 #endregion
 	
 #region Diving Logic

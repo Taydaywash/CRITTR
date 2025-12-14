@@ -7,10 +7,13 @@ func _process(_delta: float) -> void:
 	else:
 		player_sprite.flip_h = false
 	if diving:
-		if not has_bonked:
+		if velocity.x == 0:
+			player_sprite.modulate = Color(0.2,0.2,0.2)
+		elif not has_bonked:
 			player_sprite.modulate = Color(0,0,0)
 		elif has_bonked:
 			player_sprite.modulate = Color(0.5,0.5,0.5)
+		
 	elif not grounded:
 		if velocity.y < 0:
 			player_sprite.modulate = Color(0,1,0)
