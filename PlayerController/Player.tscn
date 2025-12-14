@@ -1,18 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=9 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dtp8hkcunkkg8" path="res://PlayerController/player_animation_controller.gd" id="1_c4fll"]
 [ext_resource type="Script" uid="uid://cqcieb8msselh" path="res://PlayerController/player_controller.gd" id="1_ves0u"]
 [ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://camera_controller.gd" id="2_c4fll"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4fll"]
-size = Vector2(0.6740392, 0.7541509)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1nwm"]
 size = Vector2(38.555046, 44.070656)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ves0u"]
 size = Vector2(38.925766, 21.257618)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5i1rd"]
+size = Vector2(30.028448, 33.182606)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7efg"]
+size = Vector2(30.028448, 20.88804)
 
 [node name="PlayerController" type="CharacterBody2D"]
 scale = Vector2(2.697442, 3.8574424)
@@ -24,12 +27,6 @@ scale = Vector2(0.355, 0.355)
 texture = ExtResource("2_ves0u")
 offset = Vector2(0, -0.5008029)
 script = ExtResource("1_c4fll")
-
-[node name="DamageHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-0.3707205, 0.2592297)
-scale = Vector2(44, 43.99998)
-shape = SubResource("RectangleShape2D_c4fll")
-disabled = true
 
 [node name="NormalHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(1.7677382e-07, -0.25924426)
@@ -46,3 +43,27 @@ zoom = Vector2(0.36, 0.36)
 script = ExtResource("2_c4fll")
 
 [node name="Player" type="AnimationPlayer" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5560827, 0.25923833)
+scale = Vector2(1, 0.9999999)
+shape = SubResource("RectangleShape2D_5i1rd")
+debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
+
+[node name="CrouchedHurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrouchedHurtbox"]
+position = Vector2(-0.5560827, 6.296193)
+scale = Vector2(1, 0.9999999)
+shape = SubResource("RectangleShape2D_c7efg")
+disabled = true
+debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="CrouchedHurtbox" to="." method="_on_crouched_hurtbox_body_entered"]

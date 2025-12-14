@@ -155,3 +155,9 @@ func _physics_process(_delta: float) -> void:
 		#normal_hitbox.disabled = false
 #endregion
 	move_and_slide()
+
+func _on_hurtbox_body_entered(_body):
+	print("entered")
+
+func _on_crouched_hurtbox_body_entered(body):
+	print("entered")
