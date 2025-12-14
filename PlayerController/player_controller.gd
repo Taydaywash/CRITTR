@@ -11,7 +11,7 @@ const wall_jump_vertical_velocity : int = 1500
 const wall_jump_horizontal_velocity : int = 1500
 const wall_cling_gravity : int = 10
 var wall_cling : bool = false
-var last_touched_wall_normal : int = 0
+var last_touched_wall_normal : float = 0
 #Dive
 const dive_horizontal_additive_velocity : int = 100
 const dive_horizontal_default_velocity : int = 800
@@ -75,8 +75,11 @@ func _physics_process(_delta: float) -> void:
 		horizontal_input = Input.get_axis("move_left","move_right")
 		velocity.x = (walk_speed + (bunny_hop_speed * bunny_hops)) * horizontal_input 
 #region wall jump
-	if is_on_wall():
+	if is_on_wall() and not diving and not grounded:
+		last_touched_wall_normal = get_wall_normal().x
 		wall_cling = true
+	elif horizontal_input != 0 and (horizontal_input != last_touched_wall_normal):
+		wall_cling = false
 #endregion
 #region Jumping Logic
 	if Input.is_action_just_pressed("jump"):
@@ -110,10 +113,6 @@ func _physics_process(_delta: float) -> void:
 			velocity.y += wall_cling_gravity
 		else:
 			velocity.y += normal_gravity
-	
-	#if is_on_wall():
-		#print("touching wall")
-		#velocity.x = -get_wall_normal().x
 #endregion
 	
 #region Diving Logic
@@ -159,5 +158,5 @@ func _physics_process(_delta: float) -> void:
 func _on_hurtbox_body_entered(_body):
 	print("entered")
 
-func _on_crouched_hurtbox_body_entered(body):
+func _on_crouched_hurtbox_body_entered(_body):
 	print("entered")

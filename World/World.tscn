@@ -4,5 +4,5 @@
 
 [node name="World" type="Node2D"]
 
-[node name="Room-000" parent="." instance=ExtResource("1_folwd")]
+[node name="Room001" parent="." instance=ExtResource("1_folwd")]
 position = Vector2(1536, 0)
