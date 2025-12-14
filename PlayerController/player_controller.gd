@@ -7,7 +7,7 @@ const max_fall_speed : int = 2000
 const normal_gravity : int = 65
 const bunny_hop_speed : int = 200
 #Wall Jump
-const wall_jump_vertical_velocity : int = 1000
+const wall_jump_vertical_velocity : int = 1100
 const wall_jump_horizontal_velocity : int = 1000
 const wall_cling_gravity : int = 10
 var wall_cling : bool = false
@@ -24,7 +24,7 @@ const dive_bonk_vertical_velocity : int = 600
 const jump_input_buffer_patience : float = 0.2 #seconds
 const coyote_time_patience : float = 0.5 #seconds
 const bunny_hop_patience : float = 0.1 #seconds
-const wall_jump_control_regain_delay : float = 0.3 #seconds
+const wall_jump_control_regain_delay : float = 0.2 #seconds
 var jump_input_buffer : Timer
 var coyote_time : Timer
 var bunny_hop : Timer
