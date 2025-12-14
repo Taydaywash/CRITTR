@@ -1,0 +1,52 @@
+extends State
+
+#States that Idle can transition to:
+@export var walking_state : State
+@export var bonked_state : State
+@export var jumping_state : State
+@export var dive_horizontal_additive_velocity : int
+@export var dive_horizontal_default_velocity : int
+@export var dive_vertical_velocity : int
+@export var jump_input_buffer_patience : float
+
+var jump_input_buffer : Timer
+var gravity : int
+var max_falling_speed : int
+var horizontal_input : int = 0
+
+func _ready() -> void:
+	#Input buffer setup:
+	jump_input_buffer = Timer.new()
+	jump_input_buffer.wait_time = jump_input_buffer_patience
+	jump_input_buffer.one_shot = true
+	add_child(jump_input_buffer)
+
+func process_input(_event : InputEvent) -> State:
+	if Input.is_action_just_pressed("jump"):
+		jump_input_buffer.start()
+	return null
+
+func activate(last_state : State) -> void:
+	super(last_state) #Call activate as defined in state.gd and then also do:
+	horizontal_input = int(Input.get_axis("move_left","move_right"))
+	if abs(parent.velocity.x) > dive_horizontal_default_velocity:
+		parent.velocity.x += dive_horizontal_additive_velocity * horizontal_input
+	else:
+		parent.velocity.x = dive_horizontal_default_velocity * horizontal_input
+	parent.velocity.y = -dive_vertical_velocity
+	gravity = parent.normal_gravity
+	max_falling_speed = parent.max_falling_speed
+
+func process_physics(_delta) -> State:
+	if parent.velocity.y < max_falling_speed:
+		parent.velocity.y += gravity
+	parent.move_and_slide()
+	
+	if parent.is_on_wall():
+		return bonked_state
+	if parent.is_on_floor():
+		if jump_input_buffer.time_left > 0:
+			return jumping_state
+		else:
+			return walking_state
+	return null

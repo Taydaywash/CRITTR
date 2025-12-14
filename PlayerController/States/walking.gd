@@ -1,0 +1,44 @@
+extends State
+
+#States that Walking can transition to:
+@export var idle_state : State
+@export var falling_state : State
+@export var jumping_state : State
+@export var diving_state : State
+
+@export var walk_speed : int
+@export var acceleration_speed : int
+@export var decceleration_speed : int
+
+var gravity : int
+var max_falling_speed : int
+var horizontal_input : int = 0
+var coyote_time : Timer
+
+func activate(last_state : State) -> void:
+	super(last_state) #Call activate() as defined in state.gd and then also do:
+	gravity = parent.normal_gravity
+	max_falling_speed = parent.max_falling_speed
+
+func process_input(_event : InputEvent) -> State:
+	if Input.is_action_just_pressed("dive"):
+		return diving_state
+	if Input.is_action_just_pressed("jump") and parent.is_on_floor():
+		return jumping_state
+	return null
+
+func process_physics(delta) -> State:
+	if parent.velocity.y < max_falling_speed:
+		parent.velocity.y += gravity
+	
+	horizontal_input = int(Input.get_axis("move_left","move_right"))
+	if (abs(parent.velocity.x) < walk_speed) or (sign(horizontal_input) != sign(parent.velocity.x)):
+		parent.velocity.x += acceleration_speed * delta * horizontal_input
+	if horizontal_input == 0:
+		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),decceleration_speed * delta).x
+	parent.move_and_slide()
+	if !parent.is_on_floor():
+		return falling_state
+	if parent.velocity.x == 0 and horizontal_input == 0:
+		return idle_state
+	return null
