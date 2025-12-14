@@ -7,11 +7,13 @@ const max_fall_speed : int = 2000
 const normal_gravity : int = 65
 const bunny_hop_speed : int = 200
 #Wall Jump
-const wall_jump_vertical_velocity : int = 1500
-const wall_jump_horizontal_velocity : int = 1500
+const wall_jump_vertical_velocity : int = 1200
+const wall_jump_horizontal_velocity : int = 800
 const wall_cling_gravity : int = 10
 var wall_cling : bool = false
-var last_touched_wall_normal : float = 0
+var wall_on_left : bool = false
+var wall_on_right : bool = false
+var space_state : PhysicsDirectSpaceState2D
 #Dive
 const dive_horizontal_additive_velocity : int = 100
 const dive_horizontal_default_velocity : int = 800
@@ -22,7 +24,7 @@ const dive_bonk_vertical_velocity : int = 600
 const jump_input_buffer_patience : float = 0.2 #seconds
 const coyote_time_patience : float = 0.5 #seconds
 const bunny_hop_patience : float = 0.1 #seconds
-const wall_jump_control_regain_delay : float = 1 #seconds
+const wall_jump_control_regain_delay : float = 0.3 #seconds
 var jump_input_buffer : Timer
 var coyote_time : Timer
 var bunny_hop : Timer
@@ -40,7 +42,7 @@ var has_bonked : bool = false
 @onready var normal_hitbox: CollisionShape2D = $NormalHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
 @onready var player_sprite: Sprite2D = $PlayerSprite
-
+@onready var wall_jump_ray_reference: Node2D = $WallJumpRayReference
 
 func _ready() -> void:
 	#Input buffer setup:
@@ -70,16 +72,15 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if abs(velocity.x) < walk_speed:
 		bunny_hops = 0
-	if not (diving and wall_jump_control_regain.time_left == 0):
-		has_bonked = false
-		horizontal_input = Input.get_axis("move_left","move_right")
-		velocity.x = (walk_speed + (bunny_hop_speed * bunny_hops)) * horizontal_input 
+	if not diving:
+		if wall_jump_control_regain.time_left == 0:
+			has_bonked = false
+			horizontal_input = Input.get_axis("move_left","move_right")
+			velocity.x = (walk_speed + (bunny_hop_speed * bunny_hops)) * horizontal_input 
 #region wall jump
-	if is_on_wall() and not diving and not grounded:
-		last_touched_wall_normal = get_wall_normal().x
-		wall_cling = true
-	elif horizontal_input != 0 and (horizontal_input != last_touched_wall_normal):
-		wall_cling = false
+	wall_on_right = _ray_hit(Vector2(70,0),1)
+	wall_on_left = _ray_hit(Vector2(-70,0),1)
+	wall_cling = is_on_wall() and velocity.y > 0 and (wall_on_left or wall_on_right)
 #endregion
 #region Jumping Logic
 	if Input.is_action_just_pressed("jump"):
@@ -108,6 +109,13 @@ func _physics_process(_delta: float) -> void:
 			coyote_jump_available = false
 			velocity.y = -jump_velocity
 			bunny_hops += 1
+		if (wall_on_right or wall_on_left) and velocity.y > 0:
+			wall_jump_control_regain.start()
+			velocity.y = -wall_jump_vertical_velocity
+			if wall_on_right:
+				velocity.x = -wall_jump_horizontal_velocity
+			if wall_on_left:
+				velocity.x = wall_jump_horizontal_velocity
 	if velocity.y < max_fall_speed and !grounded: #Apply Gravity
 		if wall_cling:
 			velocity.y += wall_cling_gravity
@@ -154,6 +162,16 @@ func _physics_process(_delta: float) -> void:
 		#normal_hitbox.disabled = false
 #endregion
 	move_and_slide()
+
+func _ray_hit(direction : Vector2, layer_mask):
+	space_state = get_world_2d().direct_space_state
+	var short_ray = PhysicsRayQueryParameters2D.create(wall_jump_ray_reference.global_position, 
+	wall_jump_ray_reference.global_position + direction, layer_mask)
+	var result = space_state.intersect_ray(short_ray)
+	if result:
+		return true
+	else:
+		return false
 
 func _on_hurtbox_body_entered(_body):
 	print("entered")

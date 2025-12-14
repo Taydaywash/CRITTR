@@ -22,6 +22,9 @@ scale = Vector2(2.697442, 3.8574424)
 floor_max_angle = 0.0
 script = ExtResource("1_ves0u")
 
+[node name="WallJumpRayReference" type="Node2D" parent="."]
+position = Vector2(0, 15.813585)
+
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.355, 0.355)
 texture = ExtResource("2_ves0u")
