@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://ql7kjpt3i6d" path="res://PlayerController/States/wall_jumping.gd" id="10_dpx4d"]
 [ext_resource type="Script" uid="uid://l4dt3d54fbjt" path="res://PlayerController/States/wall_cling.gd" id="10_xnjby"]
 [ext_resource type="Script" uid="uid://nu141t0agsoc" path="res://PlayerController/abilities_controller.gd" id="11_75ds7"]
-[ext_resource type="Script" uid="uid://phlgh2qymrcl" path="res://PlayerController/States/ascending.gd" id="11_evkiq"]
+[ext_resource type="Script" path="res://PlayerController/States/ascending.gd" id="11_evkiq"]
 [ext_resource type="Script" uid="uid://x1weuat5in2g" path="res://PlayerController/States/falling.gd" id="11_v55cd"]
 [ext_resource type="Script" uid="uid://c8h0fivvgxc74" path="res://PlayerController/States/Abilities/dashing.gd" id="12_evkiq"]
 [ext_resource type="Script" uid="uid://bm7yhxmomtxag" path="res://PlayerController/States/Abilities/grappling.gd" id="13_vpgwe"]
@@ -189,8 +189,13 @@ super_jump_velocity = 4000
 jump_input_buffer_patience = 0.2
 placeholder_animation_color = Color(0.23891038, 0.12174525, 0.0073752436, 1)
 
-[node name="Grappling" type="Node" parent="StateMachine/Abilities"]
+[node name="Grappling" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "jumping_state", "walking_state")]
 script = ExtResource("13_vpgwe")
+falling_state = NodePath("../../Falling")
+idle_state = NodePath("../../Idle")
+diving_state = NodePath("../../Diving")
+jumping_state = NodePath("../../Jumping")
+walking_state = NodePath("../../Walking")
 
 [node name="Climbing" type="Node" parent="StateMachine/Abilities"]
 script = ExtResource("14_hl1jv")
@@ -288,6 +293,12 @@ scale = Vector2(1, 0.9999999)
 shape = SubResource("RectangleShape2D_c7efg")
 disabled = true
 debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
+
+[node name="Grapple" type="Node2D" parent="."]
+
+[node name="GrapplingRay" type="RayCast2D" parent="Grapple"]
+scale = Vector2(1, 4)
+target_position = Vector2(400, 0)
 
 [connection signal="area_entered" from="TriggerHitbox" to="." method="_change_respawn_point"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d2mfvc5tpbska" path="res://Rooms/Room001.tscn" id="1_folwd"]
 [ext_resource type="PackedScene" uid="uid://4ip81nticvcd" path="res://PlayerController/Player.tscn" id="2_y6flb"]
-[ext_resource type="PackedScene" uid="uid://btyweu8dlfrmk" path="res://Rooms/Room002.tscn" id="3_mlekv"]
+[ext_resource type="PackedScene" path="res://Rooms/Room002.tscn" id="3_mlekv"]
 
 [node name="World" type="Node2D"]
 
