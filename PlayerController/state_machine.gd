@@ -2,10 +2,9 @@ extends Node
 
 @onready var abilities: Node = $Abilities
 
-@export
-var starting_state : State
-@export
-var grounded_states : Array[State]
+@export var colliders_list : Dictionary[String,CollisionShape2D]
+@export var starting_state : State
+@export var grounded_states : Array[State]
 var current_state : State
 
 #initialize state machine by taking player 
@@ -14,9 +13,11 @@ func initialize(player : CharacterBody2D, sprite : AnimatedSprite2D) -> void:
 	for child in get_children():
 		child.parent = player
 		child.sprite = sprite
+		child.colliders = colliders_list
 	for child in get_child(get_children().size() - 1).get_children():
 		child.parent = player
 		child.sprite = sprite
+		child.colliders = colliders_list
 	#Initialize with starting_state
 	change_state(starting_state, null)
 

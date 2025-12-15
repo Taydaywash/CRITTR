@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=36 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://World/camera_controller.gd" id="2_c4fll"]
@@ -71,16 +71,19 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1nwm"]
-size = Vector2(38.555046, 72.888885)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ves0u"]
-size = Vector2(35.555553, 35.55555)
+size = Vector2(35.555553, 71.11115)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5i1rd"]
-size = Vector2(30.028448, 33.182606)
+size = Vector2(30.028448, 59.25926)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7efg"]
-size = Vector2(30.028448, 20.88804)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_068uq"]
+size = Vector2(30.028448, 47.40741)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tycsm"]
+size = Vector2(35.55555, 71.11111)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ves0u"]
+size = Vector2(35.555553, 59.259254)
 
 [node name="PlayerController" type="CharacterBody2D"]
 scale = Vector2(1.35, 1.35)
@@ -89,8 +92,12 @@ script = ExtResource("1_4bhr5")
 normal_gravity = 3250
 max_falling_speed = 2000
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "grounded_states")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("colliders_list", "starting_state", "grounded_states")]
 script = ExtResource("5_v55cd")
+colliders_list = {
+"crouched": NodePath("../CrouchedHitbox"),
+"normal": NodePath("../NormalHitbox")
+}
 starting_state = NodePath("Idle")
 grounded_states = [NodePath("Idle"), NodePath("Walking")]
 
@@ -113,7 +120,7 @@ x_sprite_stretch_multiplier = 0.5
 sprite_reset_speed = 10.0
 placeholder_animation_color = Color(0, 1, 0, 1)
 
-[node name="Crouching" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walking_state", "falling_state", "jumping_state", "diving_state", "ability_state")]
+[node name="Crouching" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walking_state", "falling_state", "jumping_state", "diving_state", "ability_state", "default_hitbox", "crouching_hitbox")]
 script = ExtResource("12_068uq")
 idle_state = NodePath("../Idle")
 walking_state = NodePath("../Walking")
@@ -121,11 +128,17 @@ falling_state = NodePath("../Falling")
 jumping_state = NodePath("../Jumping")
 diving_state = NodePath("../Diving")
 ability_state = NodePath("../Abilities")
+default_hitbox = NodePath("../../NormalHitbox")
+crouching_hitbox = NodePath("../../CrouchedHitbox")
 sliding_deceleration = 25
-y_initial_sprite_stretch_multiplier = 0.7
+crouch_vertical_jump_speed = 1000
+crouch_horizontal_jump_speed = 500
+crouched_walk_speed = 400
+crouched_acceleration = 5000
+y_initial_sprite_stretch_multiplier = 0.8
 x_initial_sprite_stretch_multiplier = 1.1
 sprite_reset_speed = 10.0
-y_final_sprite_stretch_multiplier = 0.75
+y_final_sprite_stretch_multiplier = 0.85
 x_final_sprite_stretch_multiplier = 1.0
 placeholder_animation_color = Color(0, 1, 1, 1)
 
@@ -277,6 +290,13 @@ walking_state = NodePath("../../Walking")
 grapple_duration = 1.0
 jump_input_buffer_patience = 0.1
 
+[node name="Grapple" type="Node2D" parent="StateMachine/Abilities/Grappling"]
+scale = Vector2(2.7, 2.7)
+
+[node name="GrapplingRay" type="RayCast2D" parent="StateMachine/Abilities/Grappling/Grapple"]
+scale = Vector2(1, 4)
+target_position = Vector2(400, 0)
+
 [node name="Climbing" type="Node" parent="StateMachine/Abilities"]
 script = ExtResource("14_hl1jv")
 
@@ -304,20 +324,30 @@ target_position = Vector2(30, 0)
 scale = Vector2(2, 2)
 
 [node name="NudgeRightRangeLeft" type="RayCast2D" parent="CornerNudging"]
-position = Vector2(-20, 0)
-target_position = Vector2(0, -45)
+position = Vector2(-17, 29.62963)
+target_position = Vector2(0, -75)
 
 [node name="NudgeRightRangeRight" type="RayCast2D" parent="CornerNudging"]
-position = Vector2(-8, 0)
-target_position = Vector2(0, -45)
-
-[node name="NudgeLeftRangeRight" type="RayCast2D" parent="CornerNudging"]
-position = Vector2(20, 0)
-target_position = Vector2(0, -45)
+position = Vector2(-8, 29.62963)
+target_position = Vector2(0, -75)
 
 [node name="NudgeLeftRangeLeft" type="RayCast2D" parent="CornerNudging"]
-position = Vector2(8, 0)
-target_position = Vector2(0, -45)
+position = Vector2(8, 29.62963)
+target_position = Vector2(0, -75)
+
+[node name="NudgeLeftRangeRight" type="RayCast2D" parent="CornerNudging"]
+position = Vector2(17, 29.62963)
+target_position = Vector2(0, -75)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -3.0517578e-05)
+zoom = Vector2(0.36, 0.36)
+limit_left = -2048
+limit_top = -1600
+limit_bottom = 800
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("2_c4fll")
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 71.11111)
@@ -331,35 +361,15 @@ scale = Vector2(0.355, 0.35499996)
 texture = ExtResource("2_ves0u")
 offset = Vector2(0, -0.5008029)
 
-[node name="NormalHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(1.7677382e-07, 1.7777824)
-scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_g1nwm")
-
 [node name="TriggerHitbox" type="Area2D" parent="."]
 scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 4
 
 [node name="Collider" type="CollisionShape2D" parent="TriggerHitbox"]
-position = Vector2(1.7677382e-07, -0.25924423)
-scale = Vector2(1, 0.9999994)
+position = Vector2(-7.50577e-07, 5.187812e-07)
+scale = Vector2(1, 0.99999934)
 shape = SubResource("RectangleShape2D_g1nwm")
-
-[node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(1.7660635e-07, 35.555553)
-scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_ves0u")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -3.0517578e-05)
-zoom = Vector2(0.36, 0.36)
-limit_left = -2048
-limit_top = -1600
-limit_bottom = 800
-limit_smoothed = true
-position_smoothing_enabled = true
-script = ExtResource("2_c4fll")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 scale = Vector2(2, 2)
@@ -367,7 +377,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-0.5560827, 0.25923833)
+position = Vector2(-0.5560827, 0)
 scale = Vector2(1, 0.9999999)
 shape = SubResource("RectangleShape2D_5i1rd")
 debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
@@ -378,18 +388,26 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CrouchedHurtbox"]
-position = Vector2(-0.5560827, 6.296193)
+z_index = 1
+position = Vector2(-0.5560827, 5.9259253)
 scale = Vector2(1, 0.9999999)
-shape = SubResource("RectangleShape2D_c7efg")
-disabled = true
-debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
+shape = SubResource("RectangleShape2D_068uq")
+debug_color = Color(1, 0.13725491, 0.1764706, 0.3254902)
 
-[node name="Grapple" type="Node2D" parent="."]
+[node name="- Hitboxes -" type="Node" parent="."]
+
+[node name="NormalHitbox" type="CollisionShape2D" parent="."]
+z_index = -1
+position = Vector2(-3.638091e-06, 3.7087334e-06)
 scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_tycsm")
 
-[node name="GrapplingRay" type="RayCast2D" parent="Grapple"]
-scale = Vector2(1, 4)
-target_position = Vector2(400, 0)
+[node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
+z_index = -1
+position = Vector2(1.7660635e-07, 11.851847)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_ves0u")
+disabled = true
 
 [connection signal="area_entered" from="TriggerHitbox" to="." method="_change_respawn_point"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

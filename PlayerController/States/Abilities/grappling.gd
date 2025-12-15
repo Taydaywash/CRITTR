@@ -11,8 +11,7 @@ extends State
 @export var grapple_duration : float #seconds
 @export var jump_input_buffer_patience : float
 
-@onready var grapple_ray = $"../../../Grapple/GrapplingRay"
-#@onready var sprite_2d = $"../../../Grapple/Sprite2D"
+@onready var grapple_ray: Node2D = $Grapple
 
 var gravity : int
 var max_falling_speed : int
@@ -21,12 +20,11 @@ var direction : String
 var jump_input_buffer: Timer
 
 func _ready() -> void:
-		#Input buffer setup:
+	#Input buffer setup:
 	jump_input_buffer = Timer.new()
 	jump_input_buffer.wait_time = jump_input_buffer_patience
 	jump_input_buffer.one_shot = true
 	add_child(jump_input_buffer)
-
 
 func set_direction(ability_direction : String) -> void:
 	direction = ability_direction
