@@ -1,7 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=35 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/player_state_controller.gd" id="1_4bhr5"]
-[ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://camera_controller.gd" id="2_c4fll"]
+[ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://World/camera_controller.gd" id="2_c4fll"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
 [ext_resource type="Script" uid="uid://cm5l3ivbnb55g" path="res://PlayerController/state_machine.gd" id="5_v55cd"]
 [ext_resource type="Script" uid="uid://cnyjhmvsy4x2m" path="res://PlayerController/States/idle.gd" id="6_dpx4d"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://nu141t0agsoc" path="res://PlayerController/abilities_controller.gd" id="11_75ds7"]
 [ext_resource type="Script" uid="uid://phlgh2qymrcl" path="res://PlayerController/States/ascending.gd" id="11_evkiq"]
 [ext_resource type="Script" uid="uid://x1weuat5in2g" path="res://PlayerController/States/falling.gd" id="11_v55cd"]
+[ext_resource type="Script" uid="uid://bwdpd2vsi0pnv" path="res://PlayerController/crouching.gd" id="12_068uq"]
 [ext_resource type="Script" uid="uid://c8h0fivvgxc74" path="res://PlayerController/States/Abilities/dashing.gd" id="12_evkiq"]
 [ext_resource type="Script" uid="uid://bm7yhxmomtxag" path="res://PlayerController/States/Abilities/grappling.gd" id="13_vpgwe"]
 [ext_resource type="Script" uid="uid://bm41wexjew65w" path="res://PlayerController/States/Abilities/climbing.gd" id="14_hl1jv"]
@@ -70,10 +71,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1nwm"]
-size = Vector2(38.555046, 64)
+size = Vector2(38.555046, 72.888885)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ves0u"]
-size = Vector2(38.925766, 21.257618)
+size = Vector2(35.555553, 35.55555)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5i1rd"]
 size = Vector2(30.028448, 33.182606)
@@ -93,28 +94,6 @@ script = ExtResource("5_v55cd")
 starting_state = NodePath("Idle")
 grounded_states = [NodePath("Idle"), NodePath("Walking")]
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walking_state", "falling_state", "jumping_state", "diving_state", "ability_state")]
-script = ExtResource("6_dpx4d")
-walking_state = NodePath("../Walking")
-falling_state = NodePath("../Falling")
-jumping_state = NodePath("../Jumping")
-diving_state = NodePath("../Diving")
-ability_state = NodePath("../Abilities")
-placeholder_animation_color = Color(1, 1, 1, 1)
-
-[node name="Walking" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "falling_state", "jumping_state", "diving_state", "ability_state")]
-script = ExtResource("7_hueom")
-idle_state = NodePath("../Idle")
-falling_state = NodePath("../Falling")
-jumping_state = NodePath("../Jumping")
-diving_state = NodePath("../Diving")
-ability_state = NodePath("../Abilities")
-walk_speed = 800
-acceleration_speed = 10000
-decceleration_speed = 10000
-animation_name = "walking"
-placeholder_animation_color = Color(0, 0, 0.798921, 1)
-
 [node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state")]
 script = ExtResource("8_2fk5g")
 falling_state = NodePath("../Falling")
@@ -129,7 +108,50 @@ jump_cancellation = 2
 air_acceleration_speed = 10000
 air_decceleration_speed = 10000
 jump_input_buffer_patience = 0.2
+y_sprite_stretch_multiplier = 1.5
+x_sprite_stretch_multiplier = 0.5
+sprite_reset_speed = 10.0
 placeholder_animation_color = Color(0, 1, 0, 1)
+
+[node name="Crouching" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walking_state", "falling_state", "jumping_state", "diving_state", "ability_state")]
+script = ExtResource("12_068uq")
+idle_state = NodePath("../Idle")
+walking_state = NodePath("../Walking")
+falling_state = NodePath("../Falling")
+jumping_state = NodePath("../Jumping")
+diving_state = NodePath("../Diving")
+ability_state = NodePath("../Abilities")
+sliding_deceleration = 25
+y_initial_sprite_stretch_multiplier = 0.7
+x_initial_sprite_stretch_multiplier = 1.1
+sprite_reset_speed = 10.0
+y_final_sprite_stretch_multiplier = 0.75
+x_final_sprite_stretch_multiplier = 1.0
+placeholder_animation_color = Color(0, 1, 1, 1)
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walking_state", "crouching_state", "falling_state", "jumping_state", "diving_state", "ability_state")]
+script = ExtResource("6_dpx4d")
+walking_state = NodePath("../Walking")
+crouching_state = NodePath("../Crouching")
+falling_state = NodePath("../Falling")
+jumping_state = NodePath("../Jumping")
+diving_state = NodePath("../Diving")
+ability_state = NodePath("../Abilities")
+placeholder_animation_color = Color(1, 1, 1, 1)
+
+[node name="Walking" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "crouching_state", "falling_state", "jumping_state", "diving_state", "ability_state")]
+script = ExtResource("7_hueom")
+idle_state = NodePath("../Idle")
+crouching_state = NodePath("../Crouching")
+falling_state = NodePath("../Falling")
+jumping_state = NodePath("../Jumping")
+diving_state = NodePath("../Diving")
+ability_state = NodePath("../Abilities")
+walk_speed = 800
+acceleration_speed = 10000
+decceleration_speed = 10000
+animation_name = "walking"
+placeholder_animation_color = Color(0, 0, 0.798921, 1)
 
 [node name="Diving" type="Node" parent="StateMachine" node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state")]
 script = ExtResource("9_gnv43")
@@ -279,49 +301,31 @@ scale = Vector2(2, 2)
 
 [node name="NudgeRightRangeLeft" type="RayCast2D" parent="CornerNudging"]
 position = Vector2(-20, 0)
-target_position = Vector2(0, -35)
+target_position = Vector2(0, -45)
 
 [node name="NudgeRightRangeRight" type="RayCast2D" parent="CornerNudging"]
 position = Vector2(-8, 0)
-target_position = Vector2(0, -35)
+target_position = Vector2(0, -45)
 
 [node name="NudgeLeftRangeRight" type="RayCast2D" parent="CornerNudging"]
 position = Vector2(20, 0)
-target_position = Vector2(0, -35)
+target_position = Vector2(0, -45)
 
 [node name="NudgeLeftRangeLeft" type="RayCast2D" parent="CornerNudging"]
 position = Vector2(8, 0)
-target_position = Vector2(0, -35)
+target_position = Vector2(0, -45)
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 71.11111)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
 animation = &"walking"
+offset = Vector2(0, -71.11111)
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(0.355, 0.35499996)
 texture = ExtResource("2_ves0u")
 offset = Vector2(0, -0.5008029)
-
-[node name="NormalHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(1.7677382e-07, 10.666668)
-scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_g1nwm")
-
-[node name="TriggerHitbox" type="Area2D" parent="."]
-scale = Vector2(2, 2)
-collision_layer = 4
-collision_mask = 4
-
-[node name="Collider" type="CollisionShape2D" parent="TriggerHitbox"]
-position = Vector2(1.7677382e-07, -0.25924423)
-scale = Vector2(1, 0.9999994)
-shape = SubResource("RectangleShape2D_g1nwm")
-
-[node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-0.18535991, 10.888037)
-scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_ves0u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -3.0517578e-05)
@@ -333,29 +337,6 @@ limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("2_c4fll")
 
-[node name="Hurtbox" type="Area2D" parent="."]
-scale = Vector2(2, 2)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-0.5560827, 0.25923833)
-scale = Vector2(1, 0.9999999)
-shape = SubResource("RectangleShape2D_5i1rd")
-debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
-
-[node name="CrouchedHurtbox" type="Area2D" parent="."]
-scale = Vector2(2, 2)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CrouchedHurtbox"]
-position = Vector2(-0.5560827, 6.296193)
-scale = Vector2(1, 0.9999999)
-shape = SubResource("RectangleShape2D_c7efg")
-disabled = true
-debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
-
 [node name="Grapple" type="Node2D" parent="."]
 scale = Vector2(2, 2)
 
@@ -363,6 +344,51 @@ scale = Vector2(2, 2)
 scale = Vector2(1, 4)
 target_position = Vector2(400, 0)
 
-[connection signal="area_entered" from="TriggerHitbox" to="." method="_change_respawn_point"]
-[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
-[connection signal="body_entered" from="CrouchedHurtbox" to="." method="_on_crouched_hurtbox_body_entered"]
+[node name="Hitboxes" type="RigidBody2D" parent="."]
+
+[node name="NormalHitbox" type="CollisionShape2D" parent="Hitboxes"]
+position = Vector2(2.3864467e-07, 2.4000063)
+scale = Vector2(2.7, 2.7)
+shape = SubResource("RectangleShape2D_g1nwm")
+
+[node name="TriggerHitbox" type="Area2D" parent="Hitboxes"]
+scale = Vector2(2.7, 2.7)
+collision_layer = 4
+collision_mask = 4
+
+[node name="Collider" type="CollisionShape2D" parent="Hitboxes/TriggerHitbox"]
+position = Vector2(1.7677382e-07, -0.25924423)
+scale = Vector2(1, 0.9999994)
+shape = SubResource("RectangleShape2D_g1nwm")
+
+[node name="CrouchedHitbox" type="CollisionShape2D" parent="Hitboxes"]
+position = Vector2(2.3841858e-07, 47.999996)
+scale = Vector2(2.7, 2.7)
+shape = SubResource("RectangleShape2D_ves0u")
+
+[node name="Hurtbox" type="Area2D" parent="Hitboxes"]
+scale = Vector2(2.7, 2.7)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Hurtbox"]
+position = Vector2(-0.5560827, 0.25923833)
+scale = Vector2(1, 0.9999999)
+shape = SubResource("RectangleShape2D_5i1rd")
+debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
+
+[node name="CrouchedHurtbox" type="Area2D" parent="Hitboxes"]
+scale = Vector2(2.7, 2.7)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/CrouchedHurtbox"]
+position = Vector2(-0.5560827, 6.296193)
+scale = Vector2(1, 0.9999999)
+shape = SubResource("RectangleShape2D_c7efg")
+disabled = true
+debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
+
+[connection signal="area_entered" from="Hitboxes/TriggerHitbox" to="." method="_change_respawn_point"]
+[connection signal="body_entered" from="Hitboxes/Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="Hitboxes/CrouchedHurtbox" to="." method="_on_crouched_hurtbox_body_entered"]

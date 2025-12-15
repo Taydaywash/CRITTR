@@ -1,9 +1,10 @@
 extends State
 
 #States that Bonked can transition to:
+@export_category("States")
 @export var idle_state : State
 @export var jumping_state : State
-
+@export_category("Parameters")
 @export var dive_bonk_horizontal_velocity : int
 @export var dive_bonk_vertical_velocity : int
 @export var jump_input_buffer_patience : float

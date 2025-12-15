@@ -1,6 +1,7 @@
 extends State
 
 #States that Falling can transition to:
+@export_category("States")
 @export var idle_state : State
 @export var walking_state : State
 @export var diving_state : State
@@ -8,7 +9,7 @@ extends State
 @export var jumping_state : State
 @export var wall_jumping_state : State
 @export var ability_state : State
-
+@export_category("Parameters")
 @export var air_control : int
 @export var air_acceleration_speed : int
 @export var air_decceleration_speed : int
@@ -46,8 +47,7 @@ func activate(last_state : State) -> void:
 		coyote_time.start()
 
 func process_input(_event : InputEvent) -> State:
-	var used_ability = Input.is_action_just_pressed("ability_up") or Input.is_action_just_pressed("ability_down") or Input.is_action_just_pressed("ability_left") or Input.is_action_just_pressed("ability_right")
-	if used_ability:
+	if Input.is_action_just_pressed("ability_up") or Input.is_action_just_pressed("ability_down") or Input.is_action_just_pressed("ability_left") or Input.is_action_just_pressed("ability_right"):
 		return ability_state
 	if Input.is_action_just_pressed("dive"):
 		return diving_state

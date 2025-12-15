@@ -1,12 +1,13 @@
 extends State
 
 #States that Idle can transition to:
+@export_category("States")
 @export var falling_state : State
 @export var idle_state : State
 @export var diving_state : State
 @export var jumping_state : State
 @export var walking_state : State
-
+@export_category("Parameters")
 @export var grapple_duration : float #seconds
 @export var jump_input_buffer_patience : float
 

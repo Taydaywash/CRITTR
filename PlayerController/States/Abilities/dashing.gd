@@ -1,13 +1,14 @@
 extends State
 
 #States that Idle can transition to:
+@export_category("States")
 @export var jumping_state : State
 @export var walking_state : State
 @export var falling_state : State
 @export var idle_state : State
 @export var diving_state : State
 @export var ascending_state : State
-
+@export_category("Parameters")
 @export var dashing_speed : int
 @export var dash_duration : float #seconds
 @export var dash_end_velocity_multiplier : float

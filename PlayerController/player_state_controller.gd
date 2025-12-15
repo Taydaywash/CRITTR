@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var animated_player_sprite: AnimatedSprite2D = $AnimatedPlayerSprite
 
 func _ready() -> void:
-	state_machine.initialize(self)
+	state_machine.initialize(self,animated_player_sprite)
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
