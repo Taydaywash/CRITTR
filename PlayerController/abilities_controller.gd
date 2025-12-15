@@ -11,7 +11,7 @@ extends State
 @onready var ability_down = dashing_state
 @onready var ability_left = dashing_state
 @onready var ability_right = dashing_state
-
+@onready var ui: CanvasLayer = $"../../../UI"
 @onready var abilities_in_use: Dictionary = {
 	"ability_up": {
 		"state" : ability_up, 
@@ -35,6 +35,7 @@ extends State
 		},
 	}
 
+
 func get_ability(event: InputEvent) -> Dictionary:
 	if event.is_action_pressed("ability_up"):
 		return abilities_in_use.ability_up
@@ -54,9 +55,11 @@ func use_ability(event: InputEvent) -> void:
 		abilities_in_use.ability_left.available = false
 	else: # event.is_action_pressed("ability_right"):
 		abilities_in_use.ability_right.available = false
+	ui.update_ability_ui(abilities_in_use)
 
 func refill_abilities() -> void:
 	abilities_in_use.ability_up.available = true
 	abilities_in_use.ability_down.available = true
 	abilities_in_use.ability_left.available = true
 	abilities_in_use.ability_right.available = true
+	ui.update_ability_ui(abilities_in_use)
