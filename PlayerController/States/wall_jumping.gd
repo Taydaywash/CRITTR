@@ -5,6 +5,7 @@ extends State
 @export var idle_state : State
 @export var walking_state : State
 @export var diving_state : State
+@export var ability_state : State
 
 @export var air_control : int
 @export var wall_jump_horizontal_velocity : int
@@ -42,6 +43,9 @@ func activate(last_state : State) -> void:
 		parent.velocity.x = wall_jump_horizontal_velocity
 
 func process_input(_event : InputEvent) -> State:
+	var used_ability = Input.is_action_just_pressed("ability_up") or Input.is_action_just_pressed("ability_down") or Input.is_action_just_pressed("ability_left") or Input.is_action_just_pressed("ability_right")
+	if used_ability:
+		return ability_state
 	if Input.is_action_just_pressed("jump"):
 		jump_input_buffer.start()
 	if Input.is_action_just_released("jump"):

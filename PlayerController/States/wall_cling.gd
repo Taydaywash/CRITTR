@@ -5,6 +5,7 @@ extends State
 @export var jumping_state : State
 @export var walking_state : State
 @export var wall_jumping_state : State
+@export var ability_state : State
 
 var max_falling_speed : int
 var horizontal_input : int = 0
@@ -25,6 +26,9 @@ func activate(last_state : State) -> void:
 	max_falling_speed = parent.max_falling_speed
 
 func process_input(_event : InputEvent) -> State:
+	var used_ability = Input.is_action_just_pressed("ability_up") or Input.is_action_just_pressed("ability_down") or Input.is_action_just_pressed("ability_left") or Input.is_action_just_pressed("ability_right")
+	if used_ability:
+		return ability_state
 	if Input.is_action_just_pressed("jump"):
 		return wall_jumping_state
 	return null
