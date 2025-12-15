@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=34 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://camera_controller.gd" id="2_c4fll"]
@@ -20,7 +20,14 @@
 [ext_resource type="Script" uid="uid://cwi7sh2i6bfpg" path="res://PlayerController/States/Abilities/inflated.gd" id="15_melbr"]
 [ext_resource type="Script" uid="uid://s0v2p1xd21lh" path="res://PlayerController/States/Abilities/bounce_attack.gd" id="16_2bslk"]
 [ext_resource type="Script" uid="uid://ctsvxg3n4hdh7" path="res://PlayerController/States/Abilities/drill.gd" id="17_fuvci"]
-[ext_resource type="Texture2D" uid="uid://dowgutwq0rs3s" path="res://testtileset.png" id="20_vpgwe"]
+[ext_resource type="Texture2D" uid="uid://bjjfgn20xesr4" path="res://PlayerController/animations/walking/1.png" id="20_xkjkw"]
+[ext_resource type="Texture2D" uid="uid://ci5svfwxw66r7" path="res://PlayerController/animations/walking/2.png" id="21_068uq"]
+[ext_resource type="Texture2D" uid="uid://c3oq2xwccxu26" path="res://PlayerController/animations/walking/3.png" id="22_tycsm"]
+[ext_resource type="Texture2D" uid="uid://dw1usthn2q4xu" path="res://PlayerController/animations/walking/4.png" id="23_fkl5p"]
+[ext_resource type="Texture2D" uid="uid://ck86ao8s4kkie" path="res://PlayerController/animations/walking/5.png" id="24_hfsnk"]
+[ext_resource type="Texture2D" uid="uid://c65ac4tvxpli3" path="res://PlayerController/animations/walking/6.png" id="25_3imdl"]
+[ext_resource type="Texture2D" uid="uid://dckhxgf6ougxp" path="res://PlayerController/animations/walking/7.png" id="26_wqhrm"]
+[ext_resource type="Texture2D" uid="uid://cq2dxyrus851k" path="res://PlayerController/animations/walking/8.png" id="27_7xxh7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hl1jv"]
 animations = [{
@@ -34,14 +41,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ves0u")
+"texture": ExtResource("20_xkjkw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("20_vpgwe")
+"texture": ExtResource("21_068uq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_tycsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_fkl5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_hfsnk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_3imdl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_wqhrm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_7xxh7")
 }],
 "loop": true,
 "name": &"walking",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1nwm"]
@@ -263,11 +288,12 @@ position = Vector2(8, 0)
 target_position = Vector2(0, -35)
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1, 0.99999994)
+scale = Vector2(0.41, 0.26)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"no animation"
+animation = &"walking"
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.355, 0.35499996)
 texture = ExtResource("2_ves0u")
 offset = Vector2(0, -0.5008029)
