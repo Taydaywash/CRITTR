@@ -24,7 +24,6 @@ func _process(delta: float) -> void:
 
 @warning_ignore("shadowed_variable_base_class")
 func play_animation(name):
-	
 	if name == "":
 		animated_player_sprite.play("no animation")
 	else:

@@ -213,7 +213,7 @@ air_decceleration_speed = 10000
 jump_input_buffer_patience = 0.2
 placeholder_animation_color = Color(0.62458503, 0.3189972, 0, 1)
 
-[node name="Abilities" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashing_state", "grappling_state", "climbing_state", "infated_state", "bounce_attack_state", "drill_state")]
+[node name="Abilities" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashing_state", "grappling_state", "climbing_state", "infated_state", "bounce_attack_state", "drill_state", "ability_up", "ability_down", "ability_left", "ability_right")]
 script = ExtResource("11_75ds7")
 dashing_state = NodePath("Dashing")
 grappling_state = NodePath("Grappling")
@@ -221,6 +221,10 @@ climbing_state = NodePath("Climbing")
 infated_state = NodePath("Inflated")
 bounce_attack_state = NodePath("BounceAttack")
 drill_state = NodePath("Drill")
+ability_up = NodePath("Dashing")
+ability_down = NodePath("Dashing")
+ability_left = NodePath("Dashing")
+ability_right = NodePath("Dashing")
 
 [node name="Dashing" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("jumping_state", "walking_state", "falling_state", "idle_state", "diving_state", "ascending_state")]
 script = ExtResource("12_evkiq")

@@ -7,10 +7,11 @@ extends State
 @export var bounce_attack_state : State
 @export var drill_state : State
 
-@onready var ability_up = grappling_state
-@onready var ability_down = dashing_state
-@onready var ability_left = dashing_state
-@onready var ability_right = dashing_state
+@export var ability_up : State
+@export var ability_down : State
+@export var ability_left : State
+@export var ability_right : State
+
 @onready var ui: CanvasLayer = $"../../../UI"
 @onready var abilities_in_use: Dictionary = {
 	"ability_up": {

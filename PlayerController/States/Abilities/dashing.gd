@@ -65,7 +65,7 @@ func process_input(_event : InputEvent) -> State:
 
 func process_physics(_delta) -> State:
 	parent.move_and_slide()
-	if parent.is_on_wall() or parent.is_on_ceiling():
+	if (parent.is_on_wall() and parent.velocity.y == 0) or parent.is_on_ceiling():
 		return falling_state
 	if (parent.is_on_floor() and dash_timer.time_left == 0):
 		if jump_input_buffer.time_left > 0:
