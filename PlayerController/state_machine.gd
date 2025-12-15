@@ -10,11 +10,13 @@ var current_state : State
 
 #initialize state machine by taking player 
 #reference and propagating it to each state
-func initialize(player : CharacterBody2D) -> void:
+func initialize(player : CharacterBody2D, sprite : AnimatedSprite2D) -> void:
 	for child in get_children():
 		child.parent = player
+		child.sprite = sprite
 	for child in get_child(get_children().size() - 1).get_children():
 		child.parent = player
+		child.sprite = sprite
 	#Initialize with starting_state
 	change_state(starting_state, null)
 

@@ -14,6 +14,11 @@ extends State
 @export var jump_cancellation : int
 @export var air_acceleration_speed : int
 @export var air_decceleration_speed : int
+@export var jump_input_buffer_patience : float
+@export_category("Animations")
+@export var y_sprite_stretch_multiplier : float
+@export var x_sprite_stretch_multiplier : float
+@export var sprite_reset_speed : float
 
 var gravity : int
 var max_falling_speed : int
@@ -26,8 +31,6 @@ var horizontal_input : int = 0
 @onready var nudge_right_range_right: RayCast2D = $"../../CornerNudging/NudgeRightRangeRight"
 @onready var nudge_left_range_right: RayCast2D = $"../../CornerNudging/NudgeLeftRangeRight"
 @onready var nudge_left_range_left: RayCast2D = $"../../CornerNudging/NudgeLeftRangeLeft"
-
-@export var jump_input_buffer_patience : float
 
 var jump_input_buffer : Timer
 
@@ -44,10 +47,11 @@ func activate(last_state : State) -> void:
 	parent.velocity.y = -jump_velocity
 	max_falling_speed = parent.max_falling_speed
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
+	sprite.scale.y = y_sprite_stretch_multiplier
+	sprite.scale.x = x_sprite_stretch_multiplier
 
 func process_input(_event : InputEvent) -> State:
-	var used_ability = Input.is_action_just_pressed("ability_up") or Input.is_action_just_pressed("ability_down") or Input.is_action_just_pressed("ability_left") or Input.is_action_just_pressed("ability_right")
-	if used_ability:
+	if Input.is_action_just_pressed("ability_up") or Input.is_action_just_pressed("ability_down") or Input.is_action_just_pressed("ability_left") or Input.is_action_just_pressed("ability_right"):
 		return ability_state
 	if Input.is_action_just_pressed("jump"):
 		jump_input_buffer.start()
@@ -85,4 +89,9 @@ func process_physics(delta) -> State:
 				return idle_state
 	if (left_ray.is_colliding()  or right_ray.is_colliding()) and jump_input_buffer.time_left > 0:
 		return wall_jumping_state
+	return null
+
+func process_frame(delta) -> State:
+	sprite.scale.y = lerp(sprite.scale.y,1.0,sprite_reset_speed * delta)
+	sprite.scale.x = lerp(sprite.scale.x,1.0,sprite_reset_speed * delta)
 	return null
