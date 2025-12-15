@@ -3,11 +3,13 @@ extends State
 #States that Idle can transition to:
 @export var jumping_state : State
 @export var falling_state : State
+@export var idle_state : State
 @export var diving_state : State
 
 @export var dashing_speed : int
 @export var dash_duration : float #seconds
 @export var dash_end_velocity_multiplier : float
+@export var super_jump_velocity : int
 
 var gravity : int
 var max_falling_speed : int
@@ -26,15 +28,22 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
-	dash_timer.start()
+	
 	parent.velocity = Vector2(0,0)
 	if direction == "up":
+		dash_timer.start()
 		parent.velocity.y = -dashing_speed
-	if direction == "down":
-		parent.velocity.y = dashing_speed
-	if direction == "left":
+	elif direction == "down":
+		if parent.is_on_floor():
+			parent.velocity.y = -super_jump_velocity
+		else:
+			dash_timer.start()
+			parent.velocity.y = dashing_speed
+	elif direction == "left":
+		dash_timer.start()
 		parent.velocity.x = -dashing_speed
-	if direction == "right":
+	elif direction == "right":
+		dash_timer.start()
 		parent.velocity.x = dashing_speed
 
 func process_input(_event : InputEvent) -> State:
@@ -44,8 +53,8 @@ func process_input(_event : InputEvent) -> State:
 
 func process_physics(_delta) -> State:
 	parent.move_and_slide()
-	if parent.is_on_wall() or parent.is_on_ceiling() or parent.is_on_floor() or dash_timer.time_left == 0:
-		return falling_state
+	if parent.is_on_wall() or parent.is_on_ceiling() or (parent.is_on_floor() and dash_timer.time_left == 0) or (!parent.is_on_floor() and dash_timer.time_left == 0):
+		return jumping_state
 	return null
 
 func deactivate() -> void:

@@ -93,12 +93,13 @@ dive_vertical_velocity = 800
 jump_input_buffer_patience = 0.2
 idle_dive_sprite = Color(0.14890742, 0.14890742, 0.14890742, 1)
 
-[node name="WallCling" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "jumping_state", "walking_state", "wall_jumping_state")]
+[node name="WallCling" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "jumping_state", "walking_state", "wall_jumping_state", "ability_state")]
 script = ExtResource("10_xnjby")
 falling_state = NodePath("../Falling")
 jumping_state = NodePath("../Jumping")
 walking_state = NodePath("../Walking")
 wall_jumping_state = NodePath("../WallJumping")
+ability_state = NodePath("../Abilities")
 walk_speed = 80
 acceleration_speed = 20000
 decceleration_speed = 20000
@@ -133,12 +134,13 @@ dive_bonk_vertical_velocity = 600
 jump_input_buffer_patience = 0.2
 placeholder_animation_color = Color(0.3282248, 0.39151636, 0.4222509, 1)
 
-[node name="WallJumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "idle_state", "walking_state", "diving_state")]
+[node name="WallJumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "idle_state", "walking_state", "diving_state", "ability_state")]
 script = ExtResource("10_dpx4d")
 falling_state = NodePath("../Falling")
 idle_state = NodePath("../Idle")
 walking_state = NodePath("../Walking")
 diving_state = NodePath("../Diving")
+ability_state = NodePath("../Abilities")
 air_control = 800
 wall_jump_horizontal_velocity = 1000
 wall_jump_vertical_velocity = 1000
@@ -147,6 +149,8 @@ air_acceleration_speed = 2000
 air_decceleration_speed = 1000
 jump_input_buffer_patience = 0.1
 placeholder_animation_color = Color(0.6553385, 0.74060166, 0.67189306, 1)
+
+[node name="Ascending" type="Node" parent="StateMachine"]
 
 [node name="Abilities" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashing_state", "grappling_state", "climbing_state", "infated_state", "bounce_attack_state", "drill_state")]
 script = ExtResource("11_75ds7")
@@ -157,14 +161,16 @@ infated_state = NodePath("Inflated")
 bounce_attack_state = NodePath("BounceAttack")
 drill_state = NodePath("Drill")
 
-[node name="Dashing" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("jumping_state", "falling_state", "diving_state")]
+[node name="Dashing" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("jumping_state", "falling_state", "idle_state", "diving_state")]
 script = ExtResource("12_evkiq")
 jumping_state = NodePath("../../Jumping")
 falling_state = NodePath("../../Falling")
+idle_state = NodePath("../../Idle")
 diving_state = NodePath("../../Diving")
 dashing_speed = 2000
 dash_duration = 0.2
 dash_end_velocity_multiplier = 0.5
+super_jump_velocity = 4000
 placeholder_animation_color = Color(0.23891038, 0.12174525, 0.0073752436, 1)
 
 [node name="Grappling" type="Node" parent="StateMachine/Abilities"]
