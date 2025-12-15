@@ -13,7 +13,7 @@ func set_direction(_direction : String) -> void:
 
 func activate(_last_state : State) -> void:
 	#replace parent.modulate with this once animations are added
-	#parent.animations.play(animation_name)
+	parent.play_animation(animation_name)
 	parent.modulate = placeholder_animation_color
 
 func process_input(_event) -> State:
