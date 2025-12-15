@@ -11,6 +11,12 @@ extends State
 @export var dive_vertical_velocity : int
 @export var jump_input_buffer_patience : float
 @export var idle_dive_sprite : Color
+@export_category("Animations")
+@export var y_initial_sprite_stretch_multiplier : float
+@export var x_initial_sprite_stretch_multiplier : float
+@export var sprite_reset_speed : float
+@export var y_final_sprite_stretch_multiplier : float
+@export var x_final_sprite_stretch_multiplier : float
 
 var jump_input_buffer : Timer
 var gravity : int
@@ -37,6 +43,9 @@ func activate(last_state : State) -> void:
 	parent.velocity.y = -dive_vertical_velocity
 	gravity = parent.normal_gravity
 	max_falling_speed = parent.max_falling_speed
+	
+	sprite.scale = Vector2(abs(x_initial_sprite_stretch_multiplier * parent.velocity.normalized().x),y_initial_sprite_stretch_multiplier * -parent.velocity.normalized().y)
+	sprite.rotation = -parent.velocity.normalized().x
 
 func process_input(_event : InputEvent) -> State:
 	if Input.is_action_just_pressed("jump"):
@@ -55,4 +64,9 @@ func process_physics(delta) -> State:
 			return jumping_state
 		else:
 			return walking_state
+	return null
+
+func process_frame(_delta) -> State:
+	sprite.scale = lerp(sprite.scale, Vector2(1,1), sprite_reset_speed)
+	sprite.rotation = lerp(sprite.rotation, 0.45 * parent.velocity.normalized().x, sprite_reset_speed)
 	return null

@@ -29,3 +29,4 @@ func process_frame(_delta) -> State:
 func deactivate() -> void:
 	sprite.scale.y = 1
 	sprite.scale.x = 1
+	sprite.rotation = 0

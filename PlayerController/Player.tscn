@@ -163,6 +163,10 @@ dive_horizontal_default_velocity = 800
 dive_vertical_velocity = 800
 jump_input_buffer_patience = 0.2
 idle_dive_sprite = Color(0.14890742, 0.14890742, 0.14890742, 1)
+y_initial_sprite_stretch_multiplier = 1.0
+x_initial_sprite_stretch_multiplier = 1.5
+sprite_reset_speed = 0.1
+placeholder_animation_color = Color(0.27058825, 0, 0, 1)
 
 [node name="WallCling" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "jumping_state", "walking_state", "wall_jumping_state", "ability_state")]
 script = ExtResource("10_xnjby")
@@ -327,6 +331,26 @@ scale = Vector2(0.355, 0.35499996)
 texture = ExtResource("2_ves0u")
 offset = Vector2(0, -0.5008029)
 
+[node name="NormalHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(1.7677382e-07, 1.7777824)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_g1nwm")
+
+[node name="TriggerHitbox" type="Area2D" parent="."]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 4
+
+[node name="Collider" type="CollisionShape2D" parent="TriggerHitbox"]
+position = Vector2(1.7677382e-07, -0.25924423)
+scale = Vector2(1, 0.9999994)
+shape = SubResource("RectangleShape2D_g1nwm")
+
+[node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(1.7660635e-07, 35.555553)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_ves0u")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -3.0517578e-05)
 zoom = Vector2(0.36, 0.36)
@@ -337,6 +361,29 @@ limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("2_c4fll")
 
+[node name="Hurtbox" type="Area2D" parent="."]
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5560827, 0.25923833)
+scale = Vector2(1, 0.9999999)
+shape = SubResource("RectangleShape2D_5i1rd")
+debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
+
+[node name="CrouchedHurtbox" type="Area2D" parent="."]
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrouchedHurtbox"]
+position = Vector2(-0.5560827, 6.296193)
+scale = Vector2(1, 0.9999999)
+shape = SubResource("RectangleShape2D_c7efg")
+disabled = true
+debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
+
 [node name="Grapple" type="Node2D" parent="."]
 scale = Vector2(2, 2)
 
@@ -344,51 +391,6 @@ scale = Vector2(2, 2)
 scale = Vector2(1, 4)
 target_position = Vector2(400, 0)
 
-[node name="Hitboxes" type="RigidBody2D" parent="."]
-
-[node name="NormalHitbox" type="CollisionShape2D" parent="Hitboxes"]
-position = Vector2(2.3864467e-07, 2.4000063)
-scale = Vector2(2.7, 2.7)
-shape = SubResource("RectangleShape2D_g1nwm")
-
-[node name="TriggerHitbox" type="Area2D" parent="Hitboxes"]
-scale = Vector2(2.7, 2.7)
-collision_layer = 4
-collision_mask = 4
-
-[node name="Collider" type="CollisionShape2D" parent="Hitboxes/TriggerHitbox"]
-position = Vector2(1.7677382e-07, -0.25924423)
-scale = Vector2(1, 0.9999994)
-shape = SubResource("RectangleShape2D_g1nwm")
-
-[node name="CrouchedHitbox" type="CollisionShape2D" parent="Hitboxes"]
-position = Vector2(2.3841858e-07, 47.999996)
-scale = Vector2(2.7, 2.7)
-shape = SubResource("RectangleShape2D_ves0u")
-
-[node name="Hurtbox" type="Area2D" parent="Hitboxes"]
-scale = Vector2(2.7, 2.7)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Hurtbox"]
-position = Vector2(-0.5560827, 0.25923833)
-scale = Vector2(1, 0.9999999)
-shape = SubResource("RectangleShape2D_5i1rd")
-debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
-
-[node name="CrouchedHurtbox" type="Area2D" parent="Hitboxes"]
-scale = Vector2(2.7, 2.7)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/CrouchedHurtbox"]
-position = Vector2(-0.5560827, 6.296193)
-scale = Vector2(1, 0.9999999)
-shape = SubResource("RectangleShape2D_c7efg")
-disabled = true
-debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
-
-[connection signal="area_entered" from="Hitboxes/TriggerHitbox" to="." method="_change_respawn_point"]
-[connection signal="body_entered" from="Hitboxes/Hurtbox" to="." method="_on_hurtbox_body_entered"]
-[connection signal="body_entered" from="Hitboxes/CrouchedHurtbox" to="." method="_on_crouched_hurtbox_body_entered"]
+[connection signal="area_entered" from="TriggerHitbox" to="." method="_change_respawn_point"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="CrouchedHurtbox" to="." method="_on_crouched_hurtbox_body_entered"]
