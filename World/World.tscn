@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://s1l25pe1fhgb"]
+[gd_scene load_steps=5 format=3 uid="uid://s1l25pe1fhgb"]
 
 [ext_resource type="PackedScene" uid="uid://d2mfvc5tpbska" path="res://Rooms/Room001.tscn" id="1_folwd"]
 [ext_resource type="PackedScene" uid="uid://4ip81nticvcd" path="res://PlayerController/Player.tscn" id="2_y6flb"]
 [ext_resource type="PackedScene" uid="uid://btyweu8dlfrmk" path="res://Rooms/Room002.tscn" id="3_mlekv"]
+[ext_resource type="PackedScene" uid="uid://bpodu035v3lq4" path="res://UI/UI.tscn" id="4_il6x7"]
 
 [node name="World" type="Node2D"]
 
@@ -15,19 +16,4 @@ position = Vector2(1536, 0)
 [node name="Room002" parent="." instance=ExtResource("3_mlekv")]
 position = Vector2(7040, -1024)
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -1280.0
-offset_top = -1024.0
-offset_right = 1792.0
-offset_bottom = 640.0
-
-[node name="Panel" type="Panel" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 2944.0
-offset_top = 128.0
-offset_right = 2984.0
-offset_bottom = 168.0
-metadata/_edit_use_anchors_ = true
+[node name="UI" parent="." instance=ExtResource("4_il6x7")]
