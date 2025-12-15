@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://ql7kjpt3i6d" path="res://PlayerController/States/wall_jumping.gd" id="10_dpx4d"]
 [ext_resource type="Script" uid="uid://l4dt3d54fbjt" path="res://PlayerController/States/wall_cling.gd" id="10_xnjby"]
 [ext_resource type="Script" uid="uid://nu141t0agsoc" path="res://PlayerController/abilities_controller.gd" id="11_75ds7"]
-[ext_resource type="Script" path="res://PlayerController/States/ascending.gd" id="11_evkiq"]
+[ext_resource type="Script" uid="uid://phlgh2qymrcl" path="res://PlayerController/States/ascending.gd" id="11_evkiq"]
 [ext_resource type="Script" uid="uid://x1weuat5in2g" path="res://PlayerController/States/falling.gd" id="11_v55cd"]
 [ext_resource type="Script" uid="uid://c8h0fivvgxc74" path="res://PlayerController/States/Abilities/dashing.gd" id="12_evkiq"]
 [ext_resource type="Script" uid="uid://bm7yhxmomtxag" path="res://PlayerController/States/Abilities/grappling.gd" id="13_vpgwe"]
@@ -70,7 +70,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1nwm"]
-size = Vector2(38.555046, 44.070656)
+size = Vector2(38.555046, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ves0u"]
 size = Vector2(38.925766, 21.257618)
@@ -82,7 +82,7 @@ size = Vector2(30.028448, 33.182606)
 size = Vector2(30.028448, 20.88804)
 
 [node name="PlayerController" type="CharacterBody2D"]
-scale = Vector2(2.697442, 3.8574424)
+scale = Vector2(1.35, 1.35)
 floor_max_angle = 0.0
 script = ExtResource("1_4bhr5")
 normal_gravity = 3250
@@ -244,6 +244,8 @@ idle_state = NodePath("../../Idle")
 diving_state = NodePath("../../Diving")
 jumping_state = NodePath("../../Jumping")
 walking_state = NodePath("../../Walking")
+grapple_duration = 1.0
+jump_input_buffer_patience = 0.1
 
 [node name="Climbing" type="Node" parent="StateMachine/Abilities"]
 script = ExtResource("14_hl1jv")
@@ -258,7 +260,7 @@ script = ExtResource("16_2bslk")
 script = ExtResource("17_fuvci")
 
 [node name="WallJumpRayReference" type="Node2D" parent="."]
-scale = Vector2(1, 0.9999999)
+scale = Vector2(2, 2)
 
 [node name="LeftRay" type="RayCast2D" parent="WallJumpRayReference"]
 position = Vector2(0, 10)
@@ -269,7 +271,7 @@ position = Vector2(0, 10)
 target_position = Vector2(30, 0)
 
 [node name="CornerNudging" type="Node2D" parent="."]
-scale = Vector2(1, 0.99999994)
+scale = Vector2(2, 2)
 
 [node name="NudgeRightRangeLeft" type="RayCast2D" parent="CornerNudging"]
 position = Vector2(-20, 0)
@@ -288,7 +290,6 @@ position = Vector2(8, 0)
 target_position = Vector2(0, -35)
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.41, 0.26)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
 animation = &"walking"
 
@@ -299,11 +300,12 @@ texture = ExtResource("2_ves0u")
 offset = Vector2(0, -0.5008029)
 
 [node name="NormalHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(1.7677382e-07, -0.25924426)
-scale = Vector2(1, 0.9999995)
+position = Vector2(1.7677382e-07, 10.666668)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_g1nwm")
 
 [node name="TriggerHitbox" type="Area2D" parent="."]
+scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 4
 
@@ -314,7 +316,7 @@ shape = SubResource("RectangleShape2D_g1nwm")
 
 [node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.18535991, 10.888037)
-scale = Vector2(1, 0.999999)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_ves0u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -328,6 +330,7 @@ position_smoothing_enabled = true
 script = ExtResource("2_c4fll")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 2
 
@@ -338,6 +341,7 @@ shape = SubResource("RectangleShape2D_5i1rd")
 debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
 
 [node name="CrouchedHurtbox" type="Area2D" parent="."]
+scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 2
 
@@ -349,6 +353,7 @@ disabled = true
 debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
 
 [node name="Grapple" type="Node2D" parent="."]
+scale = Vector2(2, 2)
 
 [node name="GrapplingRay" type="RayCast2D" parent="Grapple"]
 scale = Vector2(1, 4)

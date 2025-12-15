@@ -11,7 +11,7 @@ extends State
 @export var jump_input_buffer_patience : float
 
 @onready var grapple_ray = $"../../../Grapple/GrapplingRay"
-@onready var sprite_2d = $"../../../Grapple/Sprite2D"
+#@onready var sprite_2d = $"../../../Grapple/Sprite2D"
 
 var gravity : int
 var max_falling_speed : int
