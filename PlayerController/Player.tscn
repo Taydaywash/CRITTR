@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=38 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://World/camera_controller.gd" id="2_c4fll"]
@@ -21,8 +21,11 @@
 [ext_resource type="Script" uid="uid://cwi7sh2i6bfpg" path="res://PlayerController/States/Abilities/inflated.gd" id="15_melbr"]
 [ext_resource type="Script" uid="uid://s0v2p1xd21lh" path="res://PlayerController/States/Abilities/bounce_attack.gd" id="16_2bslk"]
 [ext_resource type="Script" uid="uid://ctsvxg3n4hdh7" path="res://PlayerController/States/Abilities/drill.gd" id="17_fuvci"]
+[ext_resource type="Texture2D" uid="uid://cm5a0kjv22qep" path="res://PlayerController/animations/idle/i1.png" id="20_hfsnk"]
+[ext_resource type="Texture2D" uid="uid://civo5col660g6" path="res://PlayerController/animations/idle/i2.png" id="21_3imdl"]
 [ext_resource type="Texture2D" uid="uid://b5q4vr47m20fe" path="res://PlayerController/animations/walking/f1.png" id="21_068uq"]
 [ext_resource type="Texture2D" uid="uid://ouegwis2yso0" path="res://PlayerController/animations/walking/f2.png" id="22_tycsm"]
+[ext_resource type="Texture2D" uid="uid://csnlhmtdvh6rk" path="res://PlayerController/animations/idle/i3.png" id="22_wqhrm"]
 [ext_resource type="Texture2D" uid="uid://bc5tl458rwcxw" path="res://PlayerController/animations/walking/f3.png" id="23_fkl5p"]
 [ext_resource type="Texture2D" uid="uid://33ah1rmr3ca7" path="res://PlayerController/animations/walking/f4.png" id="24_hfsnk"]
 [ext_resource type="Texture2D" uid="uid://5iuq1j0jnxoj" path="res://PlayerController/animations/walking/f5.png" id="25_3imdl"]
@@ -32,6 +35,23 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hl1jv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_hfsnk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_3imdl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_wqhrm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_3imdl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_ves0u")
@@ -137,6 +157,7 @@ falling_state = NodePath("../Falling")
 jumping_state = NodePath("../Jumping")
 diving_state = NodePath("../Diving")
 ability_state = NodePath("../Abilities")
+animation_name = "idle"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Walking" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "crouching_state", "falling_state", "jumping_state", "diving_state", "ability_state")]
@@ -322,7 +343,8 @@ target_position = Vector2(0, -45)
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 71.11111)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"walking"
+animation = &"idle"
+frame_progress = 0.29739806
 offset = Vector2(0, -71.11111)
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
