@@ -25,7 +25,7 @@ func initialize(player : CharacterBody2D, sprite : AnimatedSprite2D) -> void:
 func change_state(new_state : State, direction) -> void:
 	var last_state = current_state
 	if current_state:
-		current_state.deactivate()
+		current_state.deactivate(new_state)
 	current_state = new_state
 	if grounded_states.has(current_state) or (last_state == $Falling and new_state == $Jumping):
 		abilities.refill_abilities()
