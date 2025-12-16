@@ -44,6 +44,8 @@ func process_physics(delta) -> State:
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
 	if (abs(parent.velocity.x) < walk_speed) or (sign(horizontal_input) != sign(parent.velocity.x)):
 		parent.velocity.x += acceleration_speed * delta * horizontal_input
+	else:
+		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),decceleration_speed * delta).x
 	if horizontal_input == 0:
 		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),decceleration_speed * delta).x
 	parent.move_and_slide()
@@ -51,4 +53,9 @@ func process_physics(delta) -> State:
 		return falling_state
 	if parent.velocity.x == 0 and horizontal_input == 0:
 		return idle_state
+	if parent.is_on_wall() and horizontal_input != 0:
+		if (right_ray.is_colliding() or left_ray.is_colliding()):
+			return idle_state
+		parent.position.x += 10 * horizontal_input
+		return crouching_state
 	return null

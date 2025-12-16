@@ -36,8 +36,16 @@ func process_input(_event : InputEvent) -> State:
 func process_physics(delta) -> State:
 	if parent.velocity.y < max_falling_speed:
 		parent.velocity.y += gravity * delta
+	horizontal_input = int(Input.get_axis("move_left","move_right"))
+	parent.velocity.x += horizontal_input * 100
 	parent.move_and_slide()
-	if Input.get_axis("move_left","move_right") != 0:
+	
+	if parent.is_on_wall() and horizontal_input != 0:
+		if (right_ray.is_colliding() or left_ray.is_colliding()):
+			return self
+		parent.position.x += 10 * horizontal_input
+		return crouching_state
+	if horizontal_input != 0:
 		return walking_state
 	if !parent.is_on_floor():
 		return falling_state
