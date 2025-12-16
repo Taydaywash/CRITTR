@@ -64,16 +64,17 @@ func process_physics(delta) -> State:
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
 	if (abs(parent.velocity.x) < air_control):
 		parent.velocity.x += air_acceleration_speed * delta * horizontal_input
+	else:
+		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
 	if horizontal_input == 0 or (sign(horizontal_input) != sign(parent.velocity.x)):
 		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
 	parent.move_and_slide()
 	
-	
 	if (left_ray.is_colliding() or right_ray.is_colliding()):
 		if jump_input_buffer.time_left > 0:
 			return wall_jumping_state
-		elif parent.is_on_wall():
-			return wall_cling_state
+	if parent.is_on_wall() and horizontal_input != 0:
+		return wall_cling_state
 	if parent.is_on_floor():
 		if jump_input_buffer.time_left > 0:
 			return jumping_state
