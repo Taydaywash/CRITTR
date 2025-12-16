@@ -11,9 +11,15 @@ extends State
 @export_category("Parameters")
 @export var dashing_speed : int
 @export var dash_duration : float #seconds
-@export var dash_end_velocity_multiplier : float
+@export var dash_vertical_end_velocity_multiplier : float
+@export var dash_horizontal_end_velocity_multiplier : float
 @export var super_jump_velocity : int
 @export var jump_input_buffer_patience : float
+@export_category("Corner Nudging Raycasts")
+@export var nudge_right_range_left: RayCast2D
+@export var nudge_right_range_right: RayCast2D
+@export var nudge_left_range_right: RayCast2D
+@export var nudge_left_range_left: RayCast2D
 
 var gravity : int
 var max_falling_speed : int
@@ -23,12 +29,13 @@ var dash_timer : Timer
 var jump_input_buffer: Timer
 
 func _ready() -> void:
-		#Input buffer setup:
+	#Input buffer setup:
 	jump_input_buffer = Timer.new()
 	jump_input_buffer.wait_time = jump_input_buffer_patience
 	jump_input_buffer.one_shot = true
 	add_child(jump_input_buffer)
 	
+	#Dash timer setup:
 	dash_timer = Timer.new()
 	dash_timer.wait_time = dash_duration
 	dash_timer.one_shot = true
@@ -79,6 +86,6 @@ func process_physics(_delta) -> State:
 		return ascending_state
 	return null
 
-func deactivate() -> void:
-	parent.velocity.x = parent.velocity.x * dash_end_velocity_multiplier 
-	parent.velocity.y = parent.velocity.y * dash_end_velocity_multiplier 
+func deactivate(_new_state) -> void:
+	parent.velocity.x = parent.velocity.x * dash_horizontal_end_velocity_multiplier 
+	parent.velocity.y = parent.velocity.y * dash_vertical_end_velocity_multiplier 

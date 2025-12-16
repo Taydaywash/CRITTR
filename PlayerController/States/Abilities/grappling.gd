@@ -10,8 +10,9 @@ extends State
 @export_category("Parameters")
 @export var grapple_duration : float #seconds
 @export var jump_input_buffer_patience : float
+@export_category("References")
+@export var grapple_ray: Node2D
 
-@onready var grapple_ray: Node2D = $Grapple
 
 var gravity : int
 var max_falling_speed : int
@@ -61,5 +62,5 @@ func process_physics(_delta) -> State:
 			return idle_state
 	return null
 
-func deactivate() -> void:
+func deactivate(_new_state) -> void:
 	pass

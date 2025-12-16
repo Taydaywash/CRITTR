@@ -12,20 +12,19 @@ extends State
 @export var air_control : int
 @export var air_acceleration_speed : int
 @export var air_decceleration_speed : int
+@export var jump_input_buffer_patience : float
+@export_category("Wall Jumping Raycasts")
+@export var right_ray: RayCast2D
+@export var left_ray: RayCast2D
+@export_category("Corner Nudging Raycasts")
+@export var nudge_right_range_left: RayCast2D
+@export var nudge_right_range_right: RayCast2D
+@export var nudge_left_range_right: RayCast2D
+@export var nudge_left_range_left: RayCast2D
 
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
-
-@onready var right_ray: RayCast2D = $"../../WallJumpRayReference/RightRay"
-@onready var left_ray: RayCast2D = $"../../WallJumpRayReference/LeftRay"
-
-@onready var nudge_right_range_left: RayCast2D = $"../../CornerNudging/NudgeRightRangeLeft"
-@onready var nudge_right_range_right: RayCast2D = $"../../CornerNudging/NudgeRightRangeRight"
-@onready var nudge_left_range_right: RayCast2D = $"../../CornerNudging/NudgeLeftRangeRight"
-@onready var nudge_left_range_left: RayCast2D = $"../../CornerNudging/NudgeLeftRangeLeft"
-
-@export var jump_input_buffer_patience : float
 
 var jump_input_buffer : Timer
 
@@ -46,6 +45,8 @@ func process_input(_event : InputEvent) -> State:
 		return ability_state
 	if Input.is_action_just_pressed("dive"):
 		return diving_state
+	if Input.is_action_just_pressed("jump"):
+		jump_input_buffer.start()
 	return null
 
 func process_physics(delta) -> State:
@@ -66,6 +67,8 @@ func process_physics(delta) -> State:
 			parent.position.x += 14
 		if nudge_left_range_right.is_colliding() and !nudge_left_range_left.is_colliding():
 			parent.position.x -= 14
+	if (left_ray.is_colliding() or right_ray.is_colliding()) and jump_input_buffer.time_left > 0:
+		return wall_jumping_state
 	if parent.is_on_floor():
 		if jump_input_buffer.time_left > 0:
 			return self
