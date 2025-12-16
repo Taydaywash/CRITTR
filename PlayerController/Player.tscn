@@ -342,6 +342,7 @@ target_position = Vector2(0, -75)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -3.0517578e-05)
 zoom = Vector2(0.36, 0.36)
+process_callback = 0
 limit_left = -2048
 limit_top = -1600
 limit_bottom = 800
