@@ -34,6 +34,7 @@ func _ready() -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate() as defined in state.gd and then also do:
+	jump_input_buffer.stop()
 	gravity = parent.normal_gravity
 	parent.velocity.y = -wall_jump_vertical_velocity
 	max_falling_speed = parent.max_falling_speed
