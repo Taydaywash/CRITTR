@@ -38,6 +38,9 @@ func activate(last_state : State) -> void:
 	gravity = parent.normal_gravity
 	parent.velocity.y = -wall_jump_vertical_velocity
 	max_falling_speed = parent.max_falling_speed
+	if parent.is_on_wall() and not (right_ray.is_colliding() or left_ray.is_colliding()):
+		parent.get_wall_normal()
+		parent.velocity.x = wall_jump_vertical_velocity * parent.get_wall_normal().x
 	if right_ray.is_colliding():
 		parent.velocity.x = -wall_jump_horizontal_velocity
 	elif left_ray.is_colliding():
@@ -66,6 +69,9 @@ func process_physics(delta) -> State:
 	
 	parent.move_and_slide()
 	
+	if (left_ray.is_colliding() or right_ray.is_colliding()):
+		if jump_input_buffer.time_left > 0:
+			return self
 	if parent.velocity.y > 0:
 		return falling_state
 	if parent.is_on_floor():
