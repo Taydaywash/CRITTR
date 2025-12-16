@@ -34,7 +34,7 @@ func change_collider_to(new_collider : CollisionShape2D) -> void:
 		else:
 			colliders[collider].disabled = true
 
-func deactivate() -> void:
+func deactivate(_next_state : State) -> void:
 	sprite.scale.y = 1
 	sprite.scale.x = 1
 	sprite.rotation = 0
