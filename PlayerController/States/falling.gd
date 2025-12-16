@@ -13,18 +13,17 @@ extends State
 @export var air_control : int
 @export var air_acceleration_speed : int
 @export var air_decceleration_speed : int
-
 @export var jump_input_buffer_patience : float
 @export var coyote_time_patience : float
+@export_category("Wall Jumping Raycasts")
+@export var right_ray: RayCast2D
+@export var left_ray: RayCast2D
 
 var coyote_time : Timer
 var jump_input_buffer : Timer
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
-
-@onready var right_ray: RayCast2D = $"../../WallJumpRayReference/RightRay"
-@onready var left_ray: RayCast2D = $"../../WallJumpRayReference/LeftRay"
 
 func _ready() -> void:
 	#Input buffer setup:

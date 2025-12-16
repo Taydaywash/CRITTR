@@ -12,6 +12,9 @@ extends State
 @export var walk_speed : int
 @export var acceleration_speed : int
 @export var decceleration_speed : int
+@export_category("Wall Jumping Raycasts")
+@export var right_ray: RayCast2D
+@export var left_ray: RayCast2D
 
 var gravity : int
 var max_falling_speed : int

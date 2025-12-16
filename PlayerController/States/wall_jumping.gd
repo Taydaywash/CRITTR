@@ -14,15 +14,14 @@ extends State
 @export var jump_cancellation : int
 @export var air_acceleration_speed : int
 @export var air_decceleration_speed : int
+@export var jump_input_buffer_patience : float
+@export_category("Wall Jumping Raycasts")
+@export var right_ray: RayCast2D
+@export var left_ray: RayCast2D
 
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
-
-@onready var right_ray: RayCast2D = $"../../WallJumpRayReference/RightRay"
-@onready var left_ray: RayCast2D = $"../../WallJumpRayReference/LeftRay"
-
-@export var jump_input_buffer_patience : float
 
 var jump_input_buffer : Timer
 

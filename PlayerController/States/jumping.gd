@@ -19,19 +19,18 @@ extends State
 @export var y_sprite_stretch_multiplier : float
 @export var x_sprite_stretch_multiplier : float
 @export var sprite_reset_speed : float
+@export_category("Wall Jumping Raycasts")
+@export var right_ray: RayCast2D
+@export var left_ray: RayCast2D
+@export_category("Corner Nudging Raycasts")
+@export var nudge_right_range_left: RayCast2D
+@export var nudge_right_range_right: RayCast2D
+@export var nudge_left_range_right: RayCast2D
+@export var nudge_left_range_left: RayCast2D
 
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
-
-@onready var right_ray: RayCast2D = $"../../WallJumpRayReference/RightRay"
-@onready var left_ray: RayCast2D = $"../../WallJumpRayReference/LeftRay"
-
-@onready var nudge_right_range_left: RayCast2D = $"../../CornerNudging/NudgeRightRangeLeft"
-@onready var nudge_right_range_right: RayCast2D = $"../../CornerNudging/NudgeRightRangeRight"
-@onready var nudge_left_range_right: RayCast2D = $"../../CornerNudging/NudgeLeftRangeRight"
-@onready var nudge_left_range_left: RayCast2D = $"../../CornerNudging/NudgeLeftRangeLeft"
-
 var jump_input_buffer : Timer
 
 func _ready() -> void:

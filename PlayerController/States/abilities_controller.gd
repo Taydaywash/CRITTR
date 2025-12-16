@@ -6,7 +6,7 @@ extends State
 @export var infated_state : State
 @export var bounce_attack_state : State
 @export var drill_state : State
-
+@export_category("")
 @export var ability_up : State
 @export var ability_down : State
 @export var ability_left : State

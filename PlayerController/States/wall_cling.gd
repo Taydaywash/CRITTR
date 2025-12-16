@@ -15,9 +15,9 @@ extends State
 @export var wall_jump_vertical_velocity : int
 @export var wall_cling_gravity : int
 @export var max_wall_cling_fall_speed: int
-
-@onready var right_ray: RayCast2D = $"../../WallJumpRayReference/RightRay"
-@onready var left_ray: RayCast2D = $"../../WallJumpRayReference/LeftRay"
+@export_category("Wall Jumping Raycasts")
+@export var right_ray: RayCast2D
+@export var left_ray: RayCast2D
 
 var max_falling_speed : int
 var horizontal_input : int = 0

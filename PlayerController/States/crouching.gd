@@ -2,7 +2,8 @@ extends State
 
 #States that Idle can transition to:
 @export_category("States")
-@export var idle_state : State
+#@export var idle_state : State
+@export var idle_crouching_state : State
 @export var walking_state : State
 @export var falling_state : State
 @export var jumping_state : State
@@ -17,6 +18,11 @@ extends State
 @export var crouch_horizontal_jump_speed : int
 @export var crouched_walk_speed : int
 @export var crouched_acceleration : int
+@export_category("Corner Nudging Raycasts")
+@export var nudge_right_range_left: RayCast2D
+@export var nudge_right_range_right: RayCast2D
+@export var nudge_left_range_right: RayCast2D
+@export var nudge_left_range_left: RayCast2D
 @export_category("Animations")
 @export var y_initial_sprite_stretch_multiplier : float
 @export var x_initial_sprite_stretch_multiplier : float
@@ -24,32 +30,27 @@ extends State
 @export var y_final_sprite_stretch_multiplier : float
 @export var x_final_sprite_stretch_multiplier : float
 
+
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
-@onready var nudge_right_range_left: RayCast2D = $"../../CornerNudging/NudgeRightRangeLeft"
-@onready var nudge_right_range_right: RayCast2D = $"../../CornerNudging/NudgeRightRangeRight"
-@onready var nudge_left_range_left: RayCast2D = $"../../CornerNudging/NudgeLeftRangeLeft"
-@onready var nudge_left_range_right: RayCast2D = $"../../CornerNudging/NudgeLeftRangeRight"
-
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	change_collider_to(crouching_hitbox)
 	gravity = parent.normal_gravity
 	max_falling_speed = parent.max_falling_speed
-	sprite.scale.y = y_initial_sprite_stretch_multiplier
-	sprite.scale.x = x_initial_sprite_stretch_multiplier
+	if last_state != idle_crouching_state:
+		sprite.scale.y = y_initial_sprite_stretch_multiplier
+		sprite.scale.x = x_initial_sprite_stretch_multiplier
 
 func process_input(_event : InputEvent) -> State:
 	if Input.is_action_just_pressed("jump") and parent.is_on_floor() and can_uncrouch():
 		return jumping_state
-	if !Input.is_action_pressed("move_down") and can_uncrouch():
-		return idle_state
 	if Input.is_action_just_pressed("dive") and can_uncrouch():
 		return diving_state
-	if (Input.is_action_just_pressed("ability_up") or Input.is_action_just_pressed("ability_down") or 
-	Input.is_action_just_pressed("ability_left") or Input.is_action_just_pressed("ability_right") and
+	if ((Input.is_action_just_pressed("ability_up") or Input.is_action_just_pressed("ability_down") or 
+	Input.is_action_just_pressed("ability_left") or Input.is_action_just_pressed("ability_right")) and
 	can_uncrouch()):
 		return ability_state
 	
@@ -67,6 +68,8 @@ func process_physics(delta) -> State:
 		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),sliding_deceleration * delta).x
 	parent.move_and_slide()
 	
+	if abs(parent.velocity.x) == 0:
+		return idle_crouching_state
 	if !Input.is_action_pressed("move_down") and can_uncrouch():
 		return walking_state
 	if !parent.is_on_floor() and can_uncrouch():
@@ -80,15 +83,12 @@ func process_frame(delta) -> State:
 
 func can_uncrouch() -> bool:
 	var uncrouch = true
-	if nudge_right_range_left.is_colliding() and !nudge_right_range_right.is_colliding():
-		parent.position.x += 15
-	if nudge_left_range_right.is_colliding() and !nudge_left_range_left.is_colliding():
-		parent.position.x -= 15
 	if (nudge_right_range_left.is_colliding() or nudge_right_range_right.is_colliding() 
 	or nudge_left_range_right.is_colliding() or nudge_left_range_left.is_colliding()):
 		uncrouch = false
 	return uncrouch
 
-func deactivate() -> void:
-	super()
-	change_collider_to(default_hitbox)
+func deactivate(new_state) -> void:
+	if new_state != idle_crouching_state:
+		super(new_state)
+		change_collider_to(default_hitbox)
