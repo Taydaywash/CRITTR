@@ -31,10 +31,7 @@ func _ready() -> void:
 	add_child(jump_input_buffer)
 
 func activate(last_state : State) -> void:
-	if last_state == $"../Idle":
-		parent.modulate = idle_dive_sprite
-	else:
-		super(last_state) #Call activate as defined in state.gd and then also do:
+	super(last_state) #Call activate as defined in state.gd and then also do:
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
 	if abs(parent.velocity.x) > dive_horizontal_default_velocity:
 		parent.velocity.x += dive_horizontal_additive_velocity * horizontal_input
