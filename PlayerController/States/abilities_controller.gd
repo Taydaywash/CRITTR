@@ -40,26 +40,31 @@ extends State
 		},
 	}
 
-func is_ability_input(_event: InputEvent,_last_directional_input: String):
-	pass
-
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("move_up"):
-		increment_priority("ability_up", 1)
-	elif Input.is_action_just_pressed("move_down"):
-		increment_priority("ability_down", 1)
-	elif Input.is_action_just_pressed("move_left"):
-		increment_priority("ability_left", 1)
-	elif Input.is_action_just_pressed("move_right"):
-		increment_priority("ability_right", 1)
-	elif Input.is_action_just_released("move_up"):
+func _input(event: InputEvent) -> void:
+	if event.is_action_released("move_up"):
+		print("released up")
 		increment_priority("ability_up", -1)
-	elif Input.is_action_just_released("move_down"):
+	elif event.is_action_released("move_down"):
+		print("released down")
 		increment_priority("ability_down", -1)
-	elif Input.is_action_just_released("move_left"):
+	elif event.is_action_released("move_left"):
+		print("released left")
 		increment_priority("ability_left", -1)
-	elif Input.is_action_just_released("move_right"):
+	elif event.is_action_released("move_right"):
+		print("released right")
 		increment_priority("ability_right", -1)
+	if event.is_action_pressed("move_up"):
+		print("pressed up")
+		increment_priority("ability_up", 1)
+	elif event.is_action_pressed("move_down"):
+		print("pressed down")
+		increment_priority("ability_down", 1)
+	elif event.is_action_pressed("move_left"):
+		print("pressed left")
+		increment_priority("ability_left", 1)
+	elif event.is_action_pressed("move_right"):
+		print("pressed right")
+		increment_priority("ability_right", 1)
 
 func increment_priority(ability_direction_name : String, increment : int):
 	if increment < 0:
@@ -72,14 +77,18 @@ func increment_priority(ability_direction_name : String, increment : int):
 			if ((abilities_in_use[ability]["priority"] > 0) and (abilities_in_use[ability] != abilities_in_use[ability_direction_name])):
 				abilities_in_use[ability]["priority"] += increment
 		abilities_in_use[ability_direction_name]["priority"] += increment
+	for ability in abilities_in_use:
+		print(abilities_in_use[ability]["priority"])
+	print("")
 
 func get_ability():
 	var highest_priority_ability
 	var lowest_priority_number = 5
 	for ability in abilities_in_use:
 		if ((abilities_in_use[ability]["priority"] < lowest_priority_number) and (abilities_in_use[ability]["priority"] > 0)):
-			lowest_priority_number = abilities_in_use[ability]["priority"]
-			highest_priority_ability = ability
+			if abilities_in_use[ability]["available"] == true:
+				lowest_priority_number = abilities_in_use[ability]["priority"]
+				highest_priority_ability = ability
 	if highest_priority_ability:
 		return highest_priority_ability
 	return null
