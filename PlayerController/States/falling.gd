@@ -46,7 +46,7 @@ func activate(last_state : State) -> void:
 		coyote_time.start()
 
 func process_input(_event : InputEvent) -> State:
-	if Input.is_action_just_pressed("ability_up") or Input.is_action_just_pressed("ability_down") or Input.is_action_just_pressed("ability_left") or Input.is_action_just_pressed("ability_right"):
+	if Input.is_action_just_pressed("use_ability"):
 		return ability_state
 	if Input.is_action_just_pressed("dive"):
 		return diving_state

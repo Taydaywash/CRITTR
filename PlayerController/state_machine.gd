@@ -5,6 +5,7 @@ extends Node
 @export var colliders_list : Dictionary[String,CollisionShape2D]
 @export var starting_state : State
 @export var grounded_states : Array[State]
+@export var abilities_state : State
 var current_state : State
 
 #initialize state machine by taking player 
@@ -38,10 +39,12 @@ func process_input(event) -> void:
 	var new_state = current_state.process_input(event)
 	if new_state:
 		if new_state == $Abilities:
-			var ability = abilities.get_ability(event)
-			if ability.available:
-				abilities.use_ability(event)
-				change_state(ability.state, ability.direction)
+			var ability = abilities.get_ability()
+			if ability:
+				print(ability)
+				if abilities.abilities_in_use[ability].available:
+					abilities.use_ability(ability)
+					change_state(abilities.abilities_in_use[ability].state, abilities.abilities_in_use[ability].direction)
 		else:
 			change_state(new_state, null)
 

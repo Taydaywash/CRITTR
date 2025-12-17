@@ -48,9 +48,7 @@ func process_input(_event : InputEvent) -> State:
 		return jumping_state
 	if Input.is_action_just_pressed("dive") and can_uncrouch():
 		return diving_state
-	if ((Input.is_action_just_pressed("ability_up") or Input.is_action_just_pressed("ability_down") or 
-	Input.is_action_just_pressed("ability_left") or Input.is_action_just_pressed("ability_right")) and
-	can_uncrouch()):
+	if Input.is_action_just_pressed("use_ability") and can_uncrouch():
 		return ability_state
 	return null
 

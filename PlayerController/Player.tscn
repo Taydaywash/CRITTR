@@ -114,14 +114,15 @@ script = ExtResource("1_4bhr5")
 normal_gravity = 3250
 max_falling_speed = 2000
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("colliders_list", "starting_state", "grounded_states")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("colliders_list", "starting_state", "grounded_states", "abilities_state")]
 script = ExtResource("5_v55cd")
 colliders_list = {
 "crouched": NodePath("../CrouchedHitbox"),
 "normal": NodePath("../NormalHitbox")
 }
 starting_state = NodePath("Idle")
-grounded_states = [NodePath("Idle"), NodePath("Walking")]
+grounded_states = [NodePath("Idle"), NodePath("Walking"), NodePath("Crouching"), NodePath("IdleCrouching")]
+abilities_state = NodePath("Abilities")
 
 [node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("8_2fk5g")
@@ -243,6 +244,7 @@ dive_horizontal_default_velocity = 800
 dive_vertical_velocity = 800
 jump_input_buffer_patience = 0.2
 idle_dive_sprite = Color(0.14890742, 0.14890742, 0.14890742, 1)
+max_diving_speed = 1500
 y_initial_sprite_stretch_multiplier = 1.0
 x_initial_sprite_stretch_multiplier = 1.5
 sprite_reset_speed = 0.1
@@ -357,11 +359,12 @@ idle_state = NodePath("../../Idle")
 diving_state = NodePath("../../Diving")
 ascending_state = NodePath("../../Ascending")
 dashing_speed = 2000
-dash_duration = 0.2
 dash_vertical_end_velocity_multiplier = 0.5
 dash_horizontal_end_velocity_multiplier = 1.0
 super_jump_velocity = 3500
+dash_duration = 0.2
 jump_input_buffer_patience = 0.2
+dive_input_buffer_patience = 0.2
 nudge_right_range_left = NodePath("../../../CornerNudging/NudgeRightRangeLeft")
 nudge_right_range_right = NodePath("../../../CornerNudging/NudgeRightRangeRight")
 nudge_left_range_right = NodePath("../../../CornerNudging/NudgeLeftRangeLeft")
