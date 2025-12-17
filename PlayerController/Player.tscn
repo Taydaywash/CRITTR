@@ -271,7 +271,7 @@ right_ray = NodePath("../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 placeholder_animation_color = Color(0, 0.8901186, 0.9043261, 1)
 
-[node name="Falling" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walking_state", "diving_state", "wall_cling_state", "jumping_state", "wall_jumping_state", "ability_state", "right_ray", "left_ray")]
+[node name="Falling" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walking_state", "diving_state", "wall_cling_state", "jumping_state", "wall_jumping_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("11_v55cd")
 idle_state = NodePath("../Idle")
 walking_state = NodePath("../Walking")
@@ -287,6 +287,10 @@ jump_input_buffer_patience = 0.2
 coyote_time_patience = 0.1
 right_ray = NodePath("../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../WallJumpRayReference/LeftRay")
+nudge_right_range_left = NodePath("../../CornerNudging/NudgeRightRangeLeft")
+nudge_right_range_right = NodePath("../../CornerNudging/NudgeRightRangeRight")
+nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
+nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 animation_name = "idle"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
@@ -406,12 +410,12 @@ target_position = Vector2(400, 0)
 [node name="RightRay" type="RayCast2D" parent="WallJumpRayReference"]
 position = Vector2(0, 10)
 scale = Vector2(1, 2)
-target_position = Vector2(60, 0)
+target_position = Vector2(100, 0)
 
 [node name="LeftRay" type="RayCast2D" parent="WallJumpRayReference"]
 position = Vector2(0, 10)
 scale = Vector2(1, 2)
-target_position = Vector2(-60, 0)
+target_position = Vector2(-100, 0)
 
 [node name="CornerNudging" type="Node2D" parent="."]
 scale = Vector2(2, 2)
