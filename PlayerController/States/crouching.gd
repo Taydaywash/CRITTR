@@ -21,8 +21,8 @@ extends State
 @export_category("Corner Nudging Raycasts")
 @export var nudge_right_range_left: RayCast2D
 @export var nudge_right_range_right: RayCast2D
-@export var nudge_left_range_right: RayCast2D
 @export var nudge_left_range_left: RayCast2D
+@export var nudge_left_range_right: RayCast2D
 @export_category("Animations")
 @export var y_initial_sprite_stretch_multiplier : float
 @export var x_initial_sprite_stretch_multiplier : float

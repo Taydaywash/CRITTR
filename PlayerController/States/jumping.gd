@@ -56,6 +56,7 @@ func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
 		jump_input_buffer.start()
 	if event.is_action_released("jump"):
+		jump_input_buffer.stop()
 		parent.velocity.y = parent.velocity.y / jump_cancellation
 	if event.is_action_pressed("dive"):
 		return diving_state

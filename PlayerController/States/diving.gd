@@ -49,6 +49,8 @@ func activate(last_state : State) -> void:
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
 		jump_input_buffer.start()
+	if event.is_action_released("jump"):
+		jump_input_buffer.stop()
 	return null
 
 func process_physics(delta) -> State:
