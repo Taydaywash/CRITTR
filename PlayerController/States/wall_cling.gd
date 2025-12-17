@@ -26,10 +26,10 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	max_falling_speed = parent.max_falling_speed
 
-func process_input(_event : InputEvent) -> State:
-	if Input.is_action_just_pressed("use_ability"):
+func process_input(event : InputEvent) -> State:
+	if event.is_action_pressed("use_ability"):
 		return ability_state
-	if Input.is_action_just_pressed("jump"):
+	if event.is_action_pressed("jump"):
 		return wall_jumping_state
 	return null
 

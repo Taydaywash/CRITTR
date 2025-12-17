@@ -72,10 +72,10 @@ func activate(last_state : State) -> void:
 		dash_timer.start()
 		parent.velocity.x = dashing_speed
 
-func process_input(_event : InputEvent) -> State:
-	if Input.is_action_just_pressed("jump"):
+func process_input(event : InputEvent) -> State:
+	if event.is_action_pressed("jump"):
 		jump_input_buffer.start()
-	if Input.is_action_just_pressed("dive"):
+	if event.is_action_pressed("dive"):
 		dive_input_buffer.start()
 	return null
 

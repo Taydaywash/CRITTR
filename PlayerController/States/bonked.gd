@@ -28,8 +28,8 @@ func activate(last_state : State) -> void:
 	gravity = parent.normal_gravity
 	max_falling_speed = parent.max_falling_speed
 
-func process_input(_event) -> State:
-	if Input.is_action_just_pressed("jump"):
+func process_input(event) -> State:
+	if event.is_action_pressed("jump"):
 		jump_input_buffer.start()
 	return null
 

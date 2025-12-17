@@ -44,12 +44,12 @@ func activate(last_state : State) -> void:
 		sprite.scale.y = y_initial_sprite_stretch_multiplier
 		sprite.scale.x = x_initial_sprite_stretch_multiplier
 
-func process_input(_event : InputEvent) -> State:
-	if Input.is_action_just_pressed("jump") and parent.is_on_floor() and can_uncrouch():
+func process_input(event : InputEvent) -> State:
+	if event.is_action_pressed("jump") and parent.is_on_floor() and can_uncrouch():
 		return jumping_state
-	if Input.is_action_just_pressed("dive") and can_uncrouch():
+	if event.is_action_pressed("dive") and can_uncrouch():
 		return diving_state
-	if Input.is_action_just_pressed("use_ability") and can_uncrouch():
+	if event.is_action_pressed("use_ability") and can_uncrouch():
 		return ability_state
 	return null
 

@@ -44,8 +44,8 @@ func activate(last_state : State) -> void:
 	elif direction == "right":
 		grapple_ray.rotation = 0
 
-func process_input(_event : InputEvent) -> State:
-	if Input.is_action_just_pressed("dive"):
+func process_input(event : InputEvent) -> State:
+	if event.is_action_pressed("dive"):
 		return diving_state
 	return null
 

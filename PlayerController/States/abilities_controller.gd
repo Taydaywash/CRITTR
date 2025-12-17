@@ -40,30 +40,22 @@ extends State
 		},
 	}
 
-func _input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void: #Runs seperately from state machine to keep track at all times
 	if event.is_action_released("move_up"):
-		print("released up")
 		increment_priority("ability_up", -1)
 	elif event.is_action_released("move_down"):
-		print("released down")
 		increment_priority("ability_down", -1)
 	elif event.is_action_released("move_left"):
-		print("released left")
 		increment_priority("ability_left", -1)
 	elif event.is_action_released("move_right"):
-		print("released right")
 		increment_priority("ability_right", -1)
 	if event.is_action_pressed("move_up"):
-		print("pressed up")
 		increment_priority("ability_up", 1)
 	elif event.is_action_pressed("move_down"):
-		print("pressed down")
 		increment_priority("ability_down", 1)
 	elif event.is_action_pressed("move_left"):
-		print("pressed left")
 		increment_priority("ability_left", 1)
 	elif event.is_action_pressed("move_right"):
-		print("pressed right")
 		increment_priority("ability_right", 1)
 
 func increment_priority(ability_direction_name : String, increment : int):
@@ -77,9 +69,9 @@ func increment_priority(ability_direction_name : String, increment : int):
 			if ((abilities_in_use[ability]["priority"] > 0) and (abilities_in_use[ability] != abilities_in_use[ability_direction_name])):
 				abilities_in_use[ability]["priority"] += increment
 		abilities_in_use[ability_direction_name]["priority"] += increment
-	for ability in abilities_in_use:
-		print(abilities_in_use[ability]["priority"])
-	print("")
+	#for ability in abilities_in_use: #CAN BE UNCOMMENTED TO SEE INPUT PRIORITIES
+		#print(abilities_in_use[ability]["priority"])
+	#print("")
 
 func get_ability():
 	var highest_priority_ability

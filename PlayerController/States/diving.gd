@@ -46,8 +46,8 @@ func activate(last_state : State) -> void:
 	sprite.scale = Vector2(abs(x_initial_sprite_stretch_multiplier * parent.velocity.normalized().x),y_initial_sprite_stretch_multiplier * -parent.velocity.normalized().y)
 	sprite.rotation = -parent.velocity.normalized().x
 
-func process_input(_event : InputEvent) -> State:
-	if Input.is_action_just_pressed("jump"):
+func process_input(event : InputEvent) -> State:
+	if event.is_action_pressed("jump"):
 		jump_input_buffer.start()
 	return null
 

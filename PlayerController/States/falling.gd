@@ -45,12 +45,12 @@ func activate(last_state : State) -> void:
 	if(last_state == $"../Walking"):
 		coyote_time.start()
 
-func process_input(_event : InputEvent) -> State:
-	if Input.is_action_just_pressed("use_ability"):
+func process_input(event : InputEvent) -> State:
+	if event.is_action_pressed("use_ability"):
 		return ability_state
-	if Input.is_action_just_pressed("dive"):
+	if event.is_action_pressed("dive"):
 		return diving_state
-	if Input.is_action_just_pressed("jump"):
+	if event.is_action_pressed("jump"):
 		if coyote_time.time_left > 0:
 			return jumping_state
 		else:
