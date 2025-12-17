@@ -78,9 +78,9 @@ func process_physics(delta) -> State:
 	parent.move_and_slide()
 	
 	if nudge_right_range_left.is_colliding() and !nudge_right_range_right.is_colliding() and parent.velocity.x > 0:
-		parent.position.x += 15
+		parent.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
 	if nudge_left_range_right.is_colliding() and !nudge_left_range_left.is_colliding() and parent.velocity.x < 0:
-		parent.position.x -= 15
+		parent.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
 	if (left_ray.is_colliding() or right_ray.is_colliding()):
 		if jump_input_buffer.time_left > 0:
 			return wall_jumping_state

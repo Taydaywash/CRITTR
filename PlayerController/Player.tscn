@@ -107,6 +107,7 @@ size = Vector2(35.55555, 71.11111)
 size = Vector2(35.555553, 59.259254)
 
 [node name="PlayerController" type="CharacterBody2D"]
+z_index = 5
 scale = Vector2(1.35, 1.35)
 floor_max_angle = 0.0
 safe_margin = 0.1
@@ -124,7 +125,7 @@ starting_state = NodePath("Idle")
 grounded_states = [NodePath("Idle"), NodePath("Walking"), NodePath("Crouching"), NodePath("IdleCrouching")]
 abilities_state = NodePath("Abilities")
 
-[node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
+[node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
 script = ExtResource("8_2fk5g")
 falling_state = NodePath("../Falling")
 diving_state = NodePath("../Diving")
@@ -145,12 +146,12 @@ right_ray = NodePath("../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 nudge_right_range_left = NodePath("../../CornerNudging/NudgeRightRangeLeft")
 nudge_right_range_right = NodePath("../../CornerNudging/NudgeRightRangeRight")
-nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
-nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
+nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
+nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 animation_name = "idle"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Crouching" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_crouching_state", "walking_state", "falling_state", "jumping_state", "diving_state", "ability_state", "default_hitbox", "crouching_hitbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
+[node name="Crouching" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_crouching_state", "walking_state", "falling_state", "jumping_state", "diving_state", "ability_state", "default_hitbox", "crouching_hitbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
 script = ExtResource("12_068uq")
 idle_crouching_state = NodePath("../IdleCrouching")
 walking_state = NodePath("../Walking")
@@ -167,10 +168,10 @@ crouched_walk_speed = 400
 crouched_acceleration = 5000
 nudge_right_range_left = NodePath("../../CornerNudging/NudgeRightRangeLeft")
 nudge_right_range_right = NodePath("../../CornerNudging/NudgeRightRangeRight")
-nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
-nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
+nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
+nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 y_initial_sprite_stretch_multiplier = 0.8
-x_initial_sprite_stretch_multiplier = 1.1
+x_initial_sprite_stretch_multiplier = 1.4
 sprite_reset_speed = 10.0
 y_final_sprite_stretch_multiplier = 0.85
 x_final_sprite_stretch_multiplier = 1.0
@@ -198,7 +199,7 @@ nudge_right_range_right = NodePath("../../CornerNudging/NudgeRightRangeRight")
 nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
 nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 y_initial_sprite_stretch_multiplier = 0.8
-x_initial_sprite_stretch_multiplier = 1.1
+x_initial_sprite_stretch_multiplier = 1.4
 sprite_reset_speed = 10.0
 y_final_sprite_stretch_multiplier = 0.85
 x_final_sprite_stretch_multiplier = 1.0
@@ -371,8 +372,8 @@ jump_input_buffer_patience = 0.2
 dive_input_buffer_patience = 0.2
 nudge_right_range_left = NodePath("../../../CornerNudging/NudgeRightRangeLeft")
 nudge_right_range_right = NodePath("../../../CornerNudging/NudgeRightRangeRight")
-nudge_left_range_right = NodePath("../../../CornerNudging/NudgeLeftRangeLeft")
-nudge_left_range_left = NodePath("../../../CornerNudging/NudgeLeftRangeRight")
+nudge_left_range_right = NodePath("../../../CornerNudging/NudgeLeftRangeRight")
+nudge_left_range_left = NodePath("../../../CornerNudging/NudgeLeftRangeLeft")
 placeholder_animation_color = Color(0.23891038, 0.12174525, 0.0073752436, 1)
 
 [node name="Grappling" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "jumping_state", "walking_state", "grapple_ray")]

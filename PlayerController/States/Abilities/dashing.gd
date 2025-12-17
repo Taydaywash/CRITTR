@@ -80,7 +80,16 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(_delta) -> State:
+	nudge_right_range_left.target_position.y = parent.velocity.y / 50 -75
+	nudge_right_range_right.target_position.y = parent.velocity.y / 50 -75
+	nudge_left_range_right.target_position.y = parent.velocity.y / 50 -75
+	nudge_left_range_left.target_position.y = parent.velocity.y / 50 -75
+	
 	parent.move_and_slide()
+	if nudge_right_range_left.is_colliding() and !nudge_right_range_right.is_colliding():
+		parent.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
+	if nudge_left_range_right.is_colliding() and !nudge_left_range_left.is_colliding():
+		parent.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
 	if dive_input_buffer.time_left > 0 and dash_timer.time_left == 0:
 		return diving_state
 	if (parent.is_on_wall() and parent.velocity.y == 0) or parent.is_on_ceiling():
@@ -97,5 +106,9 @@ func process_physics(_delta) -> State:
 	return null
 
 func deactivate(_next_state) -> void:
+	nudge_right_range_left.target_position.y = -75
+	nudge_right_range_right.target_position.y = -75
+	nudge_left_range_right.target_position.y = -75
+	nudge_left_range_left.target_position.y = -75
 	parent.velocity.x = parent.velocity.x * dash_horizontal_end_velocity_multiplier 
 	parent.velocity.y = parent.velocity.y * dash_vertical_end_velocity_multiplier 
