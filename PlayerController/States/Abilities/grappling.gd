@@ -62,5 +62,5 @@ func process_physics(_delta) -> State:
 			return idle_state
 	return null
 
-func deactivate(_new_state) -> void:
+func deactivate(_next_state) -> void:
 	pass

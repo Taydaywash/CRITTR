@@ -85,7 +85,7 @@ func can_uncrouch() -> bool:
 		uncrouch = false
 	return uncrouch
 
-func deactivate(new_state) -> void:
-	if new_state != crouching_state:
-		super(new_state)
+func deactivate(next_state) -> void:
+	if next_state != crouching_state:
+		super(next_state)
 		change_collider_to(default_hitbox)

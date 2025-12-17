@@ -11,6 +11,7 @@ extends State
 @export var dive_vertical_velocity : int
 @export var jump_input_buffer_patience : float
 @export var idle_dive_sprite : Color
+@export var max_diving_speed : int
 @export_category("Animations")
 @export var y_initial_sprite_stretch_multiplier : float
 @export var x_initial_sprite_stretch_multiplier : float
@@ -34,7 +35,8 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
 	if abs(parent.velocity.x) > dive_horizontal_default_velocity:
-		parent.velocity.x += dive_horizontal_additive_velocity * horizontal_input
+		if abs(parent.velocity.x) < max_diving_speed:
+			parent.velocity.x += dive_horizontal_additive_velocity * horizontal_input
 	else:
 		parent.velocity.x = dive_horizontal_default_velocity * horizontal_input
 	parent.velocity.y = -dive_vertical_velocity

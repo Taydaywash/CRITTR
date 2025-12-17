@@ -10,11 +10,12 @@ extends State
 @export var ascending_state : State
 @export_category("Parameters")
 @export var dashing_speed : int
-@export var dash_duration : float #seconds
 @export var dash_vertical_end_velocity_multiplier : float
 @export var dash_horizontal_end_velocity_multiplier : float
 @export var super_jump_velocity : int
+@export var dash_duration : float #seconds
 @export var jump_input_buffer_patience : float
+@export var dive_input_buffer_patience : float
 @export_category("Corner Nudging Raycasts")
 @export var nudge_right_range_left: RayCast2D
 @export var nudge_right_range_right: RayCast2D
@@ -27,6 +28,7 @@ var horizontal_input : int = 0
 var direction : String
 var dash_timer : Timer
 var jump_input_buffer: Timer
+var dive_input_buffer: Timer
 
 func _ready() -> void:
 	#Input buffer setup:
@@ -40,6 +42,12 @@ func _ready() -> void:
 	dash_timer.wait_time = dash_duration
 	dash_timer.one_shot = true
 	add_child(dash_timer)
+	
+		#Dash timer setup:
+	dive_input_buffer = Timer.new()
+	dive_input_buffer.wait_time = dive_input_buffer_patience
+	dive_input_buffer.one_shot = true
+	add_child(dive_input_buffer)
 
 func set_direction(ability_direction : String) -> void:
 	direction = ability_direction
@@ -68,11 +76,13 @@ func process_input(_event : InputEvent) -> State:
 	if Input.is_action_just_pressed("jump"):
 		jump_input_buffer.start()
 	if Input.is_action_just_pressed("dive"):
-		return diving_state
+		dive_input_buffer.start()
 	return null
 
 func process_physics(_delta) -> State:
 	parent.move_and_slide()
+	if dive_input_buffer.time_left > 0 and dash_timer.time_left == 0:
+		return diving_state
 	if (parent.is_on_wall() and parent.velocity.y == 0) or parent.is_on_ceiling():
 		return falling_state
 	if (parent.is_on_floor() and dash_timer.time_left == 0):
@@ -86,6 +96,6 @@ func process_physics(_delta) -> State:
 		return ascending_state
 	return null
 
-func deactivate(_new_state) -> void:
+func deactivate(_next_state) -> void:
 	parent.velocity.x = parent.velocity.x * dash_horizontal_end_velocity_multiplier 
 	parent.velocity.y = parent.velocity.y * dash_vertical_end_velocity_multiplier 
