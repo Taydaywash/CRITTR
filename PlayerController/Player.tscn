@@ -441,12 +441,11 @@ target_position = Vector2(0, -50)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -3.0517578e-05)
-zoom = Vector2(0.36, 0.36)
 process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("21_3imdl")
-camera_zoom = 0.36
+default_zoom = 0.36
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 71.11111)

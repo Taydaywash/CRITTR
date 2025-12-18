@@ -10,13 +10,13 @@
 script = ExtResource("1_il6x7")
 
 [node name="PlayerController" parent="." instance=ExtResource("2_y6flb")]
-position = Vector2(384, -64)
+position = Vector2(1856, -448)
 
 [node name="UI" parent="." instance=ExtResource("4_il6x7")]
 
 [node name="Rooms" type="Node" parent="."]
 
 [node name="Room001" parent="Rooms" instance=ExtResource("1_folwd")]
-position = Vector2(1536, 0)
+position = Vector2(2816, -384)
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_o14yy")]

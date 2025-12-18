@@ -1,9 +1,9 @@
 extends Camera2D
 
-@export var camera_zoom : float
+@export var default_zoom : float
 
 func _ready() -> void:
-	zoom = Vector2(camera_zoom,camera_zoom)
+	change_zoom_to(default_zoom)
 
 func change_bounds_to(bounds : Dictionary):
 	limit_top = bounds.top
@@ -11,5 +11,5 @@ func change_bounds_to(bounds : Dictionary):
 	limit_left = bounds.left
 	limit_right = bounds.right
 	
-func change_zoom_to():
-	pass
+func change_zoom_to(zoom_in):
+	zoom = Vector2(zoom_in,zoom_in)
