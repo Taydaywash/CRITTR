@@ -57,8 +57,11 @@ func activate(last_state : State) -> void:
 	
 	parent.velocity = Vector2(0,0)
 	if direction == "up":
-		dash_timer.start()
-		parent.velocity.y = -dashing_speed
+		if parent.is_on_ceiling():
+			parent.velocity.y = super_jump_velocity
+		else:
+			dash_timer.start()
+			parent.velocity.y = -dashing_speed
 	elif direction == "down":
 		if parent.is_on_floor():
 			parent.velocity.y = -super_jump_velocity
@@ -66,11 +69,17 @@ func activate(last_state : State) -> void:
 			dash_timer.start()
 			parent.velocity.y = dashing_speed
 	elif direction == "left":
-		dash_timer.start()
-		parent.velocity.x = -dashing_speed
+		if parent.is_on_wall():
+			parent.velocity.x = super_jump_velocity
+		else:
+			dash_timer.start()
+			parent.velocity.x = -dashing_speed
 	elif direction == "right":
-		dash_timer.start()
-		parent.velocity.x = dashing_speed
+		if parent.is_on_wall():
+			parent.velocity.x = -super_jump_velocity
+		else:
+			dash_timer.start()
+			parent.velocity.x = dashing_speed
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -80,10 +89,10 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(_delta) -> State:
-	nudge_right_range_left.target_position.y = parent.velocity.y / 50 -75
-	nudge_right_range_right.target_position.y = parent.velocity.y / 50 -75
-	nudge_left_range_right.target_position.y = parent.velocity.y / 50 -75
-	nudge_left_range_left.target_position.y = parent.velocity.y / 50 -75
+	nudge_right_range_left.target_position.y = parent.velocity.y / 15 
+	nudge_right_range_right.target_position.y = parent.velocity.y / 15 
+	nudge_left_range_right.target_position.y = parent.velocity.y / 15
+	nudge_left_range_left.target_position.y = parent.velocity.y / 15
 	
 	parent.move_and_slide()
 	if nudge_right_range_left.is_colliding() and !nudge_right_range_right.is_colliding():
@@ -106,9 +115,9 @@ func process_physics(_delta) -> State:
 	return null
 
 func deactivate(_next_state) -> void:
-	nudge_right_range_left.target_position.y = -75
-	nudge_right_range_right.target_position.y = -75
-	nudge_left_range_right.target_position.y = -75
-	nudge_left_range_left.target_position.y = -75
+	nudge_right_range_left.target_position.y = -50
+	nudge_right_range_right.target_position.y = -50
+	nudge_left_range_right.target_position.y = -50
+	nudge_left_range_left.target_position.y = -50
 	parent.velocity.x = parent.velocity.x * dash_horizontal_end_velocity_multiplier 
 	parent.velocity.y = parent.velocity.y * dash_vertical_end_velocity_multiplier 

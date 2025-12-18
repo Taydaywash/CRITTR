@@ -10,7 +10,7 @@
 script = ExtResource("1_il6x7")
 
 [node name="PlayerController" parent="." instance=ExtResource("2_y6flb")]
-position = Vector2(319.99997, -63.999992)
+position = Vector2(384, -64)
 
 [node name="UI" parent="." instance=ExtResource("4_il6x7")]
 
@@ -20,8 +20,3 @@ position = Vector2(319.99997, -63.999992)
 position = Vector2(1536, 0)
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_o14yy")]
-process_mode = 3
-offset_left = 307.56604
-offset_top = 176.75502
-offset_right = 307.56604
-offset_bottom = 176.75502

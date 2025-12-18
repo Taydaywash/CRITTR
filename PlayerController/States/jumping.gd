@@ -63,10 +63,10 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	nudge_right_range_left.target_position.y = parent.velocity.y / 50 -75
-	nudge_right_range_right.target_position.y = parent.velocity.y / 50 -75
-	nudge_left_range_right.target_position.y = parent.velocity.y / 50 -75
-	nudge_left_range_left.target_position.y = parent.velocity.y / 50 -75
+	nudge_right_range_left.target_position.y = parent.velocity.y / 15
+	nudge_right_range_right.target_position.y = parent.velocity.y / 15
+	nudge_left_range_right.target_position.y = parent.velocity.y / 15
+	nudge_left_range_left.target_position.y = parent.velocity.y / 15
 	
 	if parent.velocity.y < max_falling_speed:
 		parent.velocity.y += gravity * delta
@@ -100,3 +100,10 @@ func process_frame(delta) -> State:
 	sprite.scale.y = lerp(sprite.scale.y,1.0,sprite_reset_speed * delta)
 	sprite.scale.x = lerp(sprite.scale.x,1.0,sprite_reset_speed * delta)
 	return null
+
+func deactivate(_next_state : State) -> void:
+	super(_next_state)
+	nudge_right_range_left.target_position.y = -50
+	nudge_right_range_right.target_position.y = -50
+	nudge_left_range_right.target_position.y = -50
+	nudge_left_range_left.target_position.y = -50

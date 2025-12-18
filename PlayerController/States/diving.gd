@@ -5,6 +5,7 @@ extends State
 @export var walking_state : State
 @export var bonked_state : State
 @export var jumping_state : State
+@export var idle_state : State
 @export_category("Parameters")
 @export var dive_horizontal_additive_velocity : int
 @export var dive_horizontal_default_velocity : int
@@ -34,6 +35,10 @@ func _ready() -> void:
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
+	if horizontal_input == 0:
+		horizontal_input = -(2 * int(sprite.flip_h) - 1)
+	if last_state == idle_state:
+		horizontal_input = 0
 	if abs(parent.velocity.x) > dive_horizontal_default_velocity:
 		if abs(parent.velocity.x) < max_diving_speed:
 			parent.velocity.x += dive_horizontal_additive_velocity * horizontal_input

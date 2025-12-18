@@ -1,7 +1,6 @@
 [gd_scene load_steps=40 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/player_state_controller.gd" id="1_4bhr5"]
-[ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://World/camera_controller.gd" id="2_c4fll"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
 [ext_resource type="Script" uid="uid://5v8bgvkdmtcc" path="res://PlayerController/States/idle_crouching.gd" id="5_3imdl"]
 [ext_resource type="Script" uid="uid://cm5l3ivbnb55g" path="res://PlayerController/state_machine.gd" id="5_v55cd"]
@@ -22,6 +21,7 @@
 [ext_resource type="Script" uid="uid://cwi7sh2i6bfpg" path="res://PlayerController/States/Abilities/inflated.gd" id="15_melbr"]
 [ext_resource type="Script" uid="uid://s0v2p1xd21lh" path="res://PlayerController/States/Abilities/bounce_attack.gd" id="16_2bslk"]
 [ext_resource type="Script" uid="uid://ctsvxg3n4hdh7" path="res://PlayerController/States/Abilities/drill.gd" id="17_fuvci"]
+[ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://PlayerController/camera_controller.gd" id="21_3imdl"]
 [ext_resource type="Texture2D" uid="uid://b5q4vr47m20fe" path="res://PlayerController/animations/walking/f1.png" id="21_068uq"]
 [ext_resource type="Texture2D" uid="uid://cm5a0kjv22qep" path="res://PlayerController/animations/idle/i1.png" id="21_hfsnk"]
 [ext_resource type="Texture2D" uid="uid://civo5col660g6" path="res://PlayerController/animations/idle/i2.png" id="22_3imdl"]
@@ -106,12 +106,13 @@ size = Vector2(35.55555, 71.11111)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ves0u"]
 size = Vector2(35.555553, 59.259254)
 
-[node name="PlayerController" type="CharacterBody2D"]
+[node name="PlayerController" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
 z_index = 5
 scale = Vector2(1.35, 1.35)
 floor_max_angle = 0.0
 safe_margin = 0.1
 script = ExtResource("1_4bhr5")
+camera = NodePath("Camera2D")
 normal_gravity = 3250
 max_falling_speed = 2000
 
@@ -235,11 +236,12 @@ left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "walking"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Diving" type="Node" parent="StateMachine" node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state")]
+[node name="Diving" type="Node" parent="StateMachine" node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state")]
 script = ExtResource("9_gnv43")
 walking_state = NodePath("../Walking")
 bonked_state = NodePath("../Bonked")
 jumping_state = NodePath("../Jumping")
+idle_state = NodePath("../Idle")
 dive_horizontal_additive_velocity = 100
 dive_horizontal_default_velocity = 800
 dive_vertical_velocity = 800
@@ -422,20 +424,20 @@ target_position = Vector2(-100, 0)
 scale = Vector2(2, 2)
 
 [node name="NudgeRightRangeLeft" type="RayCast2D" parent="CornerNudging"]
-position = Vector2(-17.75, 29.63)
-target_position = Vector2(0, -75)
+position = Vector2(-17.75, 0.00037002563)
+target_position = Vector2(0, -50)
 
 [node name="NudgeRightRangeRight" type="RayCast2D" parent="CornerNudging"]
-position = Vector2(-8, 29.62963)
-target_position = Vector2(0, -75)
+position = Vector2(-8, 0)
+target_position = Vector2(0, -50)
 
 [node name="NudgeLeftRangeLeft" type="RayCast2D" parent="CornerNudging"]
-position = Vector2(8, 29.62963)
-target_position = Vector2(0, -75)
+position = Vector2(8, 0)
+target_position = Vector2(0, -50)
 
 [node name="NudgeLeftRangeRight" type="RayCast2D" parent="CornerNudging"]
-position = Vector2(17.75, 29.63)
-target_position = Vector2(0, -75)
+position = Vector2(17.75, 0.00037002563)
+target_position = Vector2(0, -50)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -3.0517578e-05)
@@ -443,7 +445,8 @@ zoom = Vector2(0.36, 0.36)
 process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
-script = ExtResource("2_c4fll")
+script = ExtResource("21_3imdl")
+camera_zoom = 0.36
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 71.11111)
