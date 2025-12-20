@@ -1,9 +1,10 @@
-[gd_scene load_steps=40 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=42 format=3 uid="uid://4ip81nticvcd"]
 
-[ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/player_state_controller.gd" id="1_4bhr5"]
+[ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/States/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
+[ext_resource type="Script" uid="uid://5a3dsvmu3wh5" path="res://PlayerController/screen_transition.gd" id="3_wqhrm"]
 [ext_resource type="Script" uid="uid://5v8bgvkdmtcc" path="res://PlayerController/States/idle_crouching.gd" id="5_3imdl"]
-[ext_resource type="Script" uid="uid://cm5l3ivbnb55g" path="res://PlayerController/state_machine.gd" id="5_v55cd"]
+[ext_resource type="Script" uid="uid://cm5l3ivbnb55g" path="res://PlayerController/States/state_machine.gd" id="5_v55cd"]
 [ext_resource type="Script" uid="uid://cnyjhmvsy4x2m" path="res://PlayerController/States/idle.gd" id="6_dpx4d"]
 [ext_resource type="Script" uid="uid://b86dxdi4v2w7v" path="res://PlayerController/States/walking.gd" id="7_hueom"]
 [ext_resource type="Script" uid="uid://waa4aoe22gbi" path="res://PlayerController/States/jumping.gd" id="8_2fk5g"]
@@ -33,6 +34,8 @@
 [ext_resource type="Texture2D" uid="uid://dkv402y2iptmk" path="res://PlayerController/animations/walking/f6.png" id="26_wqhrm"]
 [ext_resource type="Texture2D" uid="uid://dbeutqacrgjeg" path="res://PlayerController/animations/walking/f7.png" id="27_7xxh7"]
 [ext_resource type="Texture2D" uid="uid://bpsqdu68xaqos" path="res://PlayerController/animations/walking/f8.png" id="28_ho2n3"]
+[ext_resource type="Shape2D" uid="uid://c8niu6rbmipjw" path="res://PlayerController/Hitboxes/CrouchingHitbox.tres" id="35_ho2n3"]
+[ext_resource type="Shape2D" uid="uid://bfsgbtnw3orjf" path="res://PlayerController/Hitboxes/DefaultHitbox.tres" id="36_uneaa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hl1jv"]
 animations = [{
@@ -100,11 +103,8 @@ size = Vector2(30.028448, 59.25926)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_068uq"]
 size = Vector2(30.028448, 47.40741)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tycsm"]
-size = Vector2(35.55555, 71.11111)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ves0u"]
-size = Vector2(35.555553, 59.259254)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ho2n3"]
+size = Vector2(71.11111, 82.96296)
 
 [node name="PlayerController" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
 z_index = 5
@@ -125,6 +125,9 @@ colliders_list = {
 starting_state = NodePath("Idle")
 grounded_states = [NodePath("Idle"), NodePath("Walking"), NodePath("Crouching"), NodePath("IdleCrouching")]
 abilities_state = NodePath("Abilities")
+
+[node name="ScreenTransition" type="Node" parent="StateMachine"]
+script = ExtResource("3_wqhrm")
 
 [node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
 script = ExtResource("8_2fk5g")
@@ -441,9 +444,9 @@ target_position = Vector2(0, -50)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -3.0517578e-05)
+zoom = Vector2(0.36, 0.36)
 process_callback = 0
 limit_smoothed = true
-position_smoothing_enabled = true
 script = ExtResource("21_3imdl")
 default_zoom = 0.36
 
@@ -460,6 +463,7 @@ texture = ExtResource("2_ves0u")
 offset = Vector2(0, -0.5008029)
 
 [node name="TriggerHitbox" type="Area2D" parent="."]
+visible = false
 scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 4
@@ -470,6 +474,7 @@ scale = Vector2(1, 0.99999934)
 shape = SubResource("RectangleShape2D_g1nwm")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 2
@@ -481,6 +486,7 @@ shape = SubResource("RectangleShape2D_5i1rd")
 debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
 
 [node name="CrouchedHurtbox" type="Area2D" parent="."]
+visible = false
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 2
@@ -494,17 +500,20 @@ debug_color = Color(1, 0.13725491, 0.1764706, 0.3254902)
 
 [node name="- Hitboxes -" type="Node" parent="."]
 
+[node name="PermanentHitbox" type="CollisionShape2D" parent="."]
+z_index = -1
+position = Vector2(7.064254e-07, 29.629625)
+shape = SubResource("RectangleShape2D_ho2n3")
+
 [node name="NormalHitbox" type="CollisionShape2D" parent="."]
 z_index = -1
 position = Vector2(-3.638091e-06, 3.7087334e-06)
-scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_tycsm")
+shape = ExtResource("36_uneaa")
 
 [node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
 z_index = -1
 position = Vector2(1.7660635e-07, 11.851847)
-scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_ves0u")
+shape = ExtResource("35_ho2n3")
 disabled = true
 
 [connection signal="area_entered" from="TriggerHitbox" to="." method="_change_respawn_point"]

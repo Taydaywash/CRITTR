@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2mfvc5tpbska"]
+
+[ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://LevelEditor/Rooms/room_controller.gd" id="1_byjgp"]
+[ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://LevelEditor/Objects/RespawnPoint/RespawnPoint.tscn" id="2_oyma6"]
+[ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://LevelEditor/Objects/Tiles/TileSets.tscn" id="3_iwxvw"]
+[ext_resource type="Shape2D" uid="uid://kcu3cvf74df6" path="res://LevelEditor/Objects/Camera/baseCamera.tres" id="4_o2qqh"]
+[ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_6vusl"]
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_byjgp")
+camera_zoom = 0.36
+
+[node name="RespawnPoint" parent="." instance=ExtResource("2_oyma6")]
+position = Vector2(-512, -320)
+
+[node name="tundratileset" parent="." instance=ExtResource("3_iwxvw")]
+
+[node name="LevelBounds" type="CollisionShape2D" parent="."]
+position = Vector2(-64, -640)
+shape = ExtResource("4_o2qqh")
+disabled = true
+
+[node name="defaultPlayerCameraReference" parent="." instance=ExtResource("5_6vusl")]
+position = Vector2(-1088, -64)

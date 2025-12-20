@@ -30,9 +30,9 @@ func process_frame(_delta) -> State:
 func change_collider_to(new_collider : CollisionShape2D) -> void:
 	for collider : String in colliders:
 		if colliders[collider] == new_collider:
-			colliders[collider].disabled = false
+			colliders[collider].set_deferred("disabled" , false)
 		else:
-			colliders[collider].disabled = true
+			colliders[collider].set_deferred("disabled" , true)
 
 func deactivate(_next_state : State) -> void:
 	sprite.scale.y = 1

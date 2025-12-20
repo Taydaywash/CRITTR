@@ -1,22 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://s1l25pe1fhgb"]
+[gd_scene load_steps=8 format=3 uid="uid://s1l25pe1fhgb"]
 
-[ext_resource type="PackedScene" uid="uid://d2mfvc5tpbska" path="res://LevelEditor/Rooms/Room001.tscn" id="1_folwd"]
 [ext_resource type="Script" uid="uid://nvgmux0c34ar" path="res://World/world_controller.gd" id="1_il6x7"]
 [ext_resource type="PackedScene" uid="uid://4ip81nticvcd" path="res://PlayerController/Player.tscn" id="2_y6flb"]
 [ext_resource type="PackedScene" uid="uid://bpodu035v3lq4" path="res://UI/UI.tscn" id="4_il6x7"]
+[ext_resource type="PackedScene" uid="uid://bnjdytut746x1" path="res://LevelEditor/Rooms/Room001.tscn" id="4_o14yy"]
+[ext_resource type="PackedScene" uid="uid://c01sisufyx4ho" path="res://LevelEditor/Rooms/Room002.tscn" id="5_04mge"]
 [ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://UI/pause_screen.tscn" id="5_o14yy"]
+[ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://LevelEditor/Rooms/Room003.tscn" id="6_eue43"]
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_il6x7")
 
 [node name="PlayerController" parent="." instance=ExtResource("2_y6flb")]
 position = Vector2(1856, -448)
 
 [node name="UI" parent="." instance=ExtResource("4_il6x7")]
 
-[node name="Rooms" type="Node" parent="."]
+[node name="Rooms" type="Node" parent="." node_paths=PackedStringArray("first_room")]
+script = ExtResource("1_il6x7")
+first_room = NodePath("Room000")
+screen_fade_speed = 10.0
 
-[node name="Room001" parent="Rooms" instance=ExtResource("1_folwd")]
-position = Vector2(2816, -384)
+[node name="Room000" parent="Rooms" instance=ExtResource("4_o14yy")]
+position = Vector2(2944, -384)
+
+[node name="Room001" parent="Rooms" instance=ExtResource("5_04mge")]
+position = Vector2(6144, -384)
+
+[node name="Room002" parent="Rooms" instance=ExtResource("6_eue43")]
+position = Vector2(6144, -2176)
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_o14yy")]
