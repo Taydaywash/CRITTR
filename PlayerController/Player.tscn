@@ -26,11 +26,13 @@
 [ext_resource type="Texture2D" uid="uid://b5q4vr47m20fe" path="res://PlayerController/animations/walking/f1.png" id="21_068uq"]
 [ext_resource type="Texture2D" uid="uid://cm5a0kjv22qep" path="res://PlayerController/animations/idle/i1.png" id="21_hfsnk"]
 [ext_resource type="Texture2D" uid="uid://civo5col660g6" path="res://PlayerController/animations/idle/i2.png" id="22_3imdl"]
+[ext_resource type="Texture2D" uid="uid://dpg0ffmpj5l37" path="res://PlayerController/animations/fall/fall1.png" id="22_7xxh7"]
 [ext_resource type="Texture2D" uid="uid://ouegwis2yso0" path="res://PlayerController/animations/walking/f2.png" id="22_tycsm"]
 [ext_resource type="Texture2D" uid="uid://bc5tl458rwcxw" path="res://PlayerController/animations/walking/f3.png" id="23_fkl5p"]
 [ext_resource type="Texture2D" uid="uid://csnlhmtdvh6rk" path="res://PlayerController/animations/idle/i3.png" id="23_wqhrm"]
 [ext_resource type="Texture2D" uid="uid://33ah1rmr3ca7" path="res://PlayerController/animations/walking/f4.png" id="24_hfsnk"]
 [ext_resource type="Texture2D" uid="uid://5iuq1j0jnxoj" path="res://PlayerController/animations/walking/f5.png" id="25_3imdl"]
+[ext_resource type="Texture2D" uid="uid://dfyfs3qh2efsu" path="res://PlayerController/animations/jump/jump1.png" id="26_7xxh7"]
 [ext_resource type="Texture2D" uid="uid://dkv402y2iptmk" path="res://PlayerController/animations/walking/f6.png" id="26_wqhrm"]
 [ext_resource type="Texture2D" uid="uid://dbeutqacrgjeg" path="res://PlayerController/animations/walking/f7.png" id="27_7xxh7"]
 [ext_resource type="Texture2D" uid="uid://bpsqdu68xaqos" path="res://PlayerController/animations/walking/f8.png" id="28_ho2n3"]
@@ -39,6 +41,14 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hl1jv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_7xxh7")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("21_hfsnk")
@@ -55,6 +65,14 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_7xxh7")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -152,7 +170,7 @@ nudge_right_range_left = NodePath("../../CornerNudging/NudgeRightRangeLeft")
 nudge_right_range_right = NodePath("../../CornerNudging/NudgeRightRangeRight")
 nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
 nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeRight")
-animation_name = "idle"
+animation_name = "jump"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Crouching" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_crouching_state", "walking_state", "falling_state", "jumping_state", "diving_state", "ability_state", "default_hitbox", "crouching_hitbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
@@ -297,7 +315,7 @@ nudge_right_range_left = NodePath("../../CornerNudging/NudgeRightRangeLeft")
 nudge_right_range_right = NodePath("../../CornerNudging/NudgeRightRangeRight")
 nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
 nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
-animation_name = "idle"
+animation_name = "falling"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Bonked" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jumping_state")]
@@ -453,7 +471,7 @@ default_zoom = 0.36
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 71.11111)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"walking"
+animation = &"jump"
 offset = Vector2(0, -71.11111)
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
