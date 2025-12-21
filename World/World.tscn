@@ -17,8 +17,11 @@ position = Vector2(1856, -448)
 
 [node name="Rooms" type="Node" parent="." node_paths=PackedStringArray("first_room")]
 script = ExtResource("1_il6x7")
+up_velocity_room_transition = 850.0
+down_velocity_room_transition = 50.0
+x_velocity_room_transition = 50.0
 first_room = NodePath("Room000")
-screen_fade_speed = 10.0
+screen_fade_speed = 20.0
 
 [node name="Room000" parent="Rooms" instance=ExtResource("4_o14yy")]
 position = Vector2(2944, -384)

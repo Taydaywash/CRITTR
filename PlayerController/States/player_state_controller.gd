@@ -32,3 +32,5 @@ func play_animation(name):
 
 func get_camera():
 	return camera
+func get_state_machine():
+	return state_machine

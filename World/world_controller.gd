@@ -1,5 +1,10 @@
 extends Node
 
+@onready var player: CharacterBody2D = $"../PlayerController"
+
+@export var up_velocity_room_transition : float
+@export var down_velocity_room_transition : float
+@export var x_velocity_room_transition : float
 @export var first_room : Room
 @export var screen_fade_speed : float
 @onready var ui: CanvasLayer = $"../UI"
@@ -38,6 +43,14 @@ func _process(delta: float) -> void:
 			ui.screen_overlay.modulate.a = 0.0
 			fade_out = false
 	if !current_room and next_room:
+		if player.velocity.y < 0:
+			player.velocity.y = -up_velocity_room_transition
+		elif player.velocity.y > 0:
+			player.velocity.y = down_velocity_room_transition
+		elif player.velocity.x > 0:
+			player.velocity.x = x_velocity_room_transition
+		elif player.velocity.x < 0:
+			player.velocity.x = -x_velocity_room_transition
 		if !fade_in and !fade_out:
 			fade_out = true
 			previous_room.exit_room()

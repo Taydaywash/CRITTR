@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=44 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/States/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
@@ -146,6 +146,8 @@ abilities_state = NodePath("Abilities")
 
 [node name="ScreenTransition" type="Node" parent="StateMachine"]
 script = ExtResource("3_wqhrm")
+animation_name = "walking"
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
 script = ExtResource("8_2fk5g")
@@ -464,7 +466,7 @@ target_position = Vector2(0, -50)
 position = Vector2(0, -3.0517578e-05)
 zoom = Vector2(0.36, 0.36)
 process_callback = 0
-limit_smoothed = true
+position_smoothing_enabled = true
 script = ExtResource("21_3imdl")
 default_zoom = 0.36
 
