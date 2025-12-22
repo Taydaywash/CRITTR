@@ -1,20 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6tgehyvfiy28"]
-
-[ext_resource type="Script" uid="uid://draw3208qhn76" path="res://LevelEditor/Objects/RespawnPoint/respawn_point.gd" id="1_io85b"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xoon"]
-size = Vector2(128, 128)
+[gd_scene load_steps=2 format=3 uid="uid://c6tgehyvfiy28"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_io85b"]
 size = Vector2(128, 896)
 
 [node name="RespawnPoint" type="Node2D"]
-script = ExtResource("1_io85b")
-
-[node name="DirectionalLight2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_5xoon")
-disabled = true
-debug_color = Color(0.9933763, 0, 0.2452861, 0.41960785)
 
 [node name="ChangeRespawnPoint" type="Area2D" parent="."]
 collision_layer = 4

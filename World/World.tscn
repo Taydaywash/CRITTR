@@ -19,7 +19,7 @@ position = Vector2(1856, -448)
 script = ExtResource("1_il6x7")
 up_velocity_room_transition = 850.0
 down_velocity_room_transition = 50.0
-x_velocity_room_transition = 50.0
+horizontal_velocity_room_transition = 20.0
 first_room = NodePath("Room000")
 screen_fade_speed = 20.0
 
@@ -28,8 +28,10 @@ position = Vector2(2944, -384)
 
 [node name="Room001" parent="Rooms" instance=ExtResource("5_04mge")]
 position = Vector2(6144, -384)
+camera_zoom = 0.0
 
 [node name="Room002" parent="Rooms" instance=ExtResource("6_eue43")]
 position = Vector2(6144, -2176)
+camera_zoom = 0.0
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_o14yy")]

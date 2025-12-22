@@ -1,8 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=46 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/States/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
-[ext_resource type="Script" uid="uid://5a3dsvmu3wh5" path="res://PlayerController/screen_transition.gd" id="3_wqhrm"]
+[ext_resource type="Script" uid="uid://5a3dsvmu3wh5" path="res://PlayerController/NoControl.gd" id="3_wqhrm"]
 [ext_resource type="Script" uid="uid://5v8bgvkdmtcc" path="res://PlayerController/States/idle_crouching.gd" id="5_3imdl"]
 [ext_resource type="Script" uid="uid://cm5l3ivbnb55g" path="res://PlayerController/States/state_machine.gd" id="5_v55cd"]
 [ext_resource type="Script" uid="uid://cnyjhmvsy4x2m" path="res://PlayerController/States/idle.gd" id="6_dpx4d"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://bpsqdu68xaqos" path="res://PlayerController/animations/walking/f8.png" id="28_ho2n3"]
 [ext_resource type="Shape2D" uid="uid://c8niu6rbmipjw" path="res://PlayerController/Hitboxes/CrouchingHitbox.tres" id="35_ho2n3"]
 [ext_resource type="Shape2D" uid="uid://bfsgbtnw3orjf" path="res://PlayerController/Hitboxes/DefaultHitbox.tres" id="36_uneaa"]
+[ext_resource type="Script" uid="uid://db1bxui7ftwwk" path="res://PlayerController/respawn_controller.gd" id="37_jxerk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hl1jv"]
 animations = [{
@@ -122,7 +123,10 @@ size = Vector2(30.028448, 59.25926)
 size = Vector2(30.028448, 47.40741)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ho2n3"]
-size = Vector2(71.11111, 82.96296)
+size = Vector2(71.11111, 41.481483)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxerk"]
+size = Vector2(71.112, 100.74048)
 
 [node name="PlayerController" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
 z_index = 5
@@ -134,22 +138,20 @@ camera = NodePath("Camera2D")
 normal_gravity = 3250
 max_falling_speed = 2000
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("colliders_list", "starting_state", "grounded_states", "abilities_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("no_control_state", "colliders_list", "starting_state", "grounded_states", "abilities_state")]
 script = ExtResource("5_v55cd")
-colliders_list = {
-"crouched": NodePath("../CrouchedHitbox"),
-"normal": NodePath("../NormalHitbox")
-}
+no_control_state = NodePath("NoControl")
+colliders_list = [NodePath("../NormalHitbox"), NodePath("../CrouchedHitbox"), NodePath("../Jumping")]
 starting_state = NodePath("Idle")
 grounded_states = [NodePath("Idle"), NodePath("Walking"), NodePath("Crouching"), NodePath("IdleCrouching")]
 abilities_state = NodePath("Abilities")
 
-[node name="ScreenTransition" type="Node" parent="StateMachine"]
+[node name="NoControl" type="Node" parent="StateMachine"]
 script = ExtResource("3_wqhrm")
-animation_name = "walking"
+animation_name = "idle"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
+[node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "default_hitbox", "jumping_hitbox")]
 script = ExtResource("8_2fk5g")
 falling_state = NodePath("../Falling")
 diving_state = NodePath("../Diving")
@@ -172,6 +174,8 @@ nudge_right_range_left = NodePath("../../CornerNudging/NudgeRightRangeLeft")
 nudge_right_range_right = NodePath("../../CornerNudging/NudgeRightRangeRight")
 nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
 nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeRight")
+default_hitbox = NodePath("../../NormalHitbox")
+jumping_hitbox = NodePath("../../Jumping")
 animation_name = "jump"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
@@ -476,11 +480,8 @@ sprite_frames = SubResource("SpriteFrames_hl1jv")
 animation = &"jump"
 offset = Vector2(0, -71.11111)
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.355, 0.35499996)
-texture = ExtResource("2_ves0u")
-offset = Vector2(0, -0.5008029)
+[node name="Respawn Controller" type="Node" parent="."]
+script = ExtResource("37_jxerk")
 
 [node name="TriggerHitbox" type="Area2D" parent="."]
 visible = false
@@ -518,11 +519,9 @@ scale = Vector2(1, 0.9999999)
 shape = SubResource("RectangleShape2D_068uq")
 debug_color = Color(1, 0.13725491, 0.1764706, 0.3254902)
 
-[node name="- Hitboxes -" type="Node" parent="."]
-
 [node name="PermanentHitbox" type="CollisionShape2D" parent="."]
 z_index = -1
-position = Vector2(7.064254e-07, 29.629625)
+position = Vector2(7.064254e-07, 8.888888)
 shape = SubResource("RectangleShape2D_ho2n3")
 
 [node name="NormalHitbox" type="CollisionShape2D" parent="."]
@@ -536,6 +535,12 @@ position = Vector2(1.7660635e-07, 11.851847)
 shape = ExtResource("35_ho2n3")
 disabled = true
 
-[connection signal="area_entered" from="TriggerHitbox" to="." method="_change_respawn_point"]
-[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[node name="Jumping" type="CollisionShape2D" parent="."]
+z_index = -1
+position = Vector2(1.7660635e-07, -20.74061)
+shape = SubResource("RectangleShape2D_jxerk")
+disabled = true
+
+[connection signal="area_entered" from="TriggerHitbox" to="Respawn Controller" method="_on_trigger_hitbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="Respawn Controller" method="_on_body_entered"]
 [connection signal="body_entered" from="CrouchedHurtbox" to="." method="_on_crouched_hurtbox_body_entered"]

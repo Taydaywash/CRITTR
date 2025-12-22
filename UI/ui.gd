@@ -9,7 +9,3 @@ func update_ability_ui(abilities_in_use : Dictionary):
 
 func set_fade(alpha : float):
 	screen_overlay.modulate.a = alpha
-
-func screen_transition_fade(starting_opacity : float, target_opacity : float, delta : float):
-	screen_overlay.modulate.a = lerp(starting_opacity,target_opacity,delta)
-	return screen_overlay.modulate.a

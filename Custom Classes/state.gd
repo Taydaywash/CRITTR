@@ -8,7 +8,7 @@ var placeholder_animation_color : Color
 
 var parent : CharacterBody2D
 var sprite : AnimatedSprite2D
-var colliders : Dictionary[String,CollisionShape2D]
+var colliders : Array[CollisionShape2D]
 
 func set_direction(_direction : String) -> void:
 	pass
@@ -28,11 +28,11 @@ func process_frame(_delta) -> State:
 	return null
 
 func change_collider_to(new_collider : CollisionShape2D) -> void:
-	for collider : String in colliders:
-		if colliders[collider] == new_collider:
-			colliders[collider].set_deferred("disabled" , false)
+	for collider in colliders:
+		if collider == new_collider:
+			collider.set_deferred("disabled" , false)
 		else:
-			colliders[collider].set_deferred("disabled" , true)
+			collider.set_deferred("disabled" , true)
 
 func deactivate(_next_state : State) -> void:
 	sprite.scale.y = 1

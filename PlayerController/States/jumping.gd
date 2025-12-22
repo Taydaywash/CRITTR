@@ -27,6 +27,9 @@ extends State
 @export var nudge_right_range_right: RayCast2D
 @export var nudge_left_range_left: RayCast2D
 @export var nudge_left_range_right: RayCast2D
+@export_category("Hitboxes")
+@export var default_hitbox : CollisionShape2D
+@export var jumping_hitbox : CollisionShape2D
 
 var gravity : int
 var max_falling_speed : int
@@ -42,6 +45,7 @@ func _ready() -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate() as defined in state.gd and then also do:
+	change_collider_to(jumping_hitbox)
 	jump_input_buffer.stop()
 	gravity = parent.normal_gravity
 	parent.velocity.y = -jump_velocity
@@ -103,6 +107,7 @@ func process_frame(delta) -> State:
 
 func deactivate(_next_state : State) -> void:
 	super(_next_state)
+	change_collider_to(default_hitbox)
 	nudge_right_range_left.target_position.y = -50
 	nudge_right_range_right.target_position.y = -50
 	nudge_left_range_right.target_position.y = -50

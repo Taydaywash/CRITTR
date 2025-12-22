@@ -2,7 +2,8 @@ extends Node
 
 @onready var abilities: Node = $Abilities
 
-@export var colliders_list : Dictionary[String,CollisionShape2D]
+@export var no_control_state : State
+@export var colliders_list : Array[CollisionShape2D]
 @export var starting_state : State
 @export var grounded_states : Array[State]
 @export var abilities_state : State
@@ -20,10 +21,10 @@ func initialize(player : CharacterBody2D, sprite : AnimatedSprite2D) -> void:
 		child.sprite = sprite
 		child.colliders = colliders_list
 	#Initialize with starting_state
-	change_state(starting_state, null)
+	change_state(starting_state)
 
 #Change current state afer deactivating currently active state
-func change_state(new_state : State, direction) -> void:
+func change_state(new_state : State, direction = null) -> void:
 	var last_state = current_state
 	if current_state:
 		current_state.deactivate(new_state)
@@ -45,13 +46,13 @@ func process_input(event) -> void:
 					abilities.use_ability(ability)
 					change_state(abilities.abilities_in_use[ability].state, abilities.abilities_in_use[ability].direction)
 		else:
-			change_state(new_state, null)
+			change_state(new_state)
 
 func process_physics(delta) -> void:
 	var new_state = current_state.process_physics(delta)
 	if new_state:
-		change_state(new_state, null)
+		change_state(new_state)
 func process_frame(delta) -> void:
 	var new_state = current_state.process_frame(delta)
 	if new_state:
-		change_state(new_state, null)
+		change_state(new_state)
