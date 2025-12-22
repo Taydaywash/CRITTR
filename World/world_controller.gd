@@ -15,7 +15,7 @@ var next_room : Room
 
 var fade_in : bool
 var fade_out : bool
-
+var respawn_position : Vector2
 func _ready() -> void:
 	current_room = first_room
 	first_room.enter_room()
@@ -23,12 +23,10 @@ func _ready() -> void:
 func entered_room(room : Room):
 	next_room = room
 
-func respawn():
-	fade_in_out()
-
-func fade_in_out():
+func respawn(respawn_pos : Vector2):
 	fade_in = true
 	fade_out = false
+	respawn_position = respawn_pos
 
 func exited_room(room : Room):
 	if room == current_room:
@@ -41,24 +39,27 @@ func exited_room(room : Room):
 
 func _process(delta: float) -> void:
 	if fade_in:
-		ui.screen_overlay.modulate.a = lerp(ui.screen_overlay.modulate.a,1.0,delta * screen_fade_speed)
-		if ui.screen_overlay.modulate.a >= 0.99:
-			ui.screen_overlay.modulate.a = 1.0
+		ui.increment_fade_in(delta, screen_fade_speed)
+		if !ui.is_fading_in():
 			fade_in = false
-	if fade_out:
-		ui.screen_overlay.modulate.a = lerp(ui.screen_overlay.modulate.a,0.0,delta * screen_fade_speed)
-		if ui.screen_overlay.modulate.a <= 0.01:
-			ui.screen_overlay.modulate.a = 0.0
-			fade_out = false
+			fade_out = true
 	if !current_room and next_room:
 		set_enter_velocity()
-		if !fade_in and !fade_out:
-			previous_room.exit_room()
-			current_room = next_room
-			next_room.enter_room()
-	if !fade_in and !fade_out:
-		fade_out = true
+		if !fade_in and fade_out:
+			transition_room()
+	if player.state_machine.current_state == player.state_machine.no_control_state:
+		if !fade_in and fade_out:
+			player.get_state_machine().change_state(player.get_state_machine().starting_state,null)
+			player.set_deferred("position",respawn_position)
+	if fade_out:
+		ui.increment_fade_out(delta, screen_fade_speed)
+		if !ui.is_fading_out():
+			fade_out = false
 
+func transition_room():
+	previous_room.exit_room()
+	current_room = next_room
+	next_room.enter_room()
 func set_enter_velocity():
 	if player.velocity.y < 0:
 		player.velocity.y = -up_velocity_room_transition

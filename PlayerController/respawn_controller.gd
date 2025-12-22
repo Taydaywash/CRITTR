@@ -6,8 +6,8 @@ extends Node
 var respawn_position : Vector2
 
 func _on_body_entered(_body: Node2D) -> void:
-	rooms.respawn()
 	player.get_state_machine().change_state(player.get_state_machine().no_control_state,null)
+	rooms.respawn(respawn_position)
 
 func _on_trigger_hitbox_area_entered(area: Area2D) -> void:
 	if area.collision_layer == 4:
