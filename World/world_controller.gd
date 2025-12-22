@@ -50,10 +50,12 @@ func _process(delta: float) -> void:
 	if player.state_machine.current_state == player.state_machine.no_control_state:
 		if !fade_in and fade_out:
 			player.get_state_machine().change_state(player.get_state_machine().starting_state,null)
+			player.get_camera().set_deferred("position_smoothing_enabled", false)
 			player.set_deferred("position",respawn_position)
 	if fade_out:
 		ui.increment_fade_out(delta, screen_fade_speed)
 		if !ui.is_fading_out():
+			player.get_camera().set_deferred("position_smoothing_enabled", true)
 			fade_out = false
 
 func transition_room():

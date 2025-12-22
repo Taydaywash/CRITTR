@@ -13,7 +13,6 @@ var current_state : State
 #reference and propagating it to each state
 func initialize(player : CharacterBody2D, sprite : AnimatedSprite2D) -> void:
 	for child in get_children():
-		print(child)
 		child.parent = player
 		child.sprite = sprite
 		child.colliders = colliders_list

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmloe3r5xxddf"]
+[gd_scene load_steps=9 format=3 uid="uid://dmloe3r5xxddf"]
 
 [ext_resource type="Texture2D" uid="uid://dowgutwq0rs3s" path="res://testtileset.png" id="1_ybap5"]
 [ext_resource type="Texture2D" uid="uid://d006flcisjx5" path="res://tundra.png" id="2_51kvq"]
+[ext_resource type="Texture2D" uid="uid://c65odlyk03uru" path="res://spikePlaceholder.png" id="2_pnkcp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ymlln"]
 
@@ -63,6 +64,33 @@ texture_region_size = Vector2i(128, 128)
 9:3/0 = 0
 10:3/0 = 0
 11:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d754o"]
+resource_name = "spikes"
+texture = ExtResource("2_pnkcp")
+texture_region_size = Vector2i(128, 128)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -20)
+1:0/0/z_index = -1
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-64, 96, -64, 48, 64, 48, 64, 96)
+1:0/0/physics_layer_1/polygon_0/one_way_margin = 0.0
+0:1/0 = 0
+0:1/0/texture_origin = Vector2i(-20, 0)
+0:1/0/z_index = -1
+0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(80, 64, 48, 64, 48, -64, 80, -64)
+0:1/0/physics_layer_1/polygon_0/one_way_margin = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, 32, -32, -32, 32, -32, 32, 32)
+2:1/0 = 0
+2:1/0/texture_origin = Vector2i(20, 0)
+2:1/0/z_index = -1
+2:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-80, -64, -48, -64, -48, 64, -80, 64)
+2:1/0/physics_layer_1/polygon_0/one_way_margin = 0.0
+1:2/0 = 0
+1:2/0/texture_origin = Vector2i(0, 20)
+1:2/0/z_index = -1
+1:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(64, -80, 64, -48, -64, -48, -64, -80)
+1:2/0/physics_layer_1/polygon_0/one_way_margin = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3crt"]
 texture = ExtResource("2_51kvq")
@@ -457,6 +485,7 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.73403823, 0.41551143, 1, 1)
 sources/3 = SubResource("TileSetAtlasSource_b3crt")
 sources/0 = SubResource("TileSetAtlasSource_mf47l")
+sources/1 = SubResource("TileSetAtlasSource_d754o")
 
 [node name="TileSets" type="TileMapLayer"]
 tile_set = SubResource("TileSet_mf47l")

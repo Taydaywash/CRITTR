@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://bpsqdu68xaqos" path="res://PlayerController/animations/walking/f8.png" id="28_ho2n3"]
 [ext_resource type="Shape2D" uid="uid://c8niu6rbmipjw" path="res://PlayerController/Hitboxes/CrouchingHitbox.tres" id="35_ho2n3"]
 [ext_resource type="Shape2D" uid="uid://bfsgbtnw3orjf" path="res://PlayerController/Hitboxes/DefaultHitbox.tres" id="36_uneaa"]
-[ext_resource type="Script" path="res://PlayerController/respawn_controller.gd" id="37_jxerk"]
+[ext_resource type="Script" uid="uid://db1bxui7ftwwk" path="res://PlayerController/respawn_controller.gd" id="37_jxerk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hl1jv"]
 animations = [{

@@ -10,6 +10,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRespawnPoint"]
+position = Vector2(0, 64)
 shape = SubResource("RectangleShape2D_io85b")
 
 [connection signal="body_entered" from="ChangeRespawnPoint" to="." method="_on_change_respawn_point_body_entered"]
