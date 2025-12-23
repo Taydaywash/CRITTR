@@ -405,14 +405,15 @@ nudge_left_range_right = NodePath("../../../CornerNudging/NudgeLeftRangeRight")
 nudge_left_range_left = NodePath("../../../CornerNudging/NudgeLeftRangeLeft")
 placeholder_animation_color = Color(0.23891038, 0.12174525, 0.0073752436, 1)
 
-[node name="Grappling" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "jumping_state", "walking_state", "ray_up", "ray_down", "ray_left", "ray_right")]
+[node name="Grappling" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "ray_up", "ray_down", "ray_left", "ray_right")]
 script = ExtResource("13_vpgwe")
 falling_state = NodePath("../../Falling")
 idle_state = NodePath("../../Idle")
 diving_state = NodePath("../../Diving")
 jumping_state = NodePath("../../Jumping")
 walking_state = NodePath("../../Walking")
-grapple_duration = 1.0
+ascending_state = NodePath("../../Ascending")
+grapple_duration = 0.5
 grappling_speed = 4000.0
 jump_input_buffer_patience = 0.1
 ray_up = NodePath("../../../Grapple/GrapplingRayUp")
@@ -435,21 +436,25 @@ script = ExtResource("17_fuvci")
 [node name="Grapple" type="Node2D" parent="."]
 scale = Vector2(2, 2)
 
-[node name="GrapplingRayRight" type="RayCast2D" parent="Grapple"]
+[node name="GrapplingRayRight" type="RayCast2D" parent="Grapple" groups=["grapple_rays"]]
 scale = Vector2(1, 4)
 target_position = Vector2(400, 0)
 
-[node name="GrapplingRayUp" type="RayCast2D" parent="Grapple"]
+[node name="Line2D" type="Line2D" parent="Grapple/GrapplingRayRight"]
+points = PackedVector2Array(-1.8518518, -0.18518518, 392.96295, -0.5555555)
+width = 2.0
+
+[node name="GrapplingRayUp" type="RayCast2D" parent="Grapple" groups=["grapple_rays"]]
 rotation = 4.712389
 scale = Vector2(1, 4)
 target_position = Vector2(400, 0)
 
-[node name="GrapplingRayLeft" type="RayCast2D" parent="Grapple"]
+[node name="GrapplingRayLeft" type="RayCast2D" parent="Grapple" groups=["grapple_rays"]]
 rotation = 3.1415927
 scale = Vector2(1, 4)
 target_position = Vector2(400, 0)
 
-[node name="GrapplingRayDown" type="RayCast2D" parent="Grapple"]
+[node name="GrapplingRayDown" type="RayCast2D" parent="Grapple" groups=["grapple_rays"]]
 rotation = 1.5707964
 scale = Vector2(1, 4)
 target_position = Vector2(400, 0)
