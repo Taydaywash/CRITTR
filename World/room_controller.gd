@@ -20,7 +20,8 @@ var bounds : Dictionary = {
 }
 
 func _ready() -> void:
-	default_player_camera_reference.queue_free()
+	if default_player_camera_reference:
+		default_player_camera_reference.queue_free()
 
 func _entered_room_collider(_body: Node2D) -> void:
 	world_controller.entered_room(self)

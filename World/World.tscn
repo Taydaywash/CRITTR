@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://s1l25pe1fhgb"]
+[gd_scene load_steps=12 format=3 uid="uid://s1l25pe1fhgb"]
 
 [ext_resource type="Script" uid="uid://nvgmux0c34ar" path="res://World/world_controller.gd" id="1_il6x7"]
 [ext_resource type="PackedScene" uid="uid://4ip81nticvcd" path="res://PlayerController/Player.tscn" id="2_y6flb"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://c01sisufyx4ho" path="res://World/LevelEditor/Regions/Crash Site/Rooms/MovementTutorial.tscn" id="5_04mge"]
 [ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://UI/pause_screen.tscn" id="5_o14yy"]
 [ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://World/LevelEditor/Regions/Crash Site/Rooms/Platforms.tscn" id="6_eue43"]
+[ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://World/LevelEditor/Regions/Crash Site/Rooms/PlatformsTwo.tscn" id="7_4sj48"]
+[ext_resource type="PackedScene" uid="uid://djg64wdak2hx4" path="res://World/LevelEditor/Regions/Crash Site/Rooms/SecondaryPlatforms.tscn" id="8_s53j1"]
+[ext_resource type="PackedScene" uid="uid://d35vqu04f6lf7" path="res://World/LevelEditor/Regions/Crash Site/Rooms/BeforePeakEntrance.tscn" id="9_s53j1"]
+[ext_resource type="PackedScene" uid="uid://xsi1ashxxkof" path="res://World/LevelEditor/Regions/Crash Site/Rooms/PeakEntrance.tscn" id="11_ecnql"]
 
 [node name="World" type="Node2D"]
 
@@ -36,4 +40,16 @@ camera_zoom = 0.0
 position = Vector2(9344, -384)
 camera_zoom = 0.0
 
+[node name="PlatformsTwo" parent="Rooms/CrashSite" instance=ExtResource("7_4sj48")]
+position = Vector2(6144, -2176)
+
+[node name="SecondaryPlatforms" parent="Rooms/CrashSite" instance=ExtResource("8_s53j1")]
+position = Vector2(2944, -2176)
+
+[node name="BeforePeakEntrance" parent="Rooms/CrashSite" instance=ExtResource("9_s53j1")]
+position = Vector2(-256, -2176)
+
 [node name="PauseScreen" parent="." instance=ExtResource("5_o14yy")]
+
+[node name="Room000" parent="." instance=ExtResource("11_ecnql")]
+position = Vector2(-3456, -2176)
