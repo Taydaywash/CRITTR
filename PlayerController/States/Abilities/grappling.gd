@@ -14,17 +14,9 @@ extends State
 @export var jump_input_buffer_patience : float
 @export_category("References")
 
-@export var ray_up: RayCast2D
-@export var ray_down: RayCast2D
-@export var ray_left: RayCast2D
-@export var ray_right: RayCast2D
-
-@export var line_up: Line2D
-@export var line_down: Line2D
-@export var line_left: Line2D
-@export var line_right: Line2D
-
-@onready var rays : Array = [ray_left, ray_right, ray_up, ray_down]
+@export var grapple_max_length: float
+@export var grapple_ray: RayCast2D
+@export var line: Line2D
 
 var gravity : int
 var max_falling_speed : int
@@ -32,7 +24,8 @@ var horizontal_input : int = 0
 var direction : String
 var jump_input_buffer: Timer
 var grapple_timer: Timer
-var no_collision = false
+var grapple_current_length: float
+var has_collided = false
 
 func _ready() -> void:
 	#Input buffer setup:
@@ -51,37 +44,13 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
-	grapple_timer.start()
+	has_collided = false
+	grapple_current_length = 0
+	line.clear_points()
+	line.add_point(Vector2.ZERO)
+	line.add_point(Vector2.ZERO)
 	parent.velocity = Vector2(0,0)
-	await grapple_timer.timeout
-	#for ray in rays: 
-		#if ray.is_colliding:
-			#match direction:
-				#"left":
-					#parent.velocity.x = -grappling_speed
-				#"right":
-					#parent.velocity.x = grappling_speed
-				#"up":
-					#parent.velocity.y = -grappling_speed
-				#"down":
-					#parent.velocity.y = grappling_speed
-				#_:
-					#pass
-					
-	if direction == "up" and ray_up.is_colliding():
-		print("up")
-		parent.velocity.y = -grappling_speed
-	elif direction == "down" and ray_down.is_colliding():
-		print("down")
-		parent.velocity.y = grappling_speed
-	elif direction == "left" and ray_left.is_colliding():
-		print("left")
-		parent.velocity.x = -grappling_speed
-	elif direction == "right" and ray_right.is_colliding():
-		print("right")
-		parent.velocity.x = grappling_speed
-	else:
-		no_collision = true
+
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -90,20 +59,50 @@ func process_input(event : InputEvent) -> State:
 		return diving_state
 	return null
 
-func process_physics(_delta) -> State:
+func process_physics(delta) -> State:
 	parent.move_and_slide()
+	if !has_collided and grapple_current_length < grapple_max_length:
+		grapple_current_length += 1500 * delta
+		if grapple_current_length > grapple_max_length:
+			grapple_current_length = grapple_max_length
+		print(grapple_current_length)
+		match direction:
+			"right":
+				grapple_ray.target_position = Vector2(grapple_current_length,0)
+				line.set_point_position(1, Vector2(grapple_current_length,0))
+			"left":
+				grapple_ray.target_position = Vector2(-grapple_current_length,0)
+				line.set_point_position(1, Vector2(-grapple_current_length,0))
+			"up":
+				grapple_ray.target_position = Vector2(0, -grapple_current_length)
+				line.set_point_position(1, Vector2(0, -grapple_current_length))
+			"down":
+				grapple_ray.target_position = Vector2(0, grapple_current_length)
+				line.set_point_position(1, Vector2(0, grapple_current_length))
+		
+		if grapple_ray.is_colliding():
+			match direction:
+				"right":
+					parent.velocity.x = grappling_speed
+				"left":
+					parent.velocity.x = -grappling_speed
+				"up":
+					parent.velocity.y = -grappling_speed
+				"down":
+					parent.velocity.y = grappling_speed
+			has_collided = true
+
+	
 	if (parent.is_on_wall() and parent.velocity == Vector2(0,0)) or parent.is_on_ceiling():
 		return falling_state
-	if (parent.velocity == Vector2(0,0) and grapple_timer.time_left == 0):
+	if (parent.velocity == Vector2(0,0) and has_collided):
 		return falling_state
 	if (parent.is_on_floor()):
 		if jump_input_buffer.time_left > 0:
 			return jumping_state
-		if abs(parent.velocity.x) > 0:
-			return walking_state
 		else:
 			return idle_state
 	return null
 
 func deactivate(_next_state) -> void:
-	pass
+	line.clear_points()
