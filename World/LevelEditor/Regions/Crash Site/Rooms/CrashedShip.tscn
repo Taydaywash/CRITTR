@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=4 uid="uid://bnjdytut746x1"]
+
+[ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://World/room_controller.gd" id="1_y083e"]
+[ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://World/LevelEditor/Objects/RespawnPoint/RespawnPoint.tscn" id="2_fo4mk"]
+[ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://World/LevelEditor/Objects/Tiles/TileSets.tscn" id="3_1kyij"]
+[ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_tc3tj"]
+[ext_resource type="Shape2D" uid="uid://kcu3cvf74df6" path="res://World/LevelEditor/Objects/Camera/baseCamera.tres" id="5_y083e"]
+
+[node name="Room000" type="Node2D"]
+script = ExtResource("1_y083e")
+
+[node name="RespawnPoint" parent="." instance=ExtResource("2_fo4mk")]
+position = Vector2(-1472, -64.00009)
+scale = Vector2(1.6792705, -0.6219667)
+
+[node name="RespawnPoint2" parent="." instance=ExtResource("2_fo4mk")]
+position = Vector2(1343.9998, -64.00009)
+scale = Vector2(1.6792705, -0.6219667)
+
+[node name="tundratileset" parent="." instance=ExtResource("3_1kyij")]
+tile_map_data = PackedByteArray("AAD2/wEAAwAJAAIAAAD3/wEAAwAJAAIAAAD4/wEAAwAJAAIAAAD5/wEAAwAJAAIAAAD6/wEAAwAJAAIAAAD7/wEAAwAJAAIAAAD8/wEAAwAJAAIAAAD9/wEAAwAJAAIAAAABAAEAAwAJAAIAAAACAAEAAwAJAAIAAAADAAEAAwAJAAIAAAAEAAEAAwAJAAIAAAAFAAEAAwAJAAIAAAAGAAEAAwAJAAIAAAAHAAEAAwAJAAIAAAAIAAEAAwAJAAIAAAAJAAEAAwAJAAIAAAAKAAEAAwAJAAIAAAALAAAAAwAKAAAAAAALAAEAAwAJAAIAAAD0/wEAAwAJAAIAAADz/wEAAwAJAAIAAADz/wAAAwAKAAAAAAD1/wEAAwAJAAIAAADz/wIAAwAJAAMAAADy/wIAAwAIAAMAAADy/wEAAwAIAAEAAADy/wAAAwAIAAAAAAAMAAIAAwALAAMAAAAMAAEAAwALAAIAAAALAAIAAwAJAAMAAAAKAAIAAwAJAAMAAAAJAAIAAwAJAAMAAAAIAAIAAwAJAAMAAAAHAAIAAwAJAAMAAAAGAAIAAwAJAAMAAAAFAAIAAwAJAAMAAAAEAAIAAwAJAAMAAAADAAIAAwAJAAMAAAACAAIAAwAJAAMAAAABAAIAAwAJAAMAAAD9/wIAAwAJAAMAAAD8/wIAAwAJAAMAAAD7/wIAAwAJAAMAAAD6/wIAAwAJAAMAAAD5/wIAAwAJAAMAAAD4/wIAAwAJAAMAAAD3/wIAAwAJAAMAAAD2/wIAAwAJAAMAAAD1/wIAAwAJAAMAAAD0/wIAAwAJAAMAAAAMAAAAAwALAAAAAAAKAAAAAwAKAAAAAAAJAAAAAwAKAAAAAAAIAAAAAwAKAAAAAAAHAAAAAwAKAAAAAAAGAAAAAwAKAAAAAAAFAAAAAwAKAAAAAAAEAAAAAwAKAAAAAAADAAAAAwAKAAAAAAACAAAAAwAKAAAAAAABAAAAAwAKAAAAAAD9/wAAAwAKAAAAAAD8/wAAAwAKAAAAAAD7/wAAAwAKAAAAAAD6/wAAAwAKAAAAAAD5/wAAAwAKAAAAAAD4/wAAAwAKAAAAAAD3/wAAAwAKAAAAAAD2/wAAAwAKAAAAAAD1/wAAAwAKAAAAAAD0/wAAAwAKAAAAAAAAAAEAAwAJAAIAAAD//wEAAwAJAAIAAAD+/wEAAwAJAAIAAAAAAAIAAwAJAAMAAAD//wIAAwAJAAMAAAD+/wIAAwAJAAMAAAAAAAAAAwAKAAAAAAD//wAAAwAKAAAAAAD+/wAAAwAKAAAAAAA=")
+
+[node name="defaultPlayerCameraReference" parent="." instance=ExtResource("5_tc3tj")]
+position = Vector2(-1088, -64)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="LevelBounds" type="CollisionShape2D" parent="Area2D"]
+z_index = 1
+position = Vector2(-64, -640)
+shape = ExtResource("5_y083e")
+debug_color = Color(1, 1, 1, 0.21568628)
+
+[connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
+[connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

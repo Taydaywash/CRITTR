@@ -3,15 +3,15 @@
 [ext_resource type="Script" uid="uid://nvgmux0c34ar" path="res://World/world_controller.gd" id="1_il6x7"]
 [ext_resource type="PackedScene" uid="uid://4ip81nticvcd" path="res://PlayerController/Player.tscn" id="2_y6flb"]
 [ext_resource type="PackedScene" uid="uid://bpodu035v3lq4" path="res://UI/UI.tscn" id="4_il6x7"]
-[ext_resource type="PackedScene" uid="uid://bnjdytut746x1" path="res://LevelEditor/Rooms/Room001.tscn" id="4_o14yy"]
-[ext_resource type="PackedScene" uid="uid://c01sisufyx4ho" path="res://LevelEditor/Rooms/Room002.tscn" id="5_04mge"]
+[ext_resource type="PackedScene" uid="uid://bnjdytut746x1" path="res://World/LevelEditor/Regions/Crash Site/Rooms/CrashedShip.tscn" id="4_o14yy"]
+[ext_resource type="PackedScene" uid="uid://c01sisufyx4ho" path="res://World/LevelEditor/Regions/Crash Site/Rooms/MovementTutorial.tscn" id="5_04mge"]
 [ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://UI/pause_screen.tscn" id="5_o14yy"]
-[ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://LevelEditor/Rooms/Room003.tscn" id="6_eue43"]
+[ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://World/LevelEditor/Regions/Crash Site/Rooms/Platforms.tscn" id="6_eue43"]
 
 [node name="World" type="Node2D"]
 
-[node name="PlayerController" parent="." instance=ExtResource("2_y6flb")]
-position = Vector2(1856, -448)
+[node name="Player" parent="." instance=ExtResource("2_y6flb")]
+position = Vector2(2880, -448)
 
 [node name="UI" parent="." instance=ExtResource("4_il6x7")]
 
@@ -20,18 +20,20 @@ script = ExtResource("1_il6x7")
 up_velocity_room_transition = 850.0
 down_velocity_room_transition = 50.0
 horizontal_velocity_room_transition = 20.0
-first_room = NodePath("Room000")
+first_room = NodePath("CrashSite/CrashedShip")
 screen_fade_speed = 20.0
 
-[node name="Room000" parent="Rooms" instance=ExtResource("4_o14yy")]
+[node name="CrashSite" type="Node" parent="Rooms"]
+
+[node name="CrashedShip" parent="Rooms/CrashSite" instance=ExtResource("4_o14yy")]
 position = Vector2(2944, -384)
 
-[node name="Room001" parent="Rooms" instance=ExtResource("5_04mge")]
+[node name="MovementTutorial" parent="Rooms/CrashSite" instance=ExtResource("5_04mge")]
 position = Vector2(6144, -384)
 camera_zoom = 0.0
 
-[node name="Room002" parent="Rooms" instance=ExtResource("6_eue43")]
-position = Vector2(6144, -2176)
+[node name="Platforms" parent="Rooms/CrashSite" instance=ExtResource("6_eue43")]
+position = Vector2(9344, -384)
 camera_zoom = 0.0
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_o14yy")]

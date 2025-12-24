@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=4 uid="uid://d2mfvc5tpbska"]
 
-[ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://LevelEditor/Rooms/room_controller.gd" id="1_byjgp"]
-[ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://LevelEditor/Objects/RespawnPoint/RespawnPoint.tscn" id="2_oyma6"]
-[ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://LevelEditor/Objects/Tiles/TileSets.tscn" id="3_iwxvw"]
+[ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://World/room_controller.gd" id="1_byjgp"]
+[ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://World/LevelEditor/Objects/RespawnPoint/RespawnPoint.tscn" id="2_oyma6"]
+[ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://World/LevelEditor/Objects/Tiles/TileSets.tscn" id="3_iwxvw"]
 [ext_resource type="Texture2D" uid="uid://dowgutwq0rs3s" path="res://testtileset.png" id="4_iwxvw"]
-[ext_resource type="Shape2D" uid="uid://kcu3cvf74df6" path="res://LevelEditor/Objects/Camera/baseCamera.tres" id="4_o2qqh"]
-[ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_6vusl"]
+[ext_resource type="Shape2D" uid="uid://kcu3cvf74df6" path="res://World/LevelEditor/Objects/Camera/baseCamera.tres" id="4_o2qqh"]
+[ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_6vusl"]
 [ext_resource type="Texture2D" uid="uid://d006flcisjx5" path="res://tundra.png" id="5_o2qqh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ymlln"]

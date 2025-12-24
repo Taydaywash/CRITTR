@@ -7,7 +7,7 @@ extends Node
 @export var screen_fade_speed : float
 
 @onready var ui: CanvasLayer = $"../UI"
-@onready var player: CharacterBody2D = $"../PlayerController"
+@onready var player: CharacterBody2D = $"../Player"
 
 var previous_room : Room
 var current_room : Room = null

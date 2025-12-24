@@ -4,7 +4,7 @@ extends Node2D
 @export var camera_zoom : float
 
 @onready var default_player_camera_reference: Camera2D = $defaultPlayerCameraReference
-@onready var world_controller: Node = $".."
+@onready var world_controller: Node = $"../.."
 @onready var level_bounds: CollisionShape2D = $Area2D/LevelBounds
 var player: CharacterBody2D
 var player_camera : Camera2D
@@ -28,7 +28,7 @@ func _exited_room_collider(_body: Node2D) -> void:
 	world_controller.exited_room(self)
 
 func change_camera_bounds(zoom : float = camera_zoom) -> void:
-	player = $"../../PlayerController"
+	player = $"../../../Player"
 	player_camera = player.get_camera()
 	camera_boundary_top_left = level_bounds.shape.get_rect().position
 	camera_boundary_bottom_right = level_bounds.shape.get_rect().end
