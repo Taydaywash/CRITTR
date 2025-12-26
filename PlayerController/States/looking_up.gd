@@ -8,17 +8,32 @@ extends State
 @export var jumping_state : State
 @export var diving_state : State
 @export var ability_state : State
-@export var looking_up_state : State
+@export var idle_state : State
 @export_category("Wall Jumping Raycasts")
 @export var right_ray: RayCast2D
 @export var left_ray: RayCast2D
+@export_category("References")
+@export var camera_reference : Camera2D
+@export_category("Parameters")
+@export var camera_offset : int
+@export var look_up_delay : float
 
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
+var look_up_delay_timer : Timer
+
+func _ready() -> void:
+	look_up_delay_timer = Timer.new()
+	look_up_delay_timer.wait_time = look_up_delay
+	look_up_delay_timer.one_shot = true
+	add_child(look_up_delay_timer)
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
+	look_up_delay_timer.start()
+	await look_up_delay_timer.timeout
+	camera_reference.position.y = -camera_offset
 	parent.velocity.x = 0
 	gravity = parent.normal_gravity
 	max_falling_speed = parent.max_falling_speed
@@ -32,8 +47,8 @@ func process_input(event : InputEvent) -> State:
 		return diving_state
 	if event.is_action_pressed("jump") and parent.is_on_floor():
 		return jumping_state
-	if event.is_action_pressed("move_up"):
-		return looking_up_state
+	if event.is_action_released("move_up"):
+		return idle_state
 	return null
 
 func process_physics(delta) -> State:
@@ -53,3 +68,8 @@ func process_physics(delta) -> State:
 	if !parent.is_on_floor():
 		return falling_state
 	return null
+
+func deactivate(_next_state : State) -> void:
+	super(_next_state)
+	look_up_delay_timer.stop()
+	camera_reference.position.y = 0

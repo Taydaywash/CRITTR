@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://s1l25pe1fhgb"]
+[gd_scene load_steps=13 format=3 uid="uid://s1l25pe1fhgb"]
 
 [ext_resource type="Script" uid="uid://nvgmux0c34ar" path="res://World/world_controller.gd" id="1_il6x7"]
 [ext_resource type="PackedScene" uid="uid://4ip81nticvcd" path="res://PlayerController/Player.tscn" id="2_y6flb"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://djg64wdak2hx4" path="res://World/LevelEditor/Regions/Crash Site/Rooms/SecondaryPlatforms.tscn" id="8_s53j1"]
 [ext_resource type="PackedScene" uid="uid://d35vqu04f6lf7" path="res://World/LevelEditor/Regions/Crash Site/Rooms/BeforePeakEntrance.tscn" id="9_s53j1"]
 [ext_resource type="PackedScene" uid="uid://xsi1ashxxkof" path="res://World/LevelEditor/Regions/Crash Site/Rooms/PeakEntrance.tscn" id="11_ecnql"]
+[ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://World/LevelEditor/Regions/Crash Site/Rooms/ClimbToPeak.tscn" id="11_v0w7q"]
 
 [node name="World" type="Node2D"]
 
@@ -51,5 +52,8 @@ position = Vector2(-256, -2176)
 
 [node name="PeakEntrance" parent="Rooms/CrashSite" instance=ExtResource("11_ecnql")]
 position = Vector2(-3456, -2176)
+
+[node name="ClimbToPeak" parent="Rooms/CrashSite" instance=ExtResource("11_v0w7q")]
+position = Vector2(-256, -384)
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_o14yy")]
