@@ -49,7 +49,7 @@ position = Vector2(2944, -2176)
 [node name="BeforePeakEntrance" parent="Rooms/CrashSite" instance=ExtResource("9_s53j1")]
 position = Vector2(-256, -2176)
 
-[node name="PeakEntrance" parent="Rooms/CrashSite" instance=ExtResource("11_ecnql")]
-position = Vector2(-3456, -2176)
-
 [node name="PauseScreen" parent="." instance=ExtResource("5_o14yy")]
+
+[node name="Room000" parent="." instance=ExtResource("11_ecnql")]
+position = Vector2(-3456, -2176)
