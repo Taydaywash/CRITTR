@@ -415,8 +415,9 @@ walking_state = NodePath("../../Walking")
 ascending_state = NodePath("../../Ascending")
 grapple_duration = 0.5
 grappling_speed = 4000.0
+grapple_max_length = 800.0
+grapple_increment = 2500.0
 jump_input_buffer_patience = 0.1
-grapple_max_length = 650.0
 grapple_ray = NodePath("../../../Grapple/GrapplingRay")
 line = NodePath("../../../Grapple/GrapplingRay/Line2D")
 
