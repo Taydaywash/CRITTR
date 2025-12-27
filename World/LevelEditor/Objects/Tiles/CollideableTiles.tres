@@ -142,14 +142,14 @@ texture_region_size = Vector2i(128, 128)
 texture = ExtResource("3_txdp3")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, -16, -64, -16)
-0:0/0/physics_layer_0/polygon_0/one_way = true
+0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, 0, -64, 0)
+0:0/0/physics_layer_2/polygon_0/one_way = true
 1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, -16, -64, -16)
-1:0/0/physics_layer_0/polygon_0/one_way = true
+1:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, 0, -64, 0)
+1:0/0/physics_layer_2/polygon_0/one_way = true
 2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, -16, -64, -16)
-2:0/0/physics_layer_0/polygon_0/one_way = true
+2:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, 0, -64, 0)
+2:0/0/physics_layer_2/polygon_0/one_way = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3crt"]
 texture = ExtResource("4_1e7op")
@@ -537,8 +537,12 @@ texture_region_size = Vector2i(128, 128)
 [resource]
 tile_size = Vector2i(128, 128)
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_ymlln")
 physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 0
+physics_layer_2/collision_layer = 16
+physics_layer_2/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.73403823, 0.41551143, 1, 1)

@@ -109,3 +109,5 @@ pause={
 2d_physics/layer_1="solid"
 2d_physics/layer_2="spike"
 2d_physics/layer_3="respawn_point"
+2d_physics/layer_4="Player"
+2d_physics/layer_5="Platforms"

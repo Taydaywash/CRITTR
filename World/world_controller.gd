@@ -87,12 +87,15 @@ func transition_room():
 func set_enter_velocity():
 	if player.velocity.y < 0:
 		player.velocity.y = -up_velocity_room_transition
-	if player.velocity.y > 0:
-		player.velocity.y = down_velocity_room_transition
+
 	if player.animated_player_sprite.flip_h == true:
 		player.velocity.x = horizontal_velocity_room_transition
 	if player.animated_player_sprite.flip_h == false:
 		player.velocity.x = -horizontal_velocity_room_transition
+	if player.velocity.y > 0:
+		player.velocity.y = down_velocity_room_transition
+		if Input.get_axis("move_left","move_right") == 0:
+			player.velocity.x = 0
 	player.get_state_machine().force_change_state(player.get_state_machine().no_control_state)
 	player_control_regain.start()
 	await player_control_regain.timeout

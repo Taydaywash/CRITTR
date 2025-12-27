@@ -132,6 +132,8 @@ size = Vector2(71.112, 142.22195)
 
 [node name="PlayerController" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
 scale = Vector2(1.35, 1.35)
+collision_layer = 8
+collision_mask = 17
 floor_max_angle = 0.0
 safe_margin = 0.1
 script = ExtResource("1_4bhr5")
@@ -395,7 +397,7 @@ climbing_state = NodePath("Climbing")
 infated_state = NodePath("Inflated")
 bounce_attack_state = NodePath("BounceAttack")
 drill_state = NodePath("Drill")
-ability_up = NodePath("Dashing")
+ability_up = NodePath("Grappling")
 ability_down = NodePath("Dashing")
 ability_left = NodePath("Dashing")
 ability_right = NodePath("Dashing")
