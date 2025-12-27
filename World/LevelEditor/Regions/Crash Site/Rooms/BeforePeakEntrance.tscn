@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://d35vqu04f6lf7"]
+[gd_scene load_steps=17 format=4 uid="uid://d35vqu04f6lf7"]
 
 [ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://World/room_controller.gd" id="1_dg5o5"]
 [ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="2_e65rg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c65odlyk03uru" path="res://spikePlaceholder.png" id="5_2alyc"]
 [ext_resource type="Texture2D" uid="uid://dncnka8ym7s66" path="res://World/LevelEditor/Objects/Tiles/Tundra/tundraPlatforms.png" id="6_3abn4"]
 [ext_resource type="Texture2D" uid="uid://d006flcisjx5" path="res://World/LevelEditor/Objects/Tiles/Tundra/tundra.png" id="7_yrdii"]
+[ext_resource type="TileSet" uid="uid://dtdcurky4kpfq" path="res://World/LevelEditor/Objects/Tiles/CollideableTiles.tres" id="9_2alyc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ymlln"]
 
@@ -531,6 +532,7 @@ tile_set = SubResource("TileSet_mf47l")
 
 [node name="MidgroundBack" parent="." instance=ExtResource("4_7mqo3")]
 tile_map_data = PackedByteArray("AAD0/wAAAgAAAAAAAAA=")
+tile_set = ExtResource("9_2alyc")
 
 [node name="Background" parent="." instance=ExtResource("4_7mqo3")]
 z_index = -1
