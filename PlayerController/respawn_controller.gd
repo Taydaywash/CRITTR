@@ -6,6 +6,7 @@ extends Node
 var respawn_position : Vector2
 
 func _on_body_entered(_body: Node2D) -> void:
+	player.velocity = Vector2(0,0)
 	player.get_state_machine().change_state(player.get_state_machine().no_control_state,null)
 	rooms.respawn(respawn_position)
 

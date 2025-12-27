@@ -58,5 +58,4 @@ func process_frame(delta) -> void:
 	if new_state:
 		change_state(new_state)
 func force_change_state(state : State):
-	if state:
-		call_deferred("change_state",state)
+	call_deferred("change_state",state)
