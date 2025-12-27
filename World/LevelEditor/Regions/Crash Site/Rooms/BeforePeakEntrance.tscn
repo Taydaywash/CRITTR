@@ -19,10 +19,10 @@ position = Vector2(-1536, -448)
 scale = Vector2(1, 1.6799998)
 
 [node name="MidgroundFront" parent="." instance=ExtResource("3_7mqo3")]
+z_index = 1
 tile_map_data = PackedByteArray("AAAIAPr/AgAAAAAAAAAJAPr/AgABAAAAAAAKAPr/AgABAAAAAAALAPr/AgABAAAAAAAMAPr/AgABAAAAAAAEAPz/AgABAAAAAAAFAPz/AgABAAAAAAAGAPz/AgABAAAAAAAHAPz/AgABAAAAAAAIAPz/AgABAAAAAAAJAPz/AgACAAAAAAADAPz/AgAAAAAAAAD0/wAAAwALAAIAAAD1/wAAAgABAAAAAAD2/wAAAgABAAAAAAD3/wAAAgABAAAAAAD4/wAAAgACAAAAAAD0/wEAAwALAAIAAAD0////AwALAAIAAAD0//7/AwALAAIAAADz/wEAAwAJAAIAAADz/wAAAwAJAAIAAADz////AwAJAAIAAADz//7/AwAJAAIAAADy/wEAAwAIAAEAAADy/wAAAwAIAAEAAADy////AwAIAAEAAADy//7/AwAIAAEAAAD0//3/AwALAAAAAADz//3/AwAKAAAAAADy//3/AwAIAAAAAAD0/wIAAwALAAMAAADz/wIAAwAJAAMAAADy/wIAAwAIAAMAAAD+//3/AgABAAAAAAD///3/AgACAAAAAAD9//3/AgAAAAAAAADz//b/AwAJAAMAAADz//X/AwAJAAIAAADz//T/AwAJAAIAAADy//b/AwAIAAMAAADy//X/AwAIAAEAAADy//T/AwAIAAEAAADz//P/AwAKAAAAAADy//P/AwAIAAAAAAD0//b/AwALAAMAAAD0//X/AwALAAIAAAD0//T/AwALAAIAAAD0//P/AwALAAAAAAA=")
 
 [node name="MidgroundBack" parent="." instance=ExtResource("4_7mqo3")]
-z_index = -1
 tile_map_data = PackedByteArray("AAD0/wAAAgAAAAAAAAA=")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -32,6 +32,10 @@ z_index = 1
 position = Vector2(-64, -640)
 shape = ExtResource("4_e65rg")
 debug_color = Color(1, 1, 1, 0.21568628)
+
+[node name="RespawnPoint3" parent="." instance=ExtResource("2_e65rg")]
+position = Vector2(-1280, -64.00001)
+scale = Vector2(-5.508142, 0.13134965)
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]
