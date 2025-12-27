@@ -1,0 +1,12 @@
+[gd_resource type="TileSet" load_steps=2 format=3 uid="uid://7qjkugwf3mig"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ymlln"]
+
+[resource]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_ymlln")
+physics_layer_1/collision_layer = 2
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.73403823, 0.41551143, 1, 1)

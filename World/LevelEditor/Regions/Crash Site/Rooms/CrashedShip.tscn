@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://World/room_controller.gd" id="1_y083e"]
 [ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="2_fo4mk"]
-[ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://World/LevelEditor/Objects/Tiles/MidgroundFront.tscn" id="3_1kyij"]
+[ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://World/LevelEditor/Objects/Tiles/CollideableTiles.tscn" id="3_1kyij"]
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_tc3tj"]
 [ext_resource type="Shape2D" uid="uid://kcu3cvf74df6" path="res://World/LevelEditor/Objects/Camera/baseCamera.tres" id="5_y083e"]
 
