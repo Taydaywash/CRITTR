@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dowgutwq0rs3s" path="res://testtileset.png" id="1_txdp3"]
 [ext_resource type="Texture2D" uid="uid://c65odlyk03uru" path="res://spikePlaceholder.png" id="2_1e7op"]
-[ext_resource type="Texture2D" uid="uid://dncnka8ym7s66" path="res://tundraPlatforms.png" id="3_b6u0x"]
-[ext_resource type="Texture2D" uid="uid://d006flcisjx5" path="res://tundra.png" id="4_evdyq"]
+[ext_resource type="Texture2D" uid="uid://dncnka8ym7s66" path="res://World/LevelEditor/Objects/Tiles/Tundra/tundraPlatforms.png" id="3_txdp3"]
+[ext_resource type="Texture2D" uid="uid://d006flcisjx5" path="res://World/LevelEditor/Objects/Tiles/Tundra/tundra.png" id="4_1e7op"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ymlln"]
 
@@ -139,7 +139,7 @@ texture_region_size = Vector2i(128, 128)
 2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(32, 80, -32, 80, -32, 48, 32, 48)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m8soc"]
-texture = ExtResource("3_b6u0x")
+texture = ExtResource("3_txdp3")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, -16, -64, -16)
@@ -152,7 +152,7 @@ texture_region_size = Vector2i(128, 128)
 2:0/0/physics_layer_0/polygon_0/one_way = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3crt"]
-texture = ExtResource("4_evdyq")
+texture = ExtResource("4_1e7op")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 0
