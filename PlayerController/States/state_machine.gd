@@ -3,6 +3,7 @@ extends Node
 @onready var abilities: Node = $Abilities
 
 @export var no_control_state : State
+@export var death_state : State
 @export var idle_state : State
 @export var colliders_list : Array[CollisionShape2D]
 @export var starting_state : State

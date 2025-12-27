@@ -1,8 +1,9 @@
-[gd_scene load_steps=47 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=54 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/States/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
 [ext_resource type="Script" uid="uid://5a3dsvmu3wh5" path="res://PlayerController/States/no_control.gd" id="3_jl1s5"]
+[ext_resource type="Script" uid="uid://dj8tg7xutb1wf" path="res://PlayerController/death.gd" id="4_4nigc"]
 [ext_resource type="Script" uid="uid://cxown2b2jsdny" path="res://PlayerController/States/looking_up.gd" id="4_jl1s5"]
 [ext_resource type="Script" uid="uid://5v8bgvkdmtcc" path="res://PlayerController/States/idle_crouching.gd" id="5_3imdl"]
 [ext_resource type="Script" uid="uid://cm5l3ivbnb55g" path="res://PlayerController/States/state_machine.gd" id="5_v55cd"]
@@ -32,17 +33,46 @@
 [ext_resource type="Texture2D" uid="uid://bc5tl458rwcxw" path="res://PlayerController/animations/walking/f3.png" id="23_fkl5p"]
 [ext_resource type="Texture2D" uid="uid://csnlhmtdvh6rk" path="res://PlayerController/animations/idle/i3.png" id="23_wqhrm"]
 [ext_resource type="Texture2D" uid="uid://33ah1rmr3ca7" path="res://PlayerController/animations/walking/f4.png" id="24_hfsnk"]
+[ext_resource type="Texture2D" uid="uid://dciigneoovomp" path="res://PlayerController/animations/Death/deathAnimation0000.png" id="24_qtpvk"]
 [ext_resource type="Texture2D" uid="uid://5iuq1j0jnxoj" path="res://PlayerController/animations/walking/f5.png" id="25_3imdl"]
+[ext_resource type="Texture2D" uid="uid://bnt2dq3fmkni5" path="res://PlayerController/animations/Death/deathAnimation0001.png" id="25_4nigc"]
 [ext_resource type="Texture2D" uid="uid://dfyfs3qh2efsu" path="res://PlayerController/animations/jump/jump1.png" id="26_7xxh7"]
+[ext_resource type="Texture2D" uid="uid://bk2ms47bxp2rf" path="res://PlayerController/animations/Death/deathAnimation0002.png" id="26_31xm6"]
 [ext_resource type="Texture2D" uid="uid://dkv402y2iptmk" path="res://PlayerController/animations/walking/f6.png" id="26_wqhrm"]
 [ext_resource type="Texture2D" uid="uid://dbeutqacrgjeg" path="res://PlayerController/animations/walking/f7.png" id="27_7xxh7"]
+[ext_resource type="Texture2D" uid="uid://d3gyqt7vvn7nv" path="res://PlayerController/animations/Death/deathAnimation0003.png" id="27_mofwp"]
 [ext_resource type="Texture2D" uid="uid://bpsqdu68xaqos" path="res://PlayerController/animations/walking/f8.png" id="28_ho2n3"]
+[ext_resource type="Texture2D" uid="uid://e1nj7vxg1jmt" path="res://PlayerController/animations/Death/deathAnimation0004.png" id="28_obod2"]
+[ext_resource type="Texture2D" uid="uid://doppu62kcme4e" path="res://PlayerController/animations/Death/deathAnimation0005.png" id="29_fbx8n"]
 [ext_resource type="Shape2D" uid="uid://c8niu6rbmipjw" path="res://PlayerController/Hitboxes/CrouchingHitbox.tres" id="35_ho2n3"]
 [ext_resource type="Shape2D" uid="uid://bfsgbtnw3orjf" path="res://PlayerController/Hitboxes/DefaultHitbox.tres" id="36_uneaa"]
 [ext_resource type="Script" uid="uid://db1bxui7ftwwk" path="res://PlayerController/respawn_controller.gd" id="37_jxerk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hl1jv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_qtpvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_4nigc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_31xm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_mofwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_obod2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_fbx8n")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("22_7xxh7")
@@ -141,9 +171,10 @@ camera = NodePath("Camera2D")
 normal_gravity = 3250
 max_falling_speed = 2000
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("no_control_state", "idle_state", "colliders_list", "starting_state", "grounded_states", "abilities_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("no_control_state", "death_state", "idle_state", "colliders_list", "starting_state", "grounded_states", "abilities_state")]
 script = ExtResource("5_v55cd")
 no_control_state = NodePath("NoControl")
+death_state = NodePath("Death")
 idle_state = NodePath("Idle")
 colliders_list = [NodePath("../NormalHitbox"), NodePath("../CrouchedHitbox"), NodePath("../Jumping")]
 starting_state = NodePath("Idle")
@@ -152,6 +183,11 @@ abilities_state = NodePath("Abilities")
 
 [node name="NoControl" type="Node" parent="StateMachine"]
 script = ExtResource("3_jl1s5")
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("4_4nigc")
+animation_name = "death"
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "default_hitbox", "jumping_hitbox")]
 script = ExtResource("8_2fk5g")
@@ -501,7 +537,7 @@ default_zoom = 0.36
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 71.11111)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"jump"
+animation = &"death"
 offset = Vector2(0, -71.11111)
 
 [node name="Respawn Controller" type="Node" parent="."]

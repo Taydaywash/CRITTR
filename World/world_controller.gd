@@ -71,7 +71,7 @@ func _process(delta: float) -> void:
 		screen_is_black = false
 	if fade_out:
 		ui.increment_fade_out(delta, screen_fade_speed)
-		if !ui.is_fading_out():
+		if not ui.is_fading_out():
 			player.get_camera().set_deferred("position_smoothing_enabled", true)
 			fade_out = false
 
@@ -87,7 +87,6 @@ func transition_room():
 func set_enter_velocity():
 	if player.velocity.y < 0:
 		player.velocity.y = -up_velocity_room_transition
-
 	if player.animated_player_sprite.flip_h == true:
 		player.velocity.x = horizontal_velocity_room_transition
 	if player.animated_player_sprite.flip_h == false:
