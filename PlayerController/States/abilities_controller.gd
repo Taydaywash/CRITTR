@@ -13,6 +13,7 @@ extends State
 @export var ability_right : State
 
 @onready var ui: CanvasLayer = $"../../../UI"
+#Holds each ability as a node reference, if it is available to use, what direction it corresponds to, and its priority
 @onready var abilities_in_use: Dictionary = {
 	"ability_up": {
 		"state" : ability_up, 
@@ -51,13 +52,13 @@ func _input(event: InputEvent) -> void: #Runs seperately from state machine to k
 		increment_priority("ability_right", 1)
 
 func _process(_delta: float) -> void:
-	if !Input.is_action_pressed("move_up") and abilities_in_use["ability_up"]["priority"] != 0:
+	if not Input.is_action_pressed("move_up") and abilities_in_use["ability_up"]["priority"] != 0:
 		increment_priority("ability_up", -1)
-	elif !Input.is_action_pressed("move_down") and abilities_in_use["ability_down"]["priority"] != 0:
+	elif not Input.is_action_pressed("move_down") and abilities_in_use["ability_down"]["priority"] != 0:
 		increment_priority("ability_down", -1)
-	elif!Input.is_action_pressed("move_left") and abilities_in_use["ability_left"]["priority"] != 0:
+	elif not Input.is_action_pressed("move_left") and abilities_in_use["ability_left"]["priority"] != 0:
 		increment_priority("ability_left", -1)
-	elif !Input.is_action_pressed("move_right") and abilities_in_use["ability_right"]["priority"] != 0:
+	elif not Input.is_action_pressed("move_right") and abilities_in_use["ability_right"]["priority"] != 0:
 		increment_priority("ability_right", -1)
 
 func increment_priority(ability_direction_name : String, increment : int):
