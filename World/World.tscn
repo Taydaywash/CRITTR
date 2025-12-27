@@ -24,9 +24,10 @@ position = Vector2(2880, -448)
 script = ExtResource("1_il6x7")
 up_velocity_room_transition = 850.0
 down_velocity_room_transition = 50.0
-horizontal_velocity_room_transition = 20.0
+horizontal_velocity_room_transition = 400.0
 first_room = NodePath("CrashSite/CrashedShip")
 screen_fade_speed = 20.0
+player_control_regain_delay = 0.3
 
 [node name="CrashSite" type="Node" parent="Rooms"]
 

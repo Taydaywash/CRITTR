@@ -3,6 +3,7 @@ extends Node
 @onready var abilities: Node = $Abilities
 
 @export var no_control_state : State
+@export var idle_state : State
 @export var colliders_list : Array[CollisionShape2D]
 @export var starting_state : State
 @export var grounded_states : Array[State]
@@ -56,3 +57,6 @@ func process_frame(delta) -> void:
 	var new_state = current_state.process_frame(delta)
 	if new_state:
 		change_state(new_state)
+func force_change_state(state : State):
+	if state:
+		call_deferred("change_state",state)
