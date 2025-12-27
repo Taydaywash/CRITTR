@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmloe3r5xxddf"]
+[gd_scene load_steps=11 format=3 uid="uid://c6p5h0n2dmoxg"]
 
-[ext_resource type="Texture2D" uid="uid://dowgutwq0rs3s" path="res://testtileset.png" id="1_ybap5"]
-[ext_resource type="Texture2D" uid="uid://d006flcisjx5" path="res://tundra.png" id="2_51kvq"]
-[ext_resource type="Texture2D" uid="uid://c65odlyk03uru" path="res://spikePlaceholder.png" id="2_pnkcp"]
+[ext_resource type="Texture2D" uid="uid://dowgutwq0rs3s" path="res://testtileset.png" id="1_fh8bh"]
+[ext_resource type="Texture2D" uid="uid://c65odlyk03uru" path="res://spikePlaceholder.png" id="2_jwxlj"]
+[ext_resource type="Texture2D" uid="uid://dncnka8ym7s66" path="res://tundraPlatforms.png" id="3_cguxj"]
+[ext_resource type="Texture2D" uid="uid://d006flcisjx5" path="res://tundra.png" id="4_uegde"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ymlln"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mf47l"]
-texture = ExtResource("1_ybap5")
+texture = ExtResource("1_fh8bh")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 1:0/0 = 0
@@ -67,7 +68,7 @@ texture_region_size = Vector2i(128, 128)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d754o"]
 resource_name = "spikes"
-texture = ExtResource("2_pnkcp")
+texture = ExtResource("2_jwxlj")
 texture_region_size = Vector2i(128, 128)
 1:0/0 = 0
 1:0/0/texture_origin = Vector2i(0, -20)
@@ -88,8 +89,21 @@ texture_region_size = Vector2i(128, 128)
 1:2/0/z_index = -1
 1:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(32, -80, 32, -48, -32, -48, -32, -80)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m8soc"]
+texture = ExtResource("3_cguxj")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, -16, -64, -16)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, -16, -64, -16)
+1:0/0/physics_layer_0/polygon_0/one_way = true
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, -16, -64, -16)
+2:0/0/physics_layer_0/polygon_0/one_way = true
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3crt"]
-texture = ExtResource("2_51kvq")
+texture = ExtResource("4_uegde")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -482,6 +496,7 @@ terrain_set_0/terrain_0/color = Color(0.73403823, 0.41551143, 1, 1)
 sources/3 = SubResource("TileSetAtlasSource_b3crt")
 sources/0 = SubResource("TileSetAtlasSource_mf47l")
 sources/1 = SubResource("TileSetAtlasSource_d754o")
+sources/2 = SubResource("TileSetAtlasSource_m8soc")
 
 [node name="TileSets" type="TileMapLayer"]
 tile_set = SubResource("TileSet_mf47l")

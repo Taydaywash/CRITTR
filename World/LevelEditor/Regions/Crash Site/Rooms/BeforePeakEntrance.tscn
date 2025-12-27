@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://d35vqu04f6lf7"]
+[gd_scene load_steps=6 format=4 uid="uid://d35vqu04f6lf7"]
 
 [ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://World/room_controller.gd" id="1_dg5o5"]
-[ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://World/LevelEditor/Objects/RespawnPoint/RespawnPoint.tscn" id="2_e65rg"]
-[ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://World/LevelEditor/Objects/Tiles/TileSets.tscn" id="3_7mqo3"]
+[ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="2_e65rg"]
+[ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://World/LevelEditor/Objects/Tiles/MidgroundFront.tscn" id="3_7mqo3"]
+[ext_resource type="PackedScene" uid="uid://8ykotcb867ae" path="res://World/LevelEditor/Objects/Tiles/Background.tscn" id="4_7mqo3"]
 [ext_resource type="Shape2D" uid="uid://kcu3cvf74df6" path="res://World/LevelEditor/Objects/Camera/baseCamera.tres" id="4_e65rg"]
 
 [node name="Room000" type="Node2D"]
@@ -17,8 +18,12 @@ scale = Vector2(1, 0.7600015)
 position = Vector2(-1536, -448)
 scale = Vector2(1, 1.6799998)
 
-[node name="tundratileset" parent="." instance=ExtResource("3_7mqo3")]
-tile_map_data = PackedByteArray("AAAIAPr/AAABAAMAAAAJAPr/AAACAAMAAAAKAPr/AAACAAMAAAALAPr/AAACAAMAAAAMAPr/AAACAAMAAAAEAPz/AAACAAMAAAAFAPz/AAACAAMAAAAGAPz/AAACAAMAAAAHAPz/AAACAAMAAAAIAPz/AAACAAMAAAAJAPz/AAADAAMAAAADAPz/AAABAAMAAAD0/wAAAwALAAIAAAD1/wAAAAACAAMAAAD2/wAAAAACAAMAAAD3/wAAAAACAAMAAAD4/wAAAAADAAMAAAD0/wEAAwALAAIAAAD0////AwALAAIAAAD0//7/AwALAAIAAADz/wEAAwAJAAIAAADz/wAAAwAJAAIAAADz////AwAJAAIAAADz//7/AwAJAAIAAADy/wEAAwAIAAEAAADy/wAAAwAIAAEAAADy////AwAIAAEAAADy//7/AwAIAAEAAAD0//3/AwALAAAAAADz//3/AwAKAAAAAADy//3/AwAIAAAAAAD0/wIAAwALAAMAAADz/wIAAwAJAAMAAADy/wIAAwAIAAMAAAD+//3/AAACAAMAAAD///3/AAADAAMAAAD9//3/AAABAAMAAADz//b/AwAJAAMAAADz//X/AwAJAAIAAADz//T/AwAJAAIAAADy//b/AwAIAAMAAADy//X/AwAIAAEAAADy//T/AwAIAAEAAADz//P/AwAKAAAAAADy//P/AwAIAAAAAAD0//b/AwALAAMAAAD0//X/AwALAAIAAAD0//T/AwALAAIAAAD0//P/AwALAAAAAAA=")
+[node name="MidgroundFront" parent="." instance=ExtResource("3_7mqo3")]
+tile_map_data = PackedByteArray("AAAIAPr/AgAAAAAAAAAJAPr/AgABAAAAAAAKAPr/AgABAAAAAAALAPr/AgABAAAAAAAMAPr/AgABAAAAAAAEAPz/AgABAAAAAAAFAPz/AgABAAAAAAAGAPz/AgABAAAAAAAHAPz/AgABAAAAAAAIAPz/AgABAAAAAAAJAPz/AgACAAAAAAADAPz/AgAAAAAAAAD0/wAAAwALAAIAAAD1/wAAAgABAAAAAAD2/wAAAgABAAAAAAD3/wAAAgABAAAAAAD4/wAAAgACAAAAAAD0/wEAAwALAAIAAAD0////AwALAAIAAAD0//7/AwALAAIAAADz/wEAAwAJAAIAAADz/wAAAwAJAAIAAADz////AwAJAAIAAADz//7/AwAJAAIAAADy/wEAAwAIAAEAAADy/wAAAwAIAAEAAADy////AwAIAAEAAADy//7/AwAIAAEAAAD0//3/AwALAAAAAADz//3/AwAKAAAAAADy//3/AwAIAAAAAAD0/wIAAwALAAMAAADz/wIAAwAJAAMAAADy/wIAAwAIAAMAAAD+//3/AgABAAAAAAD///3/AgACAAAAAAD9//3/AgAAAAAAAADz//b/AwAJAAMAAADz//X/AwAJAAIAAADz//T/AwAJAAIAAADy//b/AwAIAAMAAADy//X/AwAIAAEAAADy//T/AwAIAAEAAADz//P/AwAKAAAAAADy//P/AwAIAAAAAAD0//b/AwALAAMAAAD0//X/AwALAAIAAAD0//T/AwALAAIAAAD0//P/AwALAAAAAAA=")
+
+[node name="MidgroundBack" parent="." instance=ExtResource("4_7mqo3")]
+z_index = -1
+tile_map_data = PackedByteArray("AAD0/wAAAgAAAAAAAAA=")
 
 [node name="Area2D" type="Area2D" parent="."]
 

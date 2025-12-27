@@ -124,13 +124,13 @@ size = Vector2(30.028448, 59.25926)
 size = Vector2(30.028448, 47.40741)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ho2n3"]
-size = Vector2(71.11111, 41.481483)
+custom_solver_bias = 1.0
+size = Vector2(71.11111, 5.92593)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxerk"]
-size = Vector2(71.112, 100.74048)
+size = Vector2(71.112, 142.22195)
 
 [node name="PlayerController" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
-z_index = 5
 scale = Vector2(1.35, 1.35)
 floor_max_angle = 0.0
 safe_margin = 0.1
@@ -544,8 +544,9 @@ debug_color = Color(1, 0.13725491, 0.1764706, 0.3254902)
 
 [node name="PermanentHitbox" type="CollisionShape2D" parent="."]
 z_index = -1
-position = Vector2(7.064254e-07, 8.888888)
+position = Vector2(7.064254e-07, 68.14815)
 shape = SubResource("RectangleShape2D_ho2n3")
+one_way_collision_margin = 128.0
 
 [node name="NormalHitbox" type="CollisionShape2D" parent="."]
 z_index = -1
@@ -560,7 +561,7 @@ disabled = true
 
 [node name="Jumping" type="CollisionShape2D" parent="."]
 z_index = -1
-position = Vector2(1.7660635e-07, -20.74061)
+position = Vector2(1.7660635e-07, 0.00012715657)
 shape = SubResource("RectangleShape2D_jxerk")
 disabled = true
 
