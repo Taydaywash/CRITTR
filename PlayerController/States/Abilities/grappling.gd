@@ -19,9 +19,6 @@ extends State
 @export var grapple_ray: RayCast2D
 @export var line: Line2D
 
-var gravity : int
-var max_falling_speed : int
-var horizontal_input : int = 0
 var direction : String
 var jump_input_buffer: Timer
 var grapple_timer: Timer
@@ -106,8 +103,8 @@ func process_physics(delta) -> State:
 			line.clear_points()
 
 	
-	if (parent.is_on_wall() and parent.velocity == Vector2(0,0)) or parent.is_on_ceiling():
-		return falling_state
+	#if (parent.is_on_wall() and parent.velocity == Vector2(0,0)):
+		#return falling_state
 	elif (!has_collided and grapple_current_length == grapple_max_length):
 		return falling_state
 	elif (has_collided and parent.velocity.x == 0):
