@@ -81,10 +81,8 @@ func process_physics(delta) -> State:
 	if parent.velocity.y > 0:
 		return falling_state
 	if nudge_right_range_left.is_colliding() and not nudge_right_range_right.is_colliding() and not parent.velocity.x < 0:
-		print("nudged right")
 		parent.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
 	if nudge_left_range_right.is_colliding() and not nudge_left_range_left.is_colliding() and not parent.velocity.x > 0:
-		print("nudged left")
 		parent.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
 	if parent.is_on_floor():
 		if jump_input_buffer.time_left > 0:
