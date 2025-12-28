@@ -13,6 +13,7 @@ extends Node
 var previous_room : Room
 var current_room : Room = null
 var next_room : Room
+var room_exited : bool
 
 var fade_in : bool = false
 var screen_is_black : bool = false
@@ -28,37 +29,32 @@ func _ready() -> void:
 	player_control_regain.wait_time = player_control_regain_delay
 	player_control_regain.one_shot = true
 	self.add_child(player_control_regain)
-	current_room = first_room
-	first_room.enter_room()
+	#current_room = first_room
+	#first_room.enter_room()
 
 func entered_room(room : Room):
 	next_room = room
-	#exited_room(current_room)
+	previous_room = current_room
+	current_room = null
+	fade_in = true
+	fade_out = false
+	room_transitioning = true
+	set_enter_velocity()
+
+func exited_room(_room : Room):
+	room_exited = true
 
 func respawn(respawn_pos : Vector2):
 	fade_in = true
 	fade_out = false
 	respawn_position = respawn_pos
 	respawning = true
-
-func exited_room(room : Room):
-	if room == current_room:
-		previous_room = current_room
-		current_room = null
-		fade_in = true
-		fade_out = false
-		room_transitioning = true
-	else:
-		next_room = null
-
 func _process(delta: float) -> void:
 	if fade_in:
 		ui.increment_fade_in(delta, screen_fade_speed)
 		if not ui.is_fading_in():
 			fade_in = false
 			screen_is_black = true
-	if room_transitioning:
-		set_enter_velocity()
 	if screen_is_black:
 		if room_transitioning:
 			transition_room()
@@ -87,17 +83,40 @@ func transition_room():
 	next_room.enter_room()
 	next_room = null
 func set_enter_velocity():
-	if player.velocity.y < 0:
-		player.velocity.y = -up_velocity_room_transition
-	if player.animated_player_sprite.flip_h == true:
-		player.velocity.x = horizontal_velocity_room_transition
-	if player.animated_player_sprite.flip_h == false:
-		player.velocity.x = -horizontal_velocity_room_transition
-	if player.velocity.y > 0:
-		player.velocity.y = down_velocity_room_transition
-		if Input.get_axis("move_left","move_right") == 0:
-			player.velocity.x = 0
+	call_deferred("set_enter_velocity_deferred")
+func set_enter_velocity_deferred():
 	player.get_state_machine().force_change_state(player.get_state_machine().no_control_state)
-	player_control_regain.start()
-	await player_control_regain.timeout
+	var horizontal_axis = 0
+	var jumping = false
+	var falling = false
+	if player.velocity.y < 0:
+		jumping = true
+	if player.animated_player_sprite.flip_h == true:
+		horizontal_axis = -1
+	if player.animated_player_sprite.flip_h == false:
+		horizontal_axis = 1
+	if player.velocity.y > 0:
+		falling = true
+	if falling:
+		player.velocity.x = horizontal_velocity_room_transition * Input.get_axis("move_left","move_right")
+	else:
+		player.velocity.x = horizontal_velocity_room_transition * horizontal_axis
+	if jumping:
+		player.velocity.y = -up_velocity_room_transition
+	elif falling:
+		player.velocity.y = down_velocity_room_transition
+	var loop_counter = 0
+	while room_exited == false:
+		player_control_regain.start()
+		await player_control_regain.timeout
+		if room_exited == false:
+			print("failed to exit room: " + str(loop_counter))
+			player.velocity.x = horizontal_velocity_room_transition * horizontal_axis
+		loop_counter += 1
+		if loop_counter > 4:
+			room_exited = true
+			print("failed to exit room")
+	room_exited = false
 	player.get_state_machine().force_change_state(player.get_state_machine().idle_state)
+
+		
