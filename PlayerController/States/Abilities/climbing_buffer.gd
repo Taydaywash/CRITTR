@@ -1,0 +1,80 @@
+extends State
+
+@export_category("States")
+@export var climbing_state: State
+@export var falling_state: State
+
+@export_category("Parameters")
+@export var climbing_input_buffer_patience: float
+@export var push_target_length: float 
+@export var push_speed: float
+
+@export_category("References")
+@export var climbing_ray: RayCast2D
+@export var line: Line2D
+
+var climbing_input_buffer: Timer
+var direction : String
+
+func _ready() -> void:
+	climbing_input_buffer = Timer.new()
+	climbing_input_buffer.wait_time = climbing_input_buffer_patience
+	climbing_input_buffer.one_shot = true
+	add_child(climbing_input_buffer)
+	
+func set_direction(ability_direction : String) -> void:
+	direction = ability_direction
+
+func activate(last_state : State) -> void:
+	super(last_state) #Call activate as defined in state.gd and then also do:
+	line.add_point(Vector2.ZERO)
+	line.add_point(Vector2.ZERO)
+	
+	#parent.velocity = Vector2.ZERO
+	climbing_input_buffer.start()
+	
+	match direction:
+			"right":
+				climbing_ray.target_position = Vector2(push_target_length,0)
+				line.set_point_position(1, Vector2(push_target_length,0))
+			"left":
+				climbing_ray.target_position = Vector2(-push_target_length,0)
+				line.set_point_position(1, Vector2(-push_target_length,0))
+			"up":
+				climbing_ray.target_position = Vector2(0, -push_target_length)
+				line.set_point_position(1, Vector2(0, -push_target_length))
+				parent.velocity.y = 0
+			"down":
+				climbing_ray.target_position = Vector2(0, push_target_length)
+				line.set_point_position(1, Vector2(0, push_target_length))
+				parent.velocity.y = 0
+
+func process_input(_event : InputEvent) -> State:
+	return null
+
+func process_physics(_delta) -> State:
+	parent.move_and_slide()
+	
+	if climbing_ray.is_colliding():
+		match direction:
+				"right":
+					parent.velocity.x = push_speed
+				"left":
+					parent.velocity.x = -push_speed
+				"up":
+					parent.velocity.y = -push_speed
+				"down":
+					parent.velocity.y = push_speed
+	
+	if parent.get_slide_collision_count() > 0:
+		return climbing_state
+	elif climbing_input_buffer.time_left == 0:
+		return falling_state
+	
+	return null
+	
+	
+
+func deactivate(_next_state) -> void:
+	climbing_ray.target_position = Vector2.ZERO
+	line.clear_points()
