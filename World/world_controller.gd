@@ -100,9 +100,11 @@ func set_enter_velocity_deferred():
 	if falling and not (
 		player.get_state_machine().last_state == player.get_state_machine().diving_state or 
 		player.get_state_machine().last_state == player.get_state_machine().diving_falling_state):
-		player.velocity.x = horizontal_velocity_room_transition * Input.get_axis("move_left","move_right")
+		if abs(player.velocity.x) < horizontal_velocity_room_transition:
+			player.velocity.x = horizontal_velocity_room_transition * Input.get_axis("move_left","move_right")
 	else:
-		player.velocity.x = horizontal_velocity_room_transition * horizontal_axis
+		if abs(player.velocity.x) < horizontal_velocity_room_transition:
+			player.velocity.x = horizontal_velocity_room_transition * horizontal_axis
 	if jumping  and not (
 		player.get_state_machine().last_state == player.get_state_machine().diving_state or 
 		player.get_state_machine().last_state == player.get_state_machine().diving_falling_state):
