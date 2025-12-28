@@ -77,8 +77,10 @@ func _process(delta: float) -> void:
 
 func transition_room():
 	if previous_room == null:
+		print("previous_room error")
 		previous_room = first_room
 	if next_room == null:
+		print("next_room error")
 		next_room = first_room
 	previous_room.exit_room()
 	current_room = next_room
