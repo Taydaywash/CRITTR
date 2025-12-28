@@ -24,7 +24,7 @@ position = Vector2(2880, -448)
 
 [node name="Rooms" type="Node" parent="." node_paths=PackedStringArray("first_room")]
 script = ExtResource("1_il6x7")
-up_velocity_room_transition = 1200.0
+up_velocity_room_transition = 1600.0
 down_velocity_room_transition = 50.0
 horizontal_velocity_room_transition = 500.0
 first_room = NodePath("CrashSite/CrashedShip")

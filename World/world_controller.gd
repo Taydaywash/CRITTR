@@ -13,7 +13,7 @@ extends Node
 var previous_room : Room
 var current_room : Room = null
 var next_room : Room
-var room_exited : bool
+var room_exited : bool = true
 
 var fade_in : bool = false
 var screen_is_black : bool = false
