@@ -6,17 +6,9 @@ extends State
 @export var bonked_state : State
 @export var jumping_state : State
 @export var idle_state : State
-@export var diving_falling_state : State
 @export_category("Parameters")
-@export var dive_horizontal_additive_velocity : int
-@export var dive_horizontal_default_velocity : int
-@export var dive_vertical_velocity : int
 @export var jump_input_buffer_patience : float
-@export var idle_dive_sprite : Color
-@export var max_diving_speed : int
 @export_category("Animations")
-@export var y_initial_sprite_stretch_multiplier : float
-@export var x_initial_sprite_stretch_multiplier : float
 @export var sprite_reset_speed : float
 @export var y_final_sprite_stretch_multiplier : float
 @export var x_final_sprite_stretch_multiplier : float
@@ -33,24 +25,10 @@ func _ready() -> void:
 	jump_input_buffer.one_shot = true
 	add_child(jump_input_buffer)
 
-func activate(last_state : State) -> void:
-	super(last_state) #Call activate as defined in state.gd and then also do:
-	horizontal_input = int(Input.get_axis("move_left","move_right"))
-	if horizontal_input == 0:
-		horizontal_input = -(2 * int(sprite.flip_h) - 1)
-	if last_state == idle_state:
-		horizontal_input = 0
-	if abs(parent.velocity.x) > dive_horizontal_default_velocity:
-		if abs(parent.velocity.x) < max_diving_speed:
-			parent.velocity.x += dive_horizontal_additive_velocity * horizontal_input
-	else:
-		parent.velocity.x = dive_horizontal_default_velocity * horizontal_input
-	parent.velocity.y = -dive_vertical_velocity
+func activate(_last_state : State) -> void:
+	super(_last_state)
 	gravity = parent.normal_gravity
 	max_falling_speed = parent.max_falling_speed
-	
-	sprite.scale = Vector2(abs(x_initial_sprite_stretch_multiplier * parent.velocity.normalized().x),y_initial_sprite_stretch_multiplier * -parent.velocity.normalized().y)
-	sprite.rotation = -parent.velocity.normalized().x
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -71,8 +49,6 @@ func process_physics(delta) -> State:
 			return jumping_state
 		else:
 			return walking_state
-	if parent.velocity.y > 0:
-		return diving_falling_state
 	return null
 
 func process_frame(_delta) -> State:

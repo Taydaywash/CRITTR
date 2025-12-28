@@ -73,10 +73,10 @@ func _process(delta: float) -> void:
 
 func transition_room():
 	if previous_room == null:
-		print("previous_room error")
+		#print("previous_room error")
 		previous_room = first_room
 	if next_room == null:
-		print("next_room error")
+		#print("next_room error")
 		next_room = first_room
 	previous_room.exit_room()
 	current_room = next_room
@@ -97,11 +97,15 @@ func set_enter_velocity_deferred():
 		horizontal_axis = 1
 	if player.velocity.y > 0:
 		falling = true
-	if falling:
+	if falling and not (
+		player.get_state_machine().last_state == player.get_state_machine().diving_state or 
+		player.get_state_machine().last_state == player.get_state_machine().diving_falling_state):
 		player.velocity.x = horizontal_velocity_room_transition * Input.get_axis("move_left","move_right")
 	else:
 		player.velocity.x = horizontal_velocity_room_transition * horizontal_axis
-	if jumping:
+	if jumping  and not (
+		player.get_state_machine().last_state == player.get_state_machine().diving_state or 
+		player.get_state_machine().last_state == player.get_state_machine().diving_falling_state):
 		player.velocity.y = -up_velocity_room_transition
 	elif falling:
 		player.velocity.y = down_velocity_room_transition
@@ -110,13 +114,14 @@ func set_enter_velocity_deferred():
 		player_control_regain.start()
 		await player_control_regain.timeout
 		if room_exited == false:
-			print("failed to exit room: " + str(loop_counter))
+			#print("failed to exit room: " + str(loop_counter))
 			player.velocity.x = horizontal_velocity_room_transition * horizontal_axis
 		loop_counter += 1
 		if loop_counter > 4:
 			room_exited = true
-			print("failed to exit room")
+			#print("failed to exit room")
 	room_exited = false
-	player.get_state_machine().force_change_state(player.get_state_machine().idle_state)
-
-		
+	if player.get_state_machine().last_state == player.get_state_machine().diving_state or player.get_state_machine().last_state == player.get_state_machine().diving_falling_state:
+		player.get_state_machine().force_change_state(player.get_state_machine().diving_falling_state)
+	else:
+		player.get_state_machine().force_change_state(player.get_state_machine().idle_state)

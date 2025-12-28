@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=55 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/States/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://nu141t0agsoc" path="res://PlayerController/States/abilities_controller.gd" id="11_75ds7"]
 [ext_resource type="Script" uid="uid://phlgh2qymrcl" path="res://PlayerController/States/ascending.gd" id="11_evkiq"]
 [ext_resource type="Script" uid="uid://x1weuat5in2g" path="res://PlayerController/States/falling.gd" id="11_v55cd"]
+[ext_resource type="Script" uid="uid://r65jkbflv1qk" path="res://PlayerController/States/diving_falling.gd" id="12_31xm6"]
 [ext_resource type="Script" uid="uid://bwdpd2vsi0pnv" path="res://PlayerController/States/crouching.gd" id="12_068uq"]
 [ext_resource type="Script" uid="uid://c8h0fivvgxc74" path="res://PlayerController/States/Abilities/dashing.gd" id="12_evkiq"]
 [ext_resource type="Script" uid="uid://bm7yhxmomtxag" path="res://PlayerController/States/Abilities/grappling.gd" id="13_vpgwe"]
@@ -171,11 +172,13 @@ camera = NodePath("Camera2D")
 normal_gravity = 3250
 max_falling_speed = 2000
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("no_control_state", "death_state", "idle_state", "colliders_list", "starting_state", "grounded_states", "abilities_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("no_control_state", "death_state", "idle_state", "diving_state", "diving_falling_state", "colliders_list", "starting_state", "grounded_states", "abilities_state")]
 script = ExtResource("5_v55cd")
 no_control_state = NodePath("NoControl")
 death_state = NodePath("Death")
 idle_state = NodePath("Idle")
+diving_state = NodePath("Diving")
+diving_falling_state = NodePath("DivingFalling")
 colliders_list = [NodePath("../NormalHitbox"), NodePath("../CrouchedHitbox"), NodePath("../Jumping")]
 starting_state = NodePath("Idle")
 grounded_states = [NodePath("Idle"), NodePath("Walking"), NodePath("Crouching"), NodePath("IdleCrouching")]
@@ -317,17 +320,17 @@ left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "walking"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Diving" type="Node" parent="StateMachine" node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state")]
+[node name="Diving" type="Node" parent="StateMachine" node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "diving_falling_state")]
 script = ExtResource("9_gnv43")
 walking_state = NodePath("../Walking")
 bonked_state = NodePath("../Bonked")
 jumping_state = NodePath("../Jumping")
 idle_state = NodePath("../Idle")
+diving_falling_state = NodePath("../DivingFalling")
 dive_horizontal_additive_velocity = 100
 dive_horizontal_default_velocity = 800
 dive_vertical_velocity = 800
 jump_input_buffer_patience = 0.2
-idle_dive_sprite = Color(0.14890742, 0.14890742, 0.14890742, 1)
 max_diving_speed = 1500
 y_initial_sprite_stretch_multiplier = 1.0
 x_initial_sprite_stretch_multiplier = 1.5
@@ -336,6 +339,19 @@ y_final_sprite_stretch_multiplier = 1.0
 x_final_sprite_stretch_multiplier = 1.0
 animation_name = "idle"
 placeholder_animation_color = Color(1, 1, 1, 1)
+
+[node name="DivingFalling" type="Node" parent="StateMachine" node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state")]
+script = ExtResource("12_31xm6")
+walking_state = NodePath("../Walking")
+bonked_state = NodePath("../Bonked")
+jumping_state = NodePath("../Jumping")
+idle_state = NodePath("../Idle")
+jump_input_buffer_patience = 0.2
+sprite_reset_speed = 0.1
+y_final_sprite_stretch_multiplier = 1.0
+x_final_sprite_stretch_multiplier = 1.0
+animation_name = "idle"
+placeholder_animation_color = Color(0.62352943, 0, 0, 1)
 
 [node name="WallCling" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "jumping_state", "walking_state", "wall_jumping_state", "ability_state", "right_ray", "left_ray")]
 script = ExtResource("10_xnjby")
