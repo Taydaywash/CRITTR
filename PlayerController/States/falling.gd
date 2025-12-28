@@ -13,8 +13,10 @@ extends State
 @export var air_control : int
 @export var air_acceleration_speed : int
 @export var air_decceleration_speed : int
-@export var jump_input_buffer_patience : float
 @export var coyote_time_patience : float
+@export_category("Jump Input Buffer")
+@export var jump_input_buffer : Timer
+@export var jump_input_buffer_patience : float
 @export_category("Wall Jumping Raycasts")
 @export var right_ray: RayCast2D
 @export var left_ray: RayCast2D
@@ -24,19 +26,14 @@ extends State
 @export var nudge_left_range_right: RayCast2D
 @export var nudge_left_range_left: RayCast2D
 
+
 var coyote_time : Timer
-var jump_input_buffer : Timer
+
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
 
 func _ready() -> void:
-	#Input buffer setup:
-	jump_input_buffer = Timer.new()
-	jump_input_buffer.wait_time = jump_input_buffer_patience
-	jump_input_buffer.one_shot = true
-	add_child(jump_input_buffer)
-	
 	#Coyote time setup:
 	coyote_time = Timer.new()
 	coyote_time.wait_time = coyote_time_patience
@@ -45,6 +42,8 @@ func _ready() -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate() as defined in state.gd and then also do:
+	jump_input_buffer.wait_time = jump_input_buffer_patience
+	
 	gravity = parent.normal_gravity
 	max_falling_speed = parent.max_falling_speed
 	if(last_state == $"../Walking" or (last_state == $"../Abilities/Climbing" and $"../Abilities/Climbing".direction == "down")):

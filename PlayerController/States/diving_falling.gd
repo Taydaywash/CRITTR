@@ -6,27 +6,22 @@ extends State
 @export var bonked_state : State
 @export var jumping_state : State
 @export var idle_state : State
-@export_category("Parameters")
+@export_category("Jump Input Buffer")
+@export var jump_input_buffer : Timer
 @export var jump_input_buffer_patience : float
 @export_category("Animations")
 @export var sprite_reset_speed : float
 @export var y_final_sprite_stretch_multiplier : float
 @export var x_final_sprite_stretch_multiplier : float
 
-var jump_input_buffer : Timer
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
 
-func _ready() -> void:
-	#Input buffer setup:
-	jump_input_buffer = Timer.new()
-	jump_input_buffer.wait_time = jump_input_buffer_patience
-	jump_input_buffer.one_shot = true
-	add_child(jump_input_buffer)
-
 func activate(_last_state : State) -> void:
 	super(_last_state)
+	jump_input_buffer.wait_time = jump_input_buffer_patience
+	
 	gravity = parent.normal_gravity
 	max_falling_speed = parent.max_falling_speed
 

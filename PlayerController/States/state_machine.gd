@@ -12,6 +12,8 @@ extends Node
 @export var starting_state : State
 @export var grounded_states : Array[State]
 @export var abilities_state : State
+@export_category("Timers")
+@export var jump_input_buffer : Timer
 var current_state : State
 var player_reference: CharacterBody2D 
 var player_sprite: AnimatedSprite2D

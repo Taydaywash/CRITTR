@@ -14,6 +14,8 @@ extends State
 @export var jump_cancellation : int
 @export var air_acceleration_speed : int
 @export var air_decceleration_speed : int
+@export_category("Jump Input Buffer")
+@export var jump_input_buffer : Timer
 @export var jump_input_buffer_patience : float
 @export_category("Wall Jumping Raycasts")
 @export var right_ray: RayCast2D
@@ -23,17 +25,12 @@ var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
 
-var jump_input_buffer : Timer
-
-func _ready() -> void:
-	#Input buffer setup:
-	jump_input_buffer = Timer.new()
-	jump_input_buffer.wait_time = jump_input_buffer_patience
-	jump_input_buffer.one_shot = true
-	add_child(jump_input_buffer)
-
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate() as defined in state.gd and then also do:
+	
+	jump_input_buffer.wait_time = jump_input_buffer_patience
+	jump_input_buffer.one_shot = true
+
 	jump_input_buffer.stop()
 	gravity = parent.normal_gravity
 	parent.velocity.y = -wall_jump_vertical_velocity

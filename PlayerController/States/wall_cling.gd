@@ -15,6 +15,9 @@ extends State
 @export var wall_jump_vertical_velocity : int
 @export var wall_cling_gravity : int
 @export var max_wall_cling_fall_speed: int
+@export_category("Jump Input Buffer")
+@export var jump_input_buffer : Timer
+@export var jump_input_buffer_patience : float
 @export_category("Wall Jumping Raycasts")
 @export var right_ray: RayCast2D
 @export var left_ray: RayCast2D
@@ -24,13 +27,16 @@ var horizontal_input : int = 0
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
+	
+	jump_input_buffer.wait_time = jump_input_buffer_patience
+	
 	max_falling_speed = parent.max_falling_speed
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("use_ability"):
 		return ability_state
 	if event.is_action_pressed("jump"):
-		return wall_jumping_state
+		jump_input_buffer.start()
 	return null
 
 func process_physics(delta) -> State:
@@ -45,6 +51,8 @@ func process_physics(delta) -> State:
 		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),decceleration_speed * delta).x
 	parent.move_and_slide()
 	
+	if jump_input_buffer.time_left > 0:
+		return wall_jumping_state
 	if !parent.is_on_wall():
 		return falling_state
 	if parent.is_on_floor():

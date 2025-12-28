@@ -14,8 +14,10 @@ extends State
 @export var dash_horizontal_end_velocity_multiplier : float
 @export var super_jump_velocity : int
 @export var dash_duration : float #seconds
-@export var jump_input_buffer_patience : float
 @export var dive_input_buffer_patience : float
+@export_category("Jump Input Buffer")
+@export var jump_input_buffer : Timer
+@export var jump_input_buffer_patience : float
 @export_category("Corner Nudging Raycasts")
 @export var nudge_right_range_left: RayCast2D
 @export var nudge_right_range_right: RayCast2D
@@ -27,16 +29,10 @@ var max_falling_speed : int
 var horizontal_input : int = 0
 var direction : String
 var dash_timer : Timer
-var jump_input_buffer: Timer
+
 var dive_input_buffer: Timer
 
 func _ready() -> void:
-	#Input buffer setup:
-	jump_input_buffer = Timer.new()
-	jump_input_buffer.wait_time = jump_input_buffer_patience
-	jump_input_buffer.one_shot = true
-	add_child(jump_input_buffer)
-	
 	#Dash timer setup:
 	dash_timer = Timer.new()
 	dash_timer.wait_time = dash_duration
@@ -54,6 +50,7 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
+	jump_input_buffer.wait_time = jump_input_buffer_patience
 	
 	parent.velocity = Vector2(0,0)
 	if direction == "up":

@@ -11,9 +11,11 @@ extends State
 @export var dive_horizontal_additive_velocity : int
 @export var dive_horizontal_default_velocity : int
 @export var dive_vertical_velocity : int
-@export var jump_input_buffer_patience : float
 @export var idle_dive_sprite : Color
 @export var max_diving_speed : int
+@export_category("Jump Input Buffer")
+@export var jump_input_buffer : Timer
+@export var jump_input_buffer_patience : float
 @export_category("Animations")
 @export var y_initial_sprite_stretch_multiplier : float
 @export var x_initial_sprite_stretch_multiplier : float
@@ -21,20 +23,14 @@ extends State
 @export var y_final_sprite_stretch_multiplier : float
 @export var x_final_sprite_stretch_multiplier : float
 
-var jump_input_buffer : Timer
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
 
-func _ready() -> void:
-	#Input buffer setup:
-	jump_input_buffer = Timer.new()
-	jump_input_buffer.wait_time = jump_input_buffer_patience
-	jump_input_buffer.one_shot = true
-	add_child(jump_input_buffer)
-
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
+	jump_input_buffer.wait_time = jump_input_buffer_patience
+	
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
 	if horizontal_input == 0:
 		horizontal_input = -(2 * int(sprite.flip_h) - 1)

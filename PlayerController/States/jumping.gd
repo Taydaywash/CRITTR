@@ -14,6 +14,8 @@ extends State
 @export var jump_cancellation : int
 @export var air_acceleration_speed : int
 @export var air_decceleration_speed : int
+@export_category("Jump Input Buffer")
+@export var jump_input_buffer : Timer
 @export var jump_input_buffer_patience : float
 @export_category("Animations")
 @export var y_sprite_stretch_multiplier : float
@@ -34,17 +36,11 @@ extends State
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
-var jump_input_buffer : Timer
-
-func _ready() -> void:
-	#Input buffer setup:
-	jump_input_buffer = Timer.new()
-	jump_input_buffer.wait_time = jump_input_buffer_patience
-	jump_input_buffer.one_shot = true
-	add_child(jump_input_buffer)
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate() as defined in state.gd and then also do:
+	jump_input_buffer.wait_time = jump_input_buffer_patience
+	
 	change_collider_to(jumping_hitbox)
 	jump_input_buffer.stop()
 	gravity = parent.normal_gravity
@@ -84,9 +80,11 @@ func process_physics(delta) -> State:
 	
 	if parent.velocity.y > 0:
 		return falling_state
-	if nudge_right_range_left.is_colliding() and !nudge_right_range_right.is_colliding():
+	if nudge_right_range_left.is_colliding() and not nudge_right_range_right.is_colliding() and not parent.velocity.x < 0:
+		print("nudged right")
 		parent.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
-	if nudge_left_range_right.is_colliding() and !nudge_left_range_left.is_colliding():
+	if nudge_left_range_right.is_colliding() and not nudge_left_range_left.is_colliding() and not parent.velocity.x > 0:
+		print("nudged left")
 		parent.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
 	if parent.is_on_floor():
 		if jump_input_buffer.time_left > 0:
