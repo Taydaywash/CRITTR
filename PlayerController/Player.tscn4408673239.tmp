@@ -484,12 +484,12 @@ walking_state = NodePath("../../Walking")
 ascending_state = NodePath("../../Ascending")
 idle_state = NodePath("../../Idle")
 jump_input_buffer_patience = 0.2
-climbing_input_buffer_patience = 1.0
 max_speed = 2000.0
 speed_increment = 20.0
 push_target_length = 200.0
 climbing_ray = NodePath("../../../AbilityRay")
 line = NodePath("../../../AbilityRay/Line2D")
+animation_name = null
 placeholder_animation_color = Color(0.30563596, 0.3749689, 0.15632111, 1)
 
 [node name="Inflated" type="Node" parent="StateMachine/Abilities"]

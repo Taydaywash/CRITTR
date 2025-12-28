@@ -9,10 +9,17 @@ extends State
 
 @export_category("Parameters")
 @export var jump_input_buffer_patience : float
-@export var climbing_duration: float
+@export var climbing_input_buffer_patience: float
+@export var max_speed: float
+@export var speed_increment: float
+@export var push_target_length: float 
+
+@export_category("References")
+@export var climbing_ray: RayCast2D
+@export var line: Line2D
 
 var jump_input_buffer: Timer
-var climbing_timer: Timer
+var climbing_input_buffer: Timer
 var direction : String
 
 func _ready() -> void:
@@ -22,17 +29,33 @@ func _ready() -> void:
 	jump_input_buffer.one_shot = true
 	add_child(jump_input_buffer)
 	
-	climbing_timer = Timer.new()
-	climbing_timer.wait_time = climbing_duration
-	climbing_timer.one_shot = true
-	add_child(climbing_timer)
+	climbing_input_buffer = Timer.new()
+	climbing_input_buffer.wait_time = climbing_input_buffer_patience
+	climbing_input_buffer.one_shot = true
+	add_child(climbing_input_buffer)
 
 func set_direction(ability_direction : String) -> void:
 	direction = ability_direction
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
-	climbing_timer.start()
+	line.add_point(Vector2.ZERO)
+	line.add_point(Vector2.ZERO)
+	
+	match direction:
+			"right":
+				climbing_ray.target_position = Vector2(push_target_length,0)
+				line.set_point_position(1, Vector2(push_target_length,0))
+			"left":
+				climbing_ray.target_position = Vector2(-push_target_length,0)
+				line.set_point_position(1, Vector2(-push_target_length,0))
+			"up":
+				climbing_ray.target_position = Vector2(0, -push_target_length)
+				line.set_point_position(1, Vector2(0, -push_target_length))
+			"down":
+				climbing_ray.target_position = Vector2(0, push_target_length)
+				line.set_point_position(1, Vector2(0, push_target_length))
+				parent.velocity.y = 1000
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -44,32 +67,40 @@ func process_input(event : InputEvent) -> State:
 func process_physics(_delta) -> State:
 	parent.move_and_slide()
 	
-	if direction == "down" and parent.is_on_floor():
-		if sprite.flip_h == true:
-			parent.velocity.x = move_toward(parent.velocity.x, -2000, 20)
-		elif sprite.flip_h == false: 
-			parent.velocity.x = move_toward(parent.velocity.x, 2000, 20)
-	else: 
-		return idle_state
+	if climbing_ray.is_colliding():
+		print("collided")
 		
-	if direction == "up" and parent.is_on_ceiling():
+		if parent.is_on_floor():
+			if sprite.flip_h == true:
+				parent.velocity.x = move_toward(parent.velocity.x, -max_speed, speed_increment)
+			elif sprite.flip_h == false: 
+				parent.velocity.x = move_toward(parent.velocity.x, max_speed, speed_increment)
+		else:
+			return falling_state
+		
+	#if direction == "down" and parent.is_on_floor():
+		#if sprite.flip_h == true:
+			#parent.velocity.x = move_toward(parent.velocity.x, -max_speed, speed_increment)
+		#elif sprite.flip_h == false: 
+			#parent.velocity.x = move_toward(parent.velocity.x, max_speed, speed_increment)
+	#else:
+		#return falling_state
+		
+	
+		
+	if direction == "up" and climbing_ray.is_colliding():
 		if sprite.flip_h == true:
-			parent.velocity.x = move_toward(parent.velocity.x, -2000, 20)
+			parent.velocity.x = move_toward(parent.velocity.x, -max_speed, speed_increment)
 		elif sprite.flip_h == false: 
-			parent.velocity.x = move_toward(parent.velocity.x, 2000, 20)
-	else:
-		return falling_state
+			parent.velocity.x = move_toward(parent.velocity.x, max_speed, speed_increment)
 	
 	
 	
 	if (parent.is_on_floor()):
 		if jump_input_buffer.time_left > 0:
 			return jumping_state
-		elif parent.velocity == Vector2(0,0):
-			pass
+		#elif parent.velocity == Vector2(0,0):
 			#return idle_state 
-	if climbing_timer.time_left == 0:
-		return falling_state
 			
 			
 	#if (!parent.is_on_floor() and climbing_timer.time_left == 0):
@@ -78,4 +109,5 @@ func process_physics(_delta) -> State:
 	return null
 
 func deactivate(_next_state) -> void:
-	pass
+	climbing_ray.target_position = Vector2.ZERO
+	line.clear_points()

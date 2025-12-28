@@ -10,18 +10,37 @@ extends Node
 @export var grounded_states : Array[State]
 @export var abilities_state : State
 var current_state : State
+var player_reference: CharacterBody2D 
+var player_sprite: AnimatedSprite2D
 
 #initialize state machine by taking player 
 #reference and propagating it to each state
+func check_children(parent : Node) -> void: 
+	for child in parent.get_children():
+		if child is Timer:
+			return
+		child.parent = player_reference
+		child.sprite = player_sprite
+		child.colliders = colliders_list
+		if child.get_child_count() > 0:
+			check_children(child)
+
 func initialize(player : CharacterBody2D, sprite : AnimatedSprite2D) -> void:
-	for child in get_children():
-		child.parent = player
-		child.sprite = sprite
-		child.colliders = colliders_list
-	for child in get_child(get_children().size() - 1).get_children():
-		child.parent = player
-		child.sprite = sprite
-		child.colliders = colliders_list
+	player_reference = player
+	player_sprite = sprite
+	
+	check_children(self)
+	
+	#Old code keep in case. DON'T DELETE!!
+	#for child in get_children():
+		#child.parent = player
+		#child.sprite = sprite
+		#child.colliders = colliders_list
+	#for child in get_child(get_children().size() - 1).get_children():
+		#child.parent = player
+		#child.sprite = sprite
+		#child.colliders = colliders_list
+	
 	#Initialize with starting_state
 	change_state(starting_state)
 
