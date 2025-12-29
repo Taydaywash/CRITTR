@@ -179,13 +179,14 @@ camera = NodePath("Camera2D")
 normal_gravity = 3250
 max_falling_speed = 2000
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("no_control_state", "death_state", "idle_state", "diving_state", "diving_falling_state", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("no_control_state", "death_state", "idle_state", "diving_state", "diving_falling_state", "falling_state", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
 script = ExtResource("5_v55cd")
 no_control_state = NodePath("NoControl")
 death_state = NodePath("Death")
 idle_state = NodePath("Idle")
 diving_state = NodePath("Diving")
 diving_falling_state = NodePath("Diving/DivingFalling")
+falling_state = NodePath("Falling")
 colliders_list = [NodePath("../NormalHitbox"), NodePath("../CrouchedHitbox"), NodePath("../Jumping")]
 starting_state = NodePath("Idle")
 grounded_states = [NodePath("Idle"), NodePath("Walking"), NodePath("Crouching"), NodePath("Crouching/IdleCrouching")]
