@@ -50,6 +50,7 @@ func process_physics(_delta) -> State:
 		elif sprite.flip_h == false: 
 			parent.velocity.x = move_toward(parent.velocity.x, max_speed, speed_increment)
 	elif parent.is_on_wall():
+		
 		parent.velocity.y = move_toward(parent.velocity.y, -max_speed, speed_increment)
 	else:
 		return falling_state

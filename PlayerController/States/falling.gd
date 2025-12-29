@@ -46,8 +46,6 @@ func activate(last_state : State) -> void:
 	
 	gravity = parent.normal_gravity
 	max_falling_speed = parent.max_falling_speed
-	print(last_state == $"../Abilities/Climbing/ClimbingSlide")
-	print($"../Abilities/Climbing".direction)
 	if (last_state == $"../Walking" or (last_state == $"../Abilities/Climbing/ClimbingSlide" and $"../Abilities/Climbing".direction== "down")):
 		#possible code to add back 
 		#or (last_state == $"../Abilities/Climbing" and $"../Abilities/Climbing".direction == "down"))
