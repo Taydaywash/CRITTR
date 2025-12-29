@@ -66,7 +66,7 @@ func process_physics(delta) -> State:
 		if grapple_current_length > grapple_max_length:
 			grapple_current_length = grapple_max_length
 			
-		print(grapple_current_length)
+		#print(grapple_current_length)
 		
 		match direction:
 			"right":

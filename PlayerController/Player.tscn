@@ -172,6 +172,7 @@ size = Vector2(71.112, 142.22195)
 scale = Vector2(1.35, 1.35)
 collision_layer = 8
 collision_mask = 17
+floor_block_on_wall = false
 floor_max_angle = 0.0
 safe_margin = 0.1
 script = ExtResource("1_4bhr5")
@@ -570,9 +571,17 @@ placeholder_animation_color = Color(1, 1, 1, 1)
 script = ExtResource("16_2bslk")
 icon = ExtResource("24_qy6yu")
 
-[node name="Drill" type="Node" parent="StateMachine/Abilities"]
+[node name="Drill" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("jumping_state", "crouching_hitbox", "normal_hitbox")]
 script = ExtResource("17_fuvci")
 icon = ExtResource("21_0wxel")
+jumping_state = NodePath("../../Jumping")
+wind_up_delay = 0.3
+wind_up_velocity = 100.0
+initial_velocity = 1200.0
+turn_speed = 4.0
+crouching_hitbox = NodePath("../../../CrouchedHitbox")
+normal_hitbox = NodePath("../../../NormalHitbox")
+placeholder_animation_color = Color(0.38170326, 0.38170323, 0.38170323, 1)
 
 [node name="JumpInputBuffer" type="Timer" parent="."]
 one_shot = true
