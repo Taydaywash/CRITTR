@@ -50,9 +50,10 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
-	inflated_duration_timer.wait_time = inflated_duration
+	
 
 	if direction == "up":
+		inflated_duration_timer.wait_time = inflated_duration
 		inflated_duration_timer.start()
 		parent.velocity.y = -initial_up_velocity
 		#if parent.velocity.y > 0:
@@ -62,6 +63,7 @@ func activate(last_state : State) -> void:
 		#else:
 			#parent.velocity.y = -initial_up_velocity
 	elif direction == "down":
+		inflated_duration_timer.wait_time = inflated_duration
 		inflated_duration_timer.start()
 		parent.velocity.y = initial_down_velocity
 		#if parent.velocity.y > initial_down_velocity:
@@ -69,6 +71,7 @@ func activate(last_state : State) -> void:
 		#else:
 			#parent.velocity.y = initial_down_velocity
 	elif direction == "left":
+		inflated_duration_timer.wait_time = inflated_duration - bounce_timer_reduction
 		parent.velocity.y = parent.velocity.y / 10
 		inflated_duration_timer.start()
 		if abs(parent.velocity.x) > initial_horizontal_velocity:
@@ -76,6 +79,7 @@ func activate(last_state : State) -> void:
 		else:
 			parent.velocity.x = -initial_horizontal_velocity
 	elif direction == "right":
+		inflated_duration_timer.wait_time = inflated_duration - bounce_timer_reduction
 		parent.velocity.y = parent.velocity.y / 10
 		inflated_duration_timer.start()
 		if abs(parent.velocity.x) > initial_horizontal_velocity:
