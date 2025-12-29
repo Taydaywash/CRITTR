@@ -465,10 +465,10 @@ climbing_state = NodePath("ClimbingBuffer/Climbing")
 infated_state = NodePath("Inflated")
 bounce_attack_state = NodePath("BounceAttack")
 drill_state = NodePath("Drill")
-ability_up = NodePath("ClimbingBuffer")
-ability_down = NodePath("ClimbingBuffer")
-ability_left = NodePath("ClimbingBuffer")
-ability_right = NodePath("ClimbingBuffer")
+ability_up = NodePath("Inflated")
+ability_down = NodePath("Inflated")
+ability_left = NodePath("Inflated")
+ability_right = NodePath("Inflated")
 
 [node name="Dashing" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("jumping_state", "walking_state", "falling_state", "idle_state", "diving_state", "ascending_state", "jump_input_buffer", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("12_evkiq")
@@ -534,9 +534,34 @@ max_speed = 2000.0
 speed_increment = 20.0
 placeholder_animation_color = Color(0.30563596, 0.3749689, 0.15632111, 1)
 
-[node name="Inflated" type="Node" parent="StateMachine/Abilities"]
+[node name="Inflated" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("jumping_state", "walking_state", "falling_state", "idle_state", "diving_state", "ascending_state", "left_ray", "right_ray")]
 script = ExtResource("15_melbr")
 icon = ExtResource("23_hk2wy")
+jumping_state = NodePath("../../Jumping")
+walking_state = NodePath("../../Walking")
+falling_state = NodePath("../../Falling")
+idle_state = NodePath("../../Idle")
+diving_state = NodePath("../../Diving")
+ascending_state = NodePath("../../Ascending")
+initial_up_velocity = 200.0
+additive_initial_up_velocity = 20.0
+initial_down_velocity = 750.0
+additive_initial_down_velocity = 20.0
+initial_horizontal_velocity = 1000.0
+additive_initial_horizontal_velocity = 20.0
+bounce_velocity = 500.0
+inflated_duration = 3.0
+bounce_timer_reduction = 1.0
+horizontal_ascent_reduction_percentage = 0.5
+ascent_speed = 1250.0
+max_ascent_speed = 750.0
+max_move_speed = 750.0
+acceleration_speed = 2000.0
+decceleration_speed = 250.0
+color_return_speed = 0.2
+left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
+right_ray = NodePath("../../../WallJumpRayReference/RightRay")
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="BounceAttack" type="Node" parent="StateMachine/Abilities"]
 script = ExtResource("16_2bslk")
