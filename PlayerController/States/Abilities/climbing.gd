@@ -27,10 +27,7 @@ func set_direction(ability_direction : String) -> void:
 	direction = ability_direction
 
 func activate(last_state : State) -> void:
-	super(last_state) #Call activate as defined in state.gd and then also do:
-	
-	print(direction)
-
+	super(last_state) #Call activate as defined in state.gd and then also do:c
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -42,46 +39,26 @@ func process_input(event : InputEvent) -> State:
 func process_physics(_delta) -> State:
 	parent.move_and_slide()
 	
-	if parent.is_on_floor():
+	if parent.is_on_floor() and direction == "down":
 		if sprite.flip_h == true:
 			parent.velocity.x = move_toward(parent.velocity.x, -max_speed, speed_increment)
 		elif sprite.flip_h == false: 
 			parent.velocity.x = move_toward(parent.velocity.x, max_speed, speed_increment)
-			
-	elif parent.is_on_ceiling():
+	elif parent.is_on_ceiling() and direction == "up":
 		if sprite.flip_h == true:
 			parent.velocity.x = move_toward(parent.velocity.x, -max_speed, speed_increment)
 		elif sprite.flip_h == false: 
 			parent.velocity.x = move_toward(parent.velocity.x, max_speed, speed_increment)
+	elif parent.is_on_wall():
+		parent.velocity.y = move_toward(parent.velocity.y, -max_speed, speed_increment)
 	else:
 		return falling_state
-		
-	#if direction == "down" and parent.is_on_floor():
-		#if sprite.flip_h == true:
-			#parent.velocity.x = move_toward(parent.velocity.x, -max_speed, speed_increment)
-		#elif sprite.flip_h == false: 
-			#parent.velocity.x = move_toward(parent.velocity.x, max_speed, speed_increment)
-	#else:
-		#return falling_state
-		
-	
-		
-	#if direction == "up" and climbing_ray.is_colliding():
-		#if sprite.flip_h == true:
-			#parent.velocity.x = move_toward(parent.velocity.x, -max_speed, speed_increment)
-		#elif sprite.flip_h == false: 
-			#parent.velocity.x = move_toward(parent.velocity.x, max_speed, speed_increment)
-	
-	
+
 	if (parent.is_on_floor()):
 		if jump_input_buffer.time_left > 0:
 			return jumping_state
 		#elif parent.velocity == Vector2(0,0):
 			#return idle_state 
-			
-			
-	#if (!parent.is_on_floor() and climbing_timer.time_left == 0):
-		#return ascending_state
 	
 	return null
 
