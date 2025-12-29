@@ -1,5 +1,7 @@
 extends State
 
+@export var icon : CompressedTexture2D
+
 #States that Idle can transition to:
 @export_category("States")
 @export var jumping_state : State

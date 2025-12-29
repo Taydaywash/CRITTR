@@ -14,32 +14,48 @@ extends State
 
 @onready var ui: CanvasLayer = $"../../../UI"
 #Holds each ability as a node reference, if it is available to use, what direction it corresponds to, and its priority
-@onready var abilities_in_use: Dictionary = {
+
+var abilities_in_use: Dictionary = {
 	"ability_up": {
-		"state" : ability_up, 
+		"state" : State, 
+		"texture" : CompressedTexture2D,
 		"available" : true,
 		"direction" : "up",
 		"priority": 0 #used to determine which move to use based on most recent direction pressed
 		},
 	"ability_down": {
-		"state" : ability_down, 
+		"state" : State, 
+		"texture" : CompressedTexture2D,
 		"available" : true,
 		"direction" : "down",
 		"priority": 0 #used to determine which move to use based on most recent direction pressed
 		},
 	"ability_left": {
-		"state" : ability_left, 
+		"state" : State, 
+		"texture" : CompressedTexture2D,
 		"available" : true,
 		"direction" : "left",
 		"priority": 0 #used to determine which move to use based on most recent direction pressed
 		},
 	"ability_right": {
-		"state" : ability_right, 
+		"state" : State, 
+		"texture" : CompressedTexture2D,
 		"available" : true,
 		"direction" : "right",
 		"priority": 0 #used to determine which move to use based on most recent direction pressed
 		},
 	}
+
+func _ready() -> void:
+	set_ability("up",ability_up)
+	set_ability("down",ability_down)
+	set_ability("left",ability_left)
+	set_ability("right",ability_right)
+
+func set_ability(direction : String, state : State):
+	abilities_in_use["ability_" + direction]["state"] = state
+	abilities_in_use["ability_" + direction]["texture"] = state.icon
+	ui.update_ability_ui(abilities_in_use)
 
 func _input(event: InputEvent) -> void: #Runs seperately from state machine to keep track at all times
 	if event.is_action_pressed("move_up"):

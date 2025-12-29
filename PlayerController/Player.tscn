@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=62 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/States/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
@@ -25,17 +25,23 @@
 [ext_resource type="Script" uid="uid://cwi7sh2i6bfpg" path="res://PlayerController/States/Abilities/inflated.gd" id="15_melbr"]
 [ext_resource type="Script" uid="uid://s0v2p1xd21lh" path="res://PlayerController/States/Abilities/bounce_attack.gd" id="16_2bslk"]
 [ext_resource type="Script" uid="uid://ctsvxg3n4hdh7" path="res://PlayerController/States/Abilities/drill.gd" id="17_fuvci"]
+[ext_resource type="Texture2D" uid="uid://hqyvhddj1nu" path="res://UI/DashIcon.png" id="19_j8lbh"]
+[ext_resource type="Texture2D" uid="uid://bfm1hwat15hwr" path="res://UI/ClimbingIcon.png" id="20_4o1t2"]
+[ext_resource type="Texture2D" uid="uid://btmny16rfx85i" path="res://UI/DrillIcon.png" id="21_0wxel"]
 [ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://PlayerController/camera_controller.gd" id="21_3imdl"]
 [ext_resource type="Texture2D" uid="uid://b5q4vr47m20fe" path="res://PlayerController/animations/walking/f1.png" id="21_068uq"]
 [ext_resource type="Texture2D" uid="uid://cm5a0kjv22qep" path="res://PlayerController/animations/idle/i1.png" id="21_hfsnk"]
 [ext_resource type="Texture2D" uid="uid://civo5col660g6" path="res://PlayerController/animations/idle/i2.png" id="22_3imdl"]
 [ext_resource type="Texture2D" uid="uid://dpg0ffmpj5l37" path="res://PlayerController/animations/fall/fall1.png" id="22_7xxh7"]
 [ext_resource type="Texture2D" uid="uid://ouegwis2yso0" path="res://PlayerController/animations/walking/f2.png" id="22_tycsm"]
+[ext_resource type="Texture2D" uid="uid://7t8x5fqt52wp" path="res://UI/GrappleIcon.png" id="22_wlqol"]
 [ext_resource type="Script" uid="uid://bhn2wmkkbfo2p" path="res://PlayerController/States/Abilities/climbing_buffer.gd" id="23_31xm6"]
 [ext_resource type="Texture2D" uid="uid://bc5tl458rwcxw" path="res://PlayerController/animations/walking/f3.png" id="23_fkl5p"]
+[ext_resource type="Texture2D" uid="uid://cxuugk8c7tdj5" path="res://UI/InflateIcon.png" id="23_hk2wy"]
 [ext_resource type="Texture2D" uid="uid://csnlhmtdvh6rk" path="res://PlayerController/animations/idle/i3.png" id="23_wqhrm"]
 [ext_resource type="Texture2D" uid="uid://33ah1rmr3ca7" path="res://PlayerController/animations/walking/f4.png" id="24_hfsnk"]
 [ext_resource type="Texture2D" uid="uid://dciigneoovomp" path="res://PlayerController/animations/Death/deathAnimation0000.png" id="24_qtpvk"]
+[ext_resource type="Texture2D" uid="uid://je2kc5u1j4x0" path="res://UI/BounceIcon.png" id="24_qy6yu"]
 [ext_resource type="Texture2D" uid="uid://5iuq1j0jnxoj" path="res://PlayerController/animations/walking/f5.png" id="25_3imdl"]
 [ext_resource type="Texture2D" uid="uid://bnt2dq3fmkni5" path="res://PlayerController/animations/Death/deathAnimation0001.png" id="25_4nigc"]
 [ext_resource type="Texture2D" uid="uid://dfyfs3qh2efsu" path="res://PlayerController/animations/jump/jump1.png" id="26_7xxh7"]
@@ -419,7 +425,7 @@ ability_state = NodePath("../Abilities")
 air_control = 800
 air_acceleration_speed = 10000
 air_decceleration_speed = 10000
-coyote_time_patience = 0.1
+coyote_time_patience = 0.15
 jump_input_buffer = NodePath("../../JumpInputBuffer")
 jump_input_buffer_patience = 0.2
 right_ray = NodePath("../../WallJumpRayReference/RightRay")
@@ -466,6 +472,7 @@ ability_right = NodePath("ClimbingBuffer")
 
 [node name="Dashing" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("jumping_state", "walking_state", "falling_state", "idle_state", "diving_state", "ascending_state", "jump_input_buffer", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("12_evkiq")
+icon = ExtResource("19_j8lbh")
 jumping_state = NodePath("../../Jumping")
 walking_state = NodePath("../../Walking")
 falling_state = NodePath("../../Falling")
@@ -488,6 +495,7 @@ placeholder_animation_color = Color(0.23891038, 0.12174525, 0.0073752436, 1)
 
 [node name="Grappling" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "grapple_ray", "line")]
 script = ExtResource("13_vpgwe")
+icon = ExtResource("22_wlqol")
 falling_state = NodePath("../../Falling")
 idle_state = NodePath("../../Idle")
 diving_state = NodePath("../../Diving")
@@ -504,6 +512,7 @@ line = NodePath("../../../AbilityRay/Line2D")
 
 [node name="ClimbingBuffer" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("climbing_state", "falling_state", "climbing_ray", "line")]
 script = ExtResource("23_31xm6")
+icon = ExtResource("20_4o1t2")
 climbing_state = NodePath("Climbing")
 falling_state = NodePath("../../Falling")
 climbing_input_buffer_patience = 0.25
@@ -527,12 +536,15 @@ placeholder_animation_color = Color(0.30563596, 0.3749689, 0.15632111, 1)
 
 [node name="Inflated" type="Node" parent="StateMachine/Abilities"]
 script = ExtResource("15_melbr")
+icon = ExtResource("23_hk2wy")
 
 [node name="BounceAttack" type="Node" parent="StateMachine/Abilities"]
 script = ExtResource("16_2bslk")
+icon = ExtResource("24_qy6yu")
 
 [node name="Drill" type="Node" parent="StateMachine/Abilities"]
 script = ExtResource("17_fuvci")
+icon = ExtResource("21_0wxel")
 
 [node name="JumpInputBuffer" type="Timer" parent="."]
 one_shot = true

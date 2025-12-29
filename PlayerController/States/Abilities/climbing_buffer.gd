@@ -1,5 +1,7 @@
 extends State
 
+@export var icon : CompressedTexture2D
+
 @export_category("States")
 @export var climbing_state: State
 @export var falling_state: State
