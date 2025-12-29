@@ -17,6 +17,7 @@ extends State
 
 var climbing_input_buffer: Timer
 var direction : String
+var current_velocity : Vector2
 
 func _ready() -> void:
 	climbing_input_buffer = Timer.new()
@@ -31,6 +32,9 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	line.add_point(Vector2.ZERO)
 	line.add_point(Vector2.ZERO)
+	current_velocity = parent.velocity
+	parent.velocity = Vector2.ZERO
+	
 	
 	#parent.velocity = Vector2.ZERO
 	climbing_input_buffer.start()
@@ -45,36 +49,38 @@ func activate(last_state : State) -> void:
 			"up":
 				climbing_ray.target_position = Vector2(0, -push_target_length)
 				line.set_point_position(1, Vector2(0, -push_target_length))
-				parent.velocity.y = 0
 			"down":
 				climbing_ray.target_position = Vector2(0, push_target_length)
 				line.set_point_position(1, Vector2(0, push_target_length))
-				parent.velocity.y = 0
+				
 
 func process_input(_event : InputEvent) -> State:
 	return null
 
 func process_physics(_delta) -> State:
 	parent.move_and_slide()
-	
+
 	if climbing_ray.is_colliding():
 		match direction:
 				"right":
 					parent.velocity.x = push_speed
+					parent.velocity.y = current_velocity.y
 				"left":
 					parent.velocity.x = -push_speed
+					parent.velocity.y = current_velocity.y
 				"up":
 					parent.velocity.y = -push_speed
+					parent.velocity.x = current_velocity.x
 				"down":
 					parent.velocity.y = push_speed
+					parent.velocity.x = current_velocity.x
 	
-	if parent.get_slide_collision_count() > 0:
+	if parent.get_slide_collision_count() > 0 :
 		return climbing_state
 	elif climbing_input_buffer.time_left == 0:
 		return falling_state
 	
 	return null
-	
 	
 
 func deactivate(_next_state) -> void:

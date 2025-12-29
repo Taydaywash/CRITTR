@@ -60,8 +60,9 @@ func change_state(new_state : State, direction = null) -> void:
 		abilities.refill_abilities()
 	if direction:
 		current_state.set_direction(direction)
-		#for child in current_state.get_children():
-			#child.set_direction(direction)
+		for child in current_state.get_children():
+			if child is not Timer: 
+				child.set_direction(direction)
 	current_state.activate(last_state)
 
 #Propagate down from state machine to active state
