@@ -3,43 +3,24 @@ extends State
 @export var icon : CompressedTexture2D
 
 @export_category("States")
-@export var falling_state : State
+@export var jumping_state : State
 @export_category("Parameters")
 @export var wind_up_delay : float
 @export var wind_up_velocity : float
 @export var initial_velocity : float
 @export var turn_speed : float
-@export var forward_detection_ray_length : float
-@export var wall_detection_grace : float
 @export_category("Colliders")
 @export var crouching_hitbox : CollisionShape2D
 @export var normal_hitbox : CollisionShape2D
-@export_category("Raycasts")
-@export var drill_ray : RayCast2D
-@export var line: Line2D
 
 var direction : String
 var winding_up : bool
-var new_angle_degrees : float
-var new_angle_vector : Vector2
-var wall_detection_timer : Timer
-
-func _ready() -> void:
-	
-	
-	wall_detection_timer = Timer.new()
-	wall_detection_timer.wait_time = wall_detection_grace
-	wall_detection_timer.one_shot = true
-	add_child(wall_detection_timer)
 
 func set_direction(ability_direction : String) -> void:
 	direction = ability_direction
 
 func activate(_last_state : State) -> void:
-	drill_ray.reparent(parent, false)
 	super(_last_state)
-	line.add_point(Vector2.ZERO)
-	line.add_point(Vector2.ZERO)
 	winding_up = true
 	change_collider_to(crouching_hitbox)
 	parent.velocity = Vector2(0,0)
@@ -53,7 +34,6 @@ func activate(_last_state : State) -> void:
 	elif direction == "right":
 		parent.velocity.x = -wind_up_velocity
 	await get_tree().create_timer(wind_up_delay).timeout
-	wall_detection_timer.start()
 	winding_up = false
 	if direction == "up":
 		parent.velocity.y = -initial_velocity
@@ -63,22 +43,33 @@ func activate(_last_state : State) -> void:
 		parent.velocity.x = -initial_velocity
 	elif direction == "right":
 		parent.velocity.x = initial_velocity
-	new_angle_degrees = parent.velocity.angle()
 
-func process_physics(_delta) -> State:
+func process_input(event) -> State:
+	if event.is_action_pressed("jump"):
+		return jumping_state
+	return null
+
+func process_physics(delta) -> State:
 	if winding_up:
 		parent.move_and_slide()
 		return null
-	if wall_detection_timer.time_left == 0:
-		return falling_state
+	
+	var new_angle_degrees : float = parent.velocity.angle()
+	var new_angle_vector : Vector2
+	if Input.is_action_pressed("move_up"):
+		new_angle_degrees = lerp_angle(parent.velocity.angle(),Vector2(0,-1).angle(),clampf(turn_speed * delta,0.0,1.0))
+	if Input.is_action_pressed("move_down"):
+		new_angle_degrees = lerp_angle(parent.velocity.angle(),Vector2(0,1).angle(),clampf(turn_speed * delta,0.0,1.0))
+	if Input.is_action_pressed("move_left"):
+		new_angle_degrees = lerp_angle(parent.velocity.angle(),Vector2(-1,0).angle(),clampf(turn_speed * delta,0.0,1.0))
+	if Input.is_action_pressed("move_right"):
+		new_angle_degrees = lerp_angle(parent.velocity.angle(),Vector2(1,0).angle(),clampf(turn_speed * delta,0.0,1.0))
 	new_angle_vector = Vector2(cos(new_angle_degrees),sin(new_angle_degrees)).normalized()
-	drill_ray.target_position = new_angle_vector * forward_detection_ray_length
-	line.set_point_position(1, new_angle_vector  * forward_detection_ray_length)
+	
 	parent.velocity = new_angle_vector * initial_velocity
 	parent.move_and_slide()
 	return null
 
 func deactivate(_next_state : State) -> void:
 	super(_next_state)
-	line.clear_points()
 	change_collider_to(normal_hitbox)

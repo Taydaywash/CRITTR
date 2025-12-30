@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=63 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/States/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
@@ -52,6 +52,7 @@
 [ext_resource type="Texture2D" uid="uid://bpsqdu68xaqos" path="res://PlayerController/animations/walking/f8.png" id="28_ho2n3"]
 [ext_resource type="Texture2D" uid="uid://e1nj7vxg1jmt" path="res://PlayerController/animations/Death/deathAnimation0004.png" id="28_obod2"]
 [ext_resource type="Texture2D" uid="uid://doppu62kcme4e" path="res://PlayerController/animations/Death/deathAnimation0005.png" id="29_fbx8n"]
+[ext_resource type="Script" uid="uid://bnc6tyoeqa6yd" path="res://PlayerController/digging.gd" id="32_4o1t2"]
 [ext_resource type="Shape2D" uid="uid://c8niu6rbmipjw" path="res://PlayerController/Hitboxes/CrouchingHitbox.tres" id="35_ho2n3"]
 [ext_resource type="Shape2D" uid="uid://bfsgbtnw3orjf" path="res://PlayerController/Hitboxes/DefaultHitbox.tres" id="36_uneaa"]
 [ext_resource type="Script" uid="uid://db1bxui7ftwwk" path="res://PlayerController/respawn_controller.gd" id="37_jxerk"]
@@ -509,10 +510,19 @@ grappling_speed = 4000.0
 grapple_max_length = 800.0
 grapple_increment = 2500.0
 jump_input_buffer_patience = 0.2
-grapple_ray = NodePath("../../../AbilityRay")
-line = NodePath("../../../AbilityRay/Line2D")
+grapple_ray = NodePath("GrappleRay")
+line = NodePath("GrappleRay/Line2D")
 
-[node name="Climbing" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("climbing_state", "falling_state", "climbing_ray", "line")]
+[node name="GrappleRay" type="RayCast2D" parent="StateMachine/Abilities/Grappling"]
+scale = Vector2(1.35, 1.35)
+target_position = Vector2(0, 0)
+collision_mask = 33
+collide_with_areas = true
+
+[node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Grappling/GrappleRay"]
+default_color = Color(1, 0.43460146, 0.9889626, 1)
+
+[node name="Climbing" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("climbing_state", "falling_state", "climbing_ray", "line", "default_hitbox", "crouching_hitbox")]
 script = ExtResource("23_31xm6")
 icon = ExtResource("20_4o1t2")
 climbing_state = NodePath("ClimbingSlide")
@@ -520,10 +530,12 @@ falling_state = NodePath("../../Falling")
 climbing_input_buffer_patience = 0.1
 push_target_length = 120.0
 push_speed = 5000.0
-climbing_ray = NodePath("../../../AbilityRay")
-line = NodePath("../../../AbilityRay/Line2D")
+climbing_ray = NodePath("ClimbingRay")
+line = NodePath("ClimbingRay/Line2D")
+default_hitbox = NodePath("../../../NormalHitbox")
+crouching_hitbox = NodePath("../../../CrouchedHitbox")
 
-[node name="ClimbingSlide" type="Node" parent="StateMachine/Abilities/Climbing" node_paths=PackedStringArray("falling_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "idle_state", "right_ray", "left_ray")]
+[node name="ClimbingSlide" type="Node" parent="StateMachine/Abilities/Climbing" node_paths=PackedStringArray("falling_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "idle_state", "right_ray", "left_ray", "default_hitbox", "crouching_hitbox")]
 script = ExtResource("14_hl1jv")
 falling_state = NodePath("../../../Falling")
 diving_state = NodePath("../../../Diving")
@@ -537,7 +549,17 @@ speed_increment = 20.0
 bounce_velocity = 400.0
 right_ray = NodePath("../../../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../../../WallJumpRayReference/LeftRay")
+default_hitbox = NodePath("../../../../NormalHitbox")
+crouching_hitbox = NodePath("../../../../CrouchedHitbox")
 placeholder_animation_color = Color(0.30563596, 0.3749689, 0.15632111, 1)
+
+[node name="ClimbingRay" type="RayCast2D" parent="StateMachine/Abilities/Climbing"]
+scale = Vector2(1.35, 1.35)
+target_position = Vector2(0, 0)
+collide_with_areas = true
+
+[node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Climbing/ClimbingRay"]
+default_color = Color(1, 0.43460146, 0.9889626, 1)
 
 [node name="Inflated" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("jumping_state", "walking_state", "falling_state", "idle_state", "diving_state", "ascending_state", "left_ray", "right_ray")]
 script = ExtResource("15_melbr")
@@ -572,28 +594,36 @@ placeholder_animation_color = Color(1, 1, 1, 1)
 script = ExtResource("16_2bslk")
 icon = ExtResource("24_qy6yu")
 
-[node name="Drill" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("jumping_state", "crouching_hitbox", "normal_hitbox")]
+[node name="Drill" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "crouching_hitbox", "normal_hitbox", "drill_ray", "line")]
 script = ExtResource("17_fuvci")
 icon = ExtResource("21_0wxel")
-jumping_state = NodePath("../../Jumping")
+falling_state = NodePath("../../Falling")
 wind_up_delay = 0.3
 wind_up_velocity = 100.0
 initial_velocity = 1200.0
 turn_speed = 4.0
+forward_detection_ray_length = 150.0
+wall_detection_grace = 0.3
 crouching_hitbox = NodePath("../../../CrouchedHitbox")
 normal_hitbox = NodePath("../../../NormalHitbox")
+drill_ray = NodePath("DrillRay")
+line = NodePath("DrillRay/Line2D")
 placeholder_animation_color = Color(0.38170326, 0.38170323, 0.38170323, 1)
+
+[node name="Digging" type="Node" parent="StateMachine/Abilities/Drill"]
+script = ExtResource("32_4o1t2")
+
+[node name="DrillRay" type="RayCast2D" parent="StateMachine/Abilities/Drill"]
+scale = Vector2(1.35, 1.35)
+target_position = Vector2(0, 0)
+collision_mask = 65
+collide_with_areas = true
+
+[node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Drill/DrillRay"]
+default_color = Color(1, 0.43460146, 0.9889626, 1)
 
 [node name="JumpInputBuffer" type="Timer" parent="."]
 one_shot = true
-
-[node name="AbilityRay" type="RayCast2D" parent="."]
-target_position = Vector2(0, 0)
-collision_mask = 33
-collide_with_areas = true
-
-[node name="Line2D" type="Line2D" parent="AbilityRay"]
-default_color = Color(1, 0.43460146, 0.9889626, 1)
 
 [node name="WallJumpRayReference" type="Node2D" parent="."]
 

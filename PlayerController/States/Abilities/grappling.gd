@@ -44,6 +44,7 @@ func set_direction(ability_direction : String) -> void:
 	direction = ability_direction
 
 func activate(last_state : State) -> void:
+	grapple_ray.reparent(parent, false)
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	has_collided = false
 	grapple_current_length = 0
@@ -60,6 +61,7 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
+	
 	parent.move_and_slide()
 	if !has_collided and grapple_current_length < grapple_max_length:
 		grapple_current_length += grapple_increment * delta

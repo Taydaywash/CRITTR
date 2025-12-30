@@ -50,8 +50,6 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
-	
-
 	if direction == "up":
 		inflated_duration_timer.wait_time = inflated_duration
 		inflated_duration_timer.start()

@@ -24,7 +24,7 @@ var last_state
 #reference and propagating it to each state
 func check_children(parent : Node) -> void: 
 	for child in parent.get_children():
-		if child is Timer:
+		if child.get_class() != "Node":
 			return
 		child.parent = player_reference
 		child.sprite = player_sprite
@@ -62,7 +62,7 @@ func change_state(new_state : State, direction = null) -> void:
 	if direction:
 		current_state.set_direction(direction)
 		for child in current_state.get_children():
-			if child is not Timer: 
+			if child.get_class() == "Node": 
 				child.set_direction(direction)
 	current_state.activate(last_state)
 

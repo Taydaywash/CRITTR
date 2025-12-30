@@ -17,6 +17,10 @@ extends State
 @export var right_ray : RayCast2D
 @export var left_ray : RayCast2D
 
+@export_category("Colliders")
+@export var default_hitbox : CollisionShape2D
+@export var crouching_hitbox : CollisionShape2D
+
 var jump_input_buffer: Timer
 var climbing_input_buffer: Timer
 var direction : String
@@ -33,6 +37,7 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:c
+	change_collider_to(crouching_hitbox)
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -44,13 +49,13 @@ func process_input(event : InputEvent) -> State:
 func process_physics(_delta) -> State:
 	match direction:
 		"up":
-			parent.velocity.y = -1
+			parent.velocity.y = -speed_increment
 		"down":
-			parent.velocity.y = 1
+			parent.velocity.y = speed_increment
 		"right":
-			parent.velocity.x = 1
+			parent.velocity.x = speed_increment
 		"left":
-			parent.velocity.x = -1
+			parent.velocity.x = -speed_increment
 
 	parent.move_and_slide()
 
@@ -69,6 +74,8 @@ func process_physics(_delta) -> State:
 	elif direction == "left" and parent.is_on_wall():
 		parent.velocity.y = move_toward(parent.velocity.y, -max_speed, speed_increment)
 	else:
+		if parent.velocity.y < 0:
+			return ascending_state
 		return falling_state
 		
 	if jump_input_buffer.time_left > 0:
@@ -89,4 +96,5 @@ func process_physics(_delta) -> State:
 	return null
 
 func deactivate(_next_state) -> void:
-	pass
+	super(_next_state)
+	change_collider_to(default_hitbox)
