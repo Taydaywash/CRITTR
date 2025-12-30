@@ -4,18 +4,18 @@ extends State
 
 @export_category("States")
 @export var falling_state : State
+@export var digging_state : State
 @export_category("Parameters")
 @export var wind_up_delay : float
 @export var wind_up_velocity : float
 @export var initial_velocity : float
 @export var turn_speed : float
-@export var forward_detection_ray_length : float
 @export var wall_detection_grace : float
-@export_category("Colliders")
-@export var crouching_hitbox : CollisionShape2D
-@export var normal_hitbox : CollisionShape2D
 @export_category("Raycasts")
 @export var drill_ray : RayCast2D
+@export var drill_ray_not_digable : RayCast2D
+@export var forward_detection_range : float
+@export var backwards_offset : float
 @export var line: Line2D
 
 var direction : String
@@ -25,8 +25,6 @@ var new_angle_vector : Vector2
 var wall_detection_timer : Timer
 
 func _ready() -> void:
-	
-	
 	wall_detection_timer = Timer.new()
 	wall_detection_timer.wait_time = wall_detection_grace
 	wall_detection_timer.one_shot = true
@@ -36,12 +34,10 @@ func set_direction(ability_direction : String) -> void:
 	direction = ability_direction
 
 func activate(_last_state : State) -> void:
-	drill_ray.reparent(parent, false)
 	super(_last_state)
 	line.add_point(Vector2.ZERO)
 	line.add_point(Vector2.ZERO)
 	winding_up = true
-	change_collider_to(crouching_hitbox)
 	parent.velocity = Vector2(0,0)
 	
 	if direction == "up":
@@ -69,16 +65,31 @@ func process_physics(_delta) -> State:
 	if winding_up:
 		parent.move_and_slide()
 		return null
-	if wall_detection_timer.time_left == 0:
-		return falling_state
+	drill_ray.target_position = new_angle_vector * forward_detection_range
+	drill_ray.position = new_angle_vector * -backwards_offset
+	drill_ray_not_digable.target_position = drill_ray.target_position
+	drill_ray_not_digable.position = new_angle_vector * -backwards_offset
+
 	new_angle_vector = Vector2(cos(new_angle_degrees),sin(new_angle_degrees)).normalized()
-	drill_ray.target_position = new_angle_vector * forward_detection_ray_length
-	line.set_point_position(1, new_angle_vector  * forward_detection_ray_length)
+	line.set_point_position(1, drill_ray.target_position)
 	parent.velocity = new_angle_vector * initial_velocity
 	parent.move_and_slide()
+
+	if drill_ray.is_colliding():
+		drill_ray.target_position = drill_ray.to_local(drill_ray.get_collision_point())
+		drill_ray_not_digable.target_position = drill_ray.target_position
+		if parent.get_slide_collision_count() > 0:
+			if drill_ray_not_digable.is_colliding():
+				return falling_state
+			return digging_state
+	elif wall_detection_timer.time_left == 0:
+		return falling_state
+	return null
+
+func process_frame(_delta) -> State:
+	sprite.rotation = new_angle_degrees + PI/2
 	return null
 
 func deactivate(_next_state : State) -> void:
 	super(_next_state)
 	line.clear_points()
-	change_collider_to(normal_hitbox)

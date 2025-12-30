@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://s1l25pe1fhgb"]
+[gd_scene load_steps=16 format=3 uid="uid://s1l25pe1fhgb"]
 
 [ext_resource type="Script" uid="uid://nvgmux0c34ar" path="res://World/world_controller.gd" id="1_il6x7"]
 [ext_resource type="PackedScene" uid="uid://4ip81nticvcd" path="res://PlayerController/Player.tscn" id="2_y6flb"]
@@ -14,11 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://World/LevelEditor/Regions/Crash Site/Rooms/ClimbToPeak.tscn" id="11_v0w7q"]
 [ext_resource type="PackedScene" uid="uid://coj0cv5o7fmcj" path="res://World/LevelEditor/Regions/Crash Site/Rooms/WallJumpTutorial.tscn" id="12_l2bp3"]
 [ext_resource type="PackedScene" uid="uid://dkgn24ggvad45" path="res://World/LevelEditor/Regions/Crash Site/Rooms/DashCrittr.tscn" id="13_kpwrl"]
+[ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://World/LevelEditor/Regions/Crash Site/Rooms/BelowShip.tscn" id="14_21v8o"]
 
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_y6flb")]
-position = Vector2(2880, -448)
+position = Vector2(2816, -576)
 
 [node name="UI" parent="." instance=ExtResource("4_il6x7")]
 
@@ -64,5 +65,8 @@ position = Vector2(9344, -3968)
 
 [node name="DashCrittr" parent="Rooms/CrashSite" instance=ExtResource("13_kpwrl")]
 position = Vector2(4480, -7168)
+
+[node name="BelowShip" parent="Rooms/CrashSite" instance=ExtResource("14_21v8o")]
+position = Vector2(2944, 1408)
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_o14yy")]

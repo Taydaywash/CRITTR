@@ -36,8 +36,6 @@ func set_direction(ability_direction : String) -> void:
 func activate(last_state : State) -> void:
 	gravity = parent.normal_gravity
 	max_falling_speed = parent.max_falling_speed
-	climbing_ray.reparent(parent, false)
-	
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	change_collider_to(crouching_hitbox)
 	line.add_point(Vector2.ZERO)

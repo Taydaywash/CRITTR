@@ -38,6 +38,7 @@ func set_direction(ability_direction : String) -> void:
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:c
 	change_collider_to(crouching_hitbox)
+	parent.set_collision_mask_value(6,false)
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -98,3 +99,4 @@ func process_physics(_delta) -> State:
 func deactivate(_next_state) -> void:
 	super(_next_state)
 	change_collider_to(default_hitbox)
+	parent.set_collision_mask_value(6,true)

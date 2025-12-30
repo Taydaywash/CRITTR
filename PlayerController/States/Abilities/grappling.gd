@@ -44,7 +44,6 @@ func set_direction(ability_direction : String) -> void:
 	direction = ability_direction
 
 func activate(last_state : State) -> void:
-	grapple_ray.reparent(parent, false)
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	has_collided = false
 	grapple_current_length = 0

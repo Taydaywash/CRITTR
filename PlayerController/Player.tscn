@@ -172,7 +172,7 @@ size = Vector2(71.112, 142.22195)
 [node name="PlayerController" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
 scale = Vector2(1.35, 1.35)
 collision_layer = 8
-collision_mask = 17
+collision_mask = 81
 floor_block_on_wall = false
 floor_max_angle = 0.0
 safe_margin = 0.1
@@ -594,32 +594,52 @@ placeholder_animation_color = Color(1, 1, 1, 1)
 script = ExtResource("16_2bslk")
 icon = ExtResource("24_qy6yu")
 
-[node name="Drill" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "crouching_hitbox", "normal_hitbox", "drill_ray", "line")]
+[node name="Drill" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "digging_state", "drill_ray", "drill_ray_not_digable", "line")]
 script = ExtResource("17_fuvci")
 icon = ExtResource("21_0wxel")
 falling_state = NodePath("../../Falling")
-wind_up_delay = 0.3
-wind_up_velocity = 100.0
+digging_state = NodePath("Digging")
+wind_up_delay = 0.2
+wind_up_velocity = 200.0
 initial_velocity = 1200.0
 turn_speed = 4.0
-forward_detection_ray_length = 150.0
 wall_detection_grace = 0.3
-crouching_hitbox = NodePath("../../../CrouchedHitbox")
-normal_hitbox = NodePath("../../../NormalHitbox")
-drill_ray = NodePath("DrillRay")
-line = NodePath("DrillRay/Line2D")
+drill_ray = NodePath("DrillRayDigable")
+drill_ray_not_digable = NodePath("DrillRayNotDigable")
+forward_detection_range = 300.0
+backwards_offset = 100.0
+line = NodePath("DrillRayDigable/Line2D")
+animation_name = "idle"
 placeholder_animation_color = Color(0.38170326, 0.38170323, 0.38170323, 1)
 
-[node name="Digging" type="Node" parent="StateMachine/Abilities/Drill"]
+[node name="Digging" type="Node" parent="StateMachine/Abilities/Drill" node_paths=PackedStringArray("jumping_state", "ascending_state", "crouching_hitbox", "normal_hitbox", "drill_ray", "drill_ray_not_digable", "line")]
 script = ExtResource("32_4o1t2")
+jumping_state = NodePath("../../../Jumping")
+ascending_state = NodePath("../../../Ascending")
+dig_speed = 400.0
+turn_speed = 4.0
+wall_exit_speed_multiplier = 3.0
+crouching_hitbox = NodePath("../../../../CrouchedHitbox")
+normal_hitbox = NodePath("../../../../NormalHitbox")
+drill_ray = NodePath("../DrillRayDigable")
+drill_ray_not_digable = NodePath("../DrillRayNotDigable")
+forward_detection_range = 175.0
+backwards_offset = 75.0
+line = NodePath("../DrillRayDigable/Line2D")
+animation_name = "idle"
+placeholder_animation_color = Color(0.49995556, 0.38109186, 0.17558163, 1)
 
-[node name="DrillRay" type="RayCast2D" parent="StateMachine/Abilities/Drill"]
-scale = Vector2(1.35, 1.35)
+[node name="DrillRayNotDigable" type="RayCast2D" parent="StateMachine/Abilities/Drill"]
 target_position = Vector2(0, 0)
-collision_mask = 65
-collide_with_areas = true
+hit_from_inside = true
 
-[node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Drill/DrillRay"]
+[node name="DrillRayDigable" type="RayCast2D" parent="StateMachine/Abilities/Drill"]
+target_position = Vector2(0, 0)
+collision_mask = 64
+hit_from_inside = true
+
+[node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Drill/DrillRayDigable"]
+width = 2.0
 default_color = Color(1, 0.43460146, 0.9889626, 1)
 
 [node name="JumpInputBuffer" type="Timer" parent="."]
@@ -631,11 +651,13 @@ one_shot = true
 position = Vector2(0, 10)
 scale = Vector2(1, 2)
 target_position = Vector2(100, 0)
+collision_mask = 65
 
 [node name="LeftRay" type="RayCast2D" parent="WallJumpRayReference"]
 position = Vector2(0, 10)
 scale = Vector2(1, 2)
 target_position = Vector2(-100, 0)
+collision_mask = 65
 
 [node name="CornerNudging" type="Node2D" parent="."]
 scale = Vector2(2, 2)
@@ -643,18 +665,22 @@ scale = Vector2(2, 2)
 [node name="NudgeRightRangeLeft" type="RayCast2D" parent="CornerNudging"]
 position = Vector2(-17.75, 0.00037002563)
 target_position = Vector2(0, -50)
+collision_mask = 65
 
 [node name="NudgeRightRangeRight" type="RayCast2D" parent="CornerNudging"]
 position = Vector2(-8, 0)
 target_position = Vector2(0, -50)
+collision_mask = 65
 
 [node name="NudgeLeftRangeLeft" type="RayCast2D" parent="CornerNudging"]
 position = Vector2(8, 0)
 target_position = Vector2(0, -50)
+collision_mask = 65
 
 [node name="NudgeLeftRangeRight" type="RayCast2D" parent="CornerNudging"]
 position = Vector2(17.75, 0.00037002563)
 target_position = Vector2(0, -50)
+collision_mask = 65
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -3.0517578e-05)
@@ -665,10 +691,8 @@ script = ExtResource("21_3imdl")
 default_zoom = 0.36
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 71.11111)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
 animation = &"death"
-offset = Vector2(0, -71.11111)
 
 [node name="Respawn Controller" type="Node" parent="."]
 script = ExtResource("37_jxerk")

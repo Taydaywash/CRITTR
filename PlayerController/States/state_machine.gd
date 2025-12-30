@@ -57,7 +57,7 @@ func change_state(new_state : State, direction = null) -> void:
 	if current_state:
 		current_state.deactivate(new_state)
 	current_state = new_state
-	if grounded_states.has(current_state) or (last_state == $Falling and new_state == $Jumping):
+	if grounded_states.has(current_state) or (last_state == $Falling and current_state == $Jumping):
 		abilities.refill_abilities()
 	if direction:
 		current_state.set_direction(direction)
@@ -65,6 +65,7 @@ func change_state(new_state : State, direction = null) -> void:
 			if child.get_class() == "Node": 
 				child.set_direction(direction)
 	current_state.activate(last_state)
+	
 
 #Propagate down from state machine to active state
 func process_input(event) -> void:

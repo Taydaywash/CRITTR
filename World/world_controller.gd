@@ -85,6 +85,7 @@ func transition_room():
 func set_enter_velocity():
 	call_deferred("set_enter_velocity_deferred")
 func set_enter_velocity_deferred():
+	player.set_collision_mask_value(7,false)
 	player.get_state_machine().force_change_state(player.get_state_machine().no_control_state)
 	var horizontal_axis = 0
 	var jumping = false
@@ -128,3 +129,4 @@ func set_enter_velocity_deferred():
 		player.get_state_machine().force_change_state(player.get_state_machine().diving_falling_state)
 	else:
 		player.get_state_machine().force_change_state(player.get_state_machine().falling_state)
+	player.set_collision_mask_value(7,true)

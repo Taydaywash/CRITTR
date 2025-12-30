@@ -14,6 +14,10 @@ func set_direction(_direction : String) -> void:
 	pass
 
 func activate(_last_state : State) -> void:
+	#Reparents Rays to player so that they follow the player
+	for child in get_children():
+		if child.get_class() == "RayCast2D":
+			child.reparent(parent, false)
 	#replace parent.modulate with this once animations are added
 	parent.play_animation(animation_name)
 	parent.modulate = placeholder_animation_color
