@@ -11,6 +11,7 @@ extends State
 @export var jump_input_buffer_patience : float
 @export var max_speed: float
 @export var speed_increment: float 
+@export var bounce_velocity: float
 
 @export_category("Wall detection rays")
 @export var right_ray : RayCast2D
@@ -41,14 +42,16 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(_delta) -> State:
-	if direction == "up":
-		parent.velocity.y = -1
-	elif direction == "down":
-		parent.velocity.y = 1
-	elif direction == "right":
-		parent.velocity.x = 1
-	elif direction == "left":
-		parent.velocity.x = -1
+	match direction:
+		"up":
+			parent.velocity.y = -1
+		"down":
+			parent.velocity.y = 1
+		"right":
+			parent.velocity.x = 1
+		"left":
+			parent.velocity.x = -1
+
 	parent.move_and_slide()
 
 	if direction == "down" and parent.is_on_floor():
@@ -67,10 +70,21 @@ func process_physics(_delta) -> State:
 		parent.velocity.y = move_toward(parent.velocity.y, -max_speed, speed_increment)
 	else:
 		return falling_state
+		
 	if jump_input_buffer.time_left > 0:
 		return jumping_state
-		#elif parent.velocity == Vector2(0,0):
-			#return idle_state 
+	#if (parent.is_on_ceiling() or parent.is_on_floor()) and parent.is_on_wall():
+		#return falling_state
+		
+	#if parent.is_on_ceiling() and direction != "up":
+		#parent.velocity.y = bounce_velocity
+		#return falling_state
+	#if parent.is_on_wall() and (direction != "right" or direction != "left"):
+		#if sprite.flip_h == true:
+			#parent.velocity.x = -bounce_velocity
+		#if sprite.flip_h == false:
+			#parent.velocity.x = bounce_velocity
+		#return falling_state
 	
 	return null
 

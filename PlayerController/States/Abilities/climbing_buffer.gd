@@ -33,7 +33,7 @@ func activate(last_state : State) -> void:
 	line.add_point(Vector2.ZERO)
 	line.add_point(Vector2.ZERO)
 	current_velocity = parent.velocity
-	parent.velocity = Vector2.ZERO
+	#parent.velocity = Vector2.ZERO
 	
 	
 	#parent.velocity = Vector2.ZERO
@@ -75,7 +75,7 @@ func process_physics(_delta) -> State:
 					parent.velocity.y = push_speed
 					parent.velocity.x = current_velocity.x
 	
-	if parent.get_slide_collision_count() > 0 :
+	if parent.get_slide_collision_count() > 0:
 		return climbing_state
 	elif climbing_input_buffer.time_left == 0:
 		return falling_state
