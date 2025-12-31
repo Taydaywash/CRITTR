@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://bnjdytut746x1"]
+[gd_scene load_steps=8 format=4 uid="uid://bnjdytut746x1"]
 
 [ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://World/room_controller.gd" id="1_y083e"]
 [ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="2_fo4mk"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://8ykotcb867ae" path="res://World/LevelEditor/Objects/Tiles/NoCollisionTiles.tscn" id="4_a0f8p"]
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_tc3tj"]
 [ext_resource type="Shape2D" uid="uid://kcu3cvf74df6" path="res://World/LevelEditor/Objects/Camera/baseCamera.tres" id="5_y083e"]
+[ext_resource type="PackedScene" uid="uid://bwgk51grjehh6" path="res://World/LevelEditor/Objects/GrapplePoint.tscn" id="7_butfq"]
 
 [node name="Room000" type="Node2D"]
 script = ExtResource("1_y083e")
@@ -37,6 +38,9 @@ z_index = 1
 position = Vector2(-64, -640)
 shape = ExtResource("5_y083e")
 debug_color = Color(1, 1, 1, 0.21568628)
+
+[node name="GrapplePoint" parent="." instance=ExtResource("7_butfq")]
+position = Vector2(-279, -701)
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

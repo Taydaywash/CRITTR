@@ -10,6 +10,8 @@ extends State
 @export var jumping_state : State
 @export var walking_state : State
 @export var ascending_state : State
+@export var grappling_pull_state: State
+
 @export_category("Parameters")
 @export var grapple_duration : float #seconds
 @export var grappling_speed: float
@@ -26,7 +28,6 @@ var jump_input_buffer: Timer
 var grapple_timer: Timer
 var grapple_current_length: float
 var has_collided = false
-enum grappling_speeds {SLOW = 500, MODERATE = 2000, FAST = 3000, EXTREME = 4000}
 
 func _ready() -> void:
 	#Input buffer setup:
@@ -66,9 +67,7 @@ func process_physics(delta) -> State:
 		grapple_current_length += grapple_increment * delta
 		if grapple_current_length > grapple_max_length:
 			grapple_current_length = grapple_max_length
-			
-		#print(grapple_current_length)
-		
+
 		match direction:
 			"right":
 				grapple_ray.target_position = Vector2(grapple_current_length,0)
@@ -84,15 +83,6 @@ func process_physics(delta) -> State:
 				line.set_point_position(1, Vector2(0, grapple_current_length))
 		
 		if grapple_ray.is_colliding():
-			if grapple_current_length > grapple_max_length * .75:
-				grappling_speed = grappling_speeds.EXTREME
-			elif grapple_current_length > grapple_max_length * .50:
-				grappling_speed = grappling_speeds.FAST
-			elif grapple_current_length > grapple_max_length * .25:
-				grappling_speed = grappling_speeds.MODERATE
-			elif grapple_current_length < grapple_max_length * .25:
-				grappling_speed = grappling_speeds.SLOW
-			
 			match direction:
 				"right":
 					parent.velocity.x = grappling_speed
@@ -103,23 +93,23 @@ func process_physics(delta) -> State:
 				"down":
 					parent.velocity.y = grappling_speed
 			has_collided = true
-			line.clear_points()
+			return grappling_pull_state
 
-	
-	#if (parent.is_on_wall() and parent.velocity == Vector2(0,0)):
-		#return falling_state
 	elif (!has_collided and grapple_current_length == grapple_max_length):
+		line.clear_points()
 		return falling_state
 	elif (has_collided and parent.velocity.x == 0):
+		line.clear_points()
 		return falling_state
 	
 	if (parent.is_on_floor()):
 		if jump_input_buffer.time_left > 0:
+			line.clear_points()
 			return jumping_state
 		elif has_collided and parent.velocity == Vector2(0,0):
+			line.clear_points()
 			return idle_state
 	return null
 
 func deactivate(_next_state) -> void:
-	line.clear_points()
-	grapple_ray.target_position = Vector2(0,0)
+	pass
