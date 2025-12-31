@@ -169,7 +169,7 @@ size = Vector2(71.11111, 5.92593)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxerk"]
 size = Vector2(71.112, 142.22195)
 
-[node name="PlayerController" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
+[node name="PlayerController" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "camera", "up", "down", "left", "right")]
 scale = Vector2(1.35, 1.35)
 collision_layer = 8
 collision_mask = 81
@@ -177,7 +177,12 @@ floor_block_on_wall = false
 floor_max_angle = 0.0
 safe_margin = 0.1
 script = ExtResource("1_4bhr5")
+state_machine = NodePath("StateMachine")
 camera = NodePath("Camera2D")
+up = NodePath("RoomTransitionSides/up")
+down = NodePath("RoomTransitionSides/down")
+left = NodePath("RoomTransitionSides/left")
+right = NodePath("RoomTransitionSides/right")
 normal_gravity = 3250
 max_falling_speed = 2000
 
@@ -616,9 +621,9 @@ placeholder_animation_color = Color(0.38170326, 0.38170323, 0.38170323, 1)
 script = ExtResource("32_4o1t2")
 jumping_state = NodePath("../../../Jumping")
 ascending_state = NodePath("../../../Ascending")
-dig_speed = 400.0
+dig_speed = 800.0
 turn_speed = 4.0
-wall_exit_speed_multiplier = 3.0
+wall_exit_speed_multiplier = 1.5
 crouching_hitbox = NodePath("../../../../CrouchedHitbox")
 normal_hitbox = NodePath("../../../../NormalHitbox")
 drill_ray = NodePath("../DrillRayDigable")
@@ -641,6 +646,9 @@ hit_from_inside = true
 [node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Drill/DrillRayDigable"]
 width = 2.0
 default_color = Color(1, 0.43460146, 0.9889626, 1)
+
+[node name="Respawn Controller" type="Node" parent="."]
+script = ExtResource("37_jxerk")
 
 [node name="JumpInputBuffer" type="Timer" parent="."]
 one_shot = true
@@ -693,9 +701,6 @@ default_zoom = 0.36
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hl1jv")
 animation = &"death"
-
-[node name="Respawn Controller" type="Node" parent="."]
-script = ExtResource("37_jxerk")
 
 [node name="TriggerHitbox" type="Area2D" parent="."]
 visible = false
@@ -755,6 +760,40 @@ z_index = -1
 position = Vector2(1.7660635e-07, 0.00012715657)
 shape = SubResource("RectangleShape2D_jxerk")
 disabled = true
+
+[node name="RoomTransitionSides" type="Node2D" parent="."]
+
+[node name="up" type="RayCast2D" parent="RoomTransitionSides"]
+position = Vector2(0, -71.11111)
+target_position = Vector2(0, -1)
+collision_mask = 128
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="down" type="RayCast2D" parent="RoomTransitionSides"]
+position = Vector2(0, 71.11111)
+target_position = Vector2(0, 1)
+collision_mask = 128
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="left" type="RayCast2D" parent="RoomTransitionSides"]
+position = Vector2(-35.555553, 0)
+target_position = Vector2(-1, 0)
+collision_mask = 128
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="right" type="RayCast2D" parent="RoomTransitionSides"]
+position = Vector2(35.555553, 0)
+target_position = Vector2(10, 0)
+collision_mask = 128
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
 
 [connection signal="area_entered" from="TriggerHitbox" to="Respawn Controller" method="_on_trigger_hitbox_area_entered"]
 [connection signal="body_entered" from="Hurtbox" to="Respawn Controller" method="_on_body_entered"]

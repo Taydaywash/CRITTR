@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://doeen61cwwase"]
+
+[sub_resource type="AudioStream" id="AudioStream_wk42v"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = SubResource("AudioStream_wk42v")

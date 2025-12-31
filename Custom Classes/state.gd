@@ -19,6 +19,7 @@ func activate(_last_state : State) -> void:
 		if child.get_class() == "RayCast2D":
 			child.reparent(parent, false)
 	#replace parent.modulate with this once animations are added
+#	parent.play_sound()
 	parent.play_animation(animation_name)
 	parent.modulate = placeholder_animation_color
 

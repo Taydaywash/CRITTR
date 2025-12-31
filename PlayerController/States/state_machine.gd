@@ -1,3 +1,4 @@
+class_name StateMachine
 extends Node
 
 @onready var abilities: Node = $Abilities

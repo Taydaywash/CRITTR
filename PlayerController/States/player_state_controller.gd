@@ -1,8 +1,14 @@
+class_name Player
 extends CharacterBody2D
 
-@onready var state_machine = $StateMachine
-
+@export var state_machine : StateMachine
 @export var camera : Camera2D
+@export_category("Room Transition Direction Rays")
+@export var up : RayCast2D
+@export var down : RayCast2D
+@export var left : RayCast2D
+@export var right : RayCast2D
+
 @export var normal_gravity : int
 @export var max_falling_speed : int
 @onready var animated_player_sprite: AnimatedSprite2D = $AnimatedPlayerSprite
@@ -29,8 +35,3 @@ func play_animation(name):
 		animated_player_sprite.play("no animation")
 	else:
 		animated_player_sprite.play(name)
-
-func get_camera():
-	return camera
-func get_state_machine():
-	return state_machine
