@@ -142,7 +142,7 @@ func change_room():
 
 func transition_room():
 	current_state = state_machine.current_state
-	state_machine.force_change_state(state_machine.no_control_state)
+	state_machine.call_deferred("force_change_state", state_machine.no_control_state)
 	set_up_room_detection_rays()
 	previous_room = current_room
 	if room_up != current_room:
