@@ -134,6 +134,7 @@ func process_frame(_delta) -> State:
 		if (fmod(snapped(inflated_duration_timer.time_left, 0.1), 0.5) == 0):
 			parent.modulate = Color(1,0,0)
 	return null
+
 func bounced():
 	if inflated_duration_timer.time_left - bounce_timer_reduction > 0:
 		inflated_duration_timer.wait_time = inflated_duration_timer.time_left - bounce_timer_reduction

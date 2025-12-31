@@ -9,6 +9,7 @@ extends Node
 @export var diving_state : State
 @export var diving_falling_state : State
 @export var falling_state : State
+@export var ascending : State
 @export_category("")
 @export var colliders_list : Array[CollisionShape2D]
 @export var starting_state : State

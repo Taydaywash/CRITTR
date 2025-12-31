@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://d35akktui3qne"]
+[gd_scene load_steps=8 format=4 uid="uid://d35akktui3qne"]
 
 [ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://World/room_controller.gd" id="1_cpfpd"]
 [ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="2_xqnq5"]
 [ext_resource type="TileSet" uid="uid://dtdcurky4kpfq" path="res://World/LevelEditor/Objects/Tiles/CollideableTiles.tres" id="3_lixov"]
 [ext_resource type="PackedScene" uid="uid://8ykotcb867ae" path="res://World/LevelEditor/Objects/Tiles/NoCollisionTiles.tscn" id="4_cuede"]
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_3ekm5"]
+[ext_resource type="PackedScene" uid="uid://bwgk51grjehh6" path="res://World/LevelEditor/Objects/GrapplePoint.tscn" id="6_3ks3e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0i3ih"]
 size = Vector2(3200, 3520)
@@ -39,6 +40,9 @@ z_index = 1
 position = Vector2(-64, -1504)
 shape = SubResource("RectangleShape2D_0i3ih")
 debug_color = Color(1, 1, 1, 0.21568628)
+
+[node name="GrapplePoint" parent="." instance=ExtResource("6_3ks3e")]
+position = Vector2(-128, -1024)
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

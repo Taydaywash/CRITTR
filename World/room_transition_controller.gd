@@ -62,7 +62,10 @@ func entered_room(room : Room):
 	exited_previous_room = false
 	transtiioning_room = true
 	fade_in = true
-	
+	print(player.up.get_collider())
+	print(player.down.get_collider())
+	print(player.left.get_collider())
+	print(player.right.get_collider())
 	room_up = player.up.get_collider().get_parent()
 	room_down = player.down.get_collider().get_parent()
 	room_left = player.left.get_collider().get_parent()
@@ -147,7 +150,10 @@ func _physics_process(_delta: float) -> void:
 			reset_room_detection_rays()
 	
 func return_to_state():
-	state_machine.force_change_state(state_machine.falling_state)
+	if player.velocity.y < 0:
+		state_machine.force_change_state(state_machine.ascending)
+	else:
+		state_machine.force_change_state(state_machine.falling_state)
 
 func change_room():
 	previous_room.exit_room()
@@ -158,22 +164,23 @@ func transition_room():
 	state_machine.call_deferred("force_change_state", state_machine.no_control_state)
 	set_up_room_detection_rays()
 	previous_room = current_room
-	if room_up != current_room:
-		print("entering_from_below")
-		current_room = room_up
-		entering_from_below = true
-	elif room_down != current_room:
-		print("entering_from_above")
-		current_room = room_down
-		entering_from_above = true
-	elif room_left != current_room:
-		print("entering_from_right")
+	if room_left != current_room:
+		print("left")
 		current_room = room_left
 		entering_from_right = true
 	elif room_right != current_room:
-		print("entering_from_left")
+		print("right")
 		current_room = room_right
 		entering_from_left = true
+	elif room_up != current_room:
+		print("up")
+		current_room = room_up
+		entering_from_below = true
+	elif room_down != current_room:
+		print("down")
+		current_room = room_down
+		entering_from_above = true
+	
 	else:
 		print("failed to find room")
 		current_room = starting_room

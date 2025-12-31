@@ -12,11 +12,7 @@ extends State
 @export var ascending_state : State
 
 @export_category("Parameters")
-@export var grapple_duration : float #seconds
-@export var grappling_speed: float
-@export var grapple_max_length: float
-@export var grapple_increment: float
-@export var jump_input_buffer_patience : float
+@export var grapple_end_speed_multiplier : float
 
 @export_category("References")
 @export var grapple_ray: RayCast2D
@@ -62,5 +58,7 @@ func process_physics(_delta) -> State:
 	return null
 
 func deactivate(_next_state) -> void:
+	super(_next_state)
+	parent.velocity = parent.velocity * grapple_end_speed_multiplier
 	grapple_ray.target_position = Vector2.ZERO
 	line.clear_points()

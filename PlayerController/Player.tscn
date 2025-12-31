@@ -35,7 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://dpg0ffmpj5l37" path="res://PlayerController/animations/fall/fall1.png" id="22_7xxh7"]
 [ext_resource type="Texture2D" uid="uid://ouegwis2yso0" path="res://PlayerController/animations/walking/f2.png" id="22_tycsm"]
 [ext_resource type="Texture2D" uid="uid://7t8x5fqt52wp" path="res://UI/GrappleIcon.png" id="22_wlqol"]
-[ext_resource type="Script" uid="uid://cykeeb3gol2qg" path="res://PlayerController/States/Abilities/grappling_pull.gd" id="23_0wxel"]
+[ext_resource type="Script" path="res://PlayerController/States/Abilities/grappling_pull.gd" id="23_0wxel"]
 [ext_resource type="Script" uid="uid://bhn2wmkkbfo2p" path="res://PlayerController/States/Abilities/climbing_buffer.gd" id="23_31xm6"]
 [ext_resource type="Texture2D" uid="uid://bc5tl458rwcxw" path="res://PlayerController/animations/walking/f3.png" id="23_fkl5p"]
 [ext_resource type="Texture2D" uid="uid://cxuugk8c7tdj5" path="res://UI/InflateIcon.png" id="23_hk2wy"]
@@ -187,7 +187,7 @@ right = NodePath("RoomTransitionSides/right")
 normal_gravity = 3250
 max_falling_speed = 2000
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("no_control_state", "death_state", "idle_state", "diving_state", "diving_falling_state", "falling_state", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("no_control_state", "death_state", "idle_state", "diving_state", "diving_falling_state", "falling_state", "ascending", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
 script = ExtResource("5_v55cd")
 no_control_state = NodePath("NoControl")
 death_state = NodePath("Death")
@@ -195,6 +195,7 @@ idle_state = NodePath("Idle")
 diving_state = NodePath("Diving")
 diving_falling_state = NodePath("Diving/DivingFalling")
 falling_state = NodePath("Falling")
+ascending = NodePath("Ascending")
 colliders_list = [NodePath("../NormalHitbox"), NodePath("../CrouchedHitbox"), NodePath("../Jumping")]
 starting_state = NodePath("Idle")
 grounded_states = [NodePath("Idle"), NodePath("Walking"), NodePath("Crouching"), NodePath("Crouching/IdleCrouching")]
@@ -513,8 +514,8 @@ walking_state = NodePath("../../Walking")
 ascending_state = NodePath("../../Ascending")
 grappling_pull_state = NodePath("GrapplingPull")
 grapple_duration = 0.5
-grappling_speed = 4000.0
-grapple_max_length = 800.0
+grappling_speed = 2000.0
+grapple_max_length = 600.0
 grapple_increment = 2500.0
 jump_input_buffer_patience = 0.2
 grapple_ray = NodePath("GrappleRay")
@@ -528,13 +529,14 @@ diving_state = NodePath("../../../Diving")
 jumping_state = NodePath("../../../Jumping")
 walking_state = NodePath("../../../Walking")
 ascending_state = NodePath("../../../Ascending")
+grapple_end_speed_multiplier = 1.3
 grapple_ray = NodePath("../GrappleRay")
 line = NodePath("../GrappleRay/Line2D")
 
 [node name="GrappleRay" type="RayCast2D" parent="StateMachine/Abilities/Grappling"]
 scale = Vector2(1.35, 1.35)
 target_position = Vector2(0, 0)
-collision_mask = 33
+collision_mask = 97
 collide_with_areas = true
 
 [node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Grappling/GrappleRay"]
@@ -574,6 +576,7 @@ placeholder_animation_color = Color(0.30563596, 0.3749689, 0.15632111, 1)
 [node name="ClimbingRay" type="RayCast2D" parent="StateMachine/Abilities/Climbing"]
 scale = Vector2(1.35, 1.35)
 target_position = Vector2(0, 0)
+collision_mask = 65
 collide_with_areas = true
 
 [node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Climbing/ClimbingRay"]

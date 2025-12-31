@@ -15,6 +15,7 @@ extends State
 @export_category("Parameters")
 @export var grapple_duration : float #seconds
 @export var grappling_speed: float
+
 @export var grapple_max_length: float
 @export var grapple_increment: float
 @export var jump_input_buffer_patience : float

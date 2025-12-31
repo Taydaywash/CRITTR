@@ -20,7 +20,7 @@
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_y6flb")]
-position = Vector2(2816, -576)
+position = Vector2(2751.9998, -576)
 
 [node name="UI" parent="." instance=ExtResource("4_il6x7")]
 
