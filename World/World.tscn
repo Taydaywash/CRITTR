@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://s1l25pe1fhgb"]
+[gd_scene load_steps=17 format=3 uid="uid://s1l25pe1fhgb"]
 
 [ext_resource type="Script" uid="uid://nvgmux0c34ar" path="res://World/room_transition_controller.gd" id="1_il6x7"]
 [ext_resource type="PackedScene" uid="uid://4ip81nticvcd" path="res://PlayerController/Player.tscn" id="2_y6flb"]
 [ext_resource type="PackedScene" uid="uid://bpodu035v3lq4" path="res://UI/UI.tscn" id="4_il6x7"]
 [ext_resource type="PackedScene" uid="uid://bnjdytut746x1" path="res://World/LevelEditor/Regions/Crash Site/Rooms/CrashedShip.tscn" id="4_o14yy"]
 [ext_resource type="PackedScene" uid="uid://c01sisufyx4ho" path="res://World/LevelEditor/Regions/Crash Site/Rooms/MovementTutorial.tscn" id="5_04mge"]
-[ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://UI/pause_screen.tscn" id="5_o14yy"]
+[ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://UI/PauseScreen.tscn" id="5_o14yy"]
 [ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://World/LevelEditor/Regions/Crash Site/Rooms/Platforms.tscn" id="6_eue43"]
 [ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://World/LevelEditor/Regions/Crash Site/Rooms/PlatformsTwo.tscn" id="7_4sj48"]
 [ext_resource type="PackedScene" uid="uid://djg64wdak2hx4" path="res://World/LevelEditor/Regions/Crash Site/Rooms/SecondaryPlatforms.tscn" id="8_s53j1"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://coj0cv5o7fmcj" path="res://World/LevelEditor/Regions/Crash Site/Rooms/WallJumpTutorial.tscn" id="12_l2bp3"]
 [ext_resource type="PackedScene" uid="uid://dkgn24ggvad45" path="res://World/LevelEditor/Regions/Crash Site/Rooms/DashCrittr.tscn" id="13_kpwrl"]
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://World/LevelEditor/Regions/Crash Site/Rooms/BelowShip.tscn" id="14_21v8o"]
+[ext_resource type="PackedScene" uid="uid://c2l75c4nehnvg" path="res://UI/AbilityChange.tscn" id="16_lcvgy"]
 
 [node name="World" type="Node2D"]
 
@@ -79,3 +80,5 @@ position = Vector2(4480, -7168)
 position = Vector2(2944, 1408)
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_o14yy")]
+
+[node name="AbilityChange" parent="." instance=ExtResource("16_lcvgy")]

@@ -465,12 +465,12 @@ nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
 nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 placeholder_animation_color = Color(0.62458503, 0.3189972, 0, 1)
 
-[node name="Abilities" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashing_state", "grappling_state", "climbing_state", "infated_state", "bounce_attack_state", "drill_state", "ability_up", "ability_down", "ability_left", "ability_right")]
+[node name="Abilities" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashing_state", "grappling_state", "climbing_state", "inflated_state", "bounce_attack_state", "drill_state", "ability_up", "ability_down", "ability_left", "ability_right")]
 script = ExtResource("11_75ds7")
 dashing_state = NodePath("Dashing")
 grappling_state = NodePath("Grappling")
-climbing_state = NodePath("Climbing/ClimbingSlide")
-infated_state = NodePath("Inflated")
+climbing_state = NodePath("Climbing")
+inflated_state = NodePath("Inflated")
 bounce_attack_state = NodePath("BounceAttack")
 drill_state = NodePath("Drill")
 ability_up = NodePath("Climbing")

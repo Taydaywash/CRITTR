@@ -1,9 +1,10 @@
+class_name AbilityController
 extends State
 
 @export var dashing_state : State
 @export var grappling_state : State
 @export var climbing_state : State
-@export var infated_state : State
+@export var inflated_state : State
 @export var bounce_attack_state : State
 @export var drill_state : State
 @export_category("")

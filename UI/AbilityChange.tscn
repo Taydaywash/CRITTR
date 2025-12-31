@@ -1,0 +1,282 @@
+[gd_scene load_steps=9 format=3 uid="uid://c2l75c4nehnvg"]
+
+[ext_resource type="Script" uid="uid://cbg2j0itlagn6" path="res://UI/ability_change.gd" id="1_k0vqm"]
+[ext_resource type="Texture2D" uid="uid://je2kc5u1j4x0" path="res://UI/BounceIcon.png" id="2_k0vqm"]
+[ext_resource type="Texture2D" uid="uid://hqyvhddj1nu" path="res://UI/DashIcon.png" id="3_nosih"]
+[ext_resource type="Texture2D" uid="uid://7t8x5fqt52wp" path="res://UI/GrappleIcon.png" id="4_054dr"]
+[ext_resource type="Texture2D" uid="uid://bfm1hwat15hwr" path="res://UI/ClimbingIcon.png" id="5_6h011"]
+[ext_resource type="Texture2D" uid="uid://cxuugk8c7tdj5" path="res://UI/InflateIcon.png" id="6_426br"]
+[ext_resource type="Texture2D" uid="uid://btmny16rfx85i" path="res://UI/DrillIcon.png" id="7_fasxi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1q3y"]
+bg_color = Color(0.0884924, 0.34135744, 0.341697, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.13333334, 0.8, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="PauseScreen" type="CanvasLayer"]
+process_mode = 3
+layer = 3
+visible = false
+script = ExtResource("1_k0vqm")
+
+[node name="Dash" type="Button" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -164.0
+offset_right = -128.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_k1q3y")
+text = "Bounce"
+icon = ExtResource("2_k0vqm")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Drill" type="Button" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -36.0
+offset_right = -128.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_k1q3y")
+text = "Bounce"
+icon = ExtResource("2_k0vqm")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Grapple" type="Button" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = 92.0
+offset_right = -128.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_k1q3y")
+text = "Bounce"
+icon = ExtResource("2_k0vqm")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Inflate" type="Button" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -164.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_k1q3y")
+text = "Bounce"
+icon = ExtResource("2_k0vqm")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Bounce" type="Button" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -36.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_k1q3y")
+text = "Bounce"
+icon = ExtResource("2_k0vqm")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Climb" type="Button" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = 92.0
+offset_right = 32.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_k1q3y")
+text = "Bounce"
+icon = ExtResource("2_k0vqm")
+icon_alignment = 2
+expand_icon = true
+
+[node name="up" type="OptionButton" parent="."]
+offset_left = 512.0
+offset_top = 128.0
+offset_right = 640.0
+offset_bottom = 256.0
+item_count = 6
+popup/item_0/text = "Dash"
+popup/item_0/icon = ExtResource("3_nosih")
+popup/item_0/id = 0
+popup/item_1/text = "Grapple"
+popup/item_1/icon = ExtResource("4_054dr")
+popup/item_1/id = 1
+popup/item_2/text = "Climb"
+popup/item_2/icon = ExtResource("5_6h011")
+popup/item_2/id = 2
+popup/item_3/text = "Inflate"
+popup/item_3/icon = ExtResource("6_426br")
+popup/item_3/id = 3
+popup/item_4/text = "Drill"
+popup/item_4/icon = ExtResource("7_fasxi")
+popup/item_4/id = 4
+popup/item_5/text = "Bounce"
+popup/item_5/icon = ExtResource("2_k0vqm")
+popup/item_5/id = 5
+
+[node name="down" type="OptionButton" parent="."]
+offset_left = 512.0
+offset_top = 384.0
+offset_right = 640.0
+offset_bottom = 512.0
+item_count = 6
+popup/item_0/text = "Dash"
+popup/item_0/icon = ExtResource("3_nosih")
+popup/item_0/id = 0
+popup/item_1/text = "Grapple"
+popup/item_1/icon = ExtResource("4_054dr")
+popup/item_1/id = 1
+popup/item_2/text = "Climb"
+popup/item_2/icon = ExtResource("5_6h011")
+popup/item_2/id = 2
+popup/item_3/text = "Inflate"
+popup/item_3/icon = ExtResource("6_426br")
+popup/item_3/id = 3
+popup/item_4/text = "Drill"
+popup/item_4/icon = ExtResource("7_fasxi")
+popup/item_4/id = 4
+popup/item_5/text = "Bounce"
+popup/item_5/icon = ExtResource("2_k0vqm")
+popup/item_5/id = 5
+
+[node name="left" type="OptionButton" parent="."]
+offset_left = 384.0
+offset_top = 256.0
+offset_right = 512.0
+offset_bottom = 384.0
+item_count = 6
+popup/item_0/text = "Dash"
+popup/item_0/icon = ExtResource("3_nosih")
+popup/item_0/id = 0
+popup/item_1/text = "Grapple"
+popup/item_1/icon = ExtResource("4_054dr")
+popup/item_1/id = 1
+popup/item_2/text = "Climb"
+popup/item_2/icon = ExtResource("5_6h011")
+popup/item_2/id = 2
+popup/item_3/text = "Inflate"
+popup/item_3/icon = ExtResource("6_426br")
+popup/item_3/id = 3
+popup/item_4/text = "Drill"
+popup/item_4/icon = ExtResource("7_fasxi")
+popup/item_4/id = 4
+popup/item_5/text = "Bounce"
+popup/item_5/icon = ExtResource("2_k0vqm")
+popup/item_5/id = 5
+
+[node name="right" type="OptionButton" parent="."]
+offset_left = 640.0
+offset_top = 256.0
+offset_right = 768.0
+offset_bottom = 384.0
+item_count = 6
+popup/item_0/text = "Dash"
+popup/item_0/icon = ExtResource("3_nosih")
+popup/item_0/id = 0
+popup/item_1/text = "Grapple"
+popup/item_1/icon = ExtResource("4_054dr")
+popup/item_1/id = 1
+popup/item_2/text = "Climb"
+popup/item_2/icon = ExtResource("5_6h011")
+popup/item_2/id = 2
+popup/item_3/text = "Inflate"
+popup/item_3/icon = ExtResource("6_426br")
+popup/item_3/id = 3
+popup/item_4/text = "Drill"
+popup/item_4/icon = ExtResource("7_fasxi")
+popup/item_4/id = 4
+popup/item_5/text = "Bounce"
+popup/item_5/icon = ExtResource("2_k0vqm")
+popup/item_5/id = 5
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -228.0
+offset_right = 320.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="Back" type="Button" parent="."]
+offset_left = 848.0
+offset_top = 128.0
+offset_right = 880.0
+offset_bottom = 160.0
+text = "X"
+
+[connection signal="pressed" from="Dash" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Drill" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Grapple" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Inflate" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Bounce" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Climb" to="." method="_on_resume_pressed"]
+[connection signal="item_selected" from="up" to="." method="_on_up_item_selected"]
+[connection signal="item_selected" from="down" to="." method="_on_down_item_selected"]
+[connection signal="item_selected" from="left" to="." method="_on_left_item_selected"]
+[connection signal="item_selected" from="right" to="." method="_on_right_item_selected"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
