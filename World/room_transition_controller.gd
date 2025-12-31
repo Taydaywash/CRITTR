@@ -27,9 +27,12 @@ var current_room : Room = null
 var previous_room : Room = null
 var screen_is_black : bool = false
 var state_controller
-var fade_in = false
-var fade_out = false
-var transtiioning_room = false
+var fade_in : bool = false
+var fade_out : bool = false
+var transtiioning_room : bool = false
+
+var respawning : bool = false
+var respawn_position : Vector2
 
 var entering_from_below : bool = false
 var entering_from_above : bool = false
@@ -69,6 +72,11 @@ func entered_room(room : Room):
 func exited_room(_room : Room):
 	exited_previous_room = true
 
+func respawn(respawn_pos):
+	respawning = true
+	fade_in = true
+	respawn_position = respawn_pos
+
 func _process(delta: float) -> void:
 	if fade_in:
 		ui.increment_fade_in(delta,screen_fade_speed)
@@ -76,6 +84,11 @@ func _process(delta: float) -> void:
 			screen_is_black = true
 			fade_in = false
 	if screen_is_black:
+		if respawning:
+			player.set_deferred("position",respawn_position)
+			state_machine.call_deferred("force_change_state", state_machine.falling_state)
+			fade_out = true
+			respawning = false
 		if transtiioning_room:
 			change_room()
 			fade_out = true
