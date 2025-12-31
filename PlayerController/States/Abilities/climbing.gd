@@ -6,6 +6,7 @@ extends State
 @export var walking_state : State
 @export var ascending_state : State
 @export var idle_state : State
+@export var wall_jumping_state: State
 
 @export_category("Parameters")
 @export var jump_input_buffer_patience : float
@@ -13,9 +14,9 @@ extends State
 @export var speed_increment: float 
 @export var bounce_velocity: float
 
-@export_category("Wall detection rays")
-@export var right_ray : RayCast2D
-@export var left_ray : RayCast2D
+@export_category("References")
+@export var climbing_ray: RayCast2D
+
 
 @export_category("Colliders")
 @export var default_hitbox : CollisionShape2D
@@ -24,6 +25,8 @@ extends State
 var jump_input_buffer: Timer
 var climbing_input_buffer: Timer
 var direction : String
+var one_frame_passed : bool = false
+var last_position: Vector2
 
 func _ready() -> void:
 	#Input buffer setup:
@@ -39,6 +42,7 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:c
 	change_collider_to(crouching_hitbox)
 	parent.set_collision_mask_value(6,false)
+	one_frame_passed = false
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -57,42 +61,46 @@ func process_physics(_delta) -> State:
 			parent.velocity.x = speed_increment
 		"left":
 			parent.velocity.x = -speed_increment
-
+	
 	parent.move_and_slide()
 
 	if direction == "down" and parent.is_on_floor():
 		if sprite.flip_h == true:
 			parent.velocity.x = move_toward(parent.velocity.x, -max_speed, speed_increment)
+			climbing_ray.target_position = Vector2(-30,0)
 		elif sprite.flip_h == false: 
 			parent.velocity.x = move_toward(parent.velocity.x, max_speed, speed_increment)
+			climbing_ray.target_position = Vector2(30,0)
 	elif direction == "up" and parent.is_on_ceiling():
 		if sprite.flip_h == true:
 			parent.velocity.x = move_toward(parent.velocity.x, -max_speed, speed_increment)
+			climbing_ray.target_position = Vector2(-30,0)
 		elif sprite.flip_h == false: 
 			parent.velocity.x = move_toward(parent.velocity.x, max_speed, speed_increment)
+			climbing_ray.target_position = Vector2(30,0)
 	elif direction == "right" and parent.is_on_wall():
 		parent.velocity.y = move_toward(parent.velocity.y, -max_speed, speed_increment)
+		climbing_ray.target_position = Vector2(0, -40)
 	elif direction == "left" and parent.is_on_wall():
 		parent.velocity.y = move_toward(parent.velocity.y, -max_speed, speed_increment)
+		climbing_ray.target_position = Vector2(0, -40)
 	else:
 		if parent.velocity.y < 0:
 			return ascending_state
 		return falling_state
 		
-	if jump_input_buffer.time_left > 0:
-		return jumping_state
-	#if (parent.is_on_ceiling() or parent.is_on_floor()) and parent.is_on_wall():
-		#return falling_state
+	if climbing_ray.is_colliding():
+		return falling_state
 		
-	#if parent.is_on_ceiling() and direction != "up":
-		#parent.velocity.y = bounce_velocity
-		#return falling_state
-	#if parent.is_on_wall() and (direction != "right" or direction != "left"):
-		#if sprite.flip_h == true:
-			#parent.velocity.x = -bounce_velocity
-		#if sprite.flip_h == false:
-			#parent.velocity.x = bounce_velocity
-		#return falling_state
+	if jump_input_buffer.time_left > 0:
+		if parent.is_on_wall():
+			return wall_jumping_state
+		return jumping_state
+		
+	if one_frame_passed:
+		return null
+	else:
+		one_frame_passed = true
 	
 	return null
 
@@ -100,3 +108,4 @@ func deactivate(_next_state) -> void:
 	super(_next_state)
 	change_collider_to(default_hitbox)
 	parent.set_collision_mask_value(6,true)
+	climbing_ray.target_position = Vector2.ZERO

@@ -27,8 +27,8 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(_last_state : State) -> void:
 	super(_last_state)
-	one_frame_passed = 0
 	parent.z_index = 2
+	one_frame_passed = false
 	line.add_point(Vector2.ZERO)
 	line.add_point(Vector2.ZERO)
 	parent.set_collision_mask_value(7,false)
