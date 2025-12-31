@@ -468,10 +468,10 @@ climbing_state = NodePath("Climbing/ClimbingSlide")
 infated_state = NodePath("Inflated")
 bounce_attack_state = NodePath("BounceAttack")
 drill_state = NodePath("Drill")
-ability_up = NodePath("Drill")
-ability_down = NodePath("Drill")
-ability_left = NodePath("Drill")
-ability_right = NodePath("Drill")
+ability_up = NodePath("Climbing")
+ability_down = NodePath("Climbing")
+ability_left = NodePath("Climbing")
+ability_right = NodePath("Climbing")
 
 [node name="Dashing" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("jumping_state", "walking_state", "falling_state", "idle_state", "diving_state", "ascending_state", "jump_input_buffer", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("12_evkiq")
@@ -535,7 +535,7 @@ line = NodePath("ClimbingRay/Line2D")
 default_hitbox = NodePath("../../../NormalHitbox")
 crouching_hitbox = NodePath("../../../CrouchedHitbox")
 
-[node name="ClimbingSlide" type="Node" parent="StateMachine/Abilities/Climbing" node_paths=PackedStringArray("falling_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "idle_state", "right_ray", "left_ray", "default_hitbox", "crouching_hitbox")]
+[node name="ClimbingSlide" type="Node" parent="StateMachine/Abilities/Climbing" node_paths=PackedStringArray("falling_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "idle_state", "wall_jumping_state", "climbing_ray", "default_hitbox", "crouching_hitbox")]
 script = ExtResource("14_hl1jv")
 falling_state = NodePath("../../../Falling")
 diving_state = NodePath("../../../Diving")
@@ -543,12 +543,12 @@ jumping_state = NodePath("../../../Jumping")
 walking_state = NodePath("../../../Walking")
 ascending_state = NodePath("../../../Ascending")
 idle_state = NodePath("../../../Idle")
+wall_jumping_state = NodePath("../../../WallCling/WallJumping")
 jump_input_buffer_patience = 0.2
 max_speed = 2000.0
 speed_increment = 20.0
 bounce_velocity = 400.0
-right_ray = NodePath("../../../../WallJumpRayReference/RightRay")
-left_ray = NodePath("../../../../WallJumpRayReference/LeftRay")
+climbing_ray = NodePath("../ClimbingRay")
 default_hitbox = NodePath("../../../../NormalHitbox")
 crouching_hitbox = NodePath("../../../../CrouchedHitbox")
 placeholder_animation_color = Color(0.30563596, 0.3749689, 0.15632111, 1)
