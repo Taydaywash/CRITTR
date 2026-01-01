@@ -54,7 +54,7 @@ func activate(last_state : State) -> void:
 	player.velocity = Vector2(0,0)
 
 
-func process_input(event : InputEvent) -> State:
+func process_input(_event : InputEvent) -> State:
 	#if event.is_action_pressed("jump"):
 		#jump_input_buffer.start()
 	#if event.is_action_pressed("dive"):

@@ -64,10 +64,22 @@ func entered_room(room : Room):
 	exited_previous_room = false
 	transtiioning_room = true
 	fade_in = true
-	room_up = player.up.get_collider().get_parent()
-	room_down = player.down.get_collider().get_parent()
-	room_left = player.left.get_collider().get_parent()
-	room_right = player.right.get_collider().get_parent()
+	if player.up.get_collider():
+		room_up = player.up.get_collider().get_parent()
+	else:
+		room_up = null
+	if player.down.get_collider():
+		room_down = player.down.get_collider().get_parent()
+	else:
+		room_down = null
+	if player.left.get_collider():
+		room_left = player.left.get_collider().get_parent()
+	else:
+		room_left = null
+	if player.right.get_collider():
+		room_right = player.right.get_collider().get_parent()
+	else:
+		room_right = null
 	transition_room()
 
 func exited_room(_room : Room):

@@ -61,9 +61,12 @@ func process_physics(delta) -> State:
 	drill_ray_not_digable.position = new_angle_vector * -backwards_offset
 	line.set_point_position(1, drill_ray.target_position)
 	player.velocity = new_angle_vector * dig_speed
-	
-	player.bounce_and_slide()
+	var pre_slide_velocity = player.velocity
 	player.move_and_slide()
+	if player.is_on_wall():
+		player.velocity.x = -pre_slide_velocity.x
+	if player.is_on_floor() or player.is_on_ceiling():
+		player.velocity.y = -pre_slide_velocity.y
 	if can_exit_state():
 		if Input.is_action_pressed("jump"):
 			return jumping_state
