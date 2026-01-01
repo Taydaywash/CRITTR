@@ -6,7 +6,7 @@ var animation_name : String
 @export
 var placeholder_animation_color : Color
 
-var player : Player
+var parent : CharacterBody2D
 var sprite : AnimatedSprite2D
 var colliders : Array[CollisionShape2D]
 
@@ -17,11 +17,11 @@ func activate(_last_state : State) -> void:
 	#Reparents Rays to player so that they follow the player
 	for child in get_children():
 		if child.get_class() == "RayCast2D":
-			child.reparent(player, false)
+			child.reparent(parent, false)
 	#replace parent.modulate with this once animations are added
 #	parent.play_sound()
-	player.play_animation(animation_name)
-	player.modulate = placeholder_animation_color
+	parent.play_animation(animation_name)
+	parent.modulate = placeholder_animation_color
 
 func process_input(_event) -> State:
 	return null
