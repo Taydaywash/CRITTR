@@ -27,32 +27,32 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(_last_state : State) -> void:
 	super(_last_state)
-	parent.z_index = 2
+	player.z_index = 2
 	one_frame_passed = false
 	line.add_point(Vector2.ZERO)
 	line.add_point(Vector2.ZERO)
-	parent.set_collision_mask_value(7,false)
+	player.set_collision_mask_value(7,false)
 	change_collider_to(crouching_hitbox)
-	parent.velocity = Vector2(0,0)
+	player.velocity = Vector2(0,0)
 	if direction == "up":
-		parent.velocity.y = -dig_speed
+		player.velocity.y = -dig_speed
 	elif direction == "down":
-		parent.velocity.y = dig_speed
+		player.velocity.y = dig_speed
 	elif direction == "left":
-		parent.velocity.x = -dig_speed
+		player.velocity.x = -dig_speed
 	elif direction == "right":
-		parent.velocity.x = dig_speed
+		player.velocity.x = dig_speed
 
 func process_physics(delta) -> State:
-	new_angle_degrees = parent.velocity.angle()
+	new_angle_degrees = player.velocity.angle()
 	if Input.is_action_pressed("move_up"):
-		new_angle_degrees = lerp_angle(parent.velocity.angle(),Vector2(0,-1).angle(),clampf(turn_speed * delta,0.0,1.0))
+		new_angle_degrees = lerp_angle(player.velocity.angle(),Vector2(0,-1).angle(),clampf(turn_speed * delta,0.0,1.0))
 	if Input.is_action_pressed("move_down"):
-		new_angle_degrees = lerp_angle(parent.velocity.angle(),Vector2(0,1).angle(),clampf(turn_speed * delta,0.0,1.0))
+		new_angle_degrees = lerp_angle(player.velocity.angle(),Vector2(0,1).angle(),clampf(turn_speed * delta,0.0,1.0))
 	if Input.is_action_pressed("move_left"):
-		new_angle_degrees = lerp_angle(parent.velocity.angle(),Vector2(-1,0).angle(),clampf(turn_speed * delta,0.0,1.0))
+		new_angle_degrees = lerp_angle(player.velocity.angle(),Vector2(-1,0).angle(),clampf(turn_speed * delta,0.0,1.0))
 	if Input.is_action_pressed("move_right"):
-		new_angle_degrees = lerp_angle(parent.velocity.angle(),Vector2(1,0).angle(),clampf(turn_speed * delta,0.0,1.0))
+		new_angle_degrees = lerp_angle(player.velocity.angle(),Vector2(1,0).angle(),clampf(turn_speed * delta,0.0,1.0))
 	new_angle_vector = Vector2(cos(new_angle_degrees),sin(new_angle_degrees)).normalized()
 	
 	drill_ray.target_position = new_angle_vector * forward_detection_range
@@ -60,10 +60,10 @@ func process_physics(delta) -> State:
 	drill_ray_not_digable.target_position = drill_ray.target_position
 	drill_ray_not_digable.position = new_angle_vector * -backwards_offset
 	line.set_point_position(1, drill_ray.target_position)
-	parent.velocity = new_angle_vector * dig_speed
+	player.velocity = new_angle_vector * dig_speed
 	
-	parent.bounce_and_slide()
-	parent.move_and_slide()
+	player.bounce_and_slide()
+	player.move_and_slide()
 	if can_exit_state():
 		if Input.is_action_pressed("jump"):
 			return jumping_state
@@ -84,8 +84,8 @@ func process_frame(_delta) -> State:
 
 func deactivate(_next_state : State) -> void:
 	super(_next_state)
-	parent.z_index = 0
-	parent.velocity = parent.velocity * wall_exit_speed_multiplier
+	player.z_index = 0
+	player.velocity = player.velocity * wall_exit_speed_multiplier
 	change_collider_to(normal_hitbox)
 	line.clear_points()
-	parent.set_collision_mask_value(7,true)
+	player.set_collision_mask_value(7,true)

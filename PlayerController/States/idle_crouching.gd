@@ -37,14 +37,14 @@ var horizontal_input : int = 0
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	change_collider_to(crouching_hitbox)
-	gravity = parent.normal_gravity
-	max_falling_speed = parent.max_falling_speed
+	gravity = player.normal_gravity
+	max_falling_speed = player.max_falling_speed
 	if last_state != crouching_state:
 		sprite.scale.y = y_initial_sprite_stretch_multiplier
 		sprite.scale.x = x_initial_sprite_stretch_multiplier
 
 func process_input(event : InputEvent) -> State:
-	if event.is_action_pressed("jump") and parent.is_on_floor() and can_uncrouch():
+	if event.is_action_pressed("jump") and player.is_on_floor() and can_uncrouch():
 		return jumping_state
 	if event.is_action_pressed("dive") and can_uncrouch():
 		return diving_state
@@ -53,21 +53,21 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	if parent.velocity.y < max_falling_speed:
-		parent.velocity.y += gravity * delta
-	parent.velocity.x = move_toward(parent.velocity.x,0,sliding_deceleration)
+	if player.velocity.y < max_falling_speed:
+		player.velocity.y += gravity * delta
+	player.velocity.x = move_toward(player.velocity.x,0,sliding_deceleration)
 	
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
-	if (abs(parent.velocity.x) < crouched_walk_speed) or (sign(horizontal_input) != sign(parent.velocity.x)):
-		parent.velocity.x += crouched_acceleration * delta * horizontal_input
+	if (abs(player.velocity.x) < crouched_walk_speed) or (sign(horizontal_input) != sign(player.velocity.x)):
+		player.velocity.x += crouched_acceleration * delta * horizontal_input
 	if horizontal_input == 0:
-		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),sliding_deceleration * delta).x
-	parent.move_and_slide()
-	if abs(parent.velocity.x) > 0:
+		player.velocity.x = player.velocity.move_toward(Vector2(0,0),sliding_deceleration * delta).x
+	player.move_and_slide()
+	if abs(player.velocity.x) > 0:
 		return crouching_state
 	if !Input.is_action_pressed("move_down") and can_uncrouch():
 		return idle_state
-	if !parent.is_on_floor() and can_uncrouch():
+	if !player.is_on_floor() and can_uncrouch():
 		return falling_state
 	return null
 

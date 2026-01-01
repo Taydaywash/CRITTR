@@ -34,8 +34,8 @@ func set_direction(ability_direction : String) -> void:
 	direction = ability_direction
 
 func activate(last_state : State) -> void:
-	gravity = parent.normal_gravity
-	max_falling_speed = parent.max_falling_speed
+	gravity = player.normal_gravity
+	max_falling_speed = player.max_falling_speed
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	change_collider_to(crouching_hitbox)
 	line.add_point(Vector2.ZERO)
@@ -61,26 +61,26 @@ func process_input(_event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	if parent.velocity.y < max_falling_speed and not climbing_ray.is_colliding():
-		parent.velocity.y += gravity * delta
-	parent.move_and_slide()
+	if player.velocity.y < max_falling_speed and not climbing_ray.is_colliding():
+		player.velocity.y += gravity * delta
+	player.move_and_slide()
 	if climbing_ray.is_colliding():
 		match direction:
 			"right":
-				parent.velocity.x = push_speed
-				parent.velocity.y = 0
+				player.velocity.x = push_speed
+				player.velocity.y = 0
 			"left":
-				parent.velocity.x = -push_speed
-				parent.velocity.y = 0
+				player.velocity.x = -push_speed
+				player.velocity.y = 0
 			"up":
-				parent.velocity.y = -push_speed
-				parent.velocity.x = 0
+				player.velocity.y = -push_speed
+				player.velocity.x = 0
 			"down":
-				parent.velocity.y = push_speed
-				parent.velocity.x = 0
+				player.velocity.y = push_speed
+				player.velocity.x = 0
 	elif climbing_input_buffer.time_left == 0:
 		return falling_state
-	if parent.get_slide_collision_count() > 0:
+	if player.get_slide_collision_count() > 0:
 		return climbing_state
 	return null
 	

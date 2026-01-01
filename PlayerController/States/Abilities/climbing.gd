@@ -41,7 +41,7 @@ func set_direction(ability_direction : String) -> void:
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:c
 	change_collider_to(crouching_hitbox)
-	parent.set_collision_mask_value(6,false)
+	player.set_collision_mask_value(6,false)
 	one_frame_passed = false
 
 func process_input(event : InputEvent) -> State:
@@ -54,38 +54,38 @@ func process_input(event : InputEvent) -> State:
 func process_physics(_delta) -> State:
 	match direction:
 		"up":
-			parent.velocity.y = -speed_increment
+			player.velocity.y = -speed_increment
 		"down":
-			parent.velocity.y = speed_increment
+			player.velocity.y = speed_increment
 		"right":
-			parent.velocity.x = speed_increment
+			player.velocity.x = speed_increment
 		"left":
-			parent.velocity.x = -speed_increment
+			player.velocity.x = -speed_increment
 	
-	parent.move_and_slide()
+	player.move_and_slide()
 
-	if direction == "down" and parent.is_on_floor():
+	if direction == "down" and player.is_on_floor():
 		if sprite.flip_h == true:
-			parent.velocity.x = move_toward(parent.velocity.x, -max_speed, speed_increment)
+			player.velocity.x = move_toward(player.velocity.x, -max_speed, speed_increment)
 			climbing_ray.target_position = Vector2(-30,0)
 		elif sprite.flip_h == false: 
-			parent.velocity.x = move_toward(parent.velocity.x, max_speed, speed_increment)
+			player.velocity.x = move_toward(player.velocity.x, max_speed, speed_increment)
 			climbing_ray.target_position = Vector2(30,0)
-	elif direction == "up" and parent.is_on_ceiling():
+	elif direction == "up" and player.is_on_ceiling():
 		if sprite.flip_h == true:
-			parent.velocity.x = move_toward(parent.velocity.x, -max_speed, speed_increment)
+			player.velocity.x = move_toward(player.velocity.x, -max_speed, speed_increment)
 			climbing_ray.target_position = Vector2(-30,0)
 		elif sprite.flip_h == false: 
-			parent.velocity.x = move_toward(parent.velocity.x, max_speed, speed_increment)
+			player.velocity.x = move_toward(player.velocity.x, max_speed, speed_increment)
 			climbing_ray.target_position = Vector2(30,0)
-	elif direction == "right" and parent.is_on_wall():
-		parent.velocity.y = move_toward(parent.velocity.y, -max_speed, speed_increment)
+	elif direction == "right" and player.is_on_wall():
+		player.velocity.y = move_toward(player.velocity.y, -max_speed, speed_increment)
 		climbing_ray.target_position = Vector2(0, -40)
-	elif direction == "left" and parent.is_on_wall():
-		parent.velocity.y = move_toward(parent.velocity.y, -max_speed, speed_increment)
+	elif direction == "left" and player.is_on_wall():
+		player.velocity.y = move_toward(player.velocity.y, -max_speed, speed_increment)
 		climbing_ray.target_position = Vector2(0, -40)
 	else:
-		if parent.velocity.y < 0:
+		if player.velocity.y < 0:
 			return ascending_state
 		return falling_state
 		
@@ -93,7 +93,7 @@ func process_physics(_delta) -> State:
 		return falling_state
 		
 	if jump_input_buffer.time_left > 0:
-		if parent.is_on_wall():
+		if player.is_on_wall():
 			return wall_jumping_state
 		return jumping_state
 		
@@ -107,5 +107,5 @@ func process_physics(_delta) -> State:
 func deactivate(_next_state) -> void:
 	super(_next_state)
 	change_collider_to(default_hitbox)
-	parent.set_collision_mask_value(6,true)
+	player.set_collision_mask_value(6,true)
 	climbing_ray.target_position = Vector2.ZERO

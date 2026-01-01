@@ -51,7 +51,7 @@ func activate(last_state : State) -> void:
 	grapple_current_length = 0
 	line.add_point(Vector2.ZERO)
 	line.add_point(Vector2.ZERO)
-	parent.velocity = Vector2(0,0)
+	player.velocity = Vector2(0,0)
 
 
 func process_input(event : InputEvent) -> State:
@@ -63,7 +63,7 @@ func process_input(event : InputEvent) -> State:
 
 func process_physics(delta) -> State:
 	
-	parent.move_and_slide()
+	player.move_and_slide()
 	if !has_collided and grapple_current_length < grapple_max_length:
 		grapple_current_length += grapple_increment * delta
 		if grapple_current_length > grapple_max_length:
@@ -86,28 +86,28 @@ func process_physics(delta) -> State:
 		if grapple_ray.is_colliding():
 			match direction:
 				"right":
-					parent.velocity.x = grappling_speed
+					player.velocity.x = grappling_speed
 				"left":
-					parent.velocity.x = -grappling_speed
+					player.velocity.x = -grappling_speed
 				"up":
-					parent.velocity.y = -grappling_speed
+					player.velocity.y = -grappling_speed
 				"down":
-					parent.velocity.y = grappling_speed
+					player.velocity.y = grappling_speed
 			has_collided = true
 			return grappling_pull_state
 
 	elif (!has_collided and grapple_current_length == grapple_max_length):
 		line.clear_points()
 		return falling_state
-	elif (has_collided and parent.velocity.x == 0):
+	elif (has_collided and player.velocity.x == 0):
 		line.clear_points()
 		return falling_state
 	
-	if (parent.is_on_floor()):
+	if (player.is_on_floor()):
 		if jump_input_buffer.time_left > 0:
 			line.clear_points()
 			return jumping_state
-		elif has_collided and parent.velocity == Vector2(0,0):
+		elif has_collided and player.velocity == Vector2(0,0):
 			line.clear_points()
 			return idle_state
 	return null

@@ -41,24 +41,24 @@ func process_input(event : InputEvent) -> State:
 func process_physics(_delta) -> State:
 	grapple_ray.target_position = grapple_ray.to_local(grapple_ray.get_collision_point())
 	line.set_point_position(1, grapple_ray.to_local(grapple_ray.get_collision_point()))
-	parent.move_and_slide()
+	player.move_and_slide()
 	
-	if direction == "up" and parent.global_position.y < global_point.y:
+	if direction == "up" and player.global_position.y < global_point.y:
 		return ascending_state
-	elif direction == "down" and parent.global_position.y > global_point.y:
+	elif direction == "down" and player.global_position.y > global_point.y:
 		return falling_state
-	elif direction == "right" and parent.global_position.x > global_point.x:
+	elif direction == "right" and player.global_position.x > global_point.x:
 		return falling_state
-	elif direction == "left" and parent.global_position.x < global_point.x:
+	elif direction == "left" and player.global_position.x < global_point.x:
 		return falling_state
 	
-	if parent.get_slide_collision_count() > 0:
+	if player.get_slide_collision_count() > 0:
 		return falling_state
 
 	return null
 
 func deactivate(_next_state) -> void:
 	super(_next_state)
-	parent.velocity = parent.velocity * grapple_end_speed_multiplier
+	player.velocity = player.velocity * grapple_end_speed_multiplier
 	grapple_ray.target_position = Vector2.ZERO
 	line.clear_points()

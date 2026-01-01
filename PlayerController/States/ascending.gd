@@ -37,8 +37,8 @@ func _ready() -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate() as defined in state.gd and then also do:
-	gravity = parent.normal_gravity
-	max_falling_speed = parent.max_falling_speed
+	gravity = player.normal_gravity
+	max_falling_speed = player.max_falling_speed
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("use_ability"):
@@ -52,30 +52,30 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	if parent.velocity.y < max_falling_speed:
-		parent.velocity.y += gravity * delta
+	if player.velocity.y < max_falling_speed:
+		player.velocity.y += gravity * delta
 	
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
-	if (abs(parent.velocity.x) < air_control) or (sign(horizontal_input) != sign(parent.velocity.x)):
-		parent.velocity.x += air_acceleration_speed * delta * horizontal_input
+	if (abs(player.velocity.x) < air_control) or (sign(horizontal_input) != sign(player.velocity.x)):
+		player.velocity.x += air_acceleration_speed * delta * horizontal_input
 	if horizontal_input == 0:
-		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
-	parent.move_and_slide()
+		player.velocity.x = player.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
+	player.move_and_slide()
 	
-	if parent.velocity.y > 0:
+	if player.velocity.y > 0:
 		return falling_state
-	elif parent.velocity.y < 0:
+	elif player.velocity.y < 0:
 		if nudge_right_range_left.is_colliding() and !nudge_right_range_right.is_colliding():
-			parent.position.x += 14
+			player.position.x += 14
 		if nudge_left_range_right.is_colliding() and !nudge_left_range_left.is_colliding():
-			parent.position.x -= 14
+			player.position.x -= 14
 	if (left_ray.is_colliding() or right_ray.is_colliding()) and jump_input_buffer.time_left > 0:
 		return wall_jumping_state
-	if parent.is_on_floor():
+	if player.is_on_floor():
 		if jump_input_buffer.time_left > 0:
 			return self
 		else:
-			if abs(parent.velocity.x) > 0:
+			if abs(player.velocity.x) > 0:
 				return walking_state
 			else:
 				return idle_state

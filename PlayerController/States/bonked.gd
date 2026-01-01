@@ -18,10 +18,10 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	jump_input_buffer.wait_time = jump_input_buffer_patience
 	
-	parent.velocity.x = -dive_bonk_horizontal_velocity * -parent.get_wall_normal().x
-	parent.velocity.y = -dive_bonk_vertical_velocity
-	gravity = parent.normal_gravity
-	max_falling_speed = parent.max_falling_speed
+	player.velocity.x = -dive_bonk_horizontal_velocity * -player.get_wall_normal().x
+	player.velocity.y = -dive_bonk_vertical_velocity
+	gravity = player.normal_gravity
+	max_falling_speed = player.max_falling_speed
 
 func process_input(event) -> State:
 	if event.is_action_pressed("jump"):
@@ -31,12 +31,12 @@ func process_input(event) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	if parent.velocity.y < max_falling_speed:
-		parent.velocity.y += gravity * delta
+	if player.velocity.y < max_falling_speed:
+		player.velocity.y += gravity * delta
 	
-	parent.move_and_slide()
+	player.move_and_slide()
 	
-	if parent.is_on_floor():
+	if player.is_on_floor():
 		if jump_input_buffer.time_left > 0:
 			return jumping_state
 		else:

@@ -43,9 +43,9 @@ func activate(last_state : State) -> void:
 	
 	change_collider_to(jumping_hitbox)
 	jump_input_buffer.stop()
-	gravity = parent.normal_gravity
-	parent.velocity.y = -jump_velocity
-	max_falling_speed = parent.max_falling_speed
+	gravity = player.normal_gravity
+	player.velocity.y = -jump_velocity
+	max_falling_speed = player.max_falling_speed
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
 	sprite.scale.y = y_sprite_stretch_multiplier
 	sprite.scale.x = x_sprite_stretch_multiplier
@@ -57,38 +57,38 @@ func process_input(event : InputEvent) -> State:
 		jump_input_buffer.start()
 	if event.is_action_released("jump"):
 		jump_input_buffer.stop()
-		parent.velocity.y = parent.velocity.y / jump_cancellation
+		player.velocity.y = player.velocity.y / jump_cancellation
 	if event.is_action_pressed("dive"):
 		return diving_state
 	return null
 
 func process_physics(delta) -> State:
-	nudge_right_range_left.target_position.y = parent.velocity.y / 15
-	nudge_right_range_right.target_position.y = parent.velocity.y / 15
-	nudge_left_range_right.target_position.y = parent.velocity.y / 15
-	nudge_left_range_left.target_position.y = parent.velocity.y / 15
+	nudge_right_range_left.target_position.y = player.velocity.y / 15
+	nudge_right_range_right.target_position.y = player.velocity.y / 15
+	nudge_left_range_right.target_position.y = player.velocity.y / 15
+	nudge_left_range_left.target_position.y = player.velocity.y / 15
 	
-	if parent.velocity.y < max_falling_speed:
-		parent.velocity.y += gravity * delta
+	if player.velocity.y < max_falling_speed:
+		player.velocity.y += gravity * delta
 	
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
-	if (abs(parent.velocity.x) < air_control) or (sign(horizontal_input) != sign(parent.velocity.x)):
-		parent.velocity.x += air_acceleration_speed * delta * horizontal_input
+	if (abs(player.velocity.x) < air_control) or (sign(horizontal_input) != sign(player.velocity.x)):
+		player.velocity.x += air_acceleration_speed * delta * horizontal_input
 	if horizontal_input == 0:
-		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
-	parent.move_and_slide()
+		player.velocity.x = player.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
+	player.move_and_slide()
 	
-	if parent.velocity.y > 0:
+	if player.velocity.y > 0:
 		return falling_state
-	if nudge_right_range_left.is_colliding() and not nudge_right_range_right.is_colliding() and not parent.velocity.x < 0:
-		parent.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
-	if nudge_left_range_right.is_colliding() and not nudge_left_range_left.is_colliding() and not parent.velocity.x > 0:
-		parent.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
-	if parent.is_on_floor():
+	if nudge_right_range_left.is_colliding() and not nudge_right_range_right.is_colliding() and not player.velocity.x < 0:
+		player.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
+	if nudge_left_range_right.is_colliding() and not nudge_left_range_left.is_colliding() and not player.velocity.x > 0:
+		player.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
+	if player.is_on_floor():
 		if jump_input_buffer.time_left > 0:
 			return self
 		else:
-			if abs(parent.velocity.x) > 0:
+			if abs(player.velocity.x) > 0:
 				return walking_state
 			else:
 				return idle_state

@@ -32,16 +32,16 @@ func activate(last_state : State) -> void:
 	jump_input_buffer.one_shot = true
 
 	jump_input_buffer.stop()
-	gravity = parent.normal_gravity
-	parent.velocity.y = -wall_jump_vertical_velocity
-	max_falling_speed = parent.max_falling_speed
-	if parent.is_on_wall() and not (right_ray.is_colliding() or left_ray.is_colliding()):
-		parent.get_wall_normal()
-		parent.velocity.x = wall_jump_vertical_velocity * parent.get_wall_normal().x
+	gravity = player.normal_gravity
+	player.velocity.y = -wall_jump_vertical_velocity
+	max_falling_speed = player.max_falling_speed
+	if player.is_on_wall() and not (right_ray.is_colliding() or left_ray.is_colliding()):
+		player.get_wall_normal()
+		player.velocity.x = wall_jump_vertical_velocity * player.get_wall_normal().x
 	if right_ray.is_colliding():
-		parent.velocity.x = -wall_jump_horizontal_velocity
+		player.velocity.x = -wall_jump_horizontal_velocity
 	elif left_ray.is_colliding():
-		parent.velocity.x = wall_jump_horizontal_velocity
+		player.velocity.x = wall_jump_horizontal_velocity
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("use_ability"):
@@ -49,30 +49,30 @@ func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
 		jump_input_buffer.start()
 	if event.is_action_released("jump"):
-		parent.velocity.y = parent.velocity.y / jump_cancellation
+		player.velocity.y = player.velocity.y / jump_cancellation
 	if event.is_action_pressed("dive"):
 		return diving_state
 	return null
 
 func process_physics(delta) -> State:
-	if parent.velocity.y < max_falling_speed:
-		parent.velocity.y += gravity * delta
+	if player.velocity.y < max_falling_speed:
+		player.velocity.y += gravity * delta
 	
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
-	if (abs(parent.velocity.x) < air_control) or (sign(horizontal_input) != sign(parent.velocity.x)):
-		parent.velocity.x += air_acceleration_speed * delta * horizontal_input
+	if (abs(player.velocity.x) < air_control) or (sign(horizontal_input) != sign(player.velocity.x)):
+		player.velocity.x += air_acceleration_speed * delta * horizontal_input
 	if horizontal_input == 0:
-		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
+		player.velocity.x = player.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
 	
-	parent.move_and_slide()
+	player.move_and_slide()
 	
 	if (left_ray.is_colliding() or right_ray.is_colliding()):
 		if jump_input_buffer.time_left > 0:
 			return self
-	if parent.velocity.y > 0:
+	if player.velocity.y > 0:
 		return falling_state
-	if parent.is_on_floor():
-		if abs(parent.velocity.x) > 0:
+	if player.is_on_floor():
+		if abs(player.velocity.x) > 0:
 			return walking_state
 		else:
 			return idle_state

@@ -22,8 +22,8 @@ func activate(_last_state : State) -> void:
 	super(_last_state)
 	jump_input_buffer.wait_time = jump_input_buffer_patience
 	
-	gravity = parent.normal_gravity
-	max_falling_speed = parent.max_falling_speed
+	gravity = player.normal_gravity
+	max_falling_speed = player.max_falling_speed
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -33,13 +33,13 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	if parent.velocity.y < max_falling_speed:
-		parent.velocity.y += gravity * delta
-	parent.move_and_slide()
+	if player.velocity.y < max_falling_speed:
+		player.velocity.y += gravity * delta
+	player.move_and_slide()
 	
-	if parent.is_on_wall():
+	if player.is_on_wall():
 		return bonked_state
-	if parent.is_on_floor():
+	if player.is_on_floor():
 		if jump_input_buffer.time_left > 0:
 			return jumping_state
 		else:
@@ -48,5 +48,5 @@ func process_physics(delta) -> State:
 
 func process_frame(_delta) -> State:
 	sprite.scale = lerp(sprite.scale, Vector2(1,1), sprite_reset_speed)
-	sprite.rotation = lerp(sprite.rotation, 0.45 * parent.velocity.normalized().x, sprite_reset_speed)
+	sprite.rotation = lerp(sprite.rotation, 0.45 * player.velocity.normalized().x, sprite_reset_speed)
 	return null

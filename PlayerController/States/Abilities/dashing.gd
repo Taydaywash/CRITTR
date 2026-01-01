@@ -54,31 +54,31 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	jump_input_buffer.wait_time = jump_input_buffer_patience
 	
-	parent.velocity = Vector2(0,0)
+	player.velocity = Vector2(0,0)
 	if direction == "up":
-		if parent.is_on_ceiling():
-			parent.velocity.y = super_jump_velocity
+		if player.is_on_ceiling():
+			player.velocity.y = super_jump_velocity
 		else:
 			dash_timer.start()
-			parent.velocity.y = -dashing_speed
+			player.velocity.y = -dashing_speed
 	elif direction == "down":
-		if parent.is_on_floor():
-			parent.velocity.y = -super_jump_velocity
+		if player.is_on_floor():
+			player.velocity.y = -super_jump_velocity
 		else:
 			dash_timer.start()
-			parent.velocity.y = dashing_speed
+			player.velocity.y = dashing_speed
 	elif direction == "left":
-		if parent.is_on_wall():
-			parent.velocity.x = super_jump_velocity
+		if player.is_on_wall():
+			player.velocity.x = super_jump_velocity
 		else:
 			dash_timer.start()
-			parent.velocity.x = -dashing_speed
+			player.velocity.x = -dashing_speed
 	elif direction == "right":
-		if parent.is_on_wall():
-			parent.velocity.x = -super_jump_velocity
+		if player.is_on_wall():
+			player.velocity.x = -super_jump_velocity
 		else:
 			dash_timer.start()
-			parent.velocity.x = dashing_speed
+			player.velocity.x = dashing_speed
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -88,28 +88,28 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(_delta) -> State:
-	nudge_right_range_left.target_position.y = parent.velocity.y / 15 
-	nudge_right_range_right.target_position.y = parent.velocity.y / 15 
-	nudge_left_range_right.target_position.y = parent.velocity.y / 15
-	nudge_left_range_left.target_position.y = parent.velocity.y / 15
+	nudge_right_range_left.target_position.y = player.velocity.y / 15 
+	nudge_right_range_right.target_position.y = player.velocity.y / 15 
+	nudge_left_range_right.target_position.y = player.velocity.y / 15
+	nudge_left_range_left.target_position.y = player.velocity.y / 15
 	
-	parent.move_and_slide()
+	player.move_and_slide()
 	if nudge_right_range_left.is_colliding() and !nudge_right_range_right.is_colliding():
-		parent.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
+		player.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
 	if nudge_left_range_right.is_colliding() and !nudge_left_range_left.is_colliding():
-		parent.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
+		player.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
 	if dive_input_buffer.time_left > 0 and dash_timer.time_left == 0:
 		return diving_state
-	if (parent.is_on_wall() and parent.velocity.y == 0) or parent.is_on_ceiling():
+	if (player.is_on_wall() and player.velocity.y == 0) or player.is_on_ceiling():
 		return falling_state
-	if (parent.is_on_floor() and dash_timer.time_left == 0):
+	if (player.is_on_floor() and dash_timer.time_left == 0):
 		if jump_input_buffer.time_left > 0:
 			return jumping_state
-		if abs(parent.velocity.x) > 0:
+		if abs(player.velocity.x) > 0:
 			return walking_state
 		else:
 			return idle_state
-	if (!parent.is_on_floor() and dash_timer.time_left == 0):
+	if (!player.is_on_floor() and dash_timer.time_left == 0):
 		return ascending_state
 	return null
 
@@ -118,5 +118,5 @@ func deactivate(_next_state) -> void:
 	nudge_right_range_right.target_position.y = -50
 	nudge_left_range_right.target_position.y = -50
 	nudge_left_range_left.target_position.y = -50
-	parent.velocity.x = parent.velocity.x * dash_horizontal_end_velocity_multiplier 
-	parent.velocity.y = parent.velocity.y * dash_vertical_end_velocity_multiplier 
+	player.velocity.x = player.velocity.x * dash_horizontal_end_velocity_multiplier 
+	player.velocity.y = player.velocity.y * dash_vertical_end_velocity_multiplier 

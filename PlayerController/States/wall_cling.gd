@@ -30,7 +30,7 @@ func activate(last_state : State) -> void:
 	
 	jump_input_buffer.wait_time = jump_input_buffer_patience
 	
-	max_falling_speed = parent.max_falling_speed
+	max_falling_speed = player.max_falling_speed
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("use_ability"):
@@ -40,21 +40,21 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	if parent.velocity.y < max_wall_cling_fall_speed:
-		parent.velocity.y += wall_cling_gravity * delta
+	if player.velocity.y < max_wall_cling_fall_speed:
+		player.velocity.y += wall_cling_gravity * delta
 	else:
-		parent.velocity.y = parent.velocity.move_toward(Vector2(0,max_wall_cling_fall_speed),decceleration_speed * delta).y
+		player.velocity.y = player.velocity.move_toward(Vector2(0,max_wall_cling_fall_speed),decceleration_speed * delta).y
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
-	if (abs(parent.velocity.x) < walk_speed) or (sign(horizontal_input) != sign(parent.velocity.x)):
-		parent.velocity.x += acceleration_speed * delta * horizontal_input
+	if (abs(player.velocity.x) < walk_speed) or (sign(horizontal_input) != sign(player.velocity.x)):
+		player.velocity.x += acceleration_speed * delta * horizontal_input
 	if horizontal_input == 0:
-		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),decceleration_speed * delta).x
-	parent.move_and_slide()
+		player.velocity.x = player.velocity.move_toward(Vector2(0,0),decceleration_speed * delta).x
+	player.move_and_slide()
 	
 	if jump_input_buffer.time_left > 0:
 		return wall_jumping_state
-	if !parent.is_on_wall():
+	if !player.is_on_wall():
 		return falling_state
-	if parent.is_on_floor():
+	if player.is_on_floor():
 		return walking_state
 	return null

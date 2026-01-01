@@ -38,32 +38,32 @@ func activate(_last_state : State) -> void:
 	line.add_point(Vector2.ZERO)
 	line.add_point(Vector2.ZERO)
 	winding_up = true
-	parent.velocity = Vector2(0,0)
+	player.velocity = Vector2(0,0)
 	
 	if direction == "up":
-		parent.velocity.y = wind_up_velocity
+		player.velocity.y = wind_up_velocity
 	elif direction == "down":
-		parent.velocity.y = -wind_up_velocity
+		player.velocity.y = -wind_up_velocity
 	elif direction == "left":
-		parent.velocity.x = wind_up_velocity
+		player.velocity.x = wind_up_velocity
 	elif direction == "right":
-		parent.velocity.x = -wind_up_velocity
+		player.velocity.x = -wind_up_velocity
 	await get_tree().create_timer(wind_up_delay).timeout
 	wall_detection_timer.start()
 	winding_up = false
 	if direction == "up":
-		parent.velocity.y = -initial_velocity
+		player.velocity.y = -initial_velocity
 	elif direction == "down":
-		parent.velocity.y = initial_velocity
+		player.velocity.y = initial_velocity
 	elif direction == "left":
-		parent.velocity.x = -initial_velocity
+		player.velocity.x = -initial_velocity
 	elif direction == "right":
-		parent.velocity.x = initial_velocity
-	new_angle_degrees = parent.velocity.angle()
+		player.velocity.x = initial_velocity
+	new_angle_degrees = player.velocity.angle()
 
 func process_physics(_delta) -> State:
 	if winding_up:
-		parent.move_and_slide()
+		player.move_and_slide()
 		return null
 	drill_ray.target_position = new_angle_vector * forward_detection_range
 	drill_ray.position = new_angle_vector * -backwards_offset
@@ -72,16 +72,16 @@ func process_physics(_delta) -> State:
 
 	new_angle_vector = Vector2(cos(new_angle_degrees),sin(new_angle_degrees)).normalized()
 	line.set_point_position(1, drill_ray.target_position)
-	parent.velocity = new_angle_vector * initial_velocity
-	parent.move_and_slide()
+	player.velocity = new_angle_vector * initial_velocity
+	player.move_and_slide()
 
 	if drill_ray.is_colliding():
 		drill_ray.target_position = drill_ray.to_local(drill_ray.get_collision_point())
 		drill_ray_not_digable.target_position = drill_ray.target_position
-		if parent.get_slide_collision_count() > 0:
-			if (direction == "right" or direction == "left") and (parent.is_on_floor_only() or parent.is_on_ceiling_only()):
+		if player.get_slide_collision_count() > 0:
+			if (direction == "right" or direction == "left") and (player.is_on_floor_only() or player.is_on_ceiling_only()):
 				return
-			if (direction == "up" or direction == "down") and parent.is_on_wall_only():
+			if (direction == "up" or direction == "down") and player.is_on_wall_only():
 				return
 			if drill_ray_not_digable.is_colliding():
 				return falling_state

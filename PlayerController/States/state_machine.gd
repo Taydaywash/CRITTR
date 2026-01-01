@@ -28,7 +28,7 @@ func check_children(parent : Node) -> void:
 	for child in parent.get_children():
 		if child.get_class() != "Node":
 			return
-		child.parent = player_reference
+		child.player = player_reference
 		child.sprite = player_sprite
 		child.colliders = colliders_list
 		if child.get_child_count() > 0:

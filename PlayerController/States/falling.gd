@@ -44,8 +44,8 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate() as defined in state.gd and then also do:
 	jump_input_buffer.wait_time = jump_input_buffer_patience
 	
-	gravity = parent.normal_gravity
-	max_falling_speed = parent.max_falling_speed
+	gravity = player.normal_gravity
+	max_falling_speed = player.max_falling_speed
 	if (last_state == $"../Walking" or (last_state == $"../Abilities/Climbing/ClimbingSlide" and $"../Abilities/Climbing".direction== "down")):
 		#possible code to add back 
 		#or (last_state == $"../Abilities/Climbing" and $"../Abilities/Climbing".direction == "down"))
@@ -66,31 +66,31 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	if parent.velocity.y < max_falling_speed:
-		parent.velocity.y += gravity * delta
+	if player.velocity.y < max_falling_speed:
+		player.velocity.y += gravity * delta
 	
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
-	if (abs(parent.velocity.x) < air_control):
-		parent.velocity.x += air_acceleration_speed * delta * horizontal_input
+	if (abs(player.velocity.x) < air_control):
+		player.velocity.x += air_acceleration_speed * delta * horizontal_input
 	else:
-		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
-	if horizontal_input == 0 or (sign(horizontal_input) != sign(parent.velocity.x)):
-		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
-	parent.move_and_slide()
+		player.velocity.x = player.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
+	if horizontal_input == 0 or (sign(horizontal_input) != sign(player.velocity.x)):
+		player.velocity.x = player.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
+	player.move_and_slide()
 	
-	if nudge_right_range_left.is_colliding() and !nudge_right_range_right.is_colliding() and parent.velocity.x > 0:
-		parent.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
-	if nudge_left_range_right.is_colliding() and !nudge_left_range_left.is_colliding() and parent.velocity.x < 0:
-		parent.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
+	if nudge_right_range_left.is_colliding() and !nudge_right_range_right.is_colliding() and player.velocity.x > 0:
+		player.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
+	if nudge_left_range_right.is_colliding() and !nudge_left_range_left.is_colliding() and player.velocity.x < 0:
+		player.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
 	if (left_ray.is_colliding() or right_ray.is_colliding()):
 		if jump_input_buffer.time_left > 0:
 			return wall_jumping_state
-	if parent.is_on_wall() and horizontal_input != 0:
+	if player.is_on_wall() and horizontal_input != 0:
 		return wall_cling_state
-	if parent.is_on_floor():
+	if player.is_on_floor():
 		if jump_input_buffer.time_left > 0:
 			return jumping_state
-		if parent.velocity.x == 0:
+		if player.velocity.x == 0:
 			return idle_state
 		else:
 			return walking_state

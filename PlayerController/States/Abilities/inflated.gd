@@ -53,37 +53,37 @@ func activate(last_state : State) -> void:
 	if direction == "up":
 		inflated_duration_timer.wait_time = inflated_duration
 		inflated_duration_timer.start()
-		parent.velocity.y = -initial_up_velocity
-		#if parent.velocity.y > 0:
-			#parent.velocity.y -= initial_up_velocity
-		#elif parent.velocity.y < initial_up_velocity:
-			#parent.velocity.y -= additive_initial_up_velocity
+		player.velocity.y = -initial_up_velocity
+		#if player.velocity.y > 0:
+			#player.velocity.y -= initial_up_velocity
+		#elif player.velocity.y < initial_up_velocity:
+			#player.velocity.y -= additive_initial_up_velocity
 		#else:
-			#parent.velocity.y = -initial_up_velocity
+			#player.velocity.y = -initial_up_velocity
 	elif direction == "down":
 		inflated_duration_timer.wait_time = inflated_duration
 		inflated_duration_timer.start()
-		parent.velocity.y = initial_down_velocity
-		#if parent.velocity.y > initial_down_velocity:
-			#parent.velocity.y += additive_initial_down_velocity
+		player.velocity.y = initial_down_velocity
+		#if player.velocity.y > initial_down_velocity:
+			#player.velocity.y += additive_initial_down_velocity
 		#else:
-			#parent.velocity.y = initial_down_velocity
+			#player.velocity.y = initial_down_velocity
 	elif direction == "left":
 		inflated_duration_timer.wait_time = inflated_duration - bounce_timer_reduction
-		parent.velocity.y = parent.velocity.y / 10
+		player.velocity.y = player.velocity.y / 10
 		inflated_duration_timer.start()
-		if abs(parent.velocity.x) > initial_horizontal_velocity:
-			parent.velocity.x = -additive_initial_horizontal_velocity
+		if abs(player.velocity.x) > initial_horizontal_velocity:
+			player.velocity.x = -additive_initial_horizontal_velocity
 		else:
-			parent.velocity.x = -initial_horizontal_velocity
+			player.velocity.x = -initial_horizontal_velocity
 	elif direction == "right":
 		inflated_duration_timer.wait_time = inflated_duration - bounce_timer_reduction
-		parent.velocity.y = parent.velocity.y / 10
+		player.velocity.y = player.velocity.y / 10
 		inflated_duration_timer.start()
-		if abs(parent.velocity.x) > initial_horizontal_velocity:
-			parent.velocity.x = additive_initial_horizontal_velocity
+		if abs(player.velocity.x) > initial_horizontal_velocity:
+			player.velocity.x = additive_initial_horizontal_velocity
 		else:
-			parent.velocity.x = initial_horizontal_velocity
+			player.velocity.x = initial_horizontal_velocity
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -93,46 +93,46 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	if parent.velocity.y > -max_ascent_speed:
-		parent.velocity.y -= (ascent_speed - abs(parent.velocity.x * horizontal_ascent_reduction_percentage)) * delta 
+	if player.velocity.y > -max_ascent_speed:
+		player.velocity.y -= (ascent_speed - abs(player.velocity.x * horizontal_ascent_reduction_percentage)) * delta 
 		
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
-	if (abs(parent.velocity.x) < max_move_speed) or (sign(horizontal_input) != sign(parent.velocity.x)):
-		parent.velocity.x += acceleration_speed * delta * horizontal_input
+	if (abs(player.velocity.x) < max_move_speed) or (sign(horizontal_input) != sign(player.velocity.x)):
+		player.velocity.x += acceleration_speed * delta * horizontal_input
 	else:
-		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),decceleration_speed * delta).x
+		player.velocity.x = player.velocity.move_toward(Vector2(0,0),decceleration_speed * delta).x
 	if horizontal_input == 0:
-		parent.velocity.x = parent.velocity.move_toward(Vector2(0,0),decceleration_speed * delta).x
-	parent.move_and_slide()
+		player.velocity.x = player.velocity.move_toward(Vector2(0,0),decceleration_speed * delta).x
+	player.move_and_slide()
 	
-	if parent.is_on_ceiling():
-		parent.velocity.y = bounce_velocity
+	if player.is_on_ceiling():
+		player.velocity.y = bounce_velocity
 		bounced()
-	if parent.is_on_wall():
+	if player.is_on_wall():
 		if left_ray.is_colliding():
-			parent.velocity.x = bounce_velocity
+			player.velocity.x = bounce_velocity
 			bounced()
 		elif right_ray.is_colliding():
-			parent.velocity.x = -bounce_velocity
+			player.velocity.x = -bounce_velocity
 			bounced()
-	if parent.is_on_floor():
-		parent.velocity.y = -bounce_velocity
+	if player.is_on_floor():
+		player.velocity.y = -bounce_velocity
 		bounced()
 	if inflated_duration_timer.time_left == 0:
 		return falling_state
 	return null
 
 func process_frame(_delta) -> State:
-	parent.modulate = lerp(parent.modulate, Color(1,1,1), color_return_speed)
+	player.modulate = lerp(player.modulate, Color(1,1,1), color_return_speed)
 	if inflated_duration_timer.time_left < 0.5:
 		if (fmod(snapped(inflated_duration_timer.time_left, 0.1), 0.2) == 0):
-			parent.modulate = Color(1,0,0)
+			player.modulate = Color(1,0,0)
 	elif inflated_duration_timer.time_left < 1.0:
 		if (fmod(snapped(inflated_duration_timer.time_left, 0.1), 0.4) == 0):
-			parent.modulate = Color(1,0,0)
+			player.modulate = Color(1,0,0)
 	elif inflated_duration_timer.time_left < 2.0:
 		if (fmod(snapped(inflated_duration_timer.time_left, 0.1), 0.5) == 0):
-			parent.modulate = Color(1,0,0)
+			player.modulate = Color(1,0,0)
 	return null
 
 func bounced():

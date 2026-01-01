@@ -36,17 +36,17 @@ func activate(last_state : State) -> void:
 		horizontal_input = -(2 * int(sprite.flip_h) - 1)
 	if last_state == idle_state:
 		horizontal_input = 0
-	if abs(parent.velocity.x) > dive_horizontal_default_velocity:
-		if abs(parent.velocity.x) < max_diving_speed:
-			parent.velocity.x += dive_horizontal_additive_velocity * horizontal_input
+	if abs(player.velocity.x) > dive_horizontal_default_velocity:
+		if abs(player.velocity.x) < max_diving_speed:
+			player.velocity.x += dive_horizontal_additive_velocity * horizontal_input
 	else:
-		parent.velocity.x = dive_horizontal_default_velocity * horizontal_input
-	parent.velocity.y = -dive_vertical_velocity
-	gravity = parent.normal_gravity
-	max_falling_speed = parent.max_falling_speed
+		player.velocity.x = dive_horizontal_default_velocity * horizontal_input
+	player.velocity.y = -dive_vertical_velocity
+	gravity = player.normal_gravity
+	max_falling_speed = player.max_falling_speed
 	
-	sprite.scale = Vector2(abs(x_initial_sprite_stretch_multiplier * parent.velocity.normalized().x),y_initial_sprite_stretch_multiplier * -parent.velocity.normalized().y)
-	sprite.rotation = -parent.velocity.normalized().x
+	sprite.scale = Vector2(abs(x_initial_sprite_stretch_multiplier * player.velocity.normalized().x),y_initial_sprite_stretch_multiplier * -player.velocity.normalized().y)
+	sprite.rotation = -player.velocity.normalized().x
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -56,22 +56,22 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	if parent.velocity.y < max_falling_speed:
-		parent.velocity.y += gravity * delta
-	parent.move_and_slide()
+	if player.velocity.y < max_falling_speed:
+		player.velocity.y += gravity * delta
+	player.move_and_slide()
 	
-	if parent.is_on_wall():
+	if player.is_on_wall():
 		return bonked_state
-	if parent.is_on_floor():
+	if player.is_on_floor():
 		if jump_input_buffer.time_left > 0:
 			return jumping_state
 		else:
 			return walking_state
-	if parent.velocity.y > 0:
+	if player.velocity.y > 0:
 		return diving_falling_state
 	return null
 
 func process_frame(_delta) -> State:
 	sprite.scale = lerp(sprite.scale, Vector2(1,1), sprite_reset_speed)
-	sprite.rotation = lerp(sprite.rotation, 0.45 * parent.velocity.normalized().x, sprite_reset_speed)
+	sprite.rotation = lerp(sprite.rotation, 0.45 * player.velocity.normalized().x, sprite_reset_speed)
 	return null
