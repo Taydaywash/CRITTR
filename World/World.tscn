@@ -20,7 +20,7 @@
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_y6flb")]
-position = Vector2(2751.9998, -576)
+position = Vector2(2752, -576)
 
 [node name="UI" parent="." instance=ExtResource("4_il6x7")]
 
@@ -38,7 +38,7 @@ down_enter_velocity = 500.0
 down_enter_multiplier = 10.0
 horizontal_minimum_distance_from_last_room = 100.0
 up_minimum_distance_from_last_room = 30.0
-down_minimum_distance_from_last_room = 150.0
+down_minimum_distance_from_last_room = 200.0
 screen_fade_speed = 20.0
 player_control_regain_delay = 0.4
 

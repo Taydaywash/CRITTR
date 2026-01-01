@@ -37,27 +37,15 @@ func check_children(parent : Node) -> void:
 func initialize(player : CharacterBody2D, sprite : AnimatedSprite2D) -> void:
 	player_reference = player
 	player_sprite = sprite
-	
 	check_children(self)
-	
-	#Old code keep in case. DON'T DELETE!!
-	#for child in get_children():
-		#child.parent = player
-		#child.sprite = sprite
-		#child.colliders = colliders_list
-	#for child in get_child(get_children().size() - 1).get_children():
-		#child.parent = player
-		#child.sprite = sprite
-		#child.colliders = colliders_list
-	
-	#Initialize with starting_state
 	change_state(starting_state)
 
 #Change current state afer deactivating currently active state
-func change_state(new_state : State, direction = null) -> void:
+func change_state(new_state : State, direction = null, discrete : bool = false) -> void:
 	last_state = current_state
 	if current_state:
-		current_state.deactivate(new_state)
+		if not discrete:
+			current_state.deactivate(new_state)
 	current_state = new_state
 	if grounded_states.has(current_state) or (last_state == $Falling and current_state == $Jumping):
 		abilities.refill_abilities()
@@ -66,7 +54,8 @@ func change_state(new_state : State, direction = null) -> void:
 		for child in current_state.get_children():
 			if child.get_class() == "Node": 
 				child.set_direction(direction)
-	current_state.activate(last_state)
+	if not discrete:
+		current_state.activate(last_state)
 	
 
 #Propagate down from state machine to active state
@@ -91,4 +80,4 @@ func process_frame(delta) -> void:
 	if new_state:
 		change_state(new_state)
 func force_change_state(state : State): #Must be called with the call_deferred method to work properly
-	change_state(state)
+	change_state(state, null, true)

@@ -79,6 +79,10 @@ func process_physics(_delta) -> State:
 		drill_ray.target_position = drill_ray.to_local(drill_ray.get_collision_point())
 		drill_ray_not_digable.target_position = drill_ray.target_position
 		if parent.get_slide_collision_count() > 0:
+			if (direction == "right" or direction == "left") and (parent.is_on_floor_only() or parent.is_on_ceiling_only()):
+				return
+			if (direction == "up" or direction == "down") and parent.is_on_wall_only():
+				return
 			if drill_ray_not_digable.is_colliding():
 				return falling_state
 			return digging_state

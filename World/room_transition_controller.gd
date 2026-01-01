@@ -42,8 +42,10 @@ var room_up : Room
 var room_down : Room
 var room_left : Room
 var room_right : Room
-var current_state : State
 var exited_previous_room : bool = false
+
+var pre_transition_state : State
+var pre_transition_velocity : Vector2
 
 func _ready() -> void:
 	state_machine = player.state_machine
@@ -62,10 +64,6 @@ func entered_room(room : Room):
 	exited_previous_room = false
 	transtiioning_room = true
 	fade_in = true
-	print(player.up.get_collider())
-	print(player.down.get_collider())
-	print(player.left.get_collider())
-	print(player.right.get_collider())
 	room_up = player.up.get_collider().get_parent()
 	room_down = player.down.get_collider().get_parent()
 	room_left = player.left.get_collider().get_parent()
@@ -82,6 +80,7 @@ func respawn(respawn_pos):
 
 func _process(delta: float) -> void:
 	if fade_in:
+		fade_out = false
 		ui.increment_fade_in(delta,screen_fade_speed)
 		if ui.screen_is_black():
 			screen_is_black = true
@@ -98,6 +97,7 @@ func _process(delta: float) -> void:
 			transtiioning_room = false
 		screen_is_black = false
 	if fade_out:
+		fade_in = false
 		ui.increment_fade_out(delta,screen_fade_speed)
 		if ui.screen_is_clear():
 			fade_out = false
@@ -150,34 +150,30 @@ func _physics_process(_delta: float) -> void:
 			reset_room_detection_rays()
 	
 func return_to_state():
-	if player.velocity.y < 0:
-		state_machine.force_change_state(state_machine.ascending)
-	else:
-		state_machine.force_change_state(state_machine.falling_state)
+	player.set_deferred("velocity", pre_transition_velocity)
+	#player.velocity = pre_transition_velocity
+	state_machine.call_deferred("force_change_state",pre_transition_state)
 
 func change_room():
 	previous_room.exit_room()
 	current_room.enter_room()
 
 func transition_room():
-	current_state = state_machine.current_state
+	pre_transition_velocity = player.velocity
+	pre_transition_state = state_machine.current_state
 	state_machine.call_deferred("force_change_state", state_machine.no_control_state)
 	set_up_room_detection_rays()
 	previous_room = current_room
 	if room_left != current_room:
-		print("left")
 		current_room = room_left
 		entering_from_right = true
 	elif room_right != current_room:
-		print("right")
 		current_room = room_right
 		entering_from_left = true
 	elif room_up != current_room:
-		print("up")
 		current_room = room_up
 		entering_from_below = true
 	elif room_down != current_room:
-		print("down")
 		current_room = room_down
 		entering_from_above = true
 	

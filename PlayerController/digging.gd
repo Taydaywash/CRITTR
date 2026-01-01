@@ -62,6 +62,7 @@ func process_physics(delta) -> State:
 	line.set_point_position(1, drill_ray.target_position)
 	parent.velocity = new_angle_vector * dig_speed
 	
+	parent.bounce_and_slide()
 	parent.move_and_slide()
 	if can_exit_state():
 		if Input.is_action_pressed("jump"):

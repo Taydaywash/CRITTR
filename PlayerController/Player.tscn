@@ -35,7 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://dpg0ffmpj5l37" path="res://PlayerController/animations/fall/fall1.png" id="22_7xxh7"]
 [ext_resource type="Texture2D" uid="uid://ouegwis2yso0" path="res://PlayerController/animations/walking/f2.png" id="22_tycsm"]
 [ext_resource type="Texture2D" uid="uid://7t8x5fqt52wp" path="res://UI/GrappleIcon.png" id="22_wlqol"]
-[ext_resource type="Script" path="res://PlayerController/States/Abilities/grappling_pull.gd" id="23_0wxel"]
+[ext_resource type="Script" uid="uid://cykeeb3gol2qg" path="res://PlayerController/States/Abilities/grappling_pull.gd" id="23_0wxel"]
 [ext_resource type="Script" uid="uid://bhn2wmkkbfo2p" path="res://PlayerController/States/Abilities/climbing_buffer.gd" id="23_31xm6"]
 [ext_resource type="Texture2D" uid="uid://bc5tl458rwcxw" path="res://PlayerController/animations/walking/f3.png" id="23_fkl5p"]
 [ext_resource type="Texture2D" uid="uid://cxuugk8c7tdj5" path="res://UI/InflateIcon.png" id="23_hk2wy"]
