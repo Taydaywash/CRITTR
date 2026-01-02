@@ -66,20 +66,12 @@ func entered_room(room : Room):
 	fade_in = true
 	if player.up.get_collider():
 		room_up = player.up.get_collider().get_parent()
-	else:
-		room_up = null
 	if player.down.get_collider():
 		room_down = player.down.get_collider().get_parent()
-	else:
-		room_down = null
 	if player.left.get_collider():
 		room_left = player.left.get_collider().get_parent()
-	else:
-		room_left = null
 	if player.right.get_collider():
 		room_right = player.right.get_collider().get_parent()
-	else:
-		room_right = null
 	transition_room()
 
 func exited_room(_room : Room):
@@ -123,8 +115,8 @@ func _physics_process(_delta: float) -> void:
 		if player.down.is_colliding():
 			player.velocity.y = -up_enter_velocity
 		else:
-			entering_from_below = false
 			return_to_state()
+			entering_from_below = false
 			reset_room_detection_rays()
 	elif entering_from_above:
 		if not exited_previous_room:
@@ -133,8 +125,8 @@ func _physics_process(_delta: float) -> void:
 		if player.up.is_colliding():
 			pass
 		else:
-			entering_from_above = false
 			return_to_state()
+			entering_from_above = false
 			reset_room_detection_rays()
 	elif entering_from_right:
 		if not exited_previous_room:
@@ -145,8 +137,8 @@ func _physics_process(_delta: float) -> void:
 			player.velocity.x = -(abs(collision_point.x - horizontal_minimum_distance_from_last_room) + minimum_enter_velocity)
 			player.velocity.x = player.velocity.x * horizontal_enter_multiplier
 		else:
-			entering_from_right = false
 			return_to_state()
+			entering_from_right = false
 			reset_room_detection_rays()
 	elif entering_from_left:
 		if not exited_previous_room:
@@ -157,12 +149,15 @@ func _physics_process(_delta: float) -> void:
 			player.velocity.x = (abs(collision_point.x - horizontal_minimum_distance_from_last_room) + minimum_enter_velocity)
 			player.velocity.x = player.velocity.x * horizontal_enter_multiplier
 		else:
-			entering_from_left = false
 			return_to_state()
+			entering_from_left = false
 			reset_room_detection_rays()
 	
 func return_to_state():
-	player.set_deferred("velocity", pre_transition_velocity)
+	if entering_from_below:
+		player.set_deferred("velocity", pre_transition_velocity)
+	else:
+		player.set_deferred("velocity.x", pre_transition_velocity.x)
 	#player.velocity = pre_transition_velocity
 	state_machine.call_deferred("force_change_state",pre_transition_state)
 
@@ -188,7 +183,6 @@ func transition_room():
 	elif room_down != current_room:
 		current_room = room_down
 		entering_from_above = true
-	
 	else:
 		print("failed to find room")
 		current_room = starting_room
