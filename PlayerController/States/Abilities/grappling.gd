@@ -28,7 +28,7 @@ var direction : String
 var jump_input_buffer: Timer
 var grapple_timer: Timer
 var grapple_current_length: float
-var has_collided = false
+var has_collided: bool = false
 
 func _ready() -> void:
 	#Input buffer setup:
