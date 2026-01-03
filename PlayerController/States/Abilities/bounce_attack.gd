@@ -13,7 +13,6 @@ var bounce_velocity: float
 var max_velocity: float
 
 @export_category("References")
-@export var attack_hitbox: Area2D
 
 var direction: String
 var entered: bool
@@ -21,16 +20,8 @@ var entered: bool
 func set_direction(ability_direction : String) -> void:
 	direction = ability_direction 
 
-func activate(_last_state : State) -> void:
-	match direction:
-			"right":
-				attack_hitbox.rotation = -90
-			"left":
-				attack_hitbox.rotation = 90
-			"up":
-				attack_hitbox.rotation = 180
-			"down":
-				pass
+func activate(last_state : State) -> void:
+	super(last_state)
 		
 
 func process_input(_event : InputEvent) -> State:
@@ -44,7 +35,14 @@ func process_physics(_delta) -> State:
 func deactivate(_next_state : State) -> void:
 	pass
 
-func _on_area_2d_body_entered(body):
-	if body is TileMapLayer:
-		entered = true
-		print("entered")
+func _on_area_2d_body_entered(_body):
+	entered = true
+	match direction:
+			"right":
+				print("right")
+			"left":
+				print("left")
+			"up":
+				print("up")
+			"down":
+				print("down")

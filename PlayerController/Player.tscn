@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene load_steps=66 format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/States/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
@@ -60,6 +60,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wxel"]
 size = Vector2(120, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlqol"]
+size = Vector2(50, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hl1jv"]
 animations = [{
@@ -614,25 +617,62 @@ left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
 right_ray = NodePath("../../../WallJumpRayReference/RightRay")
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="BounceAttack" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "ascending_state", "attack_hitbox")]
+[node name="BounceAttack" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "ascending_state")]
 script = ExtResource("16_2bslk")
 icon = ExtResource("24_qy6yu")
 falling_state = NodePath("../../Falling")
 idle_state = NodePath("../../Idle")
 diving_state = NodePath("../../Diving")
 ascending_state = NodePath("../../Ascending")
-attack_hitbox = NodePath("Area2D")
 
-[node name="Area2D" type="Area2D" parent="StateMachine/Abilities/BounceAttack"]
+[node name="Up" type="Area2D" parent="StateMachine/Abilities/BounceAttack"]
+position = Vector2(0, -120)
 collision_layer = 0
+collision_mask = 65
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Area2D"]
-position = Vector2(0, 90)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Up"]
 shape = SubResource("RectangleShape2D_0wxel")
 
-[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Area2D/CollisionShape2D"]
-position = Vector2(0, -0.9313717)
+[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Up"]
 scale = Vector2(1, 0.3936313)
+texture = ExtResource("2_ves0u")
+
+[node name="Down" type="Area2D" parent="StateMachine/Abilities/BounceAttack"]
+position = Vector2(0, 120)
+collision_layer = 0
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Down"]
+shape = SubResource("RectangleShape2D_0wxel")
+
+[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Down"]
+scale = Vector2(1, 0.3936313)
+texture = ExtResource("2_ves0u")
+
+[node name="Right" type="Area2D" parent="StateMachine/Abilities/BounceAttack"]
+position = Vector2(75, 0)
+collision_layer = 0
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Right"]
+shape = SubResource("RectangleShape2D_wlqol")
+
+[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Right"]
+position = Vector2(0.4999981, -0.9999981)
+scale = Vector2(0.39843753, 0.93750006)
+texture = ExtResource("2_ves0u")
+
+[node name="Left" type="Area2D" parent="StateMachine/Abilities/BounceAttack"]
+position = Vector2(-75, 0)
+collision_layer = 0
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Left"]
+shape = SubResource("RectangleShape2D_wlqol")
+
+[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Left"]
+position = Vector2(0.4999981, -0.9999981)
+scale = Vector2(0.39843753, 0.93750006)
 texture = ExtResource("2_ves0u")
 
 [node name="Drill" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "digging_state", "drill_ray", "drill_ray_not_digable", "line")]
@@ -831,7 +871,10 @@ hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
-[connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Area2D" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Up" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Down" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Right" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Left" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]
 [connection signal="area_entered" from="TriggerHitbox" to="Respawn Controller" method="_on_trigger_hitbox_area_entered"]
 [connection signal="body_entered" from="Hurtbox" to="Respawn Controller" method="_on_body_entered"]
 [connection signal="body_entered" from="CrouchedHurtbox" to="." method="_on_crouched_hurtbox_body_entered"]

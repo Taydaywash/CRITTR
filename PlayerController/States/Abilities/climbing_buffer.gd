@@ -34,6 +34,7 @@ func set_direction(ability_direction : String) -> void:
 	direction = ability_direction
 
 func activate(last_state : State) -> void:
+	super(last_state)
 	gravity = player.normal_gravity
 	max_falling_speed = player.max_falling_speed
 	super(last_state) #Call activate as defined in state.gd and then also do:
