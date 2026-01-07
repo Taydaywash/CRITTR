@@ -10,6 +10,7 @@ extends State
 @export var idle_state : State
 @export var diving_state : State
 @export var ascending_state : State
+@export var ability_state : State
 @export_category("Initial Velocity")
 @export var initial_up_velocity : float
 @export var additive_initial_up_velocity : float
@@ -90,6 +91,8 @@ func process_input(event : InputEvent) -> State:
 		return jumping_state
 	if event.is_action_pressed("dive"):
 		return diving_state
+	if event.is_action_pressed("use_ability"):
+		return ability_state
 	return null
 
 func process_physics(delta) -> State:

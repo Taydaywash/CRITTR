@@ -13,6 +13,7 @@ extends State
 @export var air_acceleration_speed : int
 @export var air_decceleration_speed : int
 @export var jump_input_buffer_patience : float
+@export var jump_cancellation : float
 @export_category("Wall Jumping Raycasts")
 @export var right_ray: RayCast2D
 @export var left_ray: RayCast2D
@@ -49,6 +50,7 @@ func process_input(event : InputEvent) -> State:
 		jump_input_buffer.start()
 	if event.is_action_released("jump"):
 		jump_input_buffer.stop()
+		player.velocity.y = player.velocity.y / jump_cancellation
 	return null
 
 func process_physics(delta) -> State:

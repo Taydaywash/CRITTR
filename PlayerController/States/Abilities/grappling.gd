@@ -23,20 +23,14 @@ extends State
 @export_category("References")
 @export var grapple_ray: RayCast2D
 @export var line: Line2D
+@export var jump_input_buffer: Timer
 
 var direction : String
-var jump_input_buffer: Timer
 var grapple_timer: Timer
 var grapple_current_length: float
 var has_collided: bool = false
 
 func _ready() -> void:
-	#Input buffer setup:
-	jump_input_buffer = Timer.new()
-	jump_input_buffer.wait_time = jump_input_buffer_patience
-	jump_input_buffer.one_shot = true
-	add_child(jump_input_buffer)
-	
 	grapple_timer = Timer.new()
 	grapple_timer.wait_time = grapple_duration
 	grapple_timer.one_shot = true
@@ -54,11 +48,11 @@ func activate(last_state : State) -> void:
 	player.velocity = Vector2(0,0)
 
 
-func process_input(_event : InputEvent) -> State:
-	#if event.is_action_pressed("jump"):
-		#jump_input_buffer.start()
-	#if event.is_action_pressed("dive"):
-		#return diving_state
+func process_input(event : InputEvent) -> State:
+	if event.is_action_pressed("jump"):
+		jump_input_buffer.start()
+	if event.is_action_released("jump"):
+		jump_input_buffer.stop()
 	return null
 
 func process_physics(delta) -> State:
@@ -112,5 +106,8 @@ func process_physics(delta) -> State:
 			return idle_state
 	return null
 
-func deactivate(_next_state) -> void:
-	pass
+func deactivate(next_state) -> void:
+	if next_state != grappling_pull_state:
+		super(next_state)
+		grapple_ray.target_position = Vector2.ZERO
+		line.clear_points()

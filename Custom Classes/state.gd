@@ -17,10 +17,8 @@ func activate(_last_state : State) -> void:
 	#Reparents Rays to player so that they follow the player
 	for child in get_children():
 		if child.get_class() == "RayCast2D":
-			print("2")
 			child.reparent(player, false)
 		if child is Area2D: 
-			print("1")
 			child.reparent(player, false)
 	#replace parent.modulate with this once animations are added
 #	parent.play_sound()
