@@ -2,11 +2,11 @@ class_name Room
 extends Node2D
 
 @export var camera_zoom : float
+@export var zoom_to_fit : bool
 
 @onready var room_transition_controller: Node = $"../.."
 @onready var level_bounds: CollisionShape2D = $Area2D/LevelBounds
 @onready var player: Player = $"../../../Player"
-var player_camera : Camera2D
 var camera_boundary_top_left
 var camera_boundary_bottom_right
 
@@ -30,19 +30,22 @@ func exit_room():
 	z_index = 0
 
 func change_camera_bounds(snap_camera : bool = false, zoom : float = camera_zoom) -> void:
-	player_camera = player.camera
 	camera_boundary_top_left = level_bounds.shape.get_rect().position
 	camera_boundary_bottom_right = level_bounds.shape.get_rect().end
 	if snap_camera:
-		player_camera.position_smoothing_enabled = false
+		player.camera.position_smoothing_enabled = false
 	if zoom:
-		player_camera.change_zoom_to(camera_zoom)
+		player.camera.change_zoom_to(camera_zoom)
+	if zoom_to_fit:
+		player.camera.change_zoom_to(get_viewport_rect().size.x/level_bounds.shape.get_rect().size.x)
+		if player.camera.zoom.y <= get_viewport_rect().size.y/level_bounds.shape.get_rect().size.y:
+			player.camera.change_zoom_to(get_viewport_rect().size.y/level_bounds.shape.get_rect().size.y)
 	else:
-		player_camera.change_zoom_to(0.36)
+		player.camera.change_zoom_to(0.36)
 	bounds.top = camera_boundary_top_left.y + level_bounds.position.y + self.position.y
 	bounds.bottom = camera_boundary_bottom_right.y + level_bounds.position.y + self.position.y
 	bounds.left = camera_boundary_top_left.x + level_bounds.position.x + self.position.x
 	bounds.right = camera_boundary_bottom_right.x + level_bounds.position.x + self.position.x
-	player_camera.change_bounds_to(bounds)
+	player.camera.change_bounds_to(bounds)
 	if snap_camera:
-		player_camera.position_smoothing_enabled = true
+		player.camera.position_smoothing_enabled = true

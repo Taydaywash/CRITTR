@@ -75,6 +75,7 @@ position = Vector2(9344, -3968)
 
 [node name="DashCrittr" parent="Rooms/CrashSite" instance=ExtResource("13_kpwrl")]
 position = Vector2(4480, -7168)
+zoom_to_fit = true
 
 [node name="BelowShip" parent="Rooms/CrashSite" instance=ExtResource("14_21v8o")]
 position = Vector2(2944, 1408)
