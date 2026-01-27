@@ -35,13 +35,13 @@ func change_camera_bounds(snap_camera : bool = false, zoom : float = camera_zoom
 	if snap_camera:
 		player.camera.position_smoothing_enabled = false
 	if zoom:
-		player.camera.change_zoom_to(camera_zoom)
+		player.camera.change_zoom_to(0.36 * camera_zoom)
+	else:
+		player.camera.change_zoom_to(0.36)
 	if zoom_to_fit:
 		player.camera.change_zoom_to(get_viewport_rect().size.x/level_bounds.shape.get_rect().size.x)
 		if player.camera.zoom.y <= get_viewport_rect().size.y/level_bounds.shape.get_rect().size.y:
 			player.camera.change_zoom_to(get_viewport_rect().size.y/level_bounds.shape.get_rect().size.y)
-	else:
-		player.camera.change_zoom_to(0.36)
 	bounds.top = camera_boundary_top_left.y + level_bounds.position.y + self.position.y
 	bounds.bottom = camera_boundary_bottom_right.y + level_bounds.position.y + self.position.y
 	bounds.left = camera_boundary_top_left.x + level_bounds.position.x + self.position.x
