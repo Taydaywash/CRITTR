@@ -22,7 +22,7 @@
 [node name="World" type="Node2D" unique_id=1470686207]
 
 [node name="Player" parent="." unique_id=674990077 instance=ExtResource("2_y6flb")]
-position = Vector2(-1151.9999, -9792)
+position = Vector2(2752, -448)
 
 [node name="UI" parent="." unique_id=580546377 instance=ExtResource("4_il6x7")]
 
@@ -30,7 +30,7 @@ position = Vector2(-1151.9999, -9792)
 script = ExtResource("1_il6x7")
 ui = NodePath("../UI")
 player = NodePath("../Player")
-starting_room = NodePath("Testing/Testing1")
+starting_room = NodePath("CrashSite/CrashedShip")
 horizontal_enter_velocity = 500.0
 horizontal_enter_multiplier = 10.0
 minimum_enter_velocity = 50.0
@@ -69,25 +69,29 @@ camera_zoom = 0.0
 
 [node name="PlatformsTwo" parent="Rooms/CrashSite" unique_id=528692670 instance=ExtResource("7_4sj48")]
 position = Vector2(6144, -2176)
+camera_zoom = 0.0
 
 [node name="SecondaryPlatforms" parent="Rooms/CrashSite" unique_id=767864856 instance=ExtResource("8_s53j1")]
 position = Vector2(2944, -2176)
+camera_zoom = 0.0
 
 [node name="BeforePeakEntrance" parent="Rooms/CrashSite" unique_id=249660479 instance=ExtResource("9_s53j1")]
 position = Vector2(-256, -2176)
+camera_zoom = 0.0
 
 [node name="PeakEntrance" parent="Rooms/CrashSite" unique_id=970963108 instance=ExtResource("11_ecnql")]
 position = Vector2(-3456, -2176)
+camera_zoom = 0.0
 
 [node name="ClimbToPeak" parent="Rooms/CrashSite" unique_id=515261806 instance=ExtResource("11_v0w7q")]
 position = Vector2(-256, -384)
+camera_zoom = 0.0
 
 [node name="WallJumpTutorial" parent="Rooms/CrashSite" unique_id=784699116 instance=ExtResource("12_l2bp3")]
 position = Vector2(9344, -3968)
 
 [node name="DashCrittr" parent="Rooms/CrashSite" unique_id=930366615 instance=ExtResource("13_kpwrl")]
 position = Vector2(4480, -7168)
-zoom_to_fit = true
 
 [node name="BelowShip" parent="Rooms/CrashSite" unique_id=1567868014 instance=ExtResource("14_21v8o")]
 position = Vector2(2944, 1408)
