@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://s1l25pe1fhgb"]
+[gd_scene format=3 uid="uid://s1l25pe1fhgb"]
 
 [ext_resource type="Script" uid="uid://nvgmux0c34ar" path="res://World/room_transition_controller.gd" id="1_il6x7"]
 [ext_resource type="PackedScene" uid="uid://4ip81nticvcd" path="res://PlayerController/Player.tscn" id="2_y6flb"]
@@ -19,14 +19,14 @@
 [ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://World/LevelEditor/Misc/Testing1.tscn" id="15_jacc8"]
 [ext_resource type="PackedScene" uid="uid://c2l75c4nehnvg" path="res://UI/AbilityChange.tscn" id="16_lcvgy"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" unique_id=1470686207]
 
-[node name="Player" parent="." instance=ExtResource("2_y6flb")]
+[node name="Player" parent="." unique_id=674990077 instance=ExtResource("2_y6flb")]
 position = Vector2(-1151.9999, -9792)
 
-[node name="UI" parent="." instance=ExtResource("4_il6x7")]
+[node name="UI" parent="." unique_id=580546377 instance=ExtResource("4_il6x7")]
 
-[node name="Rooms" type="Node" parent="." node_paths=PackedStringArray("ui", "player", "starting_room")]
+[node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("ui", "player", "starting_room")]
 script = ExtResource("1_il6x7")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -44,52 +44,54 @@ down_minimum_distance_from_last_room = 200.0
 screen_fade_speed = 20.0
 player_control_regain_delay = 0.4
 
-[node name="Testing" type="Node" parent="Rooms"]
+[node name="Testing" type="Node" parent="Rooms" unique_id=1080309199]
 
-[node name="Testing1" parent="Rooms/Testing" instance=ExtResource("15_jacc8")]
+[node name="Testing1" parent="Rooms/Testing" unique_id=1129801850 instance=ExtResource("15_jacc8")]
 position = Vector2(4416, -11968)
+camera_zoom = 0.8
+zoom_to_fit = false
 
-[node name="Testing2" parent="Rooms/Testing" instance=ExtResource("5_hev0n")]
+[node name="Testing2" parent="Rooms/Testing" unique_id=359317188 instance=ExtResource("5_hev0n")]
 position = Vector2(17216, -11968)
 
-[node name="CrashSite" type="Node" parent="Rooms"]
+[node name="CrashSite" type="Node" parent="Rooms" unique_id=1857399283]
 
-[node name="CrashedShip" parent="Rooms/CrashSite" instance=ExtResource("4_o14yy")]
+[node name="CrashedShip" parent="Rooms/CrashSite" unique_id=436417677 instance=ExtResource("4_o14yy")]
 position = Vector2(2944, -384)
 
-[node name="MovementTutorial" parent="Rooms/CrashSite" instance=ExtResource("5_04mge")]
+[node name="MovementTutorial" parent="Rooms/CrashSite" unique_id=599630729 instance=ExtResource("5_04mge")]
 position = Vector2(6144, -384)
 camera_zoom = 0.0
 
-[node name="Platforms" parent="Rooms/CrashSite" instance=ExtResource("6_eue43")]
+[node name="Platforms" parent="Rooms/CrashSite" unique_id=421078279 instance=ExtResource("6_eue43")]
 position = Vector2(9344, -384)
 camera_zoom = 0.0
 
-[node name="PlatformsTwo" parent="Rooms/CrashSite" instance=ExtResource("7_4sj48")]
+[node name="PlatformsTwo" parent="Rooms/CrashSite" unique_id=528692670 instance=ExtResource("7_4sj48")]
 position = Vector2(6144, -2176)
 
-[node name="SecondaryPlatforms" parent="Rooms/CrashSite" instance=ExtResource("8_s53j1")]
+[node name="SecondaryPlatforms" parent="Rooms/CrashSite" unique_id=767864856 instance=ExtResource("8_s53j1")]
 position = Vector2(2944, -2176)
 
-[node name="BeforePeakEntrance" parent="Rooms/CrashSite" instance=ExtResource("9_s53j1")]
+[node name="BeforePeakEntrance" parent="Rooms/CrashSite" unique_id=249660479 instance=ExtResource("9_s53j1")]
 position = Vector2(-256, -2176)
 
-[node name="PeakEntrance" parent="Rooms/CrashSite" instance=ExtResource("11_ecnql")]
+[node name="PeakEntrance" parent="Rooms/CrashSite" unique_id=970963108 instance=ExtResource("11_ecnql")]
 position = Vector2(-3456, -2176)
 
-[node name="ClimbToPeak" parent="Rooms/CrashSite" instance=ExtResource("11_v0w7q")]
+[node name="ClimbToPeak" parent="Rooms/CrashSite" unique_id=515261806 instance=ExtResource("11_v0w7q")]
 position = Vector2(-256, -384)
 
-[node name="WallJumpTutorial" parent="Rooms/CrashSite" instance=ExtResource("12_l2bp3")]
+[node name="WallJumpTutorial" parent="Rooms/CrashSite" unique_id=784699116 instance=ExtResource("12_l2bp3")]
 position = Vector2(9344, -3968)
 
-[node name="DashCrittr" parent="Rooms/CrashSite" instance=ExtResource("13_kpwrl")]
+[node name="DashCrittr" parent="Rooms/CrashSite" unique_id=930366615 instance=ExtResource("13_kpwrl")]
 position = Vector2(4480, -7168)
 zoom_to_fit = true
 
-[node name="BelowShip" parent="Rooms/CrashSite" instance=ExtResource("14_21v8o")]
+[node name="BelowShip" parent="Rooms/CrashSite" unique_id=1567868014 instance=ExtResource("14_21v8o")]
 position = Vector2(2944, 1408)
 
-[node name="PauseScreen" parent="." instance=ExtResource("5_o14yy")]
+[node name="PauseScreen" parent="." unique_id=679717548 instance=ExtResource("5_o14yy")]
 
-[node name="AbilityChange" parent="." instance=ExtResource("16_lcvgy")]
+[node name="AbilityChange" parent="." unique_id=205138081 instance=ExtResource("16_lcvgy")]
