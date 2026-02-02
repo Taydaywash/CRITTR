@@ -18,6 +18,19 @@
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://World/LevelEditor/Regions/Crash Site/Rooms/BelowShip.tscn" id="14_21v8o"]
 [ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://World/LevelEditor/Misc/Testing1.tscn" id="15_jacc8"]
 [ext_resource type="PackedScene" uid="uid://c2l75c4nehnvg" path="res://UI/AbilityChange.tscn" id="16_lcvgy"]
+[ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://tundra background objects/background layer tundra 1.png" id="19_vdgnt"]
+[ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://tundra background objects/bg layer tundra 2.png" id="20_3ql1f"]
+[ext_resource type="Texture2D" uid="uid://c6owixld7ssqg" path="res://tundra background objects/tundra hill.png" id="21_eucu0"]
+[ext_resource type="Texture2D" uid="uid://cneyuseemoqek" path="res://tundra background objects/many vines t.png" id="22_c4j8x"]
+[ext_resource type="Texture2D" uid="uid://bm6vu2bqh8xgm" path="res://tundra background objects/big t hill.png" id="23_c4j8x"]
+[ext_resource type="Texture2D" uid="uid://vk7hdquyrbd5" path="res://tundra background objects/vines t.png" id="24_2neov"]
+
+[sub_resource type="Gradient" id="Gradient_vdgnt"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.8197893, 0.92398196, 0.9423895, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3ql1f"]
+gradient = SubResource("Gradient_vdgnt")
 
 [node name="World" type="Node2D" unique_id=1470686207]
 
@@ -99,3 +112,61 @@ position = Vector2(2944, 1408)
 [node name="PauseScreen" parent="." unique_id=679717548 instance=ExtResource("5_o14yy")]
 
 [node name="AbilityChange" parent="." unique_id=205138081 instance=ExtResource("16_lcvgy")]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1796784597]
+scroll_scale = Vector2(0.2, 1)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=304975404]
+z_index = -10
+position = Vector2(963, -792)
+texture = ExtResource("19_vdgnt")
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1254982517]
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2" unique_id=2079355000]
+z_index = -9
+position = Vector2(977, -796)
+texture = ExtResource("20_3ql1f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1774029004]
+z_index = -11
+position = Vector2(3808, -2883.0002)
+scale = Vector2(271.43747, 190.67188)
+texture = SubResource("GradientTexture2D_3ql1f")
+
+[node name="TundraHill" type="Sprite2D" parent="." unique_id=809754195]
+z_index = -2
+position = Vector2(-265, -1261)
+texture = ExtResource("21_eucu0")
+
+[node name="ManyVinesT" type="Sprite2D" parent="." unique_id=498285593]
+position = Vector2(624, -1654)
+rotation = 3.1415927
+texture = ExtResource("22_c4j8x")
+
+[node name="BigTHill" type="Sprite2D" parent="." unique_id=564443915]
+z_index = -2
+position = Vector2(1202, -1156)
+texture = ExtResource("23_c4j8x")
+
+[node name="VinesT" type="Sprite2D" parent="." unique_id=412026554]
+position = Vector2(-573.9999, -1733.0002)
+rotation = 3.1415927
+scale = Vector2(0.74816006, 0.7821118)
+texture = ExtResource("24_2neov")
+
+[node name="BigTHill2" type="Sprite2D" parent="." unique_id=39408025]
+z_index = -3
+position = Vector2(5273, -1294)
+texture = ExtResource("23_c4j8x")
+
+[node name="VinesT2" type="Sprite2D" parent="." unique_id=2091611375]
+z_index = -3
+position = Vector2(4647, -811)
+rotation = 3.1415927
+texture = ExtResource("24_2neov")
