@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://4ip81nticvcd"]
+[gd_scene format=3 uid="uid://4ip81nticvcd"]
 
 [ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://PlayerController/States/player_state_controller.gd" id="1_4bhr5"]
 [ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://icon.svg" id="2_ves0u"]
@@ -176,7 +176,7 @@ size = Vector2(71.11111, 5.92593)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxerk"]
 size = Vector2(71.112, 142.22195)
 
-[node name="PlayerController" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "camera", "up", "down", "left", "right")]
+[node name="PlayerController" type="CharacterBody2D" unique_id=1758587224 node_paths=PackedStringArray("state_machine", "camera", "up", "down", "left", "right")]
 scale = Vector2(1.35, 1.35)
 collision_layer = 8
 collision_mask = 81
@@ -193,7 +193,7 @@ right = NodePath("RoomTransitionSides/right")
 normal_gravity = 3250
 max_falling_speed = 2000
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("no_control_state", "death_state", "idle_state", "diving_state", "diving_falling_state", "falling_state", "ascending", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
+[node name="StateMachine" type="Node" parent="." unique_id=1436004704 node_paths=PackedStringArray("no_control_state", "death_state", "idle_state", "diving_state", "diving_falling_state", "falling_state", "ascending", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
 script = ExtResource("5_v55cd")
 no_control_state = NodePath("NoControl")
 death_state = NodePath("Death")
@@ -208,15 +208,15 @@ grounded_states = [NodePath("Idle"), NodePath("Walking"), NodePath("Crouching"),
 abilities_state = NodePath("Abilities")
 jump_input_buffer = NodePath("../JumpInputBuffer")
 
-[node name="NoControl" type="Node" parent="StateMachine"]
+[node name="NoControl" type="Node" parent="StateMachine" unique_id=986458533]
 script = ExtResource("3_jl1s5")
 
-[node name="Death" type="Node" parent="StateMachine"]
+[node name="Death" type="Node" parent="StateMachine" unique_id=1238038414]
 script = ExtResource("4_4nigc")
 animation_name = "death"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "default_hitbox", "jumping_hitbox")]
+[node name="Jumping" type="Node" parent="StateMachine" unique_id=2088144188 node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "default_hitbox", "jumping_hitbox")]
 script = ExtResource("8_2fk5g")
 falling_state = NodePath("../Falling")
 diving_state = NodePath("../Diving")
@@ -245,7 +245,7 @@ jumping_hitbox = NodePath("../../Jumping")
 animation_name = "jump"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Crouching" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_crouching_state", "walking_state", "falling_state", "jumping_state", "diving_state", "ability_state", "default_hitbox", "crouching_hitbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
+[node name="Crouching" type="Node" parent="StateMachine" unique_id=1700106763 node_paths=PackedStringArray("idle_crouching_state", "walking_state", "falling_state", "jumping_state", "diving_state", "ability_state", "default_hitbox", "crouching_hitbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
 script = ExtResource("12_068uq")
 idle_crouching_state = NodePath("IdleCrouching")
 walking_state = NodePath("../Walking")
@@ -272,7 +272,7 @@ x_final_sprite_stretch_multiplier = 1.0
 animation_name = "walking"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="IdleCrouching" type="Node" parent="StateMachine/Crouching" node_paths=PackedStringArray("idle_state", "walking_state", "crouching_state", "falling_state", "jumping_state", "diving_state", "ability_state", "default_hitbox", "crouching_hitbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
+[node name="IdleCrouching" type="Node" parent="StateMachine/Crouching" unique_id=1397319090 node_paths=PackedStringArray("idle_state", "walking_state", "crouching_state", "falling_state", "jumping_state", "diving_state", "ability_state", "default_hitbox", "crouching_hitbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("5_3imdl")
 idle_state = NodePath("../../Idle")
 walking_state = NodePath("../../Walking")
@@ -300,7 +300,7 @@ x_final_sprite_stretch_multiplier = 1.0
 animation_name = "idle"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walking_state", "crouching_state", "falling_state", "jumping_state", "diving_state", "ability_state", "looking_up_state", "right_ray", "left_ray")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1534459121 node_paths=PackedStringArray("walking_state", "crouching_state", "falling_state", "jumping_state", "diving_state", "ability_state", "looking_up_state", "right_ray", "left_ray")]
 script = ExtResource("6_dpx4d")
 walking_state = NodePath("../Walking")
 crouching_state = NodePath("../Crouching")
@@ -314,7 +314,7 @@ left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "idle"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="LookingUp" type="Node" parent="StateMachine/Idle" node_paths=PackedStringArray("walking_state", "crouching_state", "falling_state", "jumping_state", "diving_state", "ability_state", "idle_state", "right_ray", "left_ray", "camera_reference")]
+[node name="LookingUp" type="Node" parent="StateMachine/Idle" unique_id=1352518924 node_paths=PackedStringArray("walking_state", "crouching_state", "falling_state", "jumping_state", "diving_state", "ability_state", "idle_state", "right_ray", "left_ray", "camera_reference")]
 script = ExtResource("4_jl1s5")
 walking_state = NodePath("../../Walking")
 crouching_state = NodePath("../../Crouching")
@@ -329,7 +329,7 @@ camera_reference = NodePath("../../../Camera2D")
 camera_offset = 500
 look_up_delay = 0.5
 
-[node name="Walking" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "crouching_state", "falling_state", "jumping_state", "diving_state", "ability_state", "right_ray", "left_ray")]
+[node name="Walking" type="Node" parent="StateMachine" unique_id=884465542 node_paths=PackedStringArray("idle_state", "crouching_state", "falling_state", "jumping_state", "diving_state", "ability_state", "right_ray", "left_ray")]
 script = ExtResource("7_hueom")
 idle_state = NodePath("../Idle")
 crouching_state = NodePath("../Crouching")
@@ -345,7 +345,7 @@ left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "walking"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Diving" type="Node" parent="StateMachine" node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "diving_falling_state", "jump_input_buffer")]
+[node name="Diving" type="Node" parent="StateMachine" unique_id=1646142929 node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "diving_falling_state", "jump_input_buffer")]
 script = ExtResource("9_gnv43")
 walking_state = NodePath("../Walking")
 bonked_state = NodePath("Bonked")
@@ -366,7 +366,7 @@ x_final_sprite_stretch_multiplier = 1.0
 animation_name = "idle"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="DivingFalling" type="Node" parent="StateMachine/Diving" node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "jump_input_buffer")]
+[node name="DivingFalling" type="Node" parent="StateMachine/Diving" unique_id=577619824 node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "jump_input_buffer")]
 script = ExtResource("12_31xm6")
 walking_state = NodePath("../../Walking")
 bonked_state = NodePath("../Bonked")
@@ -380,7 +380,7 @@ x_final_sprite_stretch_multiplier = 1.0
 animation_name = "idle"
 placeholder_animation_color = Color(0.62352943, 0, 0, 1)
 
-[node name="Bonked" type="Node" parent="StateMachine/Diving" node_paths=PackedStringArray("idle_state", "jumping_state", "jump_input_buffer")]
+[node name="Bonked" type="Node" parent="StateMachine/Diving" unique_id=958169737 node_paths=PackedStringArray("idle_state", "jumping_state", "jump_input_buffer")]
 script = ExtResource("9_v55cd")
 idle_state = NodePath("../../Idle")
 jumping_state = NodePath("../../Jumping")
@@ -390,7 +390,7 @@ jump_input_buffer = NodePath("../../../JumpInputBuffer")
 jump_input_buffer_patience = 0.2
 placeholder_animation_color = Color(0.3282248, 0.39151636, 0.4222509, 1)
 
-[node name="WallCling" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "jumping_state", "walking_state", "wall_jumping_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray")]
+[node name="WallCling" type="Node" parent="StateMachine" unique_id=546096226 node_paths=PackedStringArray("falling_state", "jumping_state", "walking_state", "wall_jumping_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray")]
 script = ExtResource("10_xnjby")
 falling_state = NodePath("../Falling")
 jumping_state = NodePath("../Jumping")
@@ -410,7 +410,7 @@ right_ray = NodePath("../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 placeholder_animation_color = Color(0, 0.8901186, 0.9043261, 1)
 
-[node name="WallJumping" type="Node" parent="StateMachine/WallCling" node_paths=PackedStringArray("falling_state", "idle_state", "walking_state", "diving_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray")]
+[node name="WallJumping" type="Node" parent="StateMachine/WallCling" unique_id=1649015882 node_paths=PackedStringArray("falling_state", "idle_state", "walking_state", "diving_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray")]
 script = ExtResource("10_dpx4d")
 falling_state = NodePath("../../Falling")
 idle_state = NodePath("../../Idle")
@@ -429,7 +429,7 @@ right_ray = NodePath("../../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
 placeholder_animation_color = Color(0.6553385, 0.74060166, 0.67189306, 1)
 
-[node name="Falling" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walking_state", "diving_state", "wall_cling_state", "jumping_state", "wall_jumping_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
+[node name="Falling" type="Node" parent="StateMachine" unique_id=18701263 node_paths=PackedStringArray("idle_state", "walking_state", "diving_state", "wall_cling_state", "jumping_state", "wall_jumping_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("11_v55cd")
 idle_state = NodePath("../Idle")
 walking_state = NodePath("../Walking")
@@ -453,7 +453,7 @@ nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 animation_name = "falling"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Ascending" type="Node" parent="StateMachine" node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
+[node name="Ascending" type="Node" parent="StateMachine" unique_id=103182494 node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("11_evkiq")
 falling_state = NodePath("../Falling")
 diving_state = NodePath("../Diving")
@@ -474,7 +474,7 @@ nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
 nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 placeholder_animation_color = Color(0.62458503, 0.3189972, 0, 1)
 
-[node name="Abilities" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashing_state", "grappling_state", "climbing_state", "inflated_state", "bounce_attack_state", "drill_state", "ability_up", "ability_down", "ability_left", "ability_right")]
+[node name="Abilities" type="Node" parent="StateMachine" unique_id=2108752327 node_paths=PackedStringArray("dashing_state", "grappling_state", "climbing_state", "inflated_state", "bounce_attack_state", "drill_state", "ability_up", "ability_down", "ability_left", "ability_right")]
 script = ExtResource("11_75ds7")
 dashing_state = NodePath("Dashing")
 grappling_state = NodePath("Grappling")
@@ -482,12 +482,12 @@ climbing_state = NodePath("Climbing")
 inflated_state = NodePath("Inflated")
 bounce_attack_state = NodePath("BounceAttack")
 drill_state = NodePath("Drill")
-ability_up = NodePath("BounceAttack")
-ability_down = NodePath("BounceAttack")
-ability_left = NodePath("BounceAttack")
-ability_right = NodePath("BounceAttack")
+ability_up = NodePath("Dashing")
+ability_down = NodePath("Inflated")
+ability_left = NodePath("Climbing")
+ability_right = NodePath("Grappling")
 
-[node name="Dashing" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("jumping_state", "walking_state", "falling_state", "idle_state", "diving_state", "ascending_state", "jump_input_buffer", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
+[node name="Dashing" type="Node" parent="StateMachine/Abilities" unique_id=868337417 node_paths=PackedStringArray("jumping_state", "walking_state", "falling_state", "idle_state", "diving_state", "ascending_state", "jump_input_buffer", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("12_evkiq")
 icon = ExtResource("19_j8lbh")
 jumping_state = NodePath("../../Jumping")
@@ -510,7 +510,7 @@ nudge_left_range_right = NodePath("../../../CornerNudging/NudgeLeftRangeRight")
 nudge_left_range_left = NodePath("../../../CornerNudging/NudgeLeftRangeLeft")
 placeholder_animation_color = Color(0.23891038, 0.12174525, 0.0073752436, 1)
 
-[node name="Grappling" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "grappling_pull_state", "grapple_ray", "line", "jump_input_buffer")]
+[node name="Grappling" type="Node" parent="StateMachine/Abilities" unique_id=2140590385 node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "grappling_pull_state", "grapple_ray", "line", "jump_input_buffer")]
 script = ExtResource("13_vpgwe")
 icon = ExtResource("22_wlqol")
 falling_state = NodePath("../../Falling")
@@ -529,7 +529,7 @@ grapple_ray = NodePath("GrappleRay")
 line = NodePath("GrappleRay/Line2D")
 jump_input_buffer = NodePath("../../../JumpInputBuffer")
 
-[node name="GrapplingPull" type="Node" parent="StateMachine/Abilities/Grappling" node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "grapple_ray", "line", "jump_input_buffer")]
+[node name="GrapplingPull" type="Node" parent="StateMachine/Abilities/Grappling" unique_id=967336177 node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "grapple_ray", "line", "jump_input_buffer")]
 script = ExtResource("23_0wxel")
 falling_state = NodePath("../../../Falling")
 idle_state = NodePath("../../../Idle")
@@ -546,16 +546,16 @@ grapple_ray = NodePath("../GrappleRay")
 line = NodePath("../GrappleRay/Line2D")
 jump_input_buffer = NodePath("../../../../JumpInputBuffer")
 
-[node name="GrappleRay" type="RayCast2D" parent="StateMachine/Abilities/Grappling"]
+[node name="GrappleRay" type="RayCast2D" parent="StateMachine/Abilities/Grappling" unique_id=2019285064]
 scale = Vector2(1.35, 1.35)
 target_position = Vector2(0, 0)
 collision_mask = 97
 collide_with_areas = true
 
-[node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Grappling/GrappleRay"]
+[node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Grappling/GrappleRay" unique_id=1217359713]
 default_color = Color(1, 0.43460146, 0.9889626, 1)
 
-[node name="Climbing" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("climbing_state", "falling_state", "climbing_ray", "line", "default_hitbox", "crouching_hitbox")]
+[node name="Climbing" type="Node" parent="StateMachine/Abilities" unique_id=1959426882 node_paths=PackedStringArray("climbing_state", "falling_state", "climbing_ray", "line", "default_hitbox", "crouching_hitbox")]
 script = ExtResource("23_31xm6")
 icon = ExtResource("20_4o1t2")
 climbing_state = NodePath("ClimbingSlide")
@@ -568,7 +568,7 @@ line = NodePath("ClimbingRay/Line2D")
 default_hitbox = NodePath("../../../NormalHitbox")
 crouching_hitbox = NodePath("../../../CrouchedHitbox")
 
-[node name="ClimbingSlide" type="Node" parent="StateMachine/Abilities/Climbing" node_paths=PackedStringArray("falling_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "idle_state", "wall_jumping_state", "climbing_ray", "default_hitbox", "crouching_hitbox")]
+[node name="ClimbingSlide" type="Node" parent="StateMachine/Abilities/Climbing" unique_id=988233789 node_paths=PackedStringArray("falling_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "idle_state", "wall_jumping_state", "climbing_ray", "default_hitbox", "crouching_hitbox")]
 script = ExtResource("14_hl1jv")
 falling_state = NodePath("../../../Falling")
 diving_state = NodePath("../../../Diving")
@@ -586,16 +586,16 @@ default_hitbox = NodePath("../../../../NormalHitbox")
 crouching_hitbox = NodePath("../../../../CrouchedHitbox")
 placeholder_animation_color = Color(0.30563596, 0.3749689, 0.15632111, 1)
 
-[node name="ClimbingRay" type="RayCast2D" parent="StateMachine/Abilities/Climbing"]
+[node name="ClimbingRay" type="RayCast2D" parent="StateMachine/Abilities/Climbing" unique_id=1636057079]
 scale = Vector2(1.35, 1.35)
 target_position = Vector2(0, 0)
 collision_mask = 65
 collide_with_areas = true
 
-[node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Climbing/ClimbingRay"]
+[node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Climbing/ClimbingRay" unique_id=944559949]
 default_color = Color(1, 0.43460146, 0.9889626, 1)
 
-[node name="Inflated" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("jumping_state", "walking_state", "falling_state", "idle_state", "diving_state", "ascending_state", "ability_state", "left_ray", "right_ray")]
+[node name="Inflated" type="Node" parent="StateMachine/Abilities" unique_id=948011255 node_paths=PackedStringArray("jumping_state", "walking_state", "falling_state", "idle_state", "diving_state", "ascending_state", "ability_state", "left_ray", "right_ray")]
 script = ExtResource("15_melbr")
 icon = ExtResource("23_hk2wy")
 jumping_state = NodePath("../../Jumping")
@@ -625,7 +625,7 @@ left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
 right_ray = NodePath("../../../WallJumpRayReference/RightRay")
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="BounceAttack" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "ascending_state")]
+[node name="BounceAttack" type="Node" parent="StateMachine/Abilities" unique_id=60864109 node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "ascending_state")]
 script = ExtResource("16_2bslk")
 icon = ExtResource("24_qy6yu")
 falling_state = NodePath("../../Falling")
@@ -633,57 +633,57 @@ idle_state = NodePath("../../Idle")
 diving_state = NodePath("../../Diving")
 ascending_state = NodePath("../../Ascending")
 
-[node name="Up" type="Area2D" parent="StateMachine/Abilities/BounceAttack"]
+[node name="Up" type="Area2D" parent="StateMachine/Abilities/BounceAttack" unique_id=308086091]
 position = Vector2(0, -120)
 collision_layer = 0
 collision_mask = 65
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Up"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Up" unique_id=89973093]
 shape = SubResource("RectangleShape2D_0wxel")
 
-[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Up"]
+[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Up" unique_id=1239905855]
 scale = Vector2(1, 0.3936313)
 texture = ExtResource("2_ves0u")
 
-[node name="Down" type="Area2D" parent="StateMachine/Abilities/BounceAttack"]
+[node name="Down" type="Area2D" parent="StateMachine/Abilities/BounceAttack" unique_id=1520256098]
 position = Vector2(0, 120)
 collision_layer = 0
 collision_mask = 65
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Down"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Down" unique_id=1579677635]
 shape = SubResource("RectangleShape2D_0wxel")
 
-[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Down"]
+[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Down" unique_id=1938358089]
 scale = Vector2(1, 0.3936313)
 texture = ExtResource("2_ves0u")
 
-[node name="Right" type="Area2D" parent="StateMachine/Abilities/BounceAttack"]
+[node name="Right" type="Area2D" parent="StateMachine/Abilities/BounceAttack" unique_id=1669515173]
 position = Vector2(75, 0)
 collision_layer = 0
 collision_mask = 65
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Right"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Right" unique_id=1869999493]
 shape = SubResource("RectangleShape2D_wlqol")
 
-[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Right"]
+[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Right" unique_id=662095251]
 position = Vector2(0.4999981, -0.9999981)
 scale = Vector2(0.39843753, 0.93750006)
 texture = ExtResource("2_ves0u")
 
-[node name="Left" type="Area2D" parent="StateMachine/Abilities/BounceAttack"]
+[node name="Left" type="Area2D" parent="StateMachine/Abilities/BounceAttack" unique_id=1252038150]
 position = Vector2(-75, 0)
 collision_layer = 0
 collision_mask = 65
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Left"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Left" unique_id=309966905]
 shape = SubResource("RectangleShape2D_wlqol")
 
-[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Left"]
+[node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Left" unique_id=1671350434]
 position = Vector2(0.4999981, -0.9999981)
 scale = Vector2(0.39843753, 0.93750006)
 texture = ExtResource("2_ves0u")
 
-[node name="Drill" type="Node" parent="StateMachine/Abilities" node_paths=PackedStringArray("falling_state", "digging_state", "drill_ray", "drill_ray_not_digable", "line")]
+[node name="Drill" type="Node" parent="StateMachine/Abilities" unique_id=1692216375 node_paths=PackedStringArray("falling_state", "digging_state", "drill_ray", "drill_ray_not_digable", "line")]
 script = ExtResource("17_fuvci")
 icon = ExtResource("21_0wxel")
 falling_state = NodePath("../../Falling")
@@ -701,7 +701,7 @@ line = NodePath("DrillRayDigable/Line2D")
 animation_name = "idle"
 placeholder_animation_color = Color(0.38170326, 0.38170323, 0.38170323, 1)
 
-[node name="Digging" type="Node" parent="StateMachine/Abilities/Drill" node_paths=PackedStringArray("jumping_state", "ascending_state", "crouching_hitbox", "normal_hitbox", "drill_ray", "drill_ray_not_digable", "line")]
+[node name="Digging" type="Node" parent="StateMachine/Abilities/Drill" unique_id=556616308 node_paths=PackedStringArray("jumping_state", "ascending_state", "crouching_hitbox", "normal_hitbox", "drill_ray", "drill_ray_not_digable", "line")]
 script = ExtResource("32_4o1t2")
 jumping_state = NodePath("../../../Jumping")
 ascending_state = NodePath("../../../Ascending")
@@ -718,135 +718,135 @@ line = NodePath("../DrillRayDigable/Line2D")
 animation_name = "idle"
 placeholder_animation_color = Color(0.49995556, 0.38109186, 0.17558163, 1)
 
-[node name="DrillRayNotDigable" type="RayCast2D" parent="StateMachine/Abilities/Drill"]
+[node name="DrillRayNotDigable" type="RayCast2D" parent="StateMachine/Abilities/Drill" unique_id=2040645533]
 target_position = Vector2(0, 0)
 hit_from_inside = true
 
-[node name="DrillRayDigable" type="RayCast2D" parent="StateMachine/Abilities/Drill"]
+[node name="DrillRayDigable" type="RayCast2D" parent="StateMachine/Abilities/Drill" unique_id=1801807881]
 target_position = Vector2(0, 0)
 collision_mask = 64
 hit_from_inside = true
 
-[node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Drill/DrillRayDigable"]
+[node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Drill/DrillRayDigable" unique_id=1871000791]
 width = 2.0
 default_color = Color(1, 0.43460146, 0.9889626, 1)
 
-[node name="Respawn Controller" type="Node" parent="."]
+[node name="Respawn Controller" type="Node" parent="." unique_id=1531318067]
 script = ExtResource("37_jxerk")
 
-[node name="JumpInputBuffer" type="Timer" parent="."]
+[node name="JumpInputBuffer" type="Timer" parent="." unique_id=764513886]
 one_shot = true
 
-[node name="WallJumpRayReference" type="Node2D" parent="."]
+[node name="WallJumpRayReference" type="Node2D" parent="." unique_id=12252629]
 
-[node name="RightRay" type="RayCast2D" parent="WallJumpRayReference"]
+[node name="RightRay" type="RayCast2D" parent="WallJumpRayReference" unique_id=771782398]
 position = Vector2(0, 10)
 scale = Vector2(1, 2)
 target_position = Vector2(100, 0)
 collision_mask = 65
 
-[node name="LeftRay" type="RayCast2D" parent="WallJumpRayReference"]
+[node name="LeftRay" type="RayCast2D" parent="WallJumpRayReference" unique_id=945988906]
 position = Vector2(0, 10)
 scale = Vector2(1, 2)
 target_position = Vector2(-100, 0)
 collision_mask = 65
 
-[node name="CornerNudging" type="Node2D" parent="."]
+[node name="CornerNudging" type="Node2D" parent="." unique_id=1893630454]
 scale = Vector2(2, 2)
 
-[node name="NudgeRightRangeLeft" type="RayCast2D" parent="CornerNudging"]
+[node name="NudgeRightRangeLeft" type="RayCast2D" parent="CornerNudging" unique_id=629161421]
 position = Vector2(-17.75, 0.00037002563)
 target_position = Vector2(0, -50)
 collision_mask = 65
 
-[node name="NudgeRightRangeRight" type="RayCast2D" parent="CornerNudging"]
+[node name="NudgeRightRangeRight" type="RayCast2D" parent="CornerNudging" unique_id=468580811]
 position = Vector2(-8, 0)
 target_position = Vector2(0, -50)
 collision_mask = 65
 
-[node name="NudgeLeftRangeLeft" type="RayCast2D" parent="CornerNudging"]
+[node name="NudgeLeftRangeLeft" type="RayCast2D" parent="CornerNudging" unique_id=464013103]
 position = Vector2(8, 0)
 target_position = Vector2(0, -50)
 collision_mask = 65
 
-[node name="NudgeLeftRangeRight" type="RayCast2D" parent="CornerNudging"]
+[node name="NudgeLeftRangeRight" type="RayCast2D" parent="CornerNudging" unique_id=989576538]
 position = Vector2(17.75, 0.00037002563)
 target_position = Vector2(0, -50)
 collision_mask = 65
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1475064037]
 position = Vector2(0, -3.0517578e-05)
 process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("21_3imdl")
 default_zoom = 0.36
 
-[node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
 sprite_frames = SubResource("SpriteFrames_hl1jv")
 animation = &"death"
 
-[node name="TriggerHitbox" type="Area2D" parent="."]
+[node name="TriggerHitbox" type="Area2D" parent="." unique_id=936426999]
 visible = false
 scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 4
 
-[node name="Collider" type="CollisionShape2D" parent="TriggerHitbox"]
+[node name="Collider" type="CollisionShape2D" parent="TriggerHitbox" unique_id=637471940]
 position = Vector2(-7.50577e-07, 5.187812e-07)
 scale = Vector2(1, 0.99999934)
 shape = SubResource("RectangleShape2D_g1nwm")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1280830317]
 visible = false
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=278402326]
 position = Vector2(-0.5560827, 0)
 scale = Vector2(1, 0.9999999)
 shape = SubResource("RectangleShape2D_5i1rd")
 debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
 
-[node name="CrouchedHurtbox" type="Area2D" parent="."]
+[node name="CrouchedHurtbox" type="Area2D" parent="." unique_id=2118895586]
 visible = false
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CrouchedHurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrouchedHurtbox" unique_id=1961565185]
 z_index = 1
 position = Vector2(-0.5560827, 5.9259253)
 scale = Vector2(1, 0.9999999)
 shape = SubResource("RectangleShape2D_068uq")
 debug_color = Color(1, 0.13725491, 0.1764706, 0.3254902)
 
-[node name="PermanentHitbox" type="CollisionShape2D" parent="."]
+[node name="PermanentHitbox" type="CollisionShape2D" parent="." unique_id=1627051024]
 z_index = -1
 position = Vector2(7.064254e-07, 68.14815)
 shape = SubResource("RectangleShape2D_ho2n3")
 one_way_collision_margin = 128.0
 
-[node name="NormalHitbox" type="CollisionShape2D" parent="."]
+[node name="NormalHitbox" type="CollisionShape2D" parent="." unique_id=1797974876]
 z_index = -1
 position = Vector2(-3.638091e-06, 3.7087334e-06)
 shape = ExtResource("36_uneaa")
 
-[node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
+[node name="CrouchedHitbox" type="CollisionShape2D" parent="." unique_id=982923523]
 z_index = -1
 position = Vector2(1.7660635e-07, 11.851847)
 shape = ExtResource("35_ho2n3")
 disabled = true
 
-[node name="Jumping" type="CollisionShape2D" parent="."]
+[node name="Jumping" type="CollisionShape2D" parent="." unique_id=1851286639]
 z_index = -1
 position = Vector2(1.7660635e-07, 0.00012715657)
 shape = SubResource("RectangleShape2D_jxerk")
 disabled = true
 
-[node name="RoomTransitionSides" type="Node2D" parent="."]
+[node name="RoomTransitionSides" type="Node2D" parent="." unique_id=402856173]
 
-[node name="up" type="RayCast2D" parent="RoomTransitionSides"]
+[node name="up" type="RayCast2D" parent="RoomTransitionSides" unique_id=1923984855]
 position = Vector2(0, -71.11111)
 target_position = Vector2(0, -1)
 collision_mask = 128
@@ -854,7 +854,7 @@ hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="down" type="RayCast2D" parent="RoomTransitionSides"]
+[node name="down" type="RayCast2D" parent="RoomTransitionSides" unique_id=2115720232]
 position = Vector2(0, 71.11111)
 target_position = Vector2(0, 1)
 collision_mask = 128
@@ -862,7 +862,7 @@ hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="left" type="RayCast2D" parent="RoomTransitionSides"]
+[node name="left" type="RayCast2D" parent="RoomTransitionSides" unique_id=45105901]
 position = Vector2(-35.555553, 0)
 target_position = Vector2(-1, 0)
 collision_mask = 128
@@ -870,7 +870,7 @@ hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="right" type="RayCast2D" parent="RoomTransitionSides"]
+[node name="right" type="RayCast2D" parent="RoomTransitionSides" unique_id=1677155557]
 position = Vector2(35.555553, 0)
 target_position = Vector2(10, 0)
 collision_mask = 128

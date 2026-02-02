@@ -22,7 +22,7 @@
 [node name="World" type="Node2D" unique_id=1470686207]
 
 [node name="Player" parent="." unique_id=674990077 instance=ExtResource("2_y6flb")]
-position = Vector2(2752, -448)
+position = Vector2(-1280, -10496)
 
 [node name="UI" parent="." unique_id=580546377 instance=ExtResource("4_il6x7")]
 
@@ -30,7 +30,7 @@ position = Vector2(2752, -448)
 script = ExtResource("1_il6x7")
 ui = NodePath("../UI")
 player = NodePath("../Player")
-starting_room = NodePath("CrashSite/CrashedShip")
+starting_room = NodePath("Testing/Testing1")
 horizontal_enter_velocity = 500.0
 horizontal_enter_multiplier = 10.0
 minimum_enter_velocity = 50.0
@@ -52,7 +52,7 @@ camera_zoom = 0.8
 zoom_to_fit = false
 
 [node name="Testing2" parent="Rooms/Testing" unique_id=359317188 instance=ExtResource("5_hev0n")]
-position = Vector2(17216, -11968)
+position = Vector2(17216, -15808)
 
 [node name="CrashSite" type="Node" parent="Rooms" unique_id=1857399283]
 
