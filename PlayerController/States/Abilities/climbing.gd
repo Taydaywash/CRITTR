@@ -12,7 +12,6 @@ extends State
 @export var jump_input_buffer_patience : float
 @export var max_speed: float
 @export var speed_increment: float 
-@export var bounce_velocity: float
 
 @export_category("References")
 @export var climbing_ray: RayCast2D
@@ -94,7 +93,7 @@ func process_physics(_delta) -> State:
 		
 	if jump_input_buffer.time_left > 0:
 		if player.is_on_wall():
-			return wall_jumping_state
+			return ascending_state
 		return jumping_state
 		
 	if one_frame_passed:
