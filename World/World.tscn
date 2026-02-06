@@ -61,7 +61,8 @@ position = Vector2(17216, -15808)
 
 [node name="CrashedShip" parent="Rooms/CrashSite" unique_id=436417677 instance=ExtResource("4_o14yy")]
 position = Vector2(2944, -384)
-camera_zoom = 0.8
+camera_zoom = 0.775
+zoom_to_fit = false
 
 [node name="PauseScreen" parent="." unique_id=679717548 instance=ExtResource("5_o14yy")]
 

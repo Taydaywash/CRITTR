@@ -777,7 +777,9 @@ collision_mask = 65
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1475064037]
 position = Vector2(0, -3.0517578e-05)
+scale = Vector2(1.035, 1.035)
 process_callback = 0
+limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("21_3imdl")
 default_zoom = 0.36

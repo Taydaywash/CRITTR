@@ -38,6 +38,7 @@ func _process(delta: float) -> void:
 		button_pronpt_instance.modulate.a = lerp(button_pronpt_instance.modulate.a,0.0,clampf(delta * 10, 0.0,1.0))
 		button_pronpt_instance.global_position = lerp(button_pronpt_instance.global_position, 
 			return_position, clampf(delta * 10, 0.0, 1.0))
+
 func can_interact() -> bool:
 	if abs(player.velocity.x + player.velocity.y) < 1:
 		return true
