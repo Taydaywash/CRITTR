@@ -580,7 +580,6 @@ wall_jumping_state = NodePath("../../../WallCling/WallJumping")
 jump_input_buffer_patience = 0.2
 max_speed = 2000.0
 speed_increment = 20.0
-bounce_velocity = 400.0
 climbing_ray = NodePath("../ClimbingRay")
 default_hitbox = NodePath("../../../../NormalHitbox")
 crouching_hitbox = NodePath("../../../../CrouchedHitbox")
@@ -731,8 +730,10 @@ hit_from_inside = true
 width = 2.0
 default_color = Color(1, 0.43460146, 0.9889626, 1)
 
-[node name="Respawn Controller" type="Node" parent="." unique_id=1531318067]
+[node name="Respawn Controller" type="Node" parent="." unique_id=1531318067 node_paths=PackedStringArray("player", "ground_distance_ray")]
 script = ExtResource("37_jxerk")
+player = NodePath("..")
+ground_distance_ray = NodePath("../GroundDistancerRay")
 
 [node name="JumpInputBuffer" type="Timer" parent="." unique_id=764513886]
 one_shot = true
@@ -877,6 +878,9 @@ collision_mask = 128
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="GroundDistancerRay" type="RayCast2D" parent="." unique_id=1215516566]
+target_position = Vector2(0, 500)
 
 [connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Up" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Down" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]

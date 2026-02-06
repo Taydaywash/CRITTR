@@ -4,18 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://4ip81nticvcd" path="res://PlayerController/Player.tscn" id="2_y6flb"]
 [ext_resource type="PackedScene" uid="uid://bpodu035v3lq4" path="res://UI/UI.tscn" id="4_il6x7"]
 [ext_resource type="PackedScene" uid="uid://bnjdytut746x1" path="res://World/LevelEditor/Regions/Crash Site/Rooms/CrashedShip.tscn" id="4_o14yy"]
-[ext_resource type="PackedScene" uid="uid://c01sisufyx4ho" path="res://World/LevelEditor/Regions/Crash Site/Rooms/MovementTutorial.tscn" id="5_04mge"]
 [ext_resource type="PackedScene" uid="uid://dqd0fl65fplw7" path="res://World/LevelEditor/Misc/Testing2.tscn" id="5_hev0n"]
 [ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://UI/PauseScreen.tscn" id="5_o14yy"]
-[ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://World/LevelEditor/Regions/Crash Site/Rooms/Platforms.tscn" id="6_eue43"]
-[ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://World/LevelEditor/Regions/Crash Site/Rooms/PlatformsTwo.tscn" id="7_4sj48"]
-[ext_resource type="PackedScene" uid="uid://djg64wdak2hx4" path="res://World/LevelEditor/Regions/Crash Site/Rooms/SecondaryPlatforms.tscn" id="8_s53j1"]
-[ext_resource type="PackedScene" uid="uid://d35vqu04f6lf7" path="res://World/LevelEditor/Regions/Crash Site/Rooms/BeforePeakEntrance.tscn" id="9_s53j1"]
-[ext_resource type="PackedScene" uid="uid://xsi1ashxxkof" path="res://World/LevelEditor/Regions/Crash Site/Rooms/PeakEntrance.tscn" id="11_ecnql"]
-[ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://World/LevelEditor/Regions/Crash Site/Rooms/ClimbToPeak.tscn" id="11_v0w7q"]
-[ext_resource type="PackedScene" uid="uid://coj0cv5o7fmcj" path="res://World/LevelEditor/Regions/Crash Site/Rooms/WallJumpTutorial.tscn" id="12_l2bp3"]
-[ext_resource type="PackedScene" uid="uid://dkgn24ggvad45" path="res://World/LevelEditor/Regions/Crash Site/Rooms/DashCrittr.tscn" id="13_kpwrl"]
-[ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://World/LevelEditor/Regions/Crash Site/Rooms/BelowShip.tscn" id="14_21v8o"]
 [ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://World/LevelEditor/Misc/Testing1.tscn" id="15_jacc8"]
 [ext_resource type="PackedScene" uid="uid://c2l75c4nehnvg" path="res://UI/AbilityChange.tscn" id="16_lcvgy"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://tundra background objects/background layer tundra 1.png" id="19_vdgnt"]
@@ -35,7 +25,7 @@ gradient = SubResource("Gradient_vdgnt")
 [node name="World" type="Node2D" unique_id=1470686207]
 
 [node name="Player" parent="." unique_id=674990077 instance=ExtResource("2_y6flb")]
-position = Vector2(-1280, -9744)
+position = Vector2(2880, -480)
 
 [node name="UI" parent="." unique_id=580546377 instance=ExtResource("4_il6x7")]
 
@@ -43,7 +33,7 @@ position = Vector2(-1280, -9744)
 script = ExtResource("1_il6x7")
 ui = NodePath("../UI")
 player = NodePath("../Player")
-starting_room = NodePath("Testing/Testing1")
+starting_room = NodePath("CrashSite/CrashedShip")
 horizontal_enter_velocity = 500.0
 horizontal_enter_multiplier = 10.0
 minimum_enter_velocity = 50.0
@@ -71,43 +61,7 @@ position = Vector2(17216, -15808)
 
 [node name="CrashedShip" parent="Rooms/CrashSite" unique_id=436417677 instance=ExtResource("4_o14yy")]
 position = Vector2(2944, -384)
-
-[node name="MovementTutorial" parent="Rooms/CrashSite" unique_id=599630729 instance=ExtResource("5_04mge")]
-position = Vector2(6144, -384)
-camera_zoom = 0.0
-
-[node name="Platforms" parent="Rooms/CrashSite" unique_id=421078279 instance=ExtResource("6_eue43")]
-position = Vector2(9344, -384)
-camera_zoom = 0.0
-
-[node name="PlatformsTwo" parent="Rooms/CrashSite" unique_id=528692670 instance=ExtResource("7_4sj48")]
-position = Vector2(6144, -2176)
-camera_zoom = 0.0
-
-[node name="SecondaryPlatforms" parent="Rooms/CrashSite" unique_id=767864856 instance=ExtResource("8_s53j1")]
-position = Vector2(2944, -2176)
-camera_zoom = 0.0
-
-[node name="BeforePeakEntrance" parent="Rooms/CrashSite" unique_id=249660479 instance=ExtResource("9_s53j1")]
-position = Vector2(-256, -2176)
-camera_zoom = 0.0
-
-[node name="PeakEntrance" parent="Rooms/CrashSite" unique_id=970963108 instance=ExtResource("11_ecnql")]
-position = Vector2(-3456, -2176)
-camera_zoom = 0.0
-
-[node name="ClimbToPeak" parent="Rooms/CrashSite" unique_id=515261806 instance=ExtResource("11_v0w7q")]
-position = Vector2(-256, -384)
-camera_zoom = 0.0
-
-[node name="WallJumpTutorial" parent="Rooms/CrashSite" unique_id=784699116 instance=ExtResource("12_l2bp3")]
-position = Vector2(9344, -3968)
-
-[node name="DashCrittr" parent="Rooms/CrashSite" unique_id=930366615 instance=ExtResource("13_kpwrl")]
-position = Vector2(4480, -7168)
-
-[node name="BelowShip" parent="Rooms/CrashSite" unique_id=1567868014 instance=ExtResource("14_21v8o")]
-position = Vector2(2944, 1408)
+camera_zoom = 0.8
 
 [node name="PauseScreen" parent="." unique_id=679717548 instance=ExtResource("5_o14yy")]
 
@@ -147,7 +101,7 @@ position = Vector2(-265, -1261)
 texture = ExtResource("21_eucu0")
 
 [node name="ManyVinesT" type="Sprite2D" parent="Background" unique_id=498285593]
-position = Vector2(624, -1654)
+position = Vector2(800, -1808)
 rotation = -3.1415925
 texture = ExtResource("22_c4j8x")
 
@@ -157,7 +111,7 @@ position = Vector2(1202, -1156)
 texture = ExtResource("23_c4j8x")
 
 [node name="VinesT" type="Sprite2D" parent="Background" unique_id=412026554]
-position = Vector2(-573.9999, -1733.0002)
+position = Vector2(1760.0004, -2192.0002)
 rotation = -3.1415925
 scale = Vector2(0.74816006, 0.7821118)
 texture = ExtResource("24_2neov")
@@ -169,6 +123,6 @@ texture = ExtResource("23_c4j8x")
 
 [node name="VinesT2" type="Sprite2D" parent="Background" unique_id=2091611375]
 z_index = -3
-position = Vector2(4647, -811)
+position = Vector2(4736, -1824)
 rotation = -3.1415925
 texture = ExtResource("24_2neov")
