@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://4ip81nticvcd" path="res://PlayerController/Player.tscn" id="2_y6flb"]
 [ext_resource type="PackedScene" uid="uid://bpodu035v3lq4" path="res://UI/UI.tscn" id="4_il6x7"]
 [ext_resource type="PackedScene" uid="uid://bnjdytut746x1" path="res://World/LevelEditor/Regions/Crash Site/Rooms/CrashedShip.tscn" id="4_o14yy"]
+[ext_resource type="PackedScene" uid="uid://c01sisufyx4ho" path="res://World/LevelEditor/Regions/Crash Site/Rooms/MovementTutorial.tscn" id="5_04mge"]
 [ext_resource type="PackedScene" uid="uid://dqd0fl65fplw7" path="res://World/LevelEditor/Misc/Testing2.tscn" id="5_hev0n"]
 [ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://UI/PauseScreen.tscn" id="5_o14yy"]
+[ext_resource type="Script" uid="uid://doykniksbhx74" path="res://Custom Classes/door.gd" id="7_lcvgy"]
 [ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://World/LevelEditor/Misc/Testing1.tscn" id="15_jacc8"]
 [ext_resource type="PackedScene" uid="uid://c2l75c4nehnvg" path="res://UI/AbilityChange.tscn" id="16_lcvgy"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://tundra background objects/background layer tundra 1.png" id="19_vdgnt"]
@@ -14,6 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://cneyuseemoqek" path="res://tundra background objects/many vines t.png" id="22_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://bm6vu2bqh8xgm" path="res://tundra background objects/big t hill.png" id="23_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://vk7hdquyrbd5" path="res://tundra background objects/vines t.png" id="24_2neov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jacc8"]
+size = Vector2(160.27356, 206.59265)
 
 [sub_resource type="Gradient" id="Gradient_vdgnt"]
 offsets = PackedFloat32Array(1)
@@ -60,9 +65,32 @@ position = Vector2(17216, -15808)
 [node name="CrashSite" type="Node" parent="Rooms" unique_id=1857399283]
 
 [node name="CrashedShip" parent="Rooms/CrashSite" unique_id=436417677 instance=ExtResource("4_o14yy")]
-position = Vector2(2944, -384)
-camera_zoom = 0.775
-zoom_to_fit = false
+position = Vector2(2944, -1328)
+camera_zoom = 0.77
+
+[node name="ShipDoor" type="Area2D" parent="Rooms/CrashSite/CrashedShip" unique_id=184067362 node_paths=PackedStringArray("go_to_door")]
+position = Vector2(-187.4387, 912)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("7_lcvgy")
+go_to_door = NodePath("../ShipDoor2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/CrashSite/CrashedShip/ShipDoor" unique_id=607732099]
+shape = SubResource("RectangleShape2D_jacc8")
+
+[node name="ShipDoor2" type="Area2D" parent="Rooms/CrashSite/CrashedShip" unique_id=188644705 node_paths=PackedStringArray("go_to_door")]
+position = Vector2(3520, 560)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("7_lcvgy")
+go_to_door = NodePath("../ShipDoor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/CrashSite/CrashedShip/ShipDoor2" unique_id=656081753]
+shape = SubResource("RectangleShape2D_jacc8")
+
+[node name="MovementTut" parent="Rooms/CrashSite" unique_id=1846956963 instance=ExtResource("5_04mge")]
+position = Vector2(7552, -1328)
+zoom_to_fit = true
 
 [node name="PauseScreen" parent="." unique_id=679717548 instance=ExtResource("5_o14yy")]
 
