@@ -62,6 +62,16 @@ position = Vector2(17216, -15808)
 
 [node name="CrashSite" type="Node" parent="Rooms" unique_id=1857399283]
 
+[node name="Parallax2D2" type="Parallax2D" parent="Rooms/CrashSite" unique_id=1845712591]
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(1920, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/CrashSite/Parallax2D2" unique_id=1774029004]
+z_index = -11
+position = Vector2(3808, -2883.0002)
+scale = Vector2(271.43747, 190.67188)
+texture = SubResource("GradientTexture2D_3ql1f")
+
 [node name="CrashedShip" parent="Rooms/CrashSite" unique_id=436417677 instance=ExtResource("4_o14yy")]
 position = Vector2(2944, -1328)
 camera_zoom = 0.77
@@ -107,12 +117,6 @@ repeat_times = 3
 z_index = -9
 position = Vector2(977, -796)
 texture = ExtResource("20_3ql1f")
-
-[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=1774029004]
-z_index = -11
-position = Vector2(3808, -2883.0002)
-scale = Vector2(271.43747, 190.67188)
-texture = SubResource("GradientTexture2D_3ql1f")
 
 [node name="TundraHill" type="Sprite2D" parent="Background" unique_id=809754195]
 z_index = -2
