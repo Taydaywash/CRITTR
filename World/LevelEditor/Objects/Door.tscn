@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://brtxay1sgqmvv"]
+
+[ext_resource type="Script" uid="uid://doykniksbhx74" path="res://Custom Classes/door.gd" id="1_qqgwv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jacc8"]
+size = Vector2(160.27356, 206.59265)
+
+[node name="ShipDoor" type="Area2D" unique_id=1749550748 node_paths=PackedStringArray("go_to_door")]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_qqgwv")
+go_to_door = NodePath("")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1569238568]
+shape = SubResource("RectangleShape2D_jacc8")

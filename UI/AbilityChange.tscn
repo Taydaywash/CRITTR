@@ -23,7 +23,6 @@ corner_radius_bottom_left = 20
 [node name="PauseScreen" type="CanvasLayer" unique_id=1243602819]
 process_mode = 3
 layer = 3
-visible = false
 script = ExtResource("1_k0vqm")
 
 [node name="Dash" type="Button" parent="." unique_id=2102644137]

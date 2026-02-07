@@ -7,18 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://c01sisufyx4ho" path="res://World/LevelEditor/Regions/Crash Site/Rooms/MovementTutorial.tscn" id="5_04mge"]
 [ext_resource type="PackedScene" uid="uid://dqd0fl65fplw7" path="res://World/LevelEditor/Misc/Testing2.tscn" id="5_hev0n"]
 [ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://UI/PauseScreen.tscn" id="5_o14yy"]
-[ext_resource type="Script" uid="uid://doykniksbhx74" path="res://Custom Classes/door.gd" id="7_lcvgy"]
+[ext_resource type="PackedScene" uid="uid://brtxay1sgqmvv" path="res://World/LevelEditor/Objects/Door.tscn" id="7_jacc8"]
+[ext_resource type="PackedScene" uid="uid://bj2evssjuqrmd" path="res://World/LevelEditor/Objects/SaveTube/SaveTube.tscn" id="8_hev0n"]
+[ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://World/LevelEditor/Regions/Crash Site/Rooms/InsideShip.tscn" id="8_jacc8"]
 [ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://World/LevelEditor/Misc/Testing1.tscn" id="15_jacc8"]
-[ext_resource type="PackedScene" uid="uid://c2l75c4nehnvg" path="res://UI/AbilityChange.tscn" id="16_lcvgy"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://tundra background objects/background layer tundra 1.png" id="19_vdgnt"]
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://tundra background objects/bg layer tundra 2.png" id="20_3ql1f"]
 [ext_resource type="Texture2D" uid="uid://c6owixld7ssqg" path="res://tundra background objects/tundra hill.png" id="21_eucu0"]
 [ext_resource type="Texture2D" uid="uid://cneyuseemoqek" path="res://tundra background objects/many vines t.png" id="22_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://bm6vu2bqh8xgm" path="res://tundra background objects/big t hill.png" id="23_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://vk7hdquyrbd5" path="res://tundra background objects/vines t.png" id="24_2neov"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jacc8"]
-size = Vector2(160.27356, 206.59265)
 
 [sub_resource type="Gradient" id="Gradient_vdgnt"]
 offsets = PackedFloat32Array(1)
@@ -68,33 +66,25 @@ position = Vector2(17216, -15808)
 position = Vector2(2944, -1328)
 camera_zoom = 0.77
 
-[node name="ShipDoor" type="Area2D" parent="Rooms/CrashSite/CrashedShip" unique_id=184067362 node_paths=PackedStringArray("go_to_door")]
-position = Vector2(-187.4387, 912)
-collision_layer = 0
-collision_mask = 8
-script = ExtResource("7_lcvgy")
-go_to_door = NodePath("../ShipDoor2")
+[node name="ShipDoorOutside" parent="Rooms/CrashSite/CrashedShip" unique_id=1749550748 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
+position = Vector2(-160, 912)
+go_to_door = NodePath("../../InsideShip/ShipDoorInside")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/CrashSite/CrashedShip/ShipDoor" unique_id=607732099]
-shape = SubResource("RectangleShape2D_jacc8")
-
-[node name="ShipDoor2" type="Area2D" parent="Rooms/CrashSite/CrashedShip" unique_id=188644705 node_paths=PackedStringArray("go_to_door")]
-position = Vector2(3520, 560)
-collision_layer = 0
-collision_mask = 8
-script = ExtResource("7_lcvgy")
-go_to_door = NodePath("../ShipDoor")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/CrashSite/CrashedShip/ShipDoor2" unique_id=656081753]
-shape = SubResource("RectangleShape2D_jacc8")
+[node name="SaveTube" parent="Rooms/CrashSite/CrashedShip" unique_id=1607364998 instance=ExtResource("8_hev0n")]
+position = Vector2(704, 896)
 
 [node name="MovementTut" parent="Rooms/CrashSite" unique_id=1846956963 instance=ExtResource("5_04mge")]
 position = Vector2(7552, -1328)
 zoom_to_fit = true
 
-[node name="PauseScreen" parent="." unique_id=679717548 instance=ExtResource("5_o14yy")]
+[node name="InsideShip" parent="Rooms/CrashSite" unique_id=845230466 instance=ExtResource("8_jacc8")]
+position = Vector2(2944, 1264)
 
-[node name="AbilityChange" parent="." unique_id=205138081 instance=ExtResource("16_lcvgy")]
+[node name="ShipDoorInside" parent="Rooms/CrashSite/InsideShip" unique_id=1427879586 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
+position = Vector2(-1936, 816)
+go_to_door = NodePath("../../CrashedShip/ShipDoorOutside")
+
+[node name="PauseScreen" parent="." unique_id=679717548 instance=ExtResource("5_o14yy")]
 
 [node name="Background" type="Node2D" parent="." unique_id=2056885657]
 

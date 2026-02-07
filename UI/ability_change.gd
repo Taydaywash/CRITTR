@@ -1,10 +1,6 @@
 extends CanvasLayer
 
-@onready var abilities: AbilityController = $"../Player/StateMachine/Abilities"
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Ability Select Menu"):
-		visible = !visible
+@onready var abilities: AbilityController = get_node("/root/World/Player/StateMachine/Abilities")
 
 func _on_back_pressed() -> void:
 	visible = false
