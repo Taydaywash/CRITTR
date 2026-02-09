@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://p60bcylp36uc"]
+
+[ext_resource type="Script" uid="uid://bm8ai54cut6hy" path="res://World/Map/map_room.gd" id="1_gj01h"]
+
+[node name="MapRoom" type="Polygon2D" unique_id=1229491579 node_paths=PackedStringArray("outline")]
+script = ExtResource("1_gj01h")
+outline = NodePath("Outline")
+
+[node name="Outline" type="Line2D" parent="." unique_id=857358970]
+closed = true
+default_color = Color(0, 0, 0, 1)

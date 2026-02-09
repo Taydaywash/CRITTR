@@ -181,6 +181,8 @@ z_index = -2
 position = Vector2(-265, -1261)
 texture = ExtResource("21_eucu0")
 
-[node name="Map" parent="." unique_id=2004255828 instance=ExtResource("18_hev0n")]
+[node name="Map" parent="." unique_id=2004255828 node_paths=PackedStringArray("player", "room_transition_controller") instance=ExtResource("18_hev0n")]
 visible = false
 z_index = 10
+player = NodePath("../Player")
+room_transition_controller = NodePath("../Rooms")
