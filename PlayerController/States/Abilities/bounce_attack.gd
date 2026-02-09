@@ -46,18 +46,18 @@ func activate(last_state : State) -> void:
 	gravity = player.normal_gravity
 	max_falling_speed = player.max_falling_speed
 	match direction:
-				"right":
-					right_area.monitoring = true
-					right_area.visible = true
-				"left":
-					left_area.monitoring = true
-					left_area.visible = true
-				"up":
-					up_area.monitoring = true
-					up_area.visible = true
-				"down":
-					down_area.monitoring = true
-					down_area.visible = true
+			"right":
+				right_area.monitoring = true
+				right_area.visible = true
+			"left":
+				left_area.monitoring = true
+				left_area.visible = true
+			"up":
+				up_area.monitoring = true
+				up_area.visible = true
+			"down":
+				down_area.monitoring = true
+				down_area.visible = true
 
 func process_input(_event : InputEvent) -> State:
 	return null
@@ -87,18 +87,18 @@ func process_physics(delta) -> State:
 
 func deactivate(_next_state : State) -> void:
 	match direction:
-				"right":
-					right_area.monitoring = false
-					right_area.visible = false
-				"left":
-					left_area.monitoring = false
-					left_area.visible = false
-				"up":
-					up_area.monitoring = false
-					up_area.visible = false
-				"down":
-					down_area.monitoring = false
-					down_area.visible = false
+			"right":
+				right_area.monitoring = false
+				right_area.visible = false
+			"left":
+				left_area.monitoring = false
+				left_area.visible = false
+			"up":
+				up_area.monitoring = false
+				up_area.visible = false
+			"down":
+				down_area.monitoring = false
+				down_area.visible = false
 
 func _on_area_2d_body_entered(_body):
 	if (abs(player.velocity) > abs(bounce_velocity)):
@@ -107,17 +107,17 @@ func _on_area_2d_body_entered(_body):
 	entered = true
 	if (bounce_input_buffer.time_left != 0):
 		match direction:
-				"right":
-					player.velocity.y += -750
-					player.velocity.x = -bounce_velocity.x
-					print("right")
-				"left":
-					player.velocity.y += -750
-					player.velocity.x = bounce_velocity.x
-					print("left")
-				"up":
-					player.velocity.y = bounce_velocity.y
-					print("up")
-				"down":
-					player.velocity.y = -bounce_velocity.y
-					print("down")
+			"right":
+				player.velocity.y += -750
+				player.velocity.x = -bounce_velocity.x
+				print("right")
+			"left":
+				player.velocity.y += -750
+				player.velocity.x = bounce_velocity.x
+				print("left")
+			"up":
+				player.velocity.y = bounce_velocity.y
+				print("up")
+			"down":
+				player.velocity.y = -bounce_velocity.y
+				print("down")
