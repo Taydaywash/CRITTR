@@ -59,7 +59,7 @@
 [ext_resource type="Script" uid="uid://db1bxui7ftwwk" path="res://PlayerController/respawn_controller.gd" id="37_jxerk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wxel"]
-size = Vector2(120, 50)
+size = Vector2(70, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wlqol"]
 size = Vector2(50, 120)
@@ -624,33 +624,39 @@ left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
 right_ray = NodePath("../../../WallJumpRayReference/RightRay")
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="BounceAttack" type="Node" parent="StateMachine/Abilities" unique_id=60864109 node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "walking_state", "up_area", "down_area", "right_area", "left_area")]
+[node name="BounceAttack" type="Node" parent="StateMachine/Abilities" unique_id=60864109 node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "walking_state", "ascending_state", "jumping_state", "up_area", "down_area", "right_area", "left_area", "jump_input_buffer")]
 script = ExtResource("16_2bslk")
 icon = ExtResource("24_qy6yu")
 falling_state = NodePath("../../Falling")
 idle_state = NodePath("../../Idle")
 diving_state = NodePath("../../Diving")
 walking_state = NodePath("../../Walking")
+ascending_state = NodePath("../../Ascending")
+jumping_state = NodePath("../../Jumping")
 bounce_input_buffer_patience = 0.35
 air_control = 800
 air_acceleration_speed = 10000
 air_decceleration_speed = 10000
+jump_input_buffer_patience = 0.2
 up_area = NodePath("Up")
 down_area = NodePath("Down")
 right_area = NodePath("Right")
 left_area = NodePath("Left")
+jump_input_buffer = NodePath("../../../JumpInputBuffer")
 
 [node name="Up" type="Area2D" parent="StateMachine/Abilities/BounceAttack" unique_id=308086091]
 visible = false
 position = Vector2(0, -120)
 collision_layer = 0
 collision_mask = 81
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Up" unique_id=89973093]
 shape = SubResource("RectangleShape2D_0wxel")
 
 [node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Up" unique_id=1239905855]
-scale = Vector2(1, 0.3936313)
+position = Vector2(-0.5, 0)
+scale = Vector2(0.7578125, 0.3936313)
 texture = ExtResource("2_ves0u")
 
 [node name="Down" type="Area2D" parent="StateMachine/Abilities/BounceAttack" unique_id=1520256098]
@@ -658,12 +664,14 @@ visible = false
 position = Vector2(0, 120)
 collision_layer = 0
 collision_mask = 65
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Down" unique_id=1579677635]
 shape = SubResource("RectangleShape2D_0wxel")
 
 [node name="Sprite2D" type="Sprite2D" parent="StateMachine/Abilities/BounceAttack/Down" unique_id=1938358089]
-scale = Vector2(1, 0.3936313)
+position = Vector2(-2.861023e-06, 0)
+scale = Vector2(0.74999994, 0.3936313)
 texture = ExtResource("2_ves0u")
 
 [node name="Right" type="Area2D" parent="StateMachine/Abilities/BounceAttack" unique_id=1669515173]
@@ -671,6 +679,7 @@ visible = false
 position = Vector2(75, 0)
 collision_layer = 0
 collision_mask = 65
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Right" unique_id=1869999493]
 shape = SubResource("RectangleShape2D_wlqol")
@@ -685,6 +694,7 @@ visible = false
 position = Vector2(-75, 0)
 collision_layer = 0
 collision_mask = 65
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Abilities/BounceAttack/Left" unique_id=309966905]
 shape = SubResource("RectangleShape2D_wlqol")

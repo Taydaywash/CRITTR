@@ -56,7 +56,6 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	
 	player.move_and_slide()
 	if !has_collided and grapple_current_length < grapple_max_length:
 		grapple_current_length += grapple_increment * delta

@@ -6,7 +6,9 @@ extends State
 @export var falling_state : State
 @export var idle_state : State
 @export var diving_state : State
-@export var walking_state : State 
+@export var walking_state : State
+@export var ascending_state : State
+@export var jumping_state : State
 
 @export_category("Parameters")
 @export var max_velocity: float
@@ -14,19 +16,20 @@ extends State
 @export var air_control : int
 @export var air_acceleration_speed : int
 @export var air_decceleration_speed : int
+@export var jump_input_buffer_patience : float
 
 @export_category("References")
 @export var up_area : Area2D
 @export var down_area : Area2D
 @export var right_area : Area2D
 @export var left_area : Area2D
-
+@export var jump_input_buffer : Timer
 
 var direction: String
 var bounce_input_buffer: Timer
 var entered: bool
 var gravity : float
-var bounce_velocity : Vector2 = Vector2(2000,2000)
+var bounce_velocity : Vector2
 var max_falling_speed : float
 var horizontal_input : int = 0
 
@@ -41,6 +44,7 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state)
+	bounce_velocity = Vector2(2000,2000)
 	entered = false
 	bounce_input_buffer.start()
 	gravity = player.normal_gravity
@@ -59,7 +63,13 @@ func activate(last_state : State) -> void:
 				down_area.monitoring = true
 				down_area.visible = true
 
-func process_input(_event : InputEvent) -> State:
+func process_input(event : InputEvent) -> State:
+	if event.is_action_pressed("dive"):
+		return diving_state
+	if event.is_action_pressed("jump"):
+		jump_input_buffer.start()
+	if event.is_action_released("jump"):
+		jump_input_buffer.stop()
 	return null
 
 func process_physics(delta) -> State:
@@ -74,6 +84,8 @@ func process_physics(delta) -> State:
 	player.move_and_slide()
 	
 	if (bounce_input_buffer.time_left == 0 or entered):
+		if (player.velocity.y < 0):
+			return ascending_state
 		return falling_state
 		
 	if (player.is_on_floor() and bounce_input_buffer.time_left == 0):
@@ -81,9 +93,11 @@ func process_physics(delta) -> State:
 			return walking_state
 		else:
 			return idle_state
+	
+	if (player.is_on_floor() and jump_input_buffer.time_left > 0):
+		return jumping_state
 		
 	return null
-
 
 func deactivate(_next_state : State) -> void:
 	match direction:
@@ -101,18 +115,18 @@ func deactivate(_next_state : State) -> void:
 				down_area.visible = false
 
 func _on_area_2d_body_entered(_body):
-	if (abs(player.velocity) > abs(bounce_velocity)):
-		bounce_velocity = (abs(player.velocity))
+	if (abs(player.velocity.x) > abs(bounce_velocity.x)):
+		bounce_velocity.x = (abs(player.velocity.x))
+	if (abs(player.velocity.y) > abs(bounce_velocity.y)):
+		bounce_velocity.y = (abs(player.velocity.y))
 	
 	entered = true
 	if (bounce_input_buffer.time_left != 0):
 		match direction:
 			"right":
-				player.velocity.y += -750
 				player.velocity.x = -bounce_velocity.x
 				print("right")
 			"left":
-				player.velocity.y += -750
 				player.velocity.x = bounce_velocity.x
 				print("left")
 			"up":
