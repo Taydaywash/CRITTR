@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://d2mfvc5tpbska"]
+[gd_scene format=4 uid="uid://d2mfvc5tpbska"]
 
 [ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://World/room_controller.gd" id="1_byjgp"]
 [ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="2_oyma6"]
@@ -7,34 +7,33 @@
 [ext_resource type="Shape2D" uid="uid://kcu3cvf74df6" path="res://World/LevelEditor/Objects/Camera/baseCamera.tres" id="4_o2qqh"]
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_6vusl"]
 
-[node name="Room2" type="Node2D"]
+[node name="Room2" type="Node2D" unique_id=721111038]
 script = ExtResource("1_byjgp")
 
-[node name="RespawnPoint" parent="." instance=ExtResource("2_oyma6")]
+[node name="RespawnPoint" parent="." unique_id=262928423 instance=ExtResource("2_oyma6")]
 position = Vector2(-512, -320)
 
-[node name="Foreground" parent="." instance=ExtResource("3_2e5dh")]
+[node name="Foreground" parent="." unique_id=622969364 instance=ExtResource("3_2e5dh")]
 
-[node name="MidgroundFront" parent="." instance=ExtResource("3_iwxvw")]
+[node name="MidgroundFront" parent="." unique_id=1729108735 instance=ExtResource("3_iwxvw")]
 z_index = 1
 tile_map_data = PackedByteArray("AAD6/wUAAwAIAAAAAAD6/wYAAwAIAAEAAAD6/wcAAwAIAAMAAAD7/wUAAwAKAAAAAAD7/wYAAwAJAAIAAAD7/wcAAwAJAAMAAAD8/wUAAwAKAAAAAAD8/wYAAwAJAAIAAAD8/wcAAwAJAAMAAAD9/wUAAwAKAAAAAAD9/wYAAwAJAAIAAAD9/wcAAwAJAAMAAAD+/wUAAwAKAAAAAAD+/wYAAwAJAAIAAAD+/wcAAwAJAAMAAAD//wQAAwAIAAAAAAD//wUAAwAFAAEAAAD//wYAAwAJAAIAAAD//wcAAwAJAAMAAAAAAAQAAwAKAAAAAAAAAAUAAwAJAAIAAAAAAAYAAwAJAAIAAAAAAAcAAwAJAAMAAAABAAQAAwALAAAAAAABAAUAAwALAAIAAAABAAYAAwALAAIAAAABAAcAAwALAAMAAAA=")
 
-[node name="MidgroundBack" parent="." instance=ExtResource("3_iwxvw")]
+[node name="MidgroundBack" parent="." unique_id=711483977 instance=ExtResource("3_iwxvw")]
 tile_map_data = PackedByteArray("AADy//j/AwAIAAAAAADy//n/AwAIAAEAAADy//r/AwAIAAEAAADy//v/AwAIAAEAAADy//z/AwAIAAEAAADy//3/AwAIAAEAAADy//7/AwAIAAEAAADy////AwAIAAEAAADy/wAAAwAIAAEAAADy/wEAAwAIAAEAAADy/wIAAwAIAAEAAADz//j/AwAKAAAAAADz//n/AwAGAAIAAADz//r/AwALAAIAAADz//v/AwALAAIAAADz//z/AwALAAIAAADz//3/AwALAAIAAADz//7/AwALAAIAAADz////AwALAAIAAADz/wAAAwALAAIAAADz/wEAAwALAAIAAADz/wIAAwALAAIAAAALAPj/AwAKAAAAAAALAPn/AwAFAAIAAAALAPr/AwAIAAEAAAALAPv/AwAIAAEAAAALAPz/AwAIAAEAAAALAP3/AwAIAAEAAAALAP7/AwAIAAEAAAALAP//AwAIAAEAAAALAAAAAwAIAAEAAAALAAEAAwAIAAEAAAALAAIAAwAIAAEAAAAMAPj/AwALAAAAAAAMAPn/AwALAAIAAAAMAPr/AwALAAIAAAAMAPv/AwALAAIAAAAMAPz/AwALAAIAAAAMAP3/AwALAAIAAAAMAP7/AwALAAIAAAAMAP//AwALAAIAAAAMAAAAAwALAAIAAAAMAAEAAwALAAIAAAAMAAIAAwALAAIAAADy/wMAAwAIAAEAAADy/wQAAwAIAAEAAADy/wUAAwAIAAEAAADy/wYAAwAIAAEAAADz/wMAAwALAAIAAADz/wQAAwALAAIAAADz/wUAAwALAAIAAADz/wYAAwAGAAEAAAD0//j/AwAKAAAAAAD0//n/AwAJAAMAAAD1//j/AwAKAAAAAAD1//n/AwAJAAMAAAD2//j/AwAKAAAAAAD2//n/AwAJAAMAAAD3//j/AwAKAAAAAAD3//n/AwAJAAMAAAD4//j/AwAKAAAAAAD4//n/AwAJAAMAAAD5//j/AwAKAAAAAAD5//n/AwAJAAMAAAD6//j/AwAKAAAAAAD6//n/AwAJAAMAAAD7//j/AwAKAAAAAAD7//n/AwAJAAMAAAD8//j/AwAKAAAAAAD8//n/AwAJAAMAAAD9//j/AwAKAAAAAAD9//n/AwAJAAMAAAD+//j/AwAKAAAAAAD+//n/AwAJAAMAAAD///j/AwAKAAAAAAD///n/AwAJAAMAAAAAAPj/AwAKAAAAAAAAAPn/AwAJAAMAAAABAPj/AwAKAAAAAAABAPn/AwAJAAMAAAACAPj/AwAKAAAAAAACAPn/AwAJAAMAAAADAPj/AwAKAAAAAAADAPn/AwAJAAMAAAAEAPj/AwAKAAAAAAAEAPn/AwAJAAMAAAAFAPj/AwAKAAAAAAAFAPn/AwAJAAMAAAAGAPj/AwAKAAAAAAAGAPn/AwAJAAMAAAAHAPj/AwAKAAAAAAAHAPn/AwAJAAMAAAAIAPj/AwAKAAAAAAAIAPn/AwAJAAMAAAAJAPj/AwAKAAAAAAAJAPn/AwAJAAMAAAAKAPj/AwAKAAAAAAAKAPn/AwAJAAMAAAALAAMAAwAIAAEAAAALAAQAAwAIAAEAAAALAAUAAwAIAAEAAAALAAYAAwAFAAEAAAAMAAMAAwALAAIAAAAMAAQAAwALAAIAAAAMAAUAAwALAAIAAAAMAAYAAwALAAIAAADy/wcAAwAIAAMAAADz/wcAAwAJAAMAAAD0/wcAAwAJAAMAAAD1/wcAAwAJAAMAAAD2/wcAAwAJAAMAAAD3/wcAAwAJAAMAAAD4/wcAAwAJAAMAAAD5/wcAAwAJAAMAAAD6/wcAAwAJAAMAAAD7/wcAAwAJAAMAAAD8/wcAAwAJAAMAAAD9/wcAAwAJAAMAAAD+/wcAAwAJAAMAAAD//wcAAwAJAAMAAAAAAAcAAwAJAAMAAAABAAcAAwAJAAMAAAACAAcAAwAJAAMAAAADAAcAAwAJAAMAAAAEAAcAAwAJAAMAAAAFAAcAAwAJAAMAAAAGAAcAAwAJAAMAAAAHAAcAAwAJAAMAAAAIAAcAAwAJAAMAAAAJAAcAAwAJAAMAAAAKAAcAAwAJAAMAAAALAAcAAwAJAAMAAAAMAAcAAwALAAMAAAD0/wYAAwAKAAAAAAD1/wYAAwAKAAAAAAD2/wYAAwAKAAAAAAD3/wYAAwAKAAAAAAD4/wYAAwAKAAAAAAD5/wYAAwAKAAAAAAD6/wYAAwAKAAAAAAD7/wYAAwAKAAAAAAD8/wYAAwAKAAAAAAD9/wYAAwAKAAAAAAD+/wYAAwAKAAAAAAD//wYAAwAKAAAAAAAAAAYAAwAKAAAAAAABAAYAAwAKAAAAAAACAAYAAwAKAAAAAAADAAYAAwAKAAAAAAAEAAYAAwAKAAAAAAAFAAYAAwAKAAAAAAAGAAYAAwAKAAAAAAAHAAYAAwAKAAAAAAAIAAYAAwAKAAAAAAAJAAYAAwAKAAAAAAAKAAYAAwAKAAAAAAA=")
 
-[node name="Background" parent="." instance=ExtResource("3_2e5dh")]
+[node name="Background" parent="." unique_id=355725617 instance=ExtResource("3_2e5dh")]
 
-[node name="defaultPlayerCameraReference" parent="." instance=ExtResource("5_6vusl")]
+[node name="defaultPlayerCameraReference" parent="." unique_id=1700913832 instance=ExtResource("5_6vusl")]
 visible = false
 position = Vector2(-1088, -64)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=526693370]
 collision_layer = 128
 collision_mask = 8
 
-[node name="LevelBounds" type="CollisionShape2D" parent="Area2D"]
+[node name="LevelBounds" type="CollisionShape2D" parent="Area2D" unique_id=673057049]
 z_index = 1
-position = Vector2(-64, 64)
 shape = ExtResource("4_o2qqh")
 debug_color = Color(1, 1, 1, 0.21568628)
 

@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://xsi1ashxxkof"]
+[gd_scene format=4 uid="uid://xsi1ashxxkof"]
 
 [ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://World/room_controller.gd" id="1_82wxj"]
 [ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="2_707hb"]
 [ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://World/LevelEditor/Objects/Tiles/CollideableTiles.tscn" id="3_30n3v"]
 [ext_resource type="PackedScene" uid="uid://8ykotcb867ae" path="res://World/LevelEditor/Objects/Tiles/NoCollisionTiles.tscn" id="4_707hb"]
-[ext_resource type="PackedScene" uid="uid://bwgk51grjehh6" path="res://World/LevelEditor/Objects/GrapplePoint.tscn" id="5_30n3v"]
+[ext_resource type="PackedScene" uid="uid://bwgk51grjehh6" path="res://World/LevelEditor/Objects/GrapplePoints/GrapplePoint.tscn" id="5_30n3v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0i3ih"]
 size = Vector2(3200, 3520)

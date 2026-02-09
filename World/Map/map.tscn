@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://kt2omd4601yo"]
+
+[ext_resource type="Script" uid="uid://bfduagc130a2n" path="res://World/Map/map_builder.gd" id="1_evwka"]
+
+[node name="Map" type="Node2D" unique_id=2004255828]
+script = ExtResource("1_evwka")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=458093787]

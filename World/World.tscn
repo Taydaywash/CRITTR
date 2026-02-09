@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bj2evssjuqrmd" path="res://World/LevelEditor/Objects/SaveTube/SaveTube.tscn" id="8_hev0n"]
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://World/LevelEditor/Regions/Crash Site/Rooms/InsideShip.tscn" id="8_jacc8"]
 [ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://World/LevelEditor/Misc/Testing1.tscn" id="15_jacc8"]
+[ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://World/Map/map.tscn" id="18_hev0n"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://tundra background objects/background layer tundra 1.png" id="19_vdgnt"]
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://tundra background objects/bg layer tundra 2.png" id="20_3ql1f"]
 [ext_resource type="Texture2D" uid="uid://c6owixld7ssqg" path="res://tundra background objects/tundra hill.png" id="21_eucu0"]
@@ -56,9 +57,11 @@ player_control_regain_delay = 0.4
 position = Vector2(4416, -11968)
 camera_zoom = 0.8
 zoom_to_fit = false
+hide_from_map = true
 
 [node name="Testing2" parent="Rooms/Testing" unique_id=359317188 instance=ExtResource("5_hev0n")]
 position = Vector2(17216, -15808)
+hide_from_map = true
 
 [node name="CrashSite" type="Node" parent="Rooms" unique_id=1857399283]
 
@@ -83,12 +86,67 @@ go_to_door = NodePath("../../InsideShip/ShipDoorInside")
 [node name="SaveTube" parent="Rooms/CrashSite/CrashedShip" unique_id=1607364998 instance=ExtResource("8_hev0n")]
 position = Vector2(704, 896)
 
+[node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/CrashedShip" unique_id=157323415]
+
+[node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/CrashedShip/BackgroundElements" unique_id=498285593]
+position = Vector2(-2144, -480)
+rotation = -3.1415925
+texture = ExtResource("22_c4j8x")
+
+[node name="BigTHill" type="Sprite2D" parent="Rooms/CrashSite/CrashedShip/BackgroundElements" unique_id=564443915]
+z_index = -2
+position = Vector2(-1742, 172)
+texture = ExtResource("23_c4j8x")
+
+[node name="VinesT" type="Sprite2D" parent="Rooms/CrashSite/CrashedShip/BackgroundElements" unique_id=412026554]
+position = Vector2(-1183.9996, -864.00024)
+rotation = -3.1415925
+scale = Vector2(0.74816006, 0.7821118)
+texture = ExtResource("24_2neov")
+
+[node name="BigTHill2" type="Sprite2D" parent="Rooms/CrashSite/CrashedShip/BackgroundElements" unique_id=39408025]
+z_index = -3
+position = Vector2(2329, 34)
+texture = ExtResource("23_c4j8x")
+
+[node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/CrashedShip/BackgroundElements" unique_id=2091611375]
+z_index = -3
+position = Vector2(1792, -496)
+rotation = -3.1415925
+texture = ExtResource("24_2neov")
+
 [node name="MovementTut" parent="Rooms/CrashSite" unique_id=1846956963 instance=ExtResource("5_04mge")]
 position = Vector2(7552, -1328)
 zoom_to_fit = true
 
+[node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/MovementTut" unique_id=1799397664]
+
+[node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=513726148]
+position = Vector2(704, -544)
+rotation = -3.1415925
+texture = ExtResource("22_c4j8x")
+
+[node name="VinesT" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=1309873950]
+position = Vector2(-479.99957, -336)
+rotation = -3.1415925
+scale = Vector2(0.74816006, 0.7821118)
+texture = ExtResource("24_2neov")
+
+[node name="BigTHill2" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=1266633277]
+z_index = -3
+position = Vector2(4464, -80)
+scale = Vector2(1, -1)
+texture = ExtResource("23_c4j8x")
+
+[node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=349234284]
+z_index = -3
+position = Vector2(1792, -496)
+rotation = -3.1415925
+texture = ExtResource("24_2neov")
+
 [node name="InsideShip" parent="Rooms/CrashSite" unique_id=845230466 instance=ExtResource("8_jacc8")]
 position = Vector2(2944, 1264)
+hide_from_map = true
 
 [node name="ShipDoorInside" parent="Rooms/CrashSite/InsideShip" unique_id=1427879586 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
 position = Vector2(-1936, 816)
@@ -123,29 +181,5 @@ z_index = -2
 position = Vector2(-265, -1261)
 texture = ExtResource("21_eucu0")
 
-[node name="ManyVinesT" type="Sprite2D" parent="Background" unique_id=498285593]
-position = Vector2(800, -1808)
-rotation = -3.1415925
-texture = ExtResource("22_c4j8x")
-
-[node name="BigTHill" type="Sprite2D" parent="Background" unique_id=564443915]
-z_index = -2
-position = Vector2(1202, -1156)
-texture = ExtResource("23_c4j8x")
-
-[node name="VinesT" type="Sprite2D" parent="Background" unique_id=412026554]
-position = Vector2(1760.0004, -2192.0002)
-rotation = -3.1415925
-scale = Vector2(0.74816006, 0.7821118)
-texture = ExtResource("24_2neov")
-
-[node name="BigTHill2" type="Sprite2D" parent="Background" unique_id=39408025]
-z_index = -3
-position = Vector2(5273, -1294)
-texture = ExtResource("23_c4j8x")
-
-[node name="VinesT2" type="Sprite2D" parent="Background" unique_id=2091611375]
-z_index = -3
-position = Vector2(4736, -1824)
-rotation = -3.1415925
-texture = ExtResource("24_2neov")
+[node name="Map" parent="." unique_id=2004255828 instance=ExtResource("18_hev0n")]
+position = Vector2(11368.609, -1956.2457)

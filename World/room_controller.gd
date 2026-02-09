@@ -3,6 +3,7 @@ extends Node2D
 
 @export var camera_zoom : float
 @export var zoom_to_fit : bool
+@export var hide_from_map : bool
 
 @onready var room_transition_controller: Node = $"../.."
 @onready var level_bounds: CollisionShape2D = $Area2D/LevelBounds
