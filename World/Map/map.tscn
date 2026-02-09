@@ -2,7 +2,42 @@
 
 [ext_resource type="Script" uid="uid://bfduagc130a2n" path="res://World/Map/map_builder.gd" id="1_evwka"]
 
-[node name="Map" type="Node2D" unique_id=2004255828]
+[node name="Map" type="Node2D" unique_id=2004255828 node_paths=PackedStringArray("camera", "viewport")]
 script = ExtResource("1_evwka")
+camera = NodePath("SubViewport/Camera2D")
+camera_move_speed = 100
+viewport = NodePath("SubViewport")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=458093787]
+[node name="SubViewport" type="Window" parent="." unique_id=846571438]
+disable_3d = true
+oversampling_override = 1.0
+mode = 2
+initial_position = 1
+size = Vector2i(580, 580)
+visible = false
+unresizable = true
+borderless = true
+always_on_top = true
+unfocusable = true
+sharp_corners = true
+content_scale_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport" unique_id=719413850]
+zoom = Vector2(0.035, 0.035)
+
+[node name="Polygon2D" type="Polygon2D" parent="SubViewport" unique_id=458093787]
+position = Vector2(162, 190)
+texture_offset = Vector2(42.435, 0)
+polygon = PackedVector2Array(-102.25806, -93.590004, -109.35675, 94.524704, 105.37799, 98.074036, 121.349976, -91.81534)
+uv = PackedVector2Array(-102.25806, -93.590004, -109.35675, 94.524704, 105.37799, 98.074036, 121.349976, -91.81534)
+
+[node name="Line2D" type="Line2D" parent="SubViewport/Polygon2D" unique_id=222939430]
+points = PackedVector2Array(-102.25806, -93.590004, -109.35675, 94.524704, 105.37799, 98.074036, 121.349976, -91.81534)
+closed = true
+width = 4.075
+default_color = Color(0, 0, 0, 1)
+
+[node name="Polygon2D2" type="Polygon2D" parent="SubViewport" unique_id=1792877583]
+position = Vector2(224, 0)
+polygon = PackedVector2Array(-100.666626, 47.33333, -131.33331, -91.33335, 138, -60.66668, 78, 87.33333)
+uv = PackedVector2Array(-15.333313, -18.000015, -2, -50.000015, 76.66669, -39.333347, 52.666687, 12.6666565)

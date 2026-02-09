@@ -116,7 +116,7 @@ rotation = -3.1415925
 texture = ExtResource("24_2neov")
 
 [node name="MovementTut" parent="Rooms/CrashSite" unique_id=1846956963 instance=ExtResource("5_04mge")]
-position = Vector2(7552, -1328)
+position = Vector2(8688, -1328)
 zoom_to_fit = true
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/MovementTut" unique_id=1799397664]
@@ -182,4 +182,5 @@ position = Vector2(-265, -1261)
 texture = ExtResource("21_eucu0")
 
 [node name="Map" parent="." unique_id=2004255828 instance=ExtResource("18_hev0n")]
-position = Vector2(11368.609, -1956.2457)
+visible = false
+z_index = 10
