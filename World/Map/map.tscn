@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://kt2omd4601yo"]
 
-[ext_resource type="Script" uid="uid://bfduagc130a2n" path="res://World/Map/map_builder.gd" id="1_evwka"]
-[ext_resource type="PackedScene" uid="uid://bu6n1yqvtd2vk" path="res://World/Map/MapReigon.tscn" id="2_2gweo"]
+[ext_resource type="Script" uid="uid://bfduagc130a2n" path="res://World/Map/map_controller.gd" id="1_evwka"]
+[ext_resource type="PackedScene" uid="uid://bu6n1yqvtd2vk" path="res://World/Map/MapRegion.tscn" id="2_2gweo"]
 [ext_resource type="PackedScene" uid="uid://p60bcylp36uc" path="res://World/Map/mapRoom.tscn" id="3_g6a4i"]
 
 [node name="Map" type="Node2D" unique_id=2004255828 node_paths=PackedStringArray("camera", "viewport")]
@@ -22,13 +22,14 @@ disable_3d = true
 oversampling_override = 1.0
 mode = 2
 initial_position = 1
-size = Vector2i(580, 580)
+size = Vector2i(500, 500)
 visible = false
 unresizable = true
 borderless = true
 always_on_top = true
 unfocusable = true
 sharp_corners = true
+content_scale_size = Vector2i(500, 500)
 content_scale_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="SubViewport" unique_id=719413850]

@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var rooms_manager = get_node("/root/World/Rooms")
 @export_category("Parameters")
 @export var camera_move_speed : int
 @export var outline_width : int
@@ -8,7 +7,7 @@ extends Node2D
 @export var camera : Camera2D
 @export var viewport : Window
 @export var player : Player
-@export var room_transition_controller : Node
+@export var rooms_manager : Node
 
 @onready var base_map_room = preload("uid://p60bcylp36uc")
 @onready var base_map_reigon = preload("uid://bu6n1yqvtd2vk")
@@ -16,7 +15,7 @@ extends Node2D
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Debug Menu"):
 		viewport.visible = !viewport.visible
-		camera.position = room_transition_controller.current_room.global_position
+		camera.position = rooms_manager.current_room.global_position
 
 func _process(_delta: float) -> void:
 	if viewport.visible:

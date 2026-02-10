@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://nr0j1l4sqolw"]
+[gd_scene format=3 uid="uid://nr0j1l4sqolw"]
 
 [ext_resource type="Script" uid="uid://bul6x64ojd8t3" path="res://UI/pause_screen.gd" id="1_k1q3y"]
 
@@ -38,67 +38,94 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="PauseScreen" type="CanvasLayer"]
+[node name="PauseScreen" type="CanvasLayer" unique_id=34032151]
 process_mode = 3
 layer = 3
 script = ExtResource("1_k1q3y")
 
-[node name="Resume" type="Button" parent="."]
+[node name="MapTab" type="Panel" parent="." unique_id=1098802662]
+z_index = -1
+offset_left = 64.0
+offset_top = 192.0
+offset_right = 1088.0
+offset_bottom = 576.0
+mouse_filter = 2
+
+[node name="DnaTab" type="Panel" parent="." unique_id=850062317]
+z_index = -1
+offset_left = 64.0
+offset_top = 192.0
+offset_right = 1088.0
+offset_bottom = 576.0
+mouse_filter = 2
+
+[node name="OptionsTab" type="Panel" parent="." unique_id=1996767446]
+z_index = -1
+offset_left = 64.0
+offset_top = 192.0
+offset_right = 1088.0
+offset_bottom = 576.0
+mouse_filter = 2
+
+[node name="Resume" type="Button" parent="OptionsTab" unique_id=1043273344]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -125.0
-offset_top = -34.0
+offset_top = -94.0
 offset_right = 125.0
-offset_bottom = 34.0
+offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_k1q3y")
 text = "Resume"
 
-[node name="SettingButton" type="Button" parent="."]
+[node name="SettingButton" type="Button" parent="OptionsTab" unique_id=1268798742]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -125.0
-offset_top = 56.0
+offset_top = -4.0
 offset_right = 125.0
-offset_bottom = 124.0
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_pqas3")
 text = "Settings"
 
-[node name="MainMenu" type="Button" parent="."]
+[node name="MainMenu" type="Button" parent="OptionsTab" unique_id=685324957]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -125.0
-offset_top = 146.0
+offset_top = 86.0
 offset_right = 125.0
-offset_bottom = 214.0
+offset_bottom = 154.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_4pmby")
 text = "Main Menu"
 
-[node name="Panel" type="Panel" parent="."]
+[node name="StuffTab" type="Panel" parent="." unique_id=1270085453]
 z_index = -1
-offset_left = 23.0
-offset_top = 21.0
-offset_right = 1135.0
-offset_bottom = 627.0
+offset_left = 64.0
+offset_top = 192.0
+offset_right = 1088.0
+offset_bottom = 576.0
 mouse_filter = 2
 
-[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
-[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="OptionsTab/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="OptionsTab/SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="OptionsTab/MainMenu" to="." method="_on_main_menu_pressed"]

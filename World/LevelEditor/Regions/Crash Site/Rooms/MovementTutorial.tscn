@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_0l631"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cb355"]
-size = Vector2(6912, 2592)
+size = Vector2(6912, 2560)
 
 [node name="Room000" type="Node2D" unique_id=1785352136]
 script = ExtResource("1_geo33")

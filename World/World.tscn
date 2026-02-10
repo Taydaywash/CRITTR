@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://brtxay1sgqmvv" path="res://World/LevelEditor/Objects/Door.tscn" id="7_jacc8"]
 [ext_resource type="PackedScene" uid="uid://bj2evssjuqrmd" path="res://World/LevelEditor/Objects/SaveTube/SaveTube.tscn" id="8_hev0n"]
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://World/LevelEditor/Regions/Crash Site/Rooms/InsideShip.tscn" id="8_jacc8"]
+[ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://World/LevelEditor/Regions/Crash Site/Rooms/ClimbToPeak.tscn" id="14_7in0u"]
 [ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://World/LevelEditor/Misc/Testing1.tscn" id="15_jacc8"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://World/Map/map.tscn" id="18_hev0n"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://tundra background objects/background layer tundra 1.png" id="19_vdgnt"]
@@ -76,7 +77,7 @@ scale = Vector2(271.43747, 190.67188)
 texture = SubResource("GradientTexture2D_3ql1f")
 
 [node name="CrashedShip" parent="Rooms/CrashSite" unique_id=436417677 instance=ExtResource("4_o14yy")]
-position = Vector2(2944, -1328)
+position = Vector2(2944, -1344)
 camera_zoom = 0.77
 
 [node name="ShipDoorOutside" parent="Rooms/CrashSite/CrashedShip" unique_id=1749550748 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
@@ -116,7 +117,7 @@ rotation = -3.1415925
 texture = ExtResource("24_2neov")
 
 [node name="MovementTut" parent="Rooms/CrashSite" unique_id=1846956963 instance=ExtResource("5_04mge")]
-position = Vector2(8688, -1328)
+position = Vector2(8704, -1344)
 zoom_to_fit = true
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/MovementTut" unique_id=1799397664]
@@ -145,12 +146,22 @@ rotation = -3.1415925
 texture = ExtResource("24_2neov")
 
 [node name="InsideShip" parent="Rooms/CrashSite" unique_id=845230466 instance=ExtResource("8_jacc8")]
-position = Vector2(2944, 1264)
+position = Vector2(2944, 1216)
 hide_from_map = true
 
 [node name="ShipDoorInside" parent="Rooms/CrashSite/InsideShip" unique_id=1427879586 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
 position = Vector2(-1936, 816)
 go_to_door = NodePath("../../CrashedShip/ShipDoorOutside")
+
+[node name="ToPeak" parent="Rooms/CrashSite" unique_id=257892768 instance=ExtResource("14_7in0u")]
+position = Vector2(-1664, -1344)
+
+[node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/ToPeak" unique_id=15429139]
+
+[node name="TundraHill" type="Sprite2D" parent="Rooms/CrashSite/ToPeak/BackgroundElements" unique_id=809754195]
+z_index = -2
+position = Vector2(-128, 128)
+texture = ExtResource("21_eucu0")
 
 [node name="PauseScreen" parent="." unique_id=679717548 instance=ExtResource("5_o14yy")]
 
@@ -176,13 +187,8 @@ z_index = -9
 position = Vector2(977, -796)
 texture = ExtResource("20_3ql1f")
 
-[node name="TundraHill" type="Sprite2D" parent="Background" unique_id=809754195]
-z_index = -2
-position = Vector2(-265, -1261)
-texture = ExtResource("21_eucu0")
-
-[node name="Map" parent="." unique_id=2004255828 node_paths=PackedStringArray("player", "room_transition_controller") instance=ExtResource("18_hev0n")]
+[node name="Map" parent="." unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager") instance=ExtResource("18_hev0n")]
 visible = false
 z_index = 10
 player = NodePath("../Player")
-room_transition_controller = NodePath("../Rooms")
+rooms_manager = NodePath("../Rooms")
