@@ -163,7 +163,16 @@ z_index = -2
 position = Vector2(-128, 128)
 texture = ExtResource("21_eucu0")
 
-[node name="PauseScreen" parent="." unique_id=679717548 instance=ExtResource("5_o14yy")]
+[node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("map") instance=ExtResource("5_o14yy")]
+map = NodePath("Map")
+
+[node name="Map" parent="PauseScreen" unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager") instance=ExtResource("18_hev0n")]
+process_mode = 3
+z_index = 10
+z_as_relative = false
+position = Vector2(672, 464)
+player = NodePath("../../Player")
+rooms_manager = NodePath("../../Rooms")
 
 [node name="Background" type="Node2D" parent="." unique_id=2056885657]
 
@@ -186,9 +195,3 @@ repeat_times = 3
 z_index = -9
 position = Vector2(977, -796)
 texture = ExtResource("20_3ql1f")
-
-[node name="Map" parent="." unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager") instance=ExtResource("18_hev0n")]
-visible = false
-z_index = 10
-player = NodePath("../Player")
-rooms_manager = NodePath("../Rooms")

@@ -5,20 +5,20 @@ extends Node2D
 @export var outline_width : int
 @export_category("References")
 @export var camera : Camera2D
-@export var viewport : Window
+@export var viewport : SubViewport
+@export var viewport_container : SubViewportContainer
 @export var player : Player
 @export var rooms_manager : Node
 
 @onready var base_map_room = preload("uid://p60bcylp36uc")
 @onready var base_map_reigon = preload("uid://bu6n1yqvtd2vk")
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Debug Menu"):
-		viewport.visible = !viewport.visible
-		camera.position = rooms_manager.current_room.global_position
+func show_map(is_visible : bool) -> void:
+	viewport_container.visible = is_visible
+	camera.position = rooms_manager.current_room.global_position
 
 func _process(_delta: float) -> void:
-	if viewport.visible:
+	if viewport_container.visible:
 		if Input.is_action_pressed("move_up"):
 			camera.position.y -= camera_move_speed
 		if Input.is_action_pressed("move_down"):
