@@ -5,7 +5,7 @@ extends Polygon2D
 
 var corresponding_room : Room = null
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if corresponding_room:
 		if corresponding_room.room_transition_controller.current_room == corresponding_room:
 			color = Color.WHITE

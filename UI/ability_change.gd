@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Panel
 
 @onready var abilities: AbilityController = get_node("/root/World/Player/StateMachine/Abilities")
 

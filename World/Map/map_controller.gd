@@ -13,20 +13,10 @@ extends Node2D
 @onready var base_map_room = preload("uid://p60bcylp36uc")
 @onready var base_map_reigon = preload("uid://bu6n1yqvtd2vk")
 
-func show_map(is_visible : bool) -> void:
-	viewport_container.visible = is_visible
-	camera.position = rooms_manager.current_room.global_position
-
-func _process(_delta: float) -> void:
-	if viewport_container.visible:
-		if Input.is_action_pressed("move_up"):
-			camera.position.y -= camera_move_speed
-		if Input.is_action_pressed("move_down"):
-			camera.position.y += camera_move_speed
-		if Input.is_action_pressed("move_left"):
-			camera.position.x -= camera_move_speed
-		if Input.is_action_pressed("move_right"):
-			camera.position.x += camera_move_speed
+func show_map(should_show : bool) -> void:
+	if should_show and not viewport_container.visible:
+		camera.position = rooms_manager.current_room.global_position
+	viewport_container.visible = should_show
 
 func _ready() -> void:
 	for child in rooms_manager.get_children():

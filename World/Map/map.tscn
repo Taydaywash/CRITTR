@@ -47,6 +47,7 @@ polygon = PackedVector2Array(-102.25806, -93.590004, -109.35675, 94.524704, 105.
 uv = PackedVector2Array(-102.25806, -93.590004, -109.35675, 94.524704, 105.37799, 98.074036, 121.349976, -91.81534)
 
 [node name="Line2D" type="Line2D" parent="SubViewportContainer/SubViewport2/Polygon2D" unique_id=222939430]
+visible = false
 points = PackedVector2Array(-102.25806, -93.590004, -109.35675, 94.524704, 105.37799, 98.074036, 121.349976, -91.81534)
 closed = true
 width = 4.075
