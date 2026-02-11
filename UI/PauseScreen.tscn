@@ -121,14 +121,6 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1q3y"]
-bg_color = Color(0.0884924, 0.34135744, 0.341697, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pqas3"]
 bg_color = Color(0.0884924, 0.34135744, 0.341697, 1)
 border_width_left = 5
@@ -161,7 +153,7 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
 
-[node name="PauseScreen" type="CanvasLayer" unique_id=34032151 node_paths=PackedStringArray("dna_button", "map_button", "options_button", "stuff_button", "dna_tab", "dna_tab_blocker", "map_tab", "options_tab", "stuff_tab", "dash_button", "resume_button", "map_focus")]
+[node name="PauseScreen" type="CanvasLayer" unique_id=34032151 node_paths=PackedStringArray("dna_button", "map_button", "options_button", "stuff_button", "dna_tab", "dna_tab_blocker", "map_tab", "options_tab", "stuff_tab", "dna_initial_focus", "options_initial_focus", "map_initial_focus", "up_ability", "down_ability", "left_ability", "right_ability")]
 process_mode = 3
 layer = 3
 script = ExtResource("1_k1q3y")
@@ -174,9 +166,13 @@ dna_tab_blocker = NodePath("DnaTab/DnaTabBlocker")
 map_tab = NodePath("MapTab")
 options_tab = NodePath("OptionsTab")
 stuff_tab = NodePath("StuffTab")
-dash_button = NodePath("DnaTab/Dash")
-resume_button = NodePath("OptionsTab/Resume")
-map_focus = NodePath("MapTab/MapFocus")
+dna_initial_focus = NodePath("DnaTab/Dash")
+options_initial_focus = NodePath("OptionsTab/SettingButton")
+map_initial_focus = NodePath("MapTab/MapFocus")
+up_ability = NodePath("DnaTab/up")
+down_ability = NodePath("DnaTab/down")
+left_ability = NodePath("DnaTab/left")
+right_ability = NodePath("DnaTab/right")
 
 [node name="DnaButton" type="Button" parent="." unique_id=1243769606]
 anchors_preset = 8
@@ -243,7 +239,6 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../MapButton")
 focus_neighbor_right = NodePath("../StuffButton")
-focus_neighbor_bottom = NodePath("../OptionsTab/Resume")
 focus_next = NodePath("../StuffButton")
 focus_previous = NodePath("../MapButton")
 theme_override_font_sizes/font_size = 32
@@ -473,6 +468,14 @@ offset_left = 720.0
 offset_top = 46.0
 offset_right = 848.0
 offset_bottom = 174.0
+focus_neighbor_left = NodePath("../left")
+focus_neighbor_right = NodePath("../right")
+focus_neighbor_bottom = NodePath("../down")
+focus_next = NodePath("../right")
+focus_previous = NodePath("../left")
+icon = ExtResource("6_07l5c")
+icon_alignment = 1
+expand_icon = true
 
 [node name="down" type="Button" parent="DnaTab" unique_id=2057000258]
 layout_mode = 0
@@ -480,6 +483,13 @@ offset_left = 720.0
 offset_top = 302.0
 offset_right = 848.0
 offset_bottom = 430.0
+focus_neighbor_left = NodePath("../left")
+focus_neighbor_top = NodePath("../up")
+focus_neighbor_right = NodePath("../right")
+focus_next = NodePath("../left")
+focus_previous = NodePath("../right")
+icon_alignment = 1
+expand_icon = true
 
 [node name="left" type="Button" parent="DnaTab" unique_id=287931451]
 layout_mode = 0
@@ -487,6 +497,13 @@ offset_left = 592.0
 offset_top = 174.0
 offset_right = 720.0
 offset_bottom = 302.0
+focus_neighbor_top = NodePath("../up")
+focus_neighbor_right = NodePath("../right")
+focus_neighbor_bottom = NodePath("../down")
+focus_next = NodePath("../up")
+focus_previous = NodePath("../down")
+icon_alignment = 1
+expand_icon = true
 
 [node name="right" type="Button" parent="DnaTab" unique_id=272784682]
 layout_mode = 0
@@ -494,6 +511,13 @@ offset_left = 848.0
 offset_top = 174.0
 offset_right = 976.0
 offset_bottom = 302.0
+focus_neighbor_left = NodePath("../left")
+focus_neighbor_top = NodePath("../up")
+focus_neighbor_bottom = NodePath("../down")
+focus_next = NodePath("../down")
+focus_previous = NodePath("../up")
+icon_alignment = 1
+expand_icon = true
 
 [node name="MapTab" type="Panel" parent="." unique_id=1098802662]
 visible = false
@@ -508,7 +532,6 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eaots")
 
 [node name="MapFocus" type="Button" parent="MapTab" unique_id=2132913323]
-visible = false
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
@@ -525,29 +548,6 @@ offset_bottom = 592.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8tsyf")
 
-[node name="Resume" type="Button" parent="OptionsTab" unique_id=1043273344]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = -94.0
-offset_right = 125.0
-offset_bottom = -26.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath("../../MapButton")
-focus_neighbor_top = NodePath("../MainMenu")
-focus_neighbor_right = NodePath("../../StuffButton")
-focus_neighbor_bottom = NodePath("../SettingButton")
-focus_next = NodePath("../SettingButton")
-focus_previous = NodePath("../../OptionsButton")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_k1q3y")
-text = "Resume"
-
 [node name="SettingButton" type="Button" parent="OptionsTab" unique_id=1268798742]
 layout_mode = 1
 anchors_preset = 8
@@ -562,11 +562,9 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../../MapButton")
-focus_neighbor_top = NodePath("../Resume")
 focus_neighbor_right = NodePath("../../StuffButton")
 focus_neighbor_bottom = NodePath("../MainMenu")
 focus_next = NodePath("../MainMenu")
-focus_previous = NodePath("../Resume")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_pqas3")
 text = "Settings"
@@ -587,8 +585,6 @@ grow_vertical = 2
 focus_neighbor_left = NodePath("../../MapButton")
 focus_neighbor_top = NodePath("../SettingButton")
 focus_neighbor_right = NodePath("../../StuffButton")
-focus_neighbor_bottom = NodePath("../Resume")
-focus_next = NodePath("../Resume")
 focus_previous = NodePath("../SettingButton")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_4pmby")
@@ -613,6 +609,15 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_n358k")
 [connection signal="focus_entered" from="StuffButton" to="." method="_on_stuff_button_pressed"]
 [connection signal="pressed" from="StuffButton" to="." method="_on_stuff_button_pressed"]
 [connection signal="focus_entered" from="DnaTab/Dash" to="." method="_on_dash_focus_entered"]
-[connection signal="pressed" from="OptionsTab/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="DnaTab/Dash" to="." method="_on_dash_pressed"]
+[connection signal="pressed" from="DnaTab/Grapple" to="." method="_on_grapple_pressed"]
+[connection signal="pressed" from="DnaTab/Climb" to="." method="_on_climb_pressed"]
+[connection signal="pressed" from="DnaTab/Inflate" to="." method="_on_inflate_pressed"]
+[connection signal="pressed" from="DnaTab/Drill" to="." method="_on_drill_pressed"]
+[connection signal="pressed" from="DnaTab/Bounce" to="." method="_on_bounce_pressed"]
+[connection signal="pressed" from="DnaTab/up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="DnaTab/down" to="." method="_on_down_pressed"]
+[connection signal="pressed" from="DnaTab/left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="DnaTab/right" to="." method="_on_right_pressed"]
 [connection signal="pressed" from="OptionsTab/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="OptionsTab/MainMenu" to="." method="_on_main_menu_pressed"]

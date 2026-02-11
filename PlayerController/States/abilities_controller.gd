@@ -106,14 +106,7 @@ func get_ability():
 	return null
 
 func use_ability(ability: String) -> void:
-	if ability == "ability_up":
-		abilities_in_use.ability_up.available = false
-	elif ability == "ability_down":
-		abilities_in_use.ability_down.available = false
-	elif ability == "ability_left":
-		abilities_in_use.ability_left.available = false
-	elif ability == "ability_right":
-		abilities_in_use.ability_right.available = false
+	abilities_in_use[ability].available = false
 	ui.update_ability_ui(abilities_in_use)
 
 func refill_abilities() -> void:
