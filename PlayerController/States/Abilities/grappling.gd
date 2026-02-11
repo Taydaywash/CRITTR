@@ -15,10 +15,11 @@ extends State
 @export_category("Parameters")
 @export var grapple_duration : float #seconds
 @export var grappling_speed: float
-
 @export var grapple_max_length: float
 @export var grapple_increment: float
 @export var jump_input_buffer_patience : float
+@export var wind_up_delay : float
+@export var wind_up_velocity : float
 
 @export_category("References")
 @export var grapple_ray: RayCast2D
