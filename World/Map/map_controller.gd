@@ -22,7 +22,7 @@ func _ready() -> void:
 	for child in rooms_manager.get_children():
 		if child.get_class() == "Node":
 			for room in child.get_children():
-				if room.get_class() == "Node2D" and room.hide_from_map == false:
+				if room.get_class() == "Node2D" and room.interior_room == false:
 					var room_shape : PackedVector2Array
 					var room_rect : Rect2 = room.get_node("Area2D/LevelBounds").shape.get_rect()
 					var room_polygon = base_map_room.instantiate()

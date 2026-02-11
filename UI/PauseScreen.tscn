@@ -213,6 +213,7 @@ offset_bottom = -206.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../DnaButton")
+focus_neighbor_top = NodePath("../MapTab/MapFocus")
 focus_neighbor_right = NodePath("../OptionsButton")
 focus_neighbor_bottom = NodePath("../MapTab/MapFocus")
 focus_next = NodePath("../OptionsButton")

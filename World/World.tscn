@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://World/LevelEditor/Regions/Crash Site/Rooms/InsideShip.tscn" id="8_jacc8"]
 [ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://World/LevelEditor/Regions/Crash Site/Rooms/ClimbToPeak.tscn" id="14_7in0u"]
 [ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://World/LevelEditor/Misc/Testing1.tscn" id="15_jacc8"]
+[ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://World/LevelEditor/Regions/Crash Site/Rooms/Platforms.tscn" id="16_vdgnt"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://World/Map/map.tscn" id="18_hev0n"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://tundra background objects/background layer tundra 1.png" id="19_vdgnt"]
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://tundra background objects/bg layer tundra 2.png" id="20_3ql1f"]
@@ -58,11 +59,9 @@ player_control_regain_delay = 0.4
 position = Vector2(4416, -11968)
 camera_zoom = 0.8
 zoom_to_fit = false
-hide_from_map = true
 
 [node name="Testing2" parent="Rooms/Testing" unique_id=359317188 instance=ExtResource("5_hev0n")]
 position = Vector2(17216, -15808)
-hide_from_map = true
 
 [node name="CrashSite" type="Node" parent="Rooms" unique_id=1857399283]
 
@@ -147,7 +146,7 @@ texture = ExtResource("24_2neov")
 
 [node name="InsideShip" parent="Rooms/CrashSite" unique_id=845230466 instance=ExtResource("8_jacc8")]
 position = Vector2(2944, 1216)
-hide_from_map = true
+interior_room = true
 
 [node name="ShipDoorInside" parent="Rooms/CrashSite/InsideShip" unique_id=1427879586 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
 position = Vector2(-1936, 816)
@@ -155,6 +154,7 @@ go_to_door = NodePath("../../CrashedShip/ShipDoorOutside")
 
 [node name="ToPeak" parent="Rooms/CrashSite" unique_id=257892768 instance=ExtResource("14_7in0u")]
 position = Vector2(-1664, -1344)
+hidden_room = true
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/ToPeak" unique_id=15429139]
 
@@ -162,6 +162,10 @@ position = Vector2(-1664, -1344)
 z_index = -2
 position = Vector2(-128, 128)
 texture = ExtResource("21_eucu0")
+
+[node name="Platforms" parent="Rooms/CrashSite" unique_id=394549618 instance=ExtResource("16_vdgnt")]
+position = Vector2(9856, -5184)
+zoom_to_fit = true
 
 [node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("map") instance=ExtResource("5_o14yy")]
 map = NodePath("Map")

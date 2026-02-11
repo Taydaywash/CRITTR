@@ -3,13 +3,15 @@ extends Node2D
 
 @export var camera_zoom : float
 @export var zoom_to_fit : bool
-@export var hide_from_map : bool
+@export var interior_room : bool
+@export var hidden_room : bool
 
 @onready var room_transition_controller: Node = $"../.."
 @onready var level_bounds: CollisionShape2D = $Area2D/LevelBounds
 @onready var player: Player = $"../../../Player"
 var camera_boundary_top_left
 var camera_boundary_bottom_right
+var room_visited : bool = false
 
 #Camera Bounds defined by the Level Bounds collision shape in each room
 var bounds : Dictionary = {
@@ -26,6 +28,7 @@ func _exited_room_collider(_body: Node2D) -> void:
 
 func enter_room():
 	change_camera_bounds()
+	room_visited = true
 	z_index = 1
 func exit_room():
 	z_index = 0
