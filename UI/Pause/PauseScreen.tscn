@@ -620,6 +620,7 @@ offset_left = 544.0
 offset_top = 46.0
 offset_right = 960.0
 offset_bottom = 110.0
+value = 50.0
 
 [node name="Master" type="Label" parent="OptionsTab/MasterVolume" unique_id=945367051]
 layout_mode = 0
@@ -637,6 +638,7 @@ offset_left = 544.0
 offset_top = 126.0
 offset_right = 960.0
 offset_bottom = 190.0
+value = 50.0
 
 [node name="Music" type="Label" parent="OptionsTab/MusicVolume" unique_id=1266256478]
 layout_mode = 0
@@ -654,6 +656,7 @@ offset_left = 544.0
 offset_top = 206.0
 offset_right = 960.0
 offset_bottom = 270.0
+value = 50.0
 
 [node name="SFX" type="Label" parent="OptionsTab/SFXVolume" unique_id=2087701607]
 layout_mode = 0

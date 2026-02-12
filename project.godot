@@ -25,6 +25,8 @@ SaveLoadManager="*res://SaveManager/save_load_manager.gd"
 
 [display]
 
+window/size/mode=3
+window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
