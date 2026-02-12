@@ -3,7 +3,7 @@ extends Polygon2D
 
 @export var outline : Line2D
 @export_category("Map Render Paremeters")
-@export var outline_thickness : float
+@export var outline_thickness : int
 @export_category("Current Room")
 @export_color_no_alpha var current_room_color : Color
 @export_color_no_alpha var current_room_outline_color : Color

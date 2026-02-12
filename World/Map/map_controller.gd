@@ -2,7 +2,6 @@ extends Node2D
 
 @export_category("Parameters")
 @export var camera_move_speed : int
-@export var outline_width : int
 @export_category("References")
 @export var camera : Camera2D
 @export var viewport : SubViewport
@@ -38,5 +37,5 @@ func _ready() -> void:
 					
 					room_polygon.polygon = room_shape
 					room_polygon.uv = room_shape
-					room_outline.width = outline_width
+					room_outline.width = 10
 					room_outline.points = room_shape

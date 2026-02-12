@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bnjdytut746x1" path="res://World/LevelEditor/Regions/Crash Site/Rooms/CrashedShip.tscn" id="4_o14yy"]
 [ext_resource type="PackedScene" uid="uid://c01sisufyx4ho" path="res://World/LevelEditor/Regions/Crash Site/Rooms/MovementTutorial.tscn" id="5_04mge"]
 [ext_resource type="PackedScene" uid="uid://dqd0fl65fplw7" path="res://World/LevelEditor/Misc/Testing2.tscn" id="5_hev0n"]
-[ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://UI/PauseScreen.tscn" id="5_o14yy"]
+[ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://UI/Pause/PauseScreen.tscn" id="5_o14yy"]
 [ext_resource type="PackedScene" uid="uid://brtxay1sgqmvv" path="res://World/LevelEditor/Objects/Door.tscn" id="7_jacc8"]
 [ext_resource type="PackedScene" uid="uid://bj2evssjuqrmd" path="res://World/LevelEditor/Objects/SaveTube/SaveTube.tscn" id="8_hev0n"]
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://World/LevelEditor/Regions/Crash Site/Rooms/InsideShip.tscn" id="8_jacc8"]

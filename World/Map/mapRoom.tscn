@@ -5,6 +5,7 @@
 [node name="MapRoom" type="Polygon2D" unique_id=1229491579 node_paths=PackedStringArray("outline")]
 script = ExtResource("1_gj01h")
 outline = NodePath("Outline")
+outline_thickness = 100
 current_room_color = Color(0.3019608, 1, 1, 1)
 visited_room_color = Color(0.641934, 0.641934, 0.641934, 1)
 visited_hidden_room_color = Color(1, 1, 1, 0.13725491)

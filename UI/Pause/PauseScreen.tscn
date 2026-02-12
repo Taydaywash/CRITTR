@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://nr0j1l4sqolw"]
 
-[ext_resource type="Script" uid="uid://bul6x64ojd8t3" path="res://UI/pause_screen.gd" id="1_k1q3y"]
-[ext_resource type="Script" uid="uid://cbg2j0itlagn6" path="res://UI/ability_change.gd" id="2_6ywpv"]
+[ext_resource type="Script" uid="uid://bul6x64ojd8t3" path="res://UI/Pause/pause_screen.gd" id="1_k1q3y"]
+[ext_resource type="Script" uid="uid://cbg2j0itlagn6" path="res://UI/Pause/dna_tab.gd" id="2_6ywpv"]
 [ext_resource type="Texture2D" uid="uid://hqyvhddj1nu" path="res://UI/DashIcon.png" id="3_gl3t6"]
 [ext_resource type="Texture2D" uid="uid://7t8x5fqt52wp" path="res://UI/GrappleIcon.png" id="4_tt1rf"]
 [ext_resource type="Texture2D" uid="uid://bfm1hwat15hwr" path="res://UI/ClimbingIcon.png" id="5_wqx3i"]
 [ext_resource type="Texture2D" uid="uid://cxuugk8c7tdj5" path="res://UI/InflateIcon.png" id="6_07l5c"]
 [ext_resource type="Texture2D" uid="uid://btmny16rfx85i" path="res://UI/DrillIcon.png" id="7_6r4po"]
 [ext_resource type="Texture2D" uid="uid://je2kc5u1j4x0" path="res://UI/BounceIcon.png" id="8_iio6x"]
+[ext_resource type="Script" uid="uid://ca72cms8f53st" path="res://UI/Pause/options_tab.gd" id="9_gl3t6"]
+[ext_resource type="Script" uid="uid://cenimw1uf0a8s" path="res://UI/Pause/map_tab.gd" id="9_tt1rf"]
+[ext_resource type="Script" uid="uid://bdva4m117rxw5" path="res://UI/Pause/stuff_tab.gd" id="11_c2hr7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl3t6"]
 bg_color = Color(0.093100004, 0.15447001, 0.19, 1)
@@ -122,28 +125,33 @@ border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pqas3"]
-bg_color = Color(0.0884924, 0.34135744, 0.341697, 1)
+bg_color = Color(0.4, 0.69803923, 0.69803923, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0, 0.13333334, 0.8, 1)
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pmby"]
-bg_color = Color(0.0884924, 0.34135744, 0.341697, 1)
+bg_color = Color(0.399, 0.7, 0.7, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0, 0.13333334, 0.8, 1)
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ywpv"]
+font_size = 22
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n358k"]
 bg_color = Color(0.49, 0.26639667, 0.1274, 1)
@@ -153,7 +161,7 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
 
-[node name="PauseScreen" type="CanvasLayer" unique_id=34032151 node_paths=PackedStringArray("dna_button", "map_button", "options_button", "stuff_button", "dna_tab", "dna_tab_blocker", "map_tab", "options_tab", "stuff_tab", "dna_initial_focus", "options_initial_focus", "map_initial_focus", "up_ability", "down_ability", "left_ability", "right_ability")]
+[node name="PauseScreen" type="CanvasLayer" unique_id=34032151 node_paths=PackedStringArray("dna_button", "map_button", "options_button", "stuff_button", "dna_tab", "dna_tab_blocker", "map_tab", "options_tab", "stuff_tab")]
 process_mode = 3
 layer = 3
 script = ExtResource("1_k1q3y")
@@ -166,13 +174,6 @@ dna_tab_blocker = NodePath("DnaTab/DnaTabBlocker")
 map_tab = NodePath("MapTab")
 options_tab = NodePath("OptionsTab")
 stuff_tab = NodePath("StuffTab")
-dna_initial_focus = NodePath("DnaTab/Dash")
-options_initial_focus = NodePath("OptionsTab/SettingButton")
-map_initial_focus = NodePath("MapTab/MapFocus")
-up_ability = NodePath("DnaTab/up")
-down_ability = NodePath("DnaTab/down")
-left_ability = NodePath("DnaTab/left")
-right_ability = NodePath("DnaTab/right")
 
 [node name="DnaButton" type="Button" parent="." unique_id=1243769606]
 anchors_preset = 8
@@ -274,7 +275,8 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_6ywpv")
 theme_override_styles/focus = SubResource("StyleBoxFlat_6ywpv")
 text = "Stuff"
 
-[node name="DnaTab" type="Panel" parent="." unique_id=850062317]
+[node name="DnaTab" type="Panel" parent="." unique_id=850062317 node_paths=PackedStringArray("up_ability", "down_ability", "left_ability", "right_ability", "pause_screen", "default_focus")]
+visible = false
 z_index = -1
 offset_left = 64.0
 offset_top = 114.0
@@ -283,6 +285,12 @@ offset_bottom = 592.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5ssfw")
 script = ExtResource("2_6ywpv")
+up_ability = NodePath("up")
+down_ability = NodePath("down")
+left_ability = NodePath("left")
+right_ability = NodePath("right")
+pause_screen = NodePath("..")
+default_focus = NodePath("Dash")
 
 [node name="DnaTabBlocker" type="Panel" parent="DnaTab" unique_id=38181578]
 z_index = 1
@@ -527,7 +535,7 @@ focus_previous = NodePath("../up")
 icon_alignment = 1
 expand_icon = true
 
-[node name="MapTab" type="Panel" parent="." unique_id=1098802662]
+[node name="MapTab" type="Panel" parent="." unique_id=1098802662 node_paths=PackedStringArray("pause_screen", "default_focus")]
 visible = false
 z_index = -1
 offset_left = 64.0
@@ -538,6 +546,9 @@ focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath(".")
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eaots")
+script = ExtResource("9_tt1rf")
+pause_screen = NodePath("..")
+default_focus = NodePath("MapFocus")
 
 [node name="MapFocus" type="Button" parent="MapTab" unique_id=2132913323]
 layout_mode = 0
@@ -546,8 +557,7 @@ offset_bottom = 8.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_6r4po")
 theme_override_styles/focus = SubResource("StyleBoxFlat_iio6x")
 
-[node name="OptionsTab" type="Panel" parent="." unique_id=1996767446]
-visible = false
+[node name="OptionsTab" type="Panel" parent="." unique_id=1996767446 node_paths=PackedStringArray("pause_screen", "default_focus")]
 z_index = -1
 offset_left = 64.0
 offset_top = 114.0
@@ -555,27 +565,32 @@ offset_right = 1088.0
 offset_bottom = 592.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8tsyf")
+script = ExtResource("9_gl3t6")
+pause_screen = NodePath("..")
+default_focus = NodePath("ScreenSize")
 
-[node name="SettingButton" type="Button" parent="OptionsTab" unique_id=1268798742]
+[node name="ChangeKeybinds" type="Button" parent="OptionsTab" unique_id=1268798742]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = -4.0
-offset_right = 125.0
-offset_bottom = 64.0
+offset_left = -480.0
+offset_top = 127.0
+offset_right = -179.5
+offset_bottom = 207.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../../MapButton")
 focus_neighbor_right = NodePath("../../StuffButton")
 focus_neighbor_bottom = NodePath("../MainMenu")
 focus_next = NodePath("../MainMenu")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_pqas3")
-text = "Settings"
+text = "Change Keybinds"
 
 [node name="MainMenu" type="Button" parent="OptionsTab" unique_id=685324957]
 layout_mode = 1
@@ -584,19 +599,109 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = 86.0
-offset_right = 125.0
-offset_bottom = 154.0
+offset_left = 176.0
+offset_top = 127.0
+offset_right = 480.0
+offset_bottom = 207.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../../MapButton")
-focus_neighbor_top = NodePath("../SettingButton")
+focus_neighbor_top = NodePath("../ChangeKeybinds")
 focus_neighbor_right = NodePath("../../StuffButton")
-focus_previous = NodePath("../SettingButton")
+focus_previous = NodePath("../ChangeKeybinds")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_4pmby")
-text = "Main Menu"
+text = "Save & Quit"
+
+[node name="MasterVolume" type="HSlider" parent="OptionsTab" unique_id=2126237462]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 46.0
+offset_right = 960.0
+offset_bottom = 110.0
+
+[node name="Master" type="Label" parent="OptionsTab/MasterVolume" unique_id=945367051]
+layout_mode = 0
+offset_left = 112.0
+offset_top = -16.0
+offset_right = 322.0
+offset_bottom = 15.0
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_6ywpv")
+horizontal_alignment = 1
+
+[node name="MusicVolume" type="HSlider" parent="OptionsTab" unique_id=1522952274]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 126.0
+offset_right = 960.0
+offset_bottom = 190.0
+
+[node name="Music" type="Label" parent="OptionsTab/MusicVolume" unique_id=1266256478]
+layout_mode = 0
+offset_left = 112.0
+offset_top = -16.0
+offset_right = 320.0
+offset_bottom = 15.0
+text = "Music Volume"
+label_settings = SubResource("LabelSettings_6ywpv")
+horizontal_alignment = 1
+
+[node name="SFXVolume" type="HSlider" parent="OptionsTab" unique_id=1068248288]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 206.0
+offset_right = 960.0
+offset_bottom = 270.0
+
+[node name="SFX" type="Label" parent="OptionsTab/SFXVolume" unique_id=2087701607]
+layout_mode = 0
+offset_left = 112.0
+offset_top = -16.0
+offset_right = 320.0
+offset_bottom = 15.0
+text = "Sound Volume"
+label_settings = SubResource("LabelSettings_6ywpv")
+horizontal_alignment = 1
+
+[node name="ScreenSize" type="OptionButton" parent="OptionsTab" unique_id=1678049925]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 46.0
+offset_right = 448.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 22
+selected = 2
+item_count = 3
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Windowed Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Windowed"
+popup/item_2/id = 2
+
+[node name="Resolution" type="OptionButton" parent="OptionsTab" unique_id=99943159]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 126.0
+offset_right = 448.0
+offset_bottom = 190.0
+theme_override_font_sizes/font_size = 22
+selected = 4
+item_count = 6
+popup/item_0/text = "3840 x 2160"
+popup/item_0/id = 2
+popup/item_1/text = "1920 x 1080"
+popup/item_1/id = 0
+popup/item_2/text = "1440 x 900"
+popup/item_2/id = 5
+popup/item_3/text = "1366 x 768"
+popup/item_3/id = 1
+popup/item_4/text = "1280 x 720"
+popup/item_4/id = 4
+popup/item_5/text = "1152 x 684"
+popup/item_5/id = 3
 
 [node name="StuffTab" type="Panel" parent="." unique_id=1270085453]
 visible = false
@@ -607,25 +712,28 @@ offset_right = 1088.0
 offset_bottom = 592.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n358k")
+script = ExtResource("11_c2hr7")
 
-[connection signal="focus_entered" from="DnaButton" to="." method="_on_dna_button_pressed"]
-[connection signal="pressed" from="DnaButton" to="." method="_on_dna_button_pressed"]
+[connection signal="focus_entered" from="DnaButton" to="." method="_on_dna_button_focus_entered"]
+[connection signal="pressed" from="DnaButton" to="DnaTab" method="_on_dna_button_pressed"]
 [connection signal="focus_entered" from="MapButton" to="." method="_on_map_button_pressed"]
 [connection signal="pressed" from="MapButton" to="." method="_on_map_button_pressed"]
 [connection signal="focus_entered" from="OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="focus_entered" from="StuffButton" to="." method="_on_stuff_button_pressed"]
 [connection signal="pressed" from="StuffButton" to="." method="_on_stuff_button_pressed"]
-[connection signal="focus_entered" from="DnaTab/Dash" to="." method="_on_dash_focus_entered"]
-[connection signal="pressed" from="DnaTab/Dash" to="." method="_on_dash_pressed"]
-[connection signal="pressed" from="DnaTab/Grapple" to="." method="_on_grapple_pressed"]
-[connection signal="pressed" from="DnaTab/Climb" to="." method="_on_climb_pressed"]
-[connection signal="pressed" from="DnaTab/Inflate" to="." method="_on_inflate_pressed"]
-[connection signal="pressed" from="DnaTab/Drill" to="." method="_on_drill_pressed"]
-[connection signal="pressed" from="DnaTab/Bounce" to="." method="_on_bounce_pressed"]
-[connection signal="pressed" from="DnaTab/up" to="." method="_on_up_pressed"]
-[connection signal="pressed" from="DnaTab/down" to="." method="_on_down_pressed"]
-[connection signal="pressed" from="DnaTab/left" to="." method="_on_left_pressed"]
-[connection signal="pressed" from="DnaTab/right" to="." method="_on_right_pressed"]
-[connection signal="pressed" from="OptionsTab/SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="focus_entered" from="DnaTab/Dash" to="DnaTab" method="_on_dash_focus_entered"]
+[connection signal="pressed" from="DnaTab/Dash" to="DnaTab" method="_on_dash_pressed"]
+[connection signal="pressed" from="DnaTab/Grapple" to="DnaTab" method="_on_grapple_pressed"]
+[connection signal="pressed" from="DnaTab/Climb" to="DnaTab" method="_on_climb_pressed"]
+[connection signal="pressed" from="DnaTab/Inflate" to="DnaTab" method="_on_inflate_pressed"]
+[connection signal="pressed" from="DnaTab/Drill" to="DnaTab" method="_on_drill_pressed"]
+[connection signal="pressed" from="DnaTab/Bounce" to="DnaTab" method="_on_bounce_pressed"]
+[connection signal="pressed" from="DnaTab/up" to="DnaTab" method="_on_up_pressed"]
+[connection signal="pressed" from="DnaTab/down" to="DnaTab" method="_on_down_pressed"]
+[connection signal="pressed" from="DnaTab/left" to="DnaTab" method="_on_left_pressed"]
+[connection signal="pressed" from="DnaTab/right" to="DnaTab" method="_on_right_pressed"]
+[connection signal="pressed" from="OptionsTab/ChangeKeybinds" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="OptionsTab/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="item_selected" from="OptionsTab/ScreenSize" to="OptionsTab" method="_on_screen_size_item_selected"]
+[connection signal="item_selected" from="OptionsTab/Resolution" to="OptionsTab" method="_on_resolution_item_selected"]

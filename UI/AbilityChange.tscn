@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c2l75c4nehnvg"]
 
-[ext_resource type="Script" uid="uid://cbg2j0itlagn6" path="res://UI/ability_change.gd" id="1_k0vqm"]
+[ext_resource type="Script" uid="uid://cbg2j0itlagn6" path="res://UI/Pause/dna_tab.gd" id="1_k0vqm"]
 [ext_resource type="Texture2D" uid="uid://je2kc5u1j4x0" path="res://UI/BounceIcon.png" id="2_k0vqm"]
 [ext_resource type="Texture2D" uid="uid://hqyvhddj1nu" path="res://UI/DashIcon.png" id="3_nosih"]
 [ext_resource type="Texture2D" uid="uid://7t8x5fqt52wp" path="res://UI/GrappleIcon.png" id="4_054dr"]
