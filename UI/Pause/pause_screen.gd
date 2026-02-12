@@ -1,7 +1,4 @@
 extends CanvasLayer
-
-var paused = true
-
 @export_category("Tab Buttons")
 @export var dna_button : Button
 @export var map_button : Button
@@ -14,7 +11,7 @@ var paused = true
 @export var map : Node2D
 @export var options_tab : Panel
 @export var stuff_tab : Panel
-
+var paused = true
 var current_tab : Panel
 var used_save_point: bool = false
 
@@ -27,7 +24,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
 		if dna_button.has_focus() or map_button.has_focus() or options_button.has_focus() or stuff_button.has_focus():
 			toggle_pause()
-
 	current_tab.handle_input(event)
 
 func toggle_pause(from_save_point : bool = false) -> void:
@@ -42,30 +38,16 @@ func toggle_pause(from_save_point : bool = false) -> void:
 	paused = !paused
 	visible = paused
 	get_tree().paused = paused
-#DNA
+	
 func _on_dna_button_focus_entered() -> void:
 	show_layer(dna_tab)
 	dna_tab.update_ability_icons()
-#MAP
-#region MAP TAB
 func _on_map_button_pressed() -> void:
 	show_layer(map_tab)
-#endregion
-#OPTIONS
-#region OPTIONS TAB
 func _on_options_button_pressed() -> void:
 	show_layer(options_tab)
-func _on_setting_button_pressed() -> void:
-	pass # Replace with function body.
-func _on_main_menu_pressed() -> void:
-	toggle_pause()
-	get_tree().change_scene_to_file("res://Title/TitleScreen.tscn")
-#endregion
-#STUFF
-#region STUFF TAB
 func _on_stuff_button_pressed() -> void:
 	show_layer(stuff_tab)
-#endregion
 
 func show_layer(tab : Panel):
 	dna_tab.visible = false

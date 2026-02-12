@@ -22,3 +22,8 @@ func _on_resolution_item_selected(index: int) -> void:
 		3: print("1366 x 768")
 		4: print("1280 x 720")
 		5: print("1152 x 684")
+
+func _on_setting_button_pressed() -> void:
+	pass # Replace with function body.
+func _on_main_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://Title/TitleScreen.tscn")
