@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cxuugk8c7tdj5" path="res://UI/InflateIcon.png" id="6_07l5c"]
 [ext_resource type="Texture2D" uid="uid://btmny16rfx85i" path="res://UI/DrillIcon.png" id="7_6r4po"]
 [ext_resource type="Texture2D" uid="uid://je2kc5u1j4x0" path="res://UI/BounceIcon.png" id="8_iio6x"]
-[ext_resource type="Script" uid="uid://ca72cms8f53st" path="res://UI/Pause/options_tab.gd" id="9_gl3t6"]
 [ext_resource type="Script" uid="uid://cenimw1uf0a8s" path="res://UI/Pause/map_tab.gd" id="9_tt1rf"]
+[ext_resource type="PackedScene" uid="uid://db2kjtaybxxaa" path="res://UI/Pause/Options.tscn" id="10_c2hr7"]
 [ext_resource type="Script" uid="uid://bdva4m117rxw5" path="res://UI/Pause/stuff_tab.gd" id="11_c2hr7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl3t6"]
@@ -116,26 +116,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iio6x"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tsyf"]
-bg_color = Color(0.23460001, 0.34, 0.33824334, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pqas3"]
-bg_color = Color(0.4, 0.69803923, 0.69803923, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pmby"]
 bg_color = Color(0.399, 0.7, 0.7, 1)
 border_width_left = 5
@@ -147,11 +127,6 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
-
-[sub_resource type="LabelSettings" id="LabelSettings_6ywpv"]
-font_size = 22
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n358k"]
 bg_color = Color(0.49, 0.26639667, 0.1274, 1)
@@ -557,40 +532,8 @@ offset_bottom = 8.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_6r4po")
 theme_override_styles/focus = SubResource("StyleBoxFlat_iio6x")
 
-[node name="OptionsTab" type="Panel" parent="." unique_id=1996767446 node_paths=PackedStringArray("pause_screen", "default_focus")]
-z_index = -1
-offset_left = 64.0
-offset_top = 114.0
-offset_right = 1088.0
-offset_bottom = 592.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8tsyf")
-script = ExtResource("9_gl3t6")
+[node name="OptionsTab" parent="." unique_id=882549425 node_paths=PackedStringArray("pause_screen") instance=ExtResource("10_c2hr7")]
 pause_screen = NodePath("..")
-default_focus = NodePath("ScreenSize")
-
-[node name="ChangeKeybinds" type="Button" parent="OptionsTab" unique_id=1268798742]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -480.0
-offset_top = 127.0
-offset_right = -179.5
-offset_bottom = 207.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath("../../MapButton")
-focus_neighbor_right = NodePath("../../StuffButton")
-focus_neighbor_bottom = NodePath("../MainMenu")
-focus_next = NodePath("../MainMenu")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_pqas3")
-text = "Change Keybinds"
 
 [node name="MainMenu" type="Button" parent="OptionsTab" unique_id=685324957]
 layout_mode = 1
@@ -613,98 +556,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_4pmby")
 text = "Save & Quit"
-
-[node name="MasterVolume" type="HSlider" parent="OptionsTab" unique_id=2126237462]
-layout_mode = 0
-offset_left = 544.0
-offset_top = 46.0
-offset_right = 960.0
-offset_bottom = 110.0
-value = 50.0
-
-[node name="Master" type="Label" parent="OptionsTab/MasterVolume" unique_id=945367051]
-layout_mode = 0
-offset_left = 112.0
-offset_top = -16.0
-offset_right = 322.0
-offset_bottom = 15.0
-text = "Master Volume"
-label_settings = SubResource("LabelSettings_6ywpv")
-horizontal_alignment = 1
-
-[node name="MusicVolume" type="HSlider" parent="OptionsTab" unique_id=1522952274]
-layout_mode = 0
-offset_left = 544.0
-offset_top = 126.0
-offset_right = 960.0
-offset_bottom = 190.0
-value = 50.0
-
-[node name="Music" type="Label" parent="OptionsTab/MusicVolume" unique_id=1266256478]
-layout_mode = 0
-offset_left = 112.0
-offset_top = -16.0
-offset_right = 320.0
-offset_bottom = 15.0
-text = "Music Volume"
-label_settings = SubResource("LabelSettings_6ywpv")
-horizontal_alignment = 1
-
-[node name="SFXVolume" type="HSlider" parent="OptionsTab" unique_id=1068248288]
-layout_mode = 0
-offset_left = 544.0
-offset_top = 206.0
-offset_right = 960.0
-offset_bottom = 270.0
-value = 50.0
-
-[node name="SFX" type="Label" parent="OptionsTab/SFXVolume" unique_id=2087701607]
-layout_mode = 0
-offset_left = 112.0
-offset_top = -16.0
-offset_right = 320.0
-offset_bottom = 15.0
-text = "Sound Volume"
-label_settings = SubResource("LabelSettings_6ywpv")
-horizontal_alignment = 1
-
-[node name="ScreenSize" type="OptionButton" parent="OptionsTab" unique_id=1678049925]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 46.0
-offset_right = 448.0
-offset_bottom = 110.0
-theme_override_font_sizes/font_size = 22
-selected = 2
-item_count = 3
-popup/item_0/text = "Fullscreen"
-popup/item_0/id = 0
-popup/item_1/text = "Windowed Fullscreen"
-popup/item_1/id = 1
-popup/item_2/text = "Windowed"
-popup/item_2/id = 2
-
-[node name="Resolution" type="OptionButton" parent="OptionsTab" unique_id=99943159]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 126.0
-offset_right = 448.0
-offset_bottom = 190.0
-theme_override_font_sizes/font_size = 22
-selected = 4
-item_count = 6
-popup/item_0/text = "3840 x 2160"
-popup/item_0/id = 2
-popup/item_1/text = "1920 x 1080"
-popup/item_1/id = 0
-popup/item_2/text = "1440 x 900"
-popup/item_2/id = 5
-popup/item_3/text = "1366 x 768"
-popup/item_3/id = 1
-popup/item_4/text = "1280 x 720"
-popup/item_4/id = 4
-popup/item_5/text = "1152 x 684"
-popup/item_5/id = 3
 
 [node name="StuffTab" type="Panel" parent="." unique_id=1270085453]
 visible = false
@@ -736,7 +587,4 @@ script = ExtResource("11_c2hr7")
 [connection signal="pressed" from="DnaTab/down" to="DnaTab" method="_on_down_pressed"]
 [connection signal="pressed" from="DnaTab/left" to="DnaTab" method="_on_left_pressed"]
 [connection signal="pressed" from="DnaTab/right" to="DnaTab" method="_on_right_pressed"]
-[connection signal="pressed" from="OptionsTab/ChangeKeybinds" to="OptionsTab" method="_on_setting_button_pressed"]
 [connection signal="pressed" from="OptionsTab/MainMenu" to="OptionsTab" method="_on_main_menu_pressed"]
-[connection signal="item_selected" from="OptionsTab/ScreenSize" to="OptionsTab" method="_on_screen_size_item_selected"]
-[connection signal="item_selected" from="OptionsTab/Resolution" to="OptionsTab" method="_on_resolution_item_selected"]
