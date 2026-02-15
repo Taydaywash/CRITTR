@@ -70,6 +70,8 @@ func process_physics(_delta) -> State:
 		return ascending_state
 	
 	if player.get_slide_collision_count() > 0:
+		if player.is_on_floor_only() and (direction == "right" or direction == "left"):
+			return null
 		return falling_state
 
 	return null

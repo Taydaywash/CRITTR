@@ -531,7 +531,7 @@ grapple_ray = NodePath("GrappleRay")
 line = NodePath("GrappleRay/Line2D")
 jump_input_buffer = NodePath("../../../JumpInputBuffer")
 
-[node name="GrapplingPull" type="Node" parent="StateMachine/Abilities/Grappling" unique_id=967336177 node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "abilities_state", "grapple_ray", "line", "jump_input_buffer")]
+[node name="GrapplingPull" type="Node" parent="StateMachine/Abilities/Grappling" unique_id=967336177 node_paths=PackedStringArray("falling_state", "idle_state", "diving_state", "jumping_state", "walking_state", "ascending_state", "grapple_ray", "line", "jump_input_buffer")]
 script = ExtResource("23_0wxel")
 falling_state = NodePath("../../../Falling")
 idle_state = NodePath("../../../Idle")
@@ -539,7 +539,6 @@ diving_state = NodePath("../../../Diving")
 jumping_state = NodePath("../../../Jumping")
 walking_state = NodePath("../../../Walking")
 ascending_state = NodePath("../../../Ascending")
-abilities_state = NodePath("../..")
 horizontal_end_speed_multiplier = 1.0
 vertical_end_speed_multiplier = 1.0
 jump_buffer_patience = 1.0
