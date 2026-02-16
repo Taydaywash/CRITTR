@@ -57,6 +57,12 @@
 [ext_resource type="Shape2D" uid="uid://c8niu6rbmipjw" path="res://PlayerController/Hitboxes/CrouchingHitbox.tres" id="35_ho2n3"]
 [ext_resource type="Shape2D" uid="uid://bfsgbtnw3orjf" path="res://PlayerController/Hitboxes/DefaultHitbox.tres" id="36_uneaa"]
 [ext_resource type="Script" uid="uid://db1bxui7ftwwk" path="res://PlayerController/respawn_controller.gd" id="37_jxerk"]
+[ext_resource type="Texture2D" uid="uid://cjgjwns3hghr3" path="res://PlayerController/animations/LookingUp/lookingup.png" id="37_wlqol"]
+[ext_resource type="Texture2D" uid="uid://dtumsrqtcpvky" path="res://PlayerController/animations/WallCling/wallcling1.png" id="38_0xda7"]
+[ext_resource type="Texture2D" uid="uid://boh5bad4fpj3h" path="res://PlayerController/animations/WallCling/wallcling2.png" id="39_omh5x"]
+[ext_resource type="Texture2D" uid="uid://b4ov3tf3qq5y5" path="res://PlayerController/animations/WallCling/wallcling3.png" id="40_5v0xw"]
+[ext_resource type="Texture2D" uid="uid://b66n7y812l426" path="res://PlayerController/animations/Diving/diving.png" id="44_hk2wy"]
+[ext_resource type="Texture2D" uid="uid://io8id0xi0edl" path="res://PlayerController/animations/Diving/diving2.png" id="45_qy6yu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wxel"]
 size = Vector2(70, 50)
@@ -66,6 +72,47 @@ size = Vector2(50, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hl1jv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_7xxh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_7xxh7")
+}],
+"loop": true,
+"name": &"Bonked",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_wlqol")
+}],
+"loop": true,
+"name": &"LookingUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_0xda7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_omh5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_5v0xw")
+}],
+"loop": true,
+"name": &"WallCling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_7xxh7")
+}],
+"loop": true,
+"name": &"WallJumping",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("24_qtpvk")
@@ -88,6 +135,20 @@ animations = [{
 "loop": false,
 "name": &"death",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("45_qy6yu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_hk2wy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_qy6yu")
+}],
+"loop": true,
+"name": &"diving",
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -328,6 +389,8 @@ left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
 camera_reference = NodePath("../../../Camera2D")
 camera_offset = 500
 look_up_delay = 0.5
+animation_name = "LookingUp"
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Walking" type="Node" parent="StateMachine" unique_id=884465542 node_paths=PackedStringArray("idle_state", "crouching_state", "falling_state", "jumping_state", "diving_state", "ability_state", "right_ray", "left_ray")]
 script = ExtResource("7_hueom")
@@ -363,7 +426,7 @@ x_initial_sprite_stretch_multiplier = 1.5
 sprite_reset_speed = 0.1
 y_final_sprite_stretch_multiplier = 1.0
 x_final_sprite_stretch_multiplier = 1.0
-animation_name = "idle"
+animation_name = "diving"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="DivingFalling" type="Node" parent="StateMachine/Diving" unique_id=577619824 node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "jump_input_buffer")]
@@ -377,8 +440,8 @@ jump_input_buffer_patience = 0.2
 sprite_reset_speed = 0.1
 y_final_sprite_stretch_multiplier = 1.0
 x_final_sprite_stretch_multiplier = 1.0
-animation_name = "idle"
-placeholder_animation_color = Color(0.62352943, 0, 0, 1)
+animation_name = "diving"
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Bonked" type="Node" parent="StateMachine/Diving" unique_id=958169737 node_paths=PackedStringArray("idle_state", "jumping_state", "jump_input_buffer")]
 script = ExtResource("9_v55cd")
@@ -388,7 +451,8 @@ dive_bonk_horizontal_velocity = 500
 dive_bonk_vertical_velocity = 600
 jump_input_buffer = NodePath("../../../JumpInputBuffer")
 jump_input_buffer_patience = 0.2
-placeholder_animation_color = Color(0.3282248, 0.39151636, 0.4222509, 1)
+animation_name = "Bonked"
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="WallCling" type="Node" parent="StateMachine" unique_id=546096226 node_paths=PackedStringArray("falling_state", "jumping_state", "walking_state", "wall_jumping_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray")]
 script = ExtResource("10_xnjby")
@@ -408,7 +472,8 @@ jump_input_buffer = NodePath("../../JumpInputBuffer")
 jump_input_buffer_patience = 0.05
 right_ray = NodePath("../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../WallJumpRayReference/LeftRay")
-placeholder_animation_color = Color(0, 0.8901186, 0.9043261, 1)
+animation_name = "WallCling"
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="WallJumping" type="Node" parent="StateMachine/WallCling" unique_id=1649015882 node_paths=PackedStringArray("falling_state", "idle_state", "walking_state", "diving_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray")]
 script = ExtResource("10_dpx4d")
@@ -427,7 +492,8 @@ jump_input_buffer = NodePath("../../../JumpInputBuffer")
 jump_input_buffer_patience = 0.2
 right_ray = NodePath("../../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
-placeholder_animation_color = Color(0.6553385, 0.74060166, 0.67189306, 1)
+animation_name = "WallJumping"
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Falling" type="Node" parent="StateMachine" unique_id=18701263 node_paths=PackedStringArray("idle_state", "walking_state", "diving_state", "wall_cling_state", "jumping_state", "wall_jumping_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("11_v55cd")
@@ -472,7 +538,8 @@ nudge_right_range_left = NodePath("../../CornerNudging/NudgeRightRangeLeft")
 nudge_right_range_right = NodePath("../../CornerNudging/NudgeRightRangeRight")
 nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
 nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
-placeholder_animation_color = Color(0.62458503, 0.3189972, 0, 1)
+animation_name = "falling"
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Abilities" type="Node" parent="StateMachine" unique_id=2108752327 node_paths=PackedStringArray("dashing_state", "grappling_state", "climbing_state", "inflated_state", "bounce_attack_state", "drill_state", "ability_up", "ability_down", "ability_left", "ability_right")]
 script = ExtResource("11_75ds7")
@@ -809,8 +876,10 @@ script = ExtResource("21_3imdl")
 default_zoom = 0.36
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
+position = Vector2(-2.8564715, -0.2361126)
+scale = Vector2(0.824172, 0.8488023)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"death"
+animation = &"Bonked"
 
 [node name="TriggerHitbox" type="Area2D" parent="." unique_id=936426999]
 visible = false
