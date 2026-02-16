@@ -3,8 +3,15 @@ extends pause_tab
 @onready var window = get_window()
 const TITLE_SCREEN = "res://Title/TitleScreen.tscn"
 
+const SLOW_TEXT_SPEED : float = 0.8
+const FAST_TEXT_SPEED : float = 0.4
+const INSTANT_TEXT_SPEED : float = 0
+const TEXT_SPEEDS = [SLOW_TEXT_SPEED,FAST_TEXT_SPEED,INSTANT_TEXT_SPEED]
+var text_speeds_index = 0
+
 @export var screen_size_dropdown : OptionButton
 @export var resolution_dropdown : OptionButton
+@export var text_scroll_speed_value : Label
 
 var options : Dictionary = {
 	"screen_size": DisplayServer.WINDOW_MODE_FULLSCREEN,
@@ -82,3 +89,20 @@ func _on_resolution_item_selected(index: int) -> void:
 	
 func _on_main_menu_pressed() -> void:
 	get_tree().change_scene_to_file(TITLE_SCREEN)
+
+func _on_decrease_pressed() -> void:
+	if text_speeds_index > 0:
+		text_speeds_index -= 1
+	update_text_scroll_speed()
+func _on_increase_pressed() -> void:
+	if text_speeds_index < 2:
+		text_speeds_index += 1
+	update_text_scroll_speed()
+func update_text_scroll_speed():
+	options.text_speed = TEXT_SPEEDS[text_speeds_index]
+	if TEXT_SPEEDS[text_speeds_index] == SLOW_TEXT_SPEED:
+		text_scroll_speed_value.text = "Slow"
+	elif TEXT_SPEEDS[text_speeds_index] == FAST_TEXT_SPEED:
+		text_scroll_speed_value.text = "Fast"
+	else:
+		text_scroll_speed_value.text = "Instant"
