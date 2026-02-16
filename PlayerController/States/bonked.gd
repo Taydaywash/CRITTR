@@ -30,6 +30,13 @@ func process_input(event) -> State:
 		jump_input_buffer.stop()
 	return null
 
+func process_frame(_delta) -> State:
+	if player.velocity.x > 0:
+		player.animated_player_sprite.flip_h = true
+	elif player.velocity.x < 0:
+		player.animated_player_sprite.flip_h = false
+	return null
+
 func process_physics(delta) -> State:
 	if player.velocity.y < max_falling_speed:
 		player.velocity.y += gravity * delta
