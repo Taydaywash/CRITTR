@@ -32,6 +32,7 @@ var gravity : float
 var bounce_velocity : Vector2
 var max_falling_speed : float
 var horizontal_input : int = 0
+var current_position: Vector2
 
 func _ready() -> void:
 	bounce_input_buffer = Timer.new()
@@ -44,7 +45,7 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state)
-	bounce_velocity = Vector2(2000,2000)
+	bounce_velocity = Vector2(3000,2000)
 	entered = false
 	bounce_input_buffer.start()
 	gravity = player.normal_gravity
@@ -115,11 +116,17 @@ func deactivate(_next_state : State) -> void:
 				down_area.visible = false
 
 func _on_area_2d_body_entered(_body):
+	current_position = player.get_global_position()
+	var difference : float = abs(falling_state.highest_y - current_position.y)
+	var difference_velocity: float = sqrt(difference * gravity * 2)
+	
 	if (abs(player.velocity.x) > abs(bounce_velocity.x)):
 		bounce_velocity.x = (abs(player.velocity.x))
 	if (abs(player.velocity.y) > abs(bounce_velocity.y)):
 		bounce_velocity.y = (abs(player.velocity.y))
-	
+	if (difference_velocity > bounce_velocity.y):
+		bounce_velocity.y = difference_velocity
+
 	entered = true
 	if (bounce_input_buffer.time_left != 0):
 		match direction:
