@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SaveLoadManager="*res://SaveManager/save_load_manager.gd"
+RoomStateController="*uid://im4a5h6wo457"
 
 [display]
 
