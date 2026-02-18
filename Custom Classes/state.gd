@@ -2,8 +2,12 @@ class_name State
 extends Node
 
 @export var animation_name : String
-@export var sfx_resource : AudioStream
 @export var placeholder_animation_color : Color
+
+@export_category("Audio")
+@export var enter_sound : AudioStream
+@export var exit_sound : AudioStream
+@export var excluded_exit_states : Array[State]
 
 var player : Player
 var audio_manager : AudioListener2D
@@ -21,7 +25,7 @@ func activate(_last_state : State) -> void:
 		if child is Area2D: 
 			child.reparent(player, false)
 	#replace parent.modulate with this once animations are added
-	audio_manager.play_sound(sfx_resource)
+	audio_manager.play_sound(enter_sound)
 	player.play_animation(animation_name)
 	
 	player.modulate = placeholder_animation_color
@@ -42,7 +46,9 @@ func change_collider_to(new_collider : CollisionShape2D) -> void:
 		else:
 			collider.set_deferred("disabled" , true)
 
-func deactivate(_next_state : State) -> void:
+func deactivate(next_state : State) -> void:
 	sprite.scale.y = 1
 	sprite.scale.x = 1
 	sprite.rotation = 0
+	if next_state not in excluded_exit_states:
+		audio_manager.play_sound(exit_sound)

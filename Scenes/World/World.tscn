@@ -69,7 +69,7 @@ camera_zoom = 0.8
 zoom_to_fit = false
 
 [node name="Testing2" parent="Rooms/Testing" unique_id=359317188 instance=ExtResource("5_hev0n")]
-position = Vector2(31424, -6656)
+position = Vector2(31424, -3288)
 
 [node name="CrashSite" type="Node" parent="Rooms" unique_id=1857399283]
 script = ExtResource("6_lqys3")
