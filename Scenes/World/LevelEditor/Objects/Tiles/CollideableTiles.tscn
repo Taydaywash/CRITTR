@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dmloe3r5xxddf"]
+
+[ext_resource type="TileSet" uid="uid://dtdcurky4kpfq" path="res://Scenes/World/LevelEditor/Objects/Tiles/CollideableTiles.tres" id="1_411r4"]
+
+[node name="TileSets" type="TileMapLayer"]
+tile_set = ExtResource("1_411r4")

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://8ykotcb867ae"]
-
-[ext_resource type="TileSet" uid="uid://7qjkugwf3mig" path="res://World/LevelEditor/Objects/Tiles/NoCollisionTiles.tres" id="1_cy8rp"]
-
-[node name="TileSets" type="TileMapLayer"]
-tile_set = ExtResource("1_cy8rp")

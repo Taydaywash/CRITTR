@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://kt2omd4601yo"]
+
+[ext_resource type="Script" uid="uid://bfduagc130a2n" path="res://Scenes/Map/map_controller.gd" id="1_evwka"]
+[ext_resource type="PackedScene" uid="uid://bu6n1yqvtd2vk" path="res://Scenes/Map/MapRegion.tscn" id="2_2gweo"]
+[ext_resource type="PackedScene" uid="uid://p60bcylp36uc" path="res://Scenes/Map/mapRoom.tscn" id="3_g6a4i"]
+
+[node name="Map" type="Node2D" unique_id=2004255828 node_paths=PackedStringArray("camera", "viewport", "viewport_container")]
+script = ExtResource("1_evwka")
+camera_move_speed = 100
+camera = NodePath("SubViewportContainer/SubViewport2/Camera2D")
+viewport = NodePath("SubViewportContainer/SubViewport2")
+viewport_container = NodePath("SubViewportContainer")
+
+[node name="MapReigon" parent="." unique_id=146922048 instance=ExtResource("2_2gweo")]
+visible = false
+
+[node name="MapRoom" parent="." unique_id=1229491579 instance=ExtResource("3_g6a4i")]
+visible = false
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1832713940]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -320.0
+offset_right = 576.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport2" type="SubViewport" parent="SubViewportContainer" unique_id=670773340]
+handle_input_locally = false
+size = Vector2i(960, 416)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport2" unique_id=719413850]
+zoom = Vector2(0.035, 0.035)
+
+[node name="Polygon2D" type="Polygon2D" parent="SubViewportContainer/SubViewport2" unique_id=458093787]
+visible = false
+position = Vector2(162, 190)
+texture_offset = Vector2(42.435, 0)
+polygon = PackedVector2Array(-102.25806, -93.590004, -109.35675, 94.524704, 105.37799, 98.074036, 121.349976, -91.81534)
+uv = PackedVector2Array(-102.25806, -93.590004, -109.35675, 94.524704, 105.37799, 98.074036, 121.349976, -91.81534)
+
+[node name="Line2D" type="Line2D" parent="SubViewportContainer/SubViewport2/Polygon2D" unique_id=222939430]
+visible = false
+points = PackedVector2Array(-102.25806, -93.590004, -109.35675, 94.524704, 105.37799, 98.074036, 121.349976, -91.81534)
+closed = true
+width = 4.075
+default_color = Color(0, 0, 0, 1)
+
+[node name="Polygon2D2" type="Polygon2D" parent="SubViewportContainer/SubViewport2" unique_id=1792877583]
+visible = false
+position = Vector2(224, 0)
+polygon = PackedVector2Array(-100.666626, 47.33333, -131.33331, -91.33335, 138, -60.66668, 78, 87.33333)
+uv = PackedVector2Array(-15.333313, -18.000015, -2, -50.000015, 76.66669, -39.333347, 52.666687, 12.6666565)

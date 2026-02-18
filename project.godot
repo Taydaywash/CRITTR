@@ -17,12 +17,15 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="CRITTR"
 run/main_scene="uid://c5tai0s4khvnm"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/Misc/icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://kmjjtd27eflc"
 
 [autoload]
 
-SaveLoadManager="*res://SaveManager/save_load_manager.gd"
-RoomStateController="*uid://im4a5h6wo457"
+SaveLoadManager="*res://Global Scripts/save_load_manager.gd"
 
 [display]
 

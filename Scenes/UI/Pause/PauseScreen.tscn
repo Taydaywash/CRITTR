@@ -1,0 +1,590 @@
+[gd_scene format=3 uid="uid://nr0j1l4sqolw"]
+
+[ext_resource type="Script" uid="uid://bul6x64ojd8t3" path="res://Scenes/UI/Pause/pause_screen.gd" id="1_k1q3y"]
+[ext_resource type="Script" uid="uid://cbg2j0itlagn6" path="res://Scenes/UI/Pause/dna_tab.gd" id="2_6ywpv"]
+[ext_resource type="Texture2D" uid="uid://hqyvhddj1nu" path="res://Assets/UI/DashIcon.png" id="3_gl3t6"]
+[ext_resource type="Texture2D" uid="uid://7t8x5fqt52wp" path="res://Assets/UI/GrappleIcon.png" id="4_tt1rf"]
+[ext_resource type="Texture2D" uid="uid://bfm1hwat15hwr" path="res://Assets/UI/ClimbingIcon.png" id="5_wqx3i"]
+[ext_resource type="Texture2D" uid="uid://cxuugk8c7tdj5" path="res://Assets/UI/InflateIcon.png" id="6_07l5c"]
+[ext_resource type="Texture2D" uid="uid://btmny16rfx85i" path="res://Assets/UI/DrillIcon.png" id="7_6r4po"]
+[ext_resource type="Texture2D" uid="uid://je2kc5u1j4x0" path="res://Assets/UI/BounceIcon.png" id="8_iio6x"]
+[ext_resource type="Script" uid="uid://cenimw1uf0a8s" path="res://Scenes/UI/Pause/map_tab.gd" id="9_tt1rf"]
+[ext_resource type="PackedScene" uid="uid://db2kjtaybxxaa" path="res://Scenes/UI/Pause/Options.tscn" id="10_c2hr7"]
+[ext_resource type="Script" uid="uid://bdva4m117rxw5" path="res://Scenes/UI/Pause/stuff_tab.gd" id="11_c2hr7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl3t6"]
+bg_color = Color(0.093100004, 0.15447001, 0.19, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btr2c"]
+bg_color = Color(0.2107, 0.34959003, 0.43, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tt1rf"]
+bg_color = Color(0.049399998, 0.19, 0.061116654, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8gg8"]
+bg_color = Color(0.098799996, 0.38, 0.12223331, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqx3i"]
+bg_color = Color(0.1725, 0.25, 0.24741668, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgdig"]
+bg_color = Color(0.2898, 0.42, 0.41566, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07l5c"]
+bg_color = Color(0.35, 0.19891666, 0.105000004, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ywpv"]
+bg_color = Color(0.6, 0.34100002, 0.18, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ssfw"]
+bg_color = Color(0.17, 0.27483332, 0.34, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chlha"]
+bg_color = Color(0, 0, 0, 0.7019608)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6xmgn"]
+font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1i3v3"]
+bg_color = Color(0.0884924, 0.34135744, 0.341697, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.13333334, 0.8, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eaots"]
+bg_color = Color(0.14039998, 0.52, 0.17203328, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6r4po"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iio6x"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pmby"]
+bg_color = Color(0.399, 0.7, 0.7, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n358k"]
+bg_color = Color(0.49, 0.26639667, 0.1274, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[node name="PauseScreen" type="CanvasLayer" unique_id=34032151 node_paths=PackedStringArray("dna_button", "map_button", "options_button", "stuff_button", "dna_tab", "dna_tab_blocker", "map_tab", "options_tab", "stuff_tab")]
+process_mode = 3
+layer = 3
+script = ExtResource("1_k1q3y")
+dna_button = NodePath("DnaButton")
+map_button = NodePath("MapButton")
+options_button = NodePath("OptionsButton")
+stuff_button = NodePath("StuffButton")
+dna_tab = NodePath("DnaTab")
+dna_tab_blocker = NodePath("DnaTab/DnaTabBlocker")
+map_tab = NodePath("MapTab")
+options_tab = NodePath("OptionsTab")
+stuff_tab = NodePath("StuffTab")
+
+[node name="DnaButton" type="Button" parent="." unique_id=1243769606]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -274.0
+offset_right = -262.0
+offset_bottom = -206.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../StuffButton")
+focus_neighbor_right = NodePath("../MapButton")
+focus_neighbor_bottom = NodePath("../DnaTab/Dash")
+focus_next = NodePath("../MapButton")
+focus_previous = NodePath("../StuffButton")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_gl3t6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btr2c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btr2c")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btr2c")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btr2c")
+button_mask = 0
+text = "Dna"
+
+[node name="MapButton" type="Button" parent="." unique_id=265185943]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -274.0
+offset_right = -6.0
+offset_bottom = -206.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../DnaButton")
+focus_neighbor_top = NodePath("../MapTab/MapFocus")
+focus_neighbor_right = NodePath("../OptionsButton")
+focus_neighbor_bottom = NodePath("../MapTab/MapFocus")
+focus_next = NodePath("../OptionsButton")
+focus_previous = NodePath("../DnaButton")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_tt1rf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y8gg8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y8gg8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_y8gg8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_y8gg8")
+text = "Map"
+
+[node name="OptionsButton" type="Button" parent="." unique_id=1227263431]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -274.0
+offset_right = 256.0
+offset_bottom = -206.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../MapButton")
+focus_neighbor_right = NodePath("../StuffButton")
+focus_next = NodePath("../StuffButton")
+focus_previous = NodePath("../MapButton")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_wqx3i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sgdig")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sgdig")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_sgdig")
+theme_override_styles/focus = SubResource("StyleBoxFlat_sgdig")
+text = "Options"
+
+[node name="StuffButton" type="Button" parent="." unique_id=1294158237]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 262.0
+offset_top = -274.0
+offset_right = 512.0
+offset_bottom = -206.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../OptionsButton")
+focus_neighbor_right = NodePath("../DnaButton")
+focus_next = NodePath("../DnaButton")
+focus_previous = NodePath("../OptionsButton")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_07l5c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6ywpv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6ywpv")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6ywpv")
+theme_override_styles/focus = SubResource("StyleBoxFlat_6ywpv")
+text = "Stuff"
+
+[node name="DnaTab" type="Panel" parent="." unique_id=850062317 node_paths=PackedStringArray("up_ability", "down_ability", "left_ability", "right_ability", "pause_screen", "default_focus")]
+visible = false
+z_index = -1
+offset_left = 64.0
+offset_top = 114.0
+offset_right = 1088.0
+offset_bottom = 592.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ssfw")
+script = ExtResource("2_6ywpv")
+up_ability = NodePath("up")
+down_ability = NodePath("down")
+left_ability = NodePath("left")
+right_ability = NodePath("right")
+pause_screen = NodePath("..")
+default_focus = NodePath("Dash")
+
+[node name="DnaTabBlocker" type="Panel" parent="DnaTab" unique_id=38181578]
+z_index = 1
+layout_mode = 0
+offset_top = -2.0
+offset_right = 1024.0
+offset_bottom = 478.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_chlha")
+
+[node name="Label" type="Label" parent="DnaTab/DnaTabBlocker" unique_id=658350855]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 192.0
+offset_right = 911.0
+offset_bottom = 247.0
+text = "DNA can only be changed at save tubes!"
+label_settings = SubResource("LabelSettings_6xmgn")
+
+[node name="Dash" type="Button" parent="DnaTab" unique_id=1704601115]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.0
+offset_top = -81.0
+offset_right = -304.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5707964
+focus_neighbor_left = NodePath("../Grapple")
+focus_neighbor_top = NodePath("../../DnaButton")
+focus_neighbor_right = NodePath("../Grapple")
+focus_neighbor_bottom = NodePath("../Climb")
+focus_next = NodePath("../Grapple")
+focus_previous = NodePath("../Bounce")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_1i3v3")
+text = "Dash"
+icon = ExtResource("3_gl3t6")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Grapple" type="Button" parent="DnaTab" unique_id=1352918935]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -81.0
+offset_right = -144.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5707964
+focus_neighbor_left = NodePath("../Dash")
+focus_neighbor_top = NodePath("../../DnaButton")
+focus_neighbor_right = NodePath("../Dash")
+focus_neighbor_bottom = NodePath("../Inflate")
+focus_next = NodePath("../Climb")
+focus_previous = NodePath("../Dash")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_1i3v3")
+text = "Grapple"
+icon = ExtResource("4_tt1rf")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Climb" type="Button" parent="DnaTab" unique_id=1777370261]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.0
+offset_top = 63.0
+offset_right = -304.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5707964
+focus_neighbor_left = NodePath("../Inflate")
+focus_neighbor_top = NodePath("../Dash")
+focus_neighbor_right = NodePath("../Inflate")
+focus_neighbor_bottom = NodePath("../Drill")
+focus_next = NodePath("../Inflate")
+focus_previous = NodePath("../Grapple")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_1i3v3")
+text = "Climb"
+icon = ExtResource("5_wqx3i")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Inflate" type="Button" parent="DnaTab" unique_id=858158176]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = 63.0
+offset_right = -144.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5707964
+focus_neighbor_left = NodePath("../Climb")
+focus_neighbor_top = NodePath("../Grapple")
+focus_neighbor_right = NodePath("../Climb")
+focus_neighbor_bottom = NodePath("../Bounce")
+focus_next = NodePath("../Drill")
+focus_previous = NodePath("../Climb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_1i3v3")
+text = "Inflate"
+icon = ExtResource("6_07l5c")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Drill" type="Button" parent="DnaTab" unique_id=1319346628]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.0
+offset_top = 207.0
+offset_right = -304.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5707964
+focus_neighbor_left = NodePath("../Bounce")
+focus_neighbor_top = NodePath("../Climb")
+focus_neighbor_right = NodePath("../Bounce")
+focus_neighbor_bottom = NodePath("../Dash")
+focus_next = NodePath("../Bounce")
+focus_previous = NodePath("../Inflate")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_1i3v3")
+text = "Drill"
+icon = ExtResource("7_6r4po")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Bounce" type="Button" parent="DnaTab" unique_id=1027663177]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = 207.0
+offset_right = -144.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5707964
+focus_neighbor_left = NodePath("../Drill")
+focus_neighbor_top = NodePath("../Inflate")
+focus_neighbor_right = NodePath("../Drill")
+focus_neighbor_bottom = NodePath("../Grapple")
+focus_next = NodePath("../Dash")
+focus_previous = NodePath("../Drill")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_1i3v3")
+text = "Bounce"
+icon = ExtResource("8_iio6x")
+icon_alignment = 2
+expand_icon = true
+
+[node name="up" type="Button" parent="DnaTab" unique_id=1068565157]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 46.0
+offset_right = 848.0
+offset_bottom = 174.0
+rotation = -1.5707964
+pivot_offset = Vector2(64, 64)
+focus_neighbor_left = NodePath("../left")
+focus_neighbor_right = NodePath("../right")
+focus_neighbor_bottom = NodePath("../down")
+focus_next = NodePath("../right")
+focus_previous = NodePath("../left")
+icon = ExtResource("6_07l5c")
+icon_alignment = 1
+expand_icon = true
+
+[node name="down" type="Button" parent="DnaTab" unique_id=2057000258]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 302.0
+offset_right = 848.0
+offset_bottom = 430.0
+rotation = 1.5707964
+pivot_offset = Vector2(64, 64)
+focus_neighbor_left = NodePath("../left")
+focus_neighbor_top = NodePath("../up")
+focus_neighbor_right = NodePath("../right")
+focus_next = NodePath("../left")
+focus_previous = NodePath("../right")
+icon_alignment = 1
+expand_icon = true
+
+[node name="left" type="Button" parent="DnaTab" unique_id=287931451]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 174.0
+offset_right = 720.0
+offset_bottom = 302.0
+scale = Vector2(-1.0000024, 1)
+pivot_offset = Vector2(64, 64)
+focus_neighbor_top = NodePath("../up")
+focus_neighbor_right = NodePath("../right")
+focus_neighbor_bottom = NodePath("../down")
+focus_next = NodePath("../up")
+focus_previous = NodePath("../down")
+icon_alignment = 1
+expand_icon = true
+
+[node name="right" type="Button" parent="DnaTab" unique_id=272784682]
+layout_mode = 0
+offset_left = 848.0
+offset_top = 174.0
+offset_right = 976.0
+offset_bottom = 302.0
+pivot_offset = Vector2(64, 64)
+focus_neighbor_left = NodePath("../left")
+focus_neighbor_top = NodePath("../up")
+focus_neighbor_bottom = NodePath("../down")
+focus_next = NodePath("../down")
+focus_previous = NodePath("../up")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MapTab" type="Panel" parent="." unique_id=1098802662 node_paths=PackedStringArray("pause_screen", "default_focus")]
+visible = false
+z_index = -1
+offset_left = 64.0
+offset_top = 114.0
+offset_right = 1088.0
+offset_bottom = 592.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eaots")
+script = ExtResource("9_tt1rf")
+pause_screen = NodePath("..")
+default_focus = NodePath("MapFocus")
+
+[node name="MapFocus" type="Button" parent="MapTab" unique_id=2132913323]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_6r4po")
+theme_override_styles/focus = SubResource("StyleBoxFlat_iio6x")
+
+[node name="OptionsTab" parent="." unique_id=882549425 node_paths=PackedStringArray("pause_screen") instance=ExtResource("10_c2hr7")]
+pause_screen = NodePath("..")
+
+[node name="MainMenu" type="Button" parent="OptionsTab" unique_id=685324957]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 176.0
+offset_top = 127.0
+offset_right = 480.0
+offset_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../../MapButton")
+focus_neighbor_top = NodePath("../ChangeKeybinds")
+focus_neighbor_right = NodePath("../../StuffButton")
+focus_previous = NodePath("../ChangeKeybinds")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_4pmby")
+text = "Save & Quit"
+
+[node name="StuffTab" type="Panel" parent="." unique_id=1270085453]
+visible = false
+z_index = -1
+offset_left = 64.0
+offset_top = 114.0
+offset_right = 1088.0
+offset_bottom = 592.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n358k")
+script = ExtResource("11_c2hr7")
+
+[connection signal="focus_entered" from="DnaButton" to="." method="_on_dna_button_focus_entered"]
+[connection signal="pressed" from="DnaButton" to="DnaTab" method="_on_dna_button_pressed"]
+[connection signal="focus_entered" from="MapButton" to="." method="_on_map_button_pressed"]
+[connection signal="pressed" from="MapButton" to="." method="_on_map_button_pressed"]
+[connection signal="focus_entered" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="focus_entered" from="StuffButton" to="." method="_on_stuff_button_pressed"]
+[connection signal="pressed" from="StuffButton" to="." method="_on_stuff_button_pressed"]
+[connection signal="focus_entered" from="DnaTab/Dash" to="DnaTab" method="_on_dash_focus_entered"]
+[connection signal="pressed" from="DnaTab/Dash" to="DnaTab" method="_on_dash_pressed"]
+[connection signal="pressed" from="DnaTab/Grapple" to="DnaTab" method="_on_grapple_pressed"]
+[connection signal="pressed" from="DnaTab/Climb" to="DnaTab" method="_on_climb_pressed"]
+[connection signal="pressed" from="DnaTab/Inflate" to="DnaTab" method="_on_inflate_pressed"]
+[connection signal="pressed" from="DnaTab/Drill" to="DnaTab" method="_on_drill_pressed"]
+[connection signal="pressed" from="DnaTab/Bounce" to="DnaTab" method="_on_bounce_pressed"]
+[connection signal="pressed" from="DnaTab/up" to="DnaTab" method="_on_up_pressed"]
+[connection signal="pressed" from="DnaTab/down" to="DnaTab" method="_on_down_pressed"]
+[connection signal="pressed" from="DnaTab/left" to="DnaTab" method="_on_left_pressed"]
+[connection signal="pressed" from="DnaTab/right" to="DnaTab" method="_on_right_pressed"]
+[connection signal="pressed" from="OptionsTab/MainMenu" to="OptionsTab" method="_on_main_menu_pressed"]

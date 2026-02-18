@@ -1,0 +1,207 @@
+[gd_scene format=3 uid="uid://db2kjtaybxxaa"]
+
+[ext_resource type="Script" uid="uid://ca72cms8f53st" path="res://Scenes/UI/Pause/options_tab.gd" id="1_7qpyd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tsyf"]
+bg_color = Color(0.23460001, 0.34, 0.33824334, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pqas3"]
+bg_color = Color(0.4, 0.69803923, 0.69803923, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ywpv"]
+font_size = 22
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gyshk"]
+font_size = 23
+
+[sub_resource type="LabelSettings" id="LabelSettings_s118c"]
+font_size = 24
+
+[node name="OptionsTab" type="Panel" unique_id=882549425 node_paths=PackedStringArray("screen_size_dropdown", "resolution_dropdown", "text_scroll_speed_value", "default_focus")]
+z_index = -1
+offset_left = 64.0
+offset_top = 114.0
+offset_right = 1088.0
+offset_bottom = 592.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8tsyf")
+script = ExtResource("1_7qpyd")
+screen_size_dropdown = NodePath("ScreenSize")
+resolution_dropdown = NodePath("Resolution")
+text_scroll_speed_value = NodePath("TextScrollSpeed/Value")
+default_focus = NodePath("ScreenSize")
+
+[node name="ChangeKeybinds" type="Button" parent="." unique_id=599378732]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = 127.0
+offset_right = -179.5
+offset_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../../MapButton")
+focus_neighbor_right = NodePath("../../StuffButton")
+focus_neighbor_bottom = NodePath("../../MainMenu")
+focus_next = NodePath("../../MainMenu")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_pqas3")
+text = "Change Keybinds"
+
+[node name="MasterVolume" type="HSlider" parent="." unique_id=307721531]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 46.0
+offset_right = 960.0
+offset_bottom = 110.0
+value = 50.0
+
+[node name="Master" type="Label" parent="MasterVolume" unique_id=1392124630]
+layout_mode = 0
+offset_left = 112.0
+offset_top = -16.0
+offset_right = 322.0
+offset_bottom = 15.0
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_6ywpv")
+horizontal_alignment = 1
+
+[node name="MusicVolume" type="HSlider" parent="." unique_id=1618197593]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 126.0
+offset_right = 960.0
+offset_bottom = 190.0
+value = 50.0
+
+[node name="Music" type="Label" parent="MusicVolume" unique_id=2105301188]
+layout_mode = 0
+offset_left = 112.0
+offset_top = -16.0
+offset_right = 320.0
+offset_bottom = 15.0
+text = "Music Volume"
+label_settings = SubResource("LabelSettings_6ywpv")
+horizontal_alignment = 1
+
+[node name="SFXVolume" type="HSlider" parent="." unique_id=42486488]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 206.0
+offset_right = 960.0
+offset_bottom = 270.0
+value = 50.0
+
+[node name="SFX" type="Label" parent="SFXVolume" unique_id=1546965008]
+layout_mode = 0
+offset_left = 112.0
+offset_top = -16.0
+offset_right = 320.0
+offset_bottom = 15.0
+text = "Sound Volume"
+label_settings = SubResource("LabelSettings_6ywpv")
+horizontal_alignment = 1
+
+[node name="ScreenSize" type="OptionButton" parent="." unique_id=1053197402]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 46.0
+offset_right = 448.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 22
+selected = 1
+item_count = 4
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Windowed"
+popup/item_2/id = 2
+popup/item_3/text = "Borderless Windowed"
+popup/item_3/id = 3
+
+[node name="Resolution" type="OptionButton" parent="." unique_id=2090981165]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 126.0
+offset_right = 448.0
+offset_bottom = 190.0
+theme_override_font_sizes/font_size = 22
+selected = 5
+item_count = 6
+popup/item_0/text = "3840 x 2160"
+popup/item_0/id = 2
+popup/item_1/text = "1920 x 1080"
+popup/item_1/id = 0
+popup/item_2/text = "1440 x 900"
+popup/item_2/id = 5
+popup/item_3/text = "1366 x 768"
+popup/item_3/id = 1
+popup/item_4/text = "1280 x 720"
+popup/item_4/id = 4
+popup/item_5/text = "1152 x 648"
+popup/item_5/id = 3
+
+[node name="TextScrollSpeed" type="Label" parent="." unique_id=1219724664]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 238.0
+offset_right = 320.0
+offset_bottom = 270.0
+text = "Text Scroll Speed"
+label_settings = SubResource("LabelSettings_gyshk")
+horizontal_alignment = 1
+
+[node name="Decrease" type="Button" parent="TextScrollSpeed" unique_id=1863867575]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 59.5
+offset_bottom = 96.0
+text = "<"
+
+[node name="Increase" type="Button" parent="TextScrollSpeed" unique_id=1159895190]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 40.0
+offset_right = 280.0
+offset_bottom = 96.0
+text = ">"
+
+[node name="Value" type="Label" parent="TextScrollSpeed" unique_id=1953397899]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 40.0
+offset_right = 224.0
+offset_bottom = 96.0
+text = "Slow"
+label_settings = SubResource("LabelSettings_s118c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="ChangeKeybinds" to="." method="_on_setting_button_pressed"]
+[connection signal="item_selected" from="ScreenSize" to="." method="_on_screen_size_item_selected"]
+[connection signal="item_selected" from="Resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="pressed" from="TextScrollSpeed/Decrease" to="." method="_on_decrease_pressed"]
+[connection signal="pressed" from="TextScrollSpeed/Increase" to="." method="_on_increase_pressed"]
