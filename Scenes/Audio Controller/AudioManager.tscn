@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://buyf4jyxu1l3s" path="res://Scenes/Audio Controller/audio_manager.gd" id="1_ukwy1"]
 
-[node name="AudioManager" type="AudioListener2D" unique_id=152850687]
+[node name="AudioManager" type="AudioListener2D" unique_id=152850687 node_paths=PackedStringArray("music_player")]
 script = ExtResource("1_ukwy1")
+music_player = NodePath("Music")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=2073251852]
 bus = &"Music"

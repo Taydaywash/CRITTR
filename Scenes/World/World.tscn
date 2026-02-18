@@ -31,8 +31,9 @@ gradient = SubResource("Gradient_vdgnt")
 
 [node name="World" type="Node2D" unique_id=1470686207]
 
-[node name="Player" parent="." unique_id=674990077 instance=ExtResource("2_y6flb")]
+[node name="Player" parent="." unique_id=674990077 node_paths=PackedStringArray("audio_manager_reference") instance=ExtResource("2_y6flb")]
 position = Vector2(2880, -480)
+audio_manager_reference = NodePath("../AudioManager")
 
 [node name="UI" parent="." unique_id=580546377 instance=ExtResource("4_il6x7")]
 

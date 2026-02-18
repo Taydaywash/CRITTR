@@ -1,12 +1,12 @@
 class_name State
 extends Node
 
-@export
-var animation_name : String
-@export
-var placeholder_animation_color : Color
+@export var animation_name : String
+@export var sfx_resource : AudioStream
+@export var placeholder_animation_color : Color
 
 var player : Player
+var audio_manager : AudioListener2D
 var sprite : AnimatedSprite2D
 var colliders : Array[CollisionShape2D]
 
@@ -21,8 +21,9 @@ func activate(_last_state : State) -> void:
 		if child is Area2D: 
 			child.reparent(player, false)
 	#replace parent.modulate with this once animations are added
-#	parent.play_sound()
+	audio_manager.play_sound(sfx_resource)
 	player.play_animation(animation_name)
+	
 	player.modulate = placeholder_animation_color
 
 func process_input(_event) -> State:

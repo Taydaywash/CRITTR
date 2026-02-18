@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cxown2b2jsdny" path="res://Scenes/Player Controller/States/looking_up.gd" id="4_jl1s5"]
 [ext_resource type="Script" uid="uid://5v8bgvkdmtcc" path="res://Scenes/Player Controller/States/idle_crouching.gd" id="5_3imdl"]
 [ext_resource type="Script" uid="uid://cm5l3ivbnb55g" path="res://Scenes/Player Controller/States/state_machine.gd" id="5_v55cd"]
+[ext_resource type="AudioStream" uid="uid://dgn1x2ks7w8pr" path="res://Assets/Sound Effects/Player/PlaceholderJump.mp3" id="6_4ijkb"]
 [ext_resource type="Script" uid="uid://cnyjhmvsy4x2m" path="res://Scenes/Player Controller/States/idle.gd" id="6_dpx4d"]
 [ext_resource type="Script" uid="uid://b86dxdi4v2w7v" path="res://Scenes/Player Controller/States/walking.gd" id="7_hueom"]
 [ext_resource type="Script" uid="uid://waa4aoe22gbi" path="res://Scenes/Player Controller/States/jumping.gd" id="8_2fk5g"]
@@ -304,6 +305,7 @@ nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 default_hitbox = NodePath("../../NormalHitbox")
 jumping_hitbox = NodePath("../../Jumping")
 animation_name = "jump"
+sfx_resource = ExtResource("6_4ijkb")
 placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Crouching" type="Node" parent="StateMachine" unique_id=1700106763 node_paths=PackedStringArray("idle_crouching_state", "walking_state", "falling_state", "jumping_state", "diving_state", "ability_state", "default_hitbox", "crouching_hitbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
