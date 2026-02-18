@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cjm2cv3q8laeo"
+path="res://.godot/imported/Simulation Anxiety.mp3-ab60056d375bda1d88664edf8cace7e9.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Simulation Anxiety.mp3"
+dest_files=["res://.godot/imported/Simulation Anxiety.mp3-ab60056d375bda1d88664edf8cace7e9.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

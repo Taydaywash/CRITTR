@@ -201,6 +201,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="ChangeKeybinds" to="." method="_on_setting_button_pressed"]
+[connection signal="value_changed" from="MasterVolume" to="." method="_on_master_volume_value_changed"]
+[connection signal="value_changed" from="MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="SFXVolume" to="." method="_on_sfx_volume_value_changed"]
 [connection signal="item_selected" from="ScreenSize" to="." method="_on_screen_size_item_selected"]
 [connection signal="item_selected" from="Resolution" to="." method="_on_resolution_item_selected"]
 [connection signal="pressed" from="TextScrollSpeed/Decrease" to="." method="_on_decrease_pressed"]

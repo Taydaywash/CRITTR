@@ -2,6 +2,7 @@ extends Node
 @export_category("References")
 @export var ui: UI
 @export var player: Player
+@export var audio_controller : AudioListener2D
 var state_machine : StateMachine
 @onready var up_ray: RayCast2D = $"../Player/RoomTransitionSides/up"
 @onready var down_ray: RayCast2D = $"../Player/RoomTransitionSides/down"
@@ -46,6 +47,8 @@ var exited_previous_room : bool = false
 
 var pre_transition_state : State
 var pre_transition_velocity : Vector2
+
+
 
 func _ready() -> void:
 	state_machine = player.state_machine
@@ -207,3 +210,6 @@ func reset_room_detection_rays():
 	player.up.target_position = Vector2(0,-1)
 	player.right.target_position = Vector2(1,0)
 	player.left.target_position = Vector2(-1,0)
+
+func play_music(music : AudioStream):
+	audio_controller.play_music(music)

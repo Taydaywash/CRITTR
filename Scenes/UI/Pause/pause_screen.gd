@@ -1,4 +1,5 @@
 extends CanvasLayer
+@export var audio_controller : AudioListener2D
 @export_category("Tab Buttons")
 @export var dna_button : Button
 @export var map_button : Button

@@ -19,7 +19,7 @@ extends Node
 @export var jump_input_buffer : Timer
 var current_state : State
 var player_reference: CharacterBody2D 
-var audio_manager_reference : AudioListener2D
+var audio_controller_reference : AudioListener2D
 var player_sprite: AnimatedSprite2D
 var last_state
 
@@ -30,16 +30,16 @@ func check_children(parent : Node) -> void:
 		if child.get_class() != "Node":
 			return
 		child.player = player_reference
-		child.audio_manager = audio_manager_reference
+		child.audio_manager = audio_controller_reference
 		child.sprite = player_sprite
 		child.colliders = colliders_list
 		if child.get_child_count() > 0:
 			check_children(child)
 
-func initialize(player : CharacterBody2D, sprite : AnimatedSprite2D) -> void:
+func initialize(player : Player, sprite : AnimatedSprite2D) -> void:
 	player_reference = player
 	player_sprite = sprite
-	audio_manager_reference = player.audio_manager_reference
+	audio_controller_reference = player.audio_controller_reference
 	check_children(self)
 	change_state(starting_state)
 

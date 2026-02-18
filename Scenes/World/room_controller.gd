@@ -13,6 +13,8 @@ var camera_boundary_top_left
 var camera_boundary_bottom_right
 var room_visited : bool = false
 
+@onready var region = get_parent()
+
 #Camera Bounds defined by the Level Bounds collision shape in each room
 var bounds : Dictionary = {
 	"top": 0,
@@ -29,6 +31,7 @@ func _exited_room_collider(_body: Node2D) -> void:
 func enter_room():
 	change_camera_bounds()
 	room_visited = true
+	room_transition_controller.play_music(room_transition_controller.current_room.region.music)
 	z_index = 1
 func exit_room():
 	z_index = 0

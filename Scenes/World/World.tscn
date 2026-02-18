@@ -5,9 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://bpodu035v3lq4" path="res://Scenes/UI/UI.tscn" id="4_il6x7"]
 [ext_resource type="PackedScene" uid="uid://bnjdytut746x1" path="res://Scenes/World/Regions/Crash Site/CrashedShip.tscn" id="4_o14yy"]
 [ext_resource type="PackedScene" uid="uid://c01sisufyx4ho" path="res://Scenes/World/Regions/Crash Site/MovementTutorial.tscn" id="5_04mge"]
+[ext_resource type="AudioStream" uid="uid://cjm2cv3q8laeo" path="res://Assets/Music/Simulation Anxiety.mp3" id="5_41ig8"]
 [ext_resource type="PackedScene" uid="uid://dqd0fl65fplw7" path="res://Scenes/World/Regions/Misc/Testing2.tscn" id="5_hev0n"]
 [ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://Scenes/UI/Pause/PauseScreen.tscn" id="5_o14yy"]
+[ext_resource type="Script" uid="uid://5wurrbpk32od" path="res://Scenes/World/region_controller.gd" id="6_lqys3"]
 [ext_resource type="PackedScene" uid="uid://brtxay1sgqmvv" path="res://Scenes/World/LevelEditor/Objects/Door.tscn" id="7_jacc8"]
+[ext_resource type="AudioStream" uid="uid://baekjbxxk8tda" path="res://Assets/Music/CRITTR_TrialSong1.mp3" id="7_qs546"]
 [ext_resource type="PackedScene" uid="uid://bj2evssjuqrmd" path="res://Scenes/World/LevelEditor/Objects/SaveTube/SaveTube.tscn" id="8_hev0n"]
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://Scenes/World/Regions/Crash Site/InsideShip.tscn" id="8_jacc8"]
 [ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://Scenes/World/Regions/Crash Site/ClimbToPeak.tscn" id="14_7in0u"]
@@ -16,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/Map/map.tscn" id="18_hev0n"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://Assets/Decals/Tundra/Background/background layer tundra 1.png" id="19_vdgnt"]
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://Assets/Decals/Tundra/Background/bg layer tundra 2.png" id="20_3ql1f"]
-[ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Scenes/Audio Controller/AudioManager.tscn" id="21_3ql1f"]
+[ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Scenes/Audio Controller/AudioController.tscn" id="21_3ql1f"]
 [ext_resource type="Texture2D" uid="uid://c6owixld7ssqg" path="res://Assets/Decals/Tundra/Background/tundra hill.png" id="21_eucu0"]
 [ext_resource type="Texture2D" uid="uid://cneyuseemoqek" path="res://Assets/Decals/Tundra/Background/many vines t.png" id="22_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://bm6vu2bqh8xgm" path="res://Assets/Decals/Tundra/Background/big t hill.png" id="23_c4j8x"]
@@ -31,16 +34,17 @@ gradient = SubResource("Gradient_vdgnt")
 
 [node name="World" type="Node2D" unique_id=1470686207]
 
-[node name="Player" parent="." unique_id=674990077 node_paths=PackedStringArray("audio_manager_reference") instance=ExtResource("2_y6flb")]
+[node name="Player" parent="." unique_id=674990077 node_paths=PackedStringArray("audio_controller_reference") instance=ExtResource("2_y6flb")]
 position = Vector2(2880, -480)
-audio_manager_reference = NodePath("../AudioManager")
+audio_controller_reference = NodePath("../AudioManager")
 
 [node name="UI" parent="." unique_id=580546377 instance=ExtResource("4_il6x7")]
 
-[node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("ui", "player", "starting_room")]
+[node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("ui", "player", "audio_controller", "starting_room")]
 script = ExtResource("1_il6x7")
 ui = NodePath("../UI")
 player = NodePath("../Player")
+audio_controller = NodePath("../AudioManager")
 starting_room = NodePath("CrashSite/CrashedShip")
 horizontal_enter_velocity = 500.0
 horizontal_enter_multiplier = 10.0
@@ -56,16 +60,20 @@ screen_fade_speed = 20.0
 player_control_regain_delay = 0.4
 
 [node name="Testing" type="Node" parent="Rooms" unique_id=1080309199]
+script = ExtResource("6_lqys3")
+music = ExtResource("5_41ig8")
 
 [node name="Testing1" parent="Rooms/Testing" unique_id=1129801850 instance=ExtResource("15_jacc8")]
-position = Vector2(4416, -11968)
+position = Vector2(18624, -3264)
 camera_zoom = 0.8
 zoom_to_fit = false
 
 [node name="Testing2" parent="Rooms/Testing" unique_id=359317188 instance=ExtResource("5_hev0n")]
-position = Vector2(17216, -15808)
+position = Vector2(31424, -6656)
 
 [node name="CrashSite" type="Node" parent="Rooms" unique_id=1857399283]
+script = ExtResource("6_lqys3")
+music = ExtResource("7_qs546")
 
 [node name="Parallax2D2" type="Parallax2D" parent="Rooms/CrashSite" unique_id=1845712591]
 scroll_scale = Vector2(0.4, 1)
@@ -169,7 +177,8 @@ texture = ExtResource("21_eucu0")
 position = Vector2(9856, -5184)
 zoom_to_fit = true
 
-[node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("map") instance=ExtResource("5_o14yy")]
+[node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "map") instance=ExtResource("5_o14yy")]
+audio_controller = NodePath("../AudioManager")
 map = NodePath("Map")
 
 [node name="Map" parent="PauseScreen" unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager") instance=ExtResource("18_hev0n")]

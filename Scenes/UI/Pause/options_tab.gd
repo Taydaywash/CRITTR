@@ -12,6 +12,7 @@ var text_speeds_index = 0
 @export var screen_size_dropdown : OptionButton
 @export var resolution_dropdown : OptionButton
 @export var text_scroll_speed_value : Label
+@onready var audio_controller : AudioListener2D = get_parent().audio_controller
 
 var options : Dictionary = {
 	"screen_size": DisplayServer.WINDOW_MODE_FULLSCREEN,
@@ -106,3 +107,11 @@ func update_text_scroll_speed():
 		text_scroll_speed_value.text = "Fast"
 	else:
 		text_scroll_speed_value.text = "Instant"
+
+
+func _on_master_volume_value_changed(value: float) -> void:
+	audio_controller.change_master_volume_to(value/100.0)
+func _on_music_volume_value_changed(value: float) -> void:
+	audio_controller.change_music_volume_to(value/100.0)
+func _on_sfx_volume_value_changed(value: float) -> void:
+	audio_controller.change_sfx_volume_to(value/100.0)
