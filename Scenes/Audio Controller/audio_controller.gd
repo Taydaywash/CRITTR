@@ -7,14 +7,14 @@ func play_music(music : AudioStream):
 		music_player.stream = music
 		music_player.play()
 
-func play_sound(sfx : AudioStream):
+func play_sound(sfx : AudioStream, min_pitch : float = 0.7, max_pitch : float = 1.3):
 	if not sfx:
 		return
 	var sfx_player = AudioStreamPlayer.new()
 	add_child(sfx_player)
 	sfx_player.bus = "SFX"
 	sfx_player.stream = sfx
-	sfx_player.pitch_scale = randf_range(0.7,1.3)
+	sfx_player.pitch_scale = randf_range(min_pitch,max_pitch)
 	sfx_player.play()
 	await sfx_player.finished
 	sfx_player.queue_free()

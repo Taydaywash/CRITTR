@@ -62,6 +62,7 @@ player_control_regain_delay = 0.4
 [node name="Testing" type="Node" parent="Rooms" unique_id=1080309199]
 script = ExtResource("6_lqys3")
 music = ExtResource("5_41ig8")
+map_color = Color(0, 1, 0, 1)
 
 [node name="Testing1" parent="Rooms/Testing" unique_id=1129801850 instance=ExtResource("15_jacc8")]
 position = Vector2(18624, -3264)
@@ -74,6 +75,7 @@ position = Vector2(31424, -3288)
 [node name="CrashSite" type="Node" parent="Rooms" unique_id=1857399283]
 script = ExtResource("6_lqys3")
 music = ExtResource("7_qs546")
+map_color = Color(3.5616756e-06, 0.5399312, 0.71786386, 1)
 
 [node name="Parallax2D2" type="Parallax2D" parent="Rooms/CrashSite" unique_id=1845712591]
 scroll_scale = Vector2(0.4, 1)
@@ -181,13 +183,14 @@ zoom_to_fit = true
 audio_controller = NodePath("../AudioManager")
 map = NodePath("Map")
 
-[node name="Map" parent="PauseScreen" unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager") instance=ExtResource("18_hev0n")]
+[node name="Map" parent="PauseScreen" unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager", "current_region") instance=ExtResource("18_hev0n")]
 process_mode = 3
 z_index = 10
 z_as_relative = false
 position = Vector2(672, 464)
 player = NodePath("../../Player")
 rooms_manager = NodePath("../../Rooms")
+current_region = NodePath("../../Rooms/Testing")
 
 [node name="Background" type="Node2D" parent="." unique_id=2056885657]
 

@@ -1,2 +1,5 @@
 class_name MapReigon
-extends Button
+extends Area2D
+
+var corresponding_region : Region
+var map_controller : Node2D

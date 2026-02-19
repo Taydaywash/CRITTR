@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://bu6n1yqvtd2vk"]
 
-[ext_resource type="Script" uid="uid://b0p8u2x0fdbv5" path="res://Scenes/Map/map_reigon.gd" id="1_bh25q"]
+[ext_resource type="Script" uid="uid://b0p8u2x0fdbv5" path="res://Scenes/Map/map_reigon.gd" id="1_ok65d"]
 
-[node name="MapReigon" type="Button" unique_id=146922048]
-script = ExtResource("1_bh25q")
+[node name="MapReigon" type="Area2D" unique_id=975076241]
+script = ExtResource("1_ok65d")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=730823477]
+[node name="RegionBody" type="Polygon2D" parent="." unique_id=730823477]
 
-[node name="Line2D" type="Line2D" parent="Polygon2D" unique_id=499271222]
+[node name="Outline" type="Polygon2D" parent="." unique_id=577289019]
+z_index = -1
+color = Color(0, 0, 0, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1477306943]

@@ -6,7 +6,11 @@ extends Node
 
 @export_category("Audio")
 @export var enter_sound : AudioStream
+@export var enter_pitch_low : float = 0.7
+@export var enter_pitch_high : float = 1.3
 @export var exit_sound : AudioStream
+@export var exit_pitch_low : float = 0.7
+@export var exit_pitch_high : float = 1.3
 @export var excluded_exit_states : Array[State]
 
 var player : Player
@@ -25,7 +29,7 @@ func activate(_last_state : State) -> void:
 		if child is Area2D: 
 			child.reparent(player, false)
 	#replace parent.modulate with this once animations are added
-	audio_manager.play_sound(enter_sound)
+	audio_manager.play_sound(enter_sound,enter_pitch_low,enter_pitch_high)
 	player.play_animation(animation_name)
 	
 	player.modulate = placeholder_animation_color
@@ -51,4 +55,4 @@ func deactivate(next_state : State) -> void:
 	sprite.scale.x = 1
 	sprite.rotation = 0
 	if next_state not in excluded_exit_states:
-		audio_manager.play_sound(exit_sound)
+		audio_manager.play_sound(exit_sound,exit_pitch_low,exit_pitch_high)

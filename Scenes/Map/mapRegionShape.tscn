@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ofnyj0qnl8mi"]
+
+[ext_resource type="Script" uid="uid://dhf3hav66eqmj" path="res://Scenes/Map/map_region_shape.gd" id="1_tbiih"]
+
+[node name="MapRegionShape" type="CollisionPolygon2D" unique_id=1354885350 node_paths=PackedStringArray("outline", "region_shape")]
+script = ExtResource("1_tbiih")
+outline = NodePath("Outline")
+region_shape = NodePath("RegionShape")
+outline_thickness = 200
+
+[node name="RegionShape" type="Polygon2D" parent="." unique_id=1612810314]
+
+[node name="Outline" type="Line2D" parent="." unique_id=857358970]
+z_index = -1
+closed = true
+width = 30.0
+default_color = Color(0, 0, 0, 1)

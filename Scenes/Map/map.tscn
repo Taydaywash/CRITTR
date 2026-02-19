@@ -1,21 +1,19 @@
 [gd_scene format=3 uid="uid://kt2omd4601yo"]
 
 [ext_resource type="Script" uid="uid://bfduagc130a2n" path="res://Scenes/Map/map_controller.gd" id="1_evwka"]
-[ext_resource type="PackedScene" uid="uid://bu6n1yqvtd2vk" path="res://Scenes/Map/MapRegion.tscn" id="2_2gweo"]
-[ext_resource type="PackedScene" uid="uid://p60bcylp36uc" path="res://Scenes/Map/mapRoom.tscn" id="3_g6a4i"]
 
-[node name="Map" type="Node2D" unique_id=2004255828 node_paths=PackedStringArray("camera", "viewport", "viewport_container")]
+[node name="Map" type="Node2D" unique_id=2004255828 node_paths=PackedStringArray("not_focused_overlay", "camera", "viewport", "viewport_container")]
 script = ExtResource("1_evwka")
-camera_move_speed = 100
+camera_move_speed = 50
+camera_zoom_speed = 0.001
+default_zoom = 0.035
+max_zoom = 0.1
+min_zoom = 0.01
+region_show_zoom = 0.02
+not_focused_overlay = NodePath("SubViewportContainer/SubViewport2/Polygon2D3")
 camera = NodePath("SubViewportContainer/SubViewport2/Camera2D")
 viewport = NodePath("SubViewportContainer/SubViewport2")
 viewport_container = NodePath("SubViewportContainer")
-
-[node name="MapReigon" parent="." unique_id=146922048 instance=ExtResource("2_2gweo")]
-visible = false
-
-[node name="MapRoom" parent="." unique_id=1229491579 instance=ExtResource("3_g6a4i")]
-visible = false
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1832713940]
 anchors_preset = 8
@@ -57,3 +55,9 @@ visible = false
 position = Vector2(224, 0)
 polygon = PackedVector2Array(-100.666626, 47.33333, -131.33331, -91.33335, 138, -60.66668, 78, 87.33333)
 uv = PackedVector2Array(-15.333313, -18.000015, -2, -50.000015, 76.66669, -39.333347, 52.666687, 12.6666565)
+
+[node name="Polygon2D3" type="Polygon2D" parent="SubViewportContainer/SubViewport2" unique_id=60067213]
+z_index = 3
+color = Color(0, 0, 0, 0.74509805)
+polygon = PackedVector2Array(-56504, -35056, 71752, -39280, 70728, 37776, -54968, 35856)
+uv = PackedVector2Array(-34488, -19656, 41800, -19528, 42696, 18360, -35000, 17592)
