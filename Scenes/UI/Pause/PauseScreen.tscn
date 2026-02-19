@@ -511,7 +511,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="MapTab" type="Panel" parent="." unique_id=1098802662 node_paths=PackedStringArray("pause_screen", "default_focus")]
-visible = false
 z_index = -1
 offset_left = 64.0
 offset_top = 114.0
@@ -533,6 +532,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_6r4po")
 theme_override_styles/focus = SubResource("StyleBoxFlat_iio6x")
 
 [node name="OptionsTab" parent="." unique_id=882549425 node_paths=PackedStringArray("pause_screen") instance=ExtResource("10_c2hr7")]
+visible = false
 pause_screen = NodePath("..")
 
 [node name="MainMenu" type="Button" parent="OptionsTab" unique_id=685324957]

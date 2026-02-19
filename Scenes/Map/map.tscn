@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bfduagc130a2n" path="res://Scenes/Map/map_controller.gd" id="1_evwka"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_xtf6f"]
+font_size = 50
+
 [node name="Map" type="Node2D" unique_id=2004255828 node_paths=PackedStringArray("not_focused_overlay", "camera", "viewport", "viewport_container")]
 script = ExtResource("1_evwka")
 camera_move_speed = 50
@@ -22,15 +25,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -576.0
-offset_top = -320.0
+offset_top = -288.0
 offset_right = 576.0
-offset_bottom = 256.0
+offset_bottom = 288.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SubViewport2" type="SubViewport" parent="SubViewportContainer" unique_id=670773340]
 handle_input_locally = false
-size = Vector2i(960, 416)
+size = Vector2i(1014, 468)
 render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport2" unique_id=719413850]
@@ -61,3 +64,21 @@ z_index = 3
 color = Color(0, 0, 0, 0.74509805)
 polygon = PackedVector2Array(-56504, -35056, 71752, -39280, 70728, 37776, -54968, 35856)
 uv = PackedVector2Array(-34488, -19656, 41800, -19528, 42696, 18360, -35000, 17592)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport2/Polygon2D3" unique_id=1548944959]
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport2/Polygon2D3/CanvasLayer" unique_id=1891610340]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -245.5
+offset_top = -34.5
+offset_right = 245.5
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Press Z to open map"
+label_settings = SubResource("LabelSettings_xtf6f")

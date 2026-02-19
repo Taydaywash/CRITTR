@@ -80,6 +80,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if pause_screen.map_tab.default_focus.has_focus():
 		not_focused_overlay.visible = false
+		not_focused_overlay.get_child(0).visible = false
 		if camera.zoom < Vector2(region_show_zoom,region_show_zoom):
 			show_regions = true
 		else:
@@ -102,3 +103,4 @@ func _process(_delta: float) -> void:
 		camera.position = rooms_manager.current_room.global_position
 		camera.zoom = Vector2(default_zoom,default_zoom)
 		not_focused_overlay.visible = true
+		not_focused_overlay.get_child(0).visible = true
