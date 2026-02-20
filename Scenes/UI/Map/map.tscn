@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kt2omd4601yo"]
 
-[ext_resource type="Script" uid="uid://bfduagc130a2n" path="res://Scenes/Map/map_controller.gd" id="1_evwka"]
+[ext_resource type="Script" uid="uid://bfduagc130a2n" path="res://Scenes/UI/Map/map_controller.gd" id="1_evwka"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xtf6f"]
 font_size = 50

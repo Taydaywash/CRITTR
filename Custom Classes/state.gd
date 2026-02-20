@@ -1,3 +1,4 @@
+@icon("res://Assets/Editor Icons/State Icon.png")
 class_name State
 extends Node
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://p60bcylp36uc"]
 
-[ext_resource type="Script" uid="uid://bm8ai54cut6hy" path="res://Scenes/Map/map_room.gd" id="1_gj01h"]
+[ext_resource type="Script" uid="uid://bm8ai54cut6hy" path="res://Scenes/UI/Map/map_room.gd" id="1_gj01h"]
 
 [node name="MapRoom" type="Polygon2D" unique_id=1229491579 node_paths=PackedStringArray("outline")]
 script = ExtResource("1_gj01h")

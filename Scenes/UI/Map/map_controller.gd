@@ -16,9 +16,9 @@ extends Node2D
 @export var player : Player
 @export var rooms_manager : Node
 
-@onready var base_map_room = preload("uid://p60bcylp36uc")
-@onready var base_map_reigon = preload("uid://bu6n1yqvtd2vk")
-@onready var map_region_shape = preload("uid://ofnyj0qnl8mi")
+@onready var base_map_room = preload("res://Scenes/UI/Map/mapRoom.tscn")
+@onready var base_map_reigon = preload("res://Scenes/UI/Map/MapRegion.tscn")
+@onready var map_region_shape = preload("res://Scenes/UI/Map/mapRegionShape.tscn")
 
 @export var current_region : Region
 var show_regions : bool = false

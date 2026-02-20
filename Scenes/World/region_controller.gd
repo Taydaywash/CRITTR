@@ -1,3 +1,4 @@
+@icon("res://Assets/Editor Icons/Region Icon.png")
 class_name Region
 extends Node
 
