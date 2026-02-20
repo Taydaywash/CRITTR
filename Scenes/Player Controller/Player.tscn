@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://x1weuat5in2g" path="res://Scenes/Player Controller/States/falling.gd" id="11_v55cd"]
 [ext_resource type="Script" uid="uid://r65jkbflv1qk" path="res://Scenes/Player Controller/States/diving_falling.gd" id="12_31xm6"]
 [ext_resource type="Script" uid="uid://bwdpd2vsi0pnv" path="res://Scenes/Player Controller/States/crouching.gd" id="12_068uq"]
+[ext_resource type="AudioStream" uid="uid://canmbuqhjbx0m" path="res://Assets/Sound Effects/Player/PlaceholderLand.mp3" id="12_74b0n"]
 [ext_resource type="Script" uid="uid://c8h0fivvgxc74" path="res://Scenes/Player Controller/States/Abilities/dashing.gd" id="12_evkiq"]
 [ext_resource type="Script" uid="uid://bm7yhxmomtxag" path="res://Scenes/Player Controller/States/Abilities/grappling.gd" id="13_vpgwe"]
 [ext_resource type="Script" uid="uid://bm41wexjew65w" path="res://Scenes/Player Controller/States/Abilities/climbing.gd" id="14_hl1jv"]
@@ -409,6 +410,7 @@ right_ray = NodePath("../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "walking"
 placeholder_animation_color = Color(1, 1, 1, 1)
+while_in_state_sound = ExtResource("12_74b0n")
 
 [node name="Diving" type="Node" parent="StateMachine" unique_id=1646142929 node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "diving_falling_state", "jump_input_buffer")]
 script = ExtResource("9_gnv43")
@@ -431,7 +433,7 @@ x_final_sprite_stretch_multiplier = 1.0
 animation_name = "diving"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="DivingFalling" type="Node" parent="StateMachine/Diving" unique_id=577619824 node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "jump_input_buffer", "excluded_exit_states")]
+[node name="DivingFalling" type="Node" parent="StateMachine/Diving" unique_id=577619824 node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "jump_input_buffer")]
 script = ExtResource("12_31xm6")
 walking_state = NodePath("../../Walking")
 bonked_state = NodePath("../Bonked")
@@ -445,7 +447,6 @@ x_final_sprite_stretch_multiplier = 1.0
 animation_name = "diving"
 placeholder_animation_color = Color(1, 1, 1, 1)
 exit_sound = ExtResource("6_4ijkb")
-excluded_exit_states = [NodePath("../Bonked")]
 
 [node name="Bonked" type="Node" parent="StateMachine/Diving" unique_id=958169737 node_paths=PackedStringArray("idle_state", "jumping_state", "jump_input_buffer")]
 script = ExtResource("9_v55cd")
@@ -499,7 +500,7 @@ left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
 animation_name = "WallJumping"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Falling" type="Node" parent="StateMachine" unique_id=18701263 node_paths=PackedStringArray("idle_state", "walking_state", "diving_state", "wall_cling_state", "jumping_state", "wall_jumping_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left", "excluded_exit_states")]
+[node name="Falling" type="Node" parent="StateMachine" unique_id=18701263 node_paths=PackedStringArray("idle_state", "walking_state", "diving_state", "wall_cling_state", "jumping_state", "wall_jumping_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left", "exit_excluded_exit_states")]
 script = ExtResource("11_v55cd")
 idle_state = NodePath("../Idle")
 walking_state = NodePath("../Walking")
@@ -523,7 +524,7 @@ nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 animation_name = "falling"
 placeholder_animation_color = Color(1, 1, 1, 1)
 exit_sound = ExtResource("6_4ijkb")
-excluded_exit_states = [NodePath("../Abilities"), NodePath("../Diving")]
+exit_excluded_exit_states = [NodePath("../Abilities"), NodePath("../Diving")]
 
 [node name="Ascending" type="Node" parent="StateMachine" unique_id=103182494 node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("11_evkiq")

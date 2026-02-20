@@ -48,7 +48,10 @@ func change_state(new_state : State, direction = null, discrete : bool = false) 
 	last_state = current_state
 	if current_state:
 		if not discrete:
-			current_state.deactivate(new_state)
+			if new_state in abilities_state.get_children():
+				current_state.deactivate(abilities_state)
+			else:
+				current_state.deactivate(new_state)
 	current_state = new_state
 	if grounded_states.has(current_state) or (last_state == $Falling and current_state == $Jumping):
 		abilities.refill_abilities()
