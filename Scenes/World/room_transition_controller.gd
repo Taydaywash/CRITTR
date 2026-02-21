@@ -1,3 +1,4 @@
+@icon("res://Assets/Editor Icons/Gear Icon.png")
 extends Node
 @export_category("References")
 @export var ui: UI

@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cjm2cv3q8laeo" path="res://Assets/Music/Simulation Anxiety.mp3" id="5_41ig8"]
 [ext_resource type="PackedScene" uid="uid://dqd0fl65fplw7" path="res://Scenes/World/Regions/Misc/Testing2.tscn" id="5_hev0n"]
 [ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://Scenes/UI/Pause/PauseScreen.tscn" id="5_o14yy"]
-[ext_resource type="Script" path="res://Scenes/World/region_controller.gd" id="6_lqys3"]
+[ext_resource type="Script" uid="uid://5wurrbpk32od" path="res://Scenes/World/region_controller.gd" id="6_lqys3"]
 [ext_resource type="PackedScene" uid="uid://brtxay1sgqmvv" path="res://Scenes/World/LevelEditor/Objects/Door.tscn" id="7_jacc8"]
 [ext_resource type="AudioStream" uid="uid://baekjbxxk8tda" path="res://Assets/Music/CRITTR_TrialSong1.mp3" id="7_qs546"]
 [ext_resource type="PackedScene" uid="uid://bj2evssjuqrmd" path="res://Scenes/World/LevelEditor/Objects/SaveTube/SaveTube.tscn" id="8_hev0n"]

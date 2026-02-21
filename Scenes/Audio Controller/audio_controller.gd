@@ -1,3 +1,4 @@
+@icon("res://Assets/Editor Icons/Gear Icon.png")
 extends AudioListener2D
 
 @export var music_player : AudioStreamPlayer

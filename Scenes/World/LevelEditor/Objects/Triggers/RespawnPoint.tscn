@@ -1,15 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6tgehyvfiy28"]
+[gd_scene format=3 uid="uid://c6tgehyvfiy28"]
+
+[sub_resource type="GDScript" id="GDScript_sv1a3"]
+resource_name = "icon"
+script/source = "@icon(\"res://Assets/Editor Icons/Level Editor Objects/Respawn point Icon.png\")
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_io85b"]
 size = Vector2(128, 896)
 
-[node name="RespawnPoint" type="Node2D"]
+[node name="RespawnPoint" type="Node2D" unique_id=3531767]
+script = SubResource("GDScript_sv1a3")
 
-[node name="ChangeRespawnPoint" type="Area2D" parent="."]
+[node name="ChangeRespawnPoint" type="Area2D" parent="." unique_id=1821614538]
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRespawnPoint"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRespawnPoint" unique_id=1148305964]
 position = Vector2(0, 64)
 shape = SubResource("RectangleShape2D_io85b")
 

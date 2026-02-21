@@ -1,7 +1,6 @@
+@icon("res://Assets/Editor Icons/Level Editor Objects/Save Point Icon.png")
 extends interactable
 
-const ABILITY_CHANGE_MENU = preload("uid://c2l75c4nehnvg")
-var ability_change_menu_reference : CanvasLayer
 #used_ability_station
 @onready var pause_screen : CanvasLayer = get_node("/root/World/PauseScreen")
 

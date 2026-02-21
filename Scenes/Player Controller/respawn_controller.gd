@@ -1,3 +1,4 @@
+@icon("res://Assets/Editor Icons/Gear Icon.png")
 extends Node
 
 @onready var room_transition_controller : Node = $"../../Rooms"

@@ -1,3 +1,4 @@
+@icon("res://Assets/Editor Icons/Level Editor Objects/Door Icon.png")
 class_name door
 extends interactable
 
