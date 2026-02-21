@@ -1,0 +1,259 @@
+[gd_scene format=3 uid="uid://4ip81nticvcd"]
+
+[ext_resource type="Script" uid="uid://dxhg7ryjm5cld" path="res://Scenes/Player Controller/States/player_state_controller.gd" id="1_4bhr5"]
+[ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://Assets/Misc/icon.svg" id="2_ves0u"]
+[ext_resource type="Script" uid="uid://5a3dsvmu3wh5" path="res://Scenes/Player Controller/States/no_control.gd" id="3_jl1s5"]
+[ext_resource type="Script" uid="uid://dj8tg7xutb1wf" path="res://Scenes/Player Controller/States/death.gd" id="4_4nigc"]
+[ext_resource type="Script" uid="uid://cxown2b2jsdny" path="res://Scenes/Player Controller/States/looking_up.gd" id="4_jl1s5"]
+[ext_resource type="Script" uid="uid://5v8bgvkdmtcc" path="res://Scenes/Player Controller/States/idle_crouching.gd" id="5_3imdl"]
+[ext_resource type="Script" uid="uid://cm5l3ivbnb55g" path="res://Scenes/Player Controller/States/state_machine.gd" id="5_v55cd"]
+[ext_resource type="AudioStream" uid="uid://canmbuqhjbx0m" path="res://Assets/Sound Effects/Player/PlaceholderLand.mp3" id="6_4ijkb"]
+[ext_resource type="Script" uid="uid://cu350rjri3jpk" path="res://Custom Classes/state.gd" id="6_74b0n"]
+[ext_resource type="Script" uid="uid://cnyjhmvsy4x2m" path="res://Scenes/Player Controller/States/idle.gd" id="6_dpx4d"]
+[ext_resource type="Script" uid="uid://b86dxdi4v2w7v" path="res://Scenes/Player Controller/States/walking.gd" id="7_hueom"]
+[ext_resource type="Script" uid="uid://waa4aoe22gbi" path="res://Scenes/Player Controller/States/jumping.gd" id="8_2fk5g"]
+[ext_resource type="Script" uid="uid://lykwwg352q0l" path="res://Scenes/Player Controller/States/diving.gd" id="9_gnv43"]
+[ext_resource type="Script" uid="uid://dm8obalvft0u8" path="res://Scenes/Player Controller/States/bonked.gd" id="9_v55cd"]
+[ext_resource type="Script" uid="uid://ql7kjpt3i6d" path="res://Scenes/Player Controller/States/wall_jumping.gd" id="10_dpx4d"]
+[ext_resource type="Script" uid="uid://l4dt3d54fbjt" path="res://Scenes/Player Controller/States/wall_cling.gd" id="10_xnjby"]
+[ext_resource type="Script" uid="uid://nu141t0agsoc" path="res://Scenes/Player Controller/States/abilities_controller.gd" id="11_75ds7"]
+[ext_resource type="Script" uid="uid://phlgh2qymrcl" path="res://Scenes/Player Controller/States/ascending.gd" id="11_evkiq"]
+[ext_resource type="Script" uid="uid://x1weuat5in2g" path="res://Scenes/Player Controller/States/falling.gd" id="11_v55cd"]
+[ext_resource type="Script" uid="uid://r65jkbflv1qk" path="res://Scenes/Player Controller/States/diving_falling.gd" id="12_31xm6"]
+[ext_resource type="Script" uid="uid://bwdpd2vsi0pnv" path="res://Scenes/Player Controller/States/crouching.gd" id="12_068uq"]
+[ext_resource type="Script" uid="uid://c8h0fivvgxc74" path="res://Scenes/Player Controller/States/Abilities/dashing.gd" id="12_evkiq"]
+[ext_resource type="Script" uid="uid://bm7yhxmomtxag" path="res://Scenes/Player Controller/States/Abilities/grappling.gd" id="13_vpgwe"]
+[ext_resource type="Script" uid="uid://bm41wexjew65w" path="res://Scenes/Player Controller/States/Abilities/climbing.gd" id="14_hl1jv"]
+[ext_resource type="Script" uid="uid://cwi7sh2i6bfpg" path="res://Scenes/Player Controller/States/Abilities/inflated.gd" id="15_melbr"]
+[ext_resource type="Script" uid="uid://s0v2p1xd21lh" path="res://Scenes/Player Controller/States/Abilities/bounce_attack.gd" id="16_2bslk"]
+[ext_resource type="Script" uid="uid://ctsvxg3n4hdh7" path="res://Scenes/Player Controller/States/Abilities/drill.gd" id="17_fuvci"]
+[ext_resource type="Texture2D" uid="uid://hqyvhddj1nu" path="res://Assets/UI/DashIcon.png" id="19_j8lbh"]
+[ext_resource type="Texture2D" uid="uid://bfm1hwat15hwr" path="res://Assets/UI/ClimbingIcon.png" id="20_4o1t2"]
+[ext_resource type="Texture2D" uid="uid://btmny16rfx85i" path="res://Assets/UI/DrillIcon.png" id="21_0wxel"]
+[ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://Scenes/Player Controller/camera_controller.gd" id="21_3imdl"]
+[ext_resource type="Texture2D" uid="uid://b5q4vr47m20fe" path="res://Assets/Animations/Player/walking/f1.png" id="21_068uq"]
+[ext_resource type="Texture2D" uid="uid://cm5a0kjv22qep" path="res://Assets/Animations/Player/idle/i1.png" id="21_hfsnk"]
+[ext_resource type="Texture2D" uid="uid://civo5col660g6" path="res://Assets/Animations/Player/idle/i2.png" id="22_3imdl"]
+[ext_resource type="Texture2D" uid="uid://dpg0ffmpj5l37" path="res://Assets/Animations/Player/fall/fall1.png" id="22_7xxh7"]
+[ext_resource type="Texture2D" uid="uid://ouegwis2yso0" path="res://Assets/Animations/Player/walking/f2.png" id="22_tycsm"]
+[ext_resource type="Texture2D" uid="uid://7t8x5fqt52wp" path="res://Assets/UI/GrappleIcon.png" id="22_wlqol"]
+[ext_resource type="Script" uid="uid://cykeeb3gol2qg" path="res://Scenes/Player Controller/States/Abilities/grappling_pull.gd" id="23_0wxel"]
+[ext_resource type="Script" uid="uid://bhn2wmkkbfo2p" path="res://Scenes/Player Controller/States/Abilities/climbing_buffer.gd" id="23_31xm6"]
+[ext_resource type="Texture2D" uid="uid://bc5tl458rwcxw" path="res://Assets/Animations/Player/walking/f3.png" id="23_fkl5p"]
+[ext_resource type="Texture2D" uid="uid://cxuugk8c7tdj5" path="res://Assets/UI/InflateIcon.png" id="23_hk2wy"]
+[ext_resource type="Texture2D" uid="uid://csnlhmtdvh6rk" path="res://Assets/Animations/Player/idle/i3.png" id="23_wqhrm"]
+[ext_resource type="Texture2D" uid="uid://33ah1rmr3ca7" path="res://Assets/Animations/Player/walking/f4.png" id="24_hfsnk"]
+[ext_resource type="Texture2D" uid="uid://dciigneoovomp" path="res://Assets/Animations/Player/Death/deathAnimation0000.png" id="24_qtpvk"]
+[ext_resource type="Texture2D" uid="uid://je2kc5u1j4x0" path="res://Assets/UI/BounceIcon.png" id="24_qy6yu"]
+[ext_resource type="Texture2D" uid="uid://5iuq1j0jnxoj" path="res://Assets/Animations/Player/walking/f5.png" id="25_3imdl"]
+[ext_resource type="Texture2D" uid="uid://bnt2dq3fmkni5" path="res://Assets/Animations/Player/Death/deathAnimation0001.png" id="25_4nigc"]
+[ext_resource type="Texture2D" uid="uid://dfyfs3qh2efsu" path="res://Assets/Animations/Player/jump/jump1.png" id="26_7xxh7"]
+[ext_resource type="Texture2D" uid="uid://bk2ms47bxp2rf" path="res://Assets/Animations/Player/Death/deathAnimation0002.png" id="26_31xm6"]
+[ext_resource type="Texture2D" uid="uid://dkv402y2iptmk" path="res://Assets/Animations/Player/walking/f6.png" id="26_wqhrm"]
+[ext_resource type="Texture2D" uid="uid://dbeutqacrgjeg" path="res://Assets/Animations/Player/walking/f7.png" id="27_7xxh7"]
+[ext_resource type="Texture2D" uid="uid://d3gyqt7vvn7nv" path="res://Assets/Animations/Player/Death/deathAnimation0003.png" id="27_mofwp"]
+[ext_resource type="Texture2D" uid="uid://bpsqdu68xaqos" path="res://Assets/Animations/Player/walking/f8.png" id="28_ho2n3"]
+[ext_resource type="Texture2D" uid="uid://e1nj7vxg1jmt" path="res://Assets/Animations/Player/Death/deathAnimation0004.png" id="28_obod2"]
+[ext_resource type="Texture2D" uid="uid://doppu62kcme4e" path="res://Assets/Animations/Player/Death/deathAnimation0005.png" id="29_fbx8n"]
+[ext_resource type="Script" uid="uid://bnc6tyoeqa6yd" path="res://Scenes/Player Controller/States/Abilities/digging.gd" id="32_4o1t2"]
+[ext_resource type="Shape2D" uid="uid://c8niu6rbmipjw" path="res://Scenes/Player Controller/Hitboxes/CrouchingHitbox.tres" id="35_ho2n3"]
+[ext_resource type="Shape2D" uid="uid://bfsgbtnw3orjf" path="res://Scenes/Player Controller/Hitboxes/DefaultHitbox.tres" id="36_uneaa"]
+[ext_resource type="Script" uid="uid://db1bxui7ftwwk" path="res://Scenes/Player Controller/respawn_controller.gd" id="37_jxerk"]
+[ext_resource type="Texture2D" uid="uid://cjgjwns3hghr3" path="res://Assets/Animations/Player/LookingUp/lookingup.png" id="37_wlqol"]
+[ext_resource type="Texture2D" uid="uid://dtumsrqtcpvky" path="res://Assets/Animations/Player/WallCling/wallcling1.png" id="38_0xda7"]
+[ext_resource type="Texture2D" uid="uid://boh5bad4fpj3h" path="res://Assets/Animations/Player/WallCling/wallcling2.png" id="39_omh5x"]
+[ext_resource type="Texture2D" uid="uid://b4ov3tf3qq5y5" path="res://Assets/Animations/Player/WallCling/wallcling3.png" id="40_5v0xw"]
+[ext_resource type="Texture2D" uid="uid://b66n7y812l426" path="res://Assets/Animations/Player/Diving/diving.png" id="44_hk2wy"]
+[ext_resource type="Texture2D" uid="uid://io8id0xi0edl" path="res://Assets/Animations/Player/Diving/diving2.png" id="45_qy6yu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wxel"]
+size = Vector2(70, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlqol"]
+size = Vector2(50, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hl1jv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_7xxh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_7xxh7")
+}],
+"loop": true,
+"name": &"Bonked",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_wlqol")
+}],
+"loop": true,
+"name": &"LookingUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_0xda7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_omh5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_5v0xw")
+}],
+"loop": true,
+"name": &"WallCling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_7xxh7")
+}],
+"loop": true,
+"name": &"WallJumping",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_qtpvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_4nigc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_31xm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_mofwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_obod2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_fbx8n")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("45_qy6yu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_hk2wy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_qy6yu")
+}],
+"loop": true,
+"name": &"diving",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_7xxh7")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_hfsnk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_3imdl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_wqhrm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_3imdl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_7xxh7")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ves0u")
+}],
+"loop": true,
+"name": &"no animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_068uq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_tycsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_fkl5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_hfsnk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_3imdl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_wqhrm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_7xxh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_ho2n3")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1nwm"]
+size = Vector2(35.555553, 71.11115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5i1rd"]
+size = Vector2(30.028448, 59.25926)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_068uq"]
+size = Vector2(30.028448, 47.40741)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ho2n3"]
+custom_solver_bias = 1.0
+size = Vector2(71.11111, 5.92593)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxerk"]
+size = Vector2(71.112, 142.22195)
+
+[node name="PlayerController" type="CharacterBody2D" unique_id=1758587224 node_paths=PackedStringArray("state_machine", "camera", "up", "down", "left", "right")]
+scale = Vector2(1.35, 1.35)
+collision_layer = 8
+collision_mask = 81
+floor_block_on_wall = false
+floor_max_angle = 0.0
+safe_margin = 0.1
+script = ExtResource("1_4bhr5")
+state_machine = NodePath("StateMachine")
+camera = NodePath("Camera2D")
+up = NodePath("RoomTransitionSides/up")
+down = NodePath("RoomTransitionSides/down")
+left = NodePath("RoomTransitionSides/left")
+right = NodePath("RoomTransitionSides/right")
+normal_gravity = 3250
+max_falling_speed = 2000
+
+[node name="StateMachine" type="Node" parent=".

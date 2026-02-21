@@ -3,6 +3,7 @@
 [sub_resource type="GDScript" id="GDScript_sv1a3"]
 resource_name = "icon"
 script/source = "@icon(\"res://Assets/Editor Icons/Level Editor Objects/Respawn point Icon.png\")
+extends Node2D
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_io85b"]
