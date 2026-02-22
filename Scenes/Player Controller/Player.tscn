@@ -513,6 +513,7 @@ right_ray = NodePath("../../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
 animation_name = "WallJumping"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("6_74b0n")])
 
 [node name="Falling" type="Node" parent="StateMachine" unique_id=18701263 node_paths=PackedStringArray("idle_state", "walking_state", "diving_state", "wall_cling_state", "jumping_state", "wall_jumping_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left", "exit_sound_excluded_states", "exit_particle_excluded_states")]
 script = ExtResource("11_v55cd")
@@ -538,7 +539,7 @@ nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 animation_name = "falling"
 placeholder_animation_color = Color(1, 1, 1, 1)
 exit_sound_sounds = Array[AudioStream]([ExtResource("18_k212d")])
-exit_sound_excluded_states = [NodePath("../Diving"), NodePath("../Abilities")]
+exit_sound_excluded_states = [NodePath("../Diving"), NodePath("../Abilities"), NodePath("../WallCling"), NodePath("../WallCling/WallJumping")]
 exit_particle_particle = ExtResource("19_k212d")
 exit_particle_excluded_states = [NodePath("../Diving"), NodePath("../Abilities")]
 

@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://Scenes/World/Regions/Misc/Testing1.tscn" id="15_jacc8"]
 [ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://Scenes/World/Regions/Crash Site/Platforms.tscn" id="16_vdgnt"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/UI/Map/map.tscn" id="18_hev0n"]
+[ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://Scenes/World/Regions/Crash Site/PlatformsTwo.tscn" id="19_hlwfy"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://Assets/Decals/Tundra/Background/background layer tundra 1.png" id="19_vdgnt"]
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://Assets/Decals/Tundra/Background/bg layer tundra 2.png" id="20_3ql1f"]
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Scenes/Audio Controller/AudioController.tscn" id="21_3ql1f"]
@@ -188,6 +189,9 @@ texture = ExtResource("21_eucu0")
 [node name="Platforms" parent="Rooms/CrashSite" unique_id=394549618 instance=ExtResource("16_vdgnt")]
 position = Vector2(16256, -1600)
 zoom_to_fit = true
+
+[node name="Platforms2" parent="Rooms/CrashSite" unique_id=449353625 instance=ExtResource("19_hlwfy")]
+position = Vector2(22656, -2368)
 
 [node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "map") instance=ExtResource("5_o14yy")]
 audio_controller = NodePath("../AudioManager")
