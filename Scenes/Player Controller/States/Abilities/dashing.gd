@@ -103,9 +103,11 @@ func process_physics(_delta) -> State:
 		return diving_state
 	if (player.is_on_wall() and player.velocity.y == 0) or player.is_on_ceiling():
 		return falling_state
-	if (player.is_on_floor() and dash_timer.time_left == 0):
+	if player.is_on_floor():
 		if jump_input_buffer.time_left > 0:
+			player.velocity.x *= 1.2
 			return jumping_state
+	if (player.is_on_floor() and dash_timer.time_left == 0):
 		if abs(player.velocity.x) > 0:
 			return walking_state
 		else:

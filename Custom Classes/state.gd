@@ -30,16 +30,21 @@ extends Node
 @export_category("Particles")
 @export_group("Enter particle","enter_particle_")
 @export var enter_particle_particle : PackedScene
+@export var enter_particle_particle_parent_to_player : bool = false
 @export_group("Enter particle/When entering from state, create particle","enter_particle_when_entering_from_state_")
 #exported typed dictionaries cause editor crashes, so linked lists are used instead
 @export var enter_particle_when_entering_from_state_state : Array[State]
-@export var enter_particle_when_entering_from_state_sound : Array[PackedScene]
+@export var enter_particle_when_entering_from_state_particle : Array[PackedScene]
+@export var enter_particle_when_entering_from_state_parent_to_player : Array[bool]
 @export_group("While in state particle","while_in_state_")
 @export var while_in_state_particle : PackedScene
+@export var while_in_state_parent_to_player : bool = false
 @export var while_in_state_repeat_particle_after_seconds: float = 0
 @export_group("Exit particle","exit_particle_")
 @export var exit_particle_particle : PackedScene
+@export var exit_particle_parent_to_player : bool = false
 @export var exit_particle_excluded_states : Array[State]
+
 
 var player : Player
 var audio_controller : AudioController
@@ -76,7 +81,12 @@ func activate(last_state : State) -> void:
 		if enter_sound_sounds: 
 			audio_controller.play_sound( enter_sound_sounds.pick_random(), enter_sound_pitch_low, enter_sound_pitch_high)
 	if enter_particle_particle:
-		particle_controller.spawn_particle(player,enter_particle_particle)
+		particle_controller.spawn_particle(player,enter_particle_particle,enter_particle_particle_parent_to_player)
+	if enter_particle_when_entering_from_state_state:
+		if enter_particle_when_entering_from_state_state.has(last_state):
+			var state_index = enter_particle_when_entering_from_state_state.find(last_state)
+			particle_controller.spawn_particle(player,enter_particle_when_entering_from_state_particle[state_index],
+			enter_particle_when_entering_from_state_parent_to_player[state_index])
 func process_input(_event) -> State:
 	return null
 
@@ -102,7 +112,7 @@ func deactivate(next_state : State) -> void:
 	if particle_loop_timer:
 		particle_loop_timer.queue_free()
 	if (next_state not in exit_particle_excluded_states) and exit_particle_particle:
-		particle_controller.spawn_particle(player,exit_particle_particle)
+		particle_controller.spawn_particle(player,exit_particle_particle,exit_particle_parent_to_player)
 	if (next_state not in exit_sound_excluded_states) and exit_sound_sounds:
 		audio_controller.play_sound(exit_sound_sounds.pick_random(),exit_sound_pitch_low,exit_sound_pitch_high)
 	return
@@ -124,5 +134,5 @@ func loop_particle() -> void:
 	particle_loop_timer.start()
 	while particle_loop_timer:
 		await particle_loop_timer.timeout
-		particle_controller.spawn_particle(player,while_in_state_particle)
+		particle_controller.spawn_particle(player,while_in_state_particle,while_in_state_parent_to_player)
 		particle_loop_timer.start()
