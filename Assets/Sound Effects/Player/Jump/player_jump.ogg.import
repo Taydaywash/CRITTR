@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://csxgy17oibmrs"
+path="res://.godot/imported/player_jump.ogg-64c1926b23235344f141481ec002a9ba.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sound Effects/Player/Jump/player_jump.ogg"
+dest_files=["res://.godot/imported/player_jump.ogg-64c1926b23235344f141481ec002a9ba.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

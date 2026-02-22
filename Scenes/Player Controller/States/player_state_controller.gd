@@ -12,7 +12,7 @@ extends CharacterBody2D
 @export var normal_gravity : int
 @export var max_falling_speed : int
 @onready var animated_player_sprite: AnimatedSprite2D = $AnimatedPlayerSprite
-@export var audio_controller_reference : AudioListener2D
+@export var audio_controller_reference : AudioController
 
 func _ready() -> void:
 	state_machine.initialize(self,animated_player_sprite)
