@@ -6,6 +6,7 @@ const WORLD = preload("res://Scenes/World/World.tscn")
 @export var audio_controller : AudioController
 
 func _ready() -> void:
+	$PlayButton.grab_focus()
 	get_tree().paused = false
 
 func _on_play_button_pressed() -> void:

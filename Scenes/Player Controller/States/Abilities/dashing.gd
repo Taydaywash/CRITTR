@@ -55,30 +55,31 @@ func activate(last_state : State) -> void:
 	jump_input_buffer.wait_time = jump_input_buffer_patience
 	
 	player.velocity = Vector2(0,0)
-	if direction == "up":
-		if player.is_on_ceiling():
-			player.velocity.y = super_jump_velocity
-		else:
-			dash_timer.start()
-			player.velocity.y = -dashing_speed
-	elif direction == "down":
-		if player.is_on_floor():
-			player.velocity.y = -super_jump_velocity
-		else:
-			dash_timer.start()
-			player.velocity.y = dashing_speed
-	elif direction == "left":
-		if player.is_on_wall():
-			player.velocity.x = super_jump_velocity
-		else:
-			dash_timer.start()
-			player.velocity.x = -dashing_speed
-	elif direction == "right":
-		if player.is_on_wall():
-			player.velocity.x = -super_jump_velocity
-		else:
-			dash_timer.start()
-			player.velocity.x = dashing_speed
+	match direction:
+		"up":
+			if player.is_on_ceiling():
+				player.velocity.y = super_jump_velocity
+			else:
+				dash_timer.start()
+				player.velocity.y = -dashing_speed
+		"down":
+			if player.is_on_floor():
+				player.velocity.y = -super_jump_velocity
+			else:
+				dash_timer.start()
+				player.velocity.y = dashing_speed
+		"left":
+			if player.is_on_wall():
+				player.velocity.x = super_jump_velocity
+			else:
+				dash_timer.start()
+				player.velocity.x = -dashing_speed
+		"right":
+			if player.is_on_wall():
+				player.velocity.x = -super_jump_velocity
+			else:
+				dash_timer.start()
+				player.velocity.x = dashing_speed
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):

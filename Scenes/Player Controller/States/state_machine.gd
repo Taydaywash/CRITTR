@@ -75,6 +75,8 @@ func process_input(event) -> void:
 		if new_state == $Abilities:
 			var ability = abilities.get_ability()
 			if ability:
+				if not abilities.abilities_in_use[ability].state:
+					return
 				if abilities.abilities_in_use[ability].available:
 					abilities.use_ability(ability)
 					change_state(abilities.abilities_in_use[ability].state, abilities.abilities_in_use[ability].direction)

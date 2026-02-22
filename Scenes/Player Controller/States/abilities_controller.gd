@@ -55,7 +55,8 @@ func _ready() -> void:
 
 func set_ability(direction : String, state : State):
 	abilities_in_use["ability_" + direction]["state"] = state
-	abilities_in_use["ability_" + direction]["texture"] = state.icon
+	if state:
+		abilities_in_use["ability_" + direction]["texture"] = state.icon
 	ui.update_ability_ui(abilities_in_use)
 
 func _input(event: InputEvent) -> void: #Runs seperately from state machine to keep track at all times
