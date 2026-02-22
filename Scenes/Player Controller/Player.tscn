@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://7pcyhpa8kihb" path="res://Scenes/Particle Controller/Particles/Player/jump_dust.tscn" id="7_7icb5"]
 [ext_resource type="Script" uid="uid://b86dxdi4v2w7v" path="res://Scenes/Player Controller/States/walking.gd" id="7_hueom"]
 [ext_resource type="Script" uid="uid://waa4aoe22gbi" path="res://Scenes/Player Controller/States/jumping.gd" id="8_2fk5g"]
+[ext_resource type="PackedScene" uid="uid://dox5dn6hfochm" path="res://Scenes/Particle Controller/Particles/Player/dash_jump_ring.tscn" id="8_avv4g"]
 [ext_resource type="Script" uid="uid://lykwwg352q0l" path="res://Scenes/Player Controller/States/diving.gd" id="9_gnv43"]
 [ext_resource type="Script" uid="uid://dm8obalvft0u8" path="res://Scenes/Player Controller/States/bonked.gd" id="9_v55cd"]
 [ext_resource type="Script" uid="uid://ql7kjpt3i6d" path="res://Scenes/Player Controller/States/wall_jumping.gd" id="10_dpx4d"]
@@ -282,7 +283,7 @@ script = ExtResource("4_4nigc")
 animation_name = "death"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Jumping" type="Node" parent="StateMachine" unique_id=2088144188 node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "default_hitbox", "jumping_hitbox")]
+[node name="Jumping" type="Node" parent="StateMachine" unique_id=2088144188 node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "default_hitbox", "jumping_hitbox", "enter_particle_when_entering_from_state_state")]
 script = ExtResource("8_2fk5g")
 falling_state = NodePath("../Falling")
 diving_state = NodePath("../Diving")
@@ -312,6 +313,9 @@ animation_name = "jump"
 placeholder_animation_color = Color(1, 1, 1, 1)
 enter_sound_sounds = Array[AudioStream]([ExtResource("6_74b0n")])
 enter_particle_particle = ExtResource("7_7icb5")
+enter_particle_when_entering_from_state_state = [NodePath("../Abilities/Dashing")]
+enter_particle_when_entering_from_state_particle = Array[PackedScene]([ExtResource("8_avv4g")])
+enter_particle_when_entering_from_state_parent_to_player = Array[bool]([true])
 
 [node name="Crouching" type="Node" parent="StateMachine" unique_id=1700106763 node_paths=PackedStringArray("idle_crouching_state", "walking_state", "falling_state", "jumping_state", "diving_state", "ability_state", "default_hitbox", "crouching_hitbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
 script = ExtResource("12_068uq")

@@ -2,6 +2,7 @@ class_name Particle
 extends CPUParticles2D
 
 @export var spawn_offset : Vector2
+var player : Player
 
 func play() -> void:
 	position += spawn_offset
