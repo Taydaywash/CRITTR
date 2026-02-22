@@ -13,6 +13,7 @@ extends CharacterBody2D
 @export var max_falling_speed : int
 @onready var animated_player_sprite: AnimatedSprite2D = $AnimatedPlayerSprite
 @export var audio_controller_reference : AudioController
+@export var particle_controller_reference : ParticleController
 
 func _ready() -> void:
 	state_machine.initialize(self,animated_player_sprite)

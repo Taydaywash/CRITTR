@@ -21,6 +21,7 @@ extends Node
 var current_state : State
 var player_reference: CharacterBody2D 
 var audio_controller_reference : AudioController
+var particle_controller_reference : ParticleController
 var player_sprite: AnimatedSprite2D
 var last_state
 
@@ -31,7 +32,8 @@ func check_children(parent : Node) -> void:
 		if child.get_class() != "Node":
 			return
 		child.player = player_reference
-		child.audio_manager = audio_controller_reference
+		child.audio_controller = audio_controller_reference
+		child.particle_controller = particle_controller_reference
 		child.sprite = player_sprite
 		child.colliders = colliders_list
 		if child.get_child_count() > 0:
@@ -41,6 +43,7 @@ func initialize(player : Player, sprite : AnimatedSprite2D) -> void:
 	player_reference = player
 	player_sprite = sprite
 	audio_controller_reference = player.audio_controller_reference
+	particle_controller_reference = player.particle_controller_reference
 	check_children(self)
 	change_state(starting_state)
 

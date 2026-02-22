@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://cxown2b2jsdny" path="res://Scenes/Player Controller/States/looking_up.gd" id="4_jl1s5"]
 [ext_resource type="Script" uid="uid://5v8bgvkdmtcc" path="res://Scenes/Player Controller/States/idle_crouching.gd" id="5_3imdl"]
 [ext_resource type="Script" uid="uid://cm5l3ivbnb55g" path="res://Scenes/Player Controller/States/state_machine.gd" id="5_v55cd"]
+[ext_resource type="AudioStream" uid="uid://csxgy17oibmrs" path="res://Assets/Sound Effects/Player/Jump/player_jump.ogg" id="6_74b0n"]
 [ext_resource type="Script" uid="uid://cnyjhmvsy4x2m" path="res://Scenes/Player Controller/States/idle.gd" id="6_dpx4d"]
+[ext_resource type="PackedScene" uid="uid://7pcyhpa8kihb" path="res://Scenes/Particle Controller/Particles/Player/jump_dust.tscn" id="7_7icb5"]
 [ext_resource type="Script" uid="uid://b86dxdi4v2w7v" path="res://Scenes/Player Controller/States/walking.gd" id="7_hueom"]
 [ext_resource type="Script" uid="uid://waa4aoe22gbi" path="res://Scenes/Player Controller/States/jumping.gd" id="8_2fk5g"]
 [ext_resource type="Script" uid="uid://lykwwg352q0l" path="res://Scenes/Player Controller/States/diving.gd" id="9_gnv43"]
@@ -26,7 +28,9 @@
 [ext_resource type="Script" uid="uid://cwi7sh2i6bfpg" path="res://Scenes/Player Controller/States/Abilities/inflated.gd" id="15_melbr"]
 [ext_resource type="Script" uid="uid://s0v2p1xd21lh" path="res://Scenes/Player Controller/States/Abilities/bounce_attack.gd" id="16_2bslk"]
 [ext_resource type="Script" uid="uid://ctsvxg3n4hdh7" path="res://Scenes/Player Controller/States/Abilities/drill.gd" id="17_fuvci"]
+[ext_resource type="AudioStream" uid="uid://dv7kpy4gvbajj" path="res://Assets/Sound Effects/Player/Land/player_land.ogg" id="18_k212d"]
 [ext_resource type="Texture2D" uid="uid://hqyvhddj1nu" path="res://Assets/UI/DashIcon.png" id="19_j8lbh"]
+[ext_resource type="PackedScene" uid="uid://cdsc3hxrqbrqh" path="res://Scenes/Particle Controller/Particles/Player/land_dust.tscn" id="19_k212d"]
 [ext_resource type="Texture2D" uid="uid://bfm1hwat15hwr" path="res://Assets/UI/ClimbingIcon.png" id="20_4o1t2"]
 [ext_resource type="Texture2D" uid="uid://btmny16rfx85i" path="res://Assets/UI/DrillIcon.png" id="21_0wxel"]
 [ext_resource type="Script" uid="uid://dqty0nhsmrgo4" path="res://Scenes/Player Controller/camera_controller.gd" id="21_3imdl"]
@@ -306,6 +310,8 @@ default_hitbox = NodePath("../../NormalHitbox")
 jumping_hitbox = NodePath("../../Jumping")
 animation_name = "jump"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("6_74b0n")])
+enter_particle_particle = ExtResource("7_7icb5")
 
 [node name="Crouching" type="Node" parent="StateMachine" unique_id=1700106763 node_paths=PackedStringArray("idle_crouching_state", "walking_state", "falling_state", "jumping_state", "diving_state", "ability_state", "default_hitbox", "crouching_hitbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
 script = ExtResource("12_068uq")
@@ -409,6 +415,7 @@ left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "walking"
 placeholder_animation_color = Color(1, 1, 1, 1)
 while_in_state_sounds = Array[AudioStream]([ExtResource("12_k212d")])
+while_in_state_repeat_sound_after_seconds = 0.3
 
 [node name="Diving" type="Node" parent="StateMachine" unique_id=1646142929 node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "diving_falling_state", "jump_input_buffer")]
 script = ExtResource("9_gnv43")
@@ -431,7 +438,7 @@ x_final_sprite_stretch_multiplier = 1.0
 animation_name = "diving"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="DivingFalling" type="Node" parent="StateMachine/Diving" unique_id=577619824 node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "jump_input_buffer")]
+[node name="DivingFalling" type="Node" parent="StateMachine/Diving" unique_id=577619824 node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "jump_input_buffer", "exit_sound_excluded_states", "exit_particle_excluded_states")]
 script = ExtResource("12_31xm6")
 walking_state = NodePath("../../Walking")
 bonked_state = NodePath("../Bonked")
@@ -444,6 +451,10 @@ y_final_sprite_stretch_multiplier = 1.0
 x_final_sprite_stretch_multiplier = 1.0
 animation_name = "diving"
 placeholder_animation_color = Color(1, 1, 1, 1)
+exit_sound_sounds = Array[AudioStream]([ExtResource("18_k212d")])
+exit_sound_excluded_states = [NodePath("../Bonked")]
+exit_particle_particle = ExtResource("19_k212d")
+exit_particle_excluded_states = [NodePath("../Bonked")]
 
 [node name="Bonked" type="Node" parent="StateMachine/Diving" unique_id=958169737 node_paths=PackedStringArray("idle_state", "jumping_state", "jump_input_buffer")]
 script = ExtResource("9_v55cd")
@@ -455,6 +466,8 @@ jump_input_buffer = NodePath("../../../JumpInputBuffer")
 jump_input_buffer_patience = 0.2
 animation_name = "Bonked"
 placeholder_animation_color = Color(1, 1, 1, 1)
+exit_sound_sounds = Array[AudioStream]([ExtResource("18_k212d")])
+exit_particle_particle = ExtResource("19_k212d")
 
 [node name="WallCling" type="Node" parent="StateMachine" unique_id=546096226 node_paths=PackedStringArray("falling_state", "jumping_state", "walking_state", "wall_jumping_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray")]
 script = ExtResource("10_xnjby")
@@ -497,7 +510,7 @@ left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
 animation_name = "WallJumping"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Falling" type="Node" parent="StateMachine" unique_id=18701263 node_paths=PackedStringArray("idle_state", "walking_state", "diving_state", "wall_cling_state", "jumping_state", "wall_jumping_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
+[node name="Falling" type="Node" parent="StateMachine" unique_id=18701263 node_paths=PackedStringArray("idle_state", "walking_state", "diving_state", "wall_cling_state", "jumping_state", "wall_jumping_state", "ability_state", "jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left", "exit_sound_excluded_states", "exit_particle_excluded_states")]
 script = ExtResource("11_v55cd")
 idle_state = NodePath("../Idle")
 walking_state = NodePath("../Walking")
@@ -520,6 +533,10 @@ nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
 nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 animation_name = "falling"
 placeholder_animation_color = Color(1, 1, 1, 1)
+exit_sound_sounds = Array[AudioStream]([ExtResource("18_k212d")])
+exit_sound_excluded_states = [NodePath("../Diving"), NodePath("../Abilities")]
+exit_particle_particle = ExtResource("19_k212d")
+exit_particle_excluded_states = [NodePath("../Diving"), NodePath("../Abilities")]
 
 [node name="Ascending" type="Node" parent="StateMachine" unique_id=103182494 node_paths=PackedStringArray("falling_state", "diving_state", "wall_jumping_state", "idle_state", "walking_state", "ability_state", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("11_evkiq")

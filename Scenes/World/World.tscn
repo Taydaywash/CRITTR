@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://cneyuseemoqek" path="res://Assets/Decals/Tundra/Background/many vines t.png" id="22_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://bm6vu2bqh8xgm" path="res://Assets/Decals/Tundra/Background/big t hill.png" id="23_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://vk7hdquyrbd5" path="res://Assets/Decals/Tundra/Background/vines t.png" id="24_2neov"]
+[ext_resource type="PackedScene" uid="uid://1ixxyx000fqa" path="res://Scenes/Particle Controller/particle_controller.tscn" id="25_hlwfy"]
 
 [sub_resource type="Gradient" id="Gradient_vdgnt"]
 offsets = PackedFloat32Array(1)
@@ -34,9 +35,10 @@ gradient = SubResource("Gradient_vdgnt")
 
 [node name="World" type="Node2D" unique_id=1470686207]
 
-[node name="Player" parent="." unique_id=674990077 node_paths=PackedStringArray("audio_controller_reference") instance=ExtResource("2_y6flb")]
+[node name="Player" parent="." unique_id=674990077 node_paths=PackedStringArray("audio_controller_reference", "particle_controller_reference") instance=ExtResource("2_y6flb")]
 position = Vector2(2880, -480)
 audio_controller_reference = NodePath("../AudioManager")
+particle_controller_reference = NodePath("../Particle Controller")
 
 [node name="UI" parent="." unique_id=580546377 instance=ExtResource("4_il6x7")]
 
@@ -216,3 +218,5 @@ texture = ExtResource("20_3ql1f")
 
 [node name="AudioManager" parent="." unique_id=152850687 instance=ExtResource("21_3ql1f")]
 process_mode = 3
+
+[node name="Particle Controller" parent="." unique_id=1338648581 instance=ExtResource("25_hlwfy")]

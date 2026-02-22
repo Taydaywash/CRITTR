@@ -31,6 +31,8 @@ SaveLoadManager="*res://Global Scripts/save_load_manager.gd"
 
 window/size/mode=3
 window/size/resizable=false
+window/size/minimize_disabled=true
+window/size/maximize_disabled=true
 window/stretch/mode="viewport"
 
 [input]

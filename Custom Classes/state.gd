@@ -26,13 +26,28 @@ extends Node
 @export var exit_sound_pitch_low : float = 0.7
 @export var exit_sound_pitch_high : float = 1.3
 @export var exit_sound_excluded_states : Array[State]
+
+@export_category("Particles")
+@export_group("Enter particle","enter_particle_")
+@export var enter_particle_particle : PackedScene
+@export_group("Enter particle/When entering from state, create particle","enter_particle_when_entering_from_state_")
 #exported typed dictionaries cause editor crashes, so linked lists are used instead
+@export var enter_particle_when_entering_from_state_state : Array[State]
+@export var enter_particle_when_entering_from_state_sound : Array[PackedScene]
+@export_group("While in state particle","while_in_state_")
+@export var while_in_state_particle : PackedScene
+@export var while_in_state_repeat_particle_after_seconds: float = 0
+@export_group("Exit particle","exit_particle_")
+@export var exit_particle_particle : PackedScene
+@export var exit_particle_excluded_states : Array[State]
 
 var player : Player
-var audio_manager : AudioController
+var audio_controller : AudioController
+var particle_controller : ParticleController
 var sprite : AnimatedSprite2D
 var colliders : Array[CollisionShape2D]
 var audio_loop_timer : Timer
+var particle_loop_timer : Timer
 
 func set_direction(_direction : String) -> void:
 	pass
@@ -45,18 +60,23 @@ func activate(last_state : State) -> void:
 		if child is Area2D: 
 			child.reparent(player, false)
 	player.play_animation(animation_name)
+	
 	player.modulate = placeholder_animation_color
 	
 	if while_in_state_sounds:
 		loop_sound()
+	if while_in_state_particle:
+		loop_particle()
 	if enter_sound_when_entering_from_state_state:
 		if enter_sound_when_entering_from_state_state.has(last_state):
 			var state_index = enter_sound_when_entering_from_state_state.find(last_state)
-			audio_manager.play_sound( enter_sound_when_entering_from_state_sound[state_index],
+			audio_controller.play_sound( enter_sound_when_entering_from_state_sound[state_index],
 			enter_sound_when_entering_from_state_pitch_low[state_index], enter_sound_when_entering_from_state_pitch_high[state_index])
 	else:
 		if enter_sound_sounds: 
-			audio_manager.play_sound( enter_sound_sounds.pick_random(), enter_sound_pitch_low, enter_sound_pitch_high)
+			audio_controller.play_sound( enter_sound_sounds.pick_random(), enter_sound_pitch_low, enter_sound_pitch_high)
+	if enter_particle_particle:
+		particle_controller.spawn_particle(player,enter_particle_particle)
 func process_input(_event) -> State:
 	return null
 
@@ -79,8 +99,12 @@ func deactivate(next_state : State) -> void:
 	sprite.rotation = 0
 	if audio_loop_timer:
 		audio_loop_timer.queue_free()
+	if particle_loop_timer:
+		particle_loop_timer.queue_free()
+	if (next_state not in exit_particle_excluded_states) and exit_particle_particle:
+		particle_controller.spawn_particle(player,exit_particle_particle)
 	if (next_state not in exit_sound_excluded_states) and exit_sound_sounds:
-		audio_manager.play_sound(exit_sound_sounds.pick_random(),exit_sound_pitch_low,exit_sound_pitch_high)
+		audio_controller.play_sound(exit_sound_sounds.pick_random(),exit_sound_pitch_low,exit_sound_pitch_high)
 	return
 
 func loop_sound() -> void:
@@ -90,5 +114,15 @@ func loop_sound() -> void:
 	audio_loop_timer.start()
 	while audio_loop_timer:
 		await audio_loop_timer.timeout
-		audio_manager.play_sound(while_in_state_sounds.pick_random(), while_in_state_sound_low, while_in_state_sound_high)
+		audio_controller.play_sound(while_in_state_sounds.pick_random(), while_in_state_sound_low, while_in_state_sound_high)
 		audio_loop_timer.start()
+
+func loop_particle() -> void:
+	particle_loop_timer = Timer.new()
+	add_child(particle_loop_timer)
+	particle_loop_timer.wait_time = while_in_state_repeat_particle_after_seconds
+	particle_loop_timer.start()
+	while particle_loop_timer:
+		await particle_loop_timer.timeout
+		particle_controller.spawn_particle(player,while_in_state_particle)
+		particle_loop_timer.start()
