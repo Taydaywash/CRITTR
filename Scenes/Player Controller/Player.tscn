@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://r65jkbflv1qk" path="res://Scenes/Player Controller/States/diving_falling.gd" id="12_31xm6"]
 [ext_resource type="Script" uid="uid://bwdpd2vsi0pnv" path="res://Scenes/Player Controller/States/crouching.gd" id="12_068uq"]
 [ext_resource type="Script" uid="uid://c8h0fivvgxc74" path="res://Scenes/Player Controller/States/Abilities/dashing.gd" id="12_evkiq"]
+[ext_resource type="AudioStream" uid="uid://dh7xdipbgyacc" path="res://Assets/Sound Effects/Player/Walking/player_walk.ogg" id="12_k212d"]
 [ext_resource type="Script" uid="uid://bm7yhxmomtxag" path="res://Scenes/Player Controller/States/Abilities/grappling.gd" id="13_vpgwe"]
 [ext_resource type="Script" uid="uid://bm41wexjew65w" path="res://Scenes/Player Controller/States/Abilities/climbing.gd" id="14_hl1jv"]
 [ext_resource type="Script" uid="uid://cwi7sh2i6bfpg" path="res://Scenes/Player Controller/States/Abilities/inflated.gd" id="15_melbr"]
@@ -407,6 +408,7 @@ right_ray = NodePath("../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "walking"
 placeholder_animation_color = Color(1, 1, 1, 1)
+while_in_state_sounds = Array[AudioStream]([ExtResource("12_k212d")])
 
 [node name="Diving" type="Node" parent="StateMachine" unique_id=1646142929 node_paths=PackedStringArray("walking_state", "bonked_state", "jumping_state", "idle_state", "diving_falling_state", "jump_input_buffer")]
 script = ExtResource("9_gnv43")

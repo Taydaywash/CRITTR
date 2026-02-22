@@ -20,7 +20,7 @@ extends Node
 @export var jump_input_buffer : Timer
 var current_state : State
 var player_reference: CharacterBody2D 
-var audio_controller_reference : AudioListener2D
+var audio_controller_reference : AudioController
 var player_sprite: AnimatedSprite2D
 var last_state
 
