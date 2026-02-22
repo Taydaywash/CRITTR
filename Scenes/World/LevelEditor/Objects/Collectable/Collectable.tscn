@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://2qo4nl7dvk62"]
 
-[node name="Collectable" type="Node2D" unique_id=160421696]
+[ext_resource type="Script" uid="uid://d1bqfskpeveow" path="res://Scenes/World/LevelEditor/Objects/Collectable/collectable.gd" id="1_ixgfa"]
+
+[node name="Collectable" type="Area2D" unique_id=1542823849]
+script = ExtResource("1_ixgfa")
