@@ -33,7 +33,22 @@ font_size = 23
 [sub_resource type="LabelSettings" id="LabelSettings_s118c"]
 font_size = 24
 
-[node name="OptionsTab" type="Panel" unique_id=882549425 node_paths=PackedStringArray("screen_size_dropdown", "resolution_dropdown", "text_scroll_speed_value", "default_focus")]
+[sub_resource type="LabelSettings" id="LabelSettings_oxxoo"]
+font_size = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxxoo"]
+bg_color = Color(0.399, 0.7, 0.7, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="OptionsTab" type="Panel" unique_id=882549425 node_paths=PackedStringArray("screen_size_dropdown", "resolution_dropdown", "master_volume_slider", "music_volume_slider", "sfx_volume_slider", "text_scroll_speed_value", "disable_partilces_button", "default_focus")]
 z_index = -1
 offset_left = 64.0
 offset_top = 114.0
@@ -44,7 +59,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8tsyf")
 script = ExtResource("1_7qpyd")
 screen_size_dropdown = NodePath("ScreenSize")
 resolution_dropdown = NodePath("Resolution")
+master_volume_slider = NodePath("MasterVolume")
+music_volume_slider = NodePath("MusicVolume")
+sfx_volume_slider = NodePath("SFXVolume")
 text_scroll_speed_value = NodePath("TextScrollSpeed/Value")
+disable_partilces_button = NodePath("DisableParticles")
 default_focus = NodePath("ScreenSize")
 
 [node name="ChangeKeybinds" type="Button" parent="." unique_id=599378732]
@@ -76,6 +95,11 @@ offset_left = 544.0
 offset_top = 46.0
 offset_right = 960.0
 offset_bottom = 110.0
+focus_neighbor_left = NodePath("../ScreenSize")
+focus_neighbor_bottom = NodePath("../MusicVolume")
+focus_next = NodePath("../MusicVolume")
+focus_previous = NodePath("../DisableParticles")
+mouse_default_cursor_shape = 2
 value = 50.0
 
 [node name="Master" type="Label" parent="MasterVolume" unique_id=1392124630]
@@ -94,6 +118,12 @@ offset_left = 544.0
 offset_top = 126.0
 offset_right = 960.0
 offset_bottom = 190.0
+focus_neighbor_left = NodePath("../Resolution")
+focus_neighbor_top = NodePath("../MasterVolume")
+focus_neighbor_bottom = NodePath("../SFXVolume")
+focus_next = NodePath("../SFXVolume")
+focus_previous = NodePath("../MasterVolume")
+mouse_default_cursor_shape = 2
 value = 50.0
 
 [node name="Music" type="Label" parent="MusicVolume" unique_id=2105301188]
@@ -112,6 +142,12 @@ offset_left = 544.0
 offset_top = 206.0
 offset_right = 960.0
 offset_bottom = 270.0
+focus_neighbor_left = NodePath("../TextScrollSpeed/Increase")
+focus_neighbor_top = NodePath("../MusicVolume")
+focus_neighbor_bottom = NodePath("../SaveChanges")
+focus_next = NodePath("../SaveChanges")
+focus_previous = NodePath("../MusicVolume")
+mouse_default_cursor_shape = 2
 value = 50.0
 
 [node name="SFX" type="Label" parent="SFXVolume" unique_id=1546965008]
@@ -130,17 +166,19 @@ offset_left = 48.0
 offset_top = 46.0
 offset_right = 448.0
 offset_bottom = 110.0
+focus_neighbor_right = NodePath("../MasterVolume")
+focus_neighbor_bottom = NodePath("../Resolution")
+focus_next = NodePath("../Resolution")
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 22
 selected = 1
-item_count = 4
+item_count = 3
 popup/item_0/text = "Fullscreen"
 popup/item_0/id = 0
-popup/item_1/text = "Borderless Fullscreen"
-popup/item_1/id = 1
-popup/item_2/text = "Windowed"
-popup/item_2/id = 2
-popup/item_3/text = "Borderless Windowed"
-popup/item_3/id = 3
+popup/item_1/text = "Windowed"
+popup/item_1/id = 2
+popup/item_2/text = "Borderless"
+popup/item_2/id = 3
 
 [node name="Resolution" type="OptionButton" parent="." unique_id=2090981165]
 layout_mode = 0
@@ -148,6 +186,12 @@ offset_left = 48.0
 offset_top = 126.0
 offset_right = 448.0
 offset_bottom = 190.0
+focus_neighbor_top = NodePath("../ScreenSize")
+focus_neighbor_right = NodePath("../MusicVolume")
+focus_neighbor_bottom = NodePath("../TextScrollSpeed/Decrease")
+focus_next = NodePath("../TextScrollSpeed/Decrease")
+focus_previous = NodePath("../ScreenSize")
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 22
 selected = 5
 item_count = 6
@@ -168,7 +212,7 @@ popup/item_5/id = 3
 layout_mode = 0
 offset_left = 48.0
 offset_top = 238.0
-offset_right = 320.0
+offset_right = 336.0
 offset_bottom = 270.0
 text = "Text Scroll Speed"
 label_settings = SubResource("LabelSettings_gyshk")
@@ -176,17 +220,29 @@ horizontal_alignment = 1
 
 [node name="Decrease" type="Button" parent="TextScrollSpeed" unique_id=1863867575]
 layout_mode = 0
-offset_top = 40.0
-offset_right = 59.5
+offset_top = 32.0
+offset_right = 64.0
 offset_bottom = 96.0
+focus_neighbor_right = NodePath("../Increase")
+focus_neighbor_bottom = NodePath("../../DisableParticles")
+focus_next = NodePath("../Increase")
+focus_previous = NodePath("../../Resolution")
+mouse_default_cursor_shape = 2
 text = "<"
 
 [node name="Increase" type="Button" parent="TextScrollSpeed" unique_id=1159895190]
 layout_mode = 0
 offset_left = 224.0
-offset_top = 40.0
-offset_right = 280.0
+offset_top = 32.0
+offset_right = 288.0
 offset_bottom = 96.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../Resolution")
+focus_neighbor_right = NodePath("../../SFXVolume")
+focus_neighbor_bottom = NodePath("../../DisableParticles")
+focus_next = NodePath("../../DisableParticles")
+focus_previous = NodePath("../Decrease")
+mouse_default_cursor_shape = 2
 text = ">"
 
 [node name="Value" type="Label" parent="TextScrollSpeed" unique_id=1953397899]
@@ -200,6 +256,69 @@ label_settings = SubResource("LabelSettings_s118c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DisableParticles" type="Button" parent="." unique_id=1113811677]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 366.0
+offset_right = 112.0
+offset_bottom = 430.0
+focus_neighbor_top = NodePath("../TextScrollSpeed/Decrease")
+focus_neighbor_right = NodePath("../SaveChanges")
+focus_next = NodePath("../MasterVolume")
+focus_previous = NodePath("../TextScrollSpeed/Decrease")
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 34
+text_overrun_behavior = 1
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Disable Particles" type="Label" parent="DisableParticles" unique_id=1644599036]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 288.0
+offset_bottom = 64.0
+text = "Disable Particles"
+label_settings = SubResource("LabelSettings_oxxoo")
+vertical_alignment = 1
+
+[node name="SaveChanges" type="Button" parent="." unique_id=547723549]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 366.0
+offset_right = 656.0
+offset_bottom = 446.0
+focus_neighbor_left = NodePath("../DisableParticles")
+focus_neighbor_top = NodePath("../SFXVolume")
+focus_neighbor_right = NodePath("../MainMenu")
+focus_next = NodePath("../MainMenu")
+focus_previous = NodePath("../SFXVolume")
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 24
+text = "Apply"
+
+[node name="MainMenu" type="Button" parent="." unique_id=947297343]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 176.0
+offset_top = 127.0
+offset_right = 480.0
+offset_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../SaveChanges")
+focus_neighbor_top = NodePath("../SFXVolume")
+focus_next = NodePath("../ScreenSize")
+focus_previous = NodePath("../SaveChanges")
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_oxxoo")
+text = "Save & Quit"
+
 [connection signal="pressed" from="ChangeKeybinds" to="." method="_on_setting_button_pressed"]
 [connection signal="value_changed" from="MasterVolume" to="." method="_on_master_volume_value_changed"]
 [connection signal="value_changed" from="MusicVolume" to="." method="_on_music_volume_value_changed"]
@@ -208,3 +327,6 @@ vertical_alignment = 1
 [connection signal="item_selected" from="Resolution" to="." method="_on_resolution_item_selected"]
 [connection signal="pressed" from="TextScrollSpeed/Decrease" to="." method="_on_decrease_pressed"]
 [connection signal="pressed" from="TextScrollSpeed/Increase" to="." method="_on_increase_pressed"]
+[connection signal="pressed" from="DisableParticles" to="." method="_on_disable_particles_pressed"]
+[connection signal="pressed" from="SaveChanges" to="." method="_on_save_changes_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]

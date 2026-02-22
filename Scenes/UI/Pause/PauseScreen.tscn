@@ -116,18 +116,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iio6x"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pmby"]
-bg_color = Color(0.399, 0.7, 0.7, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n358k"]
 bg_color = Color(0.49, 0.26639667, 0.1274, 1)
 border_width_left = 5
@@ -216,6 +204,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../MapButton")
 focus_neighbor_right = NodePath("../StuffButton")
+focus_neighbor_bottom = NodePath("../OptionsTab/ScreenSize")
 focus_next = NodePath("../StuffButton")
 focus_previous = NodePath("../MapButton")
 theme_override_font_sizes/font_size = 32
@@ -532,30 +521,14 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_6r4po")
 theme_override_styles/focus = SubResource("StyleBoxFlat_iio6x")
 
 [node name="OptionsTab" parent="." unique_id=882549425 node_paths=PackedStringArray("pause_screen") instance=ExtResource("10_c2hr7")]
-visible = false
 pause_screen = NodePath("..")
 
-[node name="MainMenu" type="Button" parent="OptionsTab" unique_id=685324957]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 176.0
-offset_top = 127.0
-offset_right = 480.0
-offset_bottom = 207.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath("../../MapButton")
-focus_neighbor_top = NodePath("../ChangeKeybinds")
-focus_neighbor_right = NodePath("../../StuffButton")
-focus_previous = NodePath("../ChangeKeybinds")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_4pmby")
-text = "Save & Quit"
+[node name="MasterVolume" parent="OptionsTab" index="1" unique_id=307721531]
+focus_neighbor_top = NodePath("../../OptionsButton")
+
+[node name="ScreenSize" parent="OptionsTab" index="4" unique_id=1053197402]
+focus_neighbor_top = NodePath("../../OptionsButton")
+focus_previous = NodePath("../../OptionsButton")
 
 [node name="StuffTab" type="Panel" parent="." unique_id=1270085453]
 visible = false
@@ -587,4 +560,5 @@ script = ExtResource("11_c2hr7")
 [connection signal="pressed" from="DnaTab/down" to="DnaTab" method="_on_down_pressed"]
 [connection signal="pressed" from="DnaTab/left" to="DnaTab" method="_on_left_pressed"]
 [connection signal="pressed" from="DnaTab/right" to="DnaTab" method="_on_right_pressed"]
-[connection signal="pressed" from="OptionsTab/MainMenu" to="OptionsTab" method="_on_main_menu_pressed"]
+
+[editable path="OptionsTab"]

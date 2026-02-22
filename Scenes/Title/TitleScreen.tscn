@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://c5tai0s4khvnm"]
 
 [ext_resource type="Script" uid="uid://djvd1qk1dn7wc" path="res://Scenes/Title/title_screen.gd" id="1_2tuh7"]
+[ext_resource type="PackedScene" uid="uid://db2kjtaybxxaa" path="res://Scenes/UI/Pause/Options.tscn" id="2_7kha8"]
+[ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Scenes/Audio Controller/AudioController.tscn" id="3_cb5jd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tuh7"]
 bg_color = Color(0.0884924, 0.34135744, 0.341697, 1)
@@ -17,7 +19,7 @@ corner_radius_bottom_left = 20
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aefw6"]
 bg_color = Color(0.32156864, 0.6392157, 0.6, 1)
 
-[node name="TitleScreen" type="Control" unique_id=277527515]
+[node name="TitleScreen" type="Control" unique_id=277527515 node_paths=PackedStringArray("options_tab", "options_tab_back", "audio_controller")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,6 +27,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2tuh7")
+options_tab = NodePath("OptionsTab")
+options_tab_back = NodePath("OptionsTabBack")
+audio_controller = NodePath("AudioController")
 
 [node name="PlayButton" type="Button" parent="." unique_id=1691731345]
 layout_mode = 1
@@ -77,6 +82,64 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_2tuh7")
 text = "Quit"
 
+[node name="OptionsTabBack" type="Panel" parent="." unique_id=903460646]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 1168.0
+offset_bottom = 672.0
+
+[node name="OptionsTab" parent="." unique_id=882549425 instance=ExtResource("2_7kha8")]
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -239.0
+offset_right = 512.0
+offset_bottom = 239.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SaveChanges" parent="OptionsTab" index="8" unique_id=547723549]
+anchor_left = 0.484375
+anchor_top = 0.7656904
+anchor_right = 0.640625
+anchor_bottom = 0.9330544
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+focus_neighbor_bottom = NodePath(".")
+metadata/_edit_use_anchors_ = true
+
+[node name="MainMenu" parent="OptionsTab" index="9" unique_id=947297343]
+visible = false
+
+[node name="Back" type="Button" parent="OptionsTab" unique_id=1657124363]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.796875
+anchor_top = 0.75941426
+anchor_right = 0.96875
+anchor_bottom = 0.92677826
+focus_neighbor_left = NodePath("../SaveChanges")
+focus_neighbor_top = NodePath("../SFXVolume")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../ScreenSize")
+focus_previous = NodePath("../SaveChanges")
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 24
+text = "Back"
+metadata/_edit_use_anchors_ = true
+
 [node name="Panel" type="Panel" parent="." unique_id=189518844]
 z_index = -1
 layout_mode = 0
@@ -85,6 +148,11 @@ offset_bottom = 657.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_aefw6")
 
+[node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("3_cb5jd")]
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OptionsTab/Back" to="." method="_on_back_pressed"]
+
+[editable path="OptionsTab"]

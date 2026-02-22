@@ -47,6 +47,7 @@ func _on_map_button_pressed() -> void:
 	show_layer(map_tab)
 func _on_options_button_pressed() -> void:
 	show_layer(options_tab)
+	options_tab.options_opened()
 func _on_stuff_button_pressed() -> void:
 	show_layer(stuff_tab)
 
