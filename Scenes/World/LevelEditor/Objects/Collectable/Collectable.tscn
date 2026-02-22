@@ -2,5 +2,21 @@
 
 [ext_resource type="Script" uid="uid://d1bqfskpeveow" path="res://Scenes/World/LevelEditor/Objects/Collectable/collectable.gd" id="1_ixgfa"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixgfa"]
+size = Vector2(128, 128)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ixgfa"]
+size = Vector2(128, 128)
+
 [node name="Collectable" type="Area2D" unique_id=1542823849]
+collision_layer = 256
+collision_mask = 8
 script = ExtResource("1_ixgfa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1630797209]
+shape = SubResource("RectangleShape2D_ixgfa")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=685969993]
+texture = SubResource("PlaceholderTexture2D_ixgfa")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

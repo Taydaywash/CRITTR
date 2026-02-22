@@ -26,6 +26,8 @@ buses/default_bus_layout="uid://kmjjtd27eflc"
 [autoload]
 
 SaveLoadManager="*res://Global Scripts/save_load_manager.gd"
+EventController="*uid://3n7xlwd6ef2b"
+GameController="*uid://b5kigqng4mpw3"
 
 [display]
 
@@ -173,3 +175,4 @@ zoom_in={
 2d_physics/layer_6="grapple point"
 2d_physics/layer_7="digable"
 2d_physics/layer_8="Rooms"
+2d_physics/layer_9="Collectables"
