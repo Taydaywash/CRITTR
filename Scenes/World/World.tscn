@@ -186,7 +186,7 @@ position = Vector2(-128, 128)
 texture = ExtResource("21_eucu0")
 
 [node name="Platforms" parent="Rooms/CrashSite" unique_id=394549618 instance=ExtResource("16_vdgnt")]
-position = Vector2(14464, -2880)
+position = Vector2(16256, -1600)
 zoom_to_fit = true
 
 [node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "map") instance=ExtResource("5_o14yy")]
