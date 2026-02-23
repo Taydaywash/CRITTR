@@ -35,6 +35,7 @@ _data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_puocq"]
+offsets = PackedFloat32Array(0, 0.74691355)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yaoqm"]
@@ -194,21 +195,25 @@ _data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_6v43f"]
+offsets = PackedFloat32Array(0, 0.654321)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="JumpDust" type="CPUParticles2D" unique_id=1252131416]
 z_index = 4
+amount = 3
 texture = ExtResource("1_m6ite")
 explosiveness = 1.0
 local_coords = true
 direction = Vector2(0.7, -1)
 spread = 7.72
 gravity = Vector2(0, 420)
-initial_velocity_min = 37.64
-initial_velocity_max = 315.67
+initial_velocity_min = 67.34
+initial_velocity_max = 432.33
 angle_min = -238.0
 angle_max = 444.0
 angle_curve = SubResource("Curve_puocq")
+scale_amount_min = 2.45
+scale_amount_max = 2.45
 color_ramp = SubResource("Gradient_puocq")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
@@ -223,6 +228,7 @@ sprite_frames = SubResource("SpriteFrames_yaoqm")
 animation = &"idle"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=107912041]
+amount = 3
 texture = ExtResource("1_m6ite")
 explosiveness = 1.0
 direction = Vector2(-0.7, -1)
@@ -233,4 +239,6 @@ initial_velocity_max = 298.74
 angle_min = -312.7
 angle_max = 94.5
 angle_curve = SubResource("Curve_m6ite")
+scale_amount_min = 2.0
+scale_amount_max = 3.0
 color_ramp = SubResource("Gradient_6v43f")

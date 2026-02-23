@@ -194,6 +194,7 @@ animations = [{
 
 [node name="JumpDust" type="CPUParticles2D" unique_id=1252131416]
 z_index = 4
+amount = 2
 texture = ExtResource("1_jfrrt")
 explosiveness = 1.0
 local_coords = true
@@ -205,8 +206,8 @@ initial_velocity_max = 335.87
 angle_min = -238.0
 angle_max = 444.0
 angle_curve = SubResource("Curve_puocq")
-scale_amount_min = 1.53
-scale_amount_max = 1.53
+scale_amount_min = 2.0
+scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_a2tga")
 color_ramp = SubResource("Gradient_puocq")
 hue_variation_min = -1.0

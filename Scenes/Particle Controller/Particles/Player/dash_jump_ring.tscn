@@ -188,6 +188,8 @@ animations = [{
 }]
 
 [node name="JumpDust" type="CPUParticles2D" unique_id=1252131416]
+z_index = -1
+z_as_relative = false
 amount = 10
 texture = ExtResource("1_fac5g")
 lifetime = 0.8
