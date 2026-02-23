@@ -1,14 +1,6 @@
 extends State
 
 #States that Idle can transition to:
-@export_category("States")
-@export var walking_state : State
-@export var crouching_state : State
-@export var falling_state : State
-@export var jumping_state : State
-@export var diving_state : State
-@export var ability_state : State
-@export var looking_up_state : State
 @export_category("Wall Jumping Raycasts")
 @export var right_ray: RayCast2D
 @export var left_ray: RayCast2D

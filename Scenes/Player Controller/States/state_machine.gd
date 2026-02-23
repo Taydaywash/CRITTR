@@ -6,11 +6,21 @@ extends Node
 
 @export var no_control_state : State
 @export var death_state : State
+@export var jumping_state : State
+@export var crouching_state : State
+@export var idle_crouching_state : State
 @export var idle_state : State
+@export var looking_up_state : State
+@export var walking_state : State
 @export var diving_state : State
 @export var diving_falling_state : State
+@export var bonked_state : State
+@export var wall_cling_state : State
+@export var wall_jumping_state : State
 @export var falling_state : State
-@export var ascending : State
+@export var ascending_state : State
+@export var ability_state : State
+
 @export_category("")
 @export var colliders_list : Array[CollisionShape2D]
 @export var starting_state : State
@@ -36,6 +46,24 @@ func check_children(parent : Node) -> void:
 		child.particle_controller = particle_controller_reference
 		child.sprite = player_sprite
 		child.colliders = colliders_list
+		
+		child.no_control_state = no_control_state
+		child.death_state = death_state
+		child.jumping_state = jumping_state
+		child.crouching_state = crouching_state
+		child.idle_crouching_state = idle_crouching_state
+		child.idle_state = idle_state
+		child.looking_up_state = looking_up_state
+		child.walking_state = walking_state
+		child.diving_state = diving_state
+		child.diving_falling_state = diving_falling_state
+		child.bonked_state = bonked_state
+		child.wall_cling_state = wall_cling_state
+		child.wall_jumping_state = wall_jumping_state
+		child.falling_state = falling_state
+		child.ascending_state = ascending_state
+		child.ability_state = ability_state
+		
 		if child.get_child_count() > 0:
 			check_children(child)
 

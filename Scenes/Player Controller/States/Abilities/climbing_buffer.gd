@@ -4,7 +4,6 @@ extends State
 
 @export_category("States")
 @export var climbing_state: State
-@export var falling_state: State
 
 @export_category("Parameters")
 @export var climbing_input_buffer_patience: float

@@ -3,7 +3,6 @@ extends State
 @export var icon : CompressedTexture2D
 
 @export_category("States")
-@export var falling_state : State
 @export var digging_state : State
 @export_category("Parameters")
 @export var wind_up_delay : float

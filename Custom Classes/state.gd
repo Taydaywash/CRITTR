@@ -45,6 +45,22 @@ extends Node
 @export var exit_particle_parent_to_player : bool = false
 @export var exit_particle_excluded_states : Array[State]
 
+var no_control_state : State
+var death_state : State
+var jumping_state : State
+var crouching_state : State
+var idle_crouching_state : State
+var idle_state : State
+var looking_up_state : State
+var walking_state : State
+var diving_state : State
+var diving_falling_state : State
+var bonked_state : State
+var wall_cling_state : State
+var wall_jumping_state : State
+var falling_state : State
+var ascending_state : State
+var ability_state : State
 
 var player : Player
 var audio_controller : AudioController

@@ -4,12 +4,6 @@ extends State
 
 #States that Idle can transition to:
 @export_category("States")
-@export var falling_state : State
-@export var idle_state : State
-@export var diving_state : State
-@export var jumping_state : State
-@export var walking_state : State
-@export var ascending_state : State
 @export var grappling_pull_state: State
 
 @export_category("Parameters")

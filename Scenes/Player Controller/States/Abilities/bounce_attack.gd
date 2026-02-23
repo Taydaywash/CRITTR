@@ -2,14 +2,6 @@ extends State
 
 @export var icon : CompressedTexture2D
 
-@export_category("States")
-@export var falling_state : State
-@export var idle_state : State
-@export var diving_state : State
-@export var walking_state : State
-@export var ascending_state : State
-@export var jumping_state : State
-
 @export_category("Parameters")
 @export var max_velocity: float
 @export var bounce_input_buffer_patience: float

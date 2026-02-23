@@ -1,8 +1,5 @@
 extends State
 
-@export_category("States")
-@export var jumping_state : State
-@export var ascending_state : State
 @export_category("Parameters")
 @export var dig_speed : float
 @export var turn_speed : float

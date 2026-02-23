@@ -92,10 +92,10 @@ func _on_screen_size_item_selected(index: int) -> void:
 			temp_options.on_top = true
 		1: #Windowed
 			temp_options.screen_size = DisplayServer.WINDOW_MODE_WINDOWED
-			temp_options.borderless = false
+			temp_options.on_top = false
 		2: #Borderless fullscreen
 			temp_options.screen_size = DisplayServer.WINDOW_MODE_FULLSCREEN
-			temp_options.borderless = false
+			temp_options.on_top = false
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):

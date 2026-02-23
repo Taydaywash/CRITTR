@@ -1,14 +1,6 @@
 extends State
 
 #States that Idle can transition to:
-@export_category("States")
-#@export var idle_state : State
-@export var idle_crouching_state : State
-@export var walking_state : State
-@export var falling_state : State
-@export var jumping_state : State
-@export var diving_state : State
-@export var ability_state : State
 @export_category("Colliders")
 @export var default_hitbox : CollisionShape2D
 @export var crouching_hitbox : CollisionShape2D

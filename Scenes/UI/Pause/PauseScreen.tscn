@@ -240,7 +240,6 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_6ywpv")
 text = "Stuff"
 
 [node name="DnaTab" type="Panel" parent="." unique_id=850062317 node_paths=PackedStringArray("up_ability", "down_ability", "left_ability", "right_ability", "pause_screen", "default_focus")]
-visible = false
 z_index = -1
 offset_left = 64.0
 offset_top = 114.0
@@ -444,6 +443,7 @@ offset_bottom = 174.0
 rotation = -1.5707964
 pivot_offset = Vector2(64, 64)
 focus_neighbor_left = NodePath("../left")
+focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../right")
 focus_neighbor_bottom = NodePath("../down")
 focus_next = NodePath("../right")
@@ -463,6 +463,7 @@ pivot_offset = Vector2(64, 64)
 focus_neighbor_left = NodePath("../left")
 focus_neighbor_top = NodePath("../up")
 focus_neighbor_right = NodePath("../right")
+focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath("../left")
 focus_previous = NodePath("../right")
 icon_alignment = 1
@@ -474,8 +475,8 @@ offset_left = 592.0
 offset_top = 174.0
 offset_right = 720.0
 offset_bottom = 302.0
-scale = Vector2(-1.0000024, 1)
 pivot_offset = Vector2(64, 64)
+focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../up")
 focus_neighbor_right = NodePath("../right")
 focus_neighbor_bottom = NodePath("../down")
@@ -493,6 +494,7 @@ offset_bottom = 302.0
 pivot_offset = Vector2(64, 64)
 focus_neighbor_left = NodePath("../left")
 focus_neighbor_top = NodePath("../up")
+focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../down")
 focus_next = NodePath("../down")
 focus_previous = NodePath("../up")
@@ -500,6 +502,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="MapTab" type="Panel" parent="." unique_id=1098802662 node_paths=PackedStringArray("pause_screen", "default_focus")]
+visible = false
 z_index = -1
 offset_left = 64.0
 offset_top = 114.0
@@ -521,6 +524,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_6r4po")
 theme_override_styles/focus = SubResource("StyleBoxFlat_iio6x")
 
 [node name="OptionsTab" parent="." unique_id=882549425 node_paths=PackedStringArray("pause_screen") instance=ExtResource("10_c2hr7")]
+visible = false
 pause_screen = NodePath("..")
 
 [node name="MasterVolume" parent="OptionsTab" index="1" unique_id=307721531]

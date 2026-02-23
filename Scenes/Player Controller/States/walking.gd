@@ -1,13 +1,6 @@
 extends State
 
 #States that Walking can transition to:
-@export_category("States")
-@export var idle_state : State
-@export var crouching_state : State
-@export var falling_state : State
-@export var jumping_state : State
-@export var diving_state : State
-@export var ability_state : State
 @export_category("Parameters")
 @export var walk_speed : int
 @export var acceleration_speed : int

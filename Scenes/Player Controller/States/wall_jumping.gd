@@ -1,12 +1,6 @@
 extends State
 
 #States that Jumping can transition to:
-@export_category("States")
-@export var falling_state : State
-@export var idle_state : State
-@export var walking_state : State
-@export var diving_state : State
-@export var ability_state : State
 @export_category("Parameters")
 @export var air_control : int
 @export var wall_jump_horizontal_velocity : int

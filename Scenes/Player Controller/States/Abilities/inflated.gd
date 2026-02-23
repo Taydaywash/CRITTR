@@ -3,14 +3,6 @@ extends State
 @export var icon : CompressedTexture2D
 
 #States that Idle can transition to:
-@export_category("States")
-@export var jumping_state : State
-@export var walking_state : State
-@export var falling_state : State
-@export var idle_state : State
-@export var diving_state : State
-@export var ascending_state : State
-@export var ability_state : State
 @export_category("Initial Velocity")
 @export var initial_up_velocity : float
 @export var additive_initial_up_velocity : float

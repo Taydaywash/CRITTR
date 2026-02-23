@@ -161,13 +161,13 @@ scale = Vector2(0.74816006, 0.7821118)
 texture = ExtResource("24_2neov")
 
 [node name="BigTHill2" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=1266633277]
-modulate = Color(0.51, 0.51, 0.51, 0.7607843)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 position = Vector2(1280, 80)
 texture = ExtResource("23_c4j8x")
 
 [node name="BigTHill3" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=2073088893]
-modulate = Color(0.51, 0.51, 0.51, 0.7607843)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 position = Vector2(2704, 208)
 texture = ExtResource("23_c4j8x")

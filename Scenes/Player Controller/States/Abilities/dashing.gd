@@ -3,13 +3,6 @@ extends State
 @export var icon : CompressedTexture2D
 
 #States that Idle can transition to:
-@export_category("States")
-@export var jumping_state : State
-@export var walking_state : State
-@export var falling_state : State
-@export var idle_state : State
-@export var diving_state : State
-@export var ascending_state : State
 @export_category("Parameters")
 @export var dashing_speed : int
 @export var dash_vertical_end_velocity_multiplier : float
@@ -25,6 +18,9 @@ extends State
 @export var nudge_right_range_right: RayCast2D
 @export var nudge_left_range_right: RayCast2D
 @export var nudge_left_range_left: RayCast2D
+@export_category("Wall detection Raycasts")
+@export var right_ray: RayCast2D
+@export var left_ray: RayCast2D
 
 var gravity : int
 var max_falling_speed : int
@@ -54,30 +50,33 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	jump_input_buffer.wait_time = jump_input_buffer_patience
 	
-	player.velocity = Vector2(0,0)
 	match direction:
 		"up":
+			player.velocity.x = 0
 			if player.is_on_ceiling():
 				player.velocity.y = super_jump_velocity
 			else:
 				dash_timer.start()
 				player.velocity.y = -dashing_speed
 		"down":
+			player.velocity.x = 0
 			if player.is_on_floor():
 				player.velocity.y = -super_jump_velocity
 			else:
 				dash_timer.start()
 				player.velocity.y = dashing_speed
 		"left":
-			if player.is_on_wall():
+			if left_ray.is_colliding():
 				player.velocity.x = super_jump_velocity
 			else:
+				player.velocity.y = 0
 				dash_timer.start()
 				player.velocity.x = -dashing_speed
 		"right":
-			if player.is_on_wall():
+			if right_ray.is_colliding():
 				player.velocity.x = -super_jump_velocity
 			else:
+				player.velocity.y = 0
 				dash_timer.start()
 				player.velocity.x = dashing_speed
 
@@ -101,7 +100,12 @@ func process_physics(_delta) -> State:
 		player.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
 	if dive_input_buffer.time_left > 0 and dash_timer.time_left == 0:
 		return diving_state
-	if (player.is_on_wall() and player.velocity.y == 0) or player.is_on_ceiling():
+	# and player.velocity.y == 0
+	if (right_ray.is_colliding() or left_ray.is_colliding()) and (direction == "left" or direction == "right"):
+		return ascending_state
+	if (right_ray.is_colliding() or left_ray.is_colliding()) and (direction == "up" or direction == "down") and jump_input_buffer.time_left:
+		return wall_jumping_state
+	if player.is_on_ceiling():
 		return falling_state
 	if player.is_on_floor():
 		if jump_input_buffer.time_left > 0:

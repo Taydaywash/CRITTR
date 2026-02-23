@@ -1,12 +1,6 @@
 extends State
 
 #States that Wall cling can transition to:
-@export_category("States")
-@export var falling_state : State
-@export var jumping_state : State
-@export var walking_state : State
-@export var wall_jumping_state : State
-@export var ability_state : State
 @export_category("Parameters")
 @export var walk_speed : int
 @export var acceleration_speed : int

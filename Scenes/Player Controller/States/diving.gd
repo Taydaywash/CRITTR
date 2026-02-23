@@ -1,12 +1,6 @@
 extends State
 
 #States that Diving can transition to:
-@export_category("States")
-@export var walking_state : State
-@export var bonked_state : State
-@export var jumping_state : State
-@export var idle_state : State
-@export var diving_falling_state : State
 @export_category("Parameters")
 @export var dive_horizontal_additive_velocity : int
 @export var dive_horizontal_default_velocity : int

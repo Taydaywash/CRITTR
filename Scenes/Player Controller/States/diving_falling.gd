@@ -1,11 +1,6 @@
 extends State
 
 #States that Diving can transition to:
-@export_category("States")
-@export var walking_state : State
-@export var bonked_state : State
-@export var jumping_state : State
-@export var idle_state : State
 @export_category("Jump Input Buffer")
 @export var jump_input_buffer : Timer
 @export var jump_input_buffer_patience : float
