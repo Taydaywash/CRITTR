@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bj2evssjuqrmd" path="res://Scenes/World/LevelEditor/Objects/SaveTube/SaveTube.tscn" id="8_hev0n"]
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://Scenes/World/Regions/Crash Site/InsideShip.tscn" id="8_jacc8"]
 [ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://Scenes/World/Regions/Crash Site/ClimbToPeak.tscn" id="14_7in0u"]
+[ext_resource type="Texture2D" uid="uid://bytguuore47as" path="res://Assets/Decals/Tundra/Background/CrashedShip.png" id="14_uxwvq"]
 [ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://Scenes/World/Regions/Misc/Testing1.tscn" id="15_jacc8"]
 [ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://Scenes/World/Regions/Crash Site/Platforms.tscn" id="16_vdgnt"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/UI/Map/map.tscn" id="18_hev0n"]
@@ -94,14 +95,24 @@ texture = SubResource("GradientTexture2D_3ql1f")
 position = Vector2(2944, -1344)
 camera_zoom = 0.77
 
+[node name="CrashedShip2" type="Sprite2D" parent="Rooms/CrashSite/CrashedShip" unique_id=845996667]
+z_index = -3
+z_as_relative = false
+position = Vector2(19, 555.50507)
+rotation = -0.029712945
+texture = ExtResource("14_uxwvq")
+
 [node name="ShipDoorOutside" parent="Rooms/CrashSite/CrashedShip" unique_id=1749550748 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
+z_index = -1
 position = Vector2(-160, 912)
 go_to_door = NodePath("../../InsideShip/ShipDoorInside")
 
 [node name="SaveTube" parent="Rooms/CrashSite/CrashedShip" unique_id=1607364998 instance=ExtResource("8_hev0n")]
+z_index = -2
 position = Vector2(704, 896)
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/CrashedShip" unique_id=157323415]
+z_index = -1
 
 [node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/CrashedShip/BackgroundElements" unique_id=498285593]
 position = Vector2(-2144, -480)
