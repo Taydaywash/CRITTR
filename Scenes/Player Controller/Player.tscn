@@ -336,10 +336,10 @@ nudge_right_range_left = NodePath("../../CornerNudging/NudgeRightRangeLeft")
 nudge_right_range_right = NodePath("../../CornerNudging/NudgeRightRangeRight")
 nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
 nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeRight")
-y_initial_sprite_stretch_multiplier = 0.8
-x_initial_sprite_stretch_multiplier = 1.4
+y_initial_sprite_stretch_multiplier = 0.65
+x_initial_sprite_stretch_multiplier = 1.6
 sprite_reset_speed = 10.0
-y_final_sprite_stretch_multiplier = 0.85
+y_final_sprite_stretch_multiplier = 0.7
 x_final_sprite_stretch_multiplier = 1.0
 animation_name = "walking"
 placeholder_animation_color = Color(1, 1, 1, 1)
@@ -364,10 +364,10 @@ nudge_right_range_left = NodePath("../../../CornerNudging/NudgeRightRangeLeft")
 nudge_right_range_right = NodePath("../../../CornerNudging/NudgeRightRangeRight")
 nudge_left_range_right = NodePath("../../../CornerNudging/NudgeLeftRangeLeft")
 nudge_left_range_left = NodePath("../../../CornerNudging/NudgeLeftRangeRight")
-y_initial_sprite_stretch_multiplier = 0.8
-x_initial_sprite_stretch_multiplier = 1.4
+y_initial_sprite_stretch_multiplier = 0.65
+x_initial_sprite_stretch_multiplier = 1.6
 sprite_reset_speed = 10.0
-y_final_sprite_stretch_multiplier = 0.85
+y_final_sprite_stretch_multiplier = 0.7
 x_final_sprite_stretch_multiplier = 1.0
 animation_name = "idle"
 placeholder_animation_color = Color(1, 1, 1, 1)
@@ -894,10 +894,11 @@ script = ExtResource("21_3imdl")
 default_zoom = 0.36
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
-position = Vector2(-2.8564715, -0.2361126)
+position = Vector2(0, 65.18518)
 scale = Vector2(0.824172, 0.8488023)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
 animation = &"Bonked"
+offset = Vector2(-3.4658682, -77.07483)
 
 [node name="TriggerHitbox" type="Area2D" parent="." unique_id=936426999]
 visible = false
