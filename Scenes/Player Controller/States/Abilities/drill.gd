@@ -83,9 +83,13 @@ func process_physics(_delta) -> State:
 			if (direction == "up" or direction == "down") and player.is_on_wall_only():
 				return
 			if drill_ray_not_digable.is_colliding():
+				if player.velocity.y < 0:
+					return ascending_state
 				return falling_state
 			return digging_state
 	elif wall_detection_timer.time_left == 0:
+		if player.velocity.y < 0:
+			return ascending_state
 		return falling_state
 	return null
 

@@ -12,7 +12,11 @@ extends State
 @export var additive_initial_horizontal_velocity : float
 @export_category("Parameters")
 @export var bounce_velocity : float
-@export var inflated_duration : float #seconds
+@export var up_inflated_duration : float #seconds
+@export var down_inflated_duration : float #seconds
+@export var vertical_velocity_dampen_multiplier : float
+@export var horizontal_inflated_duration : float #seconds
+@export var horizontal_velocity_dampen_multiplier : float
 @export var bounce_timer_reduction : float #seconds
 @export var horizontal_ascent_reduction_percentage : float
 @export var ascent_speed : float
@@ -44,34 +48,26 @@ func set_direction(ability_direction : String) -> void:
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	if direction == "up":
-		inflated_duration_timer.wait_time = inflated_duration
+		inflated_duration_timer.wait_time = up_inflated_duration
+		player.velocity.x /= horizontal_velocity_dampen_multiplier
 		inflated_duration_timer.start()
 		player.velocity.y = -initial_up_velocity
-		#if player.velocity.y > 0:
-			#player.velocity.y -= initial_up_velocity
-		#elif player.velocity.y < initial_up_velocity:
-			#player.velocity.y -= additive_initial_up_velocity
-		#else:
-			#player.velocity.y = -initial_up_velocity
 	elif direction == "down":
-		inflated_duration_timer.wait_time = inflated_duration
+		inflated_duration_timer.wait_time = down_inflated_duration
+		player.velocity.x /= horizontal_velocity_dampen_multiplier
 		inflated_duration_timer.start()
 		player.velocity.y = initial_down_velocity
-		#if player.velocity.y > initial_down_velocity:
-			#player.velocity.y += additive_initial_down_velocity
-		#else:
-			#player.velocity.y = initial_down_velocity
 	elif direction == "left":
-		inflated_duration_timer.wait_time = inflated_duration - bounce_timer_reduction
-		player.velocity.y = player.velocity.y / 10
+		inflated_duration_timer.wait_time = horizontal_inflated_duration
+		player.velocity.y /= vertical_velocity_dampen_multiplier
 		inflated_duration_timer.start()
 		if abs(player.velocity.x) > initial_horizontal_velocity:
 			player.velocity.x = -additive_initial_horizontal_velocity
 		else:
 			player.velocity.x = -initial_horizontal_velocity
 	elif direction == "right":
-		inflated_duration_timer.wait_time = inflated_duration - bounce_timer_reduction
-		player.velocity.y = player.velocity.y / 10
+		inflated_duration_timer.wait_time = horizontal_inflated_duration
+		player.velocity.y /= vertical_velocity_dampen_multiplier
 		inflated_duration_timer.start()
 		if abs(player.velocity.x) > initial_horizontal_velocity:
 			player.velocity.x = additive_initial_horizontal_velocity
@@ -114,6 +110,8 @@ func process_physics(delta) -> State:
 		player.velocity.y = -bounce_velocity
 		bounced()
 	if inflated_duration_timer.time_left == 0:
+		if player.velocity.y < 0:
+			return ascending_state
 		return falling_state
 	return null
 

@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://Assets/Decals/Tundra/Background/background layer tundra 1.png" id="19_vdgnt"]
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://Assets/Decals/Tundra/Background/bg layer tundra 2.png" id="20_3ql1f"]
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Scenes/Audio Controller/AudioController.tscn" id="21_3ql1f"]
+[ext_resource type="PackedScene" uid="uid://djg64wdak2hx4" path="res://Scenes/World/Regions/Crash Site/SecondaryPlatforms.tscn" id="21_863yi"]
 [ext_resource type="Texture2D" uid="uid://c6owixld7ssqg" path="res://Assets/Decals/Tundra/Background/tundra hill.png" id="21_eucu0"]
 [ext_resource type="Texture2D" uid="uid://cneyuseemoqek" path="res://Assets/Decals/Tundra/Background/many vines t.png" id="22_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://bm6vu2bqh8xgm" path="res://Assets/Decals/Tundra/Background/big t hill.png" id="23_c4j8x"]
@@ -38,7 +39,7 @@ gradient = SubResource("Gradient_vdgnt")
 [node name="World" type="Node2D" unique_id=1470686207]
 
 [node name="Player" parent="." unique_id=674990077 node_paths=PackedStringArray("audio_controller_reference", "particle_controller_reference") instance=ExtResource("2_y6flb")]
-position = Vector2(2880, -480)
+position = Vector2(25216, -2816)
 audio_controller_reference = NodePath("../AudioManager")
 particle_controller_reference = NodePath("../Particle Controller")
 
@@ -49,7 +50,7 @@ script = ExtResource("1_il6x7")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioManager")
-starting_room = NodePath("CrashSite/CrashedShip")
+starting_room = NodePath("CrashSite/WeirdJump")
 horizontal_enter_velocity = 500.0
 horizontal_enter_multiplier = 10.0
 minimum_enter_velocity = 50.0
@@ -204,6 +205,52 @@ zoom_to_fit = true
 
 [node name="Platforms2" parent="Rooms/CrashSite" unique_id=449353625 instance=ExtResource("19_hlwfy")]
 position = Vector2(22656, -2368)
+
+[node name="WeirdJump" parent="Rooms/CrashSite" unique_id=1258557933 instance=ExtResource("21_863yi")]
+position = Vector2(27904, -3520)
+
+[node name="SaveTube" parent="Rooms/CrashSite/WeirdJump" unique_id=918559546 instance=ExtResource("8_hev0n")]
+z_index = -2
+position = Vector2(-2176, 640)
+
+[node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/WeirdJump" unique_id=646154312]
+
+[node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/WeirdJump/BackgroundElements" unique_id=1711102797]
+z_index = -2
+z_as_relative = false
+position = Vector2(-960, 832)
+rotation = -3.1415925
+texture = ExtResource("22_c4j8x")
+
+[node name="VinesT" type="Sprite2D" parent="Rooms/CrashSite/WeirdJump/BackgroundElements" unique_id=1093083450]
+z_index = -1
+z_as_relative = false
+position = Vector2(320.0005, 0)
+rotation = -3.1415925
+scale = Vector2(0.74816006, 0.7821118)
+texture = ExtResource("24_2neov")
+
+[node name="BigTHill2" type="Sprite2D" parent="Rooms/CrashSite/WeirdJump/BackgroundElements" unique_id=447066029]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+z_as_relative = false
+position = Vector2(704, 192)
+texture = ExtResource("23_c4j8x")
+
+[node name="BigTHill3" type="Sprite2D" parent="Rooms/CrashSite/WeirdJump/BackgroundElements" unique_id=1170766454]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+z_as_relative = false
+position = Vector2(-1408, 320)
+texture = ExtResource("23_c4j8x")
+
+[node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/WeirdJump/BackgroundElements" unique_id=949010000]
+z_index = -3
+z_as_relative = false
+position = Vector2(192, 320)
+rotation = -3.1415925
+texture = ExtResource("24_2neov")
+flip_h = true
 
 [node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "map") instance=ExtResource("5_o14yy")]
 audio_controller = NodePath("../AudioManager")
