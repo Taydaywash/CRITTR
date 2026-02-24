@@ -124,13 +124,9 @@ func _on_area_2d_body_entered(_body):
 		match direction:
 			"right":
 				player.velocity.x = -bounce_velocity.x
-				print("right")
 			"left":
 				player.velocity.x = bounce_velocity.x
-				print("left")
 			"up":
 				player.velocity.y = bounce_velocity.y
-				print("up")
 			"down":
 				player.velocity.y = -bounce_velocity.y
-				print("down")
