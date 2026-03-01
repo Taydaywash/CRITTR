@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://Scenes/World/LevelEditor/Objects/Tiles/CollideableTiles.tscn" id="3_4nmrw"]
 [ext_resource type="PackedScene" uid="uid://8ykotcb867ae" path="res://Scenes/World/LevelEditor/Objects/Tiles/NoCollisionTiles.tscn" id="4_xc6m2"]
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_0l631"]
+[ext_resource type="PackedScene" uid="uid://2qo4nl7dvk62" path="res://Scenes/World/LevelEditor/Objects/Collectable/Collectable.tscn" id="6_ak8s1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cb355"]
 size = Vector2(6912, 2560)
@@ -48,6 +49,14 @@ collision_mask = 8
 z_index = 1
 shape = SubResource("RectangleShape2D_cb355")
 debug_color = Color(1, 1, 1, 0.21568628)
+
+[node name="Collectable" parent="." unique_id=1542823849 instance=ExtResource("6_ak8s1")]
+position = Vector2(-2131, 611)
+room_name = "MovementTutorial"
+
+[node name="Collectable2" parent="." unique_id=1153804093 instance=ExtResource("6_ak8s1")]
+position = Vector2(-278, 297)
+room_name = "MovementTutorial"
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

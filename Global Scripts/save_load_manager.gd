@@ -1,6 +1,7 @@
 extends Node
 
-const options_save_path = "user://options.save"
+const OPTIONS_SAVE_PATH = "user://options.save"
+const GAME_SAVE_PATH = "user://game.save"
 
 var ability_up : State
 var ability_down : State
@@ -26,14 +27,35 @@ var options : Dictionary = {
 
 func save_options(options_copy):
 	options = options_copy.duplicate()
-	var file = FileAccess.open(options_save_path, FileAccess.WRITE)
+	var file = FileAccess.open(OPTIONS_SAVE_PATH, FileAccess.WRITE)
 	file.store_var(options.duplicate())
 	file.close()
 
 func load_options() -> Dictionary:
-	if FileAccess.file_exists(options_save_path):
-		var file = FileAccess.open(options_save_path, FileAccess.READ)
+	if FileAccess.file_exists(OPTIONS_SAVE_PATH):
+		var file = FileAccess.open(OPTIONS_SAVE_PATH, FileAccess.READ)
 		var data = file.get_var()
 		file.close()
 		options = data.duplicate()
 	return options.duplicate()
+
+func save_game(collected_ids: Dictionary, total: int):
+	var data: Dictionary = {
+		"collected_ids": collected_ids,
+		"total_collectables": total
+	}
+	var file = FileAccess.open(GAME_SAVE_PATH, FileAccess.WRITE)
+	file.store_var(data)
+	file.close()
+	
+func load_game() -> Dictionary:
+	if FileAccess.file_exists(GAME_SAVE_PATH):
+		var file = FileAccess.open(GAME_SAVE_PATH, FileAccess.READ)
+		var data = file.get_var()
+		file.close()
+		return data.duplicate(true)
+	return {"collected_ids": {}, "total_collectables": 0}
+	
+func reset_game():
+	if FileAccess.file_exists(GAME_SAVE_PATH):
+		DirAccess.remove_absolute(GAME_SAVE_PATH)

@@ -26,7 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://cneyuseemoqek" path="res://Assets/Decals/Tundra/Background/many vines t.png" id="22_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://bm6vu2bqh8xgm" path="res://Assets/Decals/Tundra/Background/big t hill.png" id="23_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://vk7hdquyrbd5" path="res://Assets/Decals/Tundra/Background/vines t.png" id="24_2neov"]
-[ext_resource type="PackedScene" uid="uid://2qo4nl7dvk62" path="res://Scenes/World/LevelEditor/Objects/Collectable/Collectable.tscn" id="25_ecorn"]
 [ext_resource type="PackedScene" uid="uid://1ixxyx000fqa" path="res://Scenes/Particle Controller/particle_controller.tscn" id="25_hlwfy"]
 
 [sub_resource type="Gradient" id="Gradient_vdgnt"]
@@ -293,6 +292,3 @@ texture = ExtResource("20_3ql1f")
 process_mode = 3
 
 [node name="Particle Controller" parent="." unique_id=1338648581 instance=ExtResource("25_hlwfy")]
-
-[node name="Collectable" parent="." unique_id=1542823849 instance=ExtResource("25_ecorn")]
-position = Vector2(3338, -489)
