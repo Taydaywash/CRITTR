@@ -10,6 +10,7 @@ var state_machine : StateMachine
 @onready var left_ray: RayCast2D = $"../Player/RoomTransitionSides/left"
 @onready var right_ray: RayCast2D = $"../Player/RoomTransitionSides/right"
 @export_category("Parameters")
+@export var crash_room : Room
 @export var starting_room : Room
 @export var horizontal_enter_velocity : float
 @export var horizontal_enter_multiplier : float
@@ -49,8 +50,6 @@ var exited_previous_room : bool = false
 var pre_transition_state : State
 var pre_transition_velocity : Vector2
 
-
-
 func _ready() -> void:
 	state_machine = player.state_machine
 	
@@ -59,7 +58,9 @@ func _ready() -> void:
 	player_control_regain.one_shot = true
 	self.add_child(player_control_regain)
 	
-	current_room = starting_room
+	player.global_position = starting_room.get_respawn_point().global_position
+	#current_room = starting_room
+	current_room = crash_room
 	current_room.enter_room()
 
 func entered_room(room : Room):

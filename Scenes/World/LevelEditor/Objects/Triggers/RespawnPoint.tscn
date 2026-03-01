@@ -1,16 +1,12 @@
 [gd_scene format=3 uid="uid://c6tgehyvfiy28"]
 
-[sub_resource type="GDScript" id="GDScript_sv1a3"]
-resource_name = "icon"
-script/source = "@icon(\"res://Assets/Editor Icons/Level Editor Objects/Respawn point Icon.png\")
-extends Node2D
-"
+[ext_resource type="Script" uid="uid://dn2lq7ahbxr2i" path="res://Scenes/World/LevelEditor/Objects/Triggers/respawn_point.gd" id="1_r3nm1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_io85b"]
 size = Vector2(128, 896)
 
 [node name="RespawnPoint" type="Node2D" unique_id=3531767]
-script = SubResource("GDScript_sv1a3")
+script = ExtResource("1_r3nm1")
 
 [node name="ChangeRespawnPoint" type="Area2D" parent="." unique_id=1821614538]
 collision_layer = 4

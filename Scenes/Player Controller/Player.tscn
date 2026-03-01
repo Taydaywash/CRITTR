@@ -795,7 +795,6 @@ default_zoom = 0.36
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
 position = Vector2(0, 65.18518)
-scale = Vector2(0.824172, 0.8488023)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
 animation = &"Bonked"
 offset = Vector2(-3.4658682, -77.07483)

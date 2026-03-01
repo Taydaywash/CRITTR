@@ -13,6 +13,9 @@ size = Vector2(5888, 2560)
 [node name="Room000" type="Node2D" unique_id=1258557933]
 script = ExtResource("1_v7dqe")
 camera_zoom = 0.36
+zoom_to_fit = null
+interior_room = null
+hidden_room = null
 
 [node name="RespawnPoint" parent="." unique_id=671930481 instance=ExtResource("2_iuea5")]
 position = Vector2(-2176, 384.00003)
