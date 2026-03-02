@@ -35,7 +35,7 @@ _data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_puocq"]
-offsets = PackedFloat32Array(0, 0.74691355)
+offsets = PackedFloat32Array(0, 0.42561984)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yaoqm"]
@@ -195,7 +195,7 @@ _data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_6v43f"]
-offsets = PackedFloat32Array(0, 0.654321)
+offsets = PackedFloat32Array(0, 0.4338843)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="JumpDust" type="CPUParticles2D" unique_id=1252131416]
@@ -212,8 +212,8 @@ initial_velocity_max = 432.33
 angle_min = -238.0
 angle_max = 444.0
 angle_curve = SubResource("Curve_puocq")
-scale_amount_min = 2.45
-scale_amount_max = 2.45
+scale_amount_min = 1.15
+scale_amount_max = 1.85
 color_ramp = SubResource("Gradient_puocq")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
@@ -239,6 +239,5 @@ initial_velocity_max = 298.74
 angle_min = -312.7
 angle_max = 94.5
 angle_curve = SubResource("Curve_m6ite")
-scale_amount_min = 2.0
-scale_amount_max = 3.0
+scale_amount_max = 1.5
 color_ramp = SubResource("Gradient_6v43f")
