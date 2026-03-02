@@ -17,12 +17,16 @@ camera_zoom = 1.0
 position = Vector2(768, -288)
 scale = Vector2(1.0849122, 2.3001053)
 
-[node name="RespawnPoint3" parent="." unique_id=3531767 instance=ExtResource("2_o00rb")]
+[node name="RespawnPoint4" parent="." unique_id=3531767 instance=ExtResource("2_o00rb")]
+position = Vector2(-3008, 959.99994)
+scale = Vector2(1.0849122, 0.3957571)
+
+[node name="RespawnPoint3" parent="." unique_id=1427337194 instance=ExtResource("2_o00rb")]
 position = Vector2(3248, -256)
 scale = Vector2(1.0849122, 2.3001053)
 
 [node name="RespawnPoint" parent="." unique_id=1324526991 instance=ExtResource("2_o00rb")]
-position = Vector2(-2992.0002, -128)
+position = Vector2(-3008.0002, -128)
 scale = Vector2(1.0415912, 2.7073164)
 
 [node name="MidgroundFront" parent="." unique_id=1309107243 instance=ExtResource("3_4nmrw")]

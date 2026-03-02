@@ -31,6 +31,7 @@ GameController="*uid://b5kigqng4mpw3"
 
 [display]
 
+window/size/mode=3
 window/size/resizable=false
 window/size/minimize_disabled=true
 window/size/maximize_disabled=true
