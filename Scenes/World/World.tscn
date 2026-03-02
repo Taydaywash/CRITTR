@@ -52,7 +52,7 @@ ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioManager")
 crash_room = NodePath("CrashSite/CrashedShip")
-starting_room = NodePath("Miscellaneous/WeirdJump")
+starting_room = NodePath("CrashSite/MovementTut")
 horizontal_enter_velocity = 500.0
 horizontal_enter_multiplier = 10.0
 minimum_enter_velocity = 50.0
@@ -190,28 +190,30 @@ texture = ExtResource("24_2neov")
 flip_h = true
 
 [node name="Dive Tutorial" parent="Rooms/CrashSite" unique_id=394549618 instance=ExtResource("16_vdgnt")]
-position = Vector2(16256, -2880)
+position = Vector2(16256, -2624)
 camera_zoom = 0.0
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/Dive Tutorial" unique_id=1765794282]
 
 [node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=2140782923]
 z_index = -1
-position = Vector2(-3136, 1344)
+z_as_relative = false
+position = Vector2(-3136, 1064)
 rotation = -3.1415925
 texture = ExtResource("22_c4j8x")
 
 [node name="VinesT" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=782869716]
 z_index = -2
 z_as_relative = false
-position = Vector2(-831.9997, 1344)
+position = Vector2(-831.9997, 1064)
 rotation = -3.1415925
 scale = Vector2(0.74816006, 0.7821118)
 texture = ExtResource("24_2neov")
 
 [node name="VinesT3" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=123943711]
 z_index = -1
-position = Vector2(-1535.9998, -832)
+z_as_relative = false
+position = Vector2(-1535.9998, -1112)
 rotation = -3.1415925
 scale = Vector2(0.74816006, 0.7821118)
 texture = ExtResource("24_2neov")
@@ -219,24 +221,28 @@ texture = ExtResource("24_2neov")
 [node name="BigTHill2" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=182258944]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
-position = Vector2(1728, 320)
+z_as_relative = false
+position = Vector2(1728, 40)
 texture = ExtResource("23_c4j8x")
 
 [node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=490769037]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
-position = Vector2(-2560, -1024)
+z_as_relative = false
+position = Vector2(-2560, -1304)
 texture = ExtResource("23_c4j8x")
 
 [node name="BigTHill3" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=812738713]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
-position = Vector2(-320, 960)
+z_as_relative = false
+position = Vector2(-320, 680)
 texture = ExtResource("23_c4j8x")
 
 [node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=560831488]
 z_index = -3
-position = Vector2(2176, 1088)
+z_as_relative = false
+position = Vector2(2176, 808)
 rotation = -3.1415925
 texture = ExtResource("24_2neov")
 flip_h = true
@@ -254,6 +260,53 @@ texture = ExtResource("21_eucu0")
 
 [node name="Platforms2" parent="Rooms/CrashSite" unique_id=449353625 instance=ExtResource("19_hlwfy")]
 position = Vector2(8704, -3904)
+
+[node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/Platforms2" unique_id=774770628]
+
+[node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/Platforms2/BackgroundElements" unique_id=1782961967]
+z_index = -1
+z_as_relative = false
+position = Vector2(-576, 0)
+rotation = -3.1415925
+texture = ExtResource("22_c4j8x")
+
+[node name="VinesT" type="Sprite2D" parent="Rooms/CrashSite/Platforms2/BackgroundElements" unique_id=1069050922]
+z_index = -2
+z_as_relative = false
+position = Vector2(-1983.9998, -192)
+rotation = -3.1415925
+scale = Vector2(0.74816006, 0.7821118)
+texture = ExtResource("24_2neov")
+
+[node name="VinesT3" type="Sprite2D" parent="Rooms/CrashSite/Platforms2/BackgroundElements" unique_id=930841535]
+z_index = -1
+z_as_relative = false
+position = Vector2(-1279.9998, -128)
+rotation = -3.1415925
+scale = Vector2(0.74816006, 0.7821118)
+texture = ExtResource("24_2neov")
+
+[node name="BigTHill2" type="Sprite2D" parent="Rooms/CrashSite/Platforms2/BackgroundElements" unique_id=1359150189]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+z_as_relative = false
+position = Vector2(1088, -64)
+texture = ExtResource("23_c4j8x")
+
+[node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/Platforms2/BackgroundElements" unique_id=307583997]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+z_as_relative = false
+position = Vector2(2304, -64)
+texture = ExtResource("23_c4j8x")
+
+[node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/Platforms2/BackgroundElements" unique_id=481684033]
+z_index = -3
+z_as_relative = false
+position = Vector2(-1344, 0)
+rotation = -3.1415925
+texture = ExtResource("24_2neov")
+flip_h = true
 
 [node name="Miscellaneous" type="Node" parent="Rooms" unique_id=1513619106]
 script = ExtResource("6_lqys3")
@@ -334,25 +387,27 @@ current_region = NodePath("../../Rooms/Testing")
 [node name="Background" type="Node2D" parent="." unique_id=2056885657]
 
 [node name="Parallax2D" type="Parallax2D" parent="Background" unique_id=1796784597]
-scroll_scale = Vector2(0.12, 0.6)
-scroll_offset = Vector2(0, -448)
+scroll_scale = Vector2(0.12, 0)
+scroll_offset = Vector2(0, 500)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D" unique_id=304975404]
 z_index = -10
 position = Vector2(963, 128)
+scale = Vector2(1, 1.5600003)
 texture = ExtResource("19_vdgnt")
 
 [node name="Parallax2D2" type="Parallax2D" parent="Background" unique_id=1254982517]
-scroll_scale = Vector2(0.28, 0.7)
-scroll_offset = Vector2(0, -320)
+scroll_scale = Vector2(0.28, 0)
+scroll_offset = Vector2(0, 800)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2" unique_id=2079355000]
 z_index = -9
 position = Vector2(977, 0)
+scale = Vector2(1, 1.5999994)
 texture = ExtResource("20_3ql1f")
 
 [node name="AudioManager" parent="." unique_id=152850687 instance=ExtResource("21_3ql1f")]
