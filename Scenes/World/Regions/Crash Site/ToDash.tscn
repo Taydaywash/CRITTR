@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_jqoj1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvqgv"]
-size = Vector2(4608, 3136)
+size = Vector2(4608, 3072)
 
 [node name="Room2" type="Node2D" unique_id=721111038]
 script = ExtResource("1_pqxbl")
@@ -40,7 +40,6 @@ collision_mask = 8
 
 [node name="LevelBounds" type="CollisionShape2D" parent="Area2D" unique_id=673057049]
 z_index = 1
-position = Vector2(0, 32)
 shape = SubResource("RectangleShape2D_lvqgv")
 debug_color = Color(1, 1, 1, 0.21568628)
 

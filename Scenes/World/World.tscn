@@ -317,7 +317,7 @@ flip_h = true
 
 [node name="ToDash" parent="Rooms/CrashSite" unique_id=721111038 instance=ExtResource("21_2ytws")]
 z_as_relative = false
-position = Vector2(2944, -4032)
+position = Vector2(2944, -4160)
 zoom_to_fit = true
 
 [node name="Miscellaneous" type="Node" parent="Rooms" unique_id=1513619106]
