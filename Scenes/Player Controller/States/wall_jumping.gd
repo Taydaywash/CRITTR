@@ -5,6 +5,7 @@ extends State
 @export var air_control : int
 @export var wall_jump_horizontal_velocity : int
 @export var wall_jump_vertical_velocity : int
+@export var wall_dash_jump_vertical_velocity : int
 @export var jump_cancellation : int
 @export var air_acceleration_speed : int
 @export var air_decceleration_speed : int
@@ -27,7 +28,10 @@ func activate(last_state : State) -> void:
 
 	jump_input_buffer.stop()
 	gravity = player.normal_gravity
-	player.velocity.y = -wall_jump_vertical_velocity
+	if -wall_jump_vertical_velocity < player.velocity.y:
+		player.velocity.y = -wall_jump_vertical_velocity
+	if last_state == dashing_state:
+		player.velocity.y = -wall_dash_jump_vertical_velocity
 	max_falling_speed = player.max_falling_speed
 	if player.is_on_wall() and not (right_ray.is_colliding() or left_ray.is_colliding()):
 		player.get_wall_normal()
