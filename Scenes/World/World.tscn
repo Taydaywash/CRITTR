@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://Scenes/World/Regions/Crash Site/ClimbToPeak.tscn" id="14_7in0u"]
 [ext_resource type="Texture2D" uid="uid://bytguuore47as" path="res://Assets/Decals/Tundra/Background/CrashedShip.png" id="14_uxwvq"]
 [ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://Scenes/World/Regions/Misc/Testing1.tscn" id="15_jacc8"]
-[ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://Scenes/World/Regions/Crash Site/Platforms.tscn" id="16_vdgnt"]
+[ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://Scenes/World/Regions/Crash Site/DiveTutorial.tscn" id="16_vdgnt"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/UI/Map/map.tscn" id="18_hev0n"]
 [ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://Scenes/World/Regions/Crash Site/PlatformsTwo.tscn" id="19_hlwfy"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://Assets/Decals/Tundra/Background/background layer tundra 1.png" id="19_vdgnt"]
@@ -51,7 +51,7 @@ ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioManager")
 crash_room = NodePath("CrashSite/CrashedShip")
-starting_room = NodePath("Region/Room000")
+starting_room = NodePath("CrashSite/CrashedShip")
 horizontal_enter_velocity = 500.0
 horizontal_enter_multiplier = 10.0
 minimum_enter_velocity = 50.0
@@ -89,7 +89,7 @@ repeat_size = Vector2(1920, 0)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Rooms/CrashSite/Parallax2D2" unique_id=1774029004]
 z_index = -11
-position = Vector2(3808, -2883.0002)
+position = Vector2(2478, -2038.0002)
 scale = Vector2(271.43747, 190.67188)
 texture = SubResource("GradientTexture2D_3ql1f")
 
@@ -143,6 +143,14 @@ position = Vector2(1792, -496)
 rotation = -3.1415925
 texture = ExtResource("24_2neov")
 
+[node name="InsideShip" parent="Rooms/CrashSite" unique_id=845230466 instance=ExtResource("8_jacc8")]
+position = Vector2(2944, 1216)
+interior_room = true
+
+[node name="ShipDoorInside" parent="Rooms/CrashSite/InsideShip" unique_id=1427879586 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
+position = Vector2(-1936, 816)
+go_to_door = NodePath("../../CrashedShip/ShipDoorOutside")
+
 [node name="MovementTut" parent="Rooms/CrashSite" unique_id=1846956963 instance=ExtResource("5_04mge")]
 position = Vector2(8704, -1344)
 zoom_to_fit = true
@@ -157,7 +165,7 @@ texture = ExtResource("22_c4j8x")
 
 [node name="VinesT" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=1309873950]
 z_index = -1
-position = Vector2(176.00049, 128)
+position = Vector2(674.00055, 115)
 rotation = -3.1415925
 scale = Vector2(0.74816006, 0.7821118)
 texture = ExtResource("24_2neov")
@@ -181,13 +189,56 @@ rotation = -3.1415925
 texture = ExtResource("24_2neov")
 flip_h = true
 
-[node name="InsideShip" parent="Rooms/CrashSite" unique_id=845230466 instance=ExtResource("8_jacc8")]
-position = Vector2(2944, 1216)
-interior_room = true
+[node name="Dive Tutorial" parent="Rooms/CrashSite" unique_id=394549618 instance=ExtResource("16_vdgnt")]
+position = Vector2(16256, -2880)
+camera_zoom = 0.77
 
-[node name="ShipDoorInside" parent="Rooms/CrashSite/InsideShip" unique_id=1427879586 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
-position = Vector2(-1936, 816)
-go_to_door = NodePath("../../CrashedShip/ShipDoorOutside")
+[node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/Dive Tutorial" unique_id=1765794282]
+
+[node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=2140782923]
+z_index = -1
+position = Vector2(-3136, 1344)
+rotation = -3.1415925
+texture = ExtResource("22_c4j8x")
+
+[node name="VinesT" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=782869716]
+z_index = -1
+position = Vector2(-831.9997, 1344)
+rotation = -3.1415925
+scale = Vector2(0.74816006, 0.7821118)
+texture = ExtResource("24_2neov")
+
+[node name="VinesT3" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=123943711]
+z_index = -1
+position = Vector2(-511.99966, -192)
+rotation = -3.1415925
+scale = Vector2(0.74816006, 0.7821118)
+texture = ExtResource("24_2neov")
+
+[node name="BigTHill2" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=182258944]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+position = Vector2(1728, 320)
+texture = ExtResource("23_c4j8x")
+
+[node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=490769037]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+position = Vector2(-2560, -1024)
+texture = ExtResource("23_c4j8x")
+
+[node name="BigTHill3" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=812738713]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+position = Vector2(-320, 960)
+texture = ExtResource("23_c4j8x")
+
+[node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=560831488]
+z_index = -3
+position = Vector2(2176, 1088)
+rotation = -3.1415925
+texture = ExtResource("24_2neov")
+flip_h = true
 
 [node name="ToPeak" parent="Rooms/CrashSite" unique_id=257892768 instance=ExtResource("14_7in0u")]
 position = Vector2(-1664, -1344)
@@ -200,12 +251,8 @@ z_index = -2
 position = Vector2(-128, 128)
 texture = ExtResource("21_eucu0")
 
-[node name="Platforms" parent="Rooms/CrashSite" unique_id=394549618 instance=ExtResource("16_vdgnt")]
-position = Vector2(16256, -1600)
-zoom_to_fit = true
-
 [node name="Platforms2" parent="Rooms/CrashSite" unique_id=449353625 instance=ExtResource("19_hlwfy")]
-position = Vector2(22656, -2368)
+position = Vector2(8704, -3904)
 
 [node name="WeirdJump" parent="Rooms/CrashSite" unique_id=1258557933 instance=ExtResource("21_863yi")]
 position = Vector2(27904, -3520)
@@ -256,13 +303,13 @@ rotation = -3.1415925
 texture = ExtResource("24_2neov")
 flip_h = true
 
-[node name="Region" type="Node" parent="Rooms" unique_id=1513619106]
+[node name="Miscellaneous" type="Node" parent="Rooms" unique_id=1513619106]
 script = ExtResource("6_lqys3")
 music = ExtResource("7_qs546")
 map_color = Color(1, 0, 0, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
 
-[node name="Room000" parent="Rooms/Region" unique_id=586646956 instance=ExtResource("22_863yi")]
+[node name="Room000" parent="Rooms/Miscellaneous" unique_id=586646956 instance=ExtResource("22_863yi")]
 position = Vector2(16768, 1856)
 zoom_to_fit = false
 
