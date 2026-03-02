@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://Scenes/World/Regions/Crash Site/PlatformsTwo.tscn" id="19_hlwfy"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://Assets/Decals/Tundra/Background/background layer tundra 1.png" id="19_vdgnt"]
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://Assets/Decals/Tundra/Background/bg layer tundra 2.png" id="20_3ql1f"]
+[ext_resource type="PackedScene" uid="uid://cyqcaabmh0e7d" path="res://Scenes/World/Regions/Crash Site/ToDash.tscn" id="21_2ytws"]
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Scenes/Audio Controller/AudioController.tscn" id="21_3ql1f"]
 [ext_resource type="PackedScene" uid="uid://djg64wdak2hx4" path="res://Scenes/World/Regions/Crash Site/SecondaryPlatforms.tscn" id="21_863yi"]
 [ext_resource type="Texture2D" uid="uid://c6owixld7ssqg" path="res://Assets/Decals/Tundra/Background/tundra hill.png" id="21_eucu0"]
@@ -52,7 +53,7 @@ ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioManager")
 crash_room = NodePath("CrashSite/CrashedShip")
-starting_room = NodePath("CrashSite/MovementTut")
+starting_room = NodePath("CrashSite/ToDash")
 horizontal_enter_velocity = 500.0
 horizontal_enter_multiplier = 10.0
 minimum_enter_velocity = 50.0
@@ -94,6 +95,7 @@ scale = Vector2(166.31343, 159.33415)
 texture = SubResource("GradientTexture2D_3ql1f")
 
 [node name="CrashedShip" parent="Rooms/CrashSite" unique_id=436417677 instance=ExtResource("4_o14yy")]
+z_as_relative = false
 position = Vector2(2944, -1344)
 camera_zoom = 0.77
 
@@ -144,6 +146,7 @@ rotation = -3.1415925
 texture = ExtResource("24_2neov")
 
 [node name="InsideShip" parent="Rooms/CrashSite" unique_id=845230466 instance=ExtResource("8_jacc8")]
+z_as_relative = false
 position = Vector2(2944, 1216)
 interior_room = true
 
@@ -152,6 +155,7 @@ position = Vector2(-1936, 816)
 go_to_door = NodePath("../../CrashedShip/ShipDoorOutside")
 
 [node name="MovementTut" parent="Rooms/CrashSite" unique_id=1846956963 instance=ExtResource("5_04mge")]
+z_as_relative = false
 position = Vector2(8704, -1344)
 zoom_to_fit = true
 
@@ -190,6 +194,7 @@ texture = ExtResource("24_2neov")
 flip_h = true
 
 [node name="Dive Tutorial" parent="Rooms/CrashSite" unique_id=394549618 instance=ExtResource("16_vdgnt")]
+z_as_relative = false
 position = Vector2(16256, -2624)
 camera_zoom = 0.0
 
@@ -248,6 +253,7 @@ texture = ExtResource("24_2neov")
 flip_h = true
 
 [node name="ToPeak" parent="Rooms/CrashSite" unique_id=257892768 instance=ExtResource("14_7in0u")]
+z_as_relative = false
 position = Vector2(-1664, -1344)
 hidden_room = true
 
@@ -259,6 +265,7 @@ position = Vector2(-128, 128)
 texture = ExtResource("21_eucu0")
 
 [node name="Platforms2" parent="Rooms/CrashSite" unique_id=449353625 instance=ExtResource("19_hlwfy")]
+z_as_relative = false
 position = Vector2(8704, -3904)
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/Platforms2" unique_id=774770628]
@@ -308,6 +315,11 @@ rotation = -3.1415925
 texture = ExtResource("24_2neov")
 flip_h = true
 
+[node name="ToDash" parent="Rooms/CrashSite" unique_id=721111038 instance=ExtResource("21_2ytws")]
+z_as_relative = false
+position = Vector2(2944, -4032)
+zoom_to_fit = true
+
 [node name="Miscellaneous" type="Node" parent="Rooms" unique_id=1513619106]
 script = ExtResource("6_lqys3")
 music = ExtResource("7_qs546")
@@ -315,6 +327,7 @@ map_color = Color(1, 0, 0, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
 
 [node name="Verticality" parent="Rooms/Miscellaneous" unique_id=586646956 instance=ExtResource("28_863yi")]
+z_as_relative = false
 position = Vector2(17024, 3200)
 interior_room = true
 
@@ -323,6 +336,7 @@ z_index = -2
 position = Vector2(0, 2048)
 
 [node name="WeirdJump" parent="Rooms/Miscellaneous" unique_id=1258557933 instance=ExtResource("21_863yi")]
+z_as_relative = false
 position = Vector2(22592, 1920)
 zoom_to_fit = false
 interior_room = true
