@@ -2,10 +2,6 @@ extends State
 
 @export var icon : CompressedTexture2D
 
-#States that Idle can transition to:
-@export_category("States")
-@export var grappling_pull_state: State
-
 @export_category("Parameters")
 @export var grapple_duration : float #seconds
 @export var grappling_speed: float

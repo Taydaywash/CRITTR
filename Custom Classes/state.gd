@@ -61,6 +61,12 @@ var wall_jumping_state : State
 var falling_state : State
 var ascending_state : State
 var ability_state : State
+var dashing_state : State
+var grappling_pull_state : State
+var inflated_state : State
+var climbing_slide_state : State
+var digging_state : State
+var bounce_attack_state : State
 
 var player : Player
 var audio_controller : AudioController

@@ -20,6 +20,12 @@ extends Node
 @export var falling_state : State
 @export var ascending_state : State
 @export var ability_state : State
+@export var dashing_state : State
+@export var grappling_pull_state : State
+@export var inflated_state : State
+@export var climbing_slide_state : State
+@export var digging_state : State
+@export var bounce_attack_state : State
 
 @export_category("")
 @export var colliders_list : Array[CollisionShape2D]
@@ -63,6 +69,12 @@ func check_children(parent : Node) -> void:
 		child.falling_state = falling_state
 		child.ascending_state = ascending_state
 		child.ability_state = ability_state
+		child.dashing_state = dashing_state
+		child.grappling_pull_state = grappling_pull_state
+		child.climbing_slide_state = climbing_slide_state
+		child.inflated_state = inflated_state
+		child.digging_state = digging_state
+		child.bounce_attack_state = bounce_attack_state
 		
 		if child.get_child_count() > 0:
 			check_children(child)

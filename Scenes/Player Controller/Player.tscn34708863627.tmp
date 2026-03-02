@@ -454,12 +454,11 @@ left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "WallCling"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="WallJumping" type="Node" parent="StateMachine/WallCling" unique_id=1649015882 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "enter_particle_when_entering_from_state_state")]
+[node name="WallJumping" type="Node" parent="StateMachine/WallCling" unique_id=1649015882 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray")]
 script = ExtResource("10_dpx4d")
 air_control = 800
 wall_jump_horizontal_velocity = 1000
 wall_jump_vertical_velocity = 1000
-wall_dash_jump_vertical_velocity = 1500
 jump_cancellation = 2
 air_acceleration_speed = 2000
 air_decceleration_speed = 1000
@@ -470,9 +469,6 @@ left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
 animation_name = "WallJumping"
 placeholder_animation_color = Color(1, 1, 1, 1)
 enter_sound_sounds = Array[AudioStream]([ExtResource("6_74b0n")])
-enter_particle_when_entering_from_state_state = [NodePath("../../Abilities/Dashing")]
-enter_particle_when_entering_from_state_particle = Array[PackedScene]([ExtResource("8_avv4g")])
-enter_particle_when_entering_from_state_parent_to_player = Array[bool]([true])
 
 [node name="Falling" type="Node" parent="StateMachine" unique_id=18701263 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left", "exit_sound_excluded_states", "exit_particle_excluded_states")]
 script = ExtResource("11_v55cd")
@@ -536,9 +532,10 @@ right_ray = NodePath("../../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
 placeholder_animation_color = Color(0.23891038, 0.12174525, 0.0073752436, 1)
 
-[node name="Grappling" type="Node" parent="StateMachine/Abilities" unique_id=2140590385 node_paths=PackedStringArray("grapple_ray", "line", "jump_input_buffer")]
+[node name="Grappling" type="Node" parent="StateMachine/Abilities" unique_id=2140590385 node_paths=PackedStringArray("grappling_pull_state", "grapple_ray", "line", "jump_input_buffer")]
 script = ExtResource("13_vpgwe")
 icon = ExtResource("22_wlqol")
+grappling_pull_state = NodePath("GrapplingPull")
 grapple_duration = 0.5
 grappling_speed = 2000.0
 grapple_max_length = 600.0
@@ -702,9 +699,10 @@ position = Vector2(0.4999981, -0.9999981)
 scale = Vector2(0.39843753, 0.93750006)
 texture = ExtResource("2_ves0u")
 
-[node name="Drill" type="Node" parent="StateMachine/Abilities" unique_id=1692216375 node_paths=PackedStringArray("drill_ray", "drill_ray_not_digable", "line")]
+[node name="Drill" type="Node" parent="StateMachine/Abilities" unique_id=1692216375 node_paths=PackedStringArray("digging_state", "drill_ray", "drill_ray_not_digable", "line")]
 script = ExtResource("17_fuvci")
 icon = ExtResource("21_0wxel")
+digging_state = NodePath("Digging")
 wind_up_delay = 0.2
 wind_up_velocity = 200.0
 initial_velocity = 1200.0
