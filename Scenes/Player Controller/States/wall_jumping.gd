@@ -2,7 +2,6 @@ extends State
 
 #States that Jumping can transition to:
 @export_category("Parameters")
-@export var air_control : int
 @export var wall_jump_horizontal_velocity : int
 @export var wall_jump_vertical_velocity : int
 @export var wall_dash_jump_vertical_velocity : int
@@ -15,6 +14,10 @@ extends State
 @export_category("Wall Jumping Raycasts")
 @export var right_ray: RayCast2D
 @export var left_ray: RayCast2D
+@export var high_right_ray: RayCast2D
+@export var high_left_ray: RayCast2D
+@export var low_right_ray: RayCast2D
+@export var low_left_ray: RayCast2D
 
 var gravity : int
 var max_falling_speed : int
@@ -33,12 +36,17 @@ func activate(last_state : State) -> void:
 	if last_state == dashing_state:
 		player.velocity.y = -wall_dash_jump_vertical_velocity
 	max_falling_speed = player.max_falling_speed
-	if player.is_on_wall() and not (right_ray.is_colliding() or left_ray.is_colliding()):
-		player.get_wall_normal()
-		player.velocity.x = wall_jump_vertical_velocity * player.get_wall_normal().x
 	if right_ray.is_colliding():
 		player.velocity.x = -wall_jump_horizontal_velocity
 	elif left_ray.is_colliding():
+		player.velocity.x = wall_jump_horizontal_velocity
+	elif high_right_ray.is_colliding():
+		player.velocity.x = -wall_jump_horizontal_velocity
+	elif high_left_ray.is_colliding():
+		player.velocity.x = wall_jump_horizontal_velocity
+	elif low_right_ray.is_colliding():
+		player.velocity.x = -wall_jump_horizontal_velocity
+	elif low_left_ray.is_colliding():
 		player.velocity.x = wall_jump_horizontal_velocity
 
 func process_input(event : InputEvent) -> State:
@@ -57,7 +65,7 @@ func process_physics(delta) -> State:
 		player.velocity.y += gravity * delta
 	
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
-	if (abs(player.velocity.x) < air_control) or (sign(horizontal_input) != sign(player.velocity.x)):
+	if (sign(horizontal_input) != sign(player.velocity.x)):
 		player.velocity.x += air_acceleration_speed * delta * horizontal_input
 	if horizontal_input == 0:
 		player.velocity.x = player.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x

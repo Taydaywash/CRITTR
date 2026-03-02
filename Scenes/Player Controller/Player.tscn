@@ -454,19 +454,22 @@ left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "WallCling"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="WallJumping" type="Node" parent="StateMachine/WallCling" unique_id=1649015882 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "enter_particle_when_entering_from_state_state")]
+[node name="WallJumping" type="Node" parent="StateMachine/WallCling" unique_id=1649015882 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "high_right_ray", "high_left_ray", "low_right_ray", "low_left_ray", "enter_particle_when_entering_from_state_state")]
 script = ExtResource("10_dpx4d")
-air_control = 800
 wall_jump_horizontal_velocity = 1000
-wall_jump_vertical_velocity = 1000
+wall_jump_vertical_velocity = 1250
 wall_dash_jump_vertical_velocity = 1500
 jump_cancellation = 2
-air_acceleration_speed = 2000
+air_acceleration_speed = 1000
 air_decceleration_speed = 1000
 jump_input_buffer = NodePath("../../../JumpInputBuffer")
 jump_input_buffer_patience = 0.2
 right_ray = NodePath("../../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
+high_right_ray = NodePath("../../../HighWallJumpRay/HighRightRay")
+high_left_ray = NodePath("../../../HighWallJumpRay/HighLeftRay")
+low_right_ray = NodePath("../../../LowWallJumpRay/LowRightRay")
+low_left_ray = NodePath("../../../LowWallJumpRay/LowLeftRay")
 animation_name = "WallJumping"
 placeholder_animation_color = Color(1, 1, 1, 1)
 enter_sound_sounds = Array[AudioStream]([ExtResource("6_74b0n")])
@@ -768,6 +771,34 @@ scale = Vector2(1, 2)
 target_position = Vector2(-100, 0)
 collision_mask = 65
 
+[node name="HighWallJumpRay" type="Node2D" parent="." unique_id=631589505]
+
+[node name="HighRightRay" type="RayCast2D" parent="HighWallJumpRay" unique_id=295848264]
+position = Vector2(0, -71.11111)
+scale = Vector2(1, 2)
+target_position = Vector2(100, 0)
+collision_mask = 65
+
+[node name="HighLeftRay" type="RayCast2D" parent="HighWallJumpRay" unique_id=1624594559]
+position = Vector2(0, -71.1111)
+scale = Vector2(1, 2)
+target_position = Vector2(-100, 0)
+collision_mask = 65
+
+[node name="LowWallJumpRay" type="Node2D" parent="." unique_id=887732347]
+
+[node name="LowRightRay" type="RayCast2D" parent="LowWallJumpRay" unique_id=1980512333]
+position = Vector2(0, 71.11111)
+scale = Vector2(1, 2)
+target_position = Vector2(100, 0)
+collision_mask = 65
+
+[node name="LowLeftRay" type="RayCast2D" parent="LowWallJumpRay" unique_id=204804772]
+position = Vector2(0, 71.111115)
+scale = Vector2(1, 2)
+target_position = Vector2(-100, 0)
+collision_mask = 65
+
 [node name="CornerNudging" type="Node2D" parent="." unique_id=1893630454]
 scale = Vector2(2, 2)
 
@@ -798,7 +829,7 @@ process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("21_3imdl")
-default_zoom = 0.77
+default_zoom = 0.27
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
 position = Vector2(0, 65.18518)
