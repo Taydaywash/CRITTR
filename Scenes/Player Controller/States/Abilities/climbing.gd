@@ -8,10 +8,11 @@ extends State
 @export_category("References")
 @export var climbing_ray: RayCast2D
 
-
 @export_category("Colliders")
 @export var default_hitbox : CollisionShape2D
 @export var crouching_hitbox : CollisionShape2D
+@export var left_ray : RayCast2D
+@export var right_ray : RayCast2D
 
 var jump_input_buffer: Timer
 var climbing_input_buffer: Timer
@@ -76,7 +77,7 @@ func process_physics(_delta) -> State:
 		player.velocity.y = move_toward(player.velocity.y, -max_speed, speed_increment)
 		climbing_ray.target_position = Vector2(0, -40)
 	elif jump_input_buffer.time_left > 0:
-		if player.is_on_wall():
+		if player.is_on_wall() or left_ray.is_colliding() or right_ray.is_colliding():
 			return wall_jumping_state
 		return jumping_state
 	else:
@@ -84,13 +85,13 @@ func process_physics(_delta) -> State:
 			return ascending_state
 		return falling_state
 		
+	if jump_input_buffer.time_left > 0:
+		if player.is_on_wall() or left_ray.is_colliding() or right_ray.is_colliding():
+			return wall_jumping_state
+		return jumping_state
+		
 	if climbing_ray.is_colliding():
 		return falling_state
-		
-	#if jump_input_buffer.time_left > 0:
-		#if player.is_on_wall():
-			#return ascending_state
-		#return jumping_state
 		
 	if one_frame_passed:
 		return null
