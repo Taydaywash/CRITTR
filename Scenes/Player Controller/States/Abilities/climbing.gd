@@ -75,6 +75,10 @@ func process_physics(_delta) -> State:
 	elif direction == "left" and player.is_on_wall():
 		player.velocity.y = move_toward(player.velocity.y, -max_speed, speed_increment)
 		climbing_ray.target_position = Vector2(0, -40)
+	elif jump_input_buffer.time_left > 0:
+		if player.is_on_wall():
+			return wall_jumping_state
+		return jumping_state
 	else:
 		if player.velocity.y < 0:
 			return ascending_state
@@ -83,10 +87,10 @@ func process_physics(_delta) -> State:
 	if climbing_ray.is_colliding():
 		return falling_state
 		
-	if jump_input_buffer.time_left > 0:
-		if player.is_on_wall():
-			return ascending_state
-		return jumping_state
+	#if jump_input_buffer.time_left > 0:
+		#if player.is_on_wall():
+			#return ascending_state
+		#return jumping_state
 		
 	if one_frame_passed:
 		return null
