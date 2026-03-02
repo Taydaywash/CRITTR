@@ -1,12 +1,28 @@
 extends pause_tab
 
+const directions = ["up","down","left","right"]
+
 @export var up_ability : Button
 @export var down_ability : Button
 @export var left_ability : Button
 @export var right_ability : Button
 @onready var abilities: AbilityController = get_node("/root/World/Player/StateMachine/Abilities")
 
+@export var dash_button : Button
+@export var grapple_button : Button
+@export var climb_button : Button
+@export var inflate_button : Button
+@export var drill_button : Button
+@export var bounce_button : Button
+
 var held_ability : State
+
+var ability_data = {
+	"ability" : null,
+	"direction" : ""
+}
+
+var ability_queue = []
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
@@ -14,14 +30,27 @@ func handle_input(event: InputEvent) -> void:
 			default_focus.grab_focus()
 		elif pause_screen.current_tab == pause_screen.dna_tab:
 			pause_screen.dna_button.grab_focus()
+func dna_tab_opened() -> void:
+	update_ability_unlocks(GameController.get_abilities_unlocked())
+	update_ability_icons()
+	
+func update_ability_unlocks(ability_unlocks) -> void:
+	dash_button.disabled = !ability_unlocks.dash
+	grapple_button.disabled = !ability_unlocks.grapple
+	climb_button.disabled = !ability_unlocks.climb
+	inflate_button.disabled = !ability_unlocks.inflate
+	drill_button.disabled = !ability_unlocks.drill
+	bounce_button.disabled = !ability_unlocks.bounce
 func update_ability_icons() -> void:
 	up_ability.icon = abilities.abilities_in_use.ability_up.texture
+	if abilities.abilities_in_use.ability_up.state == null:
+		up_ability.icon = null
 	down_ability.icon = abilities.abilities_in_use.ability_down.texture
 	left_ability.icon = abilities.abilities_in_use.ability_left.texture
 	right_ability.icon = abilities.abilities_in_use.ability_right.texture
 func _on_dna_button_pressed() -> void:
 	default_focus.grab_focus()
-func _on_dash_focus_entered() -> void:
+func _on_dna_buttons_focus_entered() -> void:
 	if not pause_screen.used_save_point:
 		pause_screen.dna_button.grab_focus()
 func _on_dash_pressed() -> void:
@@ -56,28 +85,54 @@ func ability_pressed(ability : State):
 func _on_up_pressed() -> void:
 	if not held_ability:
 		return
-	abilities.set_ability("up",held_ability)
-	default_focus.grab_focus()
-	update_ability_icons()
-	held_ability = null
+	if abilities.abilities_in_use["ability_up"].state != held_ability:
+		#abilities.set_ability("up",held_ability)
+		add_ability("up")
 func _on_down_pressed() -> void:
 	if not held_ability:
 		return
-	abilities.set_ability("down",held_ability)
-	default_focus.grab_focus()
-	update_ability_icons()
-	held_ability = null
+	if abilities.abilities_in_use["ability_down"].state != held_ability:
+		#abilities.set_ability("down",held_ability)
+		add_ability("down")
 func _on_left_pressed() -> void:
 	if not held_ability:
 		return
-	abilities.set_ability("left",held_ability)
-	default_focus.grab_focus()
-	update_ability_icons()
-	held_ability = null
+	if abilities.abilities_in_use["ability_left"].state != held_ability:
+		#abilities.set_ability("left",held_ability)
+		add_ability("left")
 func _on_right_pressed() -> void:
 	if not held_ability:
 		return
-	abilities.set_ability("right",held_ability)
+	if abilities.abilities_in_use["ability_right"].state != held_ability:
+		#abilities.set_ability("right",held_ability)
+		add_ability("right")
+	
+func add_ability(direction : String) -> void:
+	var usages = 0
+	
+	for ability_index in range(ability_queue.size()):
+		if ability_queue[ability_index].ability == held_ability:
+			usages += 1
+		if usages >= GameController.ability_usages:
+			ability_queue.remove_at(ability_index)
+			break
+	for ability_index in range(ability_queue.size()):
+		if ability_queue[ability_index].direction == direction:
+			ability_queue.remove_at(ability_index)
+			break
+	ability_data.ability = held_ability
+	ability_data.direction = direction
+	ability_queue.insert(0,ability_data.duplicate())
+	
+	update_abilities()
 	default_focus.grab_focus()
-	update_ability_icons()
 	held_ability = null
+
+func update_abilities():
+	for direction in directions:
+		abilities.set_ability(direction,null)
+	for direction in directions:
+		for element in ability_queue:
+			if element.direction == direction:
+				abilities.set_ability(direction,element.ability)
+	update_ability_icons()

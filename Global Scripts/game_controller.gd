@@ -1,5 +1,14 @@
 extends Node
 
+var ability_usages: int = 2
+var abilities_unlocked: Dictionary = {
+	"dash" : true,
+	"grapple" : true,
+	"climb" : false,
+	"inflate" : false,
+	"drill" : false,
+	"bounce" : false,
+}
 var total_collectables: int = 0
 var collected_ids: Dictionary = {}
 
@@ -17,7 +26,8 @@ func collectable_collected(id: String, value: int) -> void:
 	
 func is_collected(id: String) -> bool:
 	return collected_ids.has(id)
-	
+func get_abilities_unlocked() -> Dictionary:
+	return abilities_unlocked.duplicate()
 func restore_state():
 	var data = SaveLoadManager.load_game()
 	collected_ids = data["collected_ids"]

@@ -102,6 +102,13 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obt74"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eaots"]
 bg_color = Color(0.14039998, 0.52, 0.17203328, 1)
 border_width_left = 5
@@ -239,7 +246,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_6ywpv")
 theme_override_styles/focus = SubResource("StyleBoxFlat_6ywpv")
 text = "Stuff"
 
-[node name="DnaTab" type="Panel" parent="." unique_id=850062317 node_paths=PackedStringArray("up_ability", "down_ability", "left_ability", "right_ability", "pause_screen", "default_focus")]
+[node name="DnaTab" type="Panel" parent="." unique_id=850062317 node_paths=PackedStringArray("up_ability", "down_ability", "left_ability", "right_ability", "dash_button", "grapple_button", "climb_button", "inflate_button", "drill_button", "bounce_button", "pause_screen", "default_focus")]
 z_index = -1
 offset_left = 64.0
 offset_top = 114.0
@@ -252,11 +259,18 @@ up_ability = NodePath("up")
 down_ability = NodePath("down")
 left_ability = NodePath("left")
 right_ability = NodePath("right")
+dash_button = NodePath("Dash")
+grapple_button = NodePath("Grapple")
+climb_button = NodePath("Climb")
+inflate_button = NodePath("Inflate")
+drill_button = NodePath("Drill")
+bounce_button = NodePath("Bounce")
 pause_screen = NodePath("..")
 default_focus = NodePath("Dash")
 
 [node name="DnaTabBlocker" type="Panel" parent="DnaTab" unique_id=38181578]
 z_index = 1
+z_as_relative = false
 layout_mode = 0
 offset_top = -2.0
 offset_right = 1024.0
@@ -294,6 +308,7 @@ focus_next = NodePath("../Grapple")
 focus_previous = NodePath("../Bounce")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_1i3v3")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_obt74")
 text = "Dash"
 icon = ExtResource("3_gl3t6")
 icon_alignment = 2
@@ -321,6 +336,7 @@ focus_next = NodePath("../Climb")
 focus_previous = NodePath("../Dash")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_1i3v3")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_obt74")
 text = "Grapple"
 icon = ExtResource("4_tt1rf")
 icon_alignment = 2
@@ -348,6 +364,7 @@ focus_next = NodePath("../Inflate")
 focus_previous = NodePath("../Grapple")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_1i3v3")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_obt74")
 text = "Climb"
 icon = ExtResource("5_wqx3i")
 icon_alignment = 2
@@ -375,6 +392,7 @@ focus_next = NodePath("../Drill")
 focus_previous = NodePath("../Climb")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_1i3v3")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_obt74")
 text = "Inflate"
 icon = ExtResource("6_07l5c")
 icon_alignment = 2
@@ -402,6 +420,7 @@ focus_next = NodePath("../Bounce")
 focus_previous = NodePath("../Inflate")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_1i3v3")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_obt74")
 text = "Drill"
 icon = ExtResource("7_6r4po")
 icon_alignment = 2
@@ -429,6 +448,7 @@ focus_next = NodePath("../Dash")
 focus_previous = NodePath("../Drill")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_1i3v3")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_obt74")
 text = "Bounce"
 icon = ExtResource("8_iio6x")
 icon_alignment = 2
@@ -553,12 +573,17 @@ script = ExtResource("11_c2hr7")
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="focus_entered" from="StuffButton" to="." method="_on_stuff_button_pressed"]
 [connection signal="pressed" from="StuffButton" to="." method="_on_stuff_button_pressed"]
-[connection signal="focus_entered" from="DnaTab/Dash" to="DnaTab" method="_on_dash_focus_entered"]
+[connection signal="focus_entered" from="DnaTab/Dash" to="DnaTab" method="_on_dna_buttons_focus_entered"]
 [connection signal="pressed" from="DnaTab/Dash" to="DnaTab" method="_on_dash_pressed"]
+[connection signal="focus_entered" from="DnaTab/Grapple" to="DnaTab" method="_on_dna_buttons_focus_entered"]
 [connection signal="pressed" from="DnaTab/Grapple" to="DnaTab" method="_on_grapple_pressed"]
+[connection signal="focus_entered" from="DnaTab/Climb" to="DnaTab" method="_on_dna_buttons_focus_entered"]
 [connection signal="pressed" from="DnaTab/Climb" to="DnaTab" method="_on_climb_pressed"]
+[connection signal="focus_entered" from="DnaTab/Inflate" to="DnaTab" method="_on_dna_buttons_focus_entered"]
 [connection signal="pressed" from="DnaTab/Inflate" to="DnaTab" method="_on_inflate_pressed"]
+[connection signal="focus_entered" from="DnaTab/Drill" to="DnaTab" method="_on_dna_buttons_focus_entered"]
 [connection signal="pressed" from="DnaTab/Drill" to="DnaTab" method="_on_drill_pressed"]
+[connection signal="focus_entered" from="DnaTab/Bounce" to="DnaTab" method="_on_dna_buttons_focus_entered"]
 [connection signal="pressed" from="DnaTab/Bounce" to="DnaTab" method="_on_bounce_pressed"]
 [connection signal="pressed" from="DnaTab/up" to="DnaTab" method="_on_up_pressed"]
 [connection signal="pressed" from="DnaTab/down" to="DnaTab" method="_on_down_pressed"]

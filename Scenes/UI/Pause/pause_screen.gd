@@ -42,7 +42,7 @@ func toggle_pause(from_save_point : bool = false) -> void:
 	
 func _on_dna_button_focus_entered() -> void:
 	show_layer(dna_tab)
-	dna_tab.update_ability_icons()
+	dna_tab.dna_tab_opened()
 func _on_map_button_pressed() -> void:
 	show_layer(map_tab)
 func _on_options_button_pressed() -> void:
