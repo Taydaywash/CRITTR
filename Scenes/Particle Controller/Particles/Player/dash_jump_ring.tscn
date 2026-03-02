@@ -203,6 +203,7 @@ color_ramp = SubResource("Gradient_puocq")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 script = ExtResource("2_yw21o")
+player_min_velocity = 1000
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=2041504396]
 visible = false
