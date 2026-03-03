@@ -140,4 +140,4 @@ func bounced():
 
 func deactivate(next_state : State) -> void:
 	super(next_state)
-	change_collider_to(default_collider)
+	#change_collider_to(normal_hitbox)
