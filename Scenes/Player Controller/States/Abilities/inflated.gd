@@ -29,6 +29,9 @@ extends State
 @export_category("Wall detection rays")
 @export var left_ray : RayCast2D
 @export var right_ray : RayCast2D
+@export_category("Colliders")
+@export var normal_hitbox : CollisionShape2D
+@export var inflated_hitbox : CollisionShape2D
 
 var gravity : int
 var max_falling_speed : int
@@ -134,3 +137,7 @@ func bounced():
 		inflated_duration_timer.start()
 	else:
 		inflated_duration_timer.stop()
+
+func deactivate(next_state : State) -> void:
+	super(next_state)
+	change_collider_to(default_collider)

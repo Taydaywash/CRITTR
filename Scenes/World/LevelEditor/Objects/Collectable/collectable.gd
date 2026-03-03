@@ -7,7 +7,7 @@ var id: String = ""
 
 func _ready() -> void: 
 	if room_name == "":
-		room_name = get_tree().current_scene.name
+		room_name = get_parent().name
 	id = "%s_collectable_%s_%s" % [room_name, global_position.x, global_position.y]
 	if GameController.is_collected(id):
 		queue_free()

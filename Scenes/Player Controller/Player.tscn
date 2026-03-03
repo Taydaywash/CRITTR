@@ -240,6 +240,9 @@ size = Vector2(30.028448, 47.40741)
 custom_solver_bias = 1.0
 size = Vector2(71.11111, 5.92593)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avv4g"]
+size = Vector2(165.92592, 165.92592)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxerk"]
 size = Vector2(71.112, 142.22195)
 
@@ -633,7 +636,27 @@ decceleration_speed = 250.0
 color_return_speed = 0.2
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
 right_ray = NodePath("../../../WallJumpRayReference/RightRay")
+animation_name = null
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = null
+enter_sound_pitch_low = null
+enter_sound_pitch_high = null
+enter_sound_when_entering_from_state_sound = null
+enter_sound_when_entering_from_state_pitch_low = null
+enter_sound_when_entering_from_state_pitch_high = null
+while_in_state_sounds = null
+while_in_state_sound_low = null
+while_in_state_sound_high = null
+while_in_state_repeat_sound_after_seconds = null
+exit_sound_sounds = null
+exit_sound_pitch_low = null
+exit_sound_pitch_high = null
+enter_particle_particle_parent_to_player = null
+enter_particle_when_entering_from_state_particle = null
+enter_particle_when_entering_from_state_parent_to_player = null
+while_in_state_parent_to_player = null
+while_in_state_repeat_particle_after_seconds = null
+exit_particle_parent_to_player = null
 
 [node name="BounceAttack" type="Node" parent="StateMachine/Abilities" unique_id=60864109 node_paths=PackedStringArray("up_area", "down_area", "right_area", "left_area", "jump_input_buffer")]
 script = ExtResource("16_2bslk")
@@ -886,6 +909,11 @@ one_way_collision_margin = 128.0
 z_index = -1
 position = Vector2(-3.638091e-06, 3.7087334e-06)
 shape = ExtResource("36_uneaa")
+
+[node name="InflatedHitbox" type="CollisionShape2D" parent="." unique_id=1109653388]
+z_index = -1
+position = Vector2(0, -4.2385523e-06)
+shape = SubResource("RectangleShape2D_avv4g")
 
 [node name="CrouchedHitbox" type="CollisionShape2D" parent="." unique_id=982923523]
 z_index = -1

@@ -100,7 +100,6 @@ script = SubResource("GDScript_ssr24")
 
 [node name="Collectable" parent="." unique_id=1542823849 instance=ExtResource("6_ssr24")]
 position = Vector2(3520, -1792)
-room_name = "CrashedShip"
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

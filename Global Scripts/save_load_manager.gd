@@ -39,11 +39,7 @@ func load_options() -> Dictionary:
 		options = data.duplicate()
 	return options.duplicate()
 
-func save_game(collected_ids: Dictionary, total: int):
-	var data: Dictionary = {
-		"collected_ids": collected_ids,
-		"total_collectables": total
-	}
+func save_game(data):
 	var file = FileAccess.open(GAME_SAVE_PATH, FileAccess.WRITE)
 	file.store_var(data)
 	file.close()
@@ -54,7 +50,7 @@ func load_game() -> Dictionary:
 		var data = file.get_var()
 		file.close()
 		return data.duplicate(true)
-	return {"collected_ids": {}, "total_collectables": 0}
+	return GameController.BASE_GAME_STATE
 	
 func reset_game():
 	if FileAccess.file_exists(GAME_SAVE_PATH):
