@@ -34,7 +34,7 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate() as defined in state.gd and then also do:
 	jump_input_buffer.wait_time = jump_input_buffer_patience
 	
-	change_collider_to(jumping_hitbox)
+	#change_collider_to(jumping_hitbox)
 	jump_input_buffer.stop()
 	gravity = player.normal_gravity
 	player.velocity.y = -jump_velocity
@@ -96,7 +96,7 @@ func process_frame(delta) -> State:
 
 func deactivate(_next_state : State) -> void:
 	super(_next_state)
-	change_collider_to(default_hitbox)
+	#change_collider_to(default_hitbox)
 	nudge_right_range_left.target_position.y = -50
 	nudge_right_range_right.target_position.y = -50
 	nudge_left_range_right.target_position.y = -50

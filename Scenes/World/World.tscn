@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://cneyuseemoqek" path="res://Assets/Decals/Tundra/Background/many vines t.png" id="22_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://bm6vu2bqh8xgm" path="res://Assets/Decals/Tundra/Background/big t hill.png" id="23_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://vk7hdquyrbd5" path="res://Assets/Decals/Tundra/Background/vines t.png" id="24_2neov"]
+[ext_resource type="PackedScene" uid="uid://xown1ve0x1fq" path="res://Scenes/World/Regions/Crash Site/PeakEntrance.tscn" id="24_3a4wv"]
 [ext_resource type="PackedScene" uid="uid://1ixxyx000fqa" path="res://Scenes/Particle Controller/particle_controller.tscn" id="25_hlwfy"]
 [ext_resource type="PackedScene" uid="uid://08jwhgawobtu" path="res://Scenes/World/Regions/Misc/verticality.tscn" id="28_863yi"]
 
@@ -86,10 +87,36 @@ script = ExtResource("6_lqys3")
 music = ExtResource("7_qs546")
 map_color = Color(3.5616756e-06, 0.5399312, 0.71786386, 1)
 
-[node name="Parallax2D2" type="Parallax2D" parent="Rooms/CrashSite" unique_id=1845712591]
+[node name="Background" type="Node" parent="Rooms/CrashSite" unique_id=1056985531]
+
+[node name="Parallax2D" type="Parallax2D" parent="Rooms/CrashSite/Background" unique_id=1796784597]
+scroll_scale = Vector2(0.12, 0)
+scroll_offset = Vector2(0, 500)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/CrashSite/Background/Parallax2D" unique_id=304975404]
+z_index = -10
+position = Vector2(963, 128)
+scale = Vector2(1, 1.5600003)
+texture = ExtResource("19_vdgnt")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Rooms/CrashSite/Background" unique_id=1254982517]
+scroll_scale = Vector2(0.28, 0)
+scroll_offset = Vector2(0, 800)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/CrashSite/Background/Parallax2D2" unique_id=2079355000]
+z_index = -9
+position = Vector2(977, 0)
+scale = Vector2(1, 1.5999994)
+texture = ExtResource("20_3ql1f")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Rooms/CrashSite/Background" unique_id=1845712591]
 repeat_size = Vector2(1920, 1920)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Rooms/CrashSite/Parallax2D2" unique_id=1774029004]
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/CrashSite/Background/Parallax2D3" unique_id=1774029004]
 z_index = -11
 position = Vector2(2478, -2038.0002)
 scale = Vector2(166.31343, 159.33415)
@@ -161,6 +188,8 @@ position = Vector2(8704, -1344)
 zoom_to_fit = true
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/MovementTut" unique_id=1799397664]
+z_index = -2
+z_as_relative = false
 
 [node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=513726148]
 z_index = -1
@@ -187,6 +216,18 @@ z_index = -3
 position = Vector2(2704, 208)
 texture = ExtResource("23_c4j8x")
 
+[node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=911613774]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+position = Vector2(64, 256)
+texture = ExtResource("23_c4j8x")
+
+[node name="BigTHill5" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=1792563156]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+position = Vector2(-1600, 192)
+texture = ExtResource("23_c4j8x")
+
 [node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=349234284]
 z_index = -3
 position = Vector2(2960, 320)
@@ -200,6 +241,8 @@ position = Vector2(16256, -2624)
 camera_zoom = 0.0
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/Dive Tutorial" unique_id=1765794282]
+z_index = -2
+z_as_relative = false
 
 [node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=2140782923]
 z_index = -1
@@ -256,20 +299,30 @@ flip_h = true
 [node name="ToPeak" parent="Rooms/CrashSite" unique_id=257892768 instance=ExtResource("14_7in0u")]
 z_as_relative = false
 position = Vector2(-1664, -1344)
-hidden_room = true
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/ToPeak" unique_id=15429139]
+z_index = -2
+z_as_relative = false
 
 [node name="TundraHill" type="Sprite2D" parent="Rooms/CrashSite/ToPeak/BackgroundElements" unique_id=809754195]
-z_index = -2
-position = Vector2(-128, 128)
+modulate = Color(0.58, 0.58, 0.58, 1)
+z_index = 1
+position = Vector2(-896, 64)
 texture = ExtResource("21_eucu0")
+
+[node name="BigTHill2" type="Sprite2D" parent="Rooms/CrashSite/ToPeak/BackgroundElements" unique_id=737670699]
+modulate = Color(0.44, 0.44, 0.44, 1)
+z_index = -3
+position = Vector2(-128, 64)
+texture = ExtResource("23_c4j8x")
 
 [node name="Platforms2" parent="Rooms/CrashSite" unique_id=449353625 instance=ExtResource("19_hlwfy")]
 z_as_relative = false
 position = Vector2(8704, -3904)
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/Platforms2" unique_id=774770628]
+z_index = -2
+z_as_relative = false
 
 [node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/Platforms2/BackgroundElements" unique_id=1782961967]
 z_index = -1
@@ -320,6 +373,9 @@ flip_h = true
 z_as_relative = false
 position = Vector2(2944, -4160)
 zoom_to_fit = true
+
+[node name="PeakEntrance" parent="Rooms/CrashSite" unique_id=325262007 instance=ExtResource("24_3a4wv")]
+position = Vector2(-6272, -3904)
 
 [node name="Miscellaneous" type="Node" parent="Rooms" unique_id=1513619106]
 script = ExtResource("6_lqys3")
@@ -398,32 +454,6 @@ position = Vector2(645, 407)
 player = NodePath("../../Player")
 rooms_manager = NodePath("../../Rooms")
 current_region = NodePath("../../Rooms/Testing")
-
-[node name="Background" type="Node2D" parent="." unique_id=2056885657]
-
-[node name="Parallax2D" type="Parallax2D" parent="Background" unique_id=1796784597]
-scroll_scale = Vector2(0.12, 0)
-scroll_offset = Vector2(0, 500)
-repeat_size = Vector2(1920, 0)
-repeat_times = 3
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D" unique_id=304975404]
-z_index = -10
-position = Vector2(963, 128)
-scale = Vector2(1, 1.5600003)
-texture = ExtResource("19_vdgnt")
-
-[node name="Parallax2D2" type="Parallax2D" parent="Background" unique_id=1254982517]
-scroll_scale = Vector2(0.28, 0)
-scroll_offset = Vector2(0, 800)
-repeat_size = Vector2(1920, 0)
-repeat_times = 3
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2" unique_id=2079355000]
-z_index = -9
-position = Vector2(977, 0)
-scale = Vector2(1, 1.5999994)
-texture = ExtResource("20_3ql1f")
 
 [node name="AudioManager" parent="." unique_id=152850687 instance=ExtResource("21_3ql1f")]
 process_mode = 3

@@ -18,6 +18,11 @@ extends State
 @export var high_left_ray: RayCast2D
 @export var low_right_ray: RayCast2D
 @export var low_left_ray: RayCast2D
+@export_category("Corner Nudging Raycasts")
+@export var nudge_right_range_left: RayCast2D
+@export var nudge_right_range_right: RayCast2D
+@export var nudge_left_range_left: RayCast2D
+@export var nudge_left_range_right: RayCast2D
 
 var gravity : int
 var max_falling_speed : int
@@ -61,6 +66,11 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
+	nudge_right_range_left.target_position.y = player.velocity.y / 15
+	nudge_right_range_right.target_position.y = player.velocity.y / 15
+	nudge_left_range_right.target_position.y = player.velocity.y / 15
+	nudge_left_range_left.target_position.y = player.velocity.y / 15
+	
 	if player.velocity.y < max_falling_speed:
 		player.velocity.y += gravity * delta
 	
@@ -71,7 +81,10 @@ func process_physics(delta) -> State:
 		player.velocity.x = player.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
 	
 	player.move_and_slide()
-	
+	if nudge_right_range_left.is_colliding() and not nudge_right_range_right.is_colliding() and not player.velocity.x < 0:
+		player.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
+	if nudge_left_range_right.is_colliding() and not nudge_left_range_left.is_colliding() and not player.velocity.x > 0:
+		player.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
 	if (left_ray.is_colliding() or right_ray.is_colliding()):
 		if jump_input_buffer.time_left > 0:
 			return self
@@ -83,3 +96,10 @@ func process_physics(delta) -> State:
 		else:
 			return idle_state
 	return null
+
+func deactivate(next_state : State) -> void:
+	super(next_state)
+	nudge_right_range_left.target_position.y = -50
+	nudge_right_range_right.target_position.y = -50
+	nudge_left_range_right.target_position.y = -50
+	nudge_left_range_left.target_position.y = -50
