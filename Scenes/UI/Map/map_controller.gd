@@ -31,7 +31,7 @@ func show_map(should_show : bool) -> void:
 
 func _ready() -> void:
 	for child in rooms_manager.get_children():
-		if child.get_class() == "Node": #If child is a region
+		if child is Region:
 			for room in child.get_children(): 
 				var region_instance = base_map_reigon.instantiate()
 				viewport.add_child(region_instance)

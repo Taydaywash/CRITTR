@@ -6,17 +6,17 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dd3c"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="UI" type="CanvasLayer"]
+[node name="UI" type="CanvasLayer" unique_id=1108854954]
 script = ExtResource("1_6dd3c")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=2113646895]
 custom_minimum_size = Vector2(100, 100)
 offset_left = 1102.0
 offset_right = 1152.0
 offset_bottom = 50.0
 grow_horizontal = 0
 
-[node name="Panel" type="TextureRect" parent="Panel"]
+[node name="Panel" type="TextureRect" parent="Panel" unique_id=255661873]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
 anchors_preset = 5
@@ -30,7 +30,7 @@ rotation = -1.5707964
 pivot_offset = Vector2(15, 15)
 texture = ExtResource("2_dhe1o")
 
-[node name="Panel2" type="TextureRect" parent="Panel"]
+[node name="Panel2" type="TextureRect" parent="Panel" unique_id=277596100]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
 anchors_preset = 4
@@ -43,7 +43,7 @@ grow_vertical = 2
 texture = ExtResource("2_dhe1o")
 flip_h = true
 
-[node name="Panel3" type="TextureRect" parent="Panel"]
+[node name="Panel3" type="TextureRect" parent="Panel" unique_id=138324052]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
 anchors_preset = 7
@@ -60,7 +60,7 @@ rotation = 1.5707964
 pivot_offset = Vector2(15, 15)
 texture = ExtResource("2_dhe1o")
 
-[node name="Panel4" type="TextureRect" parent="Panel"]
+[node name="Panel4" type="TextureRect" parent="Panel" unique_id=1998480326]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
 anchors_preset = 6
@@ -75,8 +75,8 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("2_dhe1o")
 
-[node name="ScreenOverlay" type="Panel" parent="."]
-modulate = Color(0, 0, 0, 0)
+[node name="ScreenOverlay" type="Panel" parent="." unique_id=630393572]
+modulate = Color(0, 0, 0, 1)
 offset_right = 1152.0
 offset_bottom = 704.0
 mouse_filter = 2

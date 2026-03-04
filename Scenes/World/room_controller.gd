@@ -27,7 +27,7 @@ var bounds : Dictionary = {
 func get_respawn_point():
 	for child in get_children():
 		if child is RespawnPoint:
-			return child
+			return child.get_respawn_point()
 
 func _entered_room_collider(_body: Node2D) -> void:
 	room_transition_controller.transition_room(self)

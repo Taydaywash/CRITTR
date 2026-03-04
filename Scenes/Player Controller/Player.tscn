@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cxown2b2jsdny" path="res://Scenes/Player Controller/States/looking_up.gd" id="4_jl1s5"]
 [ext_resource type="Script" uid="uid://byqbtsbtphuth" path="res://Scenes/Player Controller/States/no_control_no_gravity.gd" id="4_kmmsh"]
 [ext_resource type="Script" uid="uid://5v8bgvkdmtcc" path="res://Scenes/Player Controller/States/idle_crouching.gd" id="5_3imdl"]
+[ext_resource type="Script" uid="uid://d3wui68k4q5nf" path="res://Scenes/Player Controller/States/spawning.gd" id="5_nb83h"]
 [ext_resource type="Script" uid="uid://cm5l3ivbnb55g" path="res://Scenes/Player Controller/States/state_machine.gd" id="5_v55cd"]
 [ext_resource type="AudioStream" uid="uid://csxgy17oibmrs" path="res://Assets/Sound Effects/Player/Jump/player_jump.ogg" id="6_74b0n"]
 [ext_resource type="Script" uid="uid://cnyjhmvsy4x2m" path="res://Scenes/Player Controller/States/idle.gd" id="6_dpx4d"]
@@ -200,6 +201,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("29_fbx8n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_obod2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_mofwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_31xm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_4nigc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_qtpvk")
+}],
+"loop": false,
+"name": &"spawning",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("21_068uq")
 }, {
 "duration": 1.0,
@@ -247,7 +271,7 @@ size = Vector2(165.92592, 165.92592)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxerk"]
 size = Vector2(71.112, 142.22195)
 
-[node name="PlayerController" type="CharacterBody2D" unique_id=1758587224 node_paths=PackedStringArray("state_machine", "camera", "up", "down", "left", "right")]
+[node name="PlayerController" type="CharacterBody2D" unique_id=1758587224 node_paths=PackedStringArray("state_machine", "camera", "up", "down", "left", "right", "animated_player_sprite")]
 scale = Vector2(1.35, 1.35)
 collision_layer = 8
 collision_mask = 81
@@ -263,12 +287,14 @@ left = NodePath("RoomTransitionSides/left")
 right = NodePath("RoomTransitionSides/right")
 normal_gravity = 3250
 max_falling_speed = 2000
+animated_player_sprite = NodePath("AnimatedPlayerSprite")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1436004704 node_paths=PackedStringArray("no_control_state", "no_control_no_gravity_state", "death_state", "jumping_state", "crouching_state", "idle_crouching_state", "idle_state", "looking_up_state", "walking_state", "diving_state", "diving_falling_state", "bonked_state", "wall_cling_state", "wall_jumping_state", "falling_state", "ascending_state", "ability_state", "dashing_state", "grappling_pull_state", "inflated_state", "climbing_slide_state", "digging_state", "bounce_attack_state", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
+[node name="StateMachine" type="Node" parent="." unique_id=1436004704 node_paths=PackedStringArray("no_control_state", "no_control_no_gravity_state", "death_state", "spawning_state", "jumping_state", "crouching_state", "idle_crouching_state", "idle_state", "looking_up_state", "walking_state", "diving_state", "diving_falling_state", "bonked_state", "wall_cling_state", "wall_jumping_state", "falling_state", "ascending_state", "ability_state", "dashing_state", "grappling_pull_state", "inflated_state", "climbing_slide_state", "digging_state", "bounce_attack_state", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
 script = ExtResource("5_v55cd")
 no_control_state = NodePath("NoControl")
 no_control_no_gravity_state = NodePath("NoControlNoGravity")
 death_state = NodePath("Death")
+spawning_state = NodePath("Spawning")
 jumping_state = NodePath("Jumping")
 crouching_state = NodePath("Crouching")
 idle_crouching_state = NodePath("Crouching/IdleCrouching")
@@ -300,6 +326,11 @@ script = ExtResource("3_jl1s5")
 
 [node name="NoControlNoGravity" type="Node" parent="StateMachine" unique_id=1016498393]
 script = ExtResource("4_kmmsh")
+
+[node name="Spawning" type="Node" parent="StateMachine" unique_id=2008512285]
+script = ExtResource("5_nb83h")
+animation_name = "spawning"
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Death" type="Node" parent="StateMachine" unique_id=1238038414]
 script = ExtResource("4_4nigc")
@@ -511,9 +542,9 @@ nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 animation_name = "falling"
 placeholder_animation_color = Color(1, 1, 1, 1)
 exit_sound_sounds = Array[AudioStream]([ExtResource("18_k212d")])
-exit_sound_excluded_states = [NodePath("../Diving"), NodePath("../Abilities"), NodePath("../WallCling"), NodePath("../WallCling/WallJumping")]
+exit_sound_excluded_states = [NodePath("../Diving"), NodePath("../Abilities"), NodePath("../WallCling"), NodePath("../WallCling/WallJumping"), NodePath("../Death")]
 exit_particle_particle = ExtResource("19_k212d")
-exit_particle_excluded_states = [NodePath("../Diving"), NodePath("../Abilities")]
+exit_particle_excluded_states = [NodePath("../Diving"), NodePath("../Abilities"), NodePath("../Death"), NodePath("../WallCling"), NodePath("../WallCling/WallJumping")]
 
 [node name="Ascending" type="Node" parent="StateMachine" unique_id=103182494 node_paths=PackedStringArray("right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("11_evkiq")
@@ -774,6 +805,7 @@ default_color = Color(1, 0.43460146, 0.9889626, 1)
 script = ExtResource("37_jxerk")
 player = NodePath("..")
 ground_distance_ray = NodePath("../GroundDistancerRay")
+player_respawn_wait_time = 0.5
 
 [node name="JumpInputBuffer" type="Timer" parent="." unique_id=764513886]
 one_shot = true
@@ -852,8 +884,10 @@ script = ExtResource("21_3imdl")
 default_zoom = 0.27
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
+position = Vector2(0, 70)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"idle"
+animation = &"death"
+offset = Vector2(0, -70)
 
 [node name="TriggerHitbox" type="Area2D" parent="." unique_id=936426999]
 visible = false

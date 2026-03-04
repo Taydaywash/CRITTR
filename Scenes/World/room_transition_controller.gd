@@ -50,9 +50,8 @@ var exited_previous_room : bool = false
 func _ready() -> void:
 	player_control_regain = Timer.new()
 	player_control_regain.wait_time = player_control_regain_delay
-	player_control_regain.one_shot = true
-	self.add_child(player_control_regain)
-	player.global_position = starting_room.get_respawn_point().global_position
+	await player_control_regain.timeout
+	player.global_position = starting_room.get_respawn_point()
 	current_room = starting_room
 
 func transition_room(room : Room): #called when entering room collider from room_controller.gd
@@ -131,7 +130,7 @@ func _process(delta: float) -> void:
 		return
 	if respawning:
 		player.set_deferred("position",respawn_position)
-		state_machine.call_deferred("force_change_state", state_machine.falling_state)
+		state_machine.call_deferred("force_change_state", state_machine.spawning_state, false)
 		respawning = false
 		return
 	if entered_from_door:

@@ -20,23 +20,19 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_iuho1")
 camera_zoom = 0.36
 
-[node name="Default spawn" parent="." unique_id=3531767 instance=ExtResource("2_6s1wo")]
-position = Vector2(3200, 448)
-scale = Vector2(0.96476686, -0.25500405)
-
-[node name="RespawnPoint2" parent="." unique_id=1192956774 instance=ExtResource("2_6s1wo")]
+[node name="RightEntrance" parent="." unique_id=1192956774 instance=ExtResource("2_6s1wo")]
 position = Vector2(3200, 128)
-scale = Vector2(0.96476686, -1.5350037)
+scale = Vector2(0.965, 1.535)
 
-[node name="RespawnPoint" parent="." unique_id=70675444 instance=ExtResource("2_6s1wo")]
-position = Vector2(192, -64.000015)
-scale = Vector2(0.87355703, -1.8076751)
+[node name="BeforeJumps" parent="." unique_id=70675444 instance=ExtResource("2_6s1wo")]
+position = Vector2(192, 127.99997)
+scale = Vector2(0.874, 1.808)
 
-[node name="RespawnPoint4" parent="." unique_id=677555792 instance=ExtResource("2_6s1wo")]
+[node name="LowerEntrance" parent="." unique_id=677555792 instance=ExtResource("2_6s1wo")]
 position = Vector2(-512, 640)
-scale = Vector2(7.746713, -0.123961076)
+scale = Vector2(7.747, 0.124)
 
-[node name="RespawnPoint3" parent="." unique_id=390716640 instance=ExtResource("2_6s1wo")]
+[node name="LeftEntrance" parent="." unique_id=390716640 instance=ExtResource("2_6s1wo")]
 position = Vector2(-3200, -640)
 scale = Vector2(0.98102, 0.7768048)
 

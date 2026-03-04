@@ -48,6 +48,7 @@ extends Node
 var no_control_state : State
 var no_control_no_gravity_state : State
 var death_state : State
+var spawning_state : State
 var jumping_state : State
 var crouching_state : State
 var idle_crouching_state : State
@@ -83,7 +84,7 @@ func set_direction(_direction : String) -> void:
 func activate(last_state : State) -> void:
 	#Reparents Rays to player so that they follow the player
 	for child in get_children():
-		if child.get_class() == "RayCast2D":
+		if child is RayCast2D:
 			child.reparent(player, false)
 		if child is Area2D: 
 			child.reparent(player, false)

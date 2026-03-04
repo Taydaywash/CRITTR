@@ -7,6 +7,7 @@ extends Node
 @export var no_control_state : State
 @export var no_control_no_gravity_state : State
 @export var death_state : State
+@export var spawning_state : State
 @export var jumping_state : State
 @export var crouching_state : State
 @export var idle_crouching_state : State
@@ -46,7 +47,7 @@ var last_state
 #reference and propagating it to each state
 func check_children(parent : Node) -> void: 
 	for child in parent.get_children():
-		if child.get_class() != "Node":
+		if child is not State:
 			return
 		child.player = player_reference
 		child.audio_controller = audio_controller_reference
@@ -57,6 +58,7 @@ func check_children(parent : Node) -> void:
 		child.no_control_state = no_control_state
 		child.no_control_no_gravity_state = no_control_no_gravity_state
 		child.death_state = death_state
+		child.spawning_state = spawning_state
 		child.jumping_state = jumping_state
 		child.crouching_state = crouching_state
 		child.idle_crouching_state = idle_crouching_state
@@ -104,7 +106,7 @@ func change_state(new_state : State, direction = null, discrete : bool = false) 
 	if direction:
 		current_state.set_direction(direction)
 		for child in current_state.get_children():
-			if child.get_class() == "Node": 
+			if child is State: 
 				child.set_direction(direction)
 	if not discrete:
 		current_state.activate(last_state)
@@ -133,5 +135,5 @@ func process_frame(delta) -> void:
 	var new_state = current_state.process_frame(delta)
 	if new_state:
 		change_state(new_state)
-func force_change_state(state : State): #Must be called with the call_deferred method to work properly
-	change_state(state, null, true)
+func force_change_state(state : State, discrete : bool = true): #Must be called with the call_deferred method to work properly
+	change_state(state, null, discrete)
