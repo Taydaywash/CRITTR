@@ -2,11 +2,13 @@ extends State
 
 #States that Jumping can transition to:
 @export_category("Parameters")
-@export var air_control : int
+@export var move_speed : int
 @export var jump_velocity : int
 @export var jump_cancellation : int
-@export var air_acceleration_speed : int
-@export var air_decceleration_speed : int
+@export var acceleration_speed : int
+@export var decceleration_speed : int
+##Used when moving faster than move_speed
+@export var high_velocity_decceleration_speed : int 
 @export_category("Jump Input Buffer")
 @export var jump_input_buffer : Timer
 @export var jump_input_buffer_patience : float
@@ -65,10 +67,13 @@ func process_physics(delta) -> State:
 		player.velocity.y += gravity * delta
 	
 	horizontal_input = int(Input.get_axis("move_left","move_right"))
-	if (abs(player.velocity.x) < air_control) or (sign(horizontal_input) != sign(player.velocity.x)):
-		player.velocity.x += air_acceleration_speed * delta * horizontal_input
-	if horizontal_input == 0:
-		player.velocity.x = player.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
+	if (abs(player.velocity.x) <= move_speed) and horizontal_input:
+		player.velocity.x = player.velocity.move_toward(Vector2(move_speed * horizontal_input,player.velocity.y)
+																, acceleration_speed * delta).x
+	elif sign(horizontal_input) == sign(player.velocity.x):
+		player.velocity.x = player.velocity.move_toward(Vector2(0,0),high_velocity_decceleration_speed * delta).x
+	else:
+		player.velocity.x = player.velocity.move_toward(Vector2(0,0),decceleration_speed * delta).x
 	player.move_and_slide()
 	
 	if player.velocity.y > 0:

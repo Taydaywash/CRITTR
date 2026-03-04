@@ -148,7 +148,8 @@ func loop_sound() -> void:
 	while audio_loop_timer:
 		await audio_loop_timer.timeout
 		audio_controller.play_sound(while_in_state_sounds.pick_random(), while_in_state_sound_low, while_in_state_sound_high)
-		audio_loop_timer.start()
+		if audio_loop_timer:
+			audio_loop_timer.start()
 
 func loop_particle() -> void:
 	particle_loop_timer = Timer.new()

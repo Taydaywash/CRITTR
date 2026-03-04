@@ -35,6 +35,11 @@ func _exited_room_collider(_body: Node2D) -> void:
 	pass
 	#room_transition_controller.exited_room_collider(self)
 
+func _process(_delta: float) -> void:
+	if room_transition_controller.current_room == self:
+		room_transition_controller.play_music(room_transition_controller.current_room.region.music)
+		z_index = 2
+
 func enter_room():
 	change_camera_bounds()
 	room_visited = true

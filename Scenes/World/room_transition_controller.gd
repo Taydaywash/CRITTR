@@ -45,6 +45,7 @@ var enter_direction : String = ""
 var pre_transition_state : State
 var pre_transition_velocity : Vector2
 var entered_from_door : bool = false
+var exited_previous_room : bool = false
 
 func _ready() -> void:
 	player_control_regain = Timer.new()
@@ -139,7 +140,7 @@ func _process(delta: float) -> void:
 	screen_is_black = false
 	fade_to_clear = true
 
-var exited_previous_room : bool = false
+
 func _physics_process(_delta: float) -> void:
 	if not transtioning_room:
 		exited_previous_room = false

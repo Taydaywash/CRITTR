@@ -308,11 +308,12 @@ placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Jumping" type="Node" parent="StateMachine" unique_id=2088144188 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "default_hitbox", "jumping_hitbox", "enter_particle_when_entering_from_state_state")]
 script = ExtResource("8_2fk5g")
-air_control = 800
+move_speed = 800
 jump_velocity = 1500
 jump_cancellation = 2
-air_acceleration_speed = 10000
-air_decceleration_speed = 10000
+acceleration_speed = 20000
+decceleration_speed = 10000
+high_velocity_decceleration_speed = 250
 jump_input_buffer = NodePath("../../JumpInputBuffer")
 jump_input_buffer_patience = 0.2
 y_sprite_stretch_multiplier = 1.0
@@ -395,9 +396,10 @@ placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="Walking" type="Node" parent="StateMachine" unique_id=884465542 node_paths=PackedStringArray("right_ray", "left_ray")]
 script = ExtResource("7_hueom")
-walk_speed = 800
-acceleration_speed = 10000
+move_speed = 800
+acceleration_speed = 20000
 decceleration_speed = 10000
+high_velocity_decceleration_speed = 3000
 right_ray = NodePath("../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "walking"
@@ -408,7 +410,7 @@ while_in_state_repeat_sound_after_seconds = 0.3
 [node name="Diving" type="Node" parent="StateMachine" unique_id=1646142929 node_paths=PackedStringArray("jump_input_buffer")]
 script = ExtResource("9_gnv43")
 dive_horizontal_additive_velocity = 100
-dive_horizontal_default_velocity = 800
+dive_horizontal_default_velocity = 1000
 dive_vertical_velocity = 800
 max_diving_speed = 1500
 jump_input_buffer = NodePath("../../JumpInputBuffer")
@@ -464,12 +466,14 @@ placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="WallJumping" type="Node" parent="StateMachine/WallCling" unique_id=1649015882 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "high_right_ray", "high_left_ray", "low_right_ray", "low_left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "enter_particle_when_entering_from_state_state")]
 script = ExtResource("10_dpx4d")
+move_speed = 800
 wall_jump_horizontal_velocity = 1000
 wall_jump_vertical_velocity = 1250
 wall_dash_jump_vertical_velocity = 1500
 jump_cancellation = 2
-air_acceleration_speed = 1000
-air_decceleration_speed = 1000
+acceleration_speed = 500
+decceleration_speed = 2000
+high_velocity_decceleration_speed = 250
 jump_input_buffer = NodePath("../../../JumpInputBuffer")
 jump_input_buffer_patience = 0.2
 right_ray = NodePath("../../../WallJumpRayReference/RightRay")
@@ -491,9 +495,10 @@ enter_particle_when_entering_from_state_parent_to_player = Array[bool]([true])
 
 [node name="Falling" type="Node" parent="StateMachine" unique_id=18701263 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left", "exit_sound_excluded_states", "exit_particle_excluded_states")]
 script = ExtResource("11_v55cd")
-air_control = 800
-air_acceleration_speed = 10000
-air_decceleration_speed = 2000
+move_speed = 800
+acceleration_speed = 20000
+decceleration_speed = 10000
+high_velocity_decceleration_speed = 250
 coyote_time_patience = 0.15
 jump_input_buffer = NodePath("../../JumpInputBuffer")
 jump_input_buffer_patience = 0.2
