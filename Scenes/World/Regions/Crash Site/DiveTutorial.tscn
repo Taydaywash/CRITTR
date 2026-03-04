@@ -36,9 +36,13 @@ script = ExtResource("1_cpfpd")
 camera_zoom = 0.36
 metadata/_edit_vertical_guides_ = [-640.0]
 
-[node name="LeftEntrance" parent="." unique_id=1254092554 instance=ExtResource("2_xqnq5")]
-position = Vector2(-3840, -447.99994)
-scale = Vector2(1, 4.640001)
+[node name="LeftEntranceBottom" parent="." unique_id=1254092554 instance=ExtResource("2_xqnq5")]
+position = Vector2(-3840, 815.99994)
+scale = Vector2(1, 1.6399996)
+
+[node name="LeftEntranceTop" parent="." unique_id=3531767 instance=ExtResource("2_xqnq5")]
+position = Vector2(-3840, -1279.9999)
+scale = Vector2(1, 1.0400026)
 
 [node name="RightEntrance" parent="." unique_id=758791675 instance=ExtResource("2_xqnq5")]
 position = Vector2(3776, 128)
