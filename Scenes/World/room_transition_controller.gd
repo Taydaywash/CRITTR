@@ -204,15 +204,15 @@ func return_to_state():
 	state_machine.call_deferred("force_change_state",pre_transition_state)
 
 func set_up_room_detection_rays():
-	room_distance_detection_ray_up.target_position = Vector2(0, -up_enter_minimum_distance_from_last_room)
-	room_distance_detection_ray_down.target_position = Vector2(0, down_enter_minimum_distance_from_last_room)
+	room_distance_detection_ray_up.target_position = Vector2(0, -down_enter_minimum_distance_from_last_room)
+	room_distance_detection_ray_down.target_position = Vector2(0, up_enter_minimum_distance_from_last_room)
 	room_distance_detection_ray_left.target_position = Vector2(-horizontal_enter_minimum_distance_from_last_room, 0)
 	room_distance_detection_ray_right.target_position = Vector2(horizontal_enter_minimum_distance_from_last_room, 0)
 	hit_from_inside()
 
 func reset_room_detection_rays():
-	room_distance_detection_ray_up.target_position = Vector2(0, -up_enter_default_length)
-	room_distance_detection_ray_down.target_position = Vector2(0, down_enter_default_length)
+	room_distance_detection_ray_up.target_position = Vector2(0, -down_enter_default_length)
+	room_distance_detection_ray_down.target_position = Vector2(0, up_enter_default_length)
 	room_distance_detection_ray_left.target_position = Vector2(-horizontal_enter_default_length, 0)
 	room_distance_detection_ray_right.target_position = Vector2(horizontal_enter_default_length, 0)
 	force_all_raycast_updates()
