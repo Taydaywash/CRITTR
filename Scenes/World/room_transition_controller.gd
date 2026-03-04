@@ -1,27 +1,33 @@
 @icon("res://Assets/Editor Icons/Gear Icon.png")
 extends Node
+@export_category("Debug")
+@export var starting_room : Room
 @export_category("References")
 @export var ui: UI
 @export var player: Player
 @export var audio_controller : AudioListener2D
-var state_machine : StateMachine
-@onready var up_ray: RayCast2D = $"../Player/RoomTransitionSides/up"
-@onready var down_ray: RayCast2D = $"../Player/RoomTransitionSides/down"
-@onready var left_ray: RayCast2D = $"../Player/RoomTransitionSides/left"
-@onready var right_ray: RayCast2D = $"../Player/RoomTransitionSides/right"
+@export var state_machine : StateMachine
+@export var current_room_detection_ray: RayCast2D
+@export_group("Room Distance Rays","room_distance_detection_ray_")
+@export var room_distance_detection_ray_up: RayCast2D
+@export var room_distance_detection_ray_down: RayCast2D
+@export var room_distance_detection_ray_left: RayCast2D
+@export var room_distance_detection_ray_right: RayCast2D
 @export_category("Parameters")
-@export var crash_room : Room
-@export var starting_room : Room
+@export_group("Horizontal Enter","horizontal_enter_")
 @export var horizontal_enter_velocity : float
-@export var horizontal_enter_multiplier : float
-@export var minimum_enter_velocity : float
+@export var horizontal_enter_minimum_enter_velocity : float
+@export var horizontal_enter_minimum_distance_from_last_room : float
+@export var horizontal_enter_default_length : float
+@export_group("Up Enter","up_enter_")
 @export var up_enter_velocity : float
-@export var up_enter_multiplier : float
+@export var up_enter_minimum_distance_from_last_room : float
+@export var up_enter_default_length : float
+@export_group("Down Enter","down_enter_")
 @export var down_enter_velocity : float
-@export var down_enter_multiplier : float
-@export var horizontal_minimum_distance_from_last_room : float
-@export var up_minimum_distance_from_last_room : float
-@export var down_minimum_distance_from_last_room : float
+@export var down_enter_minimum_distance_from_last_room : float
+@export var down_enter_default_length : float
+@export_group("Misc")
 @export var screen_fade_speed : float
 @export var player_control_regain_delay : float
 
@@ -29,189 +35,187 @@ var player_control_regain : Timer
 var current_room : Room = null
 var previous_room : Room = null
 var screen_is_black : bool = false
-var state_controller
-var fade_in : bool = false
-var fade_out : bool = false
-var transtiioning_room : bool = false
-
+var fade_to_black : bool = false
+var fade_to_clear : bool = false
+var transtioning_room : bool = false
 var respawning : bool = false
 var respawn_position : Vector2
-
-var entering_from_below : bool = false
-var entering_from_above : bool = false
-var entering_from_right : bool = false
-var entering_from_left : bool = false
-var room_up : Room
-var room_down : Room
-var room_left : Room
-var room_right : Room
-var exited_previous_room : bool = false
+var enter_direction : String = ""
 
 var pre_transition_state : State
 var pre_transition_velocity : Vector2
+var entered_from_door : bool = false
 
 func _ready() -> void:
-	state_machine = player.state_machine
-	
 	player_control_regain = Timer.new()
 	player_control_regain.wait_time = player_control_regain_delay
 	player_control_regain.one_shot = true
 	self.add_child(player_control_regain)
-	
 	player.global_position = starting_room.get_respawn_point().global_position
-	#current_room = starting_room
-	current_room = crash_room
-	current_room.enter_room()
+	current_room = starting_room
 
-func entered_room(room : Room):
-	if room == current_room:
+func transition_room(room : Room): #called when entering room collider from room_controller.gd
+	pre_transition_velocity = player.velocity
+	pre_transition_state = state_machine.current_state
+	previous_room = current_room_detection_ray.get_collider().get_parent()
+	enter_direction = get_enter_direction(room)
+	if not enter_direction: #Entered from door or was spawned
+		fade_to_black = true
+		entered_from_door = true
+		print("entered from door")
 		return
-	exited_previous_room = false
-	transtiioning_room = true
-	fade_in = true
-	if player.up.get_collider():
-		room_up = player.up.get_collider().get_parent()
-	if player.down.get_collider():
-		room_down = player.down.get_collider().get_parent()
-	if player.left.get_collider():
-		room_left = player.left.get_collider().get_parent()
-	if player.right.get_collider():
-		room_right = player.right.get_collider().get_parent()
-	transition_room()
+	state_machine.call_deferred("force_change_state", state_machine.no_control_no_gravity_state)
+	set_up_room_detection_rays()
+	transtioning_room = true
+	fade_to_black = true
+	
+func get_enter_direction(room : Room) -> String:
+	dont_hit_from_inside()
+	reset_room_detection_rays()
+	if not room_distance_detection_ray_up.get_collider() and not room_distance_detection_ray_down.get_collider() and not room_distance_detection_ray_left.get_collider() and not room_distance_detection_ray_right.get_collider():
+		return ""
+	if room_distance_detection_ray_up.get_collider(): 
+		if room_distance_detection_ray_up.get_collider().get_parent() == room:
+			return "up"
+	if room_distance_detection_ray_down.get_collider():
+		if room_distance_detection_ray_down.get_collider().get_parent() == room:
+			return "down"
+	if room_distance_detection_ray_left.get_collider():
+		if room_distance_detection_ray_left.get_collider().get_parent() == room:
+			return "left"
+	if room_distance_detection_ray_right.get_collider():
+		if room_distance_detection_ray_right.get_collider().get_parent() == room:
+			return "right"
+	return ""
 
-func exited_room(_room : Room):
-	exited_previous_room = true
-
+func dont_hit_from_inside():
+	room_distance_detection_ray_up.hit_from_inside = false
+	room_distance_detection_ray_down.hit_from_inside = false
+	room_distance_detection_ray_left.hit_from_inside = false
+	room_distance_detection_ray_right.hit_from_inside = false
+	force_all_raycast_updates()
+func hit_from_inside():
+	room_distance_detection_ray_up.hit_from_inside = true
+	room_distance_detection_ray_down.hit_from_inside = true
+	room_distance_detection_ray_left.hit_from_inside = true
+	room_distance_detection_ray_right.hit_from_inside = true
+	force_all_raycast_updates()
+	
+func force_all_raycast_updates():
+	room_distance_detection_ray_up.force_raycast_update()
+	room_distance_detection_ray_down.force_raycast_update()
+	room_distance_detection_ray_left.force_raycast_update()
+	room_distance_detection_ray_right.force_raycast_update()
+	
 func respawn(respawn_pos):
 	respawning = true
-	fade_in = true
+	fade_to_black = true
 	respawn_position = respawn_pos
 
 func _process(delta: float) -> void:
-	if fade_in:
-		fade_out = false
+	if fade_to_black:
 		ui.increment_fade_in(delta,screen_fade_speed)
 		if ui.screen_is_black():
 			screen_is_black = true
-			fade_in = false
-	if screen_is_black:
-		if respawning:
-			player.set_deferred("position",respawn_position)
-			state_machine.call_deferred("force_change_state", state_machine.falling_state)
-			fade_out = true
-			respawning = false
-		if transtiioning_room:
-			change_room()
-			fade_out = true
-			transtiioning_room = false
-		screen_is_black = false
-	if fade_out:
-		fade_in = false
+			fade_to_black = false
+		return
+	if fade_to_clear:
 		ui.increment_fade_out(delta,screen_fade_speed)
 		if ui.screen_is_clear():
-			fade_out = false
+			fade_to_clear = false
+		return
+	if not screen_is_black:
+		return
+	if transtioning_room:
+		return
+	if respawning:
+		player.set_deferred("position",respawn_position)
+		state_machine.call_deferred("force_change_state", state_machine.falling_state)
+		respawning = false
+		return
+	if entered_from_door:
+		finished_transitioning()
+		entered_from_door = false
+	screen_is_black = false
+	fade_to_clear = true
 
+var exited_previous_room : bool = false
 func _physics_process(_delta: float) -> void:
-	var collision_point : Vector2
-	if entering_from_below:
-		if not exited_previous_room:
+	if not transtioning_room:
+		exited_previous_room = false
+		return
+	if not is_ray_inside_previous_room() and not exited_previous_room:
+		dont_hit_from_inside()
+		exited_previous_room = true
+	match enter_direction:
+		"up":
+			if not room_distance_detection_ray_down.is_colliding():
+				finished_transitioning()
+				return
 			player.velocity.y = -up_enter_velocity
-			return
-		if player.down.is_colliding():
-			player.velocity.y = -up_enter_velocity
-		else:
-			return_to_state()
-			entering_from_below = false
-			reset_room_detection_rays()
-	elif entering_from_above:
-		if not exited_previous_room:
+		"down":
+			if not room_distance_detection_ray_up.is_colliding():
+				finished_transitioning()
+				return
 			player.velocity.y = down_enter_velocity
-			return
-		if player.up.is_colliding():
-			pass
-		else:
-			return_to_state()
-			entering_from_above = false
-			reset_room_detection_rays()
-	elif entering_from_right:
-		if not exited_previous_room:
+		"left":
+			if not room_distance_detection_ray_right.is_colliding():
+				finished_transitioning()
+				return
+			player.velocity.y = 0
 			player.velocity.x = -horizontal_enter_velocity
-			return
-		if player.right.is_colliding():
-			collision_point = abs(player.right.to_local(player.right.get_collision_point()))
-			player.velocity.x = -(abs(collision_point.x - horizontal_minimum_distance_from_last_room) + minimum_enter_velocity)
-			player.velocity.x = player.velocity.x * horizontal_enter_multiplier
-		else:
-			return_to_state()
-			entering_from_right = false
-			reset_room_detection_rays()
-	elif entering_from_left:
-		if not exited_previous_room:
+		"right":
+			if not room_distance_detection_ray_left.is_colliding():
+				finished_transitioning()
+				return
+			#var collision_point : Vector2 = abs(player.to_local(room_distance_detection_ray_left.get_collision_point()))
+			player.velocity.y = 0
 			player.velocity.x = horizontal_enter_velocity
-			return
-		if player.left.is_colliding():
-			collision_point = abs(player.left.to_local(player.left.get_collision_point()))
-			player.velocity.x = (abs(collision_point.x - horizontal_minimum_distance_from_last_room) + minimum_enter_velocity)
-			player.velocity.x = player.velocity.x * horizontal_enter_multiplier
-		else:
-			return_to_state()
-			entering_from_left = false
-			reset_room_detection_rays()
-	
-func return_to_state():
-	if entering_from_below:
-		player.set_deferred("velocity", pre_transition_velocity)
-	else:
-		player.set_deferred("velocity.x", pre_transition_velocity.x)
-	#player.velocity = pre_transition_velocity
-	state_machine.call_deferred("force_change_state",pre_transition_state)
 
-func change_room():
+func is_ray_inside_previous_room() -> bool:
+	match enter_direction:
+		"up":
+			if room_distance_detection_ray_down.get_collider(): 
+				if room_distance_detection_ray_down.get_collider().get_parent() == previous_room:
+					return true
+		"down":
+			if room_distance_detection_ray_up.get_collider():
+				if room_distance_detection_ray_up.get_collider().get_parent() == previous_room:
+					return true
+		"left":
+			if room_distance_detection_ray_right.get_collider():
+				if room_distance_detection_ray_right.get_collider().get_parent() == previous_room:
+					return true
+		"right":
+			if room_distance_detection_ray_left.get_collider():
+				if room_distance_detection_ray_left.get_collider().get_parent() == previous_room:
+					return true
+	return false
+
+func finished_transitioning():
+	transtioning_room = false
+	return_to_state()
+	current_room = current_room_detection_ray.get_collider().get_parent()
 	previous_room.exit_room()
 	current_room.enter_room()
 
-func transition_room():
-	pre_transition_velocity = player.velocity
-	pre_transition_state = state_machine.current_state
-	state_machine.call_deferred("force_change_state", state_machine.no_control_state)
-	set_up_room_detection_rays()
-	previous_room = current_room
-	if room_left != current_room:
-		current_room = room_left
-		entering_from_right = true
-	elif room_right != current_room:
-		current_room = room_right
-		entering_from_left = true
-	elif room_up != current_room:
-		current_room = room_up
-		entering_from_below = true
-	elif room_down != current_room:
-		current_room = room_down
-		entering_from_above = true
-	else:
-		print("failed to find room")
-		current_room = starting_room
-		player.position = Vector2.ZERO
+func return_to_state():
+	player.set_deferred("velocity", pre_transition_velocity)
+	state_machine.call_deferred("force_change_state",pre_transition_state)
 
 func set_up_room_detection_rays():
-	player.up.hit_from_inside = false
-	player.down.hit_from_inside = false
-	player.left.hit_from_inside = false
-	player.right.hit_from_inside = false
-	player.down.target_position = Vector2(0,down_minimum_distance_from_last_room)
-	player.up.target_position = Vector2(0,-up_minimum_distance_from_last_room)
-	player.right.target_position = Vector2(horizontal_minimum_distance_from_last_room,0)
-	player.left.target_position = Vector2(-horizontal_minimum_distance_from_last_room,0)
+	room_distance_detection_ray_up.target_position = Vector2(0, -up_enter_minimum_distance_from_last_room)
+	room_distance_detection_ray_down.target_position = Vector2(0, down_enter_minimum_distance_from_last_room)
+	room_distance_detection_ray_left.target_position = Vector2(-horizontal_enter_minimum_distance_from_last_room, 0)
+	room_distance_detection_ray_right.target_position = Vector2(horizontal_enter_minimum_distance_from_last_room, 0)
+	hit_from_inside()
 
 func reset_room_detection_rays():
-	player.up.hit_from_inside = true
-	player.down.hit_from_inside = true
-	player.left.hit_from_inside = true
-	player.right.hit_from_inside = true
-	player.down.target_position = Vector2(0,1)
-	player.up.target_position = Vector2(0,-1)
-	player.right.target_position = Vector2(1,0)
-	player.left.target_position = Vector2(-1,0)
+	room_distance_detection_ray_up.target_position = Vector2(0, -up_enter_default_length)
+	room_distance_detection_ray_down.target_position = Vector2(0, down_enter_default_length)
+	room_distance_detection_ray_left.target_position = Vector2(-horizontal_enter_default_length, 0)
+	room_distance_detection_ray_right.target_position = Vector2(horizontal_enter_default_length, 0)
+	force_all_raycast_updates()
 
 func play_music(music : AudioStream):
 	audio_controller.play_music(music)

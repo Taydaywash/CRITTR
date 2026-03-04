@@ -50,6 +50,7 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
+	change_collider_to(inflated_hitbox)
 	if direction == "up":
 		inflated_duration_timer.wait_time = up_inflated_duration
 		player.velocity.x /= horizontal_velocity_dampen_multiplier
@@ -140,4 +141,4 @@ func bounced():
 
 func deactivate(next_state : State) -> void:
 	super(next_state)
-	#change_collider_to(normal_hitbox)
+	change_collider_to(normal_hitbox)

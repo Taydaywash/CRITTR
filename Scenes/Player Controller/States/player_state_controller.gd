@@ -8,10 +8,9 @@ extends CharacterBody2D
 @export var down : RayCast2D
 @export var left : RayCast2D
 @export var right : RayCast2D
-
 @export var normal_gravity : int
 @export var max_falling_speed : int
-@onready var animated_player_sprite: AnimatedSprite2D = $AnimatedPlayerSprite
+@export var animated_player_sprite: AnimatedSprite2D
 @export var audio_controller_reference : AudioController
 @export var particle_controller_reference : ParticleController
 

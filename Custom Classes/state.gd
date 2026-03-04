@@ -46,6 +46,7 @@ extends Node
 @export var exit_particle_excluded_states : Array[State]
 
 var no_control_state : State
+var no_control_no_gravity_state : State
 var death_state : State
 var jumping_state : State
 var crouching_state : State

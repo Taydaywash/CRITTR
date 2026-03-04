@@ -30,9 +30,10 @@ func get_respawn_point():
 			return child
 
 func _entered_room_collider(_body: Node2D) -> void:
-	room_transition_controller.entered_room(self)
+	room_transition_controller.transition_room(self)
 func _exited_room_collider(_body: Node2D) -> void:
-	room_transition_controller.exited_room(self)
+	pass
+	#room_transition_controller.exited_room_collider(self)
 
 func enter_room():
 	change_camera_bounds()
@@ -47,10 +48,12 @@ func change_camera_bounds(snap_camera : bool = false, zoom : float = camera_zoom
 	camera_boundary_bottom_right = level_bounds.shape.get_rect().end
 	if snap_camera:
 		player.camera.position_smoothing_enabled = false
+		
 	if zoom:
 		player.camera.change_zoom_to(player.camera.default_zoom * camera_zoom)
 	else:
 		player.camera.change_zoom_to(player.camera.default_zoom)
+		
 	if zoom_to_fit:
 		player.camera.change_zoom_to(get_viewport_rect().size.x/level_bounds.shape.get_rect().size.x)
 		if player.camera.zoom.y <= get_viewport_rect().size.y/level_bounds.shape.get_rect().size.y:
@@ -62,10 +65,12 @@ func change_camera_bounds(snap_camera : bool = false, zoom : float = camera_zoom
 			zoom_to_fit_zoom = get_viewport_rect().size.y/level_bounds.shape.get_rect().size.y
 		if zoom_to_fit_zoom > player.camera.zoom.x:
 			player.camera.change_zoom_to(zoom_to_fit_zoom)
+			
 	bounds.top = camera_boundary_top_left.y + self.global_position.y
 	bounds.bottom = camera_boundary_bottom_right.y + self.global_position.y
 	bounds.left = camera_boundary_top_left.x + self.global_position.x
 	bounds.right = camera_boundary_bottom_right.x + self.global_position.x
+	
 	player.camera.change_bounds_to(bounds)
 	if snap_camera:
 		player.camera.position_smoothing_enabled = true

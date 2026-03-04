@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://5a3dsvmu3wh5" path="res://Scenes/Player Controller/States/no_control.gd" id="3_jl1s5"]
 [ext_resource type="Script" uid="uid://dj8tg7xutb1wf" path="res://Scenes/Player Controller/States/death.gd" id="4_4nigc"]
 [ext_resource type="Script" uid="uid://cxown2b2jsdny" path="res://Scenes/Player Controller/States/looking_up.gd" id="4_jl1s5"]
+[ext_resource type="Script" uid="uid://byqbtsbtphuth" path="res://Scenes/Player Controller/States/no_control_no_gravity.gd" id="4_kmmsh"]
 [ext_resource type="Script" uid="uid://5v8bgvkdmtcc" path="res://Scenes/Player Controller/States/idle_crouching.gd" id="5_3imdl"]
 [ext_resource type="Script" uid="uid://cm5l3ivbnb55g" path="res://Scenes/Player Controller/States/state_machine.gd" id="5_v55cd"]
 [ext_resource type="AudioStream" uid="uid://csxgy17oibmrs" path="res://Assets/Sound Effects/Player/Jump/player_jump.ogg" id="6_74b0n"]
@@ -263,9 +264,10 @@ right = NodePath("RoomTransitionSides/right")
 normal_gravity = 3250
 max_falling_speed = 2000
 
-[node name="StateMachine" type="Node" parent="." unique_id=1436004704 node_paths=PackedStringArray("no_control_state", "death_state", "jumping_state", "crouching_state", "idle_crouching_state", "idle_state", "looking_up_state", "walking_state", "diving_state", "diving_falling_state", "bonked_state", "wall_cling_state", "wall_jumping_state", "falling_state", "ascending_state", "ability_state", "dashing_state", "grappling_pull_state", "inflated_state", "climbing_slide_state", "digging_state", "bounce_attack_state", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
+[node name="StateMachine" type="Node" parent="." unique_id=1436004704 node_paths=PackedStringArray("no_control_state", "no_control_no_gravity_state", "death_state", "jumping_state", "crouching_state", "idle_crouching_state", "idle_state", "looking_up_state", "walking_state", "diving_state", "diving_falling_state", "bonked_state", "wall_cling_state", "wall_jumping_state", "falling_state", "ascending_state", "ability_state", "dashing_state", "grappling_pull_state", "inflated_state", "climbing_slide_state", "digging_state", "bounce_attack_state", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
 script = ExtResource("5_v55cd")
 no_control_state = NodePath("NoControl")
+no_control_no_gravity_state = NodePath("NoControlNoGravity")
 death_state = NodePath("Death")
 jumping_state = NodePath("Jumping")
 crouching_state = NodePath("Crouching")
@@ -287,7 +289,7 @@ inflated_state = NodePath("Abilities/Inflated")
 climbing_slide_state = NodePath("Abilities/Climbing/ClimbingSlide")
 digging_state = NodePath("Abilities/Drill/Digging")
 bounce_attack_state = NodePath("Abilities/BounceAttack")
-colliders_list = [NodePath("../NormalHitbox"), NodePath("../CrouchedHitbox"), NodePath("../Jumping")]
+colliders_list = [NodePath("../NormalHitbox"), NodePath("../CrouchedHitbox"), NodePath("../Jumping"), NodePath("../InflatedHitbox")]
 starting_state = NodePath("Idle")
 grounded_states = [NodePath("Idle"), NodePath("Walking"), NodePath("Crouching"), NodePath("Crouching/IdleCrouching")]
 abilities_state = NodePath("Abilities")
@@ -295,6 +297,9 @@ jump_input_buffer = NodePath("../JumpInputBuffer")
 
 [node name="NoControl" type="Node" parent="StateMachine" unique_id=986458533]
 script = ExtResource("3_jl1s5")
+
+[node name="NoControlNoGravity" type="Node" parent="StateMachine" unique_id=1016498393]
+script = ExtResource("4_kmmsh")
 
 [node name="Death" type="Node" parent="StateMachine" unique_id=1238038414]
 script = ExtResource("4_4nigc")
@@ -896,6 +901,7 @@ shape = ExtResource("36_uneaa")
 z_index = -1
 position = Vector2(0, -4.2385523e-06)
 shape = SubResource("RectangleShape2D_avv4g")
+disabled = true
 
 [node name="CrouchedHitbox" type="CollisionShape2D" parent="." unique_id=982923523]
 z_index = -1
@@ -912,32 +918,36 @@ disabled = true
 [node name="RoomTransitionSides" type="Node2D" parent="." unique_id=402856173]
 
 [node name="up" type="RayCast2D" parent="RoomTransitionSides" unique_id=1923984855]
-position = Vector2(0, -71.11111)
-target_position = Vector2(0, -1)
+target_position = Vector2(0, -100)
 collision_mask = 128
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="down" type="RayCast2D" parent="RoomTransitionSides" unique_id=2115720232]
-position = Vector2(0, 71.11111)
-target_position = Vector2(0, 1)
+position = Vector2(0, 11.851856)
+target_position = Vector2(0, 100)
 collision_mask = 128
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="left" type="RayCast2D" parent="RoomTransitionSides" unique_id=45105901]
-position = Vector2(-35.555553, 0)
-target_position = Vector2(-1, 0)
+target_position = Vector2(-100, 0)
 collision_mask = 128
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="right" type="RayCast2D" parent="RoomTransitionSides" unique_id=1677155557]
-position = Vector2(35.555553, 0)
-target_position = Vector2(10, 0)
+target_position = Vector2(100, 0)
+collision_mask = 128
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="CurrentRoomDetectionRay" type="RayCast2D" parent="RoomTransitionSides" unique_id=1691245691]
+target_position = Vector2(10, 10)
 collision_mask = 128
 hit_from_inside = true
 collide_with_areas = true

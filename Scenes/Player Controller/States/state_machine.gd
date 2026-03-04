@@ -5,6 +5,7 @@ extends Node
 @onready var abilities: Node = $Abilities
 
 @export var no_control_state : State
+@export var no_control_no_gravity_state : State
 @export var death_state : State
 @export var jumping_state : State
 @export var crouching_state : State
@@ -54,6 +55,7 @@ func check_children(parent : Node) -> void:
 		child.colliders = colliders_list
 		
 		child.no_control_state = no_control_state
+		child.no_control_no_gravity_state = no_control_no_gravity_state
 		child.death_state = death_state
 		child.jumping_state = jumping_state
 		child.crouching_state = crouching_state
