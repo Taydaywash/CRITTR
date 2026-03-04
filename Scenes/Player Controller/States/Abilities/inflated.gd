@@ -28,7 +28,11 @@ extends State
 @export var color_return_speed : float
 @export_category("Wall detection rays")
 @export var left_ray : RayCast2D
+@export var left_ray_low : RayCast2D
+@export var left_ray_high : RayCast2D
 @export var right_ray : RayCast2D
+@export var right_ray_low : RayCast2D
+@export var right_ray_high : RayCast2D
 @export_category("Colliders")
 @export var normal_hitbox : CollisionShape2D
 @export var inflated_hitbox : CollisionShape2D
@@ -51,6 +55,8 @@ func set_direction(ability_direction : String) -> void:
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	change_collider_to(inflated_hitbox)
+	sprite.scale.x = 1.5
+	sprite.scale.y = 1.5
 	if direction == "up":
 		inflated_duration_timer.wait_time = up_inflated_duration
 		player.velocity.x /= horizontal_velocity_dampen_multiplier
@@ -66,7 +72,7 @@ func activate(last_state : State) -> void:
 		player.velocity.y /= vertical_velocity_dampen_multiplier
 		inflated_duration_timer.start()
 		if abs(player.velocity.x) > initial_horizontal_velocity:
-			player.velocity.x = -additive_initial_horizontal_velocity
+			player.velocity.x += -additive_initial_horizontal_velocity
 		else:
 			player.velocity.x = -initial_horizontal_velocity
 	elif direction == "right":
@@ -74,7 +80,7 @@ func activate(last_state : State) -> void:
 		player.velocity.y /= vertical_velocity_dampen_multiplier
 		inflated_duration_timer.start()
 		if abs(player.velocity.x) > initial_horizontal_velocity:
-			player.velocity.x = additive_initial_horizontal_velocity
+			player.velocity.x += additive_initial_horizontal_velocity
 		else:
 			player.velocity.x = initial_horizontal_velocity
 
@@ -104,10 +110,10 @@ func process_physics(delta) -> State:
 		player.velocity.y = bounce_velocity
 		bounced()
 	if player.is_on_wall():
-		if left_ray.is_colliding():
+		if left_ray.is_colliding() or left_ray_low.is_colliding() or left_ray_high.is_colliding():
 			player.velocity.x = bounce_velocity
 			bounced()
-		elif right_ray.is_colliding():
+		elif right_ray.is_colliding() or right_ray_low.is_colliding() or right_ray_high.is_colliding():
 			player.velocity.x = -bounce_velocity
 			bounced()
 	if player.is_on_floor():
@@ -141,4 +147,6 @@ func bounced():
 
 func deactivate(next_state : State) -> void:
 	super(next_state)
+	sprite.scale.x = 1
+	sprite.scale.y = 1
 	change_collider_to(normal_hitbox)

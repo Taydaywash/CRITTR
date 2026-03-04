@@ -616,31 +616,33 @@ collide_with_areas = true
 [node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Climbing/ClimbingRay" unique_id=944559949]
 default_color = Color(1, 0.43460146, 0.9889626, 1)
 
-[node name="Inflated" type="Node" parent="StateMachine/Abilities" unique_id=948011255 node_paths=PackedStringArray("left_ray", "right_ray", "normal_hitbox", "inflated_hitbox")]
+[node name="Inflated" type="Node" parent="StateMachine/Abilities" unique_id=948011255 node_paths=PackedStringArray("left_ray", "left_ray_low", "left_ray_high", "right_ray", "right_ray_low", "right_ray_high", "normal_hitbox", "inflated_hitbox")]
 script = ExtResource("15_melbr")
 icon = ExtResource("23_hk2wy")
-initial_up_velocity = 200.0
-additive_initial_up_velocity = 20.0
-initial_down_velocity = 750.0
+initial_down_velocity = 800.0
 additive_initial_down_velocity = 20.0
-initial_horizontal_velocity = 1000.0
+initial_horizontal_velocity = 800.0
 additive_initial_horizontal_velocity = 20.0
 bounce_velocity = 500.0
-up_inflated_duration = 1.0
+up_inflated_duration = 1.5
 down_inflated_duration = 1.5
 vertical_velocity_dampen_multiplier = 10.0
 horizontal_inflated_duration = 1.5
-horizontal_velocity_dampen_multiplier = 1.5
+horizontal_velocity_dampen_multiplier = 2.5
 bounce_timer_reduction = 0.5
-horizontal_ascent_reduction_percentage = 0.5
+horizontal_ascent_reduction_percentage = 1.0
 ascent_speed = 1250.0
-max_ascent_speed = 750.0
+max_ascent_speed = 800.0
 max_move_speed = 750.0
 acceleration_speed = 700.0
-decceleration_speed = 250.0
+decceleration_speed = 150.0
 color_return_speed = 0.2
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
+left_ray_low = NodePath("../../../LowWallJumpRay/LowLeftRay")
+left_ray_high = NodePath("../../../HighWallJumpRay/HighLeftRay")
 right_ray = NodePath("../../../WallJumpRayReference/RightRay")
+right_ray_low = NodePath("../../../LowWallJumpRay/LowRightRay")
+right_ray_high = NodePath("../../../HighWallJumpRay/HighRightRay")
 normal_hitbox = NodePath("../../../NormalHitbox")
 inflated_hitbox = NodePath("../../../InflatedHitbox")
 placeholder_animation_color = Color(1, 1, 1, 1)
@@ -845,10 +847,8 @@ script = ExtResource("21_3imdl")
 default_zoom = 0.27
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
-position = Vector2(0, 65.18518)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"Bonked"
-offset = Vector2(-3.4658682, -77.07483)
+animation = &"idle"
 
 [node name="TriggerHitbox" type="Area2D" parent="." unique_id=936426999]
 visible = false
