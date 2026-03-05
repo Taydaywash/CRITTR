@@ -28,7 +28,8 @@ extends Node
 @export var down_enter_minimum_distance_from_last_room : float
 @export var down_enter_default_length : float
 @export_group("Misc")
-@export var screen_fade_speed : float
+@export var screen_fade_out_speed : float
+@export var screen_fade_in_speed : float
 @export var player_control_regain_delay : float
 
 var player_control_regain : Timer
@@ -46,15 +47,17 @@ var pre_transition_state : State
 var pre_transition_velocity : Vector2
 var entered_from_door : bool = false
 var exited_previous_room : bool = false
+var lock_screen_as_black : bool = true
 
 func _ready() -> void:
-	player_control_regain = Timer.new()
-	player_control_regain.wait_time = player_control_regain_delay
-	await player_control_regain.timeout
+	await get_tree().create_timer(0.1).timeout
+	lock_screen_as_black = false
 	player.global_position = starting_room.get_respawn_point()
-	current_room = starting_room
+	#current_room = starting_room
 
 func transition_room(room : Room): #called when entering room collider from room_controller.gd
+	if lock_screen_as_black:
+		return
 	pre_transition_velocity = player.velocity
 	pre_transition_state = state_machine.current_state
 	previous_room = current_room_detection_ray.get_collider().get_parent()
@@ -114,13 +117,13 @@ func respawn(respawn_pos):
 
 func _process(delta: float) -> void:
 	if fade_to_black:
-		ui.increment_fade_in(delta,screen_fade_speed)
+		ui.increment_fade_in(delta,screen_fade_in_speed)
 		if ui.screen_is_black():
 			screen_is_black = true
 			fade_to_black = false
 		return
 	if fade_to_clear:
-		ui.increment_fade_out(delta,screen_fade_speed)
+		ui.increment_fade_out(delta,screen_fade_out_speed)
 		if ui.screen_is_clear():
 			fade_to_clear = false
 		return
@@ -200,6 +203,8 @@ func finished_transitioning():
 	current_room.enter_room()
 
 func return_to_state():
+	player.set_deferred("velocity", Vector2.ZERO)
+	await get_tree().create_timer(player_control_regain_delay).timeout
 	player.set_deferred("velocity", pre_transition_velocity)
 	state_machine.call_deferred("force_change_state",pre_transition_state)
 

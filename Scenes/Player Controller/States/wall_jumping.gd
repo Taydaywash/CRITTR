@@ -6,6 +6,7 @@ extends State
 @export var wall_jump_horizontal_velocity : int
 @export var wall_jump_vertical_velocity : int
 @export var wall_dash_jump_vertical_velocity : int
+@export var wall_dash_jump_horizontal_velocity : int
 @export var jump_cancellation : int
 @export var acceleration_speed : int
 @export var decceleration_speed : int
@@ -31,6 +32,7 @@ var max_falling_speed : int
 var horizontal_input : int = 0
 
 func activate(last_state : State) -> void:
+	var dash_jumping = false
 	super(last_state) #Call activate() as defined in state.gd and then also do:
 	
 	jump_input_buffer.wait_time = jump_input_buffer_patience
@@ -42,19 +44,19 @@ func activate(last_state : State) -> void:
 		player.velocity.y = -wall_jump_vertical_velocity
 	if last_state == dashing_state:
 		player.velocity.y = -wall_dash_jump_vertical_velocity
+		dash_jumping = true
 	max_falling_speed = player.max_falling_speed
-	if right_ray.is_colliding():
+	if right_ray.is_colliding() or high_right_ray.is_colliding() or low_right_ray.is_colliding():
+		if dash_jumping:
+			player.velocity.x = -wall_dash_jump_horizontal_velocity
+			return
 		player.velocity.x = -wall_jump_horizontal_velocity
-	elif left_ray.is_colliding():
+	elif left_ray.is_colliding() or low_left_ray.is_colliding() or high_left_ray.is_colliding():
+		if dash_jumping:
+			player.velocity.x = wall_dash_jump_horizontal_velocity
+			return
 		player.velocity.x = wall_jump_horizontal_velocity
-	elif high_right_ray.is_colliding():
-		player.velocity.x = -wall_jump_horizontal_velocity
-	elif high_left_ray.is_colliding():
-		player.velocity.x = wall_jump_horizontal_velocity
-	elif low_right_ray.is_colliding():
-		player.velocity.x = -wall_jump_horizontal_velocity
-	elif low_left_ray.is_colliding():
-		player.velocity.x = wall_jump_horizontal_velocity
+
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("use_ability"):
