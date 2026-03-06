@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://Scenes/World/LevelEditor/Objects/Tiles/CollideableTiles.tscn" id="3_iwxvw"]
 [ext_resource type="Shape2D" uid="uid://kcu3cvf74df6" path="res://Scenes/World/LevelEditor/Objects/Camera/baseCamera.tres" id="4_o2qqh"]
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_6vusl"]
-[ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Scenes/World/LevelEditor/Templates/level_bounds_auto_center_tool.gd" id="7_n3nsv"]
+[ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Tools/level_bounds_auto_center_tool.gd" id="7_n3nsv"]
 
 [node name="Room2" type="Node2D" unique_id=721111038]
 script = ExtResource("1_byjgp")

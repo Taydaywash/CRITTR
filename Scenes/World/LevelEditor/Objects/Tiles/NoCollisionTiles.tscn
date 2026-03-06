@@ -2,5 +2,6 @@
 
 [ext_resource type="TileSet" uid="uid://7qjkugwf3mig" path="res://Scenes/World/LevelEditor/Objects/Tiles/NoCollisionTiles.tres" id="1_cy8rp"]
 
-[node name="TileSets" type="TileMapLayer"]
+[node name="TileSets" type="TileMapLayer" unique_id=2013683490]
+z_index = -3
 tile_set = ExtResource("1_cy8rp")

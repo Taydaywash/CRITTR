@@ -15,11 +15,16 @@ extends CanvasLayer
 var paused = true
 var current_tab : Panel
 var used_save_point: bool = false
+var can_pause : bool = false #Work around to fix big when pausing before scene is fully loaded
 
 func _ready() -> void:
 	toggle_pause()
+	await get_tree().create_timer(0.1).timeout
+	can_pause = true
 
 func _input(event: InputEvent) -> void:
+	if not can_pause:
+		return
 	if event.is_action_pressed("pause"):
 		toggle_pause()
 	if event.is_action_released("ui_cancel"):
