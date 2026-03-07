@@ -10,17 +10,20 @@ extends Node2D
 @export_category("References")
 @onready var pause_screen = get_parent()
 @export var not_focused_overlay : Polygon2D
+@export var not_focused_overlay_text : Label
 @export var camera : Camera2D
 @export var viewport : SubViewport
 @export var viewport_container : SubViewportContainer
+@export var hover_room_ray : RayCast2D
 @export var player : Player
 @export var rooms_manager : Node
+@export var current_region : Region
 
 @onready var base_map_room = preload("res://Scenes/UI/Map/mapRoom.tscn")
 @onready var base_map_reigon = preload("res://Scenes/UI/Map/MapRegion.tscn")
 @onready var map_region_shape = preload("res://Scenes/UI/Map/mapRegionShape.tscn")
 
-@export var current_region : Region
+var hovered_room
 var show_regions : bool = false
 
 func show_map(should_show : bool) -> void:
@@ -30,6 +33,7 @@ func show_map(should_show : bool) -> void:
 	viewport_container.visible = should_show
 
 func _ready() -> void:
+	
 	for child in rooms_manager.get_children():
 		if child is Region:
 			for room in child.get_children(): 
@@ -40,7 +44,8 @@ func _ready() -> void:
 				if room.get_class() == "Node2D" and room.interior_room == false: #Rooms setup
 					var room_shape : PackedVector2Array
 					var region_collider_shape : PackedVector2Array
-					var room_rect : Rect2 = room.get_node("Area2D/LevelBounds").shape.get_rect()
+					var room_level_bounds = room.get_node("Area2D/LevelBounds").shape
+					var room_rect : Rect2 = room_level_bounds.get_rect()
 					var room_instance = base_map_room.instantiate()
 					var map_region_part = map_region_shape.instantiate()
 					
@@ -64,6 +69,7 @@ func _ready() -> void:
 					
 					room_instance.polygon = room_shape
 					room_instance.uv = room_shape
+					room_instance.collider.shape = room_level_bounds
 					room_instance.outline.width = 10
 					room_instance.outline.points = room_shape
 					
@@ -78,9 +84,13 @@ func _ready() -> void:
 						region_instance.add_child(map_region_part)
 
 func _process(_delta: float) -> void:
+	hovered_room = null
+	if hover_room_ray.get_collider():
+		hovered_room = hover_room_ray.get_collider().get_parent()
+		print("collider: %s has parent %s" % [hover_room_ray.get_collider(),hover_room_ray.get_collider().get_parent()])
 	if pause_screen.map_tab.default_focus.has_focus():
 		not_focused_overlay.visible = false
-		not_focused_overlay.get_child(0).visible = false
+		not_focused_overlay_text.visible = false
 		if camera.zoom < Vector2(region_show_zoom,region_show_zoom):
 			show_regions = true
 		else:
@@ -104,4 +114,4 @@ func _process(_delta: float) -> void:
 			camera.position = rooms_manager.current_room.global_position
 		camera.zoom = Vector2(default_zoom,default_zoom)
 		not_focused_overlay.visible = true
-		not_focused_overlay.get_child(0).visible = true
+		not_focused_overlay_text.visible = true

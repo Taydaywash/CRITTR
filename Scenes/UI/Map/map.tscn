@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://kt2omd4601yo"]
 
 [ext_resource type="Script" uid="uid://bfduagc130a2n" path="res://Scenes/UI/Map/map_controller.gd" id="1_evwka"]
+[ext_resource type="Texture2D" uid="uid://c2l3hevass14c" path="res://Assets/UI/Map/cursor.png" id="2_48iyi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xtf6f"]
 font_size = 50
 
-[node name="Map" type="Node2D" unique_id=2004255828 node_paths=PackedStringArray("not_focused_overlay", "camera", "viewport", "viewport_container")]
+[node name="Map" type="Node2D" unique_id=2004255828 node_paths=PackedStringArray("not_focused_overlay", "not_focused_overlay_text", "camera", "viewport", "viewport_container", "hover_room_ray")]
 script = ExtResource("1_evwka")
 camera_move_speed = 50
 camera_zoom_speed = 0.001
@@ -13,10 +14,12 @@ default_zoom = 0.035
 max_zoom = 0.1
 min_zoom = 0.01
 region_show_zoom = 0.02
-not_focused_overlay = NodePath("SubViewportContainer/SubViewport2/Polygon2D3")
+not_focused_overlay = NodePath("SubViewportContainer/SubViewport2/CanvasLayer/Polygon2D3")
+not_focused_overlay_text = NodePath("SubViewportContainer/SubViewport2/CanvasLayer/Label")
 camera = NodePath("SubViewportContainer/SubViewport2/Camera2D")
 viewport = NodePath("SubViewportContainer/SubViewport2")
 viewport_container = NodePath("SubViewportContainer")
+hover_room_ray = NodePath("SubViewportContainer/SubViewport2/Camera2D/RayCast2D")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1832713940]
 anchors_preset = 8
@@ -39,6 +42,13 @@ render_target_update_mode = 4
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport2" unique_id=719413850]
 zoom = Vector2(0.035, 0.035)
 
+[node name="RayCast2D" type="RayCast2D" parent="SubViewportContainer/SubViewport2/Camera2D" unique_id=1933523560]
+target_position = Vector2(0, 1)
+collision_mask = 2
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="Polygon2D" type="Polygon2D" parent="SubViewportContainer/SubViewport2" unique_id=458093787]
 visible = false
 position = Vector2(162, 190)
@@ -59,15 +69,11 @@ position = Vector2(224, 0)
 polygon = PackedVector2Array(-100.666626, 47.33333, -131.33331, -91.33335, 138, -60.66668, 78, 87.33333)
 uv = PackedVector2Array(-15.333313, -18.000015, -2, -50.000015, 76.66669, -39.333347, 52.666687, 12.6666565)
 
-[node name="Polygon2D3" type="Polygon2D" parent="SubViewportContainer/SubViewport2" unique_id=60067213]
-z_index = 3
-color = Color(0, 0, 0, 0.74509805)
-polygon = PackedVector2Array(-56504, -35056, 71752, -39280, 70728, 37776, -54968, 35856)
-uv = PackedVector2Array(-34488, -19656, 41800, -19528, 42696, 18360, -35000, 17592)
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport2" unique_id=1548944959]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport2/Polygon2D3" unique_id=1548944959]
-
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport2/Polygon2D3/CanvasLayer" unique_id=1891610340]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport2/CanvasLayer" unique_id=1891610340]
+z_index = 2
+z_as_relative = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -82,3 +88,15 @@ grow_vertical = 2
 size_flags_horizontal = 4
 text = "Press Z to open map"
 label_settings = SubResource("LabelSettings_xtf6f")
+
+[node name="Polygon2D3" type="Polygon2D" parent="SubViewportContainer/SubViewport2/CanvasLayer" unique_id=60067213]
+z_index = 1
+z_as_relative = false
+color = Color(0, 0, 0, 0.74509805)
+polygon = PackedVector2Array(-56504, -35056, 71752, -39280, 70728, 37776, -54968, 35856)
+uv = PackedVector2Array(-34488, -19656, 41800, -19528, 42696, 18360, -35000, 17592)
+
+[node name="Cursor" type="Sprite2D" parent="SubViewportContainer/SubViewport2/CanvasLayer" unique_id=1784305276]
+z_as_relative = false
+position = Vector2(512, 240)
+texture = ExtResource("2_48iyi")
