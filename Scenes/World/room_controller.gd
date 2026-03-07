@@ -14,6 +14,10 @@ var camera_boundary_top_left
 var camera_boundary_bottom_right
 var room_visited : bool = false
 
+var has_crittr : bool = false
+var has_collectible : bool = false
+var has_save_point : bool = false
+
 @onready var region = get_parent()
 
 #Camera Bounds defined by the Level Bounds collision shape in each room
@@ -24,6 +28,27 @@ var bounds : Dictionary = {
 	"right": 0
 }
 
+var room_id : String
+func _ready() -> void:
+	EventController.connect("collectable_collected",collectable_collected)
+	room_id = "%s(%s,%s)" % [name,global_position.x,global_position.y]
+	if room_id in GameController.game_state.explored_rooms:
+		room_visited = true
+	
+	for child in get_children():
+		if child is Collectable:
+			if child.id not in GameController.game_state.collected_ids:
+				has_collectible = true
+		if child is SavePoint:
+			has_save_point = true
+
+func collectable_collected(id, _value):
+	has_collectible = false
+	for child in get_children():
+		if child is Collectable:
+			if child.id != id:
+				has_collectible = true
+
 func get_respawn_point():
 	for child in get_children():
 		if child is RespawnPoint:
@@ -31,9 +56,6 @@ func get_respawn_point():
 
 func _entered_room_collider(_body: Node2D) -> void:
 	room_transition_controller.transition_room(self)
-func _exited_room_collider(_body: Node2D) -> void:
-	pass
-	#room_transition_controller.exited_room_collider(self)
 
 func _process(_delta: float) -> void:
 	if room_transition_controller.current_room == self:
@@ -43,6 +65,7 @@ func _process(_delta: float) -> void:
 func enter_room():
 	change_camera_bounds()
 	room_visited = true
+	EventController.emit_signal("room_explored",room_id)
 	room_transition_controller.play_music(room_transition_controller.current_room.region.music)
 	z_index = 2
 func exit_room():

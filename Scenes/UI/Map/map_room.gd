@@ -21,9 +21,19 @@ var map_controller = null
 var corresponding_room : Room = null
 var corresponding_region : Region
 
-func _process(_delta: float) -> 	void:
+func _process(_delta: float) -> void:
 	if not corresponding_room:
 		return
+	$CollectibleIcon.position.x = int(corresponding_room.has_save_point) * -1500
+	
+	if corresponding_room.has_collectible:
+		$CollectibleIcon.visible = true
+	else:
+		$CollectibleIcon.visible = false
+	if corresponding_room.has_save_point:
+		$SavePointIcon.visible = true
+	else:
+		$SavePointIcon.visible = false
 	outline.width = outline_thickness
 	outline.default_color = color - Color(outline_darkness,outline_darkness,outline_darkness,0.0)
 	if map_controller:

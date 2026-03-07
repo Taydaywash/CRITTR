@@ -1,4 +1,5 @@
 @icon("res://Assets/Editor Icons/Level Editor Objects/Save Point Icon.png")
+class_name SavePoint
 extends interactable
 
 #used_ability_station

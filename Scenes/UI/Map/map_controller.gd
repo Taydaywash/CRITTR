@@ -18,6 +18,10 @@ extends Node2D
 @export var player : Player
 @export var rooms_manager : Node
 @export var current_region : Region
+@export var teleport_confirm : CanvasLayer
+@export var teleport_confirm_choicer : Button
+@export var teleport_confirm_button : Button
+@export var teleport_cancel_button : Button
 
 @onready var base_map_room = preload("res://Scenes/UI/Map/mapRoom.tscn")
 @onready var base_map_reigon = preload("res://Scenes/UI/Map/MapRegion.tscn")
@@ -85,9 +89,10 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	hovered_room = null
+	if teleport_confirm.visible:
+		return
 	if hover_room_ray.get_collider():
 		hovered_room = hover_room_ray.get_collider().get_parent()
-		print("collider: %s has parent %s" % [hover_room_ray.get_collider(),hover_room_ray.get_collider().get_parent()])
 	if pause_screen.map_tab.default_focus.has_focus():
 		not_focused_overlay.visible = false
 		not_focused_overlay_text.visible = false
@@ -115,3 +120,17 @@ func _process(_delta: float) -> void:
 		camera.zoom = Vector2(default_zoom,default_zoom)
 		not_focused_overlay.visible = true
 		not_focused_overlay_text.visible = true
+
+func handle_input(event: InputEvent) -> void:
+	if event.is_action_released("ui_cancel"):
+		if teleport_confirm.visible:
+			teleport_confirm.visible = false
+	if not teleport_confirm_button.has_focus() and not teleport_cancel_button.has_focus():
+		return
+	if event.is_action_released("ui_accept"):
+		teleport_confirm.visible = true
+		teleport_confirm_choicer.grab_focus()
+func _on_confirm_teleport() -> void:
+	teleport_confirm.visible = false
+func _on_cancel_teleport() -> void:
+	teleport_confirm.visible = false

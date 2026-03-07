@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://p60bcylp36uc"]
 
 [ext_resource type="Script" uid="uid://bm8ai54cut6hy" path="res://Scenes/UI/Map/map_room.gd" id="1_gj01h"]
+[ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://Assets/Misc/icon.svg" id="2_p8b4f"]
 
 [node name="MapRoom" type="Polygon2D" unique_id=1229491579 node_paths=PackedStringArray("outline", "collider")]
 script = ExtResource("1_gj01h")
@@ -25,3 +26,13 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1336810943]
+
+[node name="CollectibleIcon" type="Sprite2D" parent="." unique_id=1866276717]
+modulate = Color(0.23000002, 1, 0.26849997, 1)
+scale = Vector2(8, 8)
+texture = ExtResource("2_p8b4f")
+
+[node name="SavePointIcon" type="Sprite2D" parent="." unique_id=391221799]
+modulate = Color(0.42000002, 0.43933332, 1, 1)
+scale = Vector2(8, 8)
+texture = ExtResource("2_p8b4f")

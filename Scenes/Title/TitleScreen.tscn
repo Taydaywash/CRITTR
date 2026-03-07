@@ -49,6 +49,24 @@ theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_2tuh7")
 text = "Play"
 
+[node name="ResetGameState" type="Button" parent="." unique_id=1604846534]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = 124.0
+offset_right = -196.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_bottom = NodePath("../SettingButton")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_2tuh7")
+text = "Reset Game State"
+
 [node name="SettingButton" type="Button" parent="." unique_id=1721581367]
 layout_mode = 1
 anchors_preset = 8
@@ -155,6 +173,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_aefw6")
 [node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("3_cb5jd")]
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ResetGameState" to="." method="_on_reset_game_state_pressed"]
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="OptionsTab/Back" to="." method="_on_back_pressed"]

@@ -24,3 +24,7 @@ func _on_back_pressed() -> void:
 	options_tab.visible = false
 	options_tab.options_closed()
 	options_tab_back.visible = false
+
+
+func _on_reset_game_state_pressed() -> void:
+	GameController.reset_game()

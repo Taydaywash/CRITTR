@@ -15,8 +15,5 @@ func _ready() -> void:
 
 func _on_body_entered(body):
 	if body is Player:
-		GameController.collectable_collected(id, value)
+		EventController.emit_signal("collectable_collected", id, value)
 		queue_free()
-
-#func print_statement(value: int):
-	#print("collected", value)

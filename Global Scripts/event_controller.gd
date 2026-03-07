@@ -1,10 +1,5 @@
 extends Node
 
-@warning_ignore("unused_signal")
-signal collectable_collected(total: int)
-
-func _ready():
-	collectable_collected.connect(_on_collectable_collected)
-
-func _on_collectable_collected(total: int):
-	print("Total collected: ", total)
+@warning_ignore_start("unused_signal")
+signal collectable_collected(id,value)
+signal room_explored(room_id)

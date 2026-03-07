@@ -6,7 +6,32 @@
 [sub_resource type="LabelSettings" id="LabelSettings_xtf6f"]
 font_size = 50
 
-[node name="Map" type="Node2D" unique_id=2004255828 node_paths=PackedStringArray("not_focused_overlay", "not_focused_overlay_text", "camera", "viewport", "viewport_container", "hover_room_ray")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48iyi"]
+bg_color = Color(0.17, 0.27483332, 0.34, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8dhgj"]
+font_size = 26
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alnkd"]
+bg_color = Color(0.399, 0.7, 0.7, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Map" type="Node2D" unique_id=2004255828 node_paths=PackedStringArray("not_focused_overlay", "not_focused_overlay_text", "camera", "viewport", "viewport_container", "hover_room_ray", "teleport_confirm", "teleport_confirm_choicer", "teleport_confirm_button", "teleport_cancel_button")]
 script = ExtResource("1_evwka")
 camera_move_speed = 50
 camera_zoom_speed = 0.001
@@ -14,12 +39,16 @@ default_zoom = 0.035
 max_zoom = 0.1
 min_zoom = 0.01
 region_show_zoom = 0.02
-not_focused_overlay = NodePath("SubViewportContainer/SubViewport2/CanvasLayer/Polygon2D3")
-not_focused_overlay_text = NodePath("SubViewportContainer/SubViewport2/CanvasLayer/Label")
+not_focused_overlay = NodePath("SubViewportContainer/SubViewport2/MapNotSelected/Polygon2D3")
+not_focused_overlay_text = NodePath("SubViewportContainer/SubViewport2/MapNotSelected/Label")
 camera = NodePath("SubViewportContainer/SubViewport2/Camera2D")
 viewport = NodePath("SubViewportContainer/SubViewport2")
 viewport_container = NodePath("SubViewportContainer")
 hover_room_ray = NodePath("SubViewportContainer/SubViewport2/Camera2D/RayCast2D")
+teleport_confirm = NodePath("SubViewportContainer/SubViewport2/TeleportConfirm")
+teleport_confirm_choicer = NodePath("SubViewportContainer/SubViewport2/TeleportConfirm/Panel/Confirm")
+teleport_confirm_button = NodePath("SubViewportContainer/SubViewport2/TeleportConfirm/Panel/Confirm")
+teleport_cancel_button = NodePath("SubViewportContainer/SubViewport2/TeleportConfirm/Panel/Cancel")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1832713940]
 anchors_preset = 8
@@ -69,9 +98,16 @@ position = Vector2(224, 0)
 polygon = PackedVector2Array(-100.666626, 47.33333, -131.33331, -91.33335, 138, -60.66668, 78, 87.33333)
 uv = PackedVector2Array(-15.333313, -18.000015, -2, -50.000015, 76.66669, -39.333347, 52.666687, 12.6666565)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport2" unique_id=1548944959]
+[node name="Cursor" type="CanvasLayer" parent="SubViewportContainer/SubViewport2" unique_id=2002473237]
 
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport2/CanvasLayer" unique_id=1891610340]
+[node name="Cursor" type="Sprite2D" parent="SubViewportContainer/SubViewport2/Cursor" unique_id=1784305276]
+z_as_relative = false
+position = Vector2(512, 240)
+texture = ExtResource("2_48iyi")
+
+[node name="MapNotSelected" type="CanvasLayer" parent="SubViewportContainer/SubViewport2" unique_id=1548944959]
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport2/MapNotSelected" unique_id=1891610340]
 z_index = 2
 z_as_relative = false
 anchors_preset = 8
@@ -89,14 +125,112 @@ size_flags_horizontal = 4
 text = "Press Z to open map"
 label_settings = SubResource("LabelSettings_xtf6f")
 
-[node name="Polygon2D3" type="Polygon2D" parent="SubViewportContainer/SubViewport2/CanvasLayer" unique_id=60067213]
+[node name="Polygon2D3" type="Polygon2D" parent="SubViewportContainer/SubViewport2/MapNotSelected" unique_id=60067213]
 z_index = 1
 z_as_relative = false
 color = Color(0, 0, 0, 0.74509805)
 polygon = PackedVector2Array(-56504, -35056, 71752, -39280, 70728, 37776, -54968, 35856)
 uv = PackedVector2Array(-34488, -19656, 41800, -19528, 42696, 18360, -35000, 17592)
 
-[node name="Cursor" type="Sprite2D" parent="SubViewportContainer/SubViewport2/CanvasLayer" unique_id=1784305276]
-z_as_relative = false
-position = Vector2(512, 240)
-texture = ExtResource("2_48iyi")
+[node name="TeleportConfirm" type="CanvasLayer" parent="SubViewportContainer/SubViewport2" unique_id=849296635]
+visible = false
+
+[node name="Panel" type="Panel" parent="SubViewportContainer/SubViewport2/TeleportConfirm" unique_id=1613497438]
+offset_left = 160.0
+offset_top = 96.0
+offset_right = 864.0
+offset_bottom = 384.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_48iyi")
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport2/TeleportConfirm/Panel" unique_id=1316741795]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -112.0
+offset_right = 324.0
+offset_bottom = -75.99997
+grow_horizontal = 2
+grow_vertical = 2
+text = "Are you sure you want to teleport to this save tube?"
+label_settings = SubResource("LabelSettings_8dhgj")
+
+[node name="Confirm" type="Button" parent="SubViewportContainer/SubViewport2/TeleportConfirm/Panel" unique_id=1340075931]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = 16.0
+offset_right = -160.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../Cancel")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../Cancel")
+focus_previous = NodePath("../Cancel")
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_alnkd")
+text = "Yes"
+
+[node name="Choicer" type="Button" parent="SubViewportContainer/SubViewport2/TeleportConfirm/Panel" unique_id=515152118]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -272.0
+offset_right = -22.0
+offset_bottom = -262.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../Confirm")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../Cancel")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../Confirm")
+focus_previous = NodePath("../Cancel")
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_alnkd")
+
+[node name="Cancel" type="Button" parent="SubViewportContainer/SubViewport2/TeleportConfirm/Panel" unique_id=722519654]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 160.0
+offset_top = 16.0
+offset_right = 320.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../Confirm")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../Confirm")
+focus_previous = NodePath("../Confirm")
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_alnkd")
+text = "No!"
+
+[connection signal="pressed" from="SubViewportContainer/SubViewport2/TeleportConfirm/Panel/Confirm" to="." method="_on_confirm_teleport"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport2/TeleportConfirm/Panel/Cancel" to="." method="_on_cancel_teleport"]

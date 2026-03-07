@@ -27,9 +27,11 @@ func _input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("pause"):
 		toggle_pause()
+		return
 	if event.is_action_released("ui_cancel"):
 		if dna_button.has_focus() or map_button.has_focus() or options_button.has_focus() or stuff_button.has_focus():
 			toggle_pause()
+			return
 	current_tab.handle_input(event)
 
 func toggle_pause(from_save_point : bool = false) -> void:
