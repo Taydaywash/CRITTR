@@ -140,6 +140,7 @@ func handle_input(event: InputEvent) -> void:
 func _on_confirm_teleport() -> void:
 	var current_respawn_room = hovered_room
 	pause_screen.toggle_pause()
+	await pause_screen.animation_player.animation_finished
 	teleport_confirm.visible = false
 	player.state_machine.force_change_state(player.state_machine.teleporting_enter_state, false)
 	await player.animated_player_sprite.animation_finished

@@ -84,12 +84,6 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chlha"]
-bg_color = Color(0, 0, 0, 0.7019608)
-
-[sub_resource type="LabelSettings" id="LabelSettings_6xmgn"]
-font_size = 40
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1i3v3"]
 bg_color = Color(0.0884924, 0.34135744, 0.341697, 1)
 border_width_left = 5
@@ -108,6 +102,12 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chlha"]
+bg_color = Color(0, 0, 0, 0.7019608)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6xmgn"]
+font_size = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eaots"]
 bg_color = Color(0.14039998, 0.52, 0.17203328, 1)
@@ -267,24 +267,6 @@ drill_button = NodePath("Drill")
 bounce_button = NodePath("Bounce")
 pause_screen = NodePath("..")
 default_focus = NodePath("Dash")
-
-[node name="DnaTabBlocker" type="Panel" parent="DnaTab" unique_id=38181578]
-z_index = 1
-z_as_relative = false
-layout_mode = 0
-offset_top = -2.0
-offset_right = 1024.0
-offset_bottom = 478.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_chlha")
-
-[node name="Label" type="Label" parent="DnaTab/DnaTabBlocker" unique_id=658350855]
-layout_mode = 0
-offset_left = 144.0
-offset_top = 192.0
-offset_right = 911.0
-offset_bottom = 247.0
-text = "DNA can only be changed at save tubes!"
-label_settings = SubResource("LabelSettings_6xmgn")
 
 [node name="Dash" type="Button" parent="DnaTab" unique_id=1704601115]
 layout_mode = 1
@@ -520,6 +502,24 @@ focus_next = NodePath("../down")
 focus_previous = NodePath("../up")
 icon_alignment = 1
 expand_icon = true
+
+[node name="DnaTabBlocker" type="Panel" parent="DnaTab" unique_id=38181578]
+z_index = 1
+z_as_relative = false
+layout_mode = 0
+offset_top = -2.0
+offset_right = 1024.0
+offset_bottom = 478.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_chlha")
+
+[node name="Label" type="Label" parent="DnaTab/DnaTabBlocker" unique_id=658350855]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 192.0
+offset_right = 911.0
+offset_bottom = 247.0
+text = "DNA can only be changed at save tubes!"
+label_settings = SubResource("LabelSettings_6xmgn")
 
 [node name="MapTab" type="Panel" parent="." unique_id=1098802662 node_paths=PackedStringArray("pause_screen", "default_focus")]
 visible = false

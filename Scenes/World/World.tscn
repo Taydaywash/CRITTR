@@ -41,6 +41,98 @@ colors = PackedColorArray(0.8197893, 0.92398196, 0.9423895, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3ql1f"]
 gradient = SubResource("Gradient_vdgnt")
 
+[sub_resource type="Animation" id="Animation_h71dq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PauseScreen:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1000)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PauseScreen:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_irrot"]
+resource_name = "close_pause_menu"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PauseScreen:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.4),
+"transitions": PackedFloat32Array(1, 2.549123, 0.46651667),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -45.94), Vector2(0, 900)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PauseScreen:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.4),
+"transitions": PackedFloat32Array(1, 0.40612632, 1, 0.39229208),
+"update": 0,
+"values": [0.0, 0.012217304763961101, 0.008726646259971648, -0.22165681500328063]
+}
+
+[sub_resource type="Animation" id="Animation_7o3bi"]
+resource_name = "open_pause_menu"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PauseScreen:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(0.46651667, 0.3186403, 1),
+"update": 0,
+"values": [Vector2(0, 900), Vector2(0, -45.94), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PauseScreen:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(0.39229208, 0.40612632, 1, 1),
+"update": 0,
+"values": [-0.22165681500328063, 0.012217304763961101, 0.008726646259971648, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_irrot"]
+_data = {
+&"RESET": SubResource("Animation_h71dq"),
+&"close_pause_menu": SubResource("Animation_irrot"),
+&"open_pause_menu": SubResource("Animation_7o3bi")
+}
+
 [node name="World" type="Node2D" unique_id=1470686207]
 
 [node name="Player" parent="." unique_id=674990077 node_paths=PackedStringArray("audio_controller_reference", "particle_controller_reference") instance=ExtResource("2_y6flb")]
@@ -740,8 +832,11 @@ rotation = -3.1415925
 texture = ExtResource("24_2neov")
 flip_h = true
 
-[node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "map") instance=ExtResource("5_o14yy")]
+[node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "animation_player", "map") instance=ExtResource("5_o14yy")]
+offset = Vector2(0, 1000)
+transform = Transform2D(1, 0, 0, 1, 0, 1000)
 audio_controller = NodePath("../AudioManager")
+animation_player = NodePath("../AnimationPlayer")
 map = NodePath("Map")
 
 [node name="Map" parent="PauseScreen" unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager", "current_region", "map_tab_default_focus", "ui_ref") instance=ExtResource("18_hev0n")]
@@ -759,3 +854,7 @@ ui_ref = NodePath("../../UI")
 process_mode = 3
 
 [node name="Particle Controller" parent="." unique_id=1338648581 instance=ExtResource("25_hlwfy")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=678018100]
+process_mode = 3
+libraries/ = SubResource("AnimationLibrary_irrot")
