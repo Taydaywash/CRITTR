@@ -2,16 +2,18 @@
 
 [ext_resource type="Script" uid="uid://dqxyjpscnysuh" path="res://Scenes/World/LevelEditor/Objects/SaveTube/save_tube.gd" id="1_07j4r"]
 [ext_resource type="Texture2D" uid="uid://d27u327amh0vc" path="res://Assets/Decals/Tundra/Interactable/SaveTube.png" id="1_cse3v"]
+[ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://Scenes/World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="3_2hsa1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28s0k"]
 size = Vector2(160, 272)
 
-[node name="SaveTube" type="Area2D" unique_id=918559546]
+[node name="SaveTube" type="Area2D" unique_id=918559546 node_paths=PackedStringArray("respawn_point")]
 z_index = -1
 z_as_relative = false
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_07j4r")
+respawn_point = NodePath("RespawnPoint")
 
 [node name="SaveTube" type="Sprite2D" parent="." unique_id=1844653692]
 scale = Vector2(2.055, 2.055)
@@ -20,3 +22,6 @@ texture = ExtResource("1_cse3v")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=909188364]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_28s0k")
+
+[node name="RespawnPoint" parent="." unique_id=3531767 instance=ExtResource("3_2hsa1")]
+scale = Vector2(1.4400005, 0.31999964)

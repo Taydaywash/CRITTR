@@ -18,10 +18,12 @@ extends Node2D
 @export var player : Player
 @export var rooms_manager : Node
 @export var current_region : Region
+@export var map_tab_default_focus : Button
 @export var teleport_confirm : CanvasLayer
 @export var teleport_confirm_choicer : Button
 @export var teleport_confirm_button : Button
 @export var teleport_cancel_button : Button
+@export var ui_ref : CanvasLayer
 
 @onready var base_map_room = preload("res://Scenes/UI/Map/mapRoom.tscn")
 @onready var base_map_reigon = preload("res://Scenes/UI/Map/MapRegion.tscn")
@@ -88,7 +90,8 @@ func _ready() -> void:
 						region_instance.add_child(map_region_part)
 
 func _process(_delta: float) -> void:
-	hovered_room = null
+	if not teleport_confirm.visible:
+		hovered_room = null
 	if teleport_confirm.visible:
 		return
 	if hover_room_ray.get_collider():
@@ -125,12 +128,17 @@ func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
 		if teleport_confirm.visible:
 			teleport_confirm.visible = false
-	if not teleport_confirm_button.has_focus() and not teleport_cancel_button.has_focus():
-		return
-	if event.is_action_released("ui_accept"):
+			map_tab_default_focus.grab_focus()
+	if event.is_action_released("ui_accept") and teleport_confirm.visible == false and hovered_room.corresponding_room.has_save_point:
 		teleport_confirm.visible = true
 		teleport_confirm_choicer.grab_focus()
+	
 func _on_confirm_teleport() -> void:
+	player.global_position = hovered_room.corresponding_room.save_point_ref.respawn_point.get_respawn_point()
+	pause_screen.toggle_pause()
+	ui_ref.screen_overlay.modulate.a = 1.0
 	teleport_confirm.visible = false
 func _on_cancel_teleport() -> void:
 	teleport_confirm.visible = false
+	map_tab_default_focus.grab_focus()
+	

@@ -17,6 +17,7 @@ var room_visited : bool = false
 var has_crittr : bool = false
 var has_collectible : bool = false
 var has_save_point : bool = false
+var save_point_ref : SavePoint
 
 @onready var region = get_parent()
 
@@ -41,6 +42,7 @@ func _ready() -> void:
 				has_collectible = true
 		if child is SavePoint:
 			has_save_point = true
+			save_point_ref = child
 
 func collectable_collected(id, _value):
 	has_collectible = false

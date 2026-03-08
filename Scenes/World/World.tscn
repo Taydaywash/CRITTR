@@ -744,7 +744,7 @@ flip_h = true
 audio_controller = NodePath("../AudioManager")
 map = NodePath("Map")
 
-[node name="Map" parent="PauseScreen" unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager", "current_region") instance=ExtResource("18_hev0n")]
+[node name="Map" parent="PauseScreen" unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager", "current_region", "map_tab_default_focus", "ui_ref") instance=ExtResource("18_hev0n")]
 process_mode = 3
 z_index = 10
 z_as_relative = false
@@ -752,6 +752,8 @@ position = Vector2(645, 407)
 player = NodePath("../../Player")
 rooms_manager = NodePath("../../Rooms")
 current_region = NodePath("../../Rooms/Testing")
+map_tab_default_focus = NodePath("../MapTab/MapFocus")
+ui_ref = NodePath("../../UI")
 
 [node name="AudioManager" parent="." unique_id=152850687 instance=ExtResource("21_3ql1f")]
 process_mode = 3

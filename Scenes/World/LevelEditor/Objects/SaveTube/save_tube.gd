@@ -4,6 +4,7 @@ extends interactable
 
 #used_ability_station
 @onready var pause_screen : CanvasLayer = get_node("/root/World/PauseScreen")
+@export var respawn_point : RespawnPoint
 
 func _input(_event: InputEvent) -> void:
 	if overlapping and can_interact():

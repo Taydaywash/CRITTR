@@ -5,6 +5,9 @@ func handle_input(event: InputEvent) -> void:
 		pause_screen.map.handle_input(event)
 		return
 	if event.is_action_released("ui_accept"):
+		if default_focus.has_focus():
+			pause_screen.map.handle_input(event)
+			return
 		default_focus.grab_focus()
 		return
 	if event.is_action_released("ui_cancel"):
