@@ -12,9 +12,11 @@
 [ext_resource type="AudioStream" uid="uid://csxgy17oibmrs" path="res://Assets/Sound Effects/Player/Jump/player_jump.ogg" id="6_74b0n"]
 [ext_resource type="Script" uid="uid://cnyjhmvsy4x2m" path="res://Scenes/Player Controller/States/idle.gd" id="6_dpx4d"]
 [ext_resource type="PackedScene" uid="uid://7pcyhpa8kihb" path="res://Scenes/Particle Controller/Particles/Player/jump_dust.tscn" id="7_7icb5"]
+[ext_resource type="Script" uid="uid://bcqgk35wv2a1t" path="res://Scenes/Player Controller/States/teleporting_enter.gd" id="7_885dk"]
 [ext_resource type="Script" uid="uid://b86dxdi4v2w7v" path="res://Scenes/Player Controller/States/walking.gd" id="7_hueom"]
 [ext_resource type="Script" uid="uid://waa4aoe22gbi" path="res://Scenes/Player Controller/States/jumping.gd" id="8_2fk5g"]
 [ext_resource type="PackedScene" uid="uid://dox5dn6hfochm" path="res://Scenes/Particle Controller/Particles/Player/dash_jump_ring.tscn" id="8_avv4g"]
+[ext_resource type="Script" uid="uid://dsqi1ec8e6m7v" path="res://Scenes/Player Controller/States/teleporting_exit.gd" id="8_rkbq1"]
 [ext_resource type="Script" uid="uid://lykwwg352q0l" path="res://Scenes/Player Controller/States/diving.gd" id="9_gnv43"]
 [ext_resource type="Script" uid="uid://dm8obalvft0u8" path="res://Scenes/Player Controller/States/bonked.gd" id="9_v55cd"]
 [ext_resource type="Script" uid="uid://ql7kjpt3i6d" path="res://Scenes/Player Controller/States/wall_jumping.gd" id="10_dpx4d"]
@@ -224,6 +226,52 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("24_qtpvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_4nigc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_31xm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_mofwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_obod2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_fbx8n")
+}],
+"loop": false,
+"name": &"teleporting enter",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_fbx8n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_obod2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_mofwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_31xm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_4nigc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_qtpvk")
+}],
+"loop": false,
+"name": &"teleporting exit",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("21_068uq")
 }, {
 "duration": 1.0,
@@ -289,12 +337,14 @@ normal_gravity = 3250
 max_falling_speed = 2000
 animated_player_sprite = NodePath("AnimatedPlayerSprite")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1436004704 node_paths=PackedStringArray("no_control_state", "no_control_no_gravity_state", "death_state", "spawning_state", "jumping_state", "crouching_state", "idle_crouching_state", "idle_state", "looking_up_state", "walking_state", "diving_state", "diving_falling_state", "bonked_state", "wall_cling_state", "wall_jumping_state", "falling_state", "ascending_state", "ability_state", "dashing_state", "grappling_pull_state", "inflated_state", "climbing_slide_state", "digging_state", "bounce_attack_state", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
+[node name="StateMachine" type="Node" parent="." unique_id=1436004704 node_paths=PackedStringArray("no_control_state", "no_control_no_gravity_state", "death_state", "teleporting_enter_state", "teleporting_exit_state", "spawning_state", "jumping_state", "crouching_state", "idle_crouching_state", "idle_state", "looking_up_state", "walking_state", "diving_state", "diving_falling_state", "bonked_state", "wall_cling_state", "wall_jumping_state", "falling_state", "ascending_state", "ability_state", "dashing_state", "grappling_pull_state", "inflated_state", "climbing_slide_state", "digging_state", "bounce_attack_state", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
 script = ExtResource("5_v55cd")
 no_control_state = NodePath("NoControl")
-no_control_no_gravity_state = NodePath("NoControlNoGravity")
-death_state = NodePath("Death")
-spawning_state = NodePath("Spawning")
+no_control_no_gravity_state = NodePath("NoControl/NoControlNoGravity")
+death_state = NodePath("NoControl/Death")
+teleporting_enter_state = NodePath("NoControl/TeleportingEnter")
+teleporting_exit_state = NodePath("NoControl/TeleportingEnter/TeleportingExit")
+spawning_state = NodePath("NoControl/Spawning")
 jumping_state = NodePath("Jumping")
 crouching_state = NodePath("Crouching")
 idle_crouching_state = NodePath("Crouching/IdleCrouching")
@@ -324,18 +374,31 @@ jump_input_buffer = NodePath("../JumpInputBuffer")
 [node name="NoControl" type="Node" parent="StateMachine" unique_id=986458533]
 script = ExtResource("3_jl1s5")
 
-[node name="NoControlNoGravity" type="Node" parent="StateMachine" unique_id=1016498393]
+[node name="NoControlNoGravity" type="Node" parent="StateMachine/NoControl" unique_id=1016498393]
 script = ExtResource("4_kmmsh")
+placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Spawning" type="Node" parent="StateMachine" unique_id=2008512285]
+[node name="Spawning" type="Node" parent="StateMachine/NoControl" unique_id=2008512285]
 script = ExtResource("5_nb83h")
 animation_name = "spawning"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="Death" type="Node" parent="StateMachine" unique_id=1238038414]
+[node name="Death" type="Node" parent="StateMachine/NoControl" unique_id=1238038414]
 script = ExtResource("4_4nigc")
 animation_name = "death"
 placeholder_animation_color = Color(1, 1, 1, 1)
+
+[node name="TeleportingEnter" type="Node" parent="StateMachine/NoControl" unique_id=1859283836]
+script = ExtResource("7_885dk")
+animation_name = "teleporting enter"
+placeholder_animation_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://cu350rjri3jpk"
+
+[node name="TeleportingExit" type="Node" parent="StateMachine/NoControl/TeleportingEnter" unique_id=915909025]
+script = ExtResource("8_rkbq1")
+animation_name = "teleporting exit"
+placeholder_animation_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://cu350rjri3jpk"
 
 [node name="Jumping" type="Node" parent="StateMachine" unique_id=2088144188 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "default_hitbox", "jumping_hitbox", "enter_particle_when_entering_from_state_state")]
 script = ExtResource("8_2fk5g")
@@ -543,9 +606,9 @@ nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 animation_name = "falling"
 placeholder_animation_color = Color(1, 1, 1, 1)
 exit_sound_sounds = Array[AudioStream]([ExtResource("18_k212d")])
-exit_sound_excluded_states = [NodePath("../Diving"), NodePath("../Abilities"), NodePath("../WallCling"), NodePath("../WallCling/WallJumping"), NodePath("../Death")]
+exit_sound_excluded_states = [NodePath("../Diving"), NodePath("../Abilities"), NodePath("../WallCling"), NodePath("../WallCling/WallJumping"), NodePath("../NoControl/Death")]
 exit_particle_particle = ExtResource("19_k212d")
-exit_particle_excluded_states = [NodePath("../Diving"), NodePath("../Abilities"), NodePath("../Death"), NodePath("../WallCling"), NodePath("../WallCling/WallJumping")]
+exit_particle_excluded_states = [NodePath("../Diving"), NodePath("../Abilities"), NodePath("../NoControl/Death"), NodePath("../WallCling"), NodePath("../WallCling/WallJumping")]
 
 [node name="Ascending" type="Node" parent="StateMachine" unique_id=103182494 node_paths=PackedStringArray("right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("11_evkiq")
@@ -887,7 +950,7 @@ default_zoom = 0.27
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
 position = Vector2(0, 70)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"death"
+animation = &"teleporting enter"
 offset = Vector2(0, -70)
 
 [node name="TriggerHitbox" type="Area2D" parent="." unique_id=936426999]

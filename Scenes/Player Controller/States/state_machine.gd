@@ -7,6 +7,9 @@ extends Node
 @export var no_control_state : State
 @export var no_control_no_gravity_state : State
 @export var death_state : State
+@export var teleporting_enter_state : State
+@export var teleporting_exit_state : State
+
 @export var spawning_state : State
 @export var jumping_state : State
 @export var crouching_state : State
@@ -135,5 +138,6 @@ func process_frame(delta) -> void:
 	var new_state = current_state.process_frame(delta)
 	if new_state:
 		change_state(new_state)
-func force_change_state(state : State, discrete : bool = true): #Must be called with the call_deferred method to work properly
+func force_change_state(state : State, discrete : bool = true): 
+	#Must be call deferred
 	change_state(state, null, discrete)

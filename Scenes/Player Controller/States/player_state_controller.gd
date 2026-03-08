@@ -35,5 +35,5 @@ func play_animation(name):
 	if name == "":
 		animated_player_sprite.play("no animation")
 	else:
-		assert(animated_player_sprite.sprite_frames.has_animation(name),"Animation not found: Insure that name is typed correctly and that the animation exists!")
+		assert(animated_player_sprite.sprite_frames.has_animation(name),"Animation not found: Ensure that name is typed correctly and that the animation exists!")
 		animated_player_sprite.play(name)

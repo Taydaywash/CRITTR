@@ -144,12 +144,8 @@ texture = ExtResource("14_uxwvq")
 
 [node name="ShipDoorOutside" parent="Rooms/CrashSite/CrashedShip" unique_id=1749550748 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
 z_index = -1
-position = Vector2(-160, 912)
+position = Vector2(-160, 960)
 go_to_door = NodePath("../../InsideShip/ShipDoorInside")
-
-[node name="SaveTube" parent="Rooms/CrashSite/CrashedShip" unique_id=1607364998 instance=ExtResource("8_hev0n")]
-z_index = -2
-position = Vector2(704, 896)
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/CrashedShip" unique_id=157323415]
 z_index = -1
@@ -183,6 +179,10 @@ texture = ExtResource("24_2neov")
 
 [node name="Collectable" parent="Rooms/CrashSite/CrashedShip" unique_id=1542823849 instance=ExtResource("17_h71dq")]
 position = Vector2(384, 768)
+
+[node name="SaveTube" parent="Rooms/CrashSite/CrashedShip" unique_id=1607364998 instance=ExtResource("8_hev0n")]
+z_index = -2
+position = Vector2(1152, 896)
 
 [node name="InsideShip" parent="Rooms/CrashSite" unique_id=845230466 instance=ExtResource("8_jacc8")]
 z_as_relative = false

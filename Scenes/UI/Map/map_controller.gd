@@ -129,6 +129,8 @@ func handle_input(event: InputEvent) -> void:
 		if teleport_confirm.visible:
 			teleport_confirm.visible = false
 			map_tab_default_focus.grab_focus()
+	if not hovered_room:
+		return
 	if (event.is_action_released("ui_accept") and teleport_confirm.visible == false
 	 and hovered_room.corresponding_room.has_save_point and hovered_room.corresponding_room.room_visited
 	and hovered_room.corresponding_room.room_transition_controller.current_room != hovered_room.corresponding_room):
@@ -136,11 +138,16 @@ func handle_input(event: InputEvent) -> void:
 		teleport_confirm_choicer.grab_focus()
 	
 func _on_confirm_teleport() -> void:
-	player.global_position = hovered_room.corresponding_room.save_point_ref.respawn_point.get_respawn_point()
+	var current_respawn_room = hovered_room
 	pause_screen.toggle_pause()
-	ui_ref.screen_overlay.modulate.a = 1.0
 	teleport_confirm.visible = false
+	player.state_machine.force_change_state(player.state_machine.teleporting_enter_state, false)
+	await player.animated_player_sprite.animation_finished
+	ui_ref.screen_overlay.modulate.a = 1.0
+	player.global_position = current_respawn_room.corresponding_room.save_point_ref.respawn_point.get_respawn_point()
+	player.state_machine.force_change_state(player.state_machine.teleporting_exit_state, false)
+	await player.animated_player_sprite.animation_finished
+	player.state_machine.force_change_state(player.state_machine.idle_state, false)
 func _on_cancel_teleport() -> void:
 	teleport_confirm.visible = false
 	map_tab_default_focus.grab_focus()
-	
