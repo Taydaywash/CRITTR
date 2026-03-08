@@ -30,18 +30,12 @@ func _process(_delta: float) -> void:
 		return
 	
 	collectible_icon.position.x = int(corresponding_room.has_save_point) * -1500
-	
-	if corresponding_room.has_collectible:
-		collectible_icon.visible = true
-	else:
-		collectible_icon.visible = false
-	if corresponding_room.has_save_point:
-		save_point_icon.visible = true
-	else:
-		save_point_icon.visible = false
-	
 	collectible_icon.visible = corresponding_room.room_visited
 	save_point_icon.visible = corresponding_room.room_visited
+	if not corresponding_room.has_collectible:
+		collectible_icon.visible = false
+	if not corresponding_room.has_save_point:
+		save_point_icon.visible = false
 	outline.width = outline_thickness
 	outline.default_color = color - Color(outline_darkness,outline_darkness,outline_darkness,0.0)
 	if map_controller:

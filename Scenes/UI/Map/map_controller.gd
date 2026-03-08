@@ -130,7 +130,8 @@ func handle_input(event: InputEvent) -> void:
 			teleport_confirm.visible = false
 			map_tab_default_focus.grab_focus()
 	if (event.is_action_released("ui_accept") and teleport_confirm.visible == false
-	 and hovered_room.corresponding_room.has_save_point and hovered_room.corresponding_room.room_visited):
+	 and hovered_room.corresponding_room.has_save_point and hovered_room.corresponding_room.room_visited
+	and hovered_room.corresponding_room.room_transition_controller.current_room != hovered_room.corresponding_room):
 		teleport_confirm.visible = true
 		teleport_confirm_choicer.grab_focus()
 	
