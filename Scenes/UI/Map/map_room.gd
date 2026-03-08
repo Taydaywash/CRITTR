@@ -16,6 +16,10 @@ extends Polygon2D
 @export var visited_hidden_room_outline_color : Color
 @export var current_hidden_room_color : Color
 @export var current_hidden_room_outline_color : Color
+@export_category("Room icons")
+@export var collectible_icon : Sprite2D
+@export var save_point_icon : Sprite2D
+@export var crittr_icon : Sprite2D
 
 var map_controller = null
 var corresponding_room : Room = null
@@ -24,16 +28,20 @@ var corresponding_region : Region
 func _process(_delta: float) -> void:
 	if not corresponding_room:
 		return
-	$CollectibleIcon.position.x = int(corresponding_room.has_save_point) * -1500
+	
+	collectible_icon.position.x = int(corresponding_room.has_save_point) * -1500
 	
 	if corresponding_room.has_collectible:
-		$CollectibleIcon.visible = true
+		collectible_icon.visible = true
 	else:
-		$CollectibleIcon.visible = false
+		collectible_icon.visible = false
 	if corresponding_room.has_save_point:
-		$SavePointIcon.visible = true
+		save_point_icon.visible = true
 	else:
-		$SavePointIcon.visible = false
+		save_point_icon.visible = false
+	
+	collectible_icon.visible = corresponding_room.room_visited
+	save_point_icon.visible = corresponding_room.room_visited
 	outline.width = outline_thickness
 	outline.default_color = color - Color(outline_darkness,outline_darkness,outline_darkness,0.0)
 	if map_controller:
