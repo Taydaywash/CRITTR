@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_qr3u8"]
 [ext_resource type="PackedScene" uid="uid://bwgk51grjehh6" path="res://Scenes/World/LevelEditor/Objects/GrapplePoints/GrapplePoint.tscn" id="6_jfe0q"]
 [ext_resource type="Script" uid="uid://r63htp46ehug" path="res://Scenes/World/LevelEditor/Objects/EditorNotes/EditorNotes.gd" id="7_4p1f5"]
-[ext_resource type="PackedScene" uid="uid://bj2evssjuqrmd" path="res://Scenes/World/LevelEditor/Objects/SaveTube/SaveTube.tscn" id="7_5tghv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ox1ul"]
 size = Vector2(4608, 4608)
@@ -67,9 +66,6 @@ position = Vector2(-384, -128)
 
 [node name="GrapplePoint4" parent="." unique_id=1313460248 instance=ExtResource("6_jfe0q")]
 position = Vector2(-384, -1024)
-
-[node name="SaveTube" parent="." unique_id=918559546 instance=ExtResource("7_5tghv")]
-position = Vector2(1792, 1792)
 
 [node name="Editor Notes" type="Control" parent="." unique_id=355923017]
 layout_mode = 3

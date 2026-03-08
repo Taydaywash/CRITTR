@@ -67,6 +67,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PauseScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_irrot"]
 resource_name = "close_pause_menu"
@@ -95,6 +107,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 0.40612632, 1, 0.39229208),
 "update": 0,
 "values": [0.0, 0.012217304763961101, 0.008726646259971648, -0.22165681500328063]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PauseScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_7o3bi"]
@@ -125,6 +149,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [-0.22165681500328063, 0.012217304763961101, 0.008726646259971648, 0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PauseScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_irrot"]
 _data = {
@@ -145,7 +181,7 @@ particle_controller_reference = NodePath("../Particle Controller")
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "ui", "player", "audio_controller", "state_machine", "current_room_detection_ray", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("CrashSite/CrashedShip")
+starting_room = NodePath("CrashSite/DashTestOfSkill2")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioManager")
@@ -159,8 +195,8 @@ horizontal_enter_velocity = 800.0
 horizontal_enter_minimum_enter_velocity = 100.0
 horizontal_enter_minimum_distance_from_last_room = 120.0
 horizontal_enter_default_length = 100.0
-up_enter_velocity = 2500.0
-up_enter_minimum_distance_from_last_room = 200.0
+up_enter_velocity = 3000.0
+up_enter_minimum_distance_from_last_room = 300.0
 up_enter_default_length = 100.0
 down_enter_velocity = 1000.0
 down_enter_minimum_distance_from_last_room = 100.0
@@ -460,6 +496,10 @@ rotation = -3.1415925
 texture = ExtResource("24_2neov")
 flip_h = true
 
+[node name="SaveTube" parent="Rooms/CrashSite/Platforms2" unique_id=918559546 instance=ExtResource("8_hev0n")]
+z_index = 0
+position = Vector2(1472, 256)
+
 [node name="ToDash" parent="Rooms/CrashSite" unique_id=721111038 instance=ExtResource("21_2ytws")]
 z_as_relative = false
 position = Vector2(2944, -3904)
@@ -602,10 +642,6 @@ rotation = -3.1415925
 texture = ExtResource("24_2neov")
 flip_h = true
 
-[node name="SaveTube" parent="Rooms/CrashSite/DashTestOfSkill1" unique_id=918559546 instance=ExtResource("8_hev0n")]
-z_index = 0
-position = Vector2(-3712, 256)
-
 [node name="DashTestOfSkill2" parent="Rooms/CrashSite" unique_id=90539437 instance=ExtResource("23_2wmbs")]
 position = Vector2(13440, -7744)
 
@@ -616,7 +652,7 @@ z_as_relative = false
 [node name="VinesT" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill2/BackgroundElements" unique_id=1164359493]
 modulate = Color(0.52, 0.52, 0.52, 1)
 z_as_relative = false
-position = Vector2(-191.99951, -576)
+position = Vector2(-127.999504, -704)
 rotation = -3.1415925
 scale = Vector2(0.74816006, 0.7821118)
 texture = ExtResource("24_2neov")
