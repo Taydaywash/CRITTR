@@ -63,15 +63,14 @@ func _process(_delta: float) -> void:
 	if room_transition_controller.current_room == self:
 		room_transition_controller.play_music(room_transition_controller.current_room.region.music)
 		z_index = 2
+	else:
+		z_index = 0
 
 func enter_room():
 	change_camera_bounds()
 	room_visited = true
 	EventController.emit_signal("room_explored",room_id)
 	room_transition_controller.play_music(room_transition_controller.current_room.region.music)
-	z_index = 2
-func exit_room():
-	z_index = 0
 
 func change_camera_bounds(snap_camera : bool = false, zoom : float = camera_zoom) -> void:
 	camera_boundary_top_left = level_bounds.shape.get_rect().position

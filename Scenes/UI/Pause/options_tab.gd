@@ -106,6 +106,10 @@ func handle_input(event: InputEvent) -> void:
 			default_focus.grab_focus()
 
 func _on_main_menu_pressed() -> void:
+	var data : Dictionary = {
+		"last_respawn_point": pause_screen.player_reference.respawn_controller_reference.respawn_position
+	}
+	EventController.emit_signal("save_and_quit",data)
 	get_tree().change_scene_to_file(TITLE_SCREEN)
 
 func _on_decrease_pressed() -> void:

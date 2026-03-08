@@ -181,7 +181,7 @@ particle_controller_reference = NodePath("../Particle Controller")
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "ui", "player", "audio_controller", "state_machine", "current_room_detection_ray", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("CrashSite/DashTestOfSkill2")
+starting_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioManager")
@@ -868,11 +868,12 @@ rotation = -3.1415925
 texture = ExtResource("24_2neov")
 flip_h = true
 
-[node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "animation_player", "map") instance=ExtResource("5_o14yy")]
+[node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "animation_player", "player_reference", "map") instance=ExtResource("5_o14yy")]
 offset = Vector2(0, 1000)
 transform = Transform2D(1, 0, 0, 1, 0, 1000)
 audio_controller = NodePath("../AudioManager")
 animation_player = NodePath("../AnimationPlayer")
+player_reference = NodePath("../Player")
 map = NodePath("Map")
 
 [node name="Map" parent="PauseScreen" unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager", "current_region", "map_tab_default_focus", "ui_ref") instance=ExtResource("18_hev0n")]

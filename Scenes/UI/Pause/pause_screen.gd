@@ -1,6 +1,7 @@
 extends CanvasLayer
 @export var audio_controller : AudioListener2D
 @export var animation_player : AnimationPlayer
+@export var player_reference : Player
 @export_category("Tab Buttons")
 @export var dna_button : Button
 @export var map_button : Button
@@ -24,6 +25,8 @@ func _ready() -> void:
 	can_pause = true
 
 func _input(event: InputEvent) -> void:
+	if not player_reference.is_on_floor():
+		return
 	if animation_player.is_playing():
 		return
 	if not can_pause:

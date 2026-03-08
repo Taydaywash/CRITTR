@@ -24,6 +24,10 @@ var ability_data = {
 
 var ability_queue = []
 
+func _ready() -> void:
+	ability_queue = indices_to_states(GameController.get_current_abilities())
+	update_abilities()
+
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
 		if up_ability.has_focus() or down_ability.has_focus() or left_ability.has_focus() or right_ability.has_focus():
@@ -135,4 +139,44 @@ func update_abilities():
 		for element in ability_queue:
 			if element.direction == direction:
 				abilities.set_ability(direction,element.ability)
+	EventController.emit_signal("update_current_abilities",states_to_indices())
 	update_ability_icons()
+func states_to_indices():
+	var indexed_ability_queue := []
+	for element in ability_queue:
+		ability_data.direction = element.direction
+		match element.ability:
+			abilities.dashing_state:
+				ability_data.ability = 0
+			abilities.grappling_state:
+				ability_data.ability = 1
+			abilities.climbing_state:
+				ability_data.ability = 2
+			abilities.inflated_state:
+				ability_data.ability = 3
+			abilities.drill_state:
+				ability_data.ability = 4
+			abilities.bounce_attack_state:
+				ability_data.ability = 5
+		indexed_ability_queue.append(ability_data.duplicate())
+	return indexed_ability_queue.duplicate(true)
+
+func indices_to_states(indexed_ability_queue):
+	var unindexed_ability_queue := []
+	for element in indexed_ability_queue:
+		ability_data.direction = element.direction
+		match element.ability:
+			0:
+				ability_data.ability = abilities.dashing_state
+			1:
+				ability_data.ability = abilities.grappling_state
+			2:
+				ability_data.ability = abilities.climbing_state
+			3:
+				ability_data.ability = abilities.inflated_state
+			4:
+				ability_data.ability = abilities.drill_state
+			5:
+				ability_data.ability = abilities.bounce_attack_state
+		unindexed_ability_queue.append(ability_data.duplicate())
+	return unindexed_ability_queue.duplicate(true)

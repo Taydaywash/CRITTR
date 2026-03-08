@@ -52,7 +52,10 @@ var lock_screen_as_black : bool = true
 func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	lock_screen_as_black = false
-	player.global_position = starting_room.get_respawn_point()
+	if GameController.game_state.last_respawn_point:
+		player.global_position = GameController.game_state.last_respawn_point
+	else:
+		player.global_position = starting_room.get_respawn_point()
 	#current_room = starting_room
 
 func transition_room(room : Room): #called when entering room collider from room_controller.gd
@@ -199,7 +202,7 @@ func finished_transitioning():
 	transtioning_room = false
 	return_to_state()
 	current_room = current_room_detection_ray.get_collider().get_parent()
-	previous_room.exit_room()
+	#previous_room.exit_room()
 	current_room.enter_room()
 
 func return_to_state():

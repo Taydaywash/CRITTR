@@ -8,11 +8,14 @@ extends CharacterBody2D
 @export var down : RayCast2D
 @export var left : RayCast2D
 @export var right : RayCast2D
+@export_category("Parameters")
 @export var normal_gravity : int
 @export var max_falling_speed : int
+@export_category("References")
 @export var animated_player_sprite: AnimatedSprite2D
 @export var audio_controller_reference : AudioController
 @export var particle_controller_reference : ParticleController
+@export var respawn_controller_reference : Node
 
 func _ready() -> void:
 	state_machine.initialize(self,animated_player_sprite)
