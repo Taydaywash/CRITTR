@@ -48,6 +48,12 @@ func toggle_pause(from_save_point : bool = false, starting_tab : String = "dna")
 		used_save_point = true
 	paused = !paused
 	if paused:
+		visible = true
+		animation_player.play("open_pause_menu")
+	else:
+		animation_player.play("close_pause_menu")
+		
+	if paused:
 		match starting_tab:
 			"dna":
 				dna_button.grab_focus()
@@ -56,16 +62,12 @@ func toggle_pause(from_save_point : bool = false, starting_tab : String = "dna")
 				map_tab.default_focus.grab_focus()
 				show_layer(map_tab)
 	dna_tab_blocker.visible = !used_save_point
-	if paused:
-		animation_player.play("open_pause_menu")
-	else:
-		animation_player.play("close_pause_menu")
+
 	get_tree().paused = paused
 	if not paused:
 		await animation_player.animation_finished
 		dna_button.grab_focus()
 		show_layer(dna_tab)
-	
 func _on_dna_button_focus_entered() -> void:
 	show_layer(dna_tab)
 	dna_tab.dna_tab_opened()
