@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c1howanlvaa75"]
+
+[ext_resource type="Script" uid="uid://rmy0j0w25vsj" path="res://Scenes/World/LevelEditor/Objects/Steam/steam.gd" id="1_khhob"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fjhgm"]
+size = Vector2(128, 386)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hepd"]
+size = Vector2(128, 386)
+
+[node name="Steam" type="Area2D" unique_id=861539247]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_khhob")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1577543601]
+texture = SubResource("PlaceholderTexture2D_fjhgm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=973071923]
+shape = SubResource("RectangleShape2D_2hepd")
+
+[node name="ActiveTimer" type="Timer" parent="." unique_id=2141576033]
+
+[node name="InactiveTimer" type="Timer" parent="." unique_id=1463981112]
+
+[connection signal="timeout" from="ActiveTimer" to="." method="_on_active_timer_timeout"]
+[connection signal="timeout" from="InactiveTimer" to="." method="_on_inactive_timer_timeout"]
