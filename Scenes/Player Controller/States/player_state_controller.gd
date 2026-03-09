@@ -31,6 +31,13 @@ func _process(delta: float) -> void:
 		animated_player_sprite.flip_h = true
 	elif velocity.x > 0:
 		animated_player_sprite.flip_h = false
+	else:
+		var horizontal_input = Input.get_axis("move_left","move_right")
+		match horizontal_input:
+			-1:
+				animated_player_sprite.flip_h = true
+			1: 
+				animated_player_sprite.flip_h = false
 	state_machine.process_frame(delta)
 
 @warning_ignore("shadowed_variable_base_class")
