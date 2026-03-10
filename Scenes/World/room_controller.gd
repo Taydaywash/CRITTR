@@ -31,6 +31,8 @@ var bounds : Dictionary = {
 
 var room_id : String
 func _ready() -> void:
+	for child in get_children():
+		child.visible = false
 	EventController.connect("collectable_collected",collectable_collected)
 	room_id = "%s(%s,%s)" % [name,global_position.x,global_position.y]
 	if room_id in GameController.game_state.explored_rooms:
@@ -58,6 +60,9 @@ func get_respawn_point():
 
 func _entered_room_collider(_body: Node2D) -> void:
 	room_transition_controller.transition_room(self)
+func _exited_room_collider(_body: Node2D) -> void:
+	pass
+
 
 func _process(_delta: float) -> void:
 	if room_transition_controller.current_room == self:
@@ -71,6 +76,12 @@ func enter_room():
 	room_visited = true
 	EventController.emit_signal("room_explored",room_id)
 	room_transition_controller.play_music(room_transition_controller.current_room.region.music)
+	for child in get_children():
+		if child is not Camera2D:
+			child.visible = true
+func exit_room():
+	for child in get_children():
+		child.visible = false
 
 func change_camera_bounds(snap_camera : bool = false, zoom : float = camera_zoom) -> void:
 	camera_boundary_top_left = level_bounds.shape.get_rect().position

@@ -202,7 +202,7 @@ func finished_transitioning():
 	transtioning_room = false
 	return_to_state()
 	current_room = current_room_detection_ray.get_collider().get_parent()
-	#previous_room.exit_room()
+	previous_room.exit_room()
 	current_room.enter_room()
 
 func return_to_state():
