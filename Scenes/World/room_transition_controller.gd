@@ -50,7 +50,7 @@ var exited_previous_room : bool = false
 var lock_screen_as_black : bool = true
 
 func _ready() -> void:
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.5).timeout
 	lock_screen_as_black = false
 	if GameController.game_state.last_respawn_point:
 		player.global_position = GameController.game_state.last_respawn_point
