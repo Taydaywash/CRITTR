@@ -17,7 +17,13 @@ var text_speeds_index = 0
 @export var sfx_volume_slider : HSlider
 @export var text_scroll_speed_value : Label
 @export var disable_partilces_button : Button
+@export var keybinds_screen : Panel
+@export var swap_controls_image_button : Button
+@export var controls_image_rect : TextureRect
 @onready var audio_controller : AudioListener2D = get_parent().audio_controller
+
+const CONTROLS = preload("uid://7hc7riw8mwuj")
+const CONTROLS_CONTROLLER = preload("uid://cgtb1bosiuvgx")
 
 var current_options : Dictionary = {
 	"screen_size": DisplayServer.WINDOW_MODE_WINDOWED,
@@ -37,6 +43,10 @@ func _ready() -> void:
 	temp_options = current_options.duplicate()
 	update_screen_settings()
 	apply_settings()
+
+func _process(_delta: float) -> void:
+	if not self.visible:
+		keybinds_screen.visible = false
 
 func options_opened() -> void:
 	temp_options = current_options.duplicate()
@@ -98,6 +108,10 @@ func _on_screen_size_item_selected(index: int) -> void:
 			temp_options.on_top = false
 
 func handle_input(event: InputEvent) -> void:
+	if keybinds_screen.visible:
+		if event.is_action_released("ui_cancel"):
+			_on_close_keybinds_pressed()
+			return
 	if event.is_action_released("ui_cancel"):
 		if pause_screen.current_tab == pause_screen.options_tab:
 			pause_screen.options_button.grab_focus()
@@ -159,3 +173,19 @@ func apply_settings():
 	audio_controller.change_master_volume_to(temp_options.master_volume/100.0)
 	audio_controller.change_music_volume_to(temp_options.music_volume/100.0)
 	audio_controller.change_sfx_volume_to(temp_options.sfx_volume/100.0)
+
+func _on_show_keybinds_pressed() -> void:
+	keybinds_screen.visible = true
+	swap_controls_image_button.grab_focus()
+
+func _on_close_keybinds_pressed() -> void:
+	keybinds_screen.visible = false
+	default_focus.grab_focus()
+
+func _on_swap_controls_image() -> void:
+	if controls_image_rect.texture == CONTROLS:
+		controls_image_rect.texture = CONTROLS_CONTROLLER
+		swap_controls_image_button.text = "Show Keyboard"
+	else:
+		controls_image_rect.texture = CONTROLS
+		swap_controls_image_button.text = "Show Controller"
