@@ -101,7 +101,7 @@ func process_physics(_delta) -> State:
 	if dive_input_buffer.time_left > 0 and dash_timer.time_left == 0:
 		return diving_state
 	# and player.velocity.y == 0
-	if (right_ray.is_colliding() or left_ray.is_colliding()) and (direction == "left" or direction == "right"):
+	if (left_ray.is_colliding() and direction == "left") or (right_ray.is_colliding() and direction == "right"):
 		return ascending_state
 	if (right_ray.is_colliding() or left_ray.is_colliding()) and (direction == "up" or direction == "down") and jump_input_buffer.time_left:
 		return wall_jumping_state
