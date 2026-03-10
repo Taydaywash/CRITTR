@@ -182,7 +182,7 @@ particle_controller_reference = NodePath("../Particle Controller")
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "ui", "player", "audio_controller", "state_machine", "current_room_detection_ray", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("CrashSite/DashTestOfSkill3")
+starting_room = NodePath("Testing/Testing1")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioManager")
@@ -730,6 +730,10 @@ flip_h = true
 
 [node name="DashTestOfSkill3" parent="Rooms/CrashSite" unique_id=907003477 instance=ExtResource("25_7o3bi")]
 position = Vector2(11136, -12864)
+
+[node name="SaveTube2" parent="Rooms/CrashSite/DashTestOfSkill3" unique_id=1330357684 instance=ExtResource("8_hev0n")]
+z_index = -2
+position = Vector2(3008, 1408)
 
 [node name="ToPeak" parent="Rooms/CrashSite" unique_id=257892768 instance=ExtResource("14_7in0u")]
 z_as_relative = false
