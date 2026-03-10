@@ -17,6 +17,7 @@ extends CharacterBody2D
 @export var particle_controller_reference : ParticleController
 @export var respawn_controller_reference : Node
 
+
 func _ready() -> void:
 	state_machine.initialize(self,animated_player_sprite)
 
@@ -47,3 +48,7 @@ func play_animation(name):
 	else:
 		assert(animated_player_sprite.sprite_frames.has_animation(name),"Animation not found: Ensure that name is typed correctly and that the animation exists!")
 		animated_player_sprite.play(name)
+
+func _on_tileset_body_entered(body: Node2D) -> void:
+	if body is TileMapLayer:
+		EventController.emit_signal("on_hidden_tile_entered",body)

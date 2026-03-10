@@ -104,7 +104,7 @@ func change_state(new_state : State, direction = null, discrete : bool = false) 
 			else:
 				current_state.deactivate(new_state)
 	current_state = new_state
-	if grounded_states.has(current_state) or (last_state == $Falling and current_state == $Jumping):
+	if grounded_states.has(current_state) or ((last_state == falling_state or last_state == diving_falling_state) and current_state == jumping_state):
 		abilities.refill_abilities()
 	if direction:
 		current_state.set_direction(direction)

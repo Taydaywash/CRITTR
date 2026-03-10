@@ -107,7 +107,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.4),
 "transitions": PackedFloat32Array(1, 0.40612632, 1, 0.39229208),
 "update": 0,
-"values": [0.0, 0.012217304763961101, 0.008726646259971648, -0.22165681500328063]
+"values": [0.0, 0.0122173047639611, 0.00872664625997164, -0.22165681500328063]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -148,7 +148,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(0.39229208, 0.40612632, 1, 1),
 "update": 0,
-"values": [-0.22165681500328063, 0.012217304763961101, 0.008726646259971648, 0.0]
+"values": [-0.22165681500328063, 0.0122173047639611, 0.00872664625997164, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -173,6 +173,7 @@ _data = {
 [node name="World" type="Node2D" unique_id=1470686207]
 
 [node name="Player" parent="." unique_id=674990077 node_paths=PackedStringArray("audio_controller_reference", "particle_controller_reference") instance=ExtResource("2_y6flb")]
+unique_name_in_owner = true
 z_index = 1
 z_as_relative = false
 audio_controller_reference = NodePath("../AudioManager")
@@ -182,7 +183,7 @@ particle_controller_reference = NodePath("../Particle Controller")
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "ui", "player", "audio_controller", "state_machine", "current_room_detection_ray", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("Testing/Testing1")
+starting_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioManager")
@@ -765,7 +766,7 @@ z_as_relative = false
 [node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/PeakEntrance/BackgroundElements" unique_id=1333184801]
 z_index = -1
 z_as_relative = false
-position = Vector2(-320, -576)
+position = Vector2(-320, -704)
 rotation = -3.1415925
 texture = ExtResource("22_c4j8x")
 

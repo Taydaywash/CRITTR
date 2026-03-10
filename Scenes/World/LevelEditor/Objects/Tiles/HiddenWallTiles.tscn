@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bj0mi5kkri54i"]
+
+[ext_resource type="TileSet" uid="uid://tj7gks4kwk1t" path="res://Scenes/World/LevelEditor/Objects/Tiles/HiddenTiles.tres" id="1_q0mex"]
+[ext_resource type="Script" uid="uid://dp72sscf81f6q" path="res://Scenes/World/LevelEditor/Objects/Tiles/hidden_wall_tiles.gd" id="2_fyyvs"]
+
+[node name="HiddenWallTiles" type="TileMapLayer" unique_id=229508698]
+z_index = 2
+tile_set = ExtResource("1_q0mex")
+script = ExtResource("2_fyyvs")

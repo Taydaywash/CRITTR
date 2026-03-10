@@ -14,6 +14,7 @@ var BASE_GAME_STATE : Dictionary = {
 	"collected_ids": {},
 	"viewed_tutorial_text": {},
 	"explored_rooms": {},
+	"revealed_walls": {},
 	"current_abilities": [],
 	"abilities_unlocked": abilities_unlocked.duplicate(),
 	"last_respawn_point": Vector2.ZERO,
@@ -41,7 +42,11 @@ func _ready():
 		game_state.explored_rooms[room_id] = null #way of making a set using dict
 		SaveLoadManager.save_game(game_state)
 		)
-	#reset_game()
+	EventController.connect("wall_revealed",func wall_revealed(wall_id):
+		game_state.revealed_walls[wall_id] = null #way of making a set using dict
+		SaveLoadManager.save_game(game_state)
+		)
+	reset_game()
 
 func collectable_collected(id: String, value: int) -> void:
 	if game_state.collected_ids.has(id):

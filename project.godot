@@ -202,3 +202,4 @@ quick_map={
 2d_physics/layer_7="digable"
 2d_physics/layer_8="Rooms"
 2d_physics/layer_9="Collectables"
+2d_physics/layer_10="HiddenWall"
