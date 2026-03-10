@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbehpvgmofkmu"
-path="res://.godot/imported/tundraBackground.png-b5ec7b8b76c3bd50a7ef17edfe4082e8.ctex"
+uid="uid://cqxml4ui330vu"
+path="res://.godot/imported/CloudTemple.png-dd6aa06a62cd7a1f5259efc86004981a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/tundraBackground.png"
-dest_files=["res://.godot/imported/tundraBackground.png-b5ec7b8b76c3bd50a7ef17edfe4082e8.ctex"]
+source_file="res://Assets/Tilesets/CloudTemple.png"
+dest_files=["res://.godot/imported/CloudTemple.png-dd6aa06a62cd7a1f5259efc86004981a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dncnka8ym7s66"
-path="res://.godot/imported/TundraPlatforms.png-3bf1fa8601591b25763c2e0d7108fde8.ctex"
+uid="uid://cgu7xoxfyrny2"
+path="res://.godot/imported/GlassSea.png-5fb41a33f5b0c333751851a909a39a4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/TundraPlatforms.png"
-dest_files=["res://.godot/imported/TundraPlatforms.png-3bf1fa8601591b25763c2e0d7108fde8.ctex"]
+source_file="res://Assets/Tilesets/GlassSea.png"
+dest_files=["res://.godot/imported/GlassSea.png-5fb41a33f5b0c333751851a909a39a4d.ctex"]
 
 [params]
 

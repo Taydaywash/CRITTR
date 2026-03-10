@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://vk7hdquyrbd5" path="res://Assets/Decals/Tundra/Background/vines t.png" id="24_2neov"]
 [ext_resource type="PackedScene" uid="uid://xown1ve0x1fq" path="res://Scenes/World/Regions/Crash Site/PeakEntrance.tscn" id="24_3a4wv"]
 [ext_resource type="PackedScene" uid="uid://bkm0vlqamm7vh" path="res://Scenes/World/Regions/Crash Site/DashTestOfSkill1.tscn" id="24_s1o57"]
+[ext_resource type="PackedScene" uid="uid://cpt3otggnsh57" path="res://Scenes/World/Regions/Crash Site/DashTestOfSkill3.tscn" id="25_7o3bi"]
 [ext_resource type="PackedScene" uid="uid://1ixxyx000fqa" path="res://Scenes/Particle Controller/particle_controller.tscn" id="25_hlwfy"]
 [ext_resource type="PackedScene" uid="uid://08jwhgawobtu" path="res://Scenes/World/Regions/Misc/verticality.tscn" id="28_863yi"]
 
@@ -181,7 +182,7 @@ particle_controller_reference = NodePath("../Particle Controller")
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "ui", "player", "audio_controller", "state_machine", "current_room_detection_ray", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("CrashSite/CrashedShip")
+starting_room = NodePath("CrashSite/DashTestOfSkill3")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioManager")
@@ -726,6 +727,9 @@ rotation = -3.1415925
 scale = Vector2(0.46144602, 0.46144602)
 texture = ExtResource("24_2neov")
 flip_h = true
+
+[node name="DashTestOfSkill3" parent="Rooms/CrashSite" unique_id=907003477 instance=ExtResource("25_7o3bi")]
+position = Vector2(11136, -12864)
 
 [node name="ToPeak" parent="Rooms/CrashSite" unique_id=257892768 instance=ExtResource("14_7in0u")]
 z_as_relative = false

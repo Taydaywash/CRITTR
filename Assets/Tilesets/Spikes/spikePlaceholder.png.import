@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dncnka8ym7s66"
-path="res://.godot/imported/TundraPlatforms.png-3bf1fa8601591b25763c2e0d7108fde8.ctex"
+uid="uid://c65odlyk03uru"
+path="res://.godot/imported/spikePlaceholder.png-5a8d5bca43de00122eeea07b0d83c113.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/TundraPlatforms.png"
-dest_files=["res://.godot/imported/TundraPlatforms.png-3bf1fa8601591b25763c2e0d7108fde8.ctex"]
+source_file="res://Assets/Tilesets/Spikes/spikePlaceholder.png"
+dest_files=["res://.godot/imported/spikePlaceholder.png-5a8d5bca43de00122eeea07b0d83c113.ctex"]
 
 [params]
 

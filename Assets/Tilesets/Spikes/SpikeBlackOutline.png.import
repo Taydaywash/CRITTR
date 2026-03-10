@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dncnka8ym7s66"
-path="res://.godot/imported/TundraPlatforms.png-3bf1fa8601591b25763c2e0d7108fde8.ctex"
+uid="uid://dmgnr22rils3a"
+path="res://.godot/imported/SpikeBlackOutline.png-bb08e36ab1f72ed0f0b7b0917f5519bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/TundraPlatforms.png"
-dest_files=["res://.godot/imported/TundraPlatforms.png-3bf1fa8601591b25763c2e0d7108fde8.ctex"]
+source_file="res://Assets/Tilesets/Spikes/SpikeBlackOutline.png"
+dest_files=["res://.godot/imported/SpikeBlackOutline.png-bb08e36ab1f72ed0f0b7b0917f5519bb.ctex"]
 
 [params]
 

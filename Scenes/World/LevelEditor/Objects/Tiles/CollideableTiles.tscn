@@ -2,5 +2,5 @@
 
 [ext_resource type="TileSet" uid="uid://dtdcurky4kpfq" path="res://Scenes/World/LevelEditor/Objects/Tiles/CollideableTiles.tres" id="1_411r4"]
 
-[node name="TileSets" type="TileMapLayer"]
+[node name="TileSets" type="TileMapLayer" unique_id=920181655]
 tile_set = ExtResource("1_411r4")

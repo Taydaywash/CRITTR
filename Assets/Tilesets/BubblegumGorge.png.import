@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c65odlyk03uru"
-path="res://.godot/imported/spikePlaceholder.png-b2e6563f4c10854c15040660e0ae43b6.ctex"
+uid="uid://bbbpf7obncyyy"
+path="res://.godot/imported/BubblegumGorge.png-d0a74d71a1049998327dcb12216de9d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/spikePlaceholder.png"
-dest_files=["res://.godot/imported/spikePlaceholder.png-b2e6563f4c10854c15040660e0ae43b6.ctex"]
+source_file="res://Assets/Tilesets/BubblegumGorge.png"
+dest_files=["res://.godot/imported/BubblegumGorge.png-d0a74d71a1049998327dcb12216de9d2.ctex"]
 
 [params]
 

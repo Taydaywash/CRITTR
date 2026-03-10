@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnqqt2tyb6thj"
-path="res://.godot/imported/tile tundra bg.png-bfe1af36550c92855b0a7fb061a563df.ctex"
+uid="uid://bbehpvgmofkmu"
+path="res://.godot/imported/TundraBackground.png-56be3ac6ef73cb3cd8201df3b4325ac7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/tile tundra bg.png"
-dest_files=["res://.godot/imported/tile tundra bg.png-bfe1af36550c92855b0a7fb061a563df.ctex"]
+source_file="res://Assets/Tilesets/Decoration/TundraBackground.png"
+dest_files=["res://.godot/imported/TundraBackground.png-56be3ac6ef73cb3cd8201df3b4325ac7.ctex"]
 
 [params]
 

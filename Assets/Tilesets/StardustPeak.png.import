@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dncnka8ym7s66"
-path="res://.godot/imported/TundraPlatforms.png-3bf1fa8601591b25763c2e0d7108fde8.ctex"
+uid="uid://b42kerqro5k1x"
+path="res://.godot/imported/StardustPeak.png-9072cebc5078479c33831c6ca6cd9ce8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/TundraPlatforms.png"
-dest_files=["res://.godot/imported/TundraPlatforms.png-3bf1fa8601591b25763c2e0d7108fde8.ctex"]
+source_file="res://Assets/Tilesets/StardustPeak.png"
+dest_files=["res://.godot/imported/StardustPeak.png-9072cebc5078479c33831c6ca6cd9ce8.ctex"]
 
 [params]
 
