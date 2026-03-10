@@ -31,11 +31,20 @@ GameController="*uid://b5kigqng4mpw3"
 
 [display]
 
-window/size/mode=3
 window/size/resizable=false
 window/size/minimize_disabled=true
 window/size/maximize_disabled=true
 window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "teal",
+"res://Custom Classes/": "pink",
+"res://Global Scripts/": "blue",
+"res://Scenes/": "yellow",
+"res://Tools/": "purple"
+}
 
 [input]
 
