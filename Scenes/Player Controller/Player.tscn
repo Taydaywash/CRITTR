@@ -1070,5 +1070,6 @@ collision_mask = 81
 [connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Left" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]
 [connection signal="area_entered" from="TriggerHitbox" to="Respawn Controller" method="_on_trigger_hitbox_area_entered"]
 [connection signal="body_entered" from="TriggerHitbox" to="." method="_on_tileset_body_entered"]
+[connection signal="area_entered" from="Hurtbox" to="Respawn Controller" method="_on_body_entered"]
 [connection signal="body_entered" from="Hurtbox" to="Respawn Controller" method="_on_body_entered"]
 [connection signal="body_entered" from="CrouchedHurtbox" to="." method="_on_crouched_hurtbox_body_entered"]
