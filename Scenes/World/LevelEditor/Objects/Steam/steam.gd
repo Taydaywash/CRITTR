@@ -28,9 +28,9 @@ func _on_active_timer_timeout():
 	#Causes it to immediately check for updates/Cause the player to immediately
 	#detect it, rather than waiting for the player To leave and then reenter
 	#...
-	#This sets the collider's global position to (0,0) which is fine because no 
+	#This sets the collider's global position to (INF,INF) which is fine because no 
 	#rooms exist at this point
-	collision.global_position = Vector2.ZERO
+	collision.global_position = Vector2.INF
 	#self.monitorable = false
 	self.visible = false
 
