@@ -15,6 +15,7 @@ func _ready() -> void:
 	button_pronpt_instance.texture = INTERACT_BUTTON_PROMPT
 	add_child(button_pronpt_instance)
 	button_pronpt_instance.global_position = global_position
+	button_pronpt_instance.global_scale = Vector2.ONE
 	button_pronpt_instance.modulate.a = 0.0
 	return_position = global_position
 	

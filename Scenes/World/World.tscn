@@ -26,14 +26,13 @@
 [ext_resource type="Texture2D" uid="uid://c6owixld7ssqg" path="res://Assets/Decals/Tundra/Background/tundra hill.png" id="21_eucu0"]
 [ext_resource type="Texture2D" uid="uid://cneyuseemoqek" path="res://Assets/Decals/Tundra/Background/many vines t.png" id="22_c4j8x"]
 [ext_resource type="PackedScene" uid="uid://bh54xsgst7ooj" path="res://Scenes/World/Regions/Crash Site/DashTestOfSkill2.tscn" id="23_2wmbs"]
-[ext_resource type="Texture2D" uid="uid://bm6vu2bqh8xgm" path="res://Assets/Decals/Tundra/Background/big t hill.png" id="23_c4j8x"]
 [ext_resource type="Texture2D" uid="uid://vk7hdquyrbd5" path="res://Assets/Decals/Tundra/Background/vines t.png" id="24_2neov"]
 [ext_resource type="PackedScene" uid="uid://xown1ve0x1fq" path="res://Scenes/World/Regions/Crash Site/PeakEntrance.tscn" id="24_3a4wv"]
 [ext_resource type="PackedScene" uid="uid://bkm0vlqamm7vh" path="res://Scenes/World/Regions/Crash Site/DashTestOfSkill1.tscn" id="24_s1o57"]
 [ext_resource type="PackedScene" uid="uid://cpt3otggnsh57" path="res://Scenes/World/Regions/Crash Site/DashTestOfSkill3.tscn" id="25_7o3bi"]
 [ext_resource type="PackedScene" uid="uid://1ixxyx000fqa" path="res://Scenes/Particle Controller/particle_controller.tscn" id="25_hlwfy"]
 [ext_resource type="PackedScene" uid="uid://08jwhgawobtu" path="res://Scenes/World/Regions/Misc/verticality.tscn" id="28_863yi"]
-[ext_resource type="Texture2D" uid="uid://b620ffik7xoui" path="res://Assets/Decals/Tundra/Background/bg hill.png" id="29_eoa2q"]
+[ext_resource type="Texture2D" uid="uid://bm6vu2bqh8xgm" path="res://Assets/Decals/Tundra/Background/big t hill.png" id="29_eoa2q"]
 [ext_resource type="PackedScene" uid="uid://cfdlyy7ukjry2" path="res://Scenes/World/Regions/Crash Site/HiddenRoomUnderPeak.tscn" id="29_irrot"]
 [ext_resource type="Texture2D" uid="uid://cpebeecu04hk6" path="res://Assets/Decals/Tundra/Background/ship no smoke.png" id="35_irrot"]
 
@@ -185,7 +184,7 @@ particle_controller_reference = NodePath("../Particle Controller")
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "ui", "player", "audio_controller", "state_machine", "current_room_detection_ray", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("CrashSite/PeakEntrance")
+starting_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioManager")
@@ -269,7 +268,8 @@ camera_zoom = 0.77
 
 [node name="ShipDoorOutside" parent="Rooms/CrashSite/CrashedShip" unique_id=1749550748 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
 z_index = -1
-position = Vector2(-160, 960)
+position = Vector2(-157, 1061)
+scale = Vector2(2.798557, 3.6832519)
 go_to_door = NodePath("../../InsideShip/ShipDoorInside")
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/CrashedShip" unique_id=157323415]
@@ -296,24 +296,24 @@ texture = ExtResource("24_2neov")
 [node name="BigTHill2" type="Sprite2D" parent="Rooms/CrashSite/CrashedShip/BackgroundElements" unique_id=39408025]
 z_index = -3
 position = Vector2(2329, 34)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill2" type="Sprite2D" parent="Rooms/CrashSite/CrashedShip/BackgroundElements/BigTHill2" unique_id=306803200]
 z_index = -1
 position = Vector2(-880, 130)
 scale = Vector2(0.9, 0.9)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/CrashedShip/BackgroundElements/BigTHill2" unique_id=266886011]
 z_index = -1
 position = Vector2(-4538, 98)
 scale = Vector2(0.9, 0.9)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill3" type="Sprite2D" parent="Rooms/CrashSite/CrashedShip/BackgroundElements/BigTHill2" unique_id=464157624]
 z_index = -3
 position = Vector2(-3664, 28)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 flip_h = true
 
 [node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/CrashedShip/BackgroundElements" unique_id=2091611375]
@@ -364,25 +364,25 @@ texture = ExtResource("24_2neov")
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 position = Vector2(1280, 80)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill3" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=2073088893]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 position = Vector2(2704, 208)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=911613774]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 position = Vector2(64, 256)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill5" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=1792563156]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 position = Vector2(-1600, 192)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/MovementTut/BackgroundElements" unique_id=349234284]
 z_index = -3
@@ -431,21 +431,21 @@ modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(1728, 40)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=490769037]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(-2560, -1304)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill3" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=812738713]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(-320, 680)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/Dive Tutorial/BackgroundElements" unique_id=560831488]
 modulate = Color(0.7, 0.7, 0.7, 1)
@@ -495,14 +495,14 @@ modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(1088, -64)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/Platforms2/BackgroundElements" unique_id=307583997]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(2304, -64)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/Platforms2/BackgroundElements" unique_id=481684033]
 modulate = Color(0.66, 0.66, 0.66, 1)
@@ -531,14 +531,14 @@ modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(512, 0)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/ToDash/BackgroundElements" unique_id=242181478]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(-1152, 256)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/ToDash/BackgroundElements" unique_id=365513248]
 modulate = Color(0.66, 0.66, 0.66, 1)
@@ -621,35 +621,35 @@ modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(1536, -192)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill5" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill1/BackgroundElements" unique_id=596321412]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(2880, -512)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill6" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill1/BackgroundElements" unique_id=940264981]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(3776, -384)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill1/BackgroundElements" unique_id=1417793175]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(-64, 128)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill3" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill1/BackgroundElements" unique_id=121533175]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(-1856, -256)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill1/BackgroundElements" unique_id=2063853361]
 modulate = Color(0.52, 0.52, 0.52, 1)
@@ -705,35 +705,35 @@ modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(576, -320)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill5" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill2/BackgroundElements" unique_id=1480581005]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(768, 1344)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill6" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill2/BackgroundElements" unique_id=1473589176]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(-384, 1344)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill2/BackgroundElements" unique_id=1748170642]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(-1408, 1408)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill3" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill2/BackgroundElements" unique_id=1931669196]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(-1152, 128)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill2/BackgroundElements" unique_id=957526714]
 modulate = Color(0.52, 0.52, 0.52, 1)
@@ -769,7 +769,7 @@ texture = ExtResource("21_eucu0")
 modulate = Color(0.44, 0.44, 0.44, 1)
 z_index = -3
 position = Vector2(-128, 64)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="PeakEntrance" parent="Rooms/CrashSite" unique_id=325262007 instance=ExtResource("24_3a4wv")]
 position = Vector2(-6272, -3904)
@@ -804,21 +804,21 @@ modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(1531, 1141)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/PeakEntrance/BackgroundElements" unique_id=1884166064]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(-1152, 1088)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill3" type="Sprite2D" parent="Rooms/CrashSite/PeakEntrance/BackgroundElements" unique_id=2017552196]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(256, 1152)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/PeakEntrance/BackgroundElements" unique_id=271798968]
 z_as_relative = false
@@ -885,14 +885,14 @@ modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(704, 192)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill3" type="Sprite2D" parent="Rooms/Miscellaneous/WeirdJump/BackgroundElements" unique_id=1170766454]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
 z_as_relative = false
 position = Vector2(-1408, 320)
-texture = ExtResource("23_c4j8x")
+texture = ExtResource("29_eoa2q")
 
 [node name="VinesT2" type="Sprite2D" parent="Rooms/Miscellaneous/WeirdJump/BackgroundElements" unique_id=949010000]
 z_index = -3
