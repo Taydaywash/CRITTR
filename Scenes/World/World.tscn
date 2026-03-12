@@ -184,7 +184,7 @@ particle_controller_reference = NodePath("../Particle Controller")
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "ui", "player", "audio_controller", "state_machine", "current_room_detection_ray", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("CrashSite/CrashedShip")
+starting_room = NodePath("CrashSite/MovementTut")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioManager")
@@ -340,7 +340,7 @@ go_to_door = NodePath("../../CrashedShip/ShipDoorOutside")
 
 [node name="MovementTut" parent="Rooms/CrashSite" unique_id=1846956963 instance=ExtResource("5_04mge")]
 z_as_relative = false
-position = Vector2(8705, -1339)
+position = Vector2(8704, -1336)
 zoom_to_fit = true
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/MovementTut" unique_id=1799397664]

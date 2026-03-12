@@ -17,7 +17,6 @@ extends CharacterBody2D
 @export var particle_controller_reference : ParticleController
 @export var respawn_controller_reference : Node
 
-
 func _ready() -> void:
 	state_machine.initialize(self,animated_player_sprite)
 

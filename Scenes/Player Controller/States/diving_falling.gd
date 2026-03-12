@@ -32,7 +32,7 @@ func process_physics(delta) -> State:
 		player.velocity.y += gravity * delta
 	player.move_and_slide()
 	
-	if player.is_on_wall():
+	if player.is_on_wall() and not player.is_on_floor():
 		return bonked_state
 	if player.is_on_floor():
 		if jump_input_buffer.time_left > 0:
