@@ -34,7 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://cpt3otggnsh57" path="res://Scenes/World/Regions/Crash Site/DashTestOfSkill3.tscn" id="25_7o3bi"]
 [ext_resource type="PackedScene" uid="uid://1ixxyx000fqa" path="res://Scenes/Particle Controller/particle_controller.tscn" id="25_hlwfy"]
 [ext_resource type="PackedScene" uid="uid://08jwhgawobtu" path="res://Scenes/World/Regions/Misc/verticality.tscn" id="28_863yi"]
-[ext_resource type="PackedScene" path="res://Scenes/World/Regions/Crash Site/HiddenRoomUnderPeak.tscn" id="29_irrot"]
+[ext_resource type="PackedScene" uid="uid://cfdlyy7ukjry2" path="res://Scenes/World/Regions/Crash Site/HiddenRoomUnderPeak.tscn" id="29_irrot"]
 
 [sub_resource type="Gradient" id="Gradient_vdgnt"]
 offsets = PackedFloat32Array(1)

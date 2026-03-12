@@ -10,10 +10,11 @@ size = Vector2(128, 386)
 
 [node name="Steam" type="Area2D" unique_id=861539247]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 8
 script = ExtResource("1_khhob")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1577543601]
+visible = false
 texture = SubResource("PlaceholderTexture2D_fjhgm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=973071923]
@@ -25,5 +26,6 @@ one_shot = true
 [node name="InactiveTimer" type="Timer" parent="." unique_id=1463981112]
 one_shot = true
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="ActiveTimer" to="." method="_on_active_timer_timeout"]
 [connection signal="timeout" from="InactiveTimer" to="." method="_on_inactive_timer_timeout"]
