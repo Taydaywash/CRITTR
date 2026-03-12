@@ -1,8 +1,8 @@
 extends Area2D
 
 @export_category("Size")
-@export var x: int
-@export var y: int
+@export var x: int = 128
+@export var y: int = 386
 @export_category("Timer")
 @export var active_time: float = 2
 @export var inactive_time: float = 2
@@ -18,8 +18,9 @@ func _ready():
 	inactive_timer.wait_time = inactive_time
 	#These two following lines set the collision hitbox to zero
 	#You can instead change the hitbox in the editor
-	#collision.shape.size.x = x
-	#collision.shape.size.y = y
+	collision.shape.size.x = x
+	collision.shape.size.y = y
+	await get_tree().create_timer(delay_time).timeout
 	active_timer.start()
 
 func _on_active_timer_timeout():

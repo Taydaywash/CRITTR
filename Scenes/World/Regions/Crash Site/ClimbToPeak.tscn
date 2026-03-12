@@ -40,5 +40,9 @@ debug_color = Color(1, 1, 1, 0.21568628)
 [node name="Steam" parent="." unique_id=861539247 instance=ExtResource("6_xqbx7")]
 position = Vector2(-1784, -810)
 
+[node name="Steam2" parent="." unique_id=1241504708 instance=ExtResource("6_xqbx7")]
+position = Vector2(-1024, -576)
+delay_time = 2.0
+
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]
