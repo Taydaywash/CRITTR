@@ -346,11 +346,11 @@ position = Vector2(1152, 896)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Rooms/CrashSite/CrashedShip" unique_id=2679866]
 z_index = -9
-position = Vector2(585, 832)
+position = Vector2(585, 896)
 amount = 11
 texture = ExtResource("18_eoa2q")
 lifetime = 5.75
-preprocess = 2.75
+preprocess = 6.02
 speed_scale = 1.6
 randomness = 0.23
 direction = Vector2(4, 4)
@@ -365,7 +365,54 @@ scale_amount_min = 0.3
 scale_amount_max = 0.4
 scale_amount_curve = SubResource("Curve_hb1o8")
 color_ramp = SubResource("Gradient_3r7l7")
-metadata/_edit_lock_ = true
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Rooms/CrashSite/CrashedShip" unique_id=1985594463]
+z_index = -9
+position = Vector2(-384, 960)
+amount = 50
+texture = ExtResource("18_eoa2q")
+lifetime = 5.75
+preprocess = 6.02
+speed_scale = 1.6
+randomness = 0.23
+direction = Vector2(0, -1)
+spread = 31.5
+gravity = Vector2(0, -98)
+initial_velocity_min = 68.82
+initial_velocity_max = 68.82
+angular_velocity_min = 2.0
+angular_velocity_max = 2.0
+angle_min = -349.9
+angle_max = 228.8
+angle_curve = SubResource("Curve_nlkji")
+scale_amount_min = 0.1
+scale_amount_max = 0.15
+scale_amount_curve = SubResource("Curve_hb1o8")
+color_ramp = SubResource("Gradient_3r7l7")
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="Rooms/CrashSite/CrashedShip" unique_id=1287952417]
+z_index = -9
+position = Vector2(-384, 960)
+amount = 50
+texture = ExtResource("18_eoa2q")
+lifetime = 5.75
+preprocess = 6.02
+speed_scale = 1.6
+randomness = 0.23
+direction = Vector2(0, -1)
+spread = 31.5
+gravity = Vector2(0, -98)
+initial_velocity_min = 68.82
+initial_velocity_max = 68.82
+angular_velocity_min = 2.0
+angular_velocity_max = 2.0
+angle_min = -349.9
+angle_max = 228.8
+angle_curve = SubResource("Curve_nlkji")
+scale_amount_min = 0.1
+scale_amount_max = 0.15
+scale_amount_curve = SubResource("Curve_hb1o8")
+color_ramp = SubResource("Gradient_3r7l7")
 
 [node name="InsideShip" parent="Rooms/CrashSite" unique_id=845230466 instance=ExtResource("8_jacc8")]
 z_as_relative = false

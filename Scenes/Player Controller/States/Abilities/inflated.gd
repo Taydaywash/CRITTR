@@ -82,15 +82,6 @@ func activate(last_state : State) -> void:
 		else:
 			player.velocity.x = initial_velocity
 
-func process_input(event : InputEvent) -> State:
-	if event.is_action_pressed("jump"):
-		return jumping_state
-	if event.is_action_pressed("dive"):
-		return diving_state
-	if event.is_action_pressed("use_ability"):
-		return ability_state
-	return null
-
 func process_physics(delta) -> State:
 	if player.velocity.y > -max_ascent_speed:
 		player.velocity.y = player.velocity.move_toward(Vector2(player.velocity.x,-max_ascent_speed),upwards_acceleration * delta).y
