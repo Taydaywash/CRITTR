@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dncnka8ym7s66"
-path="res://.godot/imported/tundraPlatforms.png-cfca4f684451da357d0ef6e5af0c2cfe.ctex"
+uid="uid://bkmii5ukk00pn"
+path="res://.godot/imported/puff cloud.png-f5ec05a06a9c64e6f49fc052911e7fd4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/tundraPlatforms.png"
-dest_files=["res://.godot/imported/tundraPlatforms.png-cfca4f684451da357d0ef6e5af0c2cfe.ctex"]
+source_file="res://Assets/Particles/puff cloud.png"
+dest_files=["res://.godot/imported/puff cloud.png-f5ec05a06a9c64e6f49fc052911e7fd4.ctex"]
 
 [params]
 

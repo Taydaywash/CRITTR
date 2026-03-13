@@ -3,10 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://dowgutwq0rs3s" path="res://Assets/Tilesets/testtileset.png" id="1_txdp3"]
 [ext_resource type="Texture2D" uid="uid://dmgnr22rils3a" path="res://Assets/Tilesets/Spikes/SpikeBlackOutline.png" id="2_r3612"]
 [ext_resource type="Texture2D" uid="uid://cgu7xoxfyrny2" path="res://Assets/Tilesets/GlassSea.png" id="3_u5pff"]
-[ext_resource type="Texture2D" uid="uid://dncnka8ym7s66" path="res://Assets/Tilesets/TundraPlatforms.png" id="4_833lq"]
+[ext_resource type="Texture2D" uid="uid://dncnka8ym7s66" path="res://Assets/Tilesets/tundraPlatforms.png" id="4_833lq"]
+[ext_resource type="Texture2D" uid="uid://c4vbno8vubt77" path="res://Assets/Tilesets/Marshtileset.png" id="4_r3612"]
 [ext_resource type="Texture2D" uid="uid://bl17iqg8lidmc" path="res://Assets/Tilesets/Digable.png" id="5_1e7op"]
 [ext_resource type="Texture2D" uid="uid://d006flcisjx5" path="res://Assets/Tilesets/TundraForeground.png" id="5_213ja"]
-[ext_resource type="Texture2D" uid="uid://bwf2p6tbnw4tb" path="res://Assets/Tilesets/ToxicMarsh.png" id="7_8p2cl"]
 [ext_resource type="Texture2D" uid="uid://cqxml4ui330vu" path="res://Assets/Tilesets/CloudTemple.png" id="8_6eyha"]
 [ext_resource type="Texture2D" uid="uid://b42kerqro5k1x" path="res://Assets/Tilesets/StardustPeak.png" id="9_3lt27"]
 [ext_resource type="Texture2D" uid="uid://bbbpf7obncyyy" path="res://Assets/Tilesets/BubblegumGorge.png" id="10_anj27"]
@@ -1313,7 +1313,7 @@ texture_region_size = Vector2i(128, 128)
 11:3/0/terrains_peering_bit/top_side = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3r0x5"]
-texture = ExtResource("7_8p2cl")
+texture = ExtResource("4_r3612")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 0
