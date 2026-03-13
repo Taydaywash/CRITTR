@@ -49,8 +49,15 @@ var entered_from_door : bool = false
 var exited_previous_room : bool = false
 var lock_screen_as_black : bool = true
 
+var room_transition_failsafe_timer : Timer
+@export var room_transition_failsafe_timer_wait_time : float
+
 func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
+	room_transition_failsafe_timer = Timer.new()
+	room_transition_failsafe_timer.one_shot = true
+	room_transition_failsafe_timer.wait_time = room_transition_failsafe_timer_wait_time
+	add_child(room_transition_failsafe_timer)
 	lock_screen_as_black = false
 	if GameController.game_state.last_respawn_point:
 		player.global_position = GameController.game_state.last_respawn_point
@@ -73,6 +80,7 @@ func transition_room(room : Room): #called when entering room collider from room
 	state_machine.call_deferred("force_change_state", state_machine.no_control_no_gravity_state)
 	set_up_room_detection_rays()
 	transtioning_room = true
+	room_transition_failsafe_timer.start()
 	fade_to_black = true
 	
 func get_enter_direction(room : Room) -> String:
@@ -153,6 +161,10 @@ func _physics_process(_delta: float) -> void:
 	if not is_ray_inside_previous_room() and not exited_previous_room:
 		dont_hit_from_inside()
 		exited_previous_room = true
+	if not room_transition_failsafe_timer.time_left:
+		finished_transitioning()
+		return
+	return
 	match enter_direction:
 		"up":
 			if not room_distance_detection_ray_down.is_colliding():
@@ -199,6 +211,7 @@ func is_ray_inside_previous_room() -> bool:
 	return false
 
 func finished_transitioning():
+	room_transition_failsafe_timer.stop()
 	transtioning_room = false
 	return_to_state()
 	current_room = current_room_detection_ray.get_collider().get_parent()
