@@ -164,7 +164,6 @@ func _physics_process(_delta: float) -> void:
 	if not room_transition_failsafe_timer.time_left:
 		finished_transitioning()
 		return
-	return
 	match enter_direction:
 		"up":
 			if not room_distance_detection_ray_down.is_colliding():
