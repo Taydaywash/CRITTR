@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://Scenes/World/Regions/Misc/Testing1.tscn" id="15_jacc8"]
 [ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://Scenes/World/Regions/Crash Site/DiveTutorial.tscn" id="16_vdgnt"]
 [ext_resource type="PackedScene" uid="uid://2qo4nl7dvk62" path="res://Scenes/World/LevelEditor/Objects/Collectable/Collectable.tscn" id="17_h71dq"]
+[ext_resource type="Texture2D" uid="uid://bkmii5ukk00pn" path="res://Assets/Particles/puff cloud.png" id="18_eoa2q"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/UI/Map/map.tscn" id="18_hev0n"]
 [ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://Scenes/World/Regions/Crash Site/PlatformsTwo.tscn" id="19_hlwfy"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://Assets/Decals/Tundra/Background/background layer tundra 1.png" id="19_vdgnt"]
@@ -42,6 +43,20 @@ colors = PackedColorArray(0.8197893, 0.92398196, 0.9423895, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3ql1f"]
 gradient = SubResource("Gradient_vdgnt")
+
+[sub_resource type="Curve" id="Curve_nlkji"]
+_limits = [-0.35849047, 1.0, 0.10416666, 0.8385416]
+_data = [Vector2(0.1118164, 0.13876832), 0.0, 0.0, 0, 0, Vector2(0.3527832, 0.43609834), 0.0, 0.0, 0, 0, Vector2(0.67407227, 0.7436811), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_hb1o8"]
+_limits = [0.0, 1.0, 0.0, 90.65782]
+_data = [Vector2(3.7774086, 0.87169826), 0.0, 0.0, 0, 0, Vector2(65.63249, 0.2679246), 0.0, 0.0, 0, 0, Vector2(90.65782, 0.23018873), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_3r7l7"]
+offsets = PackedFloat32Array(0.032467533, 0.5779221, 1)
+colors = PackedColorArray(0.7714981, 0.32853833, 0.0961406, 1, 0.17625341, 0.22223863, 0.26797542, 1, 1, 1, 1, 0)
 
 [sub_resource type="Animation" id="Animation_h71dq"]
 length = 0.001
@@ -328,6 +343,29 @@ position = Vector2(384, 768)
 [node name="SaveTube" parent="Rooms/CrashSite/CrashedShip" unique_id=1607364998 instance=ExtResource("8_hev0n")]
 z_index = -2
 position = Vector2(1152, 896)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Rooms/CrashSite/CrashedShip" unique_id=2679866]
+z_index = -9
+position = Vector2(585, 832)
+amount = 11
+texture = ExtResource("18_eoa2q")
+lifetime = 5.75
+preprocess = 2.75
+speed_scale = 1.6
+randomness = 0.23
+direction = Vector2(4, 4)
+spread = 180.0
+gravity = Vector2(0, -98)
+angular_velocity_min = 2.0
+angular_velocity_max = 2.0
+angle_min = -349.9
+angle_max = 228.8
+angle_curve = SubResource("Curve_nlkji")
+scale_amount_min = 0.3
+scale_amount_max = 0.4
+scale_amount_curve = SubResource("Curve_hb1o8")
+color_ramp = SubResource("Gradient_3r7l7")
+metadata/_edit_lock_ = true
 
 [node name="InsideShip" parent="Rooms/CrashSite" unique_id=845230466 instance=ExtResource("8_jacc8")]
 z_as_relative = false
