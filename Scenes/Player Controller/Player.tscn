@@ -306,6 +306,9 @@ size = Vector2(35.555553, 71.11115)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5i1rd"]
 size = Vector2(30.028448, 59.25926)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_885dk"]
+size = Vector2(82.96296, 82.96297)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_068uq"]
 size = Vector2(30.028448, 47.40741)
 
@@ -338,7 +341,7 @@ max_falling_speed = 2000
 animated_player_sprite = NodePath("AnimatedPlayerSprite")
 respawn_controller_reference = NodePath("Respawn Controller")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1436004704 node_paths=PackedStringArray("no_control_state", "no_control_no_gravity_state", "death_state", "teleporting_enter_state", "teleporting_exit_state", "spawning_state", "jumping_state", "crouching_state", "idle_crouching_state", "idle_state", "looking_up_state", "walking_state", "diving_state", "diving_falling_state", "bonked_state", "wall_cling_state", "wall_jumping_state", "falling_state", "ascending_state", "ability_state", "dashing_state", "grappling_pull_state", "inflated_state", "climbing_slide_state", "digging_state", "bounce_attack_state", "colliders_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
+[node name="StateMachine" type="Node" parent="." unique_id=1436004704 node_paths=PackedStringArray("no_control_state", "no_control_no_gravity_state", "death_state", "teleporting_enter_state", "teleporting_exit_state", "spawning_state", "jumping_state", "crouching_state", "idle_crouching_state", "idle_state", "looking_up_state", "walking_state", "diving_state", "diving_falling_state", "bonked_state", "wall_cling_state", "wall_jumping_state", "falling_state", "ascending_state", "ability_state", "dashing_state", "grappling_pull_state", "inflated_state", "climbing_slide_state", "digging_state", "bounce_attack_state", "colliders_list", "hurtboxes_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
 script = ExtResource("5_v55cd")
 no_control_state = NodePath("NoControl")
 no_control_no_gravity_state = NodePath("NoControl/NoControlNoGravity")
@@ -367,6 +370,7 @@ climbing_slide_state = NodePath("Abilities/Climbing/ClimbingSlide")
 digging_state = NodePath("Abilities/Drill/Digging")
 bounce_attack_state = NodePath("Abilities/BounceAttack")
 colliders_list = [NodePath("../NormalHitbox"), NodePath("../CrouchedHitbox"), NodePath("../Jumping"), NodePath("../InflatedHitbox")]
+hurtboxes_list = [NodePath("../Hurtbox"), NodePath("../InflatedHurtbox"), NodePath("../CrouchedHurtbox")]
 starting_state = NodePath("Idle")
 grounded_states = [NodePath("Idle"), NodePath("Walking"), NodePath("Crouching"), NodePath("Crouching/IdleCrouching")]
 abilities_state = NodePath("Abilities")
@@ -433,10 +437,12 @@ enter_particle_when_entering_from_state_state = [NodePath("../Abilities/Dashing"
 enter_particle_when_entering_from_state_particle = Array[PackedScene]([ExtResource("8_avv4g")])
 enter_particle_when_entering_from_state_parent_to_player = Array[bool]([true])
 
-[node name="Crouching" type="Node" parent="StateMachine" unique_id=1700106763 node_paths=PackedStringArray("default_hitbox", "crouching_hitbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
+[node name="Crouching" type="Node" parent="StateMachine" unique_id=1700106763 node_paths=PackedStringArray("default_hitbox", "default_hurtbox", "crouching_hitbox", "crouching_hurtbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
 script = ExtResource("12_068uq")
 default_hitbox = NodePath("../../NormalHitbox")
+default_hurtbox = NodePath("../../Hurtbox")
 crouching_hitbox = NodePath("../../CrouchedHitbox")
+crouching_hurtbox = NodePath("../../CrouchedHurtbox")
 sliding_deceleration = 50
 crouch_vertical_jump_speed = 1000
 crouch_horizontal_jump_speed = 500
@@ -454,10 +460,12 @@ x_final_sprite_stretch_multiplier = 1.0
 animation_name = "walking"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="IdleCrouching" type="Node" parent="StateMachine/Crouching" unique_id=1397319090 node_paths=PackedStringArray("default_hitbox", "crouching_hitbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
+[node name="IdleCrouching" type="Node" parent="StateMachine/Crouching" unique_id=1397319090 node_paths=PackedStringArray("default_hitbox", "default_hurtbox", "crouching_hitbox", "crouching_hurtbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("5_3imdl")
 default_hitbox = NodePath("../../../NormalHitbox")
+default_hurtbox = NodePath("../../../Hurtbox")
 crouching_hitbox = NodePath("../../../CrouchedHitbox")
+crouching_hurtbox = NodePath("../../../CrouchedHurtbox")
 sliding_deceleration = 50
 crouch_vertical_jump_speed = 1000
 crouch_horizontal_jump_speed = 500
@@ -720,26 +728,22 @@ collide_with_areas = true
 [node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Climbing/ClimbingRay" unique_id=944559949]
 default_color = Color(1, 0.43460146, 0.9889626, 1)
 
-[node name="Inflated" type="Node" parent="StateMachine/Abilities" unique_id=948011255 node_paths=PackedStringArray("left_ray", "left_ray_low", "left_ray_high", "right_ray", "right_ray_low", "right_ray_high", "normal_hitbox", "inflated_hitbox")]
+[node name="Inflated" type="Node" parent="StateMachine/Abilities" unique_id=948011255 node_paths=PackedStringArray("left_ray", "left_ray_low", "left_ray_high", "right_ray", "right_ray_low", "right_ray_high", "normal_hitbox", "normal_hurtbox", "inflated_hitbox", "inflated_hurtbox")]
 script = ExtResource("15_melbr")
 icon = ExtResource("23_hk2wy")
-initial_down_velocity = 800.0
-additive_initial_down_velocity = 20.0
-initial_horizontal_velocity = 800.0
-additive_initial_horizontal_velocity = 20.0
+initial_velocity = 600.0
+additive_velocity = 20.0
 bounce_velocity = 500.0
-up_inflated_duration = 1.5
-down_inflated_duration = 1.5
-vertical_velocity_dampen_multiplier = 10.0
-horizontal_inflated_duration = 1.5
-horizontal_velocity_dampen_multiplier = 2.5
+inflated_duration = 2.0
 bounce_timer_reduction = 0.5
-horizontal_ascent_reduction_percentage = 1.0
-ascent_speed = 1250.0
-max_ascent_speed = 800.0
-max_move_speed = 750.0
-acceleration_speed = 700.0
-decceleration_speed = 150.0
+vertical_velocity_dampen_multiplier = 10.0
+horizontal_velocity_dampen_multiplier = 1.0
+upwards_acceleration = 500.0
+max_ascent_speed = 1000.0
+max_move_speed = 150.0
+horizontal_acceleration = 700.0
+horizontal_decceleration = 150.0
+grow_speed = 10.0
 color_return_speed = 0.2
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
 left_ray_low = NodePath("../../../LowWallJumpRay/LowLeftRay")
@@ -748,7 +752,9 @@ right_ray = NodePath("../../../WallJumpRayReference/RightRay")
 right_ray_low = NodePath("../../../LowWallJumpRay/LowRightRay")
 right_ray_high = NodePath("../../../HighWallJumpRay/HighRightRay")
 normal_hitbox = NodePath("../../../NormalHitbox")
+normal_hurtbox = NodePath("../../../Hurtbox")
 inflated_hitbox = NodePath("../../../InflatedHitbox")
+inflated_hurtbox = NodePath("../../../InflatedHurtbox")
 placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="BounceAttack" type="Node" parent="StateMachine/Abilities" unique_id=60864109 node_paths=PackedStringArray("up_area", "down_area", "right_area", "left_area", "jump_input_buffer")]
@@ -954,11 +960,10 @@ default_zoom = 0.27
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
 position = Vector2(0, 70)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"teleporting enter"
+animation = &"no animation"
 offset = Vector2(0, -70)
 
 [node name="TriggerHitbox" type="Area2D" parent="." unique_id=936426999]
-visible = false
 scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 516
@@ -969,7 +974,6 @@ scale = Vector2(1, 0.99999934)
 shape = SubResource("RectangleShape2D_g1nwm")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1280830317]
-visible = false
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 2
@@ -980,8 +984,19 @@ scale = Vector2(1, 0.9999999)
 shape = SubResource("RectangleShape2D_5i1rd")
 debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
 
+[node name="InflatedHurtbox" type="Area2D" parent="." unique_id=126756359]
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InflatedHurtbox" unique_id=1873734836]
+position = Vector2(3.532127e-07, 1.0596381e-06)
+scale = Vector2(1, 0.9999999)
+shape = SubResource("RectangleShape2D_885dk")
+disabled = true
+debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
+
 [node name="CrouchedHurtbox" type="Area2D" parent="." unique_id=2118895586]
-visible = false
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 2
@@ -991,6 +1006,7 @@ z_index = 1
 position = Vector2(-0.5560827, 5.9259253)
 scale = Vector2(1, 0.9999999)
 shape = SubResource("RectangleShape2D_068uq")
+disabled = true
 debug_color = Color(1, 0.13725491, 0.1764706, 0.3254902)
 
 [node name="PermanentHitbox" type="CollisionShape2D" parent="." unique_id=1627051024]
@@ -1072,4 +1088,6 @@ collision_mask = 81
 [connection signal="body_entered" from="TriggerHitbox" to="." method="_on_tileset_body_entered"]
 [connection signal="area_entered" from="Hurtbox" to="Respawn Controller" method="_on_body_entered"]
 [connection signal="body_entered" from="Hurtbox" to="Respawn Controller" method="_on_body_entered"]
+[connection signal="area_entered" from="InflatedHurtbox" to="Respawn Controller" method="_on_body_entered"]
+[connection signal="body_entered" from="InflatedHurtbox" to="Respawn Controller" method="_on_body_entered"]
 [connection signal="body_entered" from="CrouchedHurtbox" to="." method="_on_crouched_hurtbox_body_entered"]

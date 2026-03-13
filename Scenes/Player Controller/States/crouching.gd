@@ -3,7 +3,9 @@ extends State
 #States that Idle can transition to:
 @export_category("Colliders")
 @export var default_hitbox : CollisionShape2D
+@export var default_hurtbox : Area2D
 @export var crouching_hitbox : CollisionShape2D
+@export var crouching_hurtbox : Area2D
 @export_category("Parameters")
 @export var sliding_deceleration : int
 @export var crouch_vertical_jump_speed : int
@@ -29,6 +31,7 @@ var horizontal_input : int = 0
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
+	change_hurtbox_to(crouching_hurtbox)
 	change_collider_to(crouching_hitbox)
 	gravity = player.normal_gravity
 	max_falling_speed = player.max_falling_speed
@@ -80,4 +83,5 @@ func can_uncrouch() -> bool:
 func deactivate(next_state) -> void:
 	if next_state != idle_crouching_state:
 		super(next_state)
+		change_hurtbox_to(default_hurtbox)
 		change_collider_to(default_hitbox)

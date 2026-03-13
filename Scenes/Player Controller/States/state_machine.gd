@@ -34,6 +34,7 @@ extends Node
 
 @export_category("")
 @export var colliders_list : Array[CollisionShape2D]
+@export var hurtboxes_list : Array[Area2D]
 @export var starting_state : State
 @export var grounded_states : Array[State]
 @export var abilities_state : State
@@ -57,6 +58,7 @@ func check_children(parent : Node) -> void:
 		child.particle_controller = particle_controller_reference
 		child.sprite = player_sprite
 		child.colliders = colliders_list
+		child.hurtboxes = hurtboxes_list
 		
 		child.no_control_state = no_control_state
 		child.no_control_no_gravity_state = no_control_no_gravity_state

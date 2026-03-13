@@ -75,6 +75,7 @@ var audio_controller : AudioController
 var particle_controller : ParticleController
 var sprite : AnimatedSprite2D
 var colliders : Array[CollisionShape2D]
+var hurtboxes : Array[Area2D]
 var audio_loop_timer : Timer
 var particle_loop_timer : Timer
 
@@ -126,6 +127,12 @@ func change_collider_to(new_collider : CollisionShape2D) -> void:
 			collider.set_deferred("disabled" , false)
 		else:
 			collider.set_deferred("disabled" , true)
+func change_hurtbox_to(new_hurtbox : Area2D) -> void:
+	for hurtbox in hurtboxes:
+		if hurtbox == new_hurtbox:
+			hurtbox.get_child(0).set_deferred("disabled" , false)
+		else:
+			hurtbox.get_child(0).set_deferred("disabled" , true)
 
 func deactivate(next_state : State) -> void:
 	sprite.scale.y = 1
