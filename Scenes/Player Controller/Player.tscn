@@ -338,6 +338,7 @@ left = NodePath("RoomTransitionSides/left")
 right = NodePath("RoomTransitionSides/right")
 normal_gravity = 3250
 max_falling_speed = 2000
+max_stuck_time = 3.0
 animated_player_sprite = NodePath("AnimatedPlayerSprite")
 respawn_controller_reference = NodePath("Respawn Controller")
 

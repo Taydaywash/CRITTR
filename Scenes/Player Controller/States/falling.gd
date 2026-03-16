@@ -42,9 +42,8 @@ func activate(last_state : State) -> void:
 	
 	gravity = player.normal_gravity
 	max_falling_speed = player.max_falling_speed
-	if (last_state == $"../Walking" or (last_state == $"../Abilities/Climbing/ClimbingSlide" and $"../Abilities/Climbing".direction== "down")):
-		#possible code to add back 
-		#or (last_state == $"../Abilities/Climbing" and $"../Abilities/Climbing".direction == "down"))
+	if (last_state == player.state_machine.walking_state or 
+	(last_state == player.state_machine.climbing_slide_state and $"../Abilities/Climbing".direction== "down")):
 		coyote_time.start()
 
 func process_input(event : InputEvent) -> State:

@@ -12,7 +12,7 @@ zoom_to_fit = true
 
 [node name="RespawnPoint3" parent="." unique_id=1490509995 instance=ExtResource("2_fo4mk")]
 position = Vector2(0, 960)
-scale = Vector2(3.335, 2.44)
+scale = Vector2(3.335, 0.79999983)
 
 [node name="RespawnPoint" parent="." unique_id=2045430472 instance=ExtResource("2_fo4mk")]
 position = Vector2(-1920.0001, 166.50507)

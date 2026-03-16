@@ -26,6 +26,10 @@ scale = Vector2(0.874, 1.808)
 position = Vector2(-512, 640)
 scale = Vector2(7.747, 0.124)
 
+[node name="UpperEntrance" parent="." unique_id=3531767 instance=ExtResource("2_6s1wo")]
+position = Vector2(2047.9998, -1152)
+scale = Vector2(7.747, 0.124)
+
 [node name="LeftEntrance" parent="." unique_id=390716640 instance=ExtResource("2_6s1wo")]
 position = Vector2(-3199.9998, -512)
 scale = Vector2(0.98102, 0.7768048)

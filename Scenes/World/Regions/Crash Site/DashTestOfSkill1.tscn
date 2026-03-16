@@ -26,6 +26,10 @@ scale = Vector2(5.6489716, 0.15937948)
 position = Vector2(4992, -640)
 scale = Vector2(1.3999977, 0.6799994)
 
+[node name="RespawnPoint4" parent="." unique_id=907922874 instance=ExtResource("2_uyt70")]
+position = Vector2(5120, 576)
+scale = Vector2(0.76000017, 0.6799994)
+
 [node name="Foreground" parent="." unique_id=622969364 instance=ExtResource("3_jtnc6")]
 z_index = 2
 

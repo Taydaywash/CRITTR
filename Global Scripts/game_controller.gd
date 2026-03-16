@@ -1,6 +1,6 @@
 extends Node
 
-var ability_usages: int = 2
+var ability_usages: int = 4
 var abilities_unlocked: Dictionary = {
 	"dash" : true,
 	"grapple" : true,
