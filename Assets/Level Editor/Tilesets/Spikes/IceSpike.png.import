@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d006flcisjx5"
-path="res://.godot/imported/TundraForeground.png-b488b9686047ff8ab4e23d82c5a22225.ctex"
+uid="uid://cwj0qygxy5wod"
+path="res://.godot/imported/IceSpike.png-af66e63ea227f7beaa26fc789057e93b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/TundraForeground.png"
-dest_files=["res://.godot/imported/TundraForeground.png-b488b9686047ff8ab4e23d82c5a22225.ctex"]
+source_file="res://Assets/Level Editor/Tilesets/Spikes/IceSpike.png"
+dest_files=["res://.godot/imported/IceSpike.png-af66e63ea227f7beaa26fc789057e93b.ctex"]
 
 [params]
 

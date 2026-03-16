@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnqqt2tyb6thj"
-path="res://.godot/imported/TundaBackgroundVariant2.png-6676f43846ee5eaf618cd815db5d46b2.ctex"
+uid="uid://d006flcisjx5"
+path="res://.godot/imported/TundraForeground.png-f9608914a26a69641d96036233cd251b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/Decoration/TundaBackgroundVariant2.png"
-dest_files=["res://.godot/imported/TundaBackgroundVariant2.png-6676f43846ee5eaf618cd815db5d46b2.ctex"]
+source_file="res://Assets/Level Editor/Tilesets/TundraForeground.png"
+dest_files=["res://.godot/imported/TundraForeground.png-f9608914a26a69641d96036233cd251b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwf2p6tbnw4tb"
-path="res://.godot/imported/ToxicMarsh.png-268eea13f048b74399a0e385e8542cf5.ctex"
+uid="uid://dncnka8ym7s66"
+path="res://.godot/imported/TundraPlatforms.png-3c184d9ef2c4f3cd2e5bee500207dd1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/ToxicMarsh.png"
-dest_files=["res://.godot/imported/ToxicMarsh.png-268eea13f048b74399a0e385e8542cf5.ctex"]
+source_file="res://Assets/Level Editor/Tilesets/TundraPlatforms.png"
+dest_files=["res://.godot/imported/TundraPlatforms.png-3c184d9ef2c4f3cd2e5bee500207dd1c.ctex"]
 
 [params]
 

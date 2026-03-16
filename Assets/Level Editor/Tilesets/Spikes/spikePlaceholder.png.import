@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmgnr22rils3a"
-path="res://.godot/imported/SpikeBlackOutline.png-bb08e36ab1f72ed0f0b7b0917f5519bb.ctex"
+uid="uid://c65odlyk03uru"
+path="res://.godot/imported/spikePlaceholder.png-91b62c213a38eb0a0674b8f1b82d290e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/Spikes/SpikeBlackOutline.png"
-dest_files=["res://.godot/imported/SpikeBlackOutline.png-bb08e36ab1f72ed0f0b7b0917f5519bb.ctex"]
+source_file="res://Assets/Level Editor/Tilesets/Spikes/spikePlaceholder.png"
+dest_files=["res://.godot/imported/spikePlaceholder.png-91b62c213a38eb0a0674b8f1b82d290e.ctex"]
 
 [params]
 

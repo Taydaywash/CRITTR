@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" format=3 uid="uid://7qjkugwf3mig"]
 
-[ext_resource type="Texture2D" uid="uid://cnqqt2tyb6thj" path="res://Assets/Tilesets/Decoration/TundaBackgroundVariant2.png" id="1_r6di2"]
+[ext_resource type="Texture2D" uid="uid://cnqqt2tyb6thj" path="res://Assets/Level Editor/Tilesets/Decoration/TundaBackgroundVariant2.png" id="1_r6di2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ymlln"]
 

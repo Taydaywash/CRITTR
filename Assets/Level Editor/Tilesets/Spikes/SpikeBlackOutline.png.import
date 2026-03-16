@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwj0qygxy5wod"
-path="res://.godot/imported/IceSpike.png-92cb63965426e713dbc38f22184aa890.ctex"
+uid="uid://dmgnr22rils3a"
+path="res://.godot/imported/SpikeBlackOutline.png-c6b6b5d76f3a81eccaf5d570e2475181.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/Spikes/IceSpike.png"
-dest_files=["res://.godot/imported/IceSpike.png-92cb63965426e713dbc38f22184aa890.ctex"]
+source_file="res://Assets/Level Editor/Tilesets/Spikes/SpikeBlackOutline.png"
+dest_files=["res://.godot/imported/SpikeBlackOutline.png-c6b6b5d76f3a81eccaf5d570e2475181.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl17iqg8lidmc"
-path="res://.godot/imported/Digable.png-698c4a2c254d03a0bdb622f111c873f6.ctex"
+uid="uid://bbehpvgmofkmu"
+path="res://.godot/imported/TundraBackground.png-3e57466f36a3484632633f9678a20e0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/Digable.png"
-dest_files=["res://.godot/imported/Digable.png-698c4a2c254d03a0bdb622f111c873f6.ctex"]
+source_file="res://Assets/Level Editor/Tilesets/Decoration/TundraBackground.png"
+dest_files=["res://.godot/imported/TundraBackground.png-3e57466f36a3484632633f9678a20e0e.ctex"]
 
 [params]
 

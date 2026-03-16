@@ -3,7 +3,7 @@ class_name SavePoint
 extends interactable
 
 #used_ability_station
-@onready var pause_screen : CanvasLayer = get_node("/root/World/PauseScreen")
+@onready var pause_screen : CanvasLayer = %PauseScreen
 @export var respawn_point : RespawnPoint
 
 func _input(_event: InputEvent) -> void:

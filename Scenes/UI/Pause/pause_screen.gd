@@ -17,19 +17,26 @@ extends CanvasLayer
 var paused = false
 var current_tab : Panel
 var used_save_point: bool = false
-var can_pause : bool = false #Work around to fix big when pausing before scene is fully loaded
+var game_loaded : bool = false #Work around to fix big when pausing before scene is fully loaded
 
 func _ready() -> void:
 	#toggle_pause()
-	await get_tree().create_timer(0.1).timeout
-	can_pause = true
+	await get_tree().create_timer(1).timeout
+	game_loaded = true
+
+func can_pause() -> bool:
+	if not game_loaded:
+		return false
+	if get_tree().paused and not paused:
+		return false
+	return true
 
 func _input(event: InputEvent) -> void:
 	if not player_reference.is_on_floor():
 		return
 	if animation_player.is_playing():
 		return
-	if not can_pause:
+	if not can_pause():
 		return
 	if event.is_action_pressed("pause"):
 		toggle_pause()

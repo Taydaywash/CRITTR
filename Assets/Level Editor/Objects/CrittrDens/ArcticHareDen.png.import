@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbehpvgmofkmu"
-path="res://.godot/imported/TundraBackground.png-56be3ac6ef73cb3cd8201df3b4325ac7.ctex"
+uid="uid://dwto3j7h3l5xa"
+path="res://.godot/imported/ArcticHareDen.png-a4540fbe15ae9e17703ad9500f8b9396.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/Decoration/TundraBackground.png"
-dest_files=["res://.godot/imported/TundraBackground.png-56be3ac6ef73cb3cd8201df3b4325ac7.ctex"]
+source_file="res://Assets/Level Editor/Objects/CrittrDens/ArcticHareDen.png"
+dest_files=["res://.godot/imported/ArcticHareDen.png-a4540fbe15ae9e17703ad9500f8b9396.ctex"]
 
 [params]
 

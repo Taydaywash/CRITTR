@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqxml4ui330vu"
-path="res://.godot/imported/CloudTemple.png-dd6aa06a62cd7a1f5259efc86004981a.ctex"
+uid="uid://db7ymyqvexsdp"
+path="res://.godot/imported/ToxicMarshTileset.png-88e9ae054028228aa32f1f345168c5de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesets/CloudTemple.png"
-dest_files=["res://.godot/imported/CloudTemple.png-dd6aa06a62cd7a1f5259efc86004981a.ctex"]
+source_file="res://Assets/Level Editor/Tilesets/ToxicMarshTileset.png"
+dest_files=["res://.godot/imported/ToxicMarshTileset.png-88e9ae054028228aa32f1f345168c5de.ctex"]
 
 [params]
 
