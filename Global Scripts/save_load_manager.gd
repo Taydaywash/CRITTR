@@ -21,7 +21,7 @@ var options : Dictionary = {
 	"music_volume": 50,
 	"sfx_volume": 50,
 	"screen_resolution" : Vector2(1152, 648),
-	"text_speed" : 0.4,
+	"text_speed" : 0.05,
 	"disabled_particles" : false,
 }
 

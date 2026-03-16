@@ -14,6 +14,7 @@ extends CanvasLayer
 @export var map : Node2D
 @export var options_tab : Panel
 @export var stuff_tab : Panel
+
 var paused = false
 var current_tab : Panel
 var used_save_point: bool = false
@@ -31,7 +32,7 @@ func can_pause() -> bool:
 		return false
 	return true
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if not player_reference.is_on_floor():
 		return
 	if animation_player.is_playing():

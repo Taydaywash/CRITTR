@@ -1,15 +1,18 @@
 extends pause_tab
 
+@onready var map_button: Button = $"../MapButton"
+
 func handle_input(event: InputEvent) -> void:
 	if pause_screen.map.teleport_confirm.visible:
 		pause_screen.map.handle_input(event)
 		return
 	if event.is_action_released("ui_accept"):
-		if default_focus.has_focus():
-			pause_screen.map.handle_input(event)
+		if map_button.has_focus():
+			default_focus.grab_focus()
 			return
-		default_focus.grab_focus()
+		pause_screen.map.handle_input(event)
 		return
+		
 	if event.is_action_released("ui_cancel"):
 		pause_screen.map_button.grab_focus()
 		return

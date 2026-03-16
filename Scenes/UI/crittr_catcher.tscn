@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bc75uokokv1wd"]
+
+[node name="CrittrCatcher" type="CanvasLayer" unique_id=1415215958]
+
+[node name="Panel" type="Panel" parent="." unique_id=836792042]
+offset_right = 1152.0
+offset_bottom = 656.0

@@ -183,30 +183,6 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_alnkd")
 text = "Yes"
 
-[node name="Choicer" type="Button" parent="SubViewportContainer/SubViewport2/TeleportConfirm/Panel" unique_id=515152118]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -272.0
-offset_right = -22.0
-offset_bottom = -262.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath("../Confirm")
-focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath("../Cancel")
-focus_neighbor_bottom = NodePath(".")
-focus_next = NodePath("../Confirm")
-focus_previous = NodePath("../Cancel")
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_alnkd")
-
 [node name="Cancel" type="Button" parent="SubViewportContainer/SubViewport2/TeleportConfirm/Panel" unique_id=722519654]
 layout_mode = 1
 anchors_preset = 8

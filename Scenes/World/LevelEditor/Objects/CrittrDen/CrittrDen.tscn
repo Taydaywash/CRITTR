@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://k7r644rgtmrc"]
+
+[ext_resource type="Script" uid="uid://ddji4xq14xuq6" path="res://Scenes/World/crittr_den.gd" id="1_kpswc"]
+[ext_resource type="Texture2D" uid="uid://dwto3j7h3l5xa" path="res://Assets/Level Editor/Objects/CrittrDens/ArcticHareDen.png" id="2_7r8ox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_026f1"]
+size = Vector2(256, 256)
+
+[node name="DenColliderArea" type="Area2D" unique_id=489745887 node_paths=PackedStringArray("confirm_handler", "cancel_handler")]
+process_mode = 3
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_kpswc")
+confirm_handler = NodePath("")
+cancel_handler = NodePath("")
+metadata/_custom_type_script = "uid://4t3jjrtphc6j"
+
+[node name="DenSprite" type="Sprite2D" parent="." unique_id=578334524]
+z_index = -1
+position = Vector2(0, -64)
+texture = ExtResource("2_7r8ox")
+
+[node name="DenCollisonShape" type="CollisionShape2D" parent="." unique_id=1492441021]
+shape = SubResource("RectangleShape2D_026f1")

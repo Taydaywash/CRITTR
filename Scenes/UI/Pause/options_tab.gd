@@ -3,8 +3,8 @@ extends pause_tab
 @onready var window = get_window()
 const TITLE_SCREEN = "res://Scenes/Title/TitleScreen.tscn"
 
-const SLOW_TEXT_SPEED : float = 0.4
-const FAST_TEXT_SPEED : float = 0.2
+const SLOW_TEXT_SPEED : float = 0.04
+const FAST_TEXT_SPEED : float = 0.02
 const INSTANT_TEXT_SPEED : float = 0
 const TEXT_SPEEDS = [SLOW_TEXT_SPEED,FAST_TEXT_SPEED,INSTANT_TEXT_SPEED]
 const TEXT_SPEEDS_NAMES = ["SLOW","FAST","INSTANT"]

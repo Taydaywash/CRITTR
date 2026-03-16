@@ -23,8 +23,9 @@ extends Node2D
 @export var teleport_confirm_choicer : Button
 @export var teleport_confirm_button : Button
 @export var teleport_cancel_button : Button
-@export var ui_ref : CanvasLayer
+@export var choicer_handler : ChoicerHandler
 
+@onready var ui : UI = %UI
 @onready var base_map_room = preload("res://Scenes/UI/Map/mapRoom.tscn")
 @onready var base_map_reigon = preload("res://Scenes/UI/Map/MapRegion.tscn")
 @onready var map_region_shape = preload("res://Scenes/UI/Map/mapRegionShape.tscn")
@@ -90,9 +91,9 @@ func _ready() -> void:
 						region_instance.add_child(map_region_part)
 
 func _process(_delta: float) -> void:
-	if not teleport_confirm.visible:
+	if not ui.text_box_choicer.visible:
 		hovered_room = null
-	if teleport_confirm.visible:
+	if ui.text_box_choicer.visible:
 		return
 	if hover_room_ray.get_collider():
 		hovered_room = hover_room_ray.get_collider().get_parent()
@@ -126,15 +127,15 @@ func _process(_delta: float) -> void:
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
-		if teleport_confirm.visible:
-			teleport_confirm.visible = false
+		if ui.text_box_choicer.visible:
+			ui.reset_choicer_text()
 			map_tab_default_focus.grab_focus()
 	if not hovered_room:
 		return
-	if (event.is_action_released("ui_accept") and teleport_confirm.visible == false
-	 and hovered_room.corresponding_room.has_save_point and hovered_room.corresponding_room.room_visited
+	if (event.is_action_released("ui_accept") and ui.text_box_choicer.visible == false
+	and hovered_room.corresponding_room.has_save_point and hovered_room.corresponding_room.room_visited
 	and hovered_room.corresponding_room.room_transition_controller.current_room != hovered_room.corresponding_room):
-		teleport_confirm.visible = true
+		ui.start_typing_choicer_text(Dialog.TELEPORT_CONFIRMATION,choicer_handler)
 		teleport_confirm_choicer.grab_focus()
 	
 func _on_confirm_teleport() -> void:
@@ -142,15 +143,16 @@ func _on_confirm_teleport() -> void:
 	pause_screen.toggle_pause()
 	player.velocity = Vector2.ZERO
 	player.state_machine.force_change_state(player.state_machine.no_control_no_gravity_state, false)
+	ui.reset_choicer_text()
 	await pause_screen.animation_player.animation_finished
-	teleport_confirm.visible = false
 	player.state_machine.force_change_state(player.state_machine.teleporting_enter_state, false)
 	await player.animated_player_sprite.animation_finished
-	ui_ref.screen_overlay.modulate.a = 1.0
+	ui.screen_overlay.modulate.a = 1.0
 	player.global_position = current_respawn_room.corresponding_room.save_point_ref.respawn_point.get_respawn_point()
 	player.state_machine.force_change_state(player.state_machine.teleporting_exit_state, false)
 	await player.animated_player_sprite.animation_finished
 	player.state_machine.force_change_state(player.state_machine.idle_state, false)
+
 func _on_cancel_teleport() -> void:
-	teleport_confirm.visible = false
+	ui.reset_choicer_text()
 	map_tab_default_focus.grab_focus()

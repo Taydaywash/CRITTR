@@ -28,6 +28,7 @@ func _process(_delta: float) -> void:
 		text_delay_timer.timeout.emit()
 
 func reset_text() -> void:
+	await get_tree().create_timer(0.05).timeout
 	visible = false
 	confirm_button.visible = false
 	cancel_button.visible = false

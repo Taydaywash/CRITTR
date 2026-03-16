@@ -548,15 +548,17 @@ focus_next = NodePath(".")
 focus_previous = NodePath(".")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6r4po")
 theme_override_styles/focus = SubResource("StyleBoxFlat_iio6x")
+disabled = true
+button_mask = 0
 
 [node name="OptionsTab" parent="." unique_id=882549425 node_paths=PackedStringArray("pause_screen") instance=ExtResource("10_c2hr7")]
 visible = false
 pause_screen = NodePath("..")
 
-[node name="MasterVolume" parent="OptionsTab" index="1" unique_id=307721531]
+[node name="MasterVolume" parent="OptionsTab" index="0" unique_id=307721531]
 focus_neighbor_top = NodePath("../../OptionsButton")
 
-[node name="ScreenSize" parent="OptionsTab" index="4" unique_id=1053197402]
+[node name="ScreenSize" parent="OptionsTab" index="3" unique_id=1053197402]
 focus_neighbor_top = NodePath("../../OptionsButton")
 focus_previous = NodePath("../../OptionsButton")
 

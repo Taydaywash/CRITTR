@@ -1,6 +1,7 @@
 extends Control
 
 const WORLD = preload("res://Scenes/World/World.tscn")
+@export var play_button : Button
 @export var options_tab : Panel
 @export var options_tab_back : Panel
 @export var audio_controller : AudioController
@@ -15,6 +16,7 @@ func _on_play_button_pressed() -> void:
 func _on_setting_button_pressed() -> void:
 	options_tab.visible = true
 	options_tab.options_opened()
+	options_tab.default_focus.grab_focus()
 	options_tab_back.visible = true
 
 func _on_quit_button_pressed() -> void:
@@ -23,6 +25,7 @@ func _on_quit_button_pressed() -> void:
 func _on_back_pressed() -> void:
 	options_tab.visible = false
 	options_tab.options_closed()
+	play_button.grab_focus()
 	options_tab_back.visible = false
 
 

@@ -1,7 +1,9 @@
 class_name UI
 extends CanvasLayer
 
-@onready var screen_overlay: Panel = $ScreenOverlay
+@onready var audio_controller = %AudioController
+@onready var screen_overlay: Panel = %ScreenOverlay
+@onready var text_box_choicer: Panel = %TextBoxChoicer
 
 func update_ability_ui(abilities_in_use : Dictionary):
 	$Panel/Panel.texture = abilities_in_use.ability_up.texture
@@ -40,3 +42,8 @@ func screen_is_clear():
 	if screen_overlay.modulate.a == 0.0:
 		screen_is_black = true
 	return screen_is_black
+
+func start_typing_choicer_text(dialog : String,choicer_handler : ChoicerHandler) -> void:
+	text_box_choicer.start_typing_text(dialog,choicer_handler)
+func reset_choicer_text() -> void:
+	text_box_choicer.reset_text()
