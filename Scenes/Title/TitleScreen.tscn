@@ -129,19 +129,12 @@ offset_bottom = 239.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SaveChanges" parent="OptionsTab" index="9" unique_id=547723549]
+[node name="SaveChanges" parent="OptionsTab" index="8" unique_id=547723549]
 anchor_left = 0.484375
-anchor_top = 0.7656904
 anchor_right = 0.640625
-anchor_bottom = 0.9330544
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
 focus_neighbor_bottom = NodePath(".")
-metadata/_edit_use_anchors_ = true
 
-[node name="MainMenu" parent="OptionsTab" index="10" unique_id=947297343]
+[node name="MainMenu" parent="OptionsTab" index="9" unique_id=947297343]
 visible = false
 
 [node name="Back" type="Button" parent="OptionsTab" unique_id=1657124363]
