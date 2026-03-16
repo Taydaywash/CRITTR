@@ -41,6 +41,8 @@ func _process(delta: float) -> void:
 			return_position, clampf(delta * 10, 0.0, 1.0))
 
 func can_interact() -> bool:
-	if abs(player.velocity.x + player.velocity.y) < 1:
-		return true
-	return false
+	if abs(player.velocity.x + player.velocity.y) >= 1:
+		return false
+	if get_tree().paused:
+		return false
+	return true

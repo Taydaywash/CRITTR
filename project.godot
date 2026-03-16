@@ -28,6 +28,7 @@ buses/default_bus_layout="uid://kmjjtd27eflc"
 SaveLoadManager="*res://Global Scripts/save_load_manager.gd"
 EventController="*uid://3n7xlwd6ef2b"
 GameController="*uid://b5kigqng4mpw3"
+Dialog="*uid://lgbu1cs8kh44"
 
 [display]
 
