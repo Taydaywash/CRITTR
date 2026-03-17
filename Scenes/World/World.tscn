@@ -816,6 +816,178 @@ flip_h = true
 [node name="DashTestOfSkill3" parent="Rooms/CrashSite" unique_id=907003477 instance=ExtResource("25_7o3bi")]
 position = Vector2(11136, -12864)
 
+[node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/DashTestOfSkill3" unique_id=740707]
+z_index = -2
+z_as_relative = false
+
+[node name="VinesT" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=12028342]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_as_relative = false
+position = Vector2(1983.9998, -640)
+rotation = -3.1415925
+scale = Vector2(0.74816006, 0.7821118)
+texture = ExtResource("24_2neov")
+
+[node name="VinesT3" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=1920515831]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_as_relative = false
+position = Vector2(-831.99976, -256)
+rotation = -3.1415925
+scale = Vector2(0.583, 0.61)
+texture = ExtResource("24_2neov")
+flip_h = true
+
+[node name="VinesT4" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=56610501]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_as_relative = false
+position = Vector2(-447.99954, -1664)
+rotation = -3.1415925
+scale = Vector2(0.448, 0.468)
+texture = ExtResource("24_2neov")
+flip_h = true
+
+[node name="VinesT5" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=943426073]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_as_relative = false
+position = Vector2(-704.0006, 576)
+rotation = -3.1415925
+scale = Vector2(0.74816006, 0.7821118)
+texture = ExtResource("24_2neov")
+
+[node name="VinesT9" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=648022727]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_as_relative = false
+position = Vector2(-3840, 960)
+rotation = -3.1415925
+scale = Vector2(0.74816006, 0.7821118)
+texture = ExtResource("24_2neov")
+
+[node name="VinesT10" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=520606036]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_as_relative = false
+position = Vector2(-2559.9995, -1472)
+rotation = -3.1415925
+scale = Vector2(0.74816006, 0.7821118)
+texture = ExtResource("24_2neov")
+
+[node name="BigTHill2" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=2025336688]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+z_as_relative = false
+position = Vector2(2240, 1408)
+texture = ExtResource("29_eoa2q")
+
+[node name="BigTHill5" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=167857606]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+z_as_relative = false
+position = Vector2(640, 1408)
+texture = ExtResource("29_eoa2q")
+
+[node name="BigTHill6" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=578440979]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+z_as_relative = false
+position = Vector2(-896, 1344)
+texture = ExtResource("29_eoa2q")
+
+[node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=1253672246]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+z_as_relative = false
+position = Vector2(-2688, 1536)
+texture = ExtResource("29_eoa2q")
+
+[node name="BigTHill3" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=118766839]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+z_as_relative = false
+position = Vector2(-3648, 1472)
+texture = ExtResource("29_eoa2q")
+
+[node name="BigTHill7" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=998123490]
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+z_index = -3
+z_as_relative = false
+position = Vector2(3328, -960)
+texture = ExtResource("29_eoa2q")
+
+[node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=894172664]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_as_relative = false
+position = Vector2(2688.0002, -703.9999)
+rotation = -3.1415925
+scale = Vector2(0.46144602, 0.46144602)
+texture = ExtResource("24_2neov")
+flip_h = true
+
+[node name="VinesT6" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=1518039012]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_as_relative = false
+position = Vector2(3520.0005, 704.00024)
+rotation = -3.1415925
+scale = Vector2(0.46144602, 0.46144602)
+texture = ExtResource("24_2neov")
+flip_h = true
+
+[node name="VinesT7" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=1691377465]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_as_relative = false
+position = Vector2(1600.0002, 832.00024)
+rotation = -3.1415925
+scale = Vector2(0.46144602, 0.46144602)
+texture = ExtResource("24_2neov")
+flip_h = true
+
+[node name="VinesT8" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=837070848]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_as_relative = false
+position = Vector2(-1536.0002, 1344.0002)
+rotation = -3.1415925
+scale = Vector2(0.46144602, 0.46144602)
+texture = ExtResource("24_2neov")
+flip_h = true
+
+[node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=1934496517]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_index = -1
+z_as_relative = false
+position = Vector2(-3520, -384)
+rotation = -3.1415925
+texture = ExtResource("22_c4j8x")
+
+[node name="ManyVinesT2" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=176649786]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_index = -1
+z_as_relative = false
+position = Vector2(896, -576)
+rotation = -3.1415925
+texture = ExtResource("22_c4j8x")
+
+[node name="ManyVinesT3" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=1535319495]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_index = -1
+z_as_relative = false
+position = Vector2(3712, -384)
+rotation = -3.1415925
+texture = ExtResource("22_c4j8x")
+
+[node name="ManyVinesT4" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=392716619]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_index = -1
+z_as_relative = false
+position = Vector2(-1344, -1472)
+rotation = -3.1415925
+texture = ExtResource("22_c4j8x")
+
+[node name="ManyVinesT5" type="Sprite2D" parent="Rooms/CrashSite/DashTestOfSkill3/BackgroundElements" unique_id=1696563134]
+modulate = Color(0.52, 0.52, 0.52, 1)
+z_index = -1
+z_as_relative = false
+position = Vector2(-3136, -1792)
+rotation = -3.1415925
+texture = ExtResource("22_c4j8x")
+
 [node name="ArcticHareDen" parent="Rooms/CrashSite/DashTestOfSkill3" unique_id=489745887 node_paths=PackedStringArray("choicer_handler") instance=ExtResource("27_nlkji")]
 z_index = -3
 position = Vector2(-3968, -1584)
@@ -824,10 +996,6 @@ dialog_string = "ARCTIC_HARE_DEN"
 
 [node name="ArcticHareDenChoicerHandler" type="Node" parent="Rooms/CrashSite/DashTestOfSkill3/ArcticHareDen" unique_id=2103758440]
 script = ExtResource("28_2lagq")
-
-[node name="SaveTube2" parent="Rooms/CrashSite/DashTestOfSkill3" unique_id=1330357684 instance=ExtResource("8_hev0n")]
-z_index = -2
-position = Vector2(3008, 1408)
 
 [node name="ToPeak" parent="Rooms/CrashSite" unique_id=257892768 instance=ExtResource("14_7in0u")]
 z_as_relative = false
