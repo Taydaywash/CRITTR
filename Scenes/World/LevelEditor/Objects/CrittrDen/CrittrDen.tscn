@@ -6,13 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_026f1"]
 size = Vector2(256, 256)
 
-[node name="DenColliderArea" type="Area2D" unique_id=489745887 node_paths=PackedStringArray("confirm_handler", "cancel_handler")]
+[node name="DenColliderArea" type="Area2D" unique_id=489745887]
 process_mode = 3
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_kpswc")
-confirm_handler = NodePath("")
-cancel_handler = NodePath("")
 metadata/_custom_type_script = "uid://4t3jjrtphc6j"
 
 [node name="DenSprite" type="Sprite2D" parent="." unique_id=578334524]

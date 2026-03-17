@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ctbjffqplmjia"]
+
+[ext_resource type="Texture2D" uid="uid://tj5sev1pwfaa" path="res://Assets/Animations/Crittr/AHare/Idle/aHareIdle.png" id="1_g2ujb"]
+[ext_resource type="Script" uid="uid://ybbs0mlw118b" path="res://Scenes/UI/Crittr Catcher/hare_crittr.gd" id="2_j61mb"]
+
+[node name="HareCrittr" type="Sprite2D" unique_id=1473794053]
+z_index = 1
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_g2ujb")
+script = ExtResource("2_j61mb")
+
+[node name="North" type="RayCast2D" parent="." unique_id=680242815]
+target_position = Vector2(0, -400)
+collision_mask = 3072
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="East" type="RayCast2D" parent="." unique_id=1949323851]
+target_position = Vector2(400, 0)
+collision_mask = 3072
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="South" type="RayCast2D" parent="." unique_id=1843222151]
+target_position = Vector2(0, 400)
+collision_mask = 3072
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="West" type="RayCast2D" parent="." unique_id=791633154]
+target_position = Vector2(-400, 0)
+collision_mask = 3072
+collide_with_areas = true
+collide_with_bodies = false

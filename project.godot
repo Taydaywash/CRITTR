@@ -210,3 +210,5 @@ quick_map={
 2d_physics/layer_8="Rooms"
 2d_physics/layer_9="Collectables"
 2d_physics/layer_10="HiddenWall"
+2d_physics/layer_11="CrittrCatcherNode"
+2d_physics/layer_12="CrittrCatcherPlayer"

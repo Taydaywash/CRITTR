@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bu3gg42y6lj8c"]
+
+[ext_resource type="Texture2D" uid="uid://bv2253nn4skbd" path="res://Assets/UI/CrittrCatcher/CrittrCatcherNode.png" id="1_bh81o"]
+[ext_resource type="Script" uid="uid://bv80hixm350fr" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_node_connector.gd" id="2_tn8hj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tn8hj"]
+size = Vector2(80, 80)
+
+[node name="Sprite2D" type="Sprite2D" unique_id=238242525]
+z_index = 1
+texture = ExtResource("1_bh81o")
+script = ExtResource("2_tn8hj")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=637928791]
+collision_layer = 1024
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1907667204]
+shape = SubResource("RectangleShape2D_tn8hj")
+
+[node name="UpLine" type="Line2D" parent="." unique_id=1428953719]
+z_index = -1
+points = PackedVector2Array(0, 0, 0, -100)
+width = 5.0
+default_color = Color(0.2901961, 0.8235294, 1, 1)
+
+[node name="Up" type="RayCast2D" parent="UpLine" unique_id=1460564539]
+target_position = Vector2(0, -100)
+collision_mask = 1024
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="DownLine" type="Line2D" parent="." unique_id=1153139356]
+z_index = -1
+points = PackedVector2Array(0, 0, 0, 100)
+width = 5.0
+default_color = Color(0.2901961, 0.8235294, 1, 1)
+
+[node name="Down" type="RayCast2D" parent="DownLine" unique_id=389226048]
+target_position = Vector2(0, 100)
+collision_mask = 1024
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="LeftLine" type="Line2D" parent="." unique_id=1640562397]
+z_index = -1
+points = PackedVector2Array(0, 0, -100, 0)
+width = 5.0
+default_color = Color(0.2901961, 0.8235294, 1, 1)
+
+[node name="Left" type="RayCast2D" parent="LeftLine" unique_id=1410002967]
+target_position = Vector2(-100, 0)
+collision_mask = 1024
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RightLine" type="Line2D" parent="." unique_id=780234224]
+z_index = -1
+points = PackedVector2Array(0, 0, 100, 0)
+width = 5.0
+default_color = Color(0.2901961, 0.8235294, 1, 1)
+
+[node name="Right" type="RayCast2D" parent="RightLine" unique_id=2087892953]
+target_position = Vector2(100, 0)
+collision_mask = 1024
+collide_with_areas = true
+collide_with_bodies = false

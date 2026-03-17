@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bse151u6i26pm"]
+
+[ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://Assets/Misc/icon.svg" id="1_lxa0e"]
+[ext_resource type="Script" uid="uid://bopqm1jonxm1a" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_player.gd" id="2_0gsf2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxa0e"]
+size = Vector2(192, 192)
+
+[node name="CrittrCatcherPlayer" type="Sprite2D" unique_id=559711742]
+modulate = Color(1, 0, 1, 1)
+z_index = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_lxa0e")
+script = ExtResource("2_0gsf2")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1088499723]
+collision_layer = 2048
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1894631937]
+shape = SubResource("RectangleShape2D_lxa0e")
+
+[node name="North" type="RayCast2D" parent="." unique_id=18197710]
+target_position = Vector2(0, -200)
+collision_mask = 3072
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="East" type="RayCast2D" parent="." unique_id=143061266]
+target_position = Vector2(200, 0)
+collision_mask = 3072
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="South" type="RayCast2D" parent="." unique_id=969694094]
+target_position = Vector2(0, 200)
+collision_mask = 3072
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="West" type="RayCast2D" parent="." unique_id=808128207]
+target_position = Vector2(-200, 0)
+collision_mask = 3072
+collide_with_areas = true
+collide_with_bodies = false

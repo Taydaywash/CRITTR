@@ -24,8 +24,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_accept"):
-		text_delay_timer.stop()
-		text_delay_timer.timeout.emit()
+		text.visible_characters += 10
 
 func reset_text() -> void:
 	await get_tree().create_timer(0.05).timeout
