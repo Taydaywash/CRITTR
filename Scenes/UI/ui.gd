@@ -2,19 +2,26 @@ class_name UI
 extends CanvasLayer
 
 @onready var audio_controller = %AudioController
+@onready var abilitiy_wheel: Panel = $AbilitiyWheel
 @onready var screen_overlay: Panel = %ScreenOverlay
-@onready var text_box_choicer: Panel = %TextBoxChoicer
+@onready var choicer_dialog: Panel = %TextBoxChoicer
+
+func _process(_delta: float) -> void:
+	if get_tree().paused:
+		abilitiy_wheel.visible = false
+	else:
+		abilitiy_wheel.visible = true
 
 func update_ability_ui(abilities_in_use : Dictionary):
-	$Panel/Panel.texture = abilities_in_use.ability_up.texture
-	$Panel/Panel2.texture = abilities_in_use.ability_left.texture
-	$Panel/Panel3.texture = abilities_in_use.ability_down.texture
-	$Panel/Panel4.texture = abilities_in_use.ability_right.texture
+	$AbilitiyWheel/Panel.texture = abilities_in_use.ability_up.texture
+	$AbilitiyWheel/Panel2.texture = abilities_in_use.ability_left.texture
+	$AbilitiyWheel/Panel3.texture = abilities_in_use.ability_down.texture
+	$AbilitiyWheel/Panel4.texture = abilities_in_use.ability_right.texture
 	
-	$Panel/Panel.visible = abilities_in_use.ability_up.available
-	$Panel/Panel2.visible = abilities_in_use.ability_left.available
-	$Panel/Panel3.visible = abilities_in_use.ability_down.available
-	$Panel/Panel4.visible = abilities_in_use.ability_right.available
+	$AbilitiyWheel/Panel.visible = abilities_in_use.ability_up.available
+	$AbilitiyWheel/Panel2.visible = abilities_in_use.ability_left.available
+	$AbilitiyWheel/Panel3.visible = abilities_in_use.ability_down.available
+	$AbilitiyWheel/Panel4.visible = abilities_in_use.ability_right.available
 
 func set_fade(alpha : float):
 	screen_overlay.modulate.a = alpha
@@ -44,6 +51,6 @@ func screen_is_clear():
 	return screen_is_black
 
 func start_typing_choicer_text(dialog : String,choicer_handler : ChoicerHandler) -> void:
-	text_box_choicer.start_typing_text(dialog,choicer_handler)
+	choicer_dialog.start_typing_text(dialog,choicer_handler)
 func reset_choicer_text() -> void:
-	text_box_choicer.reset_text()
+	choicer_dialog.reset_text()

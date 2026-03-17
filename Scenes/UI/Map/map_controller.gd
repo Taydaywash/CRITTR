@@ -91,9 +91,9 @@ func _ready() -> void:
 						region_instance.add_child(map_region_part)
 
 func _process(_delta: float) -> void:
-	if not ui.text_box_choicer.visible:
+	if not ui.choicer_dialog.visible:
 		hovered_room = null
-	if ui.text_box_choicer.visible:
+	if ui.choicer_dialog.visible:
 		return
 	if hover_room_ray.get_collider():
 		hovered_room = hover_room_ray.get_collider().get_parent()

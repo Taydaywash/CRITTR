@@ -2,10 +2,10 @@ extends Node
 
 var ability_usages: int = 4
 var abilities_unlocked: Dictionary = {
-	"dash" : true,
-	"grapple" : true,
+	"dash" : false,
+	"grapple" : false,
 	"climb" : false,
-	"inflate" : true,
+	"inflate" : false,
 	"drill" : false,
 	"bounce" : false,
 }
@@ -35,6 +35,11 @@ func _ready():
 		)
 	EventController.connect("update_current_abilities",func update_current_abilities(abilities):
 		game_state.current_abilities = abilities
+		SaveLoadManager.save_game(game_state)
+		)
+	EventController.connect("unlock_ability",func unlock_ability(ability):
+		abilities_unlocked[ability] = true
+		game_state.abilities_unlocked = abilities_unlocked.duplicate()
 		SaveLoadManager.save_game(game_state)
 		)
 	EventController.connect("collectable_collected",collectable_collected)

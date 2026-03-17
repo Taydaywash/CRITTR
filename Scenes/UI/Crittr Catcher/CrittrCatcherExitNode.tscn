@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cumgssnhnl1te"]
+
+[ext_resource type="Texture2D" uid="uid://cecrk3lgj0d3y" path="res://Assets/Editor Icons/State Icon.png" id="1_kiw6v"]
+[ext_resource type="Script" uid="uid://dfdd7aywnnban" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_exit_node.gd" id="2_eb7ot"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kiw6v"]
+
+[node name="ExitNode" type="Sprite2D" unique_id=2043294869]
+modulate = Color(0.2901961, 0.8235294, 1, 1)
+scale = Vector2(4, 4)
+texture = ExtResource("1_kiw6v")
+script = ExtResource("2_eb7ot")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=98231151]
+collision_layer = 5120
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1828672488]
+shape = SubResource("RectangleShape2D_kiw6v")

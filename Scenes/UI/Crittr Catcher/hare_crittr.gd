@@ -4,6 +4,10 @@ extends Sprite2D
 @onready var east: RayCast2D = $East
 @onready var south: RayCast2D = $South
 @onready var west: RayCast2D = $West
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+
+@onready var overlapping: RayCast2D = $Overlapping
+
 @onready var crittr_catcher_ref = get_parent().get_parent().get_parent()
 
 const IDLE = preload("uid://tj5sev1pwfaa")
@@ -11,28 +15,43 @@ const LOOK_DOWN = preload("uid://buvkr6x3vl2qv")
 const LOOK_UP = preload("uid://dt1j4pxolbmjs")
 
 var move_direction : String = ""
-var facing : String = "east"
+@export var facing : String = "east"
 var between_look_delay : float = 0.1
+var level_deactivated : bool = false
+
+var crittr_turn : bool = false
 
 func _ready() -> void:
-	move()
+	look(facing)
+	crittr_catcher_ref.connect("start_crittr_turn",func end_player_turn():
+		crittr_turn = true
+		move()
+		)
+	crittr_catcher_ref.connect("close_crittr_catcher",func end_player_turn():
+		crittr_turn = false
+		)
+
+func _process(_delta: float) -> void:
+	if overlapping.is_colliding() and not level_deactivated:
+		level_deactivated = true
+		var overlapping_collider = overlapping.get_collider().get_parent()
+		animation_player.play("Fade_Out")
+		await animation_player.animation_finished
+		if overlapping_collider is CrittrCatcherPlayer:
+			crittr_catcher_ref.next_level()
+			return
+		crittr_catcher_ref.restart_level()
 
 func move() -> void:
-	match move_direction:
-		"north":
-			position.y -= 128.0
-		"east":
-			position.x += 128.0
-		"south":
-			position.y += 128.0
-		"west":
-			position.x -= 128.0
-	
-	move_direction = ""
-	crittr_catcher_ref.emit_signal("start_player_turn")
-	await crittr_catcher_ref.start_crittr_turn
+	north.force_raycast_update()
+	east.force_raycast_update()
+	south.force_raycast_update()
+	west.force_raycast_update()
 	await get_tree().create_timer(between_look_delay).timeout
-	
+	if facing == "east":
+		look_for_exit()
+		await get_tree().create_timer(between_look_delay).timeout
+		
 	if not move_direction:
 		check_right()
 		await get_tree().create_timer(between_look_delay).timeout
@@ -53,7 +72,17 @@ func move() -> void:
 		move_direction = ""
 	else:
 		facing = move_direction
-	move()
+	match move_direction:
+		"north":
+			position.y -= 128.0
+		"east":
+			position.x += 128.0
+		"south":
+			position.y += 128.0
+		"west":
+			position.x -= 128.0
+	move_direction = ""
+	crittr_catcher_ref.emit_signal("start_player_turn")
 
 func look(direction : String) -> void:
 	match direction:
@@ -177,3 +206,17 @@ func check_backward() -> void:
 				if east.get_collider().get_parent() is CrittrCatcherPlayer:
 					return
 				move_direction = "east"
+
+func look_for_exit() -> void:
+	if east.is_colliding():
+		look_for_exit_loop(east.get_collider().get_parent())
+
+func look_for_exit_loop(node) -> void:
+	if not node.has_node("%Right"):
+		if node is CrittrCatcherExitNode:
+			move_direction = "east"
+		return
+	if node.get_node("%Right").get_collider().get_parent() is CrittrCatcherExitNode:
+		move_direction = "east"
+		return
+	look_for_exit_loop(node.get_node("%Right").get_collider().get_parent())

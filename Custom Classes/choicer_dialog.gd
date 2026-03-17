@@ -16,6 +16,9 @@ const punctuation : Array = [".","?","!"]
 
 var choicer_handler : ChoicerHandler
 
+signal choicer_active
+signal choicer_inactive
+
 func _ready() -> void:
 	text_delay_timer = Timer.new()
 	text_delay_timer.one_shot = true
@@ -28,12 +31,14 @@ func _process(_delta: float) -> void:
 
 func reset_text() -> void:
 	await get_tree().create_timer(0.05).timeout
+	choicer_inactive.emit()
 	visible = false
 	confirm_button.visible = false
 	cancel_button.visible = false
 	text.visible_characters = 0
 
 func start_typing_text(dialog : String,choicer_handler_reference : ChoicerHandler) -> void:
+	choicer_active.emit()
 	choicer_handler = choicer_handler_reference
 	visible = true
 	text.text = dialog

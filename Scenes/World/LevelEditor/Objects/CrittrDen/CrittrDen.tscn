@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://k7r644rgtmrc"]
 
-[ext_resource type="Script" uid="uid://ddji4xq14xuq6" path="res://Scenes/World/crittr_den.gd" id="1_kpswc"]
+[ext_resource type="Script" uid="uid://ddji4xq14xuq6" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/crittr_den.gd" id="1_kpswc"]
 [ext_resource type="Texture2D" uid="uid://dwto3j7h3l5xa" path="res://Assets/Level Editor/Objects/CrittrDens/ArcticHareDen.png" id="2_7r8ox"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_026f1"]

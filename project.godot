@@ -212,3 +212,4 @@ quick_map={
 2d_physics/layer_10="HiddenWall"
 2d_physics/layer_11="CrittrCatcherNode"
 2d_physics/layer_12="CrittrCatcherPlayer"
+2d_physics/layer_13="CrittrCatcherExitNode"

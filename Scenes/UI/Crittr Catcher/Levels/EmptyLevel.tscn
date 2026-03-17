@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://bvyhblatdsy7i"]
+
+[ext_resource type="PackedScene" uid="uid://bu3gg42y6lj8c" path="res://Scenes/UI/Crittr Catcher/CrittrCatcherNode.tscn" id="1_2jeen"]
+[ext_resource type="PackedScene" uid="uid://ctbjffqplmjia" path="res://Scenes/UI/Crittr Catcher/hare_crittr.tscn" id="2_m742m"]
+[ext_resource type="PackedScene" uid="uid://bse151u6i26pm" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_player.tscn" id="3_58bir"]
+[ext_resource type="PackedScene" uid="uid://cumgssnhnl1te" path="res://Scenes/UI/Crittr Catcher/CrittrCatcherExitNode.tscn" id="4_vx6ck"]
+
+[sub_resource type="Animation" id="Animation_2jeen"]
+resource_name = "Fade_In"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(6.276664, 7.464262),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_58bir"]
+resource_name = "Fade_Out"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3186401, 6.276664),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_m742m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_58bir"]
+_data = {
+&"Fade_In": SubResource("Animation_2jeen"),
+&"Fade_Out": SubResource("Animation_58bir"),
+&"RESET": SubResource("Animation_m742m")
+}
+
+[node name="Level" type="Node2D" unique_id=162368665]
+visible = false
+modulate = Color(1, 1, 1, 0)
+
+[node name="Node" parent="." unique_id=238242525 instance=ExtResource("1_2jeen")]
+position = Vector2(512, 128)
+
+[node name="Crittr" parent="." unique_id=1473794053 instance=ExtResource("2_m742m")]
+unique_name_in_owner = true
+position = Vector2(640, 128)
+
+[node name="Player" parent="." unique_id=559711742 instance=ExtResource("3_58bir")]
+unique_name_in_owner = true
+position = Vector2(512, 256)
+
+[node name="ExitNode" parent="." unique_id=2043294869 instance=ExtResource("4_vx6ck")]
+position = Vector2(640, 256)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=535432168]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_58bir")
+autoplay = &"Fade_In"

@@ -37,14 +37,14 @@ process_mode = 3
 layer = 10
 script = ExtResource("1_6dd3c")
 
-[node name="Panel" type="Panel" parent="." unique_id=2113646895]
+[node name="AbilitiyWheel" type="Panel" parent="." unique_id=2113646895]
 custom_minimum_size = Vector2(100, 100)
 offset_left = 1102.0
 offset_right = 1152.0
 offset_bottom = 50.0
 grow_horizontal = 0
 
-[node name="Panel" type="TextureRect" parent="Panel" unique_id=255661873]
+[node name="Panel" type="TextureRect" parent="AbilitiyWheel" unique_id=255661873]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
 anchors_preset = 5
@@ -58,7 +58,7 @@ rotation = -1.5707964
 pivot_offset = Vector2(15, 15)
 texture = ExtResource("2_dhe1o")
 
-[node name="Panel2" type="TextureRect" parent="Panel" unique_id=277596100]
+[node name="Panel2" type="TextureRect" parent="AbilitiyWheel" unique_id=277596100]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
 anchors_preset = 4
@@ -71,7 +71,7 @@ grow_vertical = 2
 texture = ExtResource("2_dhe1o")
 flip_h = true
 
-[node name="Panel3" type="TextureRect" parent="Panel" unique_id=138324052]
+[node name="Panel3" type="TextureRect" parent="AbilitiyWheel" unique_id=138324052]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
 anchors_preset = 7
@@ -88,7 +88,7 @@ rotation = 1.5707964
 pivot_offset = Vector2(15, 15)
 texture = ExtResource("2_dhe1o")
 
-[node name="Panel4" type="TextureRect" parent="Panel" unique_id=1998480326]
+[node name="Panel4" type="TextureRect" parent="AbilitiyWheel" unique_id=1998480326]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
 anchors_preset = 6
@@ -113,6 +113,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6dd3c")
 
 [node name="TextBoxChoicer" type="Panel" parent="." unique_id=166582700 node_paths=PackedStringArray("text", "confirm_button", "cancel_button", "ui")]
 unique_name_in_owner = true
+z_index = 10
 offset_left = 128.0
 offset_top = 320.0
 offset_right = 1024.0

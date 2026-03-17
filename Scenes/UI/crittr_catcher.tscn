@@ -2,14 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cmt2nwakjqbd2" path="res://Scenes/UI/crittr_catcher.gd" id="1_4ptqb"]
 [ext_resource type="Texture2D" uid="uid://c6ebak13c1i1l" path="res://Assets/UI/CrittrCatcher/CrittrCatcherScreen.png" id="1_nya7h"]
-[ext_resource type="PackedScene" uid="uid://b5fudtphkrx1c" path="res://Scenes/UI/Crittr Catcher/ArcticHareLevel1.tscn" id="3_v8pnp"]
 
 [sub_resource type="Animation" id="Animation_4ptqb"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:self_modulate")
+tracks/0/path = NodePath("Screen:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,7 +20,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:scale")
+tracks/1/path = NodePath("Screen:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -33,7 +32,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TextureRect:position")
+tracks/2/path = NodePath("Screen:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -45,7 +44,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("TextureRect:rotation")
+tracks/3/path = NodePath("Screen:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -61,7 +60,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:self_modulate")
+tracks/0/path = NodePath("Screen:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -73,7 +72,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:scale")
+tracks/1/path = NodePath("Screen:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -85,7 +84,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TextureRect:position")
+tracks/2/path = NodePath("Screen:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -97,27 +96,83 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("TextureRect:rotation")
+tracks/3/path = NodePath("Screen:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.35, 0.5, 0.6),
 "transitions": PackedFloat32Array(0.37892914, 0.28717485, 0.17075504, 1),
 "update": 0,
-"values": [0.22165681500327966, -0.04014257279586978, 0.04363323129985824, 0.0]
+"values": [0.2216568150032797, -0.04014257279586978, 0.04363323129985824, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_g7qsb"]
+resource_name = "exit_crittr_catcher"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 1),
+"transitions": PackedFloat32Array(1, 3.2490098, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.23272163, 0.23272163, 0.2327216, 1), Color(0.2909656, 0.2909656, 0.29096556, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Screen:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Screen:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.35, 1),
+"transitions": PackedFloat32Array(0.32987702, 0.31863996, 0.35355344),
+"update": 0,
+"values": [Vector2(-149, -116), Vector2(-149, -300), Vector2(-149, 1000)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Screen:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.35, 1),
+"transitions": PackedFloat32Array(1, 0.4829681, 0.37892914),
+"update": 0,
+"values": [0.0, 0.01745329251994329, 0.2216568150032797]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g7qsb"]
 _data = {
 &"RESET": SubResource("Animation_4ptqb"),
-&"enter_crittr_catcher": SubResource("Animation_v8pnp")
+&"enter_crittr_catcher": SubResource("Animation_v8pnp"),
+&"exit_crittr_catcher": SubResource("Animation_g7qsb")
 }
 
-[node name="CrittrCatcher" type="CanvasLayer" unique_id=1415215958]
-layer = 10
+[node name="CrittrCatcher" type="CanvasLayer" unique_id=1415215958 node_paths=PackedStringArray("animation_player", "screen")]
+layer = 9
 script = ExtResource("1_4ptqb")
+animation_player = NodePath("AnimationPlayer")
+screen = NodePath("Screen")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=360283258]
+[node name="Screen" type="TextureRect" parent="." unique_id=360283258]
+modulate = Color(0.2909656, 0.2909656, 0.29096556, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -126,15 +181,12 @@ anchor_bottom = 0.5
 offset_left = -576.0
 offset_top = 676.0
 offset_right = 891.0
-offset_bottom = 1567.0002
+offset_bottom = 1566.9999
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(749.5, 393.5)
+pivot_offset = Vector2(733.5, 445.5)
 texture = ExtResource("1_nya7h")
 expand_mode = 1
-
-[node name="Level" parent="TextureRect" unique_id=162368665 instance=ExtResource("3_v8pnp")]
-position = Vector2(416, 168)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1497267372]
 libraries/ = SubResource("AnimationLibrary_g7qsb")

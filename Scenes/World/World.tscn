@@ -40,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://cpebeecu04hk6" path="res://Assets/Decals/Tundra/Background/ship no smoke.png" id="35_irrot"]
 [ext_resource type="Script" uid="uid://debb4cff3jagh" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
 [ext_resource type="PackedScene" uid="uid://bc75uokokv1wd" path="res://Scenes/UI/crittr_catcher.tscn" id="38_hb1o8"]
+[ext_resource type="Script" uid="uid://bfgeg66mnkl4x" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_choicer_handler.gd" id="41_rgk46"]
 
 [sub_resource type="Gradient" id="Gradient_vdgnt"]
 offsets = PackedFloat32Array(1)
@@ -1013,6 +1014,11 @@ position = Vector2(2596, -1014)
 process_mode = 3
 libraries/ = SubResource("AnimationLibrary_irrot")
 
-[node name="CrittrCatcher" parent="." unique_id=1415215958 instance=ExtResource("38_hb1o8")]
+[node name="CrittrCatcher" parent="." unique_id=1415215958 node_paths=PackedStringArray("ui") instance=ExtResource("38_hb1o8")]
 unique_name_in_owner = true
 process_mode = 3
+ui = NodePath("../UI")
+
+[node name="CrittrCatcherChoicerHandler" type="Node" parent="CrittrCatcher" unique_id=1564053437]
+unique_name_in_owner = true
+script = ExtResource("41_rgk46")
