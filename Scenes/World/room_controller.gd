@@ -30,6 +30,10 @@ var bounds : Dictionary = {
 }
 
 var room_id : String
+
+signal room_is_active
+signal room_is_inactive
+
 func _ready() -> void:
 	for child in get_children():
 		child.visible = false
@@ -64,14 +68,18 @@ func _exited_room_collider(_body: Node2D) -> void:
 	pass
 
 func _process(_delta: float) -> void:
-	if room_transition_controller.current_room == self:
+	if is_room_active():
 		room_transition_controller.play_music(room_transition_controller.current_room.region.music)
 		z_index = 2
 	else:
 		z_index = 0
 
+func is_room_active():
+	return room_transition_controller.current_room == self
+
 func enter_room():
 	change_camera_bounds()
+	room_is_active.emit()
 	room_visited = true
 	EventController.emit_signal("room_explored",room_id)
 	room_transition_controller.play_music(room_transition_controller.current_room.region.music)
@@ -79,6 +87,7 @@ func enter_room():
 		if child is not Camera2D:
 			child.visible = true
 func exit_room():
+	room_is_inactive.emit()
 	for child in get_children():
 		child.visible = false
 
