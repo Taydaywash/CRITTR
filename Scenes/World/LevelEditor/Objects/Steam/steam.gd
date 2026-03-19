@@ -7,41 +7,47 @@ extends Area2D
 @export var active_time: float = 2
 @export var inactive_time: float = 2
 @export var delay_time: float
+@export var particles : CPUParticles2D
 
-@onready var collision: CollisionShape2D = $CollisionShape2D
-@onready var active_timer: Timer = $ActiveTimer
-@onready var inactive_timer: Timer = $InactiveTimer
+@export var collider: CollisionShape2D
+@export var active_timer: Timer
+@export var inactive_timer: Timer
 
 
 func _ready():
-	active_timer.wait_time = active_time
-	inactive_timer.wait_time = inactive_time
-	#These two following lines set the collision hitbox to zero
-	#You can instead change the hitbox in the editor
-	collision.shape.size.x = x
-	collision.shape.size.y = y
-	await get_tree().create_timer(delay_time).timeout
+	collider.shape.size.x = x
+	collider.shape.size.y = y
+	particles.position.y = y/2.0
+	particles.lifetime = (y / 2560.0)
+	@warning_ignore("integer_division")
+	particles.amount = y / 3 + x / 3
+	particles.emission_rect_extents = Vector2(x/2.0,0)
+	active_timer.wait_time = active_time - particles.lifetime
+	inactive_timer.wait_time = inactive_time - particles.lifetime/2
+	prepare_particles()
+
+func prepare_particles():
+	particles.emitting = true
+	await get_tree().create_timer(particles.lifetime).timeout
+	spawn_hitbox()
 	active_timer.start()
+
+func clean_up_particles():
+	particles.emitting = false
+	await get_tree().create_timer(particles.lifetime/2).timeout
+	remove_hitbox()
+	inactive_timer.start()
+
+func spawn_hitbox():
+	collider.global_position = global_position
+func remove_hitbox():
+	collider.global_position = Vector2.INF
 
 func _on_active_timer_timeout():
-	inactive_timer.start()
-	#Changing the position of the collision hitbox, rather than its monitorability
-	#Causes it to immediately check for updates/Cause the player to immediately
-	#detect it, rather than waiting for the player To leave and then reenter
-	#...
-	#This sets the collider's global position to (INF,INF) which is fine because no 
-	#rooms exist at this point
-	collision.global_position = Vector2.INF
-	#self.monitorable = false
-	self.visible = false
+	clean_up_particles()
 
 func _on_inactive_timer_timeout():
-	active_timer.start()
-	#This returns the collider's global position to that of the parent, returing
-	#it to where it appears in the editor.
-	collision.global_position = global_position
-	#self.monitorable = true
-	self.visible = true
+	prepare_particles()
 
 func _on_body_entered(body: Node2D) -> void:
 	print(body)

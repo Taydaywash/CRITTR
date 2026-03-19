@@ -1,12 +1,28 @@
 [gd_scene format=3 uid="uid://c1howanlvaa75"]
 
 [ext_resource type="Script" uid="uid://rmy0j0w25vsj" path="res://Scenes/World/LevelEditor/Objects/Steam/steam.gd" id="1_khhob"]
+[ext_resource type="Texture2D" uid="uid://chccrw3mim27q" path="res://Assets/Particles/dust.png" id="2_fjhgm"]
+[ext_resource type="Script" uid="uid://cjhadfrodbtol" path="res://Scenes/World/LevelEditor/Objects/Steam/steam_editor_tool.gd" id="3_2hepd"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fjhgm"]
 size = Vector2(128, 386)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hepd"]
-size = Vector2(128, 386)
+resource_local_to_scene = true
+size = Vector2(128, 384)
+
+[sub_resource type="Curve" id="Curve_fjhgm"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_2hepd"]
+_data = [Vector2(0, 0.56420237), 0.0, 0.0, 0, 0, Vector2(0.54347825, 0.6575876), 0.98443574, 0.98443574, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_5fydl"]
+offsets = PackedFloat32Array(0, 0.2603306, 1)
+colors = PackedColorArray(0, 1, 0, 1, 4.813075e-07, 0.5267915, 0, 1, 1.2513996e-06, 0.5206562, 8.663535e-07, 0)
 
 [sub_resource type="Gradient" id="Gradient_khhob"]
 offsets = PackedFloat32Array(0, 0.9819277)
@@ -40,10 +56,15 @@ damping_max = 15.000001
 scale_min = 0.5
 color_initial_ramp = SubResource("GradientTexture1D_5fydl")
 
-[node name="Steam" type="Area2D" unique_id=861539247]
+[node name="Steam" type="Area2D" unique_id=861539247 node_paths=PackedStringArray("particles", "collider", "active_timer", "inactive_timer")]
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_khhob")
+y = 384
+particles = NodePath("CPUParticles2D")
+collider = NodePath("CollisionShape2D")
+active_timer = NodePath("ActiveTimer")
+inactive_timer = NodePath("InactiveTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1577543601]
 visible = false
@@ -58,12 +79,38 @@ one_shot = true
 [node name="InactiveTimer" type="Timer" parent="." unique_id=1463981112]
 one_shot = true
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2035229540]
+position = Vector2(0, 192)
+amount = 128
+texture = ExtResource("2_fjhgm")
+lifetime = 0.15
+emission_shape = 3
+emission_rect_extents = Vector2(64, 0)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2732.0
+initial_velocity_max = 2811.75
+angle_min = -268.8
+angle_max = 124.8
+angle_curve = SubResource("Curve_fjhgm")
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_2hepd")
+color_ramp = SubResource("Gradient_5fydl")
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=46329180]
+visible = false
 position = Vector2(0, 190)
 amount = 15
 texture = SubResource("GradientTexture2D_fjhgm")
 randomness = 0.3
 process_material = SubResource("ParticleProcessMaterial_6pds0")
+
+[node name="SteamEditorTool" type="Node" parent="." unique_id=1696094490 node_paths=PackedStringArray("steam_variables", "particles", "collider")]
+script = ExtResource("3_2hepd")
+steam_variables = NodePath("..")
+particles = NodePath("../CPUParticles2D")
+collider = NodePath("../CollisionShape2D")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="ActiveTimer" to="." method="_on_active_timer_timeout"]
