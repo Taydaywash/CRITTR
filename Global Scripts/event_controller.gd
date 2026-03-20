@@ -9,3 +9,4 @@ signal update_current_abilities(abilities) #Emitted From Dna Tab
 signal unlock_ability(ability) #Emitted from Crittr Catcher
 signal on_hidden_tile_entered(body) #Emitted From Player
 signal wall_revealed(id) #Emitted from hidden wall tiles
+signal player_death()

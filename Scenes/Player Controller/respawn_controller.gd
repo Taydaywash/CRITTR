@@ -8,6 +8,9 @@ extends Node
 
 var respawn_position : Vector2
 
+func _ready() -> void:
+	EventController.connect("player_death", trigger_respawn)
+
 func _on_body_entered(_body: Node2D) -> void:
 	trigger_respawn()
 

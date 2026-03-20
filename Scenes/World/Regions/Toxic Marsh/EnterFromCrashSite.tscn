@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_x1wli"]
 [ext_resource type="PackedScene" uid="uid://c1howanlvaa75" path="res://Scenes/World/LevelEditor/Objects/Steam/Steam.tscn" id="7_coy3l"]
 [ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Tools/level_bounds_auto_center_tool.gd" id="7_uv0hg"]
+[ext_resource type="PackedScene" uid="uid://0tnhb2x8d6l8" path="res://Scenes/World/LevelEditor/Objects/Ocean/Ocean.tscn" id="8_gflpf"]
+[ext_resource type="PackedScene" uid="uid://cjw3t1a4kan5s" path="res://Scenes/World/LevelEditor/Objects/Air Pocket/Air Pocket.tscn" id="9_iev7o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hlfj"]
 size = Vector2(4608, 2560)
@@ -53,6 +55,14 @@ position = Vector2(1280, 384)
 x = 256
 y = 1544
 delay_time = 2.0
+
+[node name="Ocean" parent="." unique_id=1779537781 instance=ExtResource("8_gflpf")]
+position = Vector2(-70, 17)
+size = Vector2(5000, 3000)
+
+[node name="AirPocket" parent="Ocean" unique_id=979559312 instance=ExtResource("9_iev7o")]
+position = Vector2(-941, 75)
+size = Vector2(800, 1000)
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cjw3t1a4kan5s"]
+
+[ext_resource type="Script" uid="uid://d0yv72gw0dc4b" path="res://Scenes/World/LevelEditor/Objects/Air Pocket/air_pocket.gd" id="1_aachn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aachn"]
+blend_mode = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aachn"]
+size = Vector2(80, 60)
+
+[node name="AirPocket" type="Node2D" unique_id=979559312]
+script = ExtResource("1_aachn")
+size = Vector2(80, 60)
+
+[node name="HoleShape" type="Polygon2D" parent="." unique_id=1815592920]
+material = SubResource("CanvasItemMaterial_aachn")
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-40, -30, 40, -30, 40, 30, -40, 30)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1260338487]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=143679313]
+shape = SubResource("RectangleShape2D_aachn")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]
