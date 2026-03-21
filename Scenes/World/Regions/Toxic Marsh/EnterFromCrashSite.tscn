@@ -60,7 +60,7 @@ y = 1544
 delay_time = 2.0
 
 [node name="Ocean" parent="." unique_id=1779537781 instance=ExtResource("8_gflpf")]
-position = Vector2(26, -3049)
+position = Vector2(-102, -35)
 size = Vector2(5000, 3000)
 
 [node name="AirPocket" parent="Ocean" unique_id=979559312 instance=ExtResource("9_iev7o")]

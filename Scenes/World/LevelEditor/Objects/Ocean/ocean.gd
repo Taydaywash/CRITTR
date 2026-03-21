@@ -10,13 +10,23 @@ extends CanvasGroup
 
 var player_in_water: Node2D = null
 var in_air_pocket: bool = false
+var tween: Tween = null
 
 func _ready() -> void:
 	update_shape()
+	EventController.connect("player_death", _player_death)
+	EventController.connect("player_respawn", _player_death)
 
 	if not Engine.is_editor_hint():
 		$BreathTimer.wait_time = breath_duration
 		$BreathTimer.one_shot  = true
+		
+func _process(_delta):
+	for body in $Area2D.get_overlapping_bodies():
+		if body is CharacterBody2D and player_in_water == null:
+			player_in_water = body
+			start_breath_timer()
+			start_tween(body)
 
 func update_shape() -> void:
 	var half := size / 2.0
@@ -34,27 +44,49 @@ func update_shape() -> void:
 		$Area2D/CollisionShape2D.shape = shape
 
 func _on_body_entered(body: Node2D) -> void:
+	start_tween(body)
 	player_in_water = body
 	start_breath_timer()
 
-func _on_body_exited(_body: Node2D) -> void:
+func _on_body_exited(body: Node2D) -> void:
+	end_tween(body)
 	player_in_water = null
 	$BreathTimer.stop()
 
 func _on_breath_timeout() -> void:
+	EventController.emit_signal("player_death")
+
+func _player_death() -> void:
 	if player_in_water:
-		EventController.emit_signal("player_death")
-		$BreathTimer.start()
+		player_in_water.modulate = Color.WHITE
+	if tween:
+		tween.kill()
+		$BreathTimer.stop()
+		player_in_water = null
 
 func start_breath_timer() -> void:
 	$BreathTimer.wait_time = breath_duration
 	$BreathTimer.start()
 
-func enter_air_pocket() -> void:
+func enter_air_pocket(body: Node2D) -> void:
+	end_tween(body)
 	in_air_pocket = true
 	$BreathTimer.stop()
 
-func exit_air_pocket() -> void:
+func exit_air_pocket(body: Node2D) -> void:
+	start_tween(body)
 	in_air_pocket = false
 	if player_in_water:
 		start_breath_timer()
+		
+func start_tween(body: Node2D) -> void:
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	tween.tween_property(body, "modulate", Color.RED, breath_duration)
+	
+func end_tween(body: Node2D) -> void:
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	tween.tween_property(body, "modulate", Color.WHITE, 0.5)

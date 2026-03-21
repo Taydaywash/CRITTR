@@ -48,11 +48,11 @@ func update_shape() -> void:
 		shape.radius = radius
 		$Area2D/CollisionShape2D.shape = shape
 
-func _on_body_entered(_body: Node2D) -> void:
+func _on_body_entered(body: Node2D) -> void:
 	print("entered")
 	if get_parent().has_method("enter_air_pocket"):
-		get_parent().enter_air_pocket()
+		get_parent().enter_air_pocket(body)
 
-func _on_body_exited(_body: Node2D) -> void:
+func _on_body_exited(body: Node2D) -> void:
 	if get_parent().has_method("exit_air_pocket"):
-		get_parent().exit_air_pocket()
+		get_parent().exit_air_pocket(body)
