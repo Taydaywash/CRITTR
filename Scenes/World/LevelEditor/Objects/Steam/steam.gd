@@ -22,19 +22,23 @@ func _ready():
 	collider.shape.size.x = x
 	collider.shape.size.y = y
 	particles.emitting = false
-	particles.position.y = y/2.0
+	particles.position.y = y / 2.0
 	particles.lifetime = (y / 2560.0)
 	@warning_ignore("integer_division")
 	particles.amount = y / 3 + x / 3
-	particles.emission_rect_extents = Vector2(x/2.0,0)
+	particles.emission_rect_extents = Vector2(x / 2.0, 0)
 	active_timer.wait_time = active_time - particles.lifetime
 	inactive_timer.wait_time = inactive_time - particles.lifetime/2
 
 func room_is_active():
+	print("active")
 	is_room_active = true
 	await get_tree().create_timer(delay_time).timeout
 	prepare_particles()
 func room_is_inactive():
+	if not is_room_active:
+		return
+	print("inactive")
 	active_timer.stop()
 	inactive_timer.stop()
 	clean_up_particles()

@@ -132,7 +132,7 @@ func handle_input(event: InputEvent) -> void:
 			map_tab_default_focus.grab_focus()
 	if not hovered_room:
 		return
-	if (event.is_action_released("ui_accept") and ui.text_box_choicer.visible == false
+	if (event.is_action_released("ui_accept") and ui.choicer_dialog.visible == false
 	and hovered_room.corresponding_room.has_save_point and hovered_room.corresponding_room.room_visited
 	and hovered_room.corresponding_room.room_transition_controller.current_room != hovered_room.corresponding_room):
 		ui.start_typing_choicer_text(Dialog.TELEPORT_CONFIRMATION,choicer_handler)

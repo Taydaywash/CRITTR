@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bl17iqg8lidmc" path="res://Assets/Level Editor/Tilesets/Digable.png" id="5_1e7op"]
 [ext_resource type="Texture2D" uid="uid://d006flcisjx5" path="res://Assets/Level Editor/Tilesets/TundraForeground.png" id="5_213ja"]
 [ext_resource type="Texture2D" uid="uid://db7ymyqvexsdp" path="res://Assets/Level Editor/Tilesets/ToxicMarshTileset.png" id="7_r3612"]
+[ext_resource type="Texture2D" uid="uid://dmgnr22rils3a" path="res://Assets/Level Editor/Tilesets/Spikes/SpikeBlackOutline.png" id="7_u5pff"]
 [ext_resource type="Texture2D" uid="uid://cqxml4ui330vu" path="res://Assets/Level Editor/Tilesets/CloudTemple.png" id="8_6eyha"]
 [ext_resource type="Texture2D" uid="uid://b42kerqro5k1x" path="res://Assets/Level Editor/Tilesets/StardustPeak.png" id="9_3lt27"]
 [ext_resource type="Texture2D" uid="uid://bbbpf7obncyyy" path="res://Assets/Level Editor/Tilesets/BubblegumGorge.png" id="10_anj27"]
@@ -73,7 +74,7 @@ texture_region_size = Vector2i(128, 128)
 11:3/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d754o"]
-resource_name = "spikes"
+resource_name = "TundraSpikes"
 texture = ExtResource("2_r3612")
 texture_region_size = Vector2i(128, 128)
 1:0/0 = 0
@@ -1311,6 +1312,26 @@ texture_region_size = Vector2i(128, 128)
 11:3/0/terrains_peering_bit/left_side = 1
 11:3/0/terrains_peering_bit/top_left_corner = 1
 11:3/0/terrains_peering_bit/top_side = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_833lq"]
+resource_name = "ToxicMarshSpikes"
+texture = ExtResource("7_u5pff")
+texture_region_size = Vector2i(128, 128)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -20)
+2:0/0/z_index = -1
+2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(32, 80, -32, 80, -32, 48, 32, 48)
+1:1/0 = 0
+1:1/0/texture_origin = Vector2i(0, -20)
+1:1/0/z_index = -1
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, 80, 64, 80, 64, 48, -32, 48)
+2:1/0 = 0
+2:1/0/texture_origin = Vector2i(0, -20)
+2:1/0/z_index = -1
+2:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-64, 80, 64, 80, 64, 48, -64, 48)
+2:2/0 = 0
+2:2/0/z_index = -1
+2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3r0x5"]
 texture = ExtResource("7_r3612")
@@ -2593,3 +2614,4 @@ sources/7 = SubResource("TileSetAtlasSource_x5l1k")
 sources/8 = SubResource("TileSetAtlasSource_s5esc")
 sources/9 = SubResource("TileSetAtlasSource_urvl0")
 sources/10 = SubResource("TileSetAtlasSource_gvtps")
+sources/5 = SubResource("TileSetAtlasSource_833lq")
