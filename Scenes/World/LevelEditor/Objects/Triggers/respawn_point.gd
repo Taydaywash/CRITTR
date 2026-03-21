@@ -8,4 +8,4 @@ func get_respawn_point():
 	respawn_point_ray.force_raycast_update()
 	assert(respawn_point_ray.is_colliding(),"%s Tried to get respawn point at %s but the ray never 
 	touched the ground" % [self.name, respawn_point_ray.get_parent().get_parent()])
-	return Vector2(respawn_point_ray.get_collision_point().x,respawn_point_ray.get_collision_point().y - 90)
+	return Vector2(respawn_point_ray.get_collision_point().x,respawn_point_ray.get_collision_point().y - 96)

@@ -6,12 +6,14 @@ extends Area2D
 @export_category("Timer")
 @export var active_time: float = 2
 @export var inactive_time: float = 2
+@export var collider_growth_steps: int = 10
 @export var delay_time: float
 @export var particles : CPUParticles2D
 
 @export var collider: CollisionShape2D
 @export var active_timer: Timer
 @export var inactive_timer: Timer
+@export var collider_growth_rate_timer: Timer
 
 @onready var room_reference = $".."
 var is_room_active : bool = false
@@ -24,21 +26,21 @@ func _ready():
 	particles.emitting = false
 	particles.position.y = y / 2.0
 	particles.lifetime = (y / 2560.0)
+	collider_growth_rate_timer.wait_time = particles.lifetime / collider_growth_steps
+	
 	@warning_ignore("integer_division")
-	particles.amount = y / 3 + x / 3
+	particles.amount = y / 3 + ((x / 128)*100)
 	particles.emission_rect_extents = Vector2(x / 2.0, 0)
 	active_timer.wait_time = active_time - particles.lifetime
 	inactive_timer.wait_time = inactive_time - particles.lifetime/2
 
 func room_is_active():
-	print("active")
 	is_room_active = true
 	await get_tree().create_timer(delay_time).timeout
 	prepare_particles()
 func room_is_inactive():
 	if not is_room_active:
 		return
-	print("inactive")
 	active_timer.stop()
 	inactive_timer.stop()
 	clean_up_particles()
@@ -48,7 +50,7 @@ func prepare_particles():
 	if not is_room_active:
 		return
 	particles.emitting = true
-	await get_tree().create_timer(particles.lifetime).timeout
+	#await get_tree().create_timer(particles.lifetime).timeout
 	if not is_room_active:
 		return
 	spawn_hitbox()
@@ -63,7 +65,13 @@ func clean_up_particles():
 	inactive_timer.start()
 
 func spawn_hitbox():
-	collider.global_position = global_position
+	collider.shape.size.y = 0
+	collider.global_position = global_position - Vector2(0,y)
+	while collider.shape.size.y < y:
+		collider.shape.size.y += y / float(collider_growth_steps)
+		collider.global_position.y -= y / float(collider_growth_steps)/2.0
+		collider_growth_rate_timer.start()
+		await collider_growth_rate_timer.timeout
 func remove_hitbox():
 	collider.global_position = Vector2.INF
 

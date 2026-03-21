@@ -65,7 +65,7 @@ size = Vector2(5000, 3000)
 
 [node name="AirPocket" parent="Ocean" unique_id=979559312 instance=ExtResource("9_iev7o")]
 position = Vector2(-999, 303)
-radius = 256.0
+radius = 316.28
 
 [node name="AirPocket2" parent="Ocean" unique_id=500904474 instance=ExtResource("9_iev7o")]
 position = Vector2(532, 227)

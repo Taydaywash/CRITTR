@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dncnka8ym7s66" path="res://Assets/Level Editor/Tilesets/TundraPlatforms.png" id="4_mvgbv"]
 [ext_resource type="Texture2D" uid="uid://d006flcisjx5" path="res://Assets/Level Editor/Tilesets/TundraForeground.png" id="5_crw8k"]
 [ext_resource type="Texture2D" uid="uid://bl17iqg8lidmc" path="res://Assets/Level Editor/Tilesets/Digable.png" id="6_aqu3g"]
-[ext_resource type="Texture2D" uid="uid://bwf2p6tbnw4tb" path="res://Assets/Level Editor/Tilesets/ToxicMarsh.png" id="7_ifmuu"]
+[ext_resource type="Texture2D" uid="uid://db7ymyqvexsdp" path="res://Assets/Level Editor/Tilesets/ToxicMarshTileset.png" id="7_jqhfa"]
 [ext_resource type="Texture2D" uid="uid://cqxml4ui330vu" path="res://Assets/Level Editor/Tilesets/CloudTemple.png" id="8_gqbe5"]
 [ext_resource type="Texture2D" uid="uid://b42kerqro5k1x" path="res://Assets/Level Editor/Tilesets/StardustPeak.png" id="9_7qxow"]
 [ext_resource type="Texture2D" uid="uid://bbbpf7obncyyy" path="res://Assets/Level Editor/Tilesets/BubblegumGorge.png" id="10_u8x0x"]
@@ -1284,7 +1284,7 @@ texture_region_size = Vector2i(128, 128)
 11:3/0/terrains_peering_bit/top_side = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3r0x5"]
-texture = ExtResource("7_ifmuu")
+texture = ExtResource("7_jqhfa")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 0

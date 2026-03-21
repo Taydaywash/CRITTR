@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35ovn"]
 size = Vector2(144, 144)
 
-[node name="Sprite2D" type="Sprite2D" unique_id=146781011]
+[node name="GrapplePoint" type="Sprite2D" unique_id=146781011]
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("1_uumb7")
 
