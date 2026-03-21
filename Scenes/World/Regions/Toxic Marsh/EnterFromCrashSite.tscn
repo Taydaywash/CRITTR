@@ -60,12 +60,16 @@ y = 1544
 delay_time = 2.0
 
 [node name="Ocean" parent="." unique_id=1779537781 instance=ExtResource("8_gflpf")]
-position = Vector2(-70, -3072)
+position = Vector2(26, -3049)
 size = Vector2(5000, 3000)
 
 [node name="AirPocket" parent="Ocean" unique_id=979559312 instance=ExtResource("9_iev7o")]
-position = Vector2(-941, 75)
-size = Vector2(800, 1000)
+position = Vector2(-999, 303)
+radius = 256.0
+
+[node name="AirPocket2" parent="Ocean" unique_id=500904474 instance=ExtResource("9_iev7o")]
+position = Vector2(532, 227)
+radius = 200.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

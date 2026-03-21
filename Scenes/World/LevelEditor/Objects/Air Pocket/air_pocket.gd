@@ -1,27 +1,51 @@
 @tool
 extends Node2D
 
-@export var size: Vector2 = Vector2(128, 128):
+@export var radius: float = 64.0:
 	set(v):
-		size = v
-		_update_shape()
+		radius = v
+		update_shape()
+
+@export var wave_amplitude: float = 6.0
+@export var wave_frequency: float = 4.0
+@export var wave_speed: float = 2.0
+
+var _time: float = 0.0
 
 func _ready() -> void:
-	_update_shape()
+	var shape := CircleShape2D.new()
+	shape.radius = radius
+	$Area2D/CollisionShape2D.shape = shape
+	update_shape()
 
-func _update_shape() -> void:
-	var half := size / 2.0
-	var verts := PackedVector2Array([
-		Vector2(-half.x, -half.y),
-		Vector2( half.x, -half.y),
-		Vector2( half.x,  half.y),
-		Vector2(-half.x,  half.y),
-	])
-	if has_node("HoleShape"):
+func _process(delta: float) -> void:
+	if not Engine.is_editor_hint():
+		_time += delta
+		update_visual() 
+
+# I got this update shape logic online. Had to split the actual collision shape and 
+# visuals to update separately because of issues with collision detection. 
+func update_visual() -> void:
+	var segments := 64
+	var verts := PackedVector2Array()
+	var fill_verts := PackedVector2Array()
+	for i in range(segments):
+		var angle := (float(i) / float(segments)) * TAU
+		var wave := sin(angle * wave_frequency + _time * wave_speed) * wave_amplitude
+		var r := radius + wave
+		verts.append(Vector2(cos(angle) * r, sin(angle) * r))
+		var r_fill := radius + wave + 6.0
+		fill_verts.append(Vector2(cos(angle) * r_fill, sin(angle) * r_fill))
+	if $HoleShape:
 		$HoleShape.polygon = verts
-	if has_node("Area2D/CollisionShape2D"):
-		var shape := RectangleShape2D.new()
-		shape.size = size
+	if $Fill:
+		$Fill.polygon = verts
+
+func update_shape() -> void:
+	update_visual()
+	if $Area2D/CollisionShape2D:
+		var shape := CircleShape2D.new()
+		shape.radius = radius
 		$Area2D/CollisionShape2D.shape = shape
 
 func _on_body_entered(_body: Node2D) -> void:
