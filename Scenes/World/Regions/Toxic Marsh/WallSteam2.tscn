@@ -21,6 +21,10 @@ position = Vector2(-2048, -320)
 [node name="RespawnPoint2" parent="." unique_id=3531767 instance=ExtResource("2_cnjq5")]
 position = Vector2(2048, 320)
 
+[node name="RespawnPoint3" parent="." unique_id=738416724 instance=ExtResource("2_cnjq5")]
+position = Vector2(64, -1088)
+scale = Vector2(3.4876616, 0.122068256)
+
 [node name="HiddenWallTiles" parent="." unique_id=229508698 instance=ExtResource("3_eemco")]
 tile_map_data = PackedByteArray("AAACAPb/BgAFAAIAAAACAPX/BgAJAAIAAAABAPb/BgAJAAMAAAABAPX/BgAJAAIAAAAAAPb/BgAIAAMAAAAAAPX/BgAFAAIAAAD///X/BgAJAAMAAAD+//b/BgALAAIAAAD+//X/BgAGAAIAAAA=")
 
@@ -55,11 +59,13 @@ script = ExtResource("7_apfcl")
 position = Vector2(-1024, 1088)
 x = 782
 y = 2419
+collider_growth_steps = 10
 
 [node name="Steam1" parent="." unique_id=381687908 instance=ExtResource("8_xg4kf")]
 position = Vector2(1152, 1088)
 x = 782
 y = 2419
+collider_growth_steps = 10
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

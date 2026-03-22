@@ -47,13 +47,15 @@ script = ExtResource("7_jexem")
 
 [node name="Steam" parent="." unique_id=861539247 instance=ExtResource("8_076ou")]
 position = Vector2(-896, 1024)
-x = 439
-y = 2337
+x = 422
+y = 2206
+collider_growth_steps = 10
 
-[node name="Steam2" parent="." unique_id=1743949237 instance=ExtResource("8_076ou")]
+[node name="Steam2" parent="." unique_id=262800907 instance=ExtResource("8_076ou")]
 position = Vector2(640, 1024)
-x = 439
-y = 2337
+x = 422
+y = 2206
+collider_growth_steps = 10
 delay_time = 2.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]

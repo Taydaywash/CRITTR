@@ -24,6 +24,8 @@ func _ready():
 	collider.shape.size.x = x
 	collider.shape.size.y = y
 	particles.emitting = false
+	collider.shape.size.y = 0
+	collider.global_position = Vector2.INF
 	#particles.position.y = y / 2.0
 	particles.lifetime = (y / 2560.0)
 	
@@ -31,7 +33,7 @@ func _ready():
 	particles.amount = y / 3 + ((x / 128)*100)
 	particles.emission_rect_extents = Vector2(x / 2.0, 0)
 	collider_growth_rate_timer.wait_time = particles.lifetime / collider_growth_steps
-	active_timer.wait_time = active_time - particles.lifetime
+	active_timer.wait_time = active_time
 	inactive_timer.wait_time = inactive_time
 
 func room_is_active():
