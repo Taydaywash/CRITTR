@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/ToxicZoneRevision1.mp3-0e2676622f8ec6b636a03e
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

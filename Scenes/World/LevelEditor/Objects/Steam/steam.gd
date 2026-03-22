@@ -9,6 +9,7 @@ extends Area2D
 @export var collider_growth_steps: int = 10
 @export var delay_time: float
 @export var particles : CPUParticles2D
+@export var bubble_particles : CPUParticles2D
 
 @export var collider: CollisionShape2D
 @export var active_timer: Timer
