@@ -52,12 +52,12 @@ debug_color = Color(1, 1, 1, 0.21568628)
 script = ExtResource("7_apfcl")
 
 [node name="Steam0" parent="." unique_id=861539247 instance=ExtResource("8_xg4kf")]
-position = Vector2(-1024, 64)
+position = Vector2(-1024, 1088)
 x = 782
 y = 2419
 
 [node name="Steam1" parent="." unique_id=381687908 instance=ExtResource("8_xg4kf")]
-position = Vector2(1152, 64)
+position = Vector2(1152, 1088)
 x = 782
 y = 2419
 

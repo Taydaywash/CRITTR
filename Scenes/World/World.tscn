@@ -1112,6 +1112,7 @@ zoom_to_fit = true
 
 [node name="Hooks" parent="Rooms/ToxicMarsh" unique_id=330287191 instance=ExtResource("46_k3b55")]
 position = Vector2(33408, -5440)
+zoom_to_fit = true
 
 [node name="Endurance" parent="Rooms/ToxicMarsh" unique_id=1900355704 instance=ExtResource("38_rtfdf")]
 position = Vector2(38784, -2880)

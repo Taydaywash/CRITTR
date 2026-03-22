@@ -13,7 +13,8 @@ func _process(_delta: float) -> void:
 			return
 		collider.shape.size.x = steam_variables.x
 		collider.shape.size.y = steam_variables.y
-		particles.position.y = steam_variables.y / 2.0
+		collider.position.y = -steam_variables.y/2.0
+		#particles.position.y = steam_variables.y / 2.0
 		particles.lifetime = steam_variables.y / 2560.0
 		particles.amount = steam_variables.y / 3 + steam_variables.x / 3
 		particles.emission_rect_extents = Vector2(steam_variables.x/2.0,0)

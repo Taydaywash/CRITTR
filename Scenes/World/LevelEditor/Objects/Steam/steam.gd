@@ -24,15 +24,15 @@ func _ready():
 	collider.shape.size.x = x
 	collider.shape.size.y = y
 	particles.emitting = false
-	particles.position.y = y / 2.0
+	#particles.position.y = y / 2.0
 	particles.lifetime = (y / 2560.0)
-	collider_growth_rate_timer.wait_time = particles.lifetime / collider_growth_steps
 	
 	@warning_ignore("integer_division")
 	particles.amount = y / 3 + ((x / 128)*100)
 	particles.emission_rect_extents = Vector2(x / 2.0, 0)
+	collider_growth_rate_timer.wait_time = particles.lifetime / collider_growth_steps
 	active_timer.wait_time = active_time - particles.lifetime
-	inactive_timer.wait_time = inactive_time - particles.lifetime/2
+	inactive_timer.wait_time = inactive_time
 
 func room_is_active():
 	is_room_active = true
@@ -47,33 +47,38 @@ func room_is_inactive():
 	is_room_active = false
 
 func prepare_particles():
-	if not is_room_active:
-		return
 	particles.emitting = true
-	#await get_tree().create_timer(particles.lifetime).timeout
-	if not is_room_active:
-		return
 	spawn_hitbox()
 	active_timer.start()
 
 func clean_up_particles():
 	particles.emitting = false
-	await get_tree().create_timer(particles.lifetime/2).timeout
 	remove_hitbox()
-	if not is_room_active:
-		return
 	inactive_timer.start()
 
 func spawn_hitbox():
 	collider.shape.size.y = 0
-	collider.global_position = global_position - Vector2(0,y)
+	collider.global_position = global_position
 	while collider.shape.size.y < y:
+		if not is_room_active:
+			break
 		collider.shape.size.y += y / float(collider_growth_steps)
-		collider.global_position.y -= y / float(collider_growth_steps)/2.0
+		collider.position.y = -collider.shape.size.y / 2.0
 		collider_growth_rate_timer.start()
 		await collider_growth_rate_timer.timeout
 func remove_hitbox():
-	collider.global_position = Vector2.INF
+	collider.shape.size.y = y
+	while collider.shape.size.y > 0:
+		if not is_room_active:
+			break
+		if (collider.shape.size.y - y / float(collider_growth_steps)) > 0:
+			collider.shape.size.y -= y / float(collider_growth_steps)
+			collider.position.y = collider.shape.size.y / 2.0 - y
+		else:
+			collider.shape.size.y = 0
+			collider.global_position = Vector2.INF
+		collider_growth_rate_timer.start()
+		await collider_growth_rate_timer.timeout
 
 func _on_active_timer_timeout():
 	clean_up_particles()
