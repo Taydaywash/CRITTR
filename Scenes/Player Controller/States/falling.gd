@@ -52,6 +52,10 @@ func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("dive"):
 		return diving_state
 	if event.is_action_pressed("jump"):
+		for star in get_tree().get_nodes_in_group("jump_zone"):
+			if star and star.player_inside and star.jump_available:
+				star.jump_available = false
+				return jumping_state
 		if coyote_time.time_left > 0:
 			return jumping_state
 		else:
@@ -78,6 +82,12 @@ func process_physics(delta) -> State:
 		player.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
 	if nudge_left_range_right.is_colliding() and !nudge_left_range_left.is_colliding() and player.velocity.x < 0:
 		player.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
+	var star = get_tree().get_first_node_in_group("jump_zone")
+	if star and star.player_inside and star.jump_available:
+		if jump_input_buffer.time_left > 0:
+			star.jump_available = false
+			jump_input_buffer.stop()
+			return jumping_state
 	if (left_ray.is_colliding() or right_ray.is_colliding()):
 		if jump_input_buffer.time_left > 0:
 			return wall_jumping_state

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dmfofsxoyjwgq"]
+
+[ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://Assets/Misc/icon.svg" id="1_3itmo"]
+[ext_resource type="Script" uid="uid://bjl7cvjerweh5" path="res://Scenes/World/LevelEditor/Objects/Star/star.gd" id="2_y1cfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35ovn"]
+size = Vector2(144, 144)
+
+[node name="Star" type="Sprite2D" unique_id=146781011 groups=["jump_zone"]]
+self_modulate = Color(1, 1, 0.15686275, 1)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_3itmo")
+script = ExtResource("2_y1cfr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1615259662]
+collision_layer = 8224
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=581277129]
+shape = SubResource("RectangleShape2D_35ovn")
+
+[node name="Timer" type="Timer" parent="." unique_id=1733015731]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
