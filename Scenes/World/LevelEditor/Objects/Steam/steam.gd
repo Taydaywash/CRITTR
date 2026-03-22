@@ -61,15 +61,17 @@ func clean_up_particles():
 func spawn_hitbox():
 	collider.shape.size.y = 0
 	collider.global_position = global_position
+	collider_growth_rate_timer.wait_time = particles.lifetime / collider_growth_steps
 	while collider.shape.size.y < y:
+		collider_growth_rate_timer.start()
+		await collider_growth_rate_timer.timeout
 		if not is_room_active:
 			break
 		collider.shape.size.y += y / float(collider_growth_steps)
 		collider.position.y = -collider.shape.size.y / 2.0
-		collider_growth_rate_timer.start()
-		await collider_growth_rate_timer.timeout
 func remove_hitbox():
 	collider.shape.size.y = y
+	collider_growth_rate_timer.wait_time = particles.lifetime / collider_growth_steps / 2
 	while collider.shape.size.y > 0:
 		if not is_room_active:
 			break

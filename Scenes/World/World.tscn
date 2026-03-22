@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bpodu035v3lq4" path="res://Scenes/UI/UI.tscn" id="4_il6x7"]
 [ext_resource type="PackedScene" uid="uid://bnjdytut746x1" path="res://Scenes/World/Regions/Crash Site/CrashedShip.tscn" id="4_o14yy"]
 [ext_resource type="PackedScene" uid="uid://c01sisufyx4ho" path="res://Scenes/World/Regions/Crash Site/MovementTutorial.tscn" id="5_04mge"]
-[ext_resource type="PackedScene" uid="uid://dqd0fl65fplw7" path="res://Scenes/World/Regions/Misc/Testing2.tscn" id="5_hev0n"]
 [ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://Scenes/UI/Pause/PauseScreen.tscn" id="5_o14yy"]
 [ext_resource type="Script" uid="uid://5wurrbpk32od" path="res://Scenes/World/region_controller.gd" id="6_lqys3"]
 [ext_resource type="PackedScene" uid="uid://brtxay1sgqmvv" path="res://Scenes/World/LevelEditor/Objects/Door.tscn" id="7_jacc8"]
@@ -13,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bj2evssjuqrmd" path="res://Scenes/World/LevelEditor/Objects/SaveTube/SaveTube.tscn" id="8_hev0n"]
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://Scenes/World/Regions/Crash Site/InsideShip.tscn" id="8_jacc8"]
 [ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://Scenes/World/Regions/Crash Site/ClimbToPeak.tscn" id="14_7in0u"]
-[ext_resource type="PackedScene" uid="uid://d1w0ll7vvh2kr" path="res://Scenes/World/Regions/Misc/Testing1.tscn" id="15_jacc8"]
 [ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://Scenes/World/Regions/Crash Site/DiveTutorial.tscn" id="16_vdgnt"]
 [ext_resource type="PackedScene" uid="uid://2qo4nl7dvk62" path="res://Scenes/World/LevelEditor/Objects/Collectable/Collectable.tscn" id="17_h71dq"]
 [ext_resource type="Texture2D" uid="uid://bkmii5ukk00pn" path="res://Assets/Particles/puff cloud.png" id="18_eoa2q"]
@@ -34,7 +32,6 @@
 [ext_resource type="PackedScene" uid="uid://1ixxyx000fqa" path="res://Scenes/Particle Controller/particle_controller.tscn" id="25_hlwfy"]
 [ext_resource type="PackedScene" uid="uid://k7r644rgtmrc" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/CrittrDen.tscn" id="27_nlkji"]
 [ext_resource type="Script" uid="uid://d1sup8qpn6fsc" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/arctic_hare_den_choicer_handler.gd" id="28_2lagq"]
-[ext_resource type="PackedScene" uid="uid://08jwhgawobtu" path="res://Scenes/World/Regions/Misc/verticality.tscn" id="28_863yi"]
 [ext_resource type="Texture2D" uid="uid://bm6vu2bqh8xgm" path="res://Assets/Decals/Tundra/Background/big t hill.png" id="29_eoa2q"]
 [ext_resource type="PackedScene" uid="uid://cfdlyy7ukjry2" path="res://Scenes/World/Regions/Crash Site/HiddenRoomUnderPeak.tscn" id="29_irrot"]
 [ext_resource type="AudioStream" uid="uid://gshige7xcj2t" path="res://Assets/Music/ToxicZoneRevision1.mp3" id="33_s0y1m"]
@@ -43,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://cpebeecu04hk6" path="res://Assets/Decals/Tundra/Background/ship no smoke.png" id="35_irrot"]
 [ext_resource type="PackedScene" uid="uid://bfvw3u7lagu3r" path="res://Scenes/World/Regions/Toxic Marsh/WallSteam2.tscn" id="36_150fk"]
 [ext_resource type="Script" uid="uid://debb4cff3jagh" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
+[ext_resource type="PackedScene" uid="uid://bm3kvosdi8puf" path="res://Scenes/World/Regions/Toxic Marsh/Endurance2.tscn" id="37_150fk"]
 [ext_resource type="PackedScene" uid="uid://bc75uokokv1wd" path="res://Scenes/UI/crittr_catcher.tscn" id="38_hb1o8"]
 [ext_resource type="PackedScene" uid="uid://18ybx7j0tj4o" path="res://Scenes/World/Regions/Toxic Marsh/Endurance.tscn" id="38_rtfdf"]
 [ext_resource type="Script" uid="uid://bfgeg66mnkl4x" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_choicer_handler.gd" id="41_rgk46"]
@@ -211,7 +209,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "ui", "player", "audio_controller", "state_machine", "current_room_detection_ray", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("ToxicMarsh/Endurance")
+starting_room = NodePath("ToxicMarsh/Endurance2")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioController")
@@ -235,19 +233,6 @@ screen_fade_out_speed = 15.0
 screen_fade_in_speed = 30.0
 player_control_regain_delay = 0.1
 room_transition_failsafe_timer_wait_time = 1.0
-
-[node name="Testing" type="Node" parent="Rooms" unique_id=1080309199]
-script = ExtResource("6_lqys3")
-music = ExtResource("7_qs546")
-map_color = Color(0, 1, 0, 1)
-
-[node name="Testing1" parent="Rooms/Testing" unique_id=1129801850 instance=ExtResource("15_jacc8")]
-position = Vector2(23296, -15872)
-camera_zoom = 0.8
-zoom_to_fit = false
-
-[node name="Testing2" parent="Rooms/Testing" unique_id=359317188 instance=ExtResource("5_hev0n")]
-position = Vector2(36096, -15872)
 
 [node name="CrashSite" type="Node" parent="Rooms" unique_id=1857399283]
 script = ExtResource("6_lqys3")
@@ -1118,20 +1103,14 @@ zoom_to_fit = true
 position = Vector2(38784, -2880)
 zoom_to_fit = true
 
+[node name="Endurance2" parent="Rooms/ToxicMarsh" unique_id=1137488923 instance=ExtResource("37_150fk")]
+position = Vector2(48000, -2880)
+
 [node name="Miscellaneous" type="Node" parent="Rooms" unique_id=1513619106]
 script = ExtResource("6_lqys3")
 music = ExtResource("7_qs546")
 map_color = Color(1, 0, 0, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
-
-[node name="Verticality" parent="Rooms/Miscellaneous" unique_id=586646956 instance=ExtResource("28_863yi")]
-z_as_relative = false
-position = Vector2(17024, 3200)
-interior_room = true
-
-[node name="SaveTube" parent="Rooms/Miscellaneous/Verticality" unique_id=1157416422 instance=ExtResource("8_hev0n")]
-z_index = -2
-position = Vector2(0, 2048)
 
 [node name="WeirdJump" parent="Rooms/Miscellaneous" unique_id=1258557933 instance=ExtResource("21_863yi")]
 z_as_relative = false
@@ -1192,14 +1171,13 @@ animation_player = NodePath("../AnimationPlayer")
 player_reference = NodePath("../Player")
 map = NodePath("Map")
 
-[node name="Map" parent="PauseScreen" unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager", "current_region", "map_tab_default_focus", "choicer_handler") instance=ExtResource("18_hev0n")]
+[node name="Map" parent="PauseScreen" unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager", "map_tab_default_focus", "choicer_handler") instance=ExtResource("18_hev0n")]
 process_mode = 3
 z_index = 10
 z_as_relative = false
 position = Vector2(645, 407)
 player = NodePath("../../Player")
 rooms_manager = NodePath("../../Rooms")
-current_region = NodePath("../../Rooms/Testing")
 map_tab_default_focus = NodePath("../MapTab/MapFocus")
 choicer_handler = NodePath("MapChoicerHandler")
 
