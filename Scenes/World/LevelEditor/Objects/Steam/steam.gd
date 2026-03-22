@@ -30,15 +30,20 @@ func _ready():
 	#particles.position.y = y / 2.0
 	particles.lifetime = (y / 2560.0)
 	
-	@warning_ignore("integer_division")
-	particles.amount = y / 3 + ((x / 128)*100)
+	
+	@warning_ignore("narrowing_conversion")
+	particles.amount = y / 3.0 + ((x / 128.0)*100)
+	@warning_ignore("narrowing_conversion")
+	bubble_particles.amount = x / 2.0
 	particles.emission_rect_extents = Vector2(x / 2.0, 0)
+	bubble_particles.emission_rect_extents = Vector2(x / 2.0 + 64, 0)
 	collider_growth_rate_timer.wait_time = particles.lifetime / collider_growth_steps
 	active_timer.wait_time = active_time
 	inactive_timer.wait_time = inactive_time
 
 func room_is_active():
 	is_room_active = true
+	spawn_bubbles(delay_time)
 	await get_tree().create_timer(delay_time).timeout
 	prepare_particles()
 func room_is_inactive():
@@ -52,12 +57,21 @@ func room_is_inactive():
 func prepare_particles():
 	particles.emitting = true
 	spawn_hitbox()
+	if not is_room_active:
+		return
 	active_timer.start()
 
 func clean_up_particles():
 	particles.emitting = false
 	remove_hitbox()
+	if not is_room_active:
+		return
 	inactive_timer.start()
+	spawn_bubbles(inactive_time)
+
+func spawn_bubbles(delay):
+	await get_tree().create_timer(delay - 0.8).timeout
+	bubble_particles.emitting = true
 
 func spawn_hitbox():
 	collider.shape.size.y = 0
