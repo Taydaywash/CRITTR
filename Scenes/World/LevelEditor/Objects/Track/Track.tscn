@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://rjr0axi6j344"]
+
+[ext_resource type="Script" uid="uid://cij4m4bq8axp" path="res://Scenes/World/LevelEditor/Objects/Track/track.gd" id="1_gf5la"]
+[ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://Assets/Misc/icon.svg" id="1_q4fnl"]
+
+[sub_resource type="Curve2D" id="Curve2D_q4fnl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkkc8"]
+size = Vector2(128, 128)
+
+[node name="Path2D" type="Path2D" unique_id=1366413837]
+curve = SubResource("Curve2D_q4fnl")
+script = ExtResource("1_gf5la")
+speed = 0.3
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1970447228]
+rotates = false
+
+[node name="Area2D" type="Area2D" parent="PathFollow2D" unique_id=327257002]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Area2D" unique_id=942630619]
+shape = SubResource("RectangleShape2D_pkkc8")
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/Area2D" unique_id=2002827025]
+texture = ExtResource("1_q4fnl")
