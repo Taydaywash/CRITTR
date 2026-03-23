@@ -199,6 +199,15 @@ _data = {
 &"open_pause_menu": SubResource("Animation_7o3bi")
 }
 
+[sub_resource type="Gradient" id="Gradient_885dk"]
+offsets = PackedFloat32Array(0, 0.6008065)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5xohx"]
+gradient = SubResource("Gradient_885dk")
+fill = 1
+fill_from = Vector2(0.49127907, 0.49709302)
+
 [node name="World" type="Node2D" unique_id=1470686207]
 
 [node name="Player" parent="." unique_id=674990077 node_paths=PackedStringArray("audio_controller_reference", "particle_controller_reference") instance=ExtResource("2_y6flb")]
@@ -213,7 +222,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "ui", "player", "audio_controller", "state_machine", "current_room_detection_ray", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("ToxicMarsh/EnterFromCrashSite")
+starting_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioController")
@@ -1117,7 +1126,7 @@ position = Vector2(47616, -2880)
 position = Vector2(49536, -10560)
 
 [node name="MarshToCloudTemple" parent="Rooms/ToxicMarsh" unique_id=1733124588 instance=ExtResource("40_37qpj")]
-position = Vector2(56448, -4736)
+position = Vector2(56448, -4800)
 
 [node name="Miscellaneous" type="Node" parent="Rooms" unique_id=1513619106]
 script = ExtResource("6_lqys3")
@@ -1219,3 +1228,11 @@ script = ExtResource("41_rgk46")
 
 [node name="Star" parent="." unique_id=146781011 instance=ExtResource("46_rtfdf")]
 position = Vector2(2066, -673)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1385888590]
+position = Vector2(10752, -320)
+color = Color(1, 0.42352942, 0.34901962, 1)
+energy = 2.3
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_5xohx")
+texture_scale = 50.0

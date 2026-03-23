@@ -322,6 +322,15 @@ size = Vector2(165.92592, 165.92592)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxerk"]
 size = Vector2(71.112, 142.22195)
 
+[sub_resource type="Gradient" id="Gradient_885dk"]
+offsets = PackedFloat32Array(0, 0.6008065)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rkbq1"]
+gradient = SubResource("Gradient_885dk")
+fill = 1
+fill_from = Vector2(0.49127907, 0.49709302)
+
 [node name="PlayerController" type="CharacterBody2D" unique_id=1758587224 node_paths=PackedStringArray("state_machine", "camera", "up", "down", "left", "right", "animated_player_sprite", "respawn_controller_reference")]
 scale = Vector2(1.35, 1.35)
 collision_layer = 8
@@ -1080,6 +1089,11 @@ collide_with_bodies = false
 [node name="GroundDistancerRay" type="RayCast2D" parent="." unique_id=1215516566]
 target_position = Vector2(0, 500)
 collision_mask = 81
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1824458448]
+energy = 0.1
+texture = SubResource("GradientTexture2D_rkbq1")
+texture_scale = 5.9
 
 [connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Up" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Down" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]
