@@ -17,6 +17,8 @@ extends State
 @export_category("Wall Jumping Raycasts")
 @export var right_ray: RayCast2D
 @export var left_ray: RayCast2D
+@export var right_ray2: RayCast2D
+@export var left_ray2: RayCast2D
 @export var high_right_ray: RayCast2D
 @export var high_left_ray: RayCast2D
 @export var low_right_ray: RayCast2D
@@ -40,23 +42,22 @@ func activate(last_state : State) -> void:
 
 	jump_input_buffer.stop()
 	gravity = player.normal_gravity
-	if -wall_jump_vertical_velocity < player.velocity.y:
-		player.velocity.y = -wall_jump_vertical_velocity
+	max_falling_speed = player.max_falling_speed
+	player.velocity.y = -wall_jump_vertical_velocity
 	if last_state == dashing_state:
 		player.velocity.y = -wall_dash_jump_vertical_velocity
 		dash_jumping = true
-	max_falling_speed = player.max_falling_speed
-	if right_ray.is_colliding() or high_right_ray.is_colliding() or low_right_ray.is_colliding():
+		
+	if right_ray.is_colliding() or right_ray2.is_colliding() or high_right_ray.is_colliding() or low_right_ray.is_colliding():
 		if dash_jumping:
 			player.velocity.x = -wall_dash_jump_horizontal_velocity
 			return
 		player.velocity.x = -wall_jump_horizontal_velocity
-	elif left_ray.is_colliding() or low_left_ray.is_colliding() or high_left_ray.is_colliding():
+	if left_ray.is_colliding() or left_ray2.is_colliding() or low_left_ray.is_colliding() or high_left_ray.is_colliding():
 		if dash_jumping:
 			player.velocity.x = wall_dash_jump_horizontal_velocity
 			return
 		player.velocity.x = wall_jump_horizontal_velocity
-
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("use_ability"):

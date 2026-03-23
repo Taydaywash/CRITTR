@@ -70,9 +70,6 @@ func _exited_room_collider(_body: Node2D) -> void:
 func _process(_delta: float) -> void:
 	if is_room_active():
 		room_transition_controller.play_music(room_transition_controller.current_room.region.music)
-		z_index = 2
-	else:
-		z_index = 0
 
 func is_room_active():
 	return room_transition_controller.current_room == self

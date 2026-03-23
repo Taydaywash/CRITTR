@@ -580,7 +580,7 @@ left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "WallCling"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="WallJumping" type="Node" parent="StateMachine/WallCling" unique_id=1649015882 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "high_right_ray", "high_left_ray", "low_right_ray", "low_left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "enter_particle_when_entering_from_state_state")]
+[node name="WallJumping" type="Node" parent="StateMachine/WallCling" unique_id=1649015882 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "right_ray2", "left_ray2", "high_right_ray", "high_left_ray", "low_right_ray", "low_left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "enter_particle_when_entering_from_state_state")]
 script = ExtResource("10_dpx4d")
 move_speed = 800
 wall_jump_horizontal_velocity = 1000
@@ -595,6 +595,8 @@ jump_input_buffer = NodePath("../../../JumpInputBuffer")
 jump_input_buffer_patience = 0.2
 right_ray = NodePath("../../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
+right_ray2 = NodePath("../../../WallJumpRayReference/RightRay2")
+left_ray2 = NodePath("../../../WallJumpRayReference/LeftRay2")
 high_right_ray = NodePath("../../../HighWallJumpRay/HighRightRay")
 high_left_ray = NodePath("../../../HighWallJumpRay/HighLeftRay")
 low_right_ray = NodePath("../../../LowWallJumpRay/LowRightRay")
@@ -897,13 +899,25 @@ one_shot = true
 [node name="WallJumpRayReference" type="Node2D" parent="." unique_id=12252629]
 
 [node name="RightRay" type="RayCast2D" parent="WallJumpRayReference" unique_id=771782398]
-position = Vector2(0, 10)
+position = Vector2(0, 23.703703)
 scale = Vector2(1, 2)
 target_position = Vector2(100, 0)
 collision_mask = 65
 
 [node name="LeftRay" type="RayCast2D" parent="WallJumpRayReference" unique_id=945988906]
-position = Vector2(0, 10)
+position = Vector2(0, 23.703703)
+scale = Vector2(1, 2)
+target_position = Vector2(-100, 0)
+collision_mask = 65
+
+[node name="RightRay2" type="RayCast2D" parent="WallJumpRayReference" unique_id=440633488]
+position = Vector2(0, -23.703703)
+scale = Vector2(1, 2)
+target_position = Vector2(100, 0)
+collision_mask = 65
+
+[node name="LeftRay2" type="RayCast2D" parent="WallJumpRayReference" unique_id=194133977]
+position = Vector2(0, -23.703703)
 scale = Vector2(1, 2)
 target_position = Vector2(-100, 0)
 collision_mask = 65
