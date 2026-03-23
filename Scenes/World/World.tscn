@@ -44,6 +44,8 @@
 [ext_resource type="PackedScene" uid="uid://bm3kvosdi8puf" path="res://Scenes/World/Regions/Toxic Marsh/Endurance2.tscn" id="37_150fk"]
 [ext_resource type="PackedScene" uid="uid://bc75uokokv1wd" path="res://Scenes/UI/crittr_catcher.tscn" id="38_hb1o8"]
 [ext_resource type="PackedScene" uid="uid://18ybx7j0tj4o" path="res://Scenes/World/Regions/Toxic Marsh/Endurance.tscn" id="38_rtfdf"]
+[ext_resource type="PackedScene" uid="uid://c1s4y7iuwmsjp" path="res://Scenes/World/Regions/Toxic Marsh/AscentCollectable.tscn" id="39_rtfdf"]
+[ext_resource type="PackedScene" uid="uid://cu28qt5jrjomn" path="res://Scenes/World/Regions/Toxic Marsh/MarshToCloudTemple.tscn" id="40_37qpj"]
 [ext_resource type="Script" uid="uid://bfgeg66mnkl4x" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_choicer_handler.gd" id="41_rgk46"]
 [ext_resource type="PackedScene" uid="uid://bkru2b6d01p7k" path="res://Scenes/World/Regions/Toxic Marsh/Hooks.tscn" id="46_k3b55"]
 
@@ -210,7 +212,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "ui", "player", "audio_controller", "state_machine", "current_room_detection_ray", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("ToxicMarsh/Endurance")
+starting_room = NodePath("ToxicMarsh/EnterFromCrashSite")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioController")
@@ -1100,15 +1102,21 @@ zoom_to_fit = true
 position = Vector2(33408, -5440)
 zoom_to_fit = true
 
-[node name="HookCollectable" parent="Rooms/ToxicMarsh" unique_id=843279358 instance=ExtResource("36_k3b55")]
-position = Vector2(38016, -7872)
+[node name="Ascent" parent="Rooms/ToxicMarsh" unique_id=843279358 instance=ExtResource("36_k3b55")]
+position = Vector2(49536, -6720)
 
 [node name="Endurance" parent="Rooms/ToxicMarsh" unique_id=1900355704 instance=ExtResource("38_rtfdf")]
 position = Vector2(38784, -2880)
 zoom_to_fit = true
 
 [node name="Endurance2" parent="Rooms/ToxicMarsh" unique_id=1137488923 instance=ExtResource("37_150fk")]
-position = Vector2(48000, -2880)
+position = Vector2(47616, -2880)
+
+[node name="AboveAscentCollectable" parent="Rooms/ToxicMarsh" unique_id=662939850 instance=ExtResource("39_rtfdf")]
+position = Vector2(49536, -10560)
+
+[node name="MarshToCloudTemple" parent="Rooms/ToxicMarsh" unique_id=1733124588 instance=ExtResource("40_37qpj")]
+position = Vector2(56448, -4736)
 
 [node name="Miscellaneous" type="Node" parent="Rooms" unique_id=1513619106]
 script = ExtResource("6_lqys3")
