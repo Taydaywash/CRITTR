@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var abilitiy_wheel: Panel = $AbilitiyWheel
 @onready var screen_overlay: Panel = %ScreenOverlay
 @onready var choicer_dialog: Panel = %TextBoxChoicer
+@onready var text_popup: Panel = %TextPopup
 
 func _process(_delta: float) -> void:
 	if get_tree().paused:

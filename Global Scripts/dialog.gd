@@ -14,4 +14,9 @@ const ARCTIC_HARE_DEN = ("A den sits before you. Rhythmic zapping can be heard f
 Scans suggest that this den belongs to an 'Arctic Hare'.
 \nInsert Crittr Catcher 9000?")
 
-const SCRAP_COLLECTED = ("You got a Strange Scrap!")
+const SCRAP_COLLECTED = ("You got a Strange Scrap!
+...Its use isn't implemented yet though")
+
+const ABILITY_GAINED = ("You gained a new ability! 
+Equip it at any save point 
+(You can use the map to teleport to one)")

@@ -58,9 +58,10 @@ func restart_level() -> void:
 
 func next_level() -> void:
 	if current_scene_index >= len(level_pool) - 1:
-		print("Last level completed")
 		exit_crittr_catcher()
+		await animation_player.animation_finished
 		EventController.emit_signal("unlock_ability",ability_to_unlock)
+		ui.text_popup.start_typing_text(Dialog.ABILITY_GAINED)
 		return
 	current_scene_index += 1
 	change_level_to(level_pool[current_scene_index])
