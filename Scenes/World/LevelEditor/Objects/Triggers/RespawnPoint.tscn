@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c6tgehyvfiy28"]
 
-[ext_resource type="Script" uid="uid://dn2lq7ahbxr2i" path="res://Scenes/World/LevelEditor/Objects/Triggers/respawn_point.gd" id="1_r3nm1"]
+[ext_resource type="Script" uid="uid://dn2lq7ahbxr2i" path="res://Scenes/World/LevelEditor/Objects/Triggers/Scripts/respawn_point.gd" id="1_r3nm1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_io85b"]
 size = Vector2(128, 896)

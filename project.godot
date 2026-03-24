@@ -219,3 +219,4 @@ quick_map={
 2d_physics/layer_12="CrittrCatcherPlayer"
 2d_physics/layer_13="CrittrCatcherExitNode"
 2d_physics/layer_14="Star Point"
+2d_physics/layer_15="PickupBlocker"

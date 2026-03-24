@@ -14,7 +14,13 @@ size = Vector2(9216, 5120)
 script = ExtResource("1_7xvwb")
 
 [node name="RespawnPoint" parent="." unique_id=262928423 instance=ExtResource("2_v4lkr")]
-position = Vector2(0, 640)
+position = Vector2(-4288, 1792)
+
+[node name="RespawnPoint2" parent="." unique_id=3531767 instance=ExtResource("2_v4lkr")]
+position = Vector2(-4288, -2048)
+
+[node name="RespawnPoint3" parent="." unique_id=1867271647 instance=ExtResource("2_v4lkr")]
+position = Vector2(4288, -1024)
 
 [node name="Foreground" parent="." unique_id=622969364 instance=ExtResource("3_qtwnc")]
 z_index = 2

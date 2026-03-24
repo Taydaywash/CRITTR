@@ -17,12 +17,16 @@ extends CharacterBody2D
 @export var audio_controller_reference : AudioController
 @export var particle_controller_reference : ParticleController
 @export var respawn_controller_reference : Node
+@export var trigger_hitbox : Area2D
 
 var stuck_timer : Timer
 var global_position_last_frame : Vector2 = Vector2.ZERO
 var checking_if_stuck : bool = false
 
 func _ready() -> void:
+	EventController.connect("collectable_grabbed",func collectable_following(id):
+		EventController.emit_signal("collectable_following",id,self)
+		)
 	stuck_timer = Timer.new()
 	stuck_timer.one_shot = true
 	stuck_timer.wait_time = max_stuck_time
@@ -81,3 +85,12 @@ func check_if_stuck() -> void:
 		respawn_controller_reference.trigger_respawn()
 		checking_if_stuck = false
 		return
+
+func can_collect() -> bool:
+	if not is_on_floor():
+		return false
+	if trigger_hitbox.has_overlapping_areas():
+		for area in trigger_hitbox.get_overlapping_areas():
+			if area is PickupBlocker:
+				return false
+	return true

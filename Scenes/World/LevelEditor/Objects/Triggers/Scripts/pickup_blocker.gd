@@ -1,0 +1,2 @@
+class_name PickupBlocker
+extends Area2D

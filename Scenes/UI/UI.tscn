@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://hqyvhddj1nu" path="res://Assets/UI/DashIcon.png" id="2_dhe1o"]
 [ext_resource type="Script" uid="uid://cgdpm3xuvt8kb" path="res://Custom Classes/choicer_dialog.gd" id="3_akgwn"]
 [ext_resource type="AudioStream" uid="uid://ctect5d77ca1w" path="res://Assets/Sound Effects/Text/TextSound.wav" id="4_b83rk"]
+[ext_resource type="Script" uid="uid://4psxum0vfr5h" path="res://Scenes/UI/popup.gd" id="5_oqha6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dd3c"]
 bg_color = Color(1, 1, 1, 1)
@@ -166,5 +167,44 @@ theme_override_font_sizes/font_size = 34
 theme_override_styles/normal = SubResource("StyleBoxFlat_oqha6")
 text = "Cancel"
 
+[node name="TextPopup" type="Panel" parent="." unique_id=681898411 node_paths=PackedStringArray("text", "ok_button", "ui")]
+unique_name_in_owner = true
+z_index = 10
+offset_left = 128.0
+offset_top = 320.0
+offset_right = 1024.0
+offset_bottom = 576.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b83rk")
+script = ExtResource("5_oqha6")
+text = NodePath("RichTextLabel")
+ok_button = NodePath("Ok")
+type_sound = ExtResource("4_b83rk")
+ui = NodePath("..")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextPopup" unique_id=398117630]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 32.0
+offset_right = 832.0
+offset_bottom = 128.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 23
+text = "You collected a Strange Scrap! Visit your ship to see total collected."
+horizontal_alignment = 1
+visible_characters_behavior = 1
+
+[node name="Ok" type="Button" parent="TextPopup" unique_id=1341373918]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 160.0
+offset_right = 544.0
+offset_bottom = 224.0
+theme_override_colors/font_color = Color(0, 0.8901961, 0.7764706, 1)
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_oqha6")
+text = "Ok"
+
 [connection signal="pressed" from="TextBoxChoicer/Confirm" to="TextBoxChoicer" method="_on_confirm_pressed"]
 [connection signal="pressed" from="TextBoxChoicer/Cancel" to="TextBoxChoicer" method="_on_cancel_pressed"]
+[connection signal="pressed" from="TextPopup/Ok" to="TextPopup" method="_on_ok_pressed"]

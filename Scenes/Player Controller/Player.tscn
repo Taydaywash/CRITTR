@@ -331,7 +331,7 @@ gradient = SubResource("Gradient_885dk")
 fill = 1
 fill_from = Vector2(0.49127907, 0.49709302)
 
-[node name="PlayerController" type="CharacterBody2D" unique_id=1758587224 node_paths=PackedStringArray("state_machine", "camera", "up", "down", "left", "right", "animated_player_sprite", "respawn_controller_reference")]
+[node name="PlayerController" type="CharacterBody2D" unique_id=1758587224 node_paths=PackedStringArray("state_machine", "camera", "up", "down", "left", "right", "animated_player_sprite", "respawn_controller_reference", "trigger_hitbox")]
 scale = Vector2(1.35, 1.35)
 collision_layer = 8
 collision_mask = 81
@@ -350,6 +350,7 @@ max_falling_speed = 2000
 max_stuck_time = 3.0
 animated_player_sprite = NodePath("AnimatedPlayerSprite")
 respawn_controller_reference = NodePath("Respawn Controller")
+trigger_hitbox = NodePath("TriggerHitbox")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1436004704 node_paths=PackedStringArray("no_control_state", "no_control_no_gravity_state", "death_state", "teleporting_enter_state", "teleporting_exit_state", "spawning_state", "jumping_state", "crouching_state", "idle_crouching_state", "idle_state", "looking_up_state", "walking_state", "diving_state", "diving_falling_state", "bonked_state", "wall_cling_state", "wall_jumping_state", "falling_state", "ascending_state", "ability_state", "dashing_state", "grappling_pull_state", "inflated_state", "climbing_slide_state", "digging_state", "bounce_attack_state", "colliders_list", "hurtboxes_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
 script = ExtResource("5_v55cd")
@@ -989,8 +990,8 @@ offset = Vector2(0, -70)
 
 [node name="TriggerHitbox" type="Area2D" parent="." unique_id=936426999]
 scale = Vector2(2, 2)
-collision_layer = 4
-collision_mask = 516
+collision_layer = 0
+collision_mask = 16900
 
 [node name="Collider" type="CollisionShape2D" parent="TriggerHitbox" unique_id=637471940]
 position = Vector2(-7.50577e-07, 5.187812e-07)

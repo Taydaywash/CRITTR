@@ -13,3 +13,5 @@ const CRITTR_CATCHER_LEAVE = ("Are you sure you want to exit this crittr den?
 const ARCTIC_HARE_DEN = ("A den sits before you. Rhythmic zapping can be heard from inside.
 Scans suggest that this den belongs to an 'Arctic Hare'.
 \nInsert Crittr Catcher 9000?")
+
+const SCRAP_COLLECTED = ("You got a Strange Scrap!")

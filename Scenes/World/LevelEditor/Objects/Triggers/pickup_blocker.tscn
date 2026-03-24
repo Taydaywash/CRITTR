@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://065g8iqrnb5m"]
+
+[ext_resource type="Script" uid="uid://brkpxbohu5tpw" path="res://Scenes/World/LevelEditor/Objects/Triggers/Scripts/pickup_blocker.gd" id="1_ef3ho"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8aovp"]
+size = Vector2(128, 128)
+
+[node name="PickupBlocker" type="Area2D" unique_id=16133143]
+collision_layer = 16384
+collision_mask = 0
+script = ExtResource("1_ef3ho")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2056965226]
+shape = SubResource("RectangleShape2D_8aovp")
