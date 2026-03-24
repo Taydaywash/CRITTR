@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Tools/level_bounds_auto_center_tool.gd" id="7_td4cs"]
 [ext_resource type="PackedScene" uid="uid://bwgk51grjehh6" path="res://Scenes/World/LevelEditor/Objects/GrapplePoints/GrapplePoint.tscn" id="8_jdaik"]
 [ext_resource type="PackedScene" uid="uid://2qo4nl7dvk62" path="res://Scenes/World/LevelEditor/Objects/Collectable/Collectable.tscn" id="9_vvtvq"]
+[ext_resource type="PackedScene" uid="uid://065g8iqrnb5m" path="res://Scenes/World/LevelEditor/Objects/Triggers/pickup_blocker.tscn" id="10_ewynv"]
 
 [node name="Room2" type="Node2D" unique_id=721111038]
 script = ExtResource("1_67gyk")
@@ -50,6 +51,10 @@ position = Vector2(704, -384)
 
 [node name="Collectable" parent="." unique_id=1542823849 instance=ExtResource("9_vvtvq")]
 position = Vector2(1792, -896)
+
+[node name="PickupBlocker" parent="." unique_id=16133143 instance=ExtResource("10_ewynv")]
+position = Vector2(1600, -704)
+scale = Vector2(7.08, 1)
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

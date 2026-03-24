@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_y8roj"]
 [ext_resource type="PackedScene" uid="uid://2qo4nl7dvk62" path="res://Scenes/World/LevelEditor/Objects/Collectable/Collectable.tscn" id="7_6cy3l"]
 [ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Tools/level_bounds_auto_center_tool.gd" id="7_27n8x"]
+[ext_resource type="PackedScene" uid="uid://065g8iqrnb5m" path="res://Scenes/World/LevelEditor/Objects/Triggers/pickup_blocker.tscn" id="8_ju3pw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7ty1"]
 size = Vector2(4608, 2560)
@@ -47,6 +48,26 @@ script = ExtResource("7_27n8x")
 
 [node name="Collectable" parent="." unique_id=1542823849 instance=ExtResource("7_6cy3l")]
 position = Vector2(1920, -640)
+
+[node name="PickupBlocker" parent="." unique_id=16133143 instance=ExtResource("8_ju3pw")]
+position = Vector2(1873, -442)
+scale = Vector2(5.5960298, 1)
+
+[node name="PickupBlocker2" parent="." unique_id=1422854393 instance=ExtResource("8_ju3pw")]
+position = Vector2(129.99988, -418)
+scale = Vector2(3.6360295, 1)
+
+[node name="PickupBlocker3" parent="." unique_id=774163958 instance=ExtResource("8_ju3pw")]
+position = Vector2(-800, -288)
+scale = Vector2(3.6360295, 1)
+
+[node name="PickupBlocker4" parent="." unique_id=689644561 instance=ExtResource("8_ju3pw")]
+position = Vector2(-1600, 352)
+scale = Vector2(6.07603, 1)
+
+[node name="PickupBlocker5" parent="." unique_id=277585378 instance=ExtResource("8_ju3pw")]
+position = Vector2(255.99988, 480)
+scale = Vector2(4.87603, 1)
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

@@ -38,6 +38,7 @@ collider_growth_rate_timer = NodePath("ColliderGrowthRateTimer")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=973071923]
 position = Vector2(0, -267)
 shape = SubResource("RectangleShape2D_2hepd")
+debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="ActiveTimer" type="Timer" parent="." unique_id=2141576033]
 process_callback = 0
