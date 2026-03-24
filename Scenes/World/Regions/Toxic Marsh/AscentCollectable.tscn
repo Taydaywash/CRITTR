@@ -19,6 +19,10 @@ script = ExtResource("1_k742a")
 position = Vector2(1599.9999, 895.99994)
 scale = Vector2(3.8481793, 0.28829232)
 
+[node name="RespawnPoint2" parent="." unique_id=3531767 instance=ExtResource("2_27i1v")]
+position = Vector2(-2080, 864.00006)
+scale = Vector2(0.5883496, 0.54472)
+
 [node name="Foreground" parent="." unique_id=622969364 instance=ExtResource("3_j2uof")]
 z_index = 2
 
