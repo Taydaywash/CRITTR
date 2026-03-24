@@ -53,7 +53,7 @@ var room_transition_failsafe_timer : Timer
 @export var room_transition_failsafe_timer_wait_time : float
 
 func _ready() -> void:
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().process_frame
 	room_transition_failsafe_timer = Timer.new()
 	room_transition_failsafe_timer.one_shot = true
 	room_transition_failsafe_timer.wait_time = room_transition_failsafe_timer_wait_time
