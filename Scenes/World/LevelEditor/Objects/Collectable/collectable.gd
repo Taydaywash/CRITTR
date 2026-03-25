@@ -7,8 +7,15 @@ extends Node2D
 var id: String = ""
 var following_player : bool = false
 var player = null
+var original_location : Vector2
 
 func _ready() -> void: 
+	original_location = global_position
+	EventController.connect("player_death",func ():
+		following_player = false
+		set_deferred("monitoring",true)
+		global_position = original_location
+		)
 	EventController.connect("collectable_following",func collectable_following(identifier,player_ref):
 		if identifier == id:
 			player = player_ref

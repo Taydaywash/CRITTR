@@ -6,8 +6,8 @@ extends Node
 @export var ui: UI
 @export var player: Player
 @export var audio_controller : AudioListener2D
-@export var state_machine : StateMachine
-@export var current_room_detection_ray: RayCast2D
+@export var state_machine : StateMachine 
+var current_room_detection_ray: RayCast2D
 @export_group("Room Distance Rays","room_distance_detection_ray_")
 @export var room_distance_detection_ray_up: RayCast2D
 @export var room_distance_detection_ray_down: RayCast2D
@@ -54,6 +54,7 @@ var room_transition_failsafe_timer : Timer
 
 func _ready() -> void:
 	await get_tree().process_frame
+	current_room_detection_ray = player.current_room_detection_ray
 	room_transition_failsafe_timer = Timer.new()
 	room_transition_failsafe_timer.one_shot = true
 	room_transition_failsafe_timer.wait_time = room_transition_failsafe_timer_wait_time

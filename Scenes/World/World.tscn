@@ -234,14 +234,13 @@ particle_controller_reference = NodePath("../Particle Controller")
 [node name="UI" parent="." unique_id=580546377 instance=ExtResource("4_il6x7")]
 unique_name_in_owner = true
 
-[node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "ui", "player", "audio_controller", "state_machine", "current_room_detection_ray", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
+[node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
 starting_room = NodePath("CrashSite/Dive Tutorial")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 audio_controller = NodePath("../AudioController")
 state_machine = NodePath("../Player/StateMachine")
-current_room_detection_ray = NodePath("../Player/RoomTransitionSides/CurrentRoomDetectionRay")
 room_distance_detection_ray_up = NodePath("../Player/RoomTransitionSides/up")
 room_distance_detection_ray_down = NodePath("../Player/RoomTransitionSides/down")
 room_distance_detection_ray_left = NodePath("../Player/RoomTransitionSides/left")
@@ -362,7 +361,7 @@ position = Vector2(1792, -496)
 rotation = -3.1415925
 texture = ExtResource("24_2neov")
 
-[node name="Collectable" parent="Rooms/CrashSite/CrashedShip" unique_id=1542823849 instance=ExtResource("17_h71dq")]
+[node name="Collectable2" parent="Rooms/CrashSite/CrashedShip" unique_id=1542823849 instance=ExtResource("17_h71dq")]
 position = Vector2(384, 768)
 
 [node name="SaveTube" parent="Rooms/CrashSite/CrashedShip" unique_id=1607364998 instance=ExtResource("8_hev0n")]
@@ -766,9 +765,6 @@ position = Vector2(2176, 808)
 rotation = -3.1415925
 texture = ExtResource("24_2neov")
 flip_h = true
-
-[node name="Collectable2" parent="Rooms/CrashSite/Dive Tutorial" unique_id=225844199 instance=ExtResource("17_h71dq")]
-position = Vector2(3456, -1856)
 
 [node name="Platforms2" parent="Rooms/CrashSite" unique_id=449353625 instance=ExtResource("19_hlwfy")]
 z_as_relative = false

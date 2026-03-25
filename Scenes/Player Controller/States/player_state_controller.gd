@@ -16,6 +16,7 @@ extends CharacterBody2D
 @export var animated_player_sprite: AnimatedSprite2D
 @export var audio_controller_reference : AudioController
 @export var particle_controller_reference : ParticleController
+@export var current_room_detection_ray: RayCast2D
 @export var respawn_controller_reference : Node
 @export var trigger_hitbox : Area2D
 

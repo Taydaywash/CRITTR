@@ -331,7 +331,7 @@ gradient = SubResource("Gradient_885dk")
 fill = 1
 fill_from = Vector2(0.49127907, 0.49709302)
 
-[node name="PlayerController" type="CharacterBody2D" unique_id=1758587224 node_paths=PackedStringArray("state_machine", "camera", "up", "down", "left", "right", "animated_player_sprite", "respawn_controller_reference", "trigger_hitbox")]
+[node name="PlayerController" type="CharacterBody2D" unique_id=1758587224 node_paths=PackedStringArray("state_machine", "camera", "up", "down", "left", "right", "animated_player_sprite", "current_room_detection_ray", "respawn_controller_reference", "trigger_hitbox")]
 scale = Vector2(1.35, 1.35)
 collision_layer = 8
 collision_mask = 81
@@ -349,6 +349,7 @@ normal_gravity = 3250
 max_falling_speed = 2000
 max_stuck_time = 3.0
 animated_player_sprite = NodePath("AnimatedPlayerSprite")
+current_room_detection_ray = NodePath("RoomTransitionSides/CurrentRoomDetectionRay")
 respawn_controller_reference = NodePath("Respawn Controller")
 trigger_hitbox = NodePath("TriggerHitbox")
 

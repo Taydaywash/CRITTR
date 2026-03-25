@@ -12,10 +12,11 @@ func _ready() -> void:
 	EventController.connect("player_death", trigger_respawn)
 
 func _on_body_entered(_body: Node2D) -> void:
-	trigger_respawn()
+	EventController.emit_signal("player_death")
 
 func _on_trigger_hitbox_area_entered(area: Area2D) -> void:
 	if area.get_parent() is RespawnPoint:
+		print("respawn")
 		respawn_position = area.get_parent().get_respawn_point()
 
 func trigger_respawn() -> void:
