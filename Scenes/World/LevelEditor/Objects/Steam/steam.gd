@@ -22,6 +22,7 @@ var is_room_active : bool = false
 signal steam_reset
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_DISABLED
 	room_reference.connect("room_is_active",room_is_active)
 	room_reference.connect("room_is_inactive",room_is_inactive)
 	collider.shape.size.x = x
@@ -56,7 +57,6 @@ func room_is_inactive():
 	inactive_timer.stop()
 	clean_up_particles()
 	is_room_active = false
-	await steam_reset
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 func prepare_particles():

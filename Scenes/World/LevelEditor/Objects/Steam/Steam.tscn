@@ -23,7 +23,6 @@ offsets = PackedFloat32Array(0, 0.2603306, 1)
 colors = PackedColorArray(0, 1, 0, 1, 4.813075e-07, 0.5267915, 0, 1, 1.2513996e-06, 0.5206562, 8.663535e-07, 0)
 
 [node name="Steam" type="Area2D" unique_id=861539247 node_paths=PackedStringArray("particles", "bubble_particles", "collider", "active_timer", "inactive_timer", "collider_growth_rate_timer")]
-process_mode = 4
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_khhob")
