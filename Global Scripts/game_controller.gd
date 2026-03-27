@@ -71,4 +71,4 @@ func restore_state():
 	game_state = SaveLoadManager.load_game()
 func reset_game():
 	game_state = BASE_GAME_STATE
-	#SaveLoadManager.reset_game()
+	SaveLoadManager.save_game(game_state)

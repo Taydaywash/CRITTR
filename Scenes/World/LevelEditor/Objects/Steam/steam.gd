@@ -19,6 +19,8 @@ extends Area2D
 @onready var room_reference = $".."
 var is_room_active : bool = false
 
+signal steam_reset
+
 func _ready():
 	room_reference.connect("room_is_active",room_is_active)
 	room_reference.connect("room_is_inactive",room_is_inactive)
@@ -42,6 +44,7 @@ func _ready():
 	inactive_timer.wait_time = inactive_time
 
 func room_is_active():
+	process_mode = Node.PROCESS_MODE_INHERIT
 	is_room_active = true
 	spawn_bubbles(delay_time)
 	await get_tree().create_timer(delay_time).timeout
@@ -53,6 +56,8 @@ func room_is_inactive():
 	inactive_timer.stop()
 	clean_up_particles()
 	is_room_active = false
+	await steam_reset
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 func prepare_particles():
 	particles.emitting = true
@@ -64,6 +69,7 @@ func prepare_particles():
 func clean_up_particles():
 	particles.emitting = false
 	remove_hitbox()
+	steam_reset.emit()
 	if not is_room_active:
 		return
 	inactive_timer.start()
