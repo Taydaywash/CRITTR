@@ -12,6 +12,7 @@ extends State
 @export var crouch_horizontal_jump_speed : int
 @export var crouched_walk_speed : int
 @export var crouched_acceleration : int
+
 @export_category("Corner Nudging Raycasts")
 @export var nudge_right_range_left: RayCast2D
 @export var nudge_right_range_right: RayCast2D
@@ -23,10 +24,21 @@ extends State
 @export var sprite_reset_speed : float
 @export var y_final_sprite_stretch_multiplier : float
 @export var x_final_sprite_stretch_multiplier : float
+@export_category("Camera")
+@export var look_down_delay : float
+@export var camera_reference : Camera2D
+@export var camera_offset : int
 
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
+var look_down_delay_timer : Timer
+
+func _ready() -> void:
+	look_down_delay_timer = Timer.new()
+	look_down_delay_timer.wait_time = look_down_delay
+	look_down_delay_timer.one_shot = true
+	add_child(look_down_delay_timer)
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
@@ -37,6 +49,9 @@ func activate(last_state : State) -> void:
 	if last_state != crouching_state:
 		sprite.scale.y = y_initial_sprite_stretch_multiplier
 		sprite.scale.x = x_initial_sprite_stretch_multiplier
+	look_down_delay_timer.start()
+	await look_down_delay_timer.timeout
+	camera_reference.position.y = camera_offset
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump") and player.is_on_floor() and can_uncrouch():
@@ -83,3 +98,5 @@ func deactivate(next_state) -> void:
 		super(next_state)
 		change_hurtbox_to(default_hurtbox)
 		change_collider_to(default_hitbox)
+	look_down_delay_timer.stop()
+	camera_reference.position.y = 0

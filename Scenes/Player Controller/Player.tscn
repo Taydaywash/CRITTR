@@ -472,7 +472,7 @@ x_final_sprite_stretch_multiplier = 1.0
 animation_name = "walking"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
-[node name="IdleCrouching" type="Node" parent="StateMachine/Crouching" unique_id=1397319090 node_paths=PackedStringArray("default_hitbox", "default_hurtbox", "crouching_hitbox", "crouching_hurtbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
+[node name="IdleCrouching" type="Node" parent="StateMachine/Crouching" unique_id=1397319090 node_paths=PackedStringArray("default_hitbox", "default_hurtbox", "crouching_hitbox", "crouching_hurtbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left", "camera_reference")]
 script = ExtResource("5_3imdl")
 default_hitbox = NodePath("../../../NormalHitbox")
 default_hurtbox = NodePath("../../../Hurtbox")
@@ -492,6 +492,9 @@ x_initial_sprite_stretch_multiplier = 1.6
 sprite_reset_speed = 10.0
 y_final_sprite_stretch_multiplier = 0.7
 x_final_sprite_stretch_multiplier = 1.0
+look_down_delay = 0.5
+camera_reference = NodePath("../../../Camera2D")
+camera_offset = 500
 animation_name = "idle"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
