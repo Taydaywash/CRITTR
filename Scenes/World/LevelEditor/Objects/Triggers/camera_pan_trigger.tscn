@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://chn7xmgwnk2ec"]
+
+[ext_resource type="Script" uid="uid://5q8nnf7xi4xj" path="res://Scenes/World/LevelEditor/Objects/Triggers/camera_pan_trigger.gd" id="1_5iw4k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4m6s"]
+size = Vector2(128, 384)
+
+[node name="Camera Pan Trigger" type="Area2D" unique_id=1918502941]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_5iw4k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1318153510]
+shape = SubResource("RectangleShape2D_r4m6s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
