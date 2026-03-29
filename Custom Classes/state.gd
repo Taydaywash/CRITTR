@@ -104,7 +104,7 @@ func activate(last_state : State) -> void:
 			enter_sound_when_entering_from_state_pitch_low[state_index], enter_sound_when_entering_from_state_pitch_high[state_index])
 	else:
 		if enter_sound_sounds: 
-			audio_controller.play_sound( enter_sound_sounds.pick_random(), enter_sound_pitch_low, enter_sound_pitch_high)
+			audio_controller.play_sound(enter_sound_sounds.pick_random(), enter_sound_pitch_low, enter_sound_pitch_high)
 	if enter_particle_particle:
 		particle_controller.spawn_particle(player,enter_particle_particle,enter_particle_particle_parent_to_player)
 	if enter_particle_when_entering_from_state_state:

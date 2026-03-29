@@ -33,7 +33,6 @@ func _ready():
 	#particles.position.y = y / 2.0
 	particles.lifetime = (y / 2560.0)
 	
-	
 	@warning_ignore("narrowing_conversion")
 	particles.amount = y / 3.0 + ((x / 128.0)*100)
 	@warning_ignore("narrowing_conversion")
@@ -51,8 +50,6 @@ func room_is_active():
 	await get_tree().create_timer(delay_time).timeout
 	prepare_particles()
 func room_is_inactive():
-	if not is_room_active:
-		return
 	active_timer.stop()
 	inactive_timer.stop()
 	clean_up_particles()
@@ -62,16 +59,12 @@ func room_is_inactive():
 func prepare_particles():
 	particles.emitting = true
 	spawn_hitbox()
-	if not is_room_active:
-		return
 	active_timer.start()
 
-func clean_up_particles():
+func clean_up_particles(instant : bool = false):
 	particles.emitting = false
 	remove_hitbox()
 	steam_reset.emit()
-	if not is_room_active:
-		return
 	inactive_timer.start()
 	spawn_bubbles(inactive_time)
 
@@ -86,16 +79,12 @@ func spawn_hitbox():
 	while collider.shape.size.y < y:
 		collider_growth_rate_timer.start()
 		await collider_growth_rate_timer.timeout
-		if not is_room_active:
-			break
 		collider.shape.size.y += y / float(collider_growth_steps)
 		collider.position.y = -collider.shape.size.y / 2.0
 func remove_hitbox():
 	collider.shape.size.y = y
 	collider_growth_rate_timer.wait_time = particles.lifetime / collider_growth_steps / 2
 	while collider.shape.size.y > 0:
-		if not is_room_active:
-			break
 		if (collider.shape.size.y - y / float(collider_growth_steps)) > 0:
 			collider.shape.size.y -= y / float(collider_growth_steps)
 			collider.position.y = collider.shape.size.y / 2.0 - y
