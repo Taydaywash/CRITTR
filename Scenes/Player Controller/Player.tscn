@@ -67,6 +67,7 @@
 [ext_resource type="Texture2D" uid="uid://bpsqdu68xaqos" path="res://Assets/Animations/Player/walking/f8.png" id="28_ho2n3"]
 [ext_resource type="Texture2D" uid="uid://e1nj7vxg1jmt" path="res://Assets/Animations/Player/Death/deathAnimation0004.png" id="28_obod2"]
 [ext_resource type="Texture2D" uid="uid://doppu62kcme4e" path="res://Assets/Animations/Player/Death/deathAnimation0005.png" id="29_fbx8n"]
+[ext_resource type="PackedScene" uid="uid://mvopil2tl4m5" path="res://Scenes/Particle Controller/Particles/Player/dash.tscn" id="30_2mj44"]
 [ext_resource type="AudioStream" uid="uid://oqgfve4borfu" path="res://Assets/Sound Effects/Player/Abilities/Dash.mp3" id="31_rkbq1"]
 [ext_resource type="Script" uid="uid://bnc6tyoeqa6yd" path="res://Scenes/Player Controller/States/Abilities/digging.gd" id="32_4o1t2"]
 [ext_resource type="Shape2D" uid="uid://c8niu6rbmipjw" path="res://Scenes/Player Controller/Hitboxes/CrouchingHitbox.tres" id="35_ho2n3"]
@@ -78,6 +79,7 @@
 [ext_resource type="Texture2D" uid="uid://b4ov3tf3qq5y5" path="res://Assets/Animations/Player/WallCling/wallcling3.png" id="40_5v0xw"]
 [ext_resource type="Texture2D" uid="uid://b66n7y812l426" path="res://Assets/Animations/Player/Diving/diving.png" id="44_hk2wy"]
 [ext_resource type="Texture2D" uid="uid://io8id0xi0edl" path="res://Assets/Animations/Player/Diving/diving2.png" id="45_qy6yu"]
+[ext_resource type="Texture2D" uid="uid://1yl4eif1rq1x" path="res://Assets/Animations/Player/Dash/dash.png" id="58_ap1o6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wxel"]
 size = Vector2(70, 50)
@@ -127,6 +129,14 @@ animations = [{
 "loop": true,
 "name": &"WallJumping",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("58_ap1o6")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -700,10 +710,13 @@ nudge_left_range_right = NodePath("../../../CornerNudging/NudgeLeftRangeRight")
 nudge_left_range_left = NodePath("../../../CornerNudging/NudgeLeftRangeLeft")
 right_ray = NodePath("../../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
-placeholder_animation_color = Color(0.23891038, 0.12174525, 0.0073752436, 1)
+animation_name = "dash"
+placeholder_animation_color = Color(1, 1, 1, 1)
 enter_sound_sounds = Array[AudioStream]([ExtResource("31_rkbq1")])
 enter_sound_pitch_low = 0.8
 enter_sound_pitch_high = 1.2
+enter_particle_particle = ExtResource("30_2mj44")
+enter_particle_particle_parent_to_player = true
 
 [node name="Grappling" type="Node" parent="StateMachine/Abilities" unique_id=2140590385 node_paths=PackedStringArray("grapple_ray", "line", "jump_input_buffer")]
 script = ExtResource("13_vpgwe")
@@ -1014,7 +1027,7 @@ default_zoom = 0.27
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
 position = Vector2(0, 70)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"no animation"
+animation = &"dash"
 offset = Vector2(0, -70)
 
 [node name="TriggerHitbox" type="Area2D" parent="." unique_id=936426999]

@@ -25,7 +25,7 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	look_up_delay_timer.start()
 	await look_up_delay_timer.timeout
-	camera_reference.position.y -= camera_offset
+	camera_reference.position.y = -camera_offset
 	player.velocity.x = 0
 	gravity = player.normal_gravity
 	max_falling_speed = player.max_falling_speed
@@ -64,4 +64,4 @@ func process_physics(delta) -> State:
 func deactivate(_next_state : State) -> void:
 	super(_next_state)
 	look_up_delay_timer.stop()
-	camera_reference.position.y += camera_offset
+	camera_reference.position.y = 0

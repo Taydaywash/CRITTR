@@ -30,7 +30,6 @@ func _ready() -> void:
 
 func _on_body_entered(body):
 	if body is Player:
-		print(id)
 		EventController.emit_signal("collectable_grabbed", id)
 		set_deferred("monitoring",false)
 

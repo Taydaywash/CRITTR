@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://chn7xmgwnk2ec"]
 
-[ext_resource type="Script" uid="uid://5q8nnf7xi4xj" path="res://Scenes/World/LevelEditor/Objects/Triggers/camera_pan_trigger.gd" id="1_5iw4k"]
+[ext_resource type="Script" uid="uid://5q8nnf7xi4xj" path="res://Scenes/World/LevelEditor/Objects/Triggers/Scripts/camera_pan_trigger.gd" id="1_5iw4k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r4m6s"]
 size = Vector2(128, 384)
@@ -14,3 +14,4 @@ script = ExtResource("1_5iw4k")
 shape = SubResource("RectangleShape2D_r4m6s")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

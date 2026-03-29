@@ -72,7 +72,10 @@ func transition_room(room : Room): #called when entering room collider from room
 		return
 	pre_transition_velocity = player.velocity
 	pre_transition_state = state_machine.current_state
-	previous_room = current_room_detection_ray.get_collider().get_parent()
+	if current_room:
+		previous_room = current_room
+	else:
+		previous_room = current_room_detection_ray.get_collider().get_parent()
 	enter_direction = get_enter_direction(room)
 	if not enter_direction: #Entered from door or was spawned
 		fade_to_black = true
