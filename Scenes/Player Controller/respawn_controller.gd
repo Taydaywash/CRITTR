@@ -16,7 +16,6 @@ func _on_body_entered(_body: Node2D) -> void:
 
 func _on_trigger_hitbox_area_entered(area: Area2D) -> void:
 	if area.get_parent() is RespawnPoint:
-		print("respawn")
 		respawn_position = area.get_parent().get_respawn_point()
 
 func trigger_respawn() -> void:

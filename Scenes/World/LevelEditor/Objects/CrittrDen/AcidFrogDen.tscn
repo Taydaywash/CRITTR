@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://duc72rfl0kqfl"]
+
+[ext_resource type="Script" uid="uid://ddji4xq14xuq6" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/crittr_den.gd" id="1_rxd07"]
+[ext_resource type="Texture2D" uid="uid://dwto3j7h3l5xa" path="res://Assets/Level Editor/Objects/CrittrDens/ArcticHareDen.png" id="2_q6sw3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4n3y"]
+size = Vector2(256, 256)
+
+[node name="GrappleDen" type="Area2D" unique_id=1896317581]
+script = ExtResource("1_rxd07")
+
+[node name="GrappleDenSprite" type="Sprite2D" parent="." unique_id=210973817]
+texture = ExtResource("2_q6sw3")
+
+[node name="GrappleDenShape" type="CollisionShape2D" parent="." unique_id=559920799]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_t4n3y")

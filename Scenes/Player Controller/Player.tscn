@@ -11,7 +11,9 @@
 [ext_resource type="Script" uid="uid://cm5l3ivbnb55g" path="res://Scenes/Player Controller/States/state_machine.gd" id="5_v55cd"]
 [ext_resource type="AudioStream" uid="uid://csxgy17oibmrs" path="res://Assets/Sound Effects/Player/Jump/player_jump.ogg" id="6_74b0n"]
 [ext_resource type="Script" uid="uid://cnyjhmvsy4x2m" path="res://Scenes/Player Controller/States/idle.gd" id="6_dpx4d"]
+[ext_resource type="AudioStream" uid="uid://bvspk3vkcgmif" path="res://Assets/Sound Effects/Player/Respawn.mp3" id="6_utatm"]
 [ext_resource type="PackedScene" uid="uid://7pcyhpa8kihb" path="res://Scenes/Particle Controller/Particles/Player/jump_dust.tscn" id="7_7icb5"]
+[ext_resource type="AudioStream" uid="uid://ccbq0v2btkmly" path="res://Assets/Sound Effects/Player/Death.mp3" id="7_8hfv1"]
 [ext_resource type="Script" uid="uid://bcqgk35wv2a1t" path="res://Scenes/Player Controller/States/teleporting_enter.gd" id="7_885dk"]
 [ext_resource type="Script" uid="uid://b86dxdi4v2w7v" path="res://Scenes/Player Controller/States/walking.gd" id="7_hueom"]
 [ext_resource type="Script" uid="uid://waa4aoe22gbi" path="res://Scenes/Player Controller/States/jumping.gd" id="8_2fk5g"]
@@ -30,6 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://dh7xdipbgyacc" path="res://Assets/Sound Effects/Player/Walking/player_walk.ogg" id="12_k212d"]
 [ext_resource type="Script" uid="uid://bm7yhxmomtxag" path="res://Scenes/Player Controller/States/Abilities/grappling.gd" id="13_vpgwe"]
 [ext_resource type="Script" uid="uid://bm41wexjew65w" path="res://Scenes/Player Controller/States/Abilities/climbing.gd" id="14_hl1jv"]
+[ext_resource type="AudioStream" uid="uid://k83oi4wx8exn" path="res://Assets/Sound Effects/Player/Squish.mp3" id="14_pesqw"]
 [ext_resource type="Script" uid="uid://cwi7sh2i6bfpg" path="res://Scenes/Player Controller/States/Abilities/inflated.gd" id="15_melbr"]
 [ext_resource type="Script" uid="uid://s0v2p1xd21lh" path="res://Scenes/Player Controller/States/Abilities/bounce_attack.gd" id="16_2bslk"]
 [ext_resource type="Script" uid="uid://ctsvxg3n4hdh7" path="res://Scenes/Player Controller/States/Abilities/drill.gd" id="17_fuvci"]
@@ -50,6 +53,7 @@
 [ext_resource type="Texture2D" uid="uid://bc5tl458rwcxw" path="res://Assets/Animations/Player/walking/f3.png" id="23_fkl5p"]
 [ext_resource type="Texture2D" uid="uid://cxuugk8c7tdj5" path="res://Assets/UI/InflateIcon.png" id="23_hk2wy"]
 [ext_resource type="Texture2D" uid="uid://csnlhmtdvh6rk" path="res://Assets/Animations/Player/idle/i3.png" id="23_wqhrm"]
+[ext_resource type="AudioStream" uid="uid://c1puabkfare88" path="res://Assets/Sound Effects/Player/Bonk/Bonk.mp3" id="24_3ftfu"]
 [ext_resource type="Texture2D" uid="uid://33ah1rmr3ca7" path="res://Assets/Animations/Player/walking/f4.png" id="24_hfsnk"]
 [ext_resource type="Texture2D" uid="uid://dciigneoovomp" path="res://Assets/Animations/Player/Death/deathAnimation0000.png" id="24_qtpvk"]
 [ext_resource type="Texture2D" uid="uid://je2kc5u1j4x0" path="res://Assets/UI/BounceIcon.png" id="24_qy6yu"]
@@ -63,6 +67,8 @@
 [ext_resource type="Texture2D" uid="uid://bpsqdu68xaqos" path="res://Assets/Animations/Player/walking/f8.png" id="28_ho2n3"]
 [ext_resource type="Texture2D" uid="uid://e1nj7vxg1jmt" path="res://Assets/Animations/Player/Death/deathAnimation0004.png" id="28_obod2"]
 [ext_resource type="Texture2D" uid="uid://doppu62kcme4e" path="res://Assets/Animations/Player/Death/deathAnimation0005.png" id="29_fbx8n"]
+[ext_resource type="PackedScene" uid="uid://mvopil2tl4m5" path="res://Scenes/Particle Controller/Particles/Player/dash.tscn" id="30_2mj44"]
+[ext_resource type="AudioStream" uid="uid://oqgfve4borfu" path="res://Assets/Sound Effects/Player/Abilities/Dash.mp3" id="31_rkbq1"]
 [ext_resource type="Script" uid="uid://bnc6tyoeqa6yd" path="res://Scenes/Player Controller/States/Abilities/digging.gd" id="32_4o1t2"]
 [ext_resource type="Shape2D" uid="uid://c8niu6rbmipjw" path="res://Scenes/Player Controller/Hitboxes/CrouchingHitbox.tres" id="35_ho2n3"]
 [ext_resource type="Shape2D" uid="uid://bfsgbtnw3orjf" path="res://Scenes/Player Controller/Hitboxes/DefaultHitbox.tres" id="36_uneaa"]
@@ -73,6 +79,7 @@
 [ext_resource type="Texture2D" uid="uid://b4ov3tf3qq5y5" path="res://Assets/Animations/Player/WallCling/wallcling3.png" id="40_5v0xw"]
 [ext_resource type="Texture2D" uid="uid://b66n7y812l426" path="res://Assets/Animations/Player/Diving/diving.png" id="44_hk2wy"]
 [ext_resource type="Texture2D" uid="uid://io8id0xi0edl" path="res://Assets/Animations/Player/Diving/diving2.png" id="45_qy6yu"]
+[ext_resource type="Texture2D" uid="uid://1yl4eif1rq1x" path="res://Assets/Animations/Player/Dash/dash.png" id="58_ap1o6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wxel"]
 size = Vector2(70, 50)
@@ -122,6 +129,14 @@ animations = [{
 "loop": true,
 "name": &"WallJumping",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("58_ap1o6")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -402,11 +417,15 @@ placeholder_animation_color = Color(1, 1, 1, 1)
 script = ExtResource("5_nb83h")
 animation_name = "spawning"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("6_utatm")])
+enter_sound_pitch_low = 0.9
 
 [node name="Death" type="Node" parent="StateMachine/NoControl" unique_id=1238038414]
 script = ExtResource("4_4nigc")
 animation_name = "death"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("7_8hfv1")])
+enter_sound_pitch_low = 0.9
 
 [node name="TeleportingEnter" type="Node" parent="StateMachine/NoControl" unique_id=1859283836]
 script = ExtResource("7_885dk")
@@ -471,6 +490,7 @@ y_final_sprite_stretch_multiplier = 0.7
 x_final_sprite_stretch_multiplier = 1.0
 animation_name = "walking"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("14_pesqw")])
 
 [node name="IdleCrouching" type="Node" parent="StateMachine/Crouching" unique_id=1397319090 node_paths=PackedStringArray("default_hitbox", "default_hurtbox", "crouching_hitbox", "crouching_hurtbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left", "camera_reference")]
 script = ExtResource("5_3imdl")
@@ -543,6 +563,9 @@ y_final_sprite_stretch_multiplier = 1.0
 x_final_sprite_stretch_multiplier = 1.0
 animation_name = "diving"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("31_rkbq1")])
+enter_sound_pitch_low = 1.3
+enter_sound_pitch_high = 1.7
 
 [node name="DivingFalling" type="Node" parent="StateMachine/Diving" unique_id=577619824 node_paths=PackedStringArray("jump_input_buffer", "exit_sound_excluded_states", "exit_particle_excluded_states")]
 script = ExtResource("12_31xm6")
@@ -566,6 +589,9 @@ jump_input_buffer = NodePath("../../../JumpInputBuffer")
 jump_input_buffer_patience = 0.2
 animation_name = "Bonked"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("24_3ftfu")])
+enter_sound_pitch_low = 0.9
+enter_sound_pitch_high = 1.1
 exit_sound_sounds = Array[AudioStream]([ExtResource("18_k212d")])
 exit_particle_particle = ExtResource("19_k212d")
 
@@ -584,6 +610,12 @@ right_ray = NodePath("../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "WallCling"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_pitch_low = 0.5
+enter_sound_pitch_high = 0.6
+while_in_state_sounds = Array[AudioStream]([ExtResource("12_k212d")])
+while_in_state_sound_low = 0.5
+while_in_state_sound_high = 0.7
+while_in_state_repeat_sound_after_seconds = 0.3
 
 [node name="WallJumping" type="Node" parent="StateMachine/WallCling" unique_id=1649015882 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "right_ray2", "left_ray2", "high_right_ray", "high_left_ray", "low_right_ray", "low_left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "enter_particle_when_entering_from_state_state")]
 script = ExtResource("10_dpx4d")
@@ -678,7 +710,13 @@ nudge_left_range_right = NodePath("../../../CornerNudging/NudgeLeftRangeRight")
 nudge_left_range_left = NodePath("../../../CornerNudging/NudgeLeftRangeLeft")
 right_ray = NodePath("../../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
-placeholder_animation_color = Color(0.23891038, 0.12174525, 0.0073752436, 1)
+animation_name = "dash"
+placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("31_rkbq1")])
+enter_sound_pitch_low = 0.8
+enter_sound_pitch_high = 1.2
+enter_particle_particle = ExtResource("30_2mj44")
+enter_particle_particle_parent_to_player = true
 
 [node name="Grappling" type="Node" parent="StateMachine/Abilities" unique_id=2140590385 node_paths=PackedStringArray("grapple_ray", "line", "jump_input_buffer")]
 script = ExtResource("13_vpgwe")
@@ -989,7 +1027,7 @@ default_zoom = 0.27
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
 position = Vector2(0, 70)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"no animation"
+animation = &"dash"
 offset = Vector2(0, -70)
 
 [node name="TriggerHitbox" type="Area2D" parent="." unique_id=936426999]
@@ -1113,6 +1151,8 @@ collision_mask = 81
 energy = 0.1
 texture = SubResource("GradientTexture2D_rkbq1")
 texture_scale = 5.9
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=394306511]
 
 [connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Up" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Down" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]

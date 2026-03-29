@@ -70,7 +70,7 @@ func _on_tileset_body_entered(body: Node2D) -> void:
 		EventController.emit_signal("on_hidden_tile_entered",body)
 
 func check_if_stuck() -> void:
-	if state_machine.current_state == state_machine.idle_state or state_machine.current_state == state_machine.idle_crouching_state:
+	if state_machine.current_state == state_machine.idle_state or state_machine.current_state == state_machine.idle_crouching_state or state_machine.current_state == state_machine.looking_up_state:
 		stuck_timer.stop()
 		checking_if_stuck = false
 		return

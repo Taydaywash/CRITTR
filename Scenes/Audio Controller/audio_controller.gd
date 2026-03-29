@@ -9,11 +9,20 @@ func play_music(music : AudioStream):
 		music_player.stream = music
 		music_player.play()
 
-func play_sound(sfx : AudioStream, min_pitch : float = 0.7, max_pitch : float = 1.3):
+func play_sound(sfx : AudioStream, min_pitch : float = 0.7, max_pitch : float = 1.3, sound_position := Vector2.ZERO):
+	var sfx_player
 	if not sfx:
 		return
-	var sfx_player = AudioStreamPlayer.new()
+	if sound_position:
+		sfx_player = AudioStreamPlayer2D.new()
+	else:
+		sfx_player = AudioStreamPlayer.new()
 	add_child(sfx_player)
+	if sound_position:
+		sfx_player.volume_db = 10
+		sfx_player.max_distance = 20000
+		sfx_player.attenuation = 0.4
+		sfx_player.global_position = sound_position
 	sfx_player.bus = "SFX"
 	sfx_player.stream = sfx
 	sfx_player.pitch_scale = randf_range(min_pitch,max_pitch)

@@ -23,7 +23,14 @@ const ARCTIC_HARE_LEVEL_ONE = preload("uid://b5fudtphkrx1c")
 const ARCTIC_HARE_LEVEL_TWO = preload("uid://du1qntg4cje4j")
 const ARCTIC_HARE_LEVEL_THREE = preload("uid://dr2aaabjokk7i")
 const ARCTIC_HARE_LEVEL_FOUR = preload("uid://cehn5odetaf3e")
+
 const ARCTIC_HARE_LEVEL_POOL : Dictionary = {
+	0 : ARCTIC_HARE_LEVEL_ONE,
+	1 : ARCTIC_HARE_LEVEL_TWO,
+	2 : ARCTIC_HARE_LEVEL_THREE,
+	3 : ARCTIC_HARE_LEVEL_FOUR,
+}
+const ACID_FROG_LEVEL_POOL : Dictionary = {
 	0 : ARCTIC_HARE_LEVEL_ONE,
 	1 : ARCTIC_HARE_LEVEL_TWO,
 	2 : ARCTIC_HARE_LEVEL_THREE,

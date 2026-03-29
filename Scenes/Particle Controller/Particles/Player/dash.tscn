@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://mvopil2tl4m5"]
+
+[ext_resource type="Texture2D" uid="uid://1yl4eif1rq1x" path="res://Assets/Animations/Player/Dash/dash.png" id="1_5lkg6"]
+[ext_resource type="Script" uid="uid://ddts72o7rjqpl" path="res://Custom Classes/particle.gd" id="2_64uex"]
+
+[sub_resource type="Curve" id="Curve_puocq"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_sqcp8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.49999997, 0), -2.1619902, 0.0, 0, 0]
+point_count = 2
+
+[node name="JumpDust" type="CPUParticles2D" unique_id=1252131416]
+z_index = 4
+amount = 10
+texture = ExtResource("1_5lkg6")
+lifetime = 0.4
+direction = Vector2(0.7, -1)
+spread = 7.72
+gravity = Vector2(0, 0)
+angle_min = -238.0
+angle_max = 444.0
+angle_curve = SubResource("Curve_puocq")
+scale_amount_min = 0.55
+scale_amount_max = 0.85
+scale_amount_curve = SubResource("Curve_sqcp8")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+script = ExtResource("2_64uex")
