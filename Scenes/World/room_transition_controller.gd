@@ -2,6 +2,7 @@
 extends Node
 @export_category("Debug")
 @export var starting_room : Room
+@export var default_room : Room
 @export_category("References")
 @export var ui: UI
 @export var player: Player
@@ -76,7 +77,6 @@ func transition_room(room : Room): #called when entering room collider from room
 	if not enter_direction: #Entered from door or was spawned
 		fade_to_black = true
 		entered_from_door = true
-		print("entered from door")
 		return
 	state_machine.call_deferred("force_change_state", state_machine.no_control_no_gravity_state)
 	set_up_room_detection_rays()
@@ -215,6 +215,8 @@ func finished_transitioning():
 	transtioning_room = false
 	return_to_state()
 	current_room = current_room_detection_ray.get_collider().get_parent()
+	if previous_room == current_room:
+		previous_room = default_room
 	previous_room.exit_room()
 	current_room.enter_room()
 

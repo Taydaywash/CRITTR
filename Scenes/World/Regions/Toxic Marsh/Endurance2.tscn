@@ -61,8 +61,8 @@ delay_time = 1.0
 [node name="Steam2" parent="." unique_id=542630435 instance=ExtResource("7_0vuyb")]
 position = Vector2(-2176, 1024)
 x = 1139
-y = 1787
-delay_time = 2.0
+y = 1857
+delay_time = 0.4
 
 [node name="Steam3" parent="." unique_id=25404073 instance=ExtResource("7_0vuyb")]
 position = Vector2(-64, 1024)
