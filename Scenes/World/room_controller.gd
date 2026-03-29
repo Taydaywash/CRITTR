@@ -76,15 +76,18 @@ func is_room_active():
 	return room_transition_controller.current_room == self
 
 func enter_room():
+	region.region_background.visible = true
 	change_camera_bounds()
 	room_is_active.emit()
 	room_visited = true
 	EventController.emit_signal("room_explored",room_id)
 	room_transition_controller.play_music(room_transition_controller.current_room.region.music)
+	
 	for child in get_children():
 		if child is not Camera2D:
 			child.visible = true
 func exit_room():
+	region.region_background.visible = false
 	room_is_inactive.emit()
 	for child in get_children():
 		child.visible = false

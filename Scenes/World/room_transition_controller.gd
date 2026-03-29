@@ -219,7 +219,10 @@ func finished_transitioning():
 	room_transition_failsafe_timer.stop()
 	transtioning_room = false
 	return_to_state()
-	current_room = current_room_detection_ray.get_collider().get_parent()
+	current_room_detection_ray.force_raycast_update()
+	current_room_detection_ray.hit_from_inside = true
+	if current_room_detection_ray.get_collider(): 
+		current_room = current_room_detection_ray.get_collider().get_parent()
 	if previous_room == current_room:
 		previous_room = default_room
 	previous_room.exit_room()

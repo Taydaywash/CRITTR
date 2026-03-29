@@ -34,7 +34,10 @@
 [ext_resource type="Script" uid="uid://d1sup8qpn6fsc" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/arctic_hare_den_choicer_handler.gd" id="28_2lagq"]
 [ext_resource type="Texture2D" uid="uid://bm6vu2bqh8xgm" path="res://Assets/Decals/Tundra/Background/big t hill.png" id="29_eoa2q"]
 [ext_resource type="PackedScene" uid="uid://cfdlyy7ukjry2" path="res://Scenes/World/Regions/Crash Site/HiddenRoomUnderPeak.tscn" id="29_irrot"]
+[ext_resource type="Texture2D" uid="uid://e16qsbwrvwd1" path="res://Assets/Decals/Marsh/Background/TMlayer1.png" id="32_dw2uc"]
 [ext_resource type="AudioStream" uid="uid://gshige7xcj2t" path="res://Assets/Music/ToxicZoneRevision1.mp3" id="33_s0y1m"]
+[ext_resource type="Texture2D" uid="uid://c1gqy6k16nrnk" path="res://Assets/Decals/Marsh/Background/TMlayer2.png" id="33_ypq4w"]
+[ext_resource type="Texture2D" uid="uid://n1dgnliid3fx" path="res://Assets/Decals/Marsh/Background/TMlayer3.png" id="34_0hcbc"]
 [ext_resource type="PackedScene" uid="uid://bgqnomsdqtfjk" path="res://Scenes/World/Regions/Toxic Marsh/EnterFromCrashSite.tscn" id="34_brbxp"]
 [ext_resource type="PackedScene" uid="uid://b7w3ylrmom1cb" path="res://Scenes/World/Regions/Toxic Marsh/WallSteam.tscn" id="35_brbxp"]
 [ext_resource type="Texture2D" uid="uid://cpebeecu04hk6" path="res://Assets/Decals/Tundra/Background/ship no smoke.png" id="35_irrot"]
@@ -53,12 +56,12 @@
 [ext_resource type="Script" uid="uid://ytr5q3hl5ncj" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/acid_den_choicer.gd" id="44_tejqv"]
 [ext_resource type="PackedScene" uid="uid://bkru2b6d01p7k" path="res://Scenes/World/Regions/Toxic Marsh/Hooks.tscn" id="46_k3b55"]
 
-[sub_resource type="Gradient" id="Gradient_vdgnt"]
+[sub_resource type="Gradient" id="Gradient_dw2uc"]
 offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0.8197893, 0.92398196, 0.9423895, 1)
+colors = PackedColorArray(0.7372549, 0.8980392, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3ql1f"]
-gradient = SubResource("Gradient_vdgnt")
+gradient = SubResource("Gradient_dw2uc")
 
 [sub_resource type="Curve" id="Curve_nlkji"]
 _limits = [-0.35849047, 1.0, 0.10416666, 0.8385416]
@@ -94,6 +97,13 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_kcg70"]
 offsets = PackedFloat32Array(0, 0.11157025, 0.49173555, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0.26666668, 1, 1, 0.043137256, 0.011764706, 1, 0, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_vdgnt"]
+offsets = PackedFloat32Array(0.99596775)
+colors = PackedColorArray(0.65426034, 0.75568044, 0.3361051, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4kbg2"]
+gradient = SubResource("Gradient_vdgnt")
 
 [sub_resource type="Animation" id="Animation_h71dq"]
 length = 0.001
@@ -235,8 +245,9 @@ particle_controller_reference = NodePath("../Particle Controller")
 [node name="UI" parent="." unique_id=580546377 instance=ExtResource("4_il6x7")]
 unique_name_in_owner = true
 
-[node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
+[node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
+starting_room = NodePath("ToxicMarsh/EnterFromCrashSite")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -266,36 +277,37 @@ script = ExtResource("6_lqys3")
 music = ExtResource("7_qs546")
 map_color = Color(3.5616756e-06, 0.5399312, 0.71786386, 1)
 
-[node name="Background" type="Node" parent="Rooms/CrashSite" unique_id=1056985531]
+[node name="CrashSiteBackground" type="Node2D" parent="Rooms/CrashSite" unique_id=332236146]
+visible = false
 
-[node name="Parallax2D" type="Parallax2D" parent="Rooms/CrashSite/Background" unique_id=1796784597]
+[node name="Parallax2D" type="Parallax2D" parent="Rooms/CrashSite/CrashSiteBackground" unique_id=1796784597]
 scroll_scale = Vector2(0.12, 0)
 scroll_offset = Vector2(0, 500)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Rooms/CrashSite/Background/Parallax2D" unique_id=304975404]
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/CrashSite/CrashSiteBackground/Parallax2D" unique_id=304975404]
 z_index = -10
 position = Vector2(963, 128)
 scale = Vector2(1, 1.5600003)
 texture = ExtResource("19_vdgnt")
 
-[node name="Parallax2D2" type="Parallax2D" parent="Rooms/CrashSite/Background" unique_id=1254982517]
+[node name="Parallax2D2" type="Parallax2D" parent="Rooms/CrashSite/CrashSiteBackground" unique_id=1254982517]
 scroll_scale = Vector2(0.28, 0)
 scroll_offset = Vector2(0, 800)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Rooms/CrashSite/Background/Parallax2D2" unique_id=2079355000]
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/CrashSite/CrashSiteBackground/Parallax2D2" unique_id=2079355000]
 z_index = -9
 position = Vector2(977, 0)
 scale = Vector2(1, 1.5999994)
 texture = ExtResource("20_3ql1f")
 
-[node name="Parallax2D3" type="Parallax2D" parent="Rooms/CrashSite/Background" unique_id=1845712591]
+[node name="Parallax2D3" type="Parallax2D" parent="Rooms/CrashSite/CrashSiteBackground" unique_id=1845712591]
 repeat_size = Vector2(1920, 1920)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Rooms/CrashSite/Background/Parallax2D3" unique_id=1774029004]
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/CrashSite/CrashSiteBackground/Parallax2D3" unique_id=1774029004]
 z_index = -11
 position = Vector2(2478, -2038.0002)
 scale = Vector2(166.31343, 159.33415)
@@ -1445,6 +1457,54 @@ script = ExtResource("6_lqys3")
 music = ExtResource("33_s0y1m")
 map_color = Color(0, 0.8, 0, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
+
+[node name="ToxicMarshBackground" type="Node2D" parent="Rooms/ToxicMarsh" unique_id=1597756754]
+visible = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="Rooms/ToxicMarsh/ToxicMarshBackground" unique_id=1969383380]
+repeat_size = Vector2(1920, 1920)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/ToxicMarsh/ToxicMarshBackground/Parallax2D3" unique_id=76455025]
+z_index = -11
+position = Vector2(2478, -2038.0002)
+scale = Vector2(166.31343, 159.33415)
+texture = SubResource("GradientTexture2D_4kbg2")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Rooms/ToxicMarsh/ToxicMarshBackground" unique_id=823768278]
+scroll_scale = Vector2(0.28, 0)
+scroll_offset = Vector2(0, 1088)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/ToxicMarshBackground/Parallax2D2" unique_id=271732821]
+z_index = -10
+position = Vector2(977, 0)
+scale = Vector2(1, 1.5999994)
+texture = ExtResource("34_0hcbc")
+
+[node name="Parallax2D4" type="Parallax2D" parent="Rooms/ToxicMarsh/ToxicMarshBackground" unique_id=1161947050]
+scroll_scale = Vector2(0.12, 0)
+scroll_offset = Vector2(0, 960)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/ToxicMarshBackground/Parallax2D4" unique_id=1914283147]
+z_index = -9
+position = Vector2(963, 128)
+scale = Vector2(1, 1.5600003)
+texture = ExtResource("33_ypq4w")
+
+[node name="Parallax2D" type="Parallax2D" parent="Rooms/ToxicMarsh/ToxicMarshBackground" unique_id=1654723452]
+scroll_scale = Vector2(0.12, 0)
+scroll_offset = Vector2(0, 832)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/ToxicMarshBackground/Parallax2D" unique_id=2098198373]
+z_index = -8
+position = Vector2(963, 128)
+scale = Vector2(1, 1.5600003)
+texture = ExtResource("32_dw2uc")
 
 [node name="EnterFromCrashSite" parent="Rooms/ToxicMarsh" unique_id=1487506112 instance=ExtResource("34_brbxp")]
 position = Vector2(22656, -2880)

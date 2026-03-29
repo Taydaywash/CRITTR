@@ -47,7 +47,6 @@ collision_mask = 8
 
 [node name="LevelBounds" type="CollisionShape2D" parent="Area2D" unique_id=470628070]
 z_index = 1
-position = Vector2(220, 0)
 shape = SubResource("RectangleShape2D_cb355")
 debug_color = Color(1, 1, 1, 0.21568628)
 

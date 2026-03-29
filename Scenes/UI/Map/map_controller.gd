@@ -48,7 +48,7 @@ func _ready() -> void:
 				viewport.add_child(region_instance)
 				region_instance.corresponding_region = child
 				region_instance.map_controller = self
-				if room.get_class() == "Node2D" and room.interior_room == false: #Rooms setup
+				if room is Room and room.interior_room == false: #Rooms setup
 					var room_shape : PackedVector2Array
 					var region_collider_shape : PackedVector2Array
 					var room_level_bounds = room.get_node("Area2D/LevelBounds").shape
