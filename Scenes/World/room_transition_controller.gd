@@ -63,8 +63,10 @@ func _ready() -> void:
 	lock_screen_as_black = false
 	if GameController.game_state.last_respawn_point:
 		player.global_position = GameController.game_state.last_respawn_point
-	else:
+	elif starting_room:
 		player.global_position = starting_room.get_respawn_point()
+	else:
+		player.global_position = default_room.get_respawn_point()
 	#current_room = starting_room
 
 func transition_room(room : Room): #called when entering room collider from room_controller.gd

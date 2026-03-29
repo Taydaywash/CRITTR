@@ -2,8 +2,8 @@ extends Node
 
 var ability_usages: int = 2
 var abilities_unlocked: Dictionary = {
-	"dash" : true,
-	"grapple" : true,
+	"dash" : false,
+	"grapple" : false,
 	"climb" : false,
 	"inflate" : false,
 	"drill" : false,
