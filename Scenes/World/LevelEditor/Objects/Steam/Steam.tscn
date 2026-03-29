@@ -54,6 +54,7 @@ one_shot = true
 
 [node name="Steam" type="CPUParticles2D" parent="." unique_id=2035229540]
 position = Vector2(0, 39)
+emitting = false
 amount = 220
 texture = ExtResource("2_fjhgm")
 lifetime = 0.20859375
