@@ -2,22 +2,25 @@
 
 [ext_resource type="Script" uid="uid://djvd1qk1dn7wc" path="res://Scenes/Title/title_screen.gd" id="1_2tuh7"]
 [ext_resource type="PackedScene" uid="uid://db2kjtaybxxaa" path="res://Scenes/UI/Pause/Options.tscn" id="2_7kha8"]
+[ext_resource type="FontFile" uid="uid://k5gu03eirhw8" path="res://Assets/UI/TitleScreen/Thesead.otf" id="2_tm67p"]
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Scenes/Audio Controller/AudioController.tscn" id="3_cb5jd"]
+[ext_resource type="Texture2D" uid="uid://dtrgxv2nliwuw" path="res://Assets/UI/TitleScreen/CrittrLogo.png" id="5_vksqd"]
+[ext_resource type="Texture2D" uid="uid://b8xxa38odl5c7" path="res://Assets/Particles/Bubbles.png" id="6_vksqd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tuh7"]
-bg_color = Color(0.0884924, 0.34135744, 0.341697, 1)
+bg_color = Color(0.8703961, 0.4197051, 0.124467455, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0, 0.13333334, 0.8, 1)
+border_color = Color(0.58194643, 0.18512404, 0.10681889, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aefw6"]
-bg_color = Color(0.32156864, 0.6392157, 0.6, 1)
+bg_color = Color(0.44547927, 0.7891003, 0.7448212, 1)
 
 [node name="TitleScreen" type="Control" unique_id=277527515 node_paths=PackedStringArray("play_button", "options_tab", "options_tab_back", "audio_controller")]
 layout_mode = 3
@@ -46,6 +49,7 @@ offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_bottom = NodePath("../SettingButton")
+theme_override_fonts/font = ExtResource("2_tm67p")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_2tuh7")
 text = "Play"
@@ -83,6 +87,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_top = NodePath("../PlayButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
+theme_override_fonts/font = ExtResource("2_tm67p")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_2tuh7")
 text = "Settings"
@@ -101,6 +106,7 @@ offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_neighbor_top = NodePath("../SettingButton")
+theme_override_fonts/font = ExtResource("2_tm67p")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_2tuh7")
 text = "Quit"
@@ -181,6 +187,101 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_aefw6")
 
 [node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("3_cb5jd")]
+
+[node name="CrittrLogo" type="Sprite2D" parent="." unique_id=1347768661]
+position = Vector2(570, 131)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_vksqd")
+
+[node name="ParticleSmallRight" type="CPUParticles2D" parent="." unique_id=129800929]
+z_index = -1
+position = Vector2(815, 830)
+amount = 11
+texture = ExtResource("6_vksqd")
+lifetime = 6.0
+preprocess = 6.0
+speed_scale = 0.1
+emission_shape = 6
+emission_ring_inner_radius = 0.8
+emission_ring_radius = 1.0
+gravity = Vector2(0, -980)
+angle_min = -201.9
+angle_max = 148.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+color = Color(0.7882353, 1, 1, 1)
+
+[node name="ParticleSmallLeft" type="CPUParticles2D" parent="." unique_id=78507632]
+z_index = -1
+position = Vector2(336, 830)
+amount = 11
+texture = ExtResource("6_vksqd")
+lifetime = 6.0
+preprocess = 6.0
+speed_scale = 0.1
+emission_shape = 6
+emission_ring_inner_radius = 0.8
+emission_ring_radius = 1.0
+gravity = Vector2(0, -980)
+angle_min = -201.9
+angle_max = 148.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+color = Color(0.7882353, 1, 1, 1)
+
+[node name="ParticleBigRight" type="CPUParticles2D" parent="." unique_id=1420450265]
+z_index = -1
+position = Vector2(1024, 1036)
+amount = 11
+texture = ExtResource("6_vksqd")
+lifetime = 6.0
+preprocess = 6.0
+speed_scale = 0.1
+emission_shape = 6
+emission_ring_inner_radius = 0.8
+emission_ring_radius = 1.0
+gravity = Vector2(0, -980)
+angle_min = -201.9
+angle_max = 148.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+color = Color(0.7882353, 1, 1, 1)
+
+[node name="ParticleBigMiddle" type="CPUParticles2D" parent="." unique_id=2088021936]
+z_index = -1
+position = Vector2(537, 1036)
+amount = 11
+texture = ExtResource("6_vksqd")
+lifetime = 6.0
+preprocess = 6.0
+speed_scale = 0.1
+emission_shape = 6
+emission_ring_inner_radius = 0.8
+emission_ring_radius = 1.0
+gravity = Vector2(0, -980)
+angle_min = -201.9
+angle_max = 148.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+color = Color(0.7882353, 1, 1, 1)
+
+[node name="ParticleBigLeft" type="CPUParticles2D" parent="." unique_id=1768375899]
+z_index = -1
+position = Vector2(24, 993)
+amount = 11
+texture = ExtResource("6_vksqd")
+lifetime = 6.0
+preprocess = 6.0
+speed_scale = 0.1
+emission_shape = 6
+emission_ring_inner_radius = 0.8
+emission_ring_radius = 1.0
+gravity = Vector2(0, -980)
+angle_min = -201.9
+angle_max = 148.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+color = Color(0.7882353, 1, 1, 1)
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ResetGameState" to="." method="_on_reset_game_state_pressed"]
