@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://Scenes/World/Regions/Crash Site/InsideShip.tscn" id="8_jacc8"]
 [ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://Scenes/World/Regions/Crash Site/ClimbToPeak.tscn" id="14_7in0u"]
 [ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://Scenes/World/Regions/Crash Site/DiveTutorial.tscn" id="16_vdgnt"]
-[ext_resource type="PackedScene" uid="uid://2qo4nl7dvk62" path="res://Scenes/World/LevelEditor/Objects/Collectable/Collectable.tscn" id="17_h71dq"]
+[ext_resource type="Script" uid="uid://ly7ivf5nvuar" path="res://Scenes/World/fire_particle_deletion_logic.gd" id="17_44hbs"]
 [ext_resource type="Texture2D" uid="uid://bkmii5ukk00pn" path="res://Assets/Particles/puff cloud.png" id="18_eoa2q"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/UI/Map/map.tscn" id="18_hev0n"]
 [ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://Scenes/World/Regions/Crash Site/PlatformsTwo.tscn" id="19_hlwfy"]
@@ -235,9 +235,8 @@ particle_controller_reference = NodePath("../Particle Controller")
 [node name="UI" parent="." unique_id=580546377 instance=ExtResource("4_il6x7")]
 unique_name_in_owner = true
 
-[node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
+[node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("ToxicMarsh/ToGrapple")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -363,9 +362,6 @@ position = Vector2(1792, -496)
 rotation = -3.1415925
 texture = ExtResource("24_2neov")
 
-[node name="Collectable2" parent="Rooms/CrashSite/CrashedShip" unique_id=1542823849 instance=ExtResource("17_h71dq")]
-position = Vector2(384, 768)
-
 [node name="SaveTube" parent="Rooms/CrashSite/CrashedShip" unique_id=1607364998 instance=ExtResource("8_hev0n")]
 z_index = -2
 position = Vector2(1152, 896)
@@ -447,6 +443,7 @@ scale_amount_min = 0.1
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_5xohx")
 color_ramp = SubResource("Gradient_3r7l7")
+script = ExtResource("17_44hbs")
 
 [node name="PointLight2D" type="PointLight2D" parent="Rooms/CrashSite/CrashedShip/Fire" unique_id=697832710]
 position = Vector2(128, 0)
@@ -501,6 +498,7 @@ scale_amount_min = 0.1
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_5xohx")
 color_ramp = SubResource("Gradient_3r7l7")
+script = ExtResource("17_44hbs")
 
 [node name="PointLight2D" type="PointLight2D" parent="Rooms/CrashSite/CrashedShip/Fire2" unique_id=1898544474]
 position = Vector2(128, 0)
@@ -555,6 +553,7 @@ scale_amount_min = 0.1
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_5xohx")
 color_ramp = SubResource("Gradient_3r7l7")
+script = ExtResource("17_44hbs")
 
 [node name="PointLight2D" type="PointLight2D" parent="Rooms/CrashSite/CrashedShip/Fire3" unique_id=2075953732]
 position = Vector2(128, 0)
@@ -672,6 +671,7 @@ scale_amount_min = 0.1
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_5xohx")
 color_ramp = SubResource("Gradient_3r7l7")
+script = ExtResource("17_44hbs")
 
 [node name="PointLight2D" type="PointLight2D" parent="Rooms/CrashSite/MovementTut/Fire" unique_id=180622848]
 position = Vector2(128, 0)
@@ -1289,6 +1289,7 @@ scale_amount_min = 0.1
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_5xohx")
 color_ramp = SubResource("Gradient_3r7l7")
+script = ExtResource("17_44hbs")
 
 [node name="PointLight2D" type="PointLight2D" parent="Rooms/CrashSite/ToPeak/Fire4" unique_id=861701437]
 position = Vector2(128, 0)
@@ -1342,6 +1343,7 @@ scale_amount_min = 0.1
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_5xohx")
 color_ramp = SubResource("Gradient_3r7l7")
+script = ExtResource("17_44hbs")
 
 [node name="PointLight2D" type="PointLight2D" parent="Rooms/CrashSite/ToPeak/Fire5" unique_id=1615636979]
 position = Vector2(128, 0)

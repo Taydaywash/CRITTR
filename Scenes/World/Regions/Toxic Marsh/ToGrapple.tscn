@@ -20,8 +20,8 @@ script = ExtResource("1_wqk10")
 position = Vector2(4288, 832)
 
 [node name="RespawnPoint2" parent="." unique_id=3531767 instance=ExtResource("2_hgg34")]
-position = Vector2(4288, -128)
-scale = Vector2(1, 0.63999987)
+position = Vector2(4032, -960)
+scale = Vector2(4.8, 1.0000005)
 
 [node name="HiddenWallTiles" parent="." unique_id=229508698 instance=ExtResource("3_elumk")]
 position = Vector2(0, 256)
@@ -62,18 +62,18 @@ script = ExtResource("7_hngb2")
 [node name="Steam" parent="." unique_id=861539247 instance=ExtResource("8_vbwhu")]
 position = Vector2(3200, 2176)
 x = 512
-y = 4352
+y = 3579
 
 [node name="Steam2" parent="." unique_id=1625316261 instance=ExtResource("8_vbwhu")]
 position = Vector2(2176, 2176)
 x = 512
-y = 4352
+y = 3579
 delay_time = 2.0
 
 [node name="Steam3" parent="." unique_id=1189398590 instance=ExtResource("8_vbwhu")]
 position = Vector2(-2496, 2176)
 x = 896
-y = 4352
+y = 3579
 active_time = 1.0
 inactive_time = 3.0
 
