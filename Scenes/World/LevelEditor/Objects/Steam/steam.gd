@@ -3,6 +3,9 @@ extends Area2D
 @export_category("Size")
 @export var x: int = 128
 @export var y: int = 386
+@export_category("Sounds")
+@export var steam_hiss_sound : AudioStream
+@export var bubbling_sound : AudioStream
 @export_category("Timer")
 @export var active_time: float = 2
 @export var inactive_time: float = 2
@@ -19,12 +22,17 @@ extends Area2D
 @export var steam_delay_timer: Timer
 @export var bubble_delay_timer: Timer
 
-@onready var room_reference = $".."
+@onready var room_reference : Room = $".."
+@onready var audio_controller : AudioController = room_reference.audio_controller
+
 var is_room_active : bool = false
 
 signal steam_reset
 
 func _ready():
+	await get_tree().process_frame
+	room_reference = $".."
+	audio_controller = $"..".audio_controller
 	process_mode = Node.PROCESS_MODE_DISABLED
 	
 	room_reference.connect("room_is_active",room_is_active)
@@ -80,8 +88,21 @@ func prepare_particles():
 	@warning_ignore("narrowing_conversion")
 	particles.amount = y / 3.0 + ((x / 128.0)*100)
 	particles.emitting = true
+	steam_sound_loop()
 	spawn_hitbox()
 	active_timer.start()
+
+func steam_sound_loop():
+	audio_controller.play_sound(steam_hiss_sound,0.7,1.3,global_position)
+	await get_tree().create_timer(0.1,false).timeout
+	if particles.emitting:
+		steam_sound_loop()
+
+func bubble_sound_loop():
+	audio_controller.play_sound(bubbling_sound,0.7,1.3,global_position)
+	await get_tree().create_timer(0.1,false).timeout
+	if bubble_particles.emitting:
+		steam_sound_loop()
 
 func clean_up_particles(instant : bool = false):
 	particles.emitting = false
@@ -106,6 +127,8 @@ func spawn_bubbles(delay):
 	else:
 		bubble_particles.lifetime = bubbling_duration - delay
 	bubble_particles.emitting = true
+	bubble_sound_loop()
+	
 
 func spawn_hitbox():
 	collider.shape.size.y = 0

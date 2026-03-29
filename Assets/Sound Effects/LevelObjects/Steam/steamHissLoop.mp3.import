@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://de8v02oaiu2hl"
+path="res://.godot/imported/steamHissLoop.mp3-c50e11e7c1291f8acc45d49ae0100eec.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound Effects/LevelObjects/Steam/steamHissLoop.mp3"
+dest_files=["res://.godot/imported/steamHissLoop.mp3-c50e11e7c1291f8acc45d49ae0100eec.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
