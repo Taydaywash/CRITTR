@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bj2evssjuqrmd"]
 
 [ext_resource type="Script" uid="uid://dqxyjpscnysuh" path="res://Scenes/World/LevelEditor/Objects/SaveTube/save_tube.gd" id="1_07j4r"]
-[ext_resource type="Texture2D" uid="uid://cr8dtwwbk1aci" path="res://Assets/UI/SaveTube2.png" id="2_2hsa1"]
+[ext_resource type="Texture2D" uid="uid://cr8dtwwbk1aci" path="res://Assets/Level Editor/Objects/SaveTube/SaveTube2.png" id="2_2hsa1"]
 [ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://Scenes/World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="3_2hsa1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28s0k"]
