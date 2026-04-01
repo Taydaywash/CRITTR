@@ -50,312 +50,312 @@ debug_color = Color(1, 1, 1, 0.21568628)
 script = ExtResource("7_1kyhb")
 
 [node name="Steam" parent="." unique_id=861539247 instance=ExtResource("7_auhql")]
-position = Vector2(-4288, 896)
+position = Vector2(-4288, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 
 [node name="Steam2" parent="." unique_id=654012348 instance=ExtResource("7_auhql")]
-position = Vector2(-4096, 896)
+position = Vector2(-4096, 768)
 x = 219
-y = 1459
+y = 1235
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 0.1
 
 [node name="Steam3" parent="." unique_id=1653407764 instance=ExtResource("7_auhql")]
-position = Vector2(-3904, 896)
+position = Vector2(-3904, 768)
 x = 219
-y = 1459
+y = 1235
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 0.2
 
 [node name="Steam4" parent="." unique_id=1312029589 instance=ExtResource("7_auhql")]
-position = Vector2(-3712, 896)
+position = Vector2(-3712, 768)
 x = 219
-y = 1459
+y = 1235
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 0.3
 
 [node name="Steam5" parent="." unique_id=824989168 instance=ExtResource("7_auhql")]
-position = Vector2(-3520, 896)
+position = Vector2(-3520, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 0.4
 
 [node name="Steam6" parent="." unique_id=1840604957 instance=ExtResource("7_auhql")]
-position = Vector2(-3328, 896)
+position = Vector2(-3328, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 0.5
 
 [node name="Steam7" parent="." unique_id=103886841 instance=ExtResource("7_auhql")]
-position = Vector2(-3136, 896)
+position = Vector2(-3136, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 0.6
 
 [node name="Steam8" parent="." unique_id=1436070464 instance=ExtResource("7_auhql")]
-position = Vector2(-2944, 896)
+position = Vector2(-2944, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 0.7
 
 [node name="Steam9" parent="." unique_id=1277046104 instance=ExtResource("7_auhql")]
-position = Vector2(-2752, 896)
+position = Vector2(-2752, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 0.8
 
 [node name="Steam10" parent="." unique_id=777336721 instance=ExtResource("7_auhql")]
-position = Vector2(-2560, 896)
+position = Vector2(-2560, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 0.9
 
 [node name="Steam11" parent="." unique_id=690401680 instance=ExtResource("7_auhql")]
-position = Vector2(-2368, 896)
+position = Vector2(-2368, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 1.0
 
 [node name="Steam12" parent="." unique_id=1084256613 instance=ExtResource("7_auhql")]
-position = Vector2(-2176, 896)
+position = Vector2(-2176, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 1.1
 
 [node name="Steam13" parent="." unique_id=1903337006 instance=ExtResource("7_auhql")]
-position = Vector2(-1984, 896)
+position = Vector2(-1984, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 1.2
 
 [node name="Steam14" parent="." unique_id=227192981 instance=ExtResource("7_auhql")]
-position = Vector2(-1792, 896)
+position = Vector2(-1792, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 1.3
 
 [node name="Steam15" parent="." unique_id=902453943 instance=ExtResource("7_auhql")]
-position = Vector2(-1600, 896)
+position = Vector2(-1600, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 1.4
 
 [node name="Steam16" parent="." unique_id=462869390 instance=ExtResource("7_auhql")]
-position = Vector2(-1408, 896)
+position = Vector2(-1408, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 1.5
 
 [node name="Steam17" parent="." unique_id=844911300 instance=ExtResource("7_auhql")]
-position = Vector2(-1216, 896)
+position = Vector2(-1216, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 1.6
 
 [node name="Steam18" parent="." unique_id=1548041207 instance=ExtResource("7_auhql")]
-position = Vector2(-1024, 896)
+position = Vector2(-1024, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 1.7
 
 [node name="Steam19" parent="." unique_id=21048825 instance=ExtResource("7_auhql")]
-position = Vector2(-832, 896)
+position = Vector2(-832, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 1.8
 
 [node name="Steam20" parent="." unique_id=138386514 instance=ExtResource("7_auhql")]
-position = Vector2(-640, 896)
+position = Vector2(-640, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 1.9
 
 [node name="Steam21" parent="." unique_id=1894039343 instance=ExtResource("7_auhql")]
-position = Vector2(-448, 896)
+position = Vector2(-448, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 2.0
 
 [node name="Steam22" parent="." unique_id=1847263907 instance=ExtResource("7_auhql")]
-position = Vector2(-256, 896)
+position = Vector2(-256, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 2.1
 
 [node name="Steam23" parent="." unique_id=1933163849 instance=ExtResource("7_auhql")]
-position = Vector2(-64, 896)
+position = Vector2(-64, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 2.2
 
 [node name="Steam24" parent="." unique_id=3697022 instance=ExtResource("7_auhql")]
-position = Vector2(128, 896)
+position = Vector2(128, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 2.3
 
 [node name="Steam25" parent="." unique_id=60626325 instance=ExtResource("7_auhql")]
-position = Vector2(320, 896)
+position = Vector2(320, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 2.4
 
 [node name="Steam26" parent="." unique_id=1709486926 instance=ExtResource("7_auhql")]
-position = Vector2(512, 896)
+position = Vector2(512, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 2.5
 
 [node name="Steam27" parent="." unique_id=946330379 instance=ExtResource("7_auhql")]
-position = Vector2(704, 896)
+position = Vector2(704, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 2.6
 
 [node name="Steam28" parent="." unique_id=1152398230 instance=ExtResource("7_auhql")]
-position = Vector2(896, 896)
+position = Vector2(896, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 2.7
 
 [node name="Steam29" parent="." unique_id=1805301554 instance=ExtResource("7_auhql")]
-position = Vector2(1088, 896)
+position = Vector2(1088, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 2.8
 
 [node name="Steam30" parent="." unique_id=1818611415 instance=ExtResource("7_auhql")]
-position = Vector2(1280, 896)
+position = Vector2(1280, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 2.9
 
 [node name="Steam31" parent="." unique_id=2118866720 instance=ExtResource("7_auhql")]
-position = Vector2(1472, 896)
+position = Vector2(1472, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 3.0
 
 [node name="Steam32" parent="." unique_id=574985710 instance=ExtResource("7_auhql")]
-position = Vector2(1664, 896)
+position = Vector2(1664, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 3.1
 
 [node name="Steam33" parent="." unique_id=427786918 instance=ExtResource("7_auhql")]
-position = Vector2(1856, 896)
+position = Vector2(1856, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 3.2
 
 [node name="Steam34" parent="." unique_id=869869156 instance=ExtResource("7_auhql")]
-position = Vector2(2048, 896)
+position = Vector2(2048, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 3.3
 
 [node name="Steam35" parent="." unique_id=2061599384 instance=ExtResource("7_auhql")]
-position = Vector2(2240, 896)
+position = Vector2(2240, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 3.4
 
 [node name="Steam36" parent="." unique_id=380657267 instance=ExtResource("7_auhql")]
-position = Vector2(2432, 896)
+position = Vector2(2432, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 3.5
 
 [node name="Steam37" parent="." unique_id=1104500553 instance=ExtResource("7_auhql")]
-position = Vector2(2624, 896)
+position = Vector2(2624, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 3.6
 
 [node name="Steam38" parent="." unique_id=1318403738 instance=ExtResource("7_auhql")]
-position = Vector2(2816, 896)
+position = Vector2(2816, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 3.7
 
 [node name="Steam39" parent="." unique_id=1695410338 instance=ExtResource("7_auhql")]
-position = Vector2(3008, 896)
+position = Vector2(3008, 768)
 x = 219
-y = 1899
+y = 1717
 active_time = 4.0
 inactive_time = 4.0
 delay_time = 3.8

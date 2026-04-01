@@ -65,7 +65,6 @@ process_callback = 0
 process_callback = 0
 
 [node name="Steam" type="CPUParticles2D" parent="." unique_id=2035229540]
-position = Vector2(0, 39)
 emitting = false
 amount = 220
 texture = ExtResource("2_fjhgm")
@@ -85,7 +84,6 @@ scale_amount_curve = SubResource("Curve_2hepd")
 color_ramp = SubResource("Gradient_5fydl")
 
 [node name="Bubbles" type="CPUParticles2D" parent="." unique_id=1875637810]
-position = Vector2(0, 64)
 emitting = false
 amount = 42
 texture = ExtResource("3_5fydl")

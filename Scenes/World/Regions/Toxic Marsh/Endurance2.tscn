@@ -53,27 +53,27 @@ debug_color = Color(1, 1, 1, 0.21568628)
 script = ExtResource("7_sx7gq")
 
 [node name="Steam" parent="." unique_id=861539247 instance=ExtResource("7_0vuyb")]
-position = Vector2(1792, 1024)
+position = Vector2(1792, 896)
 x = 473
-y = 1847
+y = 1740
 delay_time = 1.0
 
 [node name="Steam2" parent="." unique_id=542630435 instance=ExtResource("7_0vuyb")]
-position = Vector2(-2176, 1024)
+position = Vector2(-2176, 896)
 x = 1139
-y = 1857
+y = 1713
 delay_time = 0.4
 
 [node name="Steam3" parent="." unique_id=25404073 instance=ExtResource("7_0vuyb")]
-position = Vector2(-64, 1024)
+position = Vector2(-64, 896)
 x = 1774
-y = 1857
+y = 1632
 inactive_time = 3.0
 
 [node name="Steam4" parent="." unique_id=2058617413 instance=ExtResource("7_0vuyb")]
-position = Vector2(3072, 1024)
+position = Vector2(3072, 896)
 x = 1202
-y = 1913
+y = 1744
 delay_time = 1.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]

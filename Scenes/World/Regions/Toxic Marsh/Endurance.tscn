@@ -48,30 +48,30 @@ debug_color = Color(1, 1, 1, 0.21568628)
 script = ExtResource("7_838y8")
 
 [node name="Steam" parent="." unique_id=861539247 instance=ExtResource("7_osxac")]
-position = Vector2(-2176, 1088)
+position = Vector2(-2176, 896)
 y = 1250
 collider_growth_steps = 10
 
 [node name="Steam2" parent="." unique_id=779745995 instance=ExtResource("7_osxac")]
-position = Vector2(384, 1088)
-y = 1641
+position = Vector2(384, 896)
+y = 1462
 collider_growth_steps = 10
 
 [node name="Steam4" parent="." unique_id=1395119783 instance=ExtResource("7_osxac")]
-position = Vector2(1728, 1088)
-y = 1265
+position = Vector2(1728, 896)
+y = 1098
 collider_growth_steps = 10
 delay_time = 2.0
 
 [node name="Steam3" parent="." unique_id=1267390958 instance=ExtResource("7_osxac")]
-position = Vector2(2560, 1088)
-y = 2074
+position = Vector2(2560, 896)
+y = 1867
 collider_growth_steps = 10
 
 [node name="Steam5" parent="." unique_id=711151936 instance=ExtResource("7_osxac")]
-position = Vector2(3904, 1152)
+position = Vector2(3904, 896)
 x = 564
-y = 1497
+y = 1395
 collider_growth_steps = 10
 delay_time = 1.0
 

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://Scenes/World/room_controller.gd" id="1_k742a"]
 [ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://Scenes/World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="2_27i1v"]
 [ext_resource type="PackedScene" uid="uid://8ykotcb867ae" path="res://Scenes/World/LevelEditor/Objects/Tiles/NoCollisionTiles.tscn" id="3_j2uof"]
+[ext_resource type="PackedScene" uid="uid://bj0mi5kkri54i" path="res://Scenes/World/LevelEditor/Objects/Tiles/HiddenWallTiles.tscn" id="3_xv3ri"]
 [ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://Scenes/World/LevelEditor/Objects/Tiles/CollideableTiles.tscn" id="4_imr6v"]
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_y8roj"]
 [ext_resource type="PackedScene" uid="uid://2qo4nl7dvk62" path="res://Scenes/World/LevelEditor/Objects/Collectable/Collectable.tscn" id="7_6cy3l"]
@@ -22,6 +23,9 @@ scale = Vector2(3.8481793, 0.28829232)
 [node name="RespawnPoint2" parent="." unique_id=3531767 instance=ExtResource("2_27i1v")]
 position = Vector2(-2080, 864.00006)
 scale = Vector2(0.5883496, 0.54472)
+
+[node name="HiddenWallTiles" parent="." unique_id=229508698 instance=ExtResource("3_xv3ri")]
+tile_map_data = PackedByteArray("AAAOAAoABgAJAAIAAAAOAAkABgAJAAIAAAAOAAgABgAKAAAAAAANAAoABgAJAAIAAAANAAkABgAJAAIAAAANAAgABgAKAAAAAAAMAAoABgAJAAIAAAAMAAkABgAJAAIAAAAMAAgABgAKAAAAAAALAAoABgAJAAIAAAALAAkABgAJAAIAAAALAAgABgAKAAAAAAAKAAoABgAJAAIAAAAKAAkABgAJAAIAAAAKAAgABgAKAAAAAAA=")
 
 [node name="Foreground" parent="." unique_id=622969364 instance=ExtResource("3_j2uof")]
 z_index = 2

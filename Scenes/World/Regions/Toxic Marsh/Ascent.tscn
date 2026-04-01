@@ -30,6 +30,9 @@ scale = Vector2(0.9308969, 0.719847)
 [node name="HiddenWallTiles" parent="." unique_id=229508698 instance=ExtResource("3_jukbf")]
 tile_map_data = PackedByteArray("AADy/w0ABgALAAMAAADy/wwABgAGAAIAAADy/wsABgAJAAIAAADy/woABgAJAAIAAADy/wkABgAJAAIAAADy/wgABgAJAAIAAADy/wcABgAKAAAAAADx/w0ABgAJAAMAAADx/wwABgAJAAIAAADx/wsABgAJAAIAAADx/woABgAJAAIAAADx/wkABgAJAAIAAADx/wgABgAJAAIAAADx/wcABgAKAAAAAADw/w0ABgAJAAMAAADw/wwABgAJAAIAAADw/wsABgAJAAIAAADw/woABgAJAAIAAADw/wkABgAJAAIAAADw/wgABgAJAAIAAADw/wcABgAKAAAAAADv/w0ABgAGAAIAAADv/wwABgAJAAIAAADv/wsABgAJAAIAAADv/woABgAJAAIAAADv/wkABgAJAAIAAADv/wgABgAJAAIAAADv/wcABgAGAAEAAADu/w0ABgAJAAIAAADu/wwABgAJAAIAAADu/wsABgAJAAIAAADu/woABgAJAAIAAADu/wkABgAJAAIAAADu/wgABgAJAAIAAADu/wcABgAJAAIAAADt/w0ABgAJAAIAAADt/wwABgAJAAIAAADt/wsABgAJAAIAAADt/woABgAJAAIAAADt/wkABgAJAAIAAADt/wgABgAJAAIAAADt/wcABgAJAAIAAAA=")
 
+[node name="HiddenWallTilesSecret" parent="." unique_id=891949938 instance=ExtResource("3_jukbf")]
+tile_map_data = PackedByteArray("AAAOAO3/BgAFAAIAAAAOAOz/BgAJAAIAAAAOAOv/BgAJAAIAAAANAO3/BgAJAAMAAAANAOz/BgAJAAIAAAANAOv/BgAJAAIAAAAMAO3/BgAJAAMAAAAMAOz/BgAJAAIAAAAMAOv/BgAJAAIAAAALAO3/BgAJAAMAAAALAOz/BgAJAAIAAAALAOv/BgAJAAIAAAAKAO3/BgAGAAIAAAAKAOz/BgAJAAIAAAAKAOv/BgAJAAIAAAA=")
+
 [node name="Foreground" parent="." unique_id=622969364 instance=ExtResource("4_iqryu")]
 z_index = 2
 
@@ -59,27 +62,27 @@ debug_color = Color(1, 1, 1, 0.21568628)
 script = ExtResource("7_dfcfo")
 
 [node name="Steam" parent="." unique_id=861539247 instance=ExtResource("8_ngabd")]
-position = Vector2(-1088, 2432)
+position = Vector2(-1088, 2304)
 x = 280
-y = 4682
+y = 4749
 delay_time = 0.5
 
 [node name="Steam2" parent="." unique_id=1894777662 instance=ExtResource("8_ngabd")]
-position = Vector2(-192, 2432)
+position = Vector2(-192, 2304)
 x = 280
-y = 4682
+y = 4749
 delay_time = 1.0
 
 [node name="Steam3" parent="." unique_id=1021548386 instance=ExtResource("8_ngabd")]
-position = Vector2(704, 2432)
+position = Vector2(704, 2304)
 x = 280
-y = 4682
+y = 4749
 delay_time = 1.5
 
 [node name="Steam4" parent="." unique_id=748684179 instance=ExtResource("8_ngabd")]
-position = Vector2(1600, 2432)
+position = Vector2(1600, 2304)
 x = 280
-y = 4910
+y = 4749
 delay_time = 2.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
