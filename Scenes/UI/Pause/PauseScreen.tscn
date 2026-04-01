@@ -562,6 +562,9 @@ focus_neighbor_top = NodePath("../../OptionsButton")
 focus_neighbor_top = NodePath("../../OptionsButton")
 focus_previous = NodePath("../../OptionsButton")
 
+[node name="Value" parent="OptionsTab/TextScrollSpeed" parent_id_path=PackedInt32Array(882549425, 1219724664) index="2" unique_id=1953397899]
+text = "Fast"
+
 [node name="StuffTab" type="Panel" parent="." unique_id=1270085453]
 visible = false
 z_index = -1

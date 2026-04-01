@@ -21,7 +21,7 @@ var options : Dictionary = {
 	"music_volume": 50,
 	"sfx_volume": 50,
 	"screen_resolution" : Vector2(1152, 648),
-	"text_speed" : 0.05,
+	"text_speed" : 0.02,
 	"disabled_particles" : false,
 }
 
@@ -55,3 +55,5 @@ func load_game() -> Dictionary:
 func reset_game():
 	if FileAccess.file_exists(GAME_SAVE_PATH):
 		DirAccess.remove_absolute(GAME_SAVE_PATH)
+	if FileAccess.file_exists(OPTIONS_SAVE_PATH):
+		DirAccess.remove_absolute(OPTIONS_SAVE_PATH)

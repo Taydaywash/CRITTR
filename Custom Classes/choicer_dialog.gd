@@ -52,14 +52,13 @@ func stop_typing() -> void:
 	cancel_typing = true
 
 func typing_loop() -> void:
-	if SaveLoadManager.options.text_speed == 0:
-		text.visible_characters = -1 #Shows all characters
-		finished_typing()
-		return
 	currently_typing = true
-	
 	text_delay_timer.wait_time = SaveLoadManager.options.text_speed
-	text.visible_characters += 1
+	text.visible_characters += 1 + floori(get_process_delta_time() * 20)
+	if text.visible_characters > len(text.text):
+		text.visible_characters = len(text)
+	if SaveLoadManager.options.text_speed == 0:
+		text.visible_characters = -1
 	current_text_index = text.visible_characters - 1
 	ui.audio_controller.play_sound(type_sound,2,2)
 	if text.text[current_text_index] in punctuation:

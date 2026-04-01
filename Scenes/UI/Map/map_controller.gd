@@ -90,7 +90,7 @@ func _ready() -> void:
 					if not room_instance.corresponding_room.hidden_room:
 						region_instance.add_child(map_region_part)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if not ui.choicer_dialog.visible:
 		hovered_room = null
 	if ui.choicer_dialog.visible:
@@ -106,18 +106,18 @@ func _process(_delta: float) -> void:
 			show_regions = false
 		if Input.is_action_pressed("zoom_in"):
 			if camera.zoom < Vector2(max_zoom,max_zoom):
-				camera.zoom += Vector2(camera_zoom_speed,camera_zoom_speed)
+				camera.zoom += Vector2(camera_zoom_speed,camera_zoom_speed) * 100 * delta
 		if Input.is_action_pressed("zoom_out"):
 			if camera.zoom > Vector2(min_zoom,min_zoom):
-				camera.zoom -= Vector2(camera_zoom_speed,camera_zoom_speed)
+				camera.zoom -= Vector2(camera_zoom_speed,camera_zoom_speed) * 100 * delta
 		if Input.is_action_pressed("move_up"):
-			camera.position.y -= camera_move_speed / (camera.zoom.x * 10)
+			camera.position.y -= camera_move_speed / (camera.zoom.x * 100 * delta)
 		if Input.is_action_pressed("move_down"):
-			camera.position.y += camera_move_speed / (camera.zoom.x * 10)
+			camera.position.y += camera_move_speed / (camera.zoom.x * 100 * delta)
 		if Input.is_action_pressed("move_left"):
-			camera.position.x -= camera_move_speed / (camera.zoom.x * 10)
+			camera.position.x -= camera_move_speed / (camera.zoom.x * 100 * delta)
 		if Input.is_action_pressed("move_right"):
-			camera.position.x += camera_move_speed / (camera.zoom.x * 10)
+			camera.position.x += camera_move_speed / (camera.zoom.x * 100 * delta)
 	else:
 		if rooms_manager.current_room:
 			camera.position = rooms_manager.current_room.global_position

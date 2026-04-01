@@ -8,7 +8,7 @@ const FAST_TEXT_SPEED : float = 0.02
 const INSTANT_TEXT_SPEED : float = 0
 const TEXT_SPEEDS = [SLOW_TEXT_SPEED,FAST_TEXT_SPEED,INSTANT_TEXT_SPEED]
 const TEXT_SPEEDS_NAMES = ["SLOW","FAST","INSTANT"]
-var text_speeds_index = 0
+var text_speeds_index = 1
 
 @export var screen_size_dropdown : OptionButton
 @export var resolution_dropdown : OptionButton
@@ -32,7 +32,7 @@ var current_options : Dictionary = {
 	"music_volume": 50,
 	"sfx_volume": 50,
 	"screen_resolution" : Vector2(1152, 648),
-	"text_speed" : 0.4,
+	"text_speed" : 0.2,
 	"disabled_particles" : false,
 }
 

@@ -2,7 +2,7 @@ extends Node
 
 var ability_usages: int = 2
 var abilities_unlocked: Dictionary = {
-	"dash" : false,
+	"dash" : true,
 	"grapple" : false,
 	"climb" : false,
 	"inflate" : false,
@@ -58,7 +58,6 @@ func collectable_collected(id: String, value: int) -> void:
 		return
 	game_state.collected_ids[id] = true
 	game_state.total_collectables += value
-	print("Total collected: ", game_state.total_collectables)
 	SaveLoadManager.save_game(game_state)
 	
 func is_collected(id: String) -> bool:
@@ -70,5 +69,4 @@ func get_current_abilities() -> Array:
 func restore_state():
 	game_state = SaveLoadManager.load_game()
 func reset_game():
-	game_state = BASE_GAME_STATE
-	SaveLoadManager.save_game(game_state)
+	SaveLoadManager.reset_game()
