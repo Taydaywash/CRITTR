@@ -944,25 +944,25 @@ one_shot = true
 [node name="RightRay" type="RayCast2D" parent="WallJumpRayReference" unique_id=771782398]
 position = Vector2(0, 23.703703)
 scale = Vector2(1, 2)
-target_position = Vector2(100, 0)
+target_position = Vector2(80, 0)
 collision_mask = 65
 
 [node name="LeftRay" type="RayCast2D" parent="WallJumpRayReference" unique_id=945988906]
 position = Vector2(0, 23.703703)
 scale = Vector2(1, 2)
-target_position = Vector2(-100, 0)
+target_position = Vector2(-80, 0)
 collision_mask = 65
 
 [node name="RightRay2" type="RayCast2D" parent="WallJumpRayReference" unique_id=440633488]
 position = Vector2(0, -23.703703)
 scale = Vector2(1, 2)
-target_position = Vector2(100, 0)
+target_position = Vector2(80, 0)
 collision_mask = 65
 
 [node name="LeftRay2" type="RayCast2D" parent="WallJumpRayReference" unique_id=194133977]
 position = Vector2(0, -23.703703)
 scale = Vector2(1, 2)
-target_position = Vector2(-100, 0)
+target_position = Vector2(-80, 0)
 collision_mask = 65
 
 [node name="HighWallJumpRay" type="Node2D" parent="." unique_id=631589505]
@@ -970,13 +970,13 @@ collision_mask = 65
 [node name="HighRightRay" type="RayCast2D" parent="HighWallJumpRay" unique_id=295848264]
 position = Vector2(0, -71.11111)
 scale = Vector2(1, 2)
-target_position = Vector2(100, 0)
+target_position = Vector2(80, 0)
 collision_mask = 65
 
 [node name="HighLeftRay" type="RayCast2D" parent="HighWallJumpRay" unique_id=1624594559]
 position = Vector2(0, -71.1111)
 scale = Vector2(1, 2)
-target_position = Vector2(-100, 0)
+target_position = Vector2(-80, 0)
 collision_mask = 65
 
 [node name="LowWallJumpRay" type="Node2D" parent="." unique_id=887732347]
@@ -984,13 +984,13 @@ collision_mask = 65
 [node name="LowRightRay" type="RayCast2D" parent="LowWallJumpRay" unique_id=1980512333]
 position = Vector2(0, 71.11111)
 scale = Vector2(1, 2)
-target_position = Vector2(100, 0)
+target_position = Vector2(80, 0)
 collision_mask = 65
 
 [node name="LowLeftRay" type="RayCast2D" parent="LowWallJumpRay" unique_id=204804772]
 position = Vector2(0, 71.111115)
 scale = Vector2(1, 2)
-target_position = Vector2(-100, 0)
+target_position = Vector2(-80, 0)
 collision_mask = 65
 
 [node name="CornerNudging" type="Node2D" parent="." unique_id=1893630454]
