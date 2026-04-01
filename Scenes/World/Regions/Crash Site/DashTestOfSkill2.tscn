@@ -24,6 +24,10 @@ position = Vector2(-2048, 1920)
 position = Vector2(1792, 640)
 scale = Vector2(4.1937733, 0.52)
 
+[node name="RespawnPoint4" parent="." unique_id=1886148603 instance=ExtResource("2_hdvk0")]
+position = Vector2(1600, -2240.0002)
+scale = Vector2(4.9217963, 0.13906588)
+
 [node name="Foreground" parent="." unique_id=622969364 instance=ExtResource("3_v8nok")]
 z_index = 2
 

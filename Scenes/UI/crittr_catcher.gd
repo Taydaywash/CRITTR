@@ -68,6 +68,7 @@ func next_level() -> void:
 		exit_crittr_catcher()
 		await animation_player.animation_finished
 		EventController.emit_signal("unlock_ability",ability_to_unlock)
+		get_tree().paused = true
 		ui.text_popup.start_typing_text(Dialog.ABILITY_GAINED)
 		return
 	current_scene_index += 1

@@ -14,8 +14,8 @@ size = Vector2(9216, 5120)
 script = ExtResource("1_y6ett")
 
 [node name="RespawnPoint2" parent="." unique_id=3531767 instance=ExtResource("2_af8f6")]
-position = Vector2(3456, 2176)
-scale = Vector2(4.49372, 0.16077025)
+position = Vector2(3520, 1920)
+scale = Vector2(6.022911, 0.16077025)
 
 [node name="RespawnPoint" parent="." unique_id=262928423 instance=ExtResource("2_af8f6")]
 position = Vector2(-3328.0002, -1600)
