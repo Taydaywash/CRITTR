@@ -12,6 +12,8 @@ func _ready() -> void:
 	EventController.connect("player_death", trigger_respawn)
 
 func _on_body_entered(_body: Node2D) -> void:
+	if player.state_machine.current_state == player.state_machine.death_state:
+		return
 	EventController.emit_signal("player_death")
 
 func _on_trigger_hitbox_area_entered(area: Area2D) -> void:

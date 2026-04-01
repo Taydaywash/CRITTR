@@ -37,6 +37,7 @@ func _ready():
 	
 	room_reference.connect("room_is_active",room_is_active)
 	room_reference.connect("room_is_inactive",room_is_inactive)
+	EventController.connect("screen_is_black",refresh_cycles)
 	
 	collider.shape.size.x = x
 	collider.shape.size.y = y
@@ -67,6 +68,12 @@ func room_is_active():
 		if not is_room_active:
 			return
 	prepare_particles()
+
+func refresh_cycles():
+	room_is_inactive()
+	await get_tree().process_frame
+	await get_tree().process_frame
+	room_is_active()
 
 func room_is_inactive():
 	is_room_active = false

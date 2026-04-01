@@ -56,15 +56,15 @@ debug_color = Color(1, 1, 1, 0.21568628)
 script = ExtResource("7_apfcl")
 
 [node name="Steam0" parent="." unique_id=861539247 instance=ExtResource("8_xg4kf")]
-position = Vector2(-1024, 1088)
+position = Vector2(-1024, 896)
 x = 782
-y = 1842
+y = 1730
 collider_growth_steps = 10
 
 [node name="Steam1" parent="." unique_id=381687908 instance=ExtResource("8_xg4kf")]
-position = Vector2(1152, 1088)
+position = Vector2(1152, 896)
 x = 782
-y = 2051
+y = 1843
 collider_growth_steps = 10
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
