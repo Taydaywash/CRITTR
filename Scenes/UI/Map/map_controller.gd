@@ -106,18 +106,18 @@ func _process(delta: float) -> void:
 			show_regions = false
 		if Input.is_action_pressed("zoom_in"):
 			if camera.zoom < Vector2(max_zoom,max_zoom):
-				camera.zoom += Vector2(camera_zoom_speed,camera_zoom_speed) * 100 * delta
+				camera.zoom += Vector2(camera_zoom_speed,camera_zoom_speed) * 100 *  delta
 		if Input.is_action_pressed("zoom_out"):
 			if camera.zoom > Vector2(min_zoom,min_zoom):
 				camera.zoom -= Vector2(camera_zoom_speed,camera_zoom_speed) * 100 * delta
 		if Input.is_action_pressed("move_up"):
-			camera.position.y -= camera_move_speed / (camera.zoom.x * 100 * delta)
+			camera.position.y -= camera_move_speed / (camera.zoom.x) * 10 * delta
 		if Input.is_action_pressed("move_down"):
-			camera.position.y += camera_move_speed / (camera.zoom.x * 100 * delta)
+			camera.position.y += camera_move_speed / (camera.zoom.x) * 10 * delta
 		if Input.is_action_pressed("move_left"):
-			camera.position.x -= camera_move_speed / (camera.zoom.x * 100 * delta)
+			camera.position.x -= camera_move_speed / (camera.zoom.x) * 10 * delta
 		if Input.is_action_pressed("move_right"):
-			camera.position.x += camera_move_speed / (camera.zoom.x * 100 * delta)
+			camera.position.x += camera_move_speed / (camera.zoom.x) * 10 * delta
 	else:
 		if rooms_manager.current_room:
 			camera.position = rooms_manager.current_room.global_position
