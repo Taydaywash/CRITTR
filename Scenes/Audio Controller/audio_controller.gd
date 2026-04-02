@@ -19,7 +19,7 @@ func play_sound(sfx : AudioStream, min_pitch : float = 0.7, max_pitch : float = 
 		sfx_player = AudioStreamPlayer.new()
 	add_child(sfx_player)
 	if sound_position:
-		sfx_player.volume_db = 10
+		sfx_player.volume_db = 1
 		sfx_player.max_distance = 20000
 		sfx_player.attenuation = 0.4
 		sfx_player.global_position = sound_position

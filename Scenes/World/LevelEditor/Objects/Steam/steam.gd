@@ -102,12 +102,16 @@ func prepare_particles():
 func steam_sound_loop():
 	audio_controller.play_sound(steam_hiss_sound,0.7,1.3,global_position)
 	await get_tree().create_timer(0.1,false).timeout
+	if not is_room_active:
+			return
 	if particles.emitting:
 		steam_sound_loop()
 
 func bubble_sound_loop():
 	audio_controller.play_sound(bubbling_sound,0.7,1.3,global_position)
 	await get_tree().create_timer(0.1,false).timeout
+	if not is_room_active:
+			return
 	if bubble_particles.emitting:
 		steam_sound_loop()
 
@@ -129,8 +133,6 @@ func spawn_bubbles(delay):
 		bubble_particles.lifetime = bubbling_duration
 		bubble_delay_timer.start()
 		await bubble_delay_timer.timeout
-		if not is_room_active:
-			return
 	else:
 		bubble_particles.lifetime = bubbling_duration - delay
 	bubble_particles.emitting = true

@@ -109,8 +109,5 @@ steam_variables = NodePath("..")
 particles = NodePath("../Steam")
 collider = NodePath("../CollisionShape2D")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1751195131]
-attenuation = 0.39229202
-
 [connection signal="timeout" from="ActiveTimer" to="." method="_on_active_timer_timeout"]
 [connection signal="timeout" from="InactiveTimer" to="." method="_on_inactive_timer_timeout"]
