@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dowgutwq0rs3s" path="res://Assets/Level Editor/Tilesets/testtileset.png" id="1_txdp3"]
 [ext_resource type="Texture2D" uid="uid://cwj0qygxy5wod" path="res://Assets/Level Editor/Tilesets/Spikes/IceSpike.png" id="2_r3612"]
 [ext_resource type="Texture2D" uid="uid://cgu7xoxfyrny2" path="res://Assets/Level Editor/Tilesets/GlassSea.png" id="3_u5pff"]
+[ext_resource type="Texture2D" uid="uid://isfn4t7xhgi6" path="res://Assets/Level Editor/Tilesets/ToxicMarshPlatform.png" id="4_8p2cl"]
 [ext_resource type="Texture2D" uid="uid://b56jttm6jgo2d" path="res://Assets/Level Editor/Tilesets/Spikes/ToxicMarshWater.png" id="4_213ja"]
 [ext_resource type="Texture2D" uid="uid://dncnka8ym7s66" path="res://Assets/Level Editor/Tilesets/TundraPlatforms.png" id="4_833lq"]
 [ext_resource type="Texture2D" uid="uid://bl17iqg8lidmc" path="res://Assets/Level Editor/Tilesets/Digable.png" id="5_1e7op"]
@@ -527,6 +528,16 @@ texture_region_size = Vector2i(128, 128)
 11:3/0/terrains_peering_bit/left_side = 6
 11:3/0/terrains_peering_bit/top_left_corner = 6
 11:3/0/terrains_peering_bit/top_side = 6
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6eyha"]
+texture = ExtResource("4_8p2cl")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:0/0 = 0
+1:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:0/0 = 0
+2:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8p2cl"]
 texture = ExtResource("4_213ja")
@@ -2832,3 +2843,4 @@ sources/9 = SubResource("TileSetAtlasSource_urvl0")
 sources/10 = SubResource("TileSetAtlasSource_gvtps")
 sources/5 = SubResource("TileSetAtlasSource_833lq")
 sources/12 = SubResource("TileSetAtlasSource_8p2cl")
+sources/11 = SubResource("TileSetAtlasSource_6eyha")
