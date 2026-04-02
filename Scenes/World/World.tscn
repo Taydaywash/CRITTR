@@ -247,7 +247,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("ToxicMarsh/EnterFromCrashSite")
+starting_room = NodePath("CrashSite/CrashedShip")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -604,7 +604,8 @@ zoom_to_fit = true
 interior_room = true
 
 [node name="ShipDoorInside" parent="Rooms/CrashSite/InsideShip" unique_id=1427879586 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
-position = Vector2(-832, 448)
+position = Vector2(-896, 289)
+scale = Vector2(1.8826075, 2.024576)
 go_to_door = NodePath("../../CrashedShip/ShipDoorOutside")
 
 [node name="MovementTut" parent="Rooms/CrashSite" unique_id=1846956963 instance=ExtResource("5_04mge")]
