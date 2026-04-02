@@ -69,7 +69,9 @@ func room_is_active():
 			return
 	prepare_particles()
 
-func refresh_cycles():
+func refresh_cycles(refreshed_room):
+	if refreshed_room != room_reference:
+		return
 	room_is_inactive()
 	await get_tree().process_frame
 	await get_tree().process_frame

@@ -136,7 +136,7 @@ func _process(delta: float) -> void:
 	if fade_to_black:
 		ui.increment_fade_in(delta,screen_fade_in_speed)
 		if ui.screen_is_black():
-			EventController.emit_signal("screen_is_black")
+			EventController.emit_signal("screen_is_black",current_room)
 			screen_is_black = true
 			fade_to_black = false
 		return
