@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Tundra Music.mp3-a3db3088f30b9da103d843d641c7
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

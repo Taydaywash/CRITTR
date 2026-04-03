@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bnjdytut746x1" path="res://Scenes/World/Regions/Crash Site/CrashedShip.tscn" id="4_o14yy"]
 [ext_resource type="PackedScene" uid="uid://c01sisufyx4ho" path="res://Scenes/World/Regions/Crash Site/MovementTutorial.tscn" id="5_04mge"]
 [ext_resource type="PackedScene" uid="uid://nr0j1l4sqolw" path="res://Scenes/UI/Pause/PauseScreen.tscn" id="5_o14yy"]
+[ext_resource type="AudioStream" uid="uid://dcwlj0k61u4w0" path="res://Assets/Music/Tundra Music.mp3" id="5_ypq4w"]
 [ext_resource type="Script" uid="uid://5wurrbpk32od" path="res://Scenes/World/region_controller.gd" id="6_lqys3"]
 [ext_resource type="PackedScene" uid="uid://brtxay1sgqmvv" path="res://Scenes/World/LevelEditor/Objects/Door.tscn" id="7_jacc8"]
 [ext_resource type="AudioStream" uid="uid://baekjbxxk8tda" path="res://Assets/Music/CRITTR_TrialSong1.mp3" id="7_qs546"]
@@ -277,7 +278,7 @@ room_transition_failsafe_timer_wait_time = 1.0
 
 [node name="CrashSite" type="Node" parent="Rooms" unique_id=1857399283]
 script = ExtResource("6_lqys3")
-music = ExtResource("7_qs546")
+music = ExtResource("5_ypq4w")
 map_color = Color(3.5616756e-06, 0.5399312, 0.71786386, 1)
 
 [node name="CrashSiteBackground" type="Node2D" parent="Rooms/CrashSite" unique_id=332236146]
@@ -2035,10 +2036,12 @@ position = Vector2(2596, -1014)
 process_mode = 3
 libraries/ = SubResource("AnimationLibrary_irrot")
 
-[node name="CrittrCatcher" parent="." unique_id=1415215958 node_paths=PackedStringArray("ui") instance=ExtResource("38_hb1o8")]
+[node name="CrittrCatcher" parent="." unique_id=1415215958 node_paths=PackedStringArray("ui", "audio_controller") instance=ExtResource("38_hb1o8")]
 unique_name_in_owner = true
 process_mode = 3
 ui = NodePath("../UI")
+music = ExtResource("7_qs546")
+audio_controller = NodePath("../AudioController")
 
 [node name="CrittrCatcherChoicerHandler" type="Node" parent="CrittrCatcher" unique_id=1564053437]
 unique_name_in_owner = true

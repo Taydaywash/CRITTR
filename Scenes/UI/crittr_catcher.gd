@@ -4,6 +4,8 @@ extends CanvasLayer
 @export var animation_player: AnimationPlayer
 @export var screen : TextureRect
 @export var ui: UI
+@export var music : AudioStream
+@export var audio_controller : AudioController
 
 @warning_ignore("unused_signal")
 signal start_crittr_turn
@@ -75,6 +77,7 @@ func next_level() -> void:
 	change_level_to(level_pool[current_scene_index])
 
 func enter_crittr_catcher(new_level_pool : Dictionary, new_ability_to_unlock : String):
+	audio_controller.play_music(music)
 	current_scene_index = 0
 	ability_to_unlock = new_ability_to_unlock
 	level_pool = new_level_pool
