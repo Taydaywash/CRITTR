@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bwgk51grjehh6"]
 
-[ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://Assets/Misc/icon.svg" id="1_uumb7"]
+[ext_resource type="Texture2D" uid="uid://d25510eltskxu" path="res://Assets/Level Editor/Objects/GrapplePoint/grapplePointHook.png" id="1_twl5w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35ovn"]
 size = Vector2(144, 144)
 
 [node name="GrapplePoint" type="Sprite2D" unique_id=146781011]
 scale = Vector2(1.2, 1.2)
-texture = ExtResource("1_uumb7")
+texture = ExtResource("1_twl5w")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1615259662]
 collision_layer = 32

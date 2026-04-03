@@ -3,7 +3,7 @@ extends Node
 var ability_usages: int = 2
 var abilities_unlocked: Dictionary = {
 	"dash" : true,
-	"grapple" : false,
+	"grapple" : true,
 	"climb" : false,
 	"inflate" : false,
 	"drill" : false,
@@ -69,4 +69,5 @@ func get_current_abilities() -> Array:
 func restore_state():
 	game_state = SaveLoadManager.load_game()
 func reset_game():
+	game_state = BASE_GAME_STATE
 	SaveLoadManager.reset_game()
