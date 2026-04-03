@@ -84,7 +84,7 @@ func enter_room():
 	room_transition_controller.play_music(room_transition_controller.current_room.region.music)
 	
 	for child in get_children():
-		if child is not Camera2D and not child.is_in_group("hide"):
+		if not child.is_in_group("hide"):
 			child.visible = true
 func exit_room():
 	region.region_background.visible = false

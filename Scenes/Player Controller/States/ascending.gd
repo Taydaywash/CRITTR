@@ -21,6 +21,7 @@ var max_falling_speed : int
 var horizontal_input : int = 0
 
 var jump_input_buffer : Timer
+var stars_in_room : Array = []
 
 func _ready() -> void:
 	#Input buffer setup:
@@ -31,6 +32,7 @@ func _ready() -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate() as defined in state.gd and then also do:
+	stars_in_room = get_tree().get_nodes_in_group("jump_zone")
 	gravity = player.normal_gravity
 	max_falling_speed = player.max_falling_speed
 
@@ -56,6 +58,12 @@ func process_physics(delta) -> State:
 	if horizontal_input == 0:
 		player.velocity.x = player.velocity.move_toward(Vector2(0,0),air_decceleration_speed * delta).x
 	player.move_and_slide()
+	
+	for star in stars_in_room:
+		if star and star.player_inside and star.jump_available:
+			if jump_input_buffer.time_left:
+				star.deactivate()
+				return jumping_state
 	
 	if player.velocity.y > 0:
 		return falling_state

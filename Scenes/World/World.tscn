@@ -62,7 +62,8 @@
 [ext_resource type="PackedScene" uid="uid://cagiuhwdbmyso" path="res://Scenes/World/Regions/Stardust Peak/PeakEnterFromCrashSite.tscn" id="53_i3env"]
 
 [sub_resource type="Gradient" id="Gradient_dw2uc"]
-colors = PackedColorArray(1.3235956e-06, 0.27029213, 0.39012352, 1, 0.81467485, 0.6445163, 0.39588127, 1)
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.65, 0.94166666, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3ql1f"]
 gradient = SubResource("Gradient_dw2uc")
@@ -110,6 +111,15 @@ colors = PackedColorArray(0.64705884, 0.7176471, 0.4, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4kbg2"]
 gradient = SubResource("Gradient_vdgnt")
+
+[sub_resource type="Gradient" id="Gradient_i3env"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.06380001, 0.3477101, 0.58, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jvctc"]
+gradient = SubResource("Gradient_i3env")
+fill_from = Vector2(0.4869565, 0)
+fill_to = Vector2(0.5304348, 1)
 
 [sub_resource type="Animation" id="Animation_h71dq"]
 length = 0.001
@@ -284,7 +294,6 @@ music = ExtResource("5_ypq4w")
 map_color = Color(3.5616756e-06, 0.5399312, 0.71786386, 1)
 
 [node name="CrashSiteBackground" type="Node2D" parent="Rooms/CrashSite" unique_id=332236146]
-visible = false
 
 [node name="Parallax2D" type="Parallax2D" parent="Rooms/CrashSite/CrashSiteBackground" unique_id=1796784597]
 scroll_scale = Vector2(0.12, 0)
@@ -2040,7 +2049,7 @@ repeat_size = Vector2(1920, 1920)
 z_index = -11
 position = Vector2(2478, -2038.0002)
 scale = Vector2(166.31343, 159.33415)
-texture = SubResource("GradientTexture2D_3ql1f")
+texture = SubResource("GradientTexture2D_jvctc")
 
 [node name="EnterFromCrashSite" parent="Rooms/StardustPeak" unique_id=1408682025 instance=ExtResource("53_i3env")]
 position = Vector2(-10880, -7616)

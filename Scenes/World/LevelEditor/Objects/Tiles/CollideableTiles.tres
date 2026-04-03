@@ -557,12 +557,19 @@ resource_name = "StardustPeakSpikes"
 texture = ExtResource("6_213ja")
 texture_region_size = Vector2i(128, 128)
 2:1/0 = 0
-2:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-64, 0, 64, 0, 64, 64, -64, 64)
+2:1/0/texture_origin = Vector2i(0, -20)
+2:1/0/z_index = -1
+2:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-64, 32, 64, 32, 64, 96, 64, 96, -64, 96)
 1:1/0 = 0
-1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, 0, 64, 0, 64, 64, -32, 64)
+1:1/0/texture_origin = Vector2i(0, -20)
+1:1/0/z_index = -1
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, 32, 64, 32, 64, 96, -32, 96)
 2:0/0 = 0
-2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, 0, 32, 0, 32, 64, -32, 64)
+2:0/0/texture_origin = Vector2i(0, -20)
+2:0/0/z_index = -1
+2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, 32, 32, 32, 32, 96, -32, 96)
 2:2/0 = 0
+2:2/0/z_index = -1
 2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m8soc"]

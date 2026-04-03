@@ -70,13 +70,13 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Camera2D" type="Camera2D"]
+[node name="Camera2D" type="Camera2D" unique_id=222562124 groups=["hide"]]
 enabled = false
 zoom = Vector2(0.36, 0.36)
 limit_enabled = false
 limit_smoothed = true
 
-[node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=51714985]
 position = Vector2(0, 3.0517578e-05)
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_fsqx1")
