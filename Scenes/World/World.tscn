@@ -41,14 +41,17 @@
 [ext_resource type="PackedScene" uid="uid://bgqnomsdqtfjk" path="res://Scenes/World/Regions/Toxic Marsh/EnterFromCrashSite.tscn" id="34_brbxp"]
 [ext_resource type="PackedScene" uid="uid://b7w3ylrmom1cb" path="res://Scenes/World/Regions/Toxic Marsh/WallSteam.tscn" id="35_brbxp"]
 [ext_resource type="Texture2D" uid="uid://cpebeecu04hk6" path="res://Assets/Decals/Tundra/Background/ship no smoke.png" id="35_irrot"]
+[ext_resource type="Texture2D" uid="uid://c0yxdqvvnh8u3" path="res://Assets/Decals/Marsh/Background/BigLeafPlant.png" id="36_0hcbc"]
 [ext_resource type="PackedScene" uid="uid://bfvw3u7lagu3r" path="res://Scenes/World/Regions/Toxic Marsh/WallSteam2.tscn" id="36_150fk"]
 [ext_resource type="PackedScene" uid="uid://f4g8bo43v373" path="res://Scenes/World/Regions/Toxic Marsh/Ascent.tscn" id="36_k3b55"]
 [ext_resource type="Script" uid="uid://debb4cff3jagh" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
+[ext_resource type="Texture2D" uid="uid://dlb8x8m772hoq" path="res://Assets/Decals/Marsh/Background/MedLeafPlant.png" id="37_4kbg2"]
 [ext_resource type="PackedScene" uid="uid://bm3kvosdi8puf" path="res://Scenes/World/Regions/Toxic Marsh/Endurance2.tscn" id="37_150fk"]
 [ext_resource type="PackedScene" uid="uid://bc75uokokv1wd" path="res://Scenes/UI/crittr_catcher.tscn" id="38_hb1o8"]
 [ext_resource type="PackedScene" uid="uid://18ybx7j0tj4o" path="res://Scenes/World/Regions/Toxic Marsh/Endurance.tscn" id="38_rtfdf"]
 [ext_resource type="PackedScene" uid="uid://c1s4y7iuwmsjp" path="res://Scenes/World/Regions/Toxic Marsh/AscentCollectable.tscn" id="39_rtfdf"]
 [ext_resource type="PackedScene" uid="uid://cu28qt5jrjomn" path="res://Scenes/World/Regions/Toxic Marsh/MarshToCloudTemple.tscn" id="40_37qpj"]
+[ext_resource type="Texture2D" uid="uid://brqca0asvluxu" path="res://Assets/Decals/Marsh/Background/SmallLeafPlant.png" id="41_4kbg2"]
 [ext_resource type="PackedScene" uid="uid://b3frr1yrpech7" path="res://Scenes/World/Regions/Toxic Marsh/ToGrapple.tscn" id="41_ioxf4"]
 [ext_resource type="Script" uid="uid://bfgeg66mnkl4x" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_choicer_handler.gd" id="41_rgk46"]
 [ext_resource type="PackedScene" uid="uid://b37w5ehcx43d6" path="res://Scenes/World/Regions/Toxic Marsh/GrappleDen.tscn" id="42_kcg70"]
@@ -1472,7 +1475,7 @@ scale = Vector2(166.31343, 159.33415)
 texture = SubResource("GradientTexture2D_4kbg2")
 
 [node name="Parallax2D2" type="Parallax2D" parent="Rooms/ToxicMarsh/ToxicMarshBackground" unique_id=823768278]
-scroll_scale = Vector2(0.28, 0)
+scroll_scale = Vector2(0.1, 0)
 scroll_offset = Vector2(0, 1088)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
@@ -1484,7 +1487,7 @@ scale = Vector2(1, 1.5999994)
 texture = ExtResource("34_0hcbc")
 
 [node name="Parallax2D4" type="Parallax2D" parent="Rooms/ToxicMarsh/ToxicMarshBackground" unique_id=1161947050]
-scroll_scale = Vector2(0.12, 0)
+scroll_scale = Vector2(0.2, 0)
 scroll_offset = Vector2(0, 960)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
@@ -1496,7 +1499,7 @@ scale = Vector2(1, 1.5600003)
 texture = ExtResource("33_ypq4w")
 
 [node name="Parallax2D" type="Parallax2D" parent="Rooms/ToxicMarsh/ToxicMarshBackground" unique_id=1654723452]
-scroll_scale = Vector2(0.12, 0)
+scroll_scale = Vector2(0.4, 0)
 scroll_offset = Vector2(0, 832)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
@@ -1514,24 +1517,211 @@ zoom_to_fit = true
 [node name="SaveTube" parent="Rooms/ToxicMarsh/EnterFromCrashSite" unique_id=309162662 instance=ExtResource("8_hev0n")]
 position = Vector2(-1920, 640)
 
+[node name="Node2D" type="Node2D" parent="Rooms/ToxicMarsh/EnterFromCrashSite" unique_id=1752392900]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/EnterFromCrashSite/Node2D" unique_id=1435146934]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-1024, 448)
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("36_0hcbc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/ToxicMarsh/EnterFromCrashSite/Node2D" unique_id=490402706]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(1280, 512)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/ToxicMarsh/EnterFromCrashSite/Node2D" unique_id=229411479]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(896, 704)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("37_4kbg2")
+flip_h = true
+
 [node name="WallSteam" parent="Rooms/ToxicMarsh" unique_id=1190356177 instance=ExtResource("35_brbxp")]
 position = Vector2(27264, -2880)
 zoom_to_fit = true
+
+[node name="Node2D" type="Node2D" parent="Rooms/ToxicMarsh/WallSteam" unique_id=1116353774]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/WallSteam/Node2D" unique_id=2000248076]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-1152, 576)
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("36_0hcbc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/ToxicMarsh/WallSteam/Node2D" unique_id=201486986]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-1343.9998, -639.9999)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/ToxicMarsh/WallSteam/Node2D" unique_id=644537473]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(1408, 448)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("37_4kbg2")
+flip_h = true
 
 [node name="WallSteam2" parent="Rooms/ToxicMarsh" unique_id=1608980074 instance=ExtResource("36_150fk")]
 position = Vector2(31872, -2880)
 zoom_to_fit = true
 
+[node name="Node2D" type="Node2D" parent="Rooms/ToxicMarsh/WallSteam2" unique_id=445550784]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/WallSteam2/Node2D" unique_id=1974677992]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-1152, -128)
+scale = Vector2(0.39, 0.39)
+texture = ExtResource("36_0hcbc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/ToxicMarsh/WallSteam2/Node2D" unique_id=797510098]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-319.99988, 512)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/ToxicMarsh/WallSteam2/Node2D" unique_id=2078352594]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(640, -640)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("37_4kbg2")
+flip_h = true
+
 [node name="Hooks" parent="Rooms/ToxicMarsh" unique_id=330287191 instance=ExtResource("46_k3b55")]
 position = Vector2(33408, -5440)
 zoom_to_fit = true
 
+[node name="Node2D" type="Node2D" parent="Rooms/ToxicMarsh/Hooks" unique_id=124659400]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/Hooks/Node2D" unique_id=235907803]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(1216, 448)
+scale = Vector2(0.39, 0.39)
+texture = ExtResource("36_0hcbc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/ToxicMarsh/Hooks/Node2D" unique_id=1628351943]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(640.00006, 512)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/ToxicMarsh/Hooks/Node2D" unique_id=305523885]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(1536, -896)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("41_4kbg2")
+flip_h = true
+
 [node name="Ascent" parent="Rooms/ToxicMarsh" unique_id=843279358 instance=ExtResource("36_k3b55")]
 position = Vector2(49536, -6720)
+
+[node name="Node2D" type="Node2D" parent="Rooms/ToxicMarsh/Ascent" unique_id=1436408376]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/Ascent/Node2D" unique_id=1225236088]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-1536, -640)
+scale = Vector2(0.39, 0.39)
+texture = ExtResource("36_0hcbc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/ToxicMarsh/Ascent/Node2D" unique_id=1677230552]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-895.9998, 2048)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Rooms/ToxicMarsh/Ascent/Node2D" unique_id=1892304128]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(1216, -127.999756)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/ToxicMarsh/Ascent/Node2D" unique_id=88903210]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(1728, 1856)
+scale = Vector2(0.53, 0.53)
+texture = ExtResource("41_4kbg2")
+flip_h = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="Rooms/ToxicMarsh/Ascent/Node2D" unique_id=912096869]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(384, 2048)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("41_4kbg2")
 
 [node name="Endurance" parent="Rooms/ToxicMarsh" unique_id=1900355704 instance=ExtResource("38_rtfdf")]
 position = Vector2(38784, -2880)
 zoom_to_fit = true
+
+[node name="Node2D" type="Node2D" parent="Rooms/ToxicMarsh/Endurance" unique_id=2058699553]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance/Node2D" unique_id=1879724782]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-3648, 576)
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("36_0hcbc")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance/Node2D" unique_id=425228169]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(2175.9995, 576)
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("36_0hcbc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance/Node2D" unique_id=847153542]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-1919.9998, 768)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance/Node2D" unique_id=1269928265]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(2687.9998, 640)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance/Node2D" unique_id=290395546]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-2303.9998, 639.99994)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance/Node2D" unique_id=2049121838]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(896, 640)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("41_4kbg2")
+flip_h = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance/Node2D" unique_id=1390838152]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-256, 704)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("41_4kbg2")
 
 [node name="Endurance2" parent="Rooms/ToxicMarsh" unique_id=1137488923 instance=ExtResource("37_150fk")]
 position = Vector2(47616, -2880)
@@ -1540,11 +1730,151 @@ zoom_to_fit = true
 [node name="SaveTube" parent="Rooms/ToxicMarsh/Endurance2" unique_id=1050464873 instance=ExtResource("8_hev0n")]
 position = Vector2(-3072, 512)
 
+[node name="Node2D" type="Node2D" parent="Rooms/ToxicMarsh/Endurance2" unique_id=843764943]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance2/Node2D" unique_id=1803391081]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-1280.0002, 576)
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("36_0hcbc")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance2/Node2D" unique_id=1956958606]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(3327.9995, 576)
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("36_0hcbc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance2/Node2D" unique_id=1119160261]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(-1919.9998, 768)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance2/Node2D" unique_id=1418180091]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(2687.9998, 640)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance2/Node2D" unique_id=1892050564]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(-2303.9998, 639.99994)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance2/Node2D" unique_id=568618997]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(960, 640)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("41_4kbg2")
+flip_h = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="Rooms/ToxicMarsh/Endurance2/Node2D" unique_id=1435581606]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-192, 704)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("41_4kbg2")
+
 [node name="AboveAscentCollectable" parent="Rooms/ToxicMarsh" unique_id=662939850 instance=ExtResource("39_rtfdf")]
 position = Vector2(49536, -10560)
 
+[node name="Node2D" type="Node2D" parent="Rooms/ToxicMarsh/AboveAscentCollectable" unique_id=1192571334]
+
+[node name="Sprite2D4" type="Sprite2D" parent="Rooms/ToxicMarsh/AboveAscentCollectable/Node2D" unique_id=837745984]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-1151.9998, 959.99994)
+scale = Vector2(0.215, 0.215)
+texture = ExtResource("37_4kbg2")
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/ToxicMarsh/AboveAscentCollectable/Node2D" unique_id=1521400324]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(1280, 768)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("41_4kbg2")
+flip_h = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="Rooms/ToxicMarsh/AboveAscentCollectable/Node2D" unique_id=669693734]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(704, 896)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("41_4kbg2")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Rooms/ToxicMarsh/AboveAscentCollectable/Node2D" unique_id=466491003]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(1152, -576)
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("41_4kbg2")
+flip_h = true
+
 [node name="MarshToCloudTemple" parent="Rooms/ToxicMarsh" unique_id=1733124588 instance=ExtResource("40_37qpj")]
 position = Vector2(56448, -4800)
+
+[node name="Node2D" type="Node2D" parent="Rooms/ToxicMarsh/MarshToCloudTemple" unique_id=1910298639]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/MarshToCloudTemple/Node2D" unique_id=1444774981]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-2688, 2048)
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("36_0hcbc")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Rooms/ToxicMarsh/MarshToCloudTemple/Node2D" unique_id=1168078683]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-3648, 2112)
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("36_0hcbc")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/ToxicMarsh/MarshToCloudTemple/Node2D" unique_id=1570854690]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(1152, 2047.9999)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Rooms/ToxicMarsh/MarshToCloudTemple/Node2D" unique_id=71600212]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(2687.9998, 640)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Rooms/ToxicMarsh/MarshToCloudTemple/Node2D" unique_id=685335381]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-3071.9998, 2112.0002)
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("37_4kbg2")
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/ToxicMarsh/MarshToCloudTemple/Node2D" unique_id=54389071]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-1088, 2112)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("41_4kbg2")
+flip_h = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="Rooms/ToxicMarsh/MarshToCloudTemple/Node2D" unique_id=969883496]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(704, 2048)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("41_4kbg2")
 
 [node name="ToGrapple" parent="Rooms/ToxicMarsh" unique_id=1252380547 instance=ExtResource("41_ioxf4")]
 position = Vector2(42624, -9536)
@@ -1561,6 +1891,60 @@ dialog_string = "ACID_FROG_DEN"
 
 [node name="GrappleDenChoicerHandler" type="Node" parent="Rooms/ToxicMarsh/GrappleDen/GrappleDen" unique_id=1932465122]
 script = ExtResource("44_tejqv")
+
+[node name="Node2D" type="Node2D" parent="Rooms/ToxicMarsh/GrappleDen" unique_id=1319262303]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/GrappleDen/Node2D" unique_id=1733236442]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-3520, 256)
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("36_0hcbc")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Rooms/ToxicMarsh/GrappleDen/Node2D" unique_id=1574601896]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(-1792, 576)
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("36_0hcbc")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/ToxicMarsh/GrappleDen/Node2D" unique_id=187331024]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(1152, 2047.9999)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Rooms/ToxicMarsh/GrappleDen/Node2D" unique_id=1349473733]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(3327.9998, 64.00006)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("37_4kbg2")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Rooms/ToxicMarsh/GrappleDen/Node2D" unique_id=701621326]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(4096, 191.99988)
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("37_4kbg2")
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/ToxicMarsh/GrappleDen/Node2D" unique_id=1972759214]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(512, -64)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("41_4kbg2")
+flip_h = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="Rooms/ToxicMarsh/GrappleDen/Node2D" unique_id=877416293]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -2
+position = Vector2(2688, 512)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("41_4kbg2")
 
 [node name="Miscellaneous" type="Node" parent="Rooms" unique_id=1513619106]
 script = ExtResource("6_lqys3")
