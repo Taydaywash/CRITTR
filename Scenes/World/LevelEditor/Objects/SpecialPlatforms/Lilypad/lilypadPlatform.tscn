@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://gaao4iwh0f6f"]
+
+[ext_resource type="Texture2D" uid="uid://c32ut3lrabr32" path="res://Assets/Decals/Marsh/Platforms/lilypad3.png" id="1_kovtn"]
+[ext_resource type="Script" uid="uid://dtovcu7fuylak" path="res://Scenes/World/LevelEditor/Objects/SpecialPlatforms/Lilypad/lilypad_platform.gd" id="2_61i08"]
+[ext_resource type="Texture2D" uid="uid://bde23nd485jay" path="res://Assets/Decals/Marsh/Platforms/lilypadStem2.png" id="3_4tsi4"]
+[ext_resource type="Shape2D" uid="uid://begl5485wyi4o" path="res://Scenes/World/LevelEditor/Objects/SpecialPlatforms/Lilypad/Colliders/LilypadPlatform3.tres" id="4_4tsi4"]
+[ext_resource type="Script" uid="uid://dwdhruc2w5n2p" path="res://Scenes/World/LevelEditor/Objects/SpecialPlatforms/Lilypad/lilypad_jiggle_physics.gd" id="5_8ngl0"]
+
+[sub_resource type="Animation" id="Animation_8ngl0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_use7c"]
+resource_name = "jiggle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333336, 0.5),
+"transitions": PackedFloat32Array(0.43527535, 0.5547847, 1),
+"update": 0,
+"values": [-0.03490658503988659, 0.017453292519943295, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ab4tr"]
+resource_name = "sway"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1.6245048, 1.2311445, 1.0717738, 1),
+"update": 0,
+"values": [0.0, -0.017453292519943295, 0.008726646259971648, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ab4tr"]
+_data = {
+&"RESET": SubResource("Animation_8ngl0"),
+&"jiggle": SubResource("Animation_use7c"),
+&"sway": SubResource("Animation_ab4tr")
+}
+
+[node name="Platform" type="StaticBody2D" unique_id=644074373]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_61i08")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=112833674]
+position = Vector2(0, 16)
+shape = ExtResource("4_4tsi4")
+one_way_collision = true
+
+[node name="LilypadPlatform" type="Sprite2D" parent="." unique_id=1895982520]
+texture = ExtResource("1_kovtn")
+offset = Vector2(0, 32)
+
+[node name="Stem" type="Sprite2D" parent="." unique_id=823193619]
+z_index = -1
+position = Vector2(0, 448)
+texture = ExtResource("3_4tsi4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1847873432]
+root_node = NodePath("../LilypadPlatform")
+libraries/ = SubResource("AnimationLibrary_ab4tr")
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=1363518505]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("5_8ngl0")
+
+[node name="jiggleArea" type="CollisionShape2D" parent="Area2D2" unique_id=713904629]
+
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_jiggle_entered"]
+[connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_jiggle_entered"]
