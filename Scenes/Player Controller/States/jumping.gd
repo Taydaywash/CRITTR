@@ -31,11 +31,12 @@ extends State
 var gravity : int
 var max_falling_speed : int
 var horizontal_input : int = 0
+var stars_in_room : Array = []
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate() as defined in state.gd and then also do:
 	jump_input_buffer.wait_time = jump_input_buffer_patience
-	
+	stars_in_room = get_tree().get_nodes_in_group("jump_zone")
 	#change_collider_to(jumping_hitbox)
 	jump_input_buffer.stop()
 	gravity = player.normal_gravity
@@ -82,6 +83,13 @@ func process_physics(delta) -> State:
 		player.position.x += nudge_right_range_right.position.x - nudge_right_range_left.position.x
 	if nudge_left_range_right.is_colliding() and not nudge_left_range_left.is_colliding() and not player.velocity.x > 0:
 		player.position.x -= nudge_left_range_right.position.x - nudge_left_range_left.position.x
+		
+	for star in stars_in_room:
+		if star and star.player_inside and star.jump_available:
+			if jump_input_buffer.time_left:
+				star.deactivate()
+				return jumping_state
+			
 	if player.is_on_floor():
 		if jump_input_buffer.time_left > 0:
 			return self

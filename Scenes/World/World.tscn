@@ -59,13 +59,15 @@
 [ext_resource type="PackedScene" uid="uid://duc72rfl0kqfl" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/AcidFrogDen.tscn" id="43_44hbs"]
 [ext_resource type="Script" uid="uid://ytr5q3hl5ncj" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/acid_den_choicer.gd" id="44_tejqv"]
 [ext_resource type="PackedScene" uid="uid://bkru2b6d01p7k" path="res://Scenes/World/Regions/Toxic Marsh/Hooks.tscn" id="46_k3b55"]
+[ext_resource type="PackedScene" uid="uid://cagiuhwdbmyso" path="res://Scenes/World/Regions/Stardust Peak/PeakEnterFromCrashSite.tscn" id="53_i3env"]
 
 [sub_resource type="Gradient" id="Gradient_dw2uc"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0.7372549, 0.8980392, 1, 1)
+colors = PackedColorArray(1.3235956e-06, 0.27029213, 0.39012352, 1, 0.81467485, 0.6445163, 0.39588127, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3ql1f"]
 gradient = SubResource("Gradient_dw2uc")
+fill_from = Vector2(0.4869565, 0)
+fill_to = Vector2(0.5304348, 1)
 
 [sub_resource type="Curve" id="Curve_nlkji"]
 _limits = [-0.35849047, 1.0, 0.10416666, 0.8385416]
@@ -251,7 +253,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("ToxicMarsh/Endurance2")
+starting_room = NodePath("StardustPeak/EnterFromCrashSite")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -1395,25 +1397,22 @@ color_ramp = SubResource("Gradient_kcg70")
 position = Vector2(-6272, -3904)
 
 [node name="BackgroundElements" type="Node2D" parent="Rooms/CrashSite/PeakEntrance" unique_id=1187784915]
-z_index = -2
+z_index = -3
 z_as_relative = false
 
 [node name="ManyVinesT" type="Sprite2D" parent="Rooms/CrashSite/PeakEntrance/BackgroundElements" unique_id=1333184801]
 z_index = -1
-z_as_relative = false
 position = Vector2(-320, -704)
 rotation = -3.1415925
 texture = ExtResource("22_c4j8x")
 
 [node name="VinesT" type="Sprite2D" parent="Rooms/CrashSite/PeakEntrance/BackgroundElements" unique_id=753187252]
-z_as_relative = false
 position = Vector2(1280, 832)
 rotation = -3.1415925
 scale = Vector2(0.74816006, 0.7821118)
 texture = ExtResource("24_2neov")
 
 [node name="VinesT3" type="Sprite2D" parent="Rooms/CrashSite/PeakEntrance/BackgroundElements" unique_id=1325657018]
-z_as_relative = false
 position = Vector2(-192.0001, 1600)
 rotation = -3.1415925
 scale = Vector2(0.74816006, 0.7821118)
@@ -1422,26 +1421,22 @@ texture = ExtResource("24_2neov")
 [node name="BigTHill2" type="Sprite2D" parent="Rooms/CrashSite/PeakEntrance/BackgroundElements" unique_id=204251214]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
-z_as_relative = false
 position = Vector2(1531, 1141)
 texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill4" type="Sprite2D" parent="Rooms/CrashSite/PeakEntrance/BackgroundElements" unique_id=1884166064]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
-z_as_relative = false
 position = Vector2(-1152, 1088)
 texture = ExtResource("29_eoa2q")
 
 [node name="BigTHill3" type="Sprite2D" parent="Rooms/CrashSite/PeakEntrance/BackgroundElements" unique_id=2017552196]
 modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
 z_index = -3
-z_as_relative = false
 position = Vector2(256, 1152)
 texture = ExtResource("29_eoa2q")
 
 [node name="VinesT2" type="Sprite2D" parent="Rooms/CrashSite/PeakEntrance/BackgroundElements" unique_id=271798968]
-z_as_relative = false
 position = Vector2(1152, -192)
 rotation = -3.1415925
 texture = ExtResource("24_2neov")
@@ -2002,6 +1997,57 @@ position = Vector2(192, 320)
 rotation = -3.1415925
 texture = ExtResource("24_2neov")
 flip_h = true
+
+[node name="StardustPeak" type="Node" parent="Rooms" unique_id=1537704255]
+script = ExtResource("6_lqys3")
+music = ExtResource("7_qs546")
+map_color = Color(1, 0.74509805, 0, 1)
+metadata/_custom_type_script = "uid://5wurrbpk32od"
+
+[node name="CrashSiteBackground" type="Node2D" parent="Rooms/StardustPeak" unique_id=667908177]
+visible = false
+
+[node name="Parallax2D" type="Parallax2D" parent="Rooms/StardustPeak/CrashSiteBackground" unique_id=1417883992]
+scroll_scale = Vector2(0.12, 0)
+scroll_offset = Vector2(0, 500)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/StardustPeak/CrashSiteBackground/Parallax2D" unique_id=145355581]
+visible = false
+z_index = -10
+position = Vector2(963, 128)
+scale = Vector2(1, 1.5600003)
+texture = ExtResource("19_vdgnt")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Rooms/StardustPeak/CrashSiteBackground" unique_id=1607651825]
+scroll_scale = Vector2(0.28, 0)
+scroll_offset = Vector2(0, 800)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/StardustPeak/CrashSiteBackground/Parallax2D2" unique_id=1846792921]
+visible = false
+z_index = -9
+position = Vector2(977, 0)
+scale = Vector2(1, 1.5999994)
+texture = ExtResource("20_3ql1f")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Rooms/StardustPeak/CrashSiteBackground" unique_id=697173661]
+repeat_size = Vector2(1920, 1920)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/StardustPeak/CrashSiteBackground/Parallax2D3" unique_id=1828348627]
+z_index = -11
+position = Vector2(2478, -2038.0002)
+scale = Vector2(166.31343, 159.33415)
+texture = SubResource("GradientTexture2D_3ql1f")
+
+[node name="EnterFromCrashSite" parent="Rooms/StardustPeak" unique_id=1408682025 instance=ExtResource("53_i3env")]
+position = Vector2(-10880, -7616)
+
+[node name="SaveTube" parent="Rooms/StardustPeak/EnterFromCrashSite" unique_id=76525249 instance=ExtResource("8_hev0n")]
+z_index = -2
+position = Vector2(1984, 2176)
 
 [node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "animation_player", "player_reference", "map") instance=ExtResource("5_o14yy")]
 unique_name_in_owner = true
