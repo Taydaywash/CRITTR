@@ -57,7 +57,7 @@
 [ext_resource type="Script" uid="uid://bfgeg66mnkl4x" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_choicer_handler.gd" id="41_rgk46"]
 [ext_resource type="PackedScene" uid="uid://b37w5ehcx43d6" path="res://Scenes/World/Regions/Toxic Marsh/GrappleDen.tscn" id="42_kcg70"]
 [ext_resource type="PackedScene" uid="uid://duc72rfl0kqfl" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/AcidFrogDen.tscn" id="43_44hbs"]
-[ext_resource type="Script" uid="uid://ytr5q3hl5ncj" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/acid_den_choicer.gd" id="44_tejqv"]
+[ext_resource type="Script" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/acid_den_choicer.gd" id="44_tejqv"]
 [ext_resource type="PackedScene" uid="uid://bkru2b6d01p7k" path="res://Scenes/World/Regions/Toxic Marsh/Hooks.tscn" id="46_k3b55"]
 [ext_resource type="PackedScene" uid="uid://cagiuhwdbmyso" path="res://Scenes/World/Regions/Stardust Peak/PeakEnterFromCrashSite.tscn" id="53_i3env"]
 
@@ -263,7 +263,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("StardustPeak/EnterFromCrashSite")
+starting_room = NodePath("ToxicMarsh/EnterFromCrashSite")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
