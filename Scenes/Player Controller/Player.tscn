@@ -33,8 +33,10 @@
 [ext_resource type="Script" uid="uid://bm7yhxmomtxag" path="res://Scenes/Player Controller/States/Abilities/grappling.gd" id="13_vpgwe"]
 [ext_resource type="Script" uid="uid://bm41wexjew65w" path="res://Scenes/Player Controller/States/Abilities/climbing.gd" id="14_hl1jv"]
 [ext_resource type="AudioStream" uid="uid://k83oi4wx8exn" path="res://Assets/Sound Effects/Player/Squish.mp3" id="14_pesqw"]
+[ext_resource type="Script" uid="uid://b7typ5ncmf15v" path="res://Scenes/Player Controller/States/star_bounce.gd" id="15_h8u1k"]
 [ext_resource type="Script" uid="uid://cwi7sh2i6bfpg" path="res://Scenes/Player Controller/States/Abilities/inflated.gd" id="15_melbr"]
 [ext_resource type="Script" uid="uid://s0v2p1xd21lh" path="res://Scenes/Player Controller/States/Abilities/bounce_attack.gd" id="16_2bslk"]
+[ext_resource type="PackedScene" uid="uid://lasim46y5fv2" path="res://Scenes/Particle Controller/Particles/Player/star_bounce.tscn" id="16_bx382"]
 [ext_resource type="Script" uid="uid://ctsvxg3n4hdh7" path="res://Scenes/Player Controller/States/Abilities/drill.gd" id="17_fuvci"]
 [ext_resource type="AudioStream" uid="uid://dv7kpy4gvbajj" path="res://Assets/Sound Effects/Player/Land/player_land.ogg" id="18_k212d"]
 [ext_resource type="Texture2D" uid="uid://hqyvhddj1nu" path="res://Assets/UI/DashIcon.png" id="19_j8lbh"]
@@ -368,7 +370,7 @@ current_room_detection_ray = NodePath("RoomTransitionSides/CurrentRoomDetectionR
 respawn_controller_reference = NodePath("Respawn Controller")
 trigger_hitbox = NodePath("TriggerHitbox")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1436004704 node_paths=PackedStringArray("no_control_state", "no_control_no_gravity_state", "death_state", "teleporting_enter_state", "teleporting_exit_state", "spawning_state", "jumping_state", "crouching_state", "idle_crouching_state", "idle_state", "looking_up_state", "walking_state", "diving_state", "diving_falling_state", "bonked_state", "wall_cling_state", "wall_jumping_state", "falling_state", "ascending_state", "ability_state", "dashing_state", "grappling_pull_state", "inflated_state", "climbing_slide_state", "digging_state", "bounce_attack_state", "colliders_list", "hurtboxes_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
+[node name="StateMachine" type="Node" parent="." unique_id=1436004704 node_paths=PackedStringArray("no_control_state", "no_control_no_gravity_state", "death_state", "teleporting_enter_state", "teleporting_exit_state", "spawning_state", "jumping_state", "star_bounce_state", "crouching_state", "idle_crouching_state", "idle_state", "looking_up_state", "walking_state", "diving_state", "diving_falling_state", "bonked_state", "wall_cling_state", "wall_jumping_state", "falling_state", "ascending_state", "ability_state", "dashing_state", "grappling_pull_state", "inflated_state", "climbing_slide_state", "digging_state", "bounce_attack_state", "colliders_list", "hurtboxes_list", "starting_state", "grounded_states", "abilities_state", "jump_input_buffer")]
 script = ExtResource("5_v55cd")
 no_control_state = NodePath("NoControl")
 no_control_no_gravity_state = NodePath("NoControl/NoControlNoGravity")
@@ -377,6 +379,7 @@ teleporting_enter_state = NodePath("NoControl/TeleportingEnter")
 teleporting_exit_state = NodePath("NoControl/TeleportingEnter/TeleportingExit")
 spawning_state = NodePath("NoControl/Spawning")
 jumping_state = NodePath("Jumping")
+star_bounce_state = NodePath("StarBounce")
 crouching_state = NodePath("Crouching")
 idle_crouching_state = NodePath("Crouching/IdleCrouching")
 idle_state = NodePath("Idle")
@@ -467,6 +470,32 @@ enter_particle_particle = ExtResource("7_7icb5")
 enter_particle_when_entering_from_state_state = [NodePath("../Abilities/Dashing")]
 enter_particle_when_entering_from_state_particle = Array[PackedScene]([ExtResource("8_avv4g")])
 enter_particle_when_entering_from_state_parent_to_player = Array[bool]([true])
+
+[node name="StarBounce" type="Node" parent="StateMachine" unique_id=1476201139 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "default_hitbox", "jumping_hitbox")]
+script = ExtResource("15_h8u1k")
+move_speed = 800
+jump_velocity = 1500
+jump_cancellation = 2
+acceleration_speed = 20000
+decceleration_speed = 10000
+high_velocity_decceleration_speed = 250
+jump_input_buffer = NodePath("../../JumpInputBuffer")
+jump_input_buffer_patience = 0.2
+y_sprite_stretch_multiplier = 1.0
+x_sprite_stretch_multiplier = 1.0
+sprite_reset_speed = 10.0
+right_ray = NodePath("../../WallJumpRayReference/RightRay")
+left_ray = NodePath("../../WallJumpRayReference/LeftRay")
+nudge_right_range_left = NodePath("../../CornerNudging/NudgeRightRangeLeft")
+nudge_right_range_right = NodePath("../../CornerNudging/NudgeRightRangeRight")
+nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeLeft")
+nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeRight")
+default_hitbox = NodePath("../../NormalHitbox")
+jumping_hitbox = NodePath("../../Jumping")
+animation_name = "jump"
+placeholder_animation_color = Color(0.95596343, 0.9559633, 0.95596343, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("7_8hfv1")])
+enter_particle_particle = ExtResource("16_bx382")
 
 [node name="Crouching" type="Node" parent="StateMachine" unique_id=1700106763 node_paths=PackedStringArray("default_hitbox", "default_hurtbox", "crouching_hitbox", "crouching_hurtbox", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right")]
 script = ExtResource("12_068uq")
@@ -667,9 +696,9 @@ nudge_left_range_left = NodePath("../../CornerNudging/NudgeLeftRangeRight")
 animation_name = "falling"
 placeholder_animation_color = Color(1, 1, 1, 1)
 exit_sound_sounds = Array[AudioStream]([ExtResource("18_k212d")])
-exit_sound_excluded_states = [NodePath("../Diving"), NodePath("../Abilities"), NodePath("../WallCling"), NodePath("../WallCling/WallJumping"), NodePath("../NoControl/Death")]
+exit_sound_excluded_states = [NodePath("../Diving"), NodePath("../Abilities"), NodePath("../WallCling"), NodePath("../WallCling/WallJumping"), NodePath("../NoControl/Death"), NodePath("../StarBounce")]
 exit_particle_particle = ExtResource("19_k212d")
-exit_particle_excluded_states = [NodePath("../Diving"), NodePath("../Abilities"), NodePath("../NoControl/Death"), NodePath("../WallCling"), NodePath("../WallCling/WallJumping")]
+exit_particle_excluded_states = [NodePath("../Diving"), NodePath("../Abilities"), NodePath("../NoControl/Death"), NodePath("../WallCling"), NodePath("../WallCling/WallJumping"), NodePath("../StarBounce")]
 
 [node name="Ascending" type="Node" parent="StateMachine" unique_id=103182494 node_paths=PackedStringArray("right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left")]
 script = ExtResource("11_evkiq")

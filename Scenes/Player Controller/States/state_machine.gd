@@ -12,6 +12,7 @@ extends Node
 
 @export var spawning_state : State
 @export var jumping_state : State
+@export var star_bounce_state : State
 @export var crouching_state : State
 @export var idle_crouching_state : State
 @export var idle_state : State
@@ -65,6 +66,7 @@ func check_children(parent : Node) -> void:
 		child.death_state = death_state
 		child.spawning_state = spawning_state
 		child.jumping_state = jumping_state
+		child.star_bounce_state = star_bounce_state
 		child.crouching_state = crouching_state
 		child.idle_crouching_state = idle_crouching_state
 		child.idle_state = idle_state

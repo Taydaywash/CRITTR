@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://lasim46y5fv2"]
+
+[ext_resource type="Texture2D" uid="uid://1yl4eif1rq1x" path="res://Assets/Animations/Player/Dash/dash.png" id="1_uorwt"]
+[ext_resource type="Script" uid="uid://ddts72o7rjqpl" path="res://Custom Classes/particle.gd" id="2_cv43e"]
+
+[sub_resource type="Curve" id="Curve_kga02"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1.1460676), 0.0, 3.101123, 0, 0, Vector2(1, 3), 0.16898875, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ur58j"]
+offsets = PackedFloat32Array(0, 0.4814815, 0.8518519)
+colors = PackedColorArray(0.9471994, 0.9471994, 0.9471994, 1, 0.9915258, 0.9915258, 0.9915258, 1, 1, 1, 1, 0)
+
+[node name="StartBounce" type="CPUParticles2D" unique_id=522649424]
+emitting = false
+amount = 1
+texture = ExtResource("1_uorwt")
+lifetime = 0.4
+one_shot = true
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_kga02")
+color_ramp = SubResource("Gradient_ur58j")
+script = ExtResource("2_cv43e")
+spawn_offset = Vector2(0, 50)

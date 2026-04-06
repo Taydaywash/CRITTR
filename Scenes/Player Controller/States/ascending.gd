@@ -63,7 +63,7 @@ func process_physics(delta) -> State:
 		if star and star.player_inside and star.jump_available:
 			if jump_input_buffer.time_left:
 				star.deactivate()
-				return jumping_state
+				return star_bounce_state
 	
 	if player.velocity.y > 0:
 		return falling_state

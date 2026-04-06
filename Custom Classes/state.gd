@@ -50,6 +50,7 @@ var no_control_no_gravity_state : State
 var death_state : State
 var spawning_state : State
 var jumping_state : State
+var star_bounce_state : State
 var crouching_state : State
 var idle_crouching_state : State
 var idle_state : State
