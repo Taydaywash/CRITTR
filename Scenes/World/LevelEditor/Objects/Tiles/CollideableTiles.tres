@@ -572,6 +572,20 @@ texture_region_size = Vector2i(128, 128)
 2:2/0/z_index = -1
 2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_213ja"]
+resource_name = "PeakPlatforms"
+texture = ExtResource("4_833lq")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, 0, -64, 0)
+0:0/0/physics_layer_2/polygon_0/one_way = true
+1:0/0 = 0
+1:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, 0, -64, 0)
+1:0/0/physics_layer_2/polygon_0/one_way = true
+2:0/0 = 0
+2:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, 0, -64, 0)
+2:0/0/physics_layer_2/polygon_0/one_way = true
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m8soc"]
 texture = ExtResource("4_833lq")
 texture_region_size = Vector2i(128, 128)
@@ -2917,3 +2931,4 @@ sources/5 = SubResource("TileSetAtlasSource_833lq")
 sources/12 = SubResource("TileSetAtlasSource_8p2cl")
 sources/11 = SubResource("TileSetAtlasSource_6eyha")
 sources/13 = SubResource("TileSetAtlasSource_3lt27")
+sources/14 = SubResource("TileSetAtlasSource_213ja")
