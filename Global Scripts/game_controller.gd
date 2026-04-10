@@ -10,6 +10,16 @@ var abilities_unlocked: Dictionary = {
 	"bounce" : false,
 }
 
+var entries_unlocked: Dictionary = {
+	"Crittrs/Rabbit": true,
+	"Crittrs/Frog": true,
+	"Abilities/Dash": true,
+	"Abilities/Grapple": true,
+	"World/The Arctic": true,
+	"World/Toxic Marsh": true,
+	"Other/Collectables": true,
+}
+
 var BASE_GAME_STATE : Dictionary = {
 	"collected_ids": {},
 	"viewed_tutorial_text": {},
@@ -17,6 +27,7 @@ var BASE_GAME_STATE : Dictionary = {
 	"revealed_walls": {},
 	"current_abilities": [],
 	"abilities_unlocked": abilities_unlocked.duplicate(),
+	"entries_unlocked": entries_unlocked.duplicate(),
 	"last_respawn_point": Vector2.ZERO,
 	"total_collectables": 0
 }
@@ -51,6 +62,10 @@ func _ready():
 		game_state.revealed_walls[wall_id] = null #way of making a set using dict
 		SaveLoadManager.save_game(game_state)
 		)
+	EventController.connect("unlock_entry", func unlock_entry(key: String):
+		game_state.entries_unlocked[key] = true
+		SaveLoadManager.save_game(game_state)
+	)
 	#reset_game()
 
 func collectable_collected(id: String, value: int) -> void:
@@ -64,10 +79,16 @@ func is_collected(id: String) -> bool:
 	return game_state.collected_ids.has(id)
 func get_abilities_unlocked() -> Dictionary:
 	return game_state.abilities_unlocked.duplicate()
+func get_unlocked_entries() -> Dictionary:
+	return game_state.entries_unlocked.duplicate()
 func get_current_abilities() -> Array:
 	return game_state.current_abilities.duplicate(true)
 func restore_state():
-	game_state = SaveLoadManager.load_game()
+	var loaded = SaveLoadManager.load_game()
+	game_state = BASE_GAME_STATE.duplicate(true)
+	for key in loaded:
+		game_state[key] = loaded[key]
+	#game_state = SaveLoadManager.load_game()
 func reset_game():
 	game_state = BASE_GAME_STATE
 	SaveLoadManager.reset_game()

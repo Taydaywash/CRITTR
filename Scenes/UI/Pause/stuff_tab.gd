@@ -27,18 +27,6 @@ var categories: Array[Dictionary] = [
 				"image_path": "",
 				"locked": false,
 			},
-			{
-				"title": "???",
-				"body_text": "",  
-				"image_path": "",
-				"locked": true,
-			},
-			{
-				"title": "???",
-				"body_text": "",
-				"image_path": "",
-				"locked": true,
-			},
 		],
 	},
 	{
@@ -57,12 +45,6 @@ var categories: Array[Dictionary] = [
 				Placeholder. Placeholder. Placeholder. Placeholder. Placeholder. """,
 				"image_path": "",
 				"locked": false,
-			},
-			{
-				"title": "???",
-				"body_text": "",
-				"image_path": "",
-				"locked": true,
 			},
 		],
 	},
@@ -83,12 +65,6 @@ var categories: Array[Dictionary] = [
 				"image_path": "",
 				"locked": false,
 			},
-			{
-				"title": "???",
-				"body_text": "",
-				"image_path": "",
-				"locked": true,
-			},
 		],
 	},
 	{
@@ -100,12 +76,6 @@ var categories: Array[Dictionary] = [
 				your ships parts have been scattered all across the area. """,
 				"image_path": "",
 				"locked": false,
-			},
-			{
-				"title": "???",
-				"body_text": "",
-				"image_path": "",
-				"locked": true,
 			},
 		],
 	},
@@ -138,11 +108,22 @@ func _ready() -> void:
 	var ui := Control.new()
 	ui.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(ui)
+	apply_unlock_state()
 	build_layout(ui)
 	select_category(0)
+	
+func apply_unlock_state() -> void:
+	var saved: Dictionary = GameController.get_unlocked_entries()
+	for cat in categories:
+		for entry in cat["entries"]:
+			var key: String = cat["name"] + "/" + entry["title"]
+			if saved.has(key):
+				entry["locked"] = not saved[key]
 
-##  get_node("PauseScreen/StuffTab").unlock_entry("Animals", "Wolf")
+##  get_node("PauseScreen/StuffTab").unlock_entry("Crittr", "Frog")
 func unlock_entry(category_name: String, entry_title: String) -> void:
+	var key: String = category_name + "/" + entry_title
+	EventController.emit_signal("unlock_entry", key)
 	for cat in categories:
 		if cat["name"] == category_name:
 			for entry in cat["entries"]:
@@ -288,7 +269,7 @@ func make_entry(cat_idx: int, entry_idx: int, data: Dictionary) -> VBoxContainer
 	row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 	var btn := Button.new()
-	btn.text = data["title"]
+	btn.text = "???" if locked else data["title"]
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	btn.toggle_mode = not locked
 	btn.disabled = locked
