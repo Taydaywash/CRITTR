@@ -9,6 +9,9 @@ extends pause_tab
 # image_path : String — "res://..." or "" for a placeholder color
 # locked : bool — if true it is locked and cannot be opened
 
+# To unlock entry call this: 
+# EventController.emit("unlock_entry", category_name: String, entry_title: String)
+
 var categories: Array[Dictionary] = [
 	{
 		"name": "Crittrs",
@@ -105,6 +108,9 @@ var hint_label: Label
 var entry_nodes: Array = []
 
 func _ready() -> void:
+	EventController.connect("unlock_entry", func(category: String, title: String):
+		unlock_entry(category, title)
+)
 	var ui := Control.new()
 	ui.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(ui)
@@ -122,8 +128,7 @@ func apply_unlock_state() -> void:
 
 ##  get_node("PauseScreen/StuffTab").unlock_entry("Crittr", "Frog")
 func unlock_entry(category_name: String, entry_title: String) -> void:
-	var key: String = category_name + "/" + entry_title
-	EventController.emit_signal("unlock_entry", key)
+	EventController.emit_signal("unlock_entry", category_name, entry_title)
 	for cat in categories:
 		if cat["name"] == category_name:
 			for entry in cat["entries"]:

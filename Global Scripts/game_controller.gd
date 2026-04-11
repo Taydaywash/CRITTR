@@ -11,7 +11,7 @@ var abilities_unlocked: Dictionary = {
 }
 
 var entries_unlocked: Dictionary = {
-	"Crittrs/Rabbit": true,
+	"Crittrs/Rabbit": false,
 	"Crittrs/Frog": true,
 	"Abilities/Dash": true,
 	"Abilities/Grapple": true,
@@ -62,10 +62,11 @@ func _ready():
 		game_state.revealed_walls[wall_id] = null #way of making a set using dict
 		SaveLoadManager.save_game(game_state)
 		)
-	EventController.connect("unlock_entry", func unlock_entry(key: String):
+	EventController.connect("unlock_entry", func(category: String, title: String):
+		var key: String = category + "/" + title
 		game_state.entries_unlocked[key] = true
 		SaveLoadManager.save_game(game_state)
-	)
+)
 	#reset_game()
 
 func collectable_collected(id: String, value: int) -> void:
