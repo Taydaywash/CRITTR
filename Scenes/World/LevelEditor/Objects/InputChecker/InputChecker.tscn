@@ -2,5 +2,21 @@
 
 [ext_resource type="Script" uid="uid://bvq23mfdpcl1v" path="res://Scenes/World/LevelEditor/Objects/InputChecker/input_checker.gd" id="1_x4w5c"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4w5c"]
+size = Vector2(512, 384)
+
 [node name="InputChecker" type="Area2D" unique_id=1734738149]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("1_x4w5c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336906191]
+shape = SubResource("RectangleShape2D_x4w5c")
+debug_color = Color(0.8341381, 0.1890794, 0.83297867, 0.41960785)
+
+[node name="Timer" type="Timer" parent="." unique_id=1946088221]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
