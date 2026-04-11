@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cesp7imm7vll7"]
+
+[ext_resource type="Script" uid="uid://bvq23mfdpcl1v" path="res://Scenes/World/LevelEditor/Objects/InputChecker/input_checker.gd" id="1_x4w5c"]
+
+[node name="InputChecker" type="Area2D" unique_id=1734738149]
+script = ExtResource("1_x4w5c")
