@@ -68,6 +68,10 @@ func process_physics(delta) -> State:
 				line.set_point_position(1, Vector2(0, grapple_current_length))
 		
 		if grapple_ray.is_colliding():
+			print(grapple_ray.get_collider().get_collider_rid())
+			if grapple_ray.get_collider().get_cell_tile_data():
+				line.clear_points()
+				return falling_state
 			match direction:
 				"right":
 					player.velocity.x = grappling_speed
@@ -83,7 +87,7 @@ func process_physics(delta) -> State:
 	elif (!has_collided and grapple_current_length == grapple_max_length):
 		line.clear_points()
 		return falling_state
-	elif (has_collided and player.velocity.x == 0):
+	elif (has_collided and player.velocity == Vector2.ZERO):
 		line.clear_points()
 		return falling_state
 	
