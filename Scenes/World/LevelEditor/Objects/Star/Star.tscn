@@ -1,15 +1,39 @@
 [gd_scene format=3 uid="uid://dmfofsxoyjwgq"]
 
-[ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://Assets/Misc/icon.svg" id="1_3itmo"]
+[ext_resource type="Texture2D" uid="uid://dahttcw7wtag3" path="res://Assets/Level Editor/Objects/StarJump/Star.png" id="1_y1cfr"]
 [ext_resource type="Script" uid="uid://bjl7cvjerweh5" path="res://Scenes/World/LevelEditor/Objects/Star/star.gd" id="2_y1cfr"]
+[ext_resource type="Texture2D" uid="uid://1yl4eif1rq1x" path="res://Assets/Animations/Player/Dash/dash.png" id="3_u20jq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvrqg"]
+atlas = ExtResource("1_y1cfr")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u20jq"]
+atlas = ExtResource("1_y1cfr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o4elq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvrqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u20jq")
+}],
+"loop": false,
+"name": &"flicker",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35ovn"]
-size = Vector2(144, 144)
+size = Vector2(106.666664, 106.666664)
 
-[node name="Star" type="Sprite2D" unique_id=146781011 groups=["jump_zone"]]
+[node name="Star" type="AnimatedSprite2D" unique_id=1826076857 groups=["jump_zone"]]
 self_modulate = Color(1, 1, 0.15686275, 1)
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("1_3itmo")
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_o4elq")
+animation = &"flicker"
 script = ExtResource("2_y1cfr")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1615259662]
@@ -17,10 +41,16 @@ collision_layer = 8224
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=581277129]
+position = Vector2(-1.5894572e-06, -1.5894572e-06)
 shape = SubResource("RectangleShape2D_35ovn")
 
 [node name="Timer" type="Timer" parent="." unique_id=1733015731]
 one_shot = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=654489550]
+energy = 0.3
+texture = ExtResource("3_u20jq")
+texture_scale = 1.65
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
