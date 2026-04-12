@@ -52,6 +52,7 @@ folder_colors={
 
 jump_zone=""
 player=""
+camera=""
 
 [input]
 
