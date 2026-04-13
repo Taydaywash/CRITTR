@@ -49,9 +49,10 @@ func activate(last_state : State) -> void:
 	if last_state != crouching_state:
 		sprite.scale.y = y_initial_sprite_stretch_multiplier
 		sprite.scale.x = x_initial_sprite_stretch_multiplier
-	look_down_delay_timer.start()
-	await look_down_delay_timer.timeout
-	camera_reference.position.y = camera_offset
+	if Input.is_action_pressed("move_down"):
+		look_down_delay_timer.start()
+		await look_down_delay_timer.timeout
+		camera_reference.position.y = camera_offset
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump") and player.is_on_floor() and can_uncrouch():
