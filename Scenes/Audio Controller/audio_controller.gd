@@ -30,6 +30,11 @@ func play_sound(sfx : AudioStream, min_pitch : float = 0.7, max_pitch : float = 
 	await sfx_player.finished
 	sfx_player.queue_free()
 
+func enable_low_pass():
+	AudioServer.set_bus_effect_enabled(1,0,true)
+func disable_low_pass():
+	AudioServer.set_bus_effect_enabled(1,0,false)
+
 func change_master_volume_to(value: float):
 	AudioServer.set_bus_volume_linear(0,value)
 func change_music_volume_to(value: float):

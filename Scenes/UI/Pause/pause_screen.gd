@@ -59,6 +59,7 @@ func toggle_pause(from_save_point : bool = false, starting_tab : String = "dna")
 		used_save_point = true
 	paused = !paused
 	if paused:
+		audio_controller.enable_low_pass()
 		visible = true
 		animation_player.play("open_pause_menu")
 	else:
@@ -76,6 +77,7 @@ func toggle_pause(from_save_point : bool = false, starting_tab : String = "dna")
 
 	get_tree().paused = paused
 	if not paused:
+		audio_controller.disable_low_pass()
 		await animation_player.animation_finished
 		dna_button.grab_focus()
 		show_layer(dna_tab)

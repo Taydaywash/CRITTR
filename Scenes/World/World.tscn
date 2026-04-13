@@ -2022,6 +2022,7 @@ map_color = Color(1, 0.74509805, 0, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
 
 [node name="StardustPeakBackground" type="Node2D" parent="Rooms/StardustPeak" unique_id=667908177]
+visible = false
 
 [node name="Parallax2D" type="Parallax2D" parent="Rooms/StardustPeak/StardustPeakBackground" unique_id=1417883992]
 scroll_scale = Vector2(0.12, 0)
