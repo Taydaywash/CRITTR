@@ -7,9 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_xvbs3"]
 [ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Tools/level_bounds_auto_center_tool.gd" id="7_5lg3d"]
 [ext_resource type="PackedScene" uid="uid://dmfofsxoyjwgq" path="res://Scenes/World/LevelEditor/Objects/Star/Star.tscn" id="7_mvu2o"]
+[ext_resource type="Script" uid="uid://r63htp46ehug" path="res://Scenes/World/LevelEditor/Objects/EditorNotes/EditorNotes.gd" id="8_rfsd1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p21bd"]
 size = Vector2(4608, 5120)
+
+[sub_resource type="LabelSettings" id="LabelSettings_60yy7"]
+font_size = 80
 
 [node name="Room2" type="Node2D" unique_id=721111038]
 script = ExtResource("1_w30of")
@@ -67,6 +71,25 @@ position = Vector2(-448, -1472)
 
 [node name="Star8" parent="." unique_id=1406285395 instance=ExtResource("7_mvu2o")]
 position = Vector2(-768, -1536)
+
+[node name="Editor Notes" type="Control" parent="." unique_id=1810229961]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_rfsd1")
+
+[node name="Label" type="Label" parent="Editor Notes" unique_id=851262447]
+layout_mode = 0
+offset_left = -1856.0
+offset_top = -768.0
+offset_right = -43.0
+offset_bottom = -319.0
+text = "Ability combos:
+^ Grapple, v any, < Grapple, > Dash
+^ Dash, v any, < any, > Dash
+^ Dash, v any, < Grapple, > Grapple"
+label_settings = SubResource("LabelSettings_60yy7")
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]
