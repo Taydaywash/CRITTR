@@ -62,6 +62,7 @@
 [ext_resource type="PackedScene" uid="uid://cagiuhwdbmyso" path="res://Scenes/World/Regions/Stardust Peak/PeakEnterFromCrashSite.tscn" id="53_i3env"]
 [ext_resource type="Texture2D" uid="uid://d32yuf72l022w" path="res://Assets/Decals/Peak/starbg.png" id="54_2shhw"]
 [ext_resource type="PackedScene" uid="uid://c3pylhdry0xgb" path="res://Scenes/World/Regions/Cloud Temple/TempleDoor.tscn" id="54_jvctc"]
+[ext_resource type="PackedScene" uid="uid://jyh3c7065kv" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent2.tscn" id="55_2shhw"]
 [ext_resource type="PackedScene" uid="uid://2m0v2mi16lcm" path="res://Scenes/World/Regions/Cloud Temple/TempleEntrance.tscn" id="55_mt2bu"]
 
 [sub_resource type="Gradient" id="Gradient_dw2uc"]
@@ -2064,6 +2065,9 @@ position = Vector2(-10880, -7616)
 [node name="SaveTube" parent="Rooms/StardustPeak/EnterFromCrashSite" unique_id=76525249 instance=ExtResource("8_hev0n")]
 z_index = -2
 position = Vector2(1984, 2176)
+
+[node name="Ascent1" parent="Rooms/StardustPeak" unique_id=1806150757 instance=ExtResource("55_2shhw")]
+position = Vector2(-10880, -12736)
 
 [node name="CloudTemple" type="Node" parent="Rooms" unique_id=873201279]
 script = ExtResource("6_lqys3")
