@@ -9,27 +9,36 @@ var is_open: bool = false
 
 func _ready() -> void: 
 	get_parent().get_node("InputChecker").sequence_matched.connect(matched)
-	close_trigger.monitoring = false
-	passed_trigger.monitoring = false
+	close_trigger.set_deferred("monitoring", false)
+	passed_trigger.set_deferred("monitoring", false)
 	
 func matched() -> void:
 	if not is_open:
-		is_open = true
-		camera.trigger_shake(10.0)
-		passed_trigger.monitoring = true
+		camera.trigger_shake(6.0)
 		animation_player.play("open")
+		await animation_player.animation_finished
+		is_open = true
+		passed_trigger.set_deferred("monitoring", true)
 	
 func close() -> void:
 	if is_open: 
-		is_open = false
-		close_trigger.monitoring = false
+		camera.trigger_shake(6.0)
 		animation_player.play_backwards("open")
+		await animation_player.animation_finished
+		is_open = false
+		close_trigger.set_deferred("monitoring", false)
 
 func _on_door_close_trigger_body_entered(body):
+	print("closes")
 	if body is Player:
 		close()
 
 func _on_door_passed_trigger_body_entered(body):
+	print("passed")
 	if body is Player:
-		close_trigger.monitoring = true
-		passed_trigger.monitoring = false
+		close_trigger.set_deferred("monitoring", true)
+		passed_trigger.set_deferred("monitoring", false)
+
+
+func _on_open_door_trigger_body_entered(_body: Node2D) -> void:
+	matched()

@@ -31,8 +31,8 @@ func register_input(action_name: String) -> void:
 
 func check_sequences() -> void:
 	var length: int = sequences.size()
-	print("Buffer: ", input_buffer)  # add this
-	print("Expecting: ", sequences)  # add this
+	#print("Buffer: ", input_buffer)  # add this
+	#print("Expecting: ", sequences)  # add this
 	if input_buffer.size() < length:
 		return
 	var tail = input_buffer.slice(input_buffer.size() - length)
@@ -44,13 +44,11 @@ func check_sequences() -> void:
 
 func _on_body_entered(body):
 	if body is Player:
-		print("entered")
 		player_inside = true
 		input_buffer.clear()
 
 func _on_body_exited(body):
 	if body is Player:
-		print("exitted")
 		player_inside = false
 		input_buffer.clear()
 		$Timer.stop()
