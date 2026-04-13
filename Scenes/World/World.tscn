@@ -45,7 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://c0yxdqvvnh8u3" path="res://Assets/Decals/Marsh/Background/BigLeafPlant.png" id="36_0hcbc"]
 [ext_resource type="PackedScene" uid="uid://bfvw3u7lagu3r" path="res://Scenes/World/Regions/Toxic Marsh/WallSteam2.tscn" id="36_150fk"]
 [ext_resource type="PackedScene" uid="uid://f4g8bo43v373" path="res://Scenes/World/Regions/Toxic Marsh/Ascent.tscn" id="36_k3b55"]
-[ext_resource type="Script" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
+[ext_resource type="Script" uid="uid://debb4cff3jagh" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
 [ext_resource type="Texture2D" uid="uid://dlb8x8m772hoq" path="res://Assets/Decals/Marsh/Background/MedLeafPlant.png" id="37_4kbg2"]
 [ext_resource type="PackedScene" uid="uid://bm3kvosdi8puf" path="res://Scenes/World/Regions/Toxic Marsh/Endurance2.tscn" id="37_150fk"]
 [ext_resource type="PackedScene" uid="uid://bc75uokokv1wd" path="res://Scenes/UI/crittr_catcher.tscn" id="38_hb1o8"]
@@ -57,12 +57,13 @@
 [ext_resource type="Script" uid="uid://bfgeg66mnkl4x" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_choicer_handler.gd" id="41_rgk46"]
 [ext_resource type="PackedScene" uid="uid://b37w5ehcx43d6" path="res://Scenes/World/Regions/Toxic Marsh/GrappleDen.tscn" id="42_kcg70"]
 [ext_resource type="PackedScene" uid="uid://duc72rfl0kqfl" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/AcidFrogDen.tscn" id="43_44hbs"]
-[ext_resource type="Script" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/acid_den_choicer.gd" id="44_tejqv"]
+[ext_resource type="Script" uid="uid://ytr5q3hl5ncj" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/acid_den_choicer.gd" id="44_tejqv"]
 [ext_resource type="PackedScene" uid="uid://bkru2b6d01p7k" path="res://Scenes/World/Regions/Toxic Marsh/Hooks.tscn" id="46_k3b55"]
 [ext_resource type="PackedScene" uid="uid://cagiuhwdbmyso" path="res://Scenes/World/Regions/Stardust Peak/PeakEnterFromCrashSite.tscn" id="53_i3env"]
 [ext_resource type="Texture2D" uid="uid://d32yuf72l022w" path="res://Assets/Decals/Peak/starbg.png" id="54_2shhw"]
 [ext_resource type="PackedScene" uid="uid://c3pylhdry0xgb" path="res://Scenes/World/Regions/Cloud Temple/TempleDoor.tscn" id="54_jvctc"]
-[ext_resource type="PackedScene" uid="uid://jyh3c7065kv" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent2.tscn" id="55_2shhw"]
+[ext_resource type="AudioStream" uid="uid://c4r0cnhyulj5n" path="res://Assets/Music/StardustPeak.mp3" id="54_qf2ks"]
+[ext_resource type="PackedScene" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent2.tscn" id="55_2shhw"]
 [ext_resource type="PackedScene" uid="uid://2m0v2mi16lcm" path="res://Scenes/World/Regions/Cloud Temple/TempleEntrance.tscn" id="55_mt2bu"]
 
 [sub_resource type="Gradient" id="Gradient_dw2uc"]
@@ -267,7 +268,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("ToxicMarsh/Room2")
+starting_room = NodePath("StardustPeak/EnterFromCrashSite")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -2016,44 +2017,43 @@ flip_h = true
 
 [node name="StardustPeak" type="Node" parent="Rooms" unique_id=1537704255]
 script = ExtResource("6_lqys3")
-music = ExtResource("7_qs546")
+music = ExtResource("54_qf2ks")
 map_color = Color(1, 0.74509805, 0, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
 
-[node name="CrashSiteBackground" type="Node2D" parent="Rooms/StardustPeak" unique_id=667908177]
-visible = false
+[node name="StardustPeakBackground" type="Node2D" parent="Rooms/StardustPeak" unique_id=667908177]
 
-[node name="Parallax2D" type="Parallax2D" parent="Rooms/StardustPeak/CrashSiteBackground" unique_id=1417883992]
+[node name="Parallax2D" type="Parallax2D" parent="Rooms/StardustPeak/StardustPeakBackground" unique_id=1417883992]
 scroll_scale = Vector2(0.12, 0)
 scroll_offset = Vector2(0, 500)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Rooms/StardustPeak/CrashSiteBackground/Parallax2D" unique_id=145355581]
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/StardustPeak/StardustPeakBackground/Parallax2D" unique_id=145355581]
 z_index = -10
 position = Vector2(963, 128)
 rotation = 1.5707964
 texture = SubResource("GradientTexture2D_qf2ks")
 
-[node name="Parallax2D2" type="Parallax2D" parent="Rooms/StardustPeak/CrashSiteBackground" unique_id=1607651825]
+[node name="Parallax2D2" type="Parallax2D" parent="Rooms/StardustPeak/StardustPeakBackground" unique_id=1607651825]
 scroll_scale = Vector2(1, 0.5)
 repeat_size = Vector2(1920, 1080)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Rooms/StardustPeak/CrashSiteBackground/Parallax2D2" unique_id=1846792921]
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/StardustPeak/StardustPeakBackground/Parallax2D2" unique_id=1846792921]
 z_index = -9
 position = Vector2(977, 0)
 scale = Vector2(1, 1.5999994)
 texture = ExtResource("54_2shhw")
 
-[node name="Parallax2D3" type="Parallax2D" parent="Rooms/StardustPeak/CrashSiteBackground" unique_id=1637094214]
+[node name="Parallax2D3" type="Parallax2D" parent="Rooms/StardustPeak/StardustPeakBackground" unique_id=1637094214]
 modulate = Color(1, 1, 1, 0.5568628)
 scroll_scale = Vector2(1, 0.3)
 scroll_offset = Vector2(0, 0.5)
 repeat_size = Vector2(1920, 1080)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Rooms/StardustPeak/CrashSiteBackground/Parallax2D3" unique_id=614349680]
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/StardustPeak/StardustPeakBackground/Parallax2D3" unique_id=614349680]
 z_index = -9
 position = Vector2(977, 0)
 scale = Vector2(1, 1.5999994)
