@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjl8qsci756p5"
-path="res://.godot/imported/toxicwater.png-39fcee6899f822f78f66d12eb5b233be.ctex"
+uid="uid://d32yuf72l022w"
+path="res://.godot/imported/starbg.png-55706da7f3e284688b4287a7023c66cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Level Editor/Tilesets/Spikes/toxicwater.png"
-dest_files=["res://.godot/imported/toxicwater.png-39fcee6899f822f78f66d12eb5b233be.ctex"]
+source_file="res://Assets/Decals/Peak/starbg.png"
+dest_files=["res://.godot/imported/starbg.png-55706da7f3e284688b4287a7023c66cc.ctex"]
 
 [params]
 
