@@ -63,8 +63,8 @@
 [ext_resource type="Texture2D" uid="uid://d32yuf72l022w" path="res://Assets/Decals/Peak/starbg.png" id="54_2shhw"]
 [ext_resource type="PackedScene" uid="uid://c3pylhdry0xgb" path="res://Scenes/World/Regions/Cloud Temple/TempleDoor.tscn" id="54_jvctc"]
 [ext_resource type="AudioStream" uid="uid://c4r0cnhyulj5n" path="res://Assets/Music/StardustPeak.mp3" id="54_qf2ks"]
-[ext_resource type="PackedScene" uid="uid://dpmi8epjb6n6m" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent1.tscn" id="55_2shhw"]
 [ext_resource type="PackedScene" uid="uid://2m0v2mi16lcm" path="res://Scenes/World/Regions/Cloud Temple/TempleEntrance.tscn" id="55_mt2bu"]
+[ext_resource type="PackedScene" uid="uid://chw8hqqtntr1r" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent.tscn" id="57_cpbbu"]
 [ext_resource type="PackedScene" uid="uid://dpmi8epjb6n6m" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent2.tscn" id="58_cpbbu"]
 
 [sub_resource type="Gradient" id="Gradient_dw2uc"]
@@ -2068,7 +2068,7 @@ position = Vector2(-10880, -7616)
 z_index = -2
 position = Vector2(1984, 2176)
 
-[node name="Ascent1" parent="Rooms/StardustPeak" unique_id=1949691803 instance=ExtResource("55_2shhw")]
+[node name="Ascent1" parent="Rooms/StardustPeak" unique_id=606333943 instance=ExtResource("57_cpbbu")]
 position = Vector2(-10880, -12736)
 
 [node name="Ascent2" parent="Rooms/StardustPeak" unique_id=2072174143 instance=ExtResource("58_cpbbu")]
