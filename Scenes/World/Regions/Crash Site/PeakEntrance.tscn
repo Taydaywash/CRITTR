@@ -9,6 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://bwgk51grjehh6" path="res://Scenes/World/LevelEditor/Objects/GrapplePoints/GrapplePoint.tscn" id="6_jfe0q"]
 [ext_resource type="Script" uid="uid://r63htp46ehug" path="res://Scenes/World/LevelEditor/Objects/EditorNotes/EditorNotes.gd" id="7_4p1f5"]
 
+[sub_resource type="Gradient" id="Gradient_5tghv"]
+offsets = PackedFloat32Array(0, 0.24375, 0.625, 0.8625)
+colors = PackedColorArray(0.11764706, 0.14117648, 0.32156864, 1, 0.2263734, 0.119600005, 0.52, 0.5529412, 0.81, 0.44550002, 0.8039249, 0.23921569, 0.91, 0.72800004, 0.84326667, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d40qa"]
+gradient = SubResource("Gradient_5tghv")
+width = 5000
+height = 1920
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ox1ul"]
 size = Vector2(4608, 4608)
 
@@ -17,6 +26,13 @@ font_size = 80
 
 [node name="Room2" type="Node2D" unique_id=721111038]
 script = ExtResource("1_fg0kb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=311365549]
+z_index = -10
+position = Vector2(18.780783, 60.599434)
+rotation = 1.5707964
+scale = Vector2(0.9501603, 2.4276989)
+texture = SubResource("GradientTexture2D_d40qa")
 
 [node name="RespawnPoint" parent="." unique_id=262928423 instance=ExtResource("2_eum0n")]
 position = Vector2(2112, 1536)

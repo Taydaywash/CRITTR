@@ -5,10 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://8ykotcb867ae" path="res://Scenes/World/LevelEditor/Objects/Tiles/NoCollisionTiles.tscn" id="3_h4fs3"]
 [ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://Scenes/World/LevelEditor/Objects/Tiles/CollideableTiles.tscn" id="4_s3kil"]
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_o7qgb"]
+[ext_resource type="Script" uid="uid://r63htp46ehug" path="res://Scenes/World/LevelEditor/Objects/EditorNotes/EditorNotes.gd" id="7_5x6pu"]
 [ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Tools/level_bounds_auto_center_tool.gd" id="7_6p3ud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_et4r4"]
 size = Vector2(4608, 5120)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oraqe"]
+font_size = 80
 
 [node name="Room2" type="Node2D" unique_id=721111038]
 script = ExtResource("1_1dhxh")
@@ -42,6 +46,25 @@ z_index = 1
 shape = SubResource("RectangleShape2D_et4r4")
 debug_color = Color(1, 1, 1, 0.21568628)
 script = ExtResource("7_6p3ud")
+
+[node name="Editor Notes" type="Control" parent="." unique_id=1118366926]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_5x6pu")
+
+[node name="Label" type="Label" parent="Editor Notes" unique_id=1568986904]
+layout_mode = 0
+offset_left = -1856.0
+offset_top = -768.0
+offset_right = -43.0
+offset_bottom = -319.0
+text = "Ability combos:
+^ Dash, > Dash
+^ Grapple
+"
+label_settings = SubResource("LabelSettings_oraqe")
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]
