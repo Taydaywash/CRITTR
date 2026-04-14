@@ -63,7 +63,7 @@
 [ext_resource type="Texture2D" uid="uid://d32yuf72l022w" path="res://Assets/Decals/Peak/starbg.png" id="54_2shhw"]
 [ext_resource type="PackedScene" uid="uid://c3pylhdry0xgb" path="res://Scenes/World/Regions/Cloud Temple/TempleDoor.tscn" id="54_jvctc"]
 [ext_resource type="AudioStream" uid="uid://c4r0cnhyulj5n" path="res://Assets/Music/StardustPeak.mp3" id="54_qf2ks"]
-[ext_resource type="PackedScene" uid="uid://jyh3c7065kv" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent1.tscn" id="55_2shhw"]
+[ext_resource type="PackedScene" uid="uid://dpmi8epjb6n6m" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent1.tscn" id="55_2shhw"]
 [ext_resource type="PackedScene" uid="uid://2m0v2mi16lcm" path="res://Scenes/World/Regions/Cloud Temple/TempleEntrance.tscn" id="55_mt2bu"]
 [ext_resource type="PackedScene" uid="uid://dpmi8epjb6n6m" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent2.tscn" id="58_cpbbu"]
 
@@ -118,12 +118,12 @@ colors = PackedColorArray(0.64705884, 0.7176471, 0.4, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4kbg2"]
 gradient = SubResource("Gradient_vdgnt")
 
-[sub_resource type="Gradient" id="Gradient_oi7i0"]
+[sub_resource type="Gradient" id="Gradient_cpbbu"]
 offsets = PackedFloat32Array(0, 0.24375, 0.625, 0.8625)
 colors = PackedColorArray(0.11764706, 0.14117648, 0.32156864, 1, 0.23137255, 0.12156863, 0.52156866, 1, 0.80784315, 0.44705883, 0.8, 1, 0.9137255, 0.73333335, 0.84705883, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qf2ks"]
-gradient = SubResource("Gradient_oi7i0")
+gradient = SubResource("Gradient_cpbbu")
 width = 5000
 height = 1920
 
@@ -2068,10 +2068,10 @@ position = Vector2(-10880, -7616)
 z_index = -2
 position = Vector2(1984, 2176)
 
-[node name="Ascent1" parent="Rooms/StardustPeak" unique_id=1806150757 instance=ExtResource("55_2shhw")]
+[node name="Ascent1" parent="Rooms/StardustPeak" unique_id=1949691803 instance=ExtResource("55_2shhw")]
 position = Vector2(-10880, -12736)
 
-[node name="Ascent2" parent="Rooms/StardustPeak" unique_id=412029467 instance=ExtResource("58_cpbbu")]
+[node name="Ascent2" parent="Rooms/StardustPeak" unique_id=2072174143 instance=ExtResource("58_cpbbu")]
 position = Vector2(-10880, -17856)
 
 [node name="CloudTemple" type="Node" parent="Rooms" unique_id=873201279]
