@@ -64,9 +64,10 @@
 [ext_resource type="PackedScene" uid="uid://c3pylhdry0xgb" path="res://Scenes/World/Regions/Cloud Temple/TempleDoor.tscn" id="54_jvctc"]
 [ext_resource type="AudioStream" uid="uid://c4r0cnhyulj5n" path="res://Assets/Music/StardustPeak.mp3" id="54_qf2ks"]
 [ext_resource type="PackedScene" uid="uid://2m0v2mi16lcm" path="res://Scenes/World/Regions/Cloud Temple/TempleEntrance.tscn" id="55_mt2bu"]
-[ext_resource type="PackedScene" uid="uid://chw8hqqtntr1r" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent.tscn" id="57_cpbbu"]
+[ext_resource type="PackedScene" uid="uid://04jyo4mouahk" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent.tscn" id="57_cpbbu"]
 [ext_resource type="PackedScene" uid="uid://dpmi8epjb6n6m" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent2.tscn" id="58_cpbbu"]
 [ext_resource type="PackedScene" uid="uid://c6bk7jrp4ym3r" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent3.tscn" id="59_o2uig"]
+[ext_resource type="PackedScene" uid="uid://c3laww78x1ovg" path="res://Scenes/World/LevelEditor/Templates/PeakMainPath4.tscn" id="60_h23k6"]
 
 [sub_resource type="Gradient" id="Gradient_dw2uc"]
 offsets = PackedFloat32Array(1)
@@ -2077,6 +2078,14 @@ position = Vector2(-10880, -17856)
 
 [node name="Ascent3" parent="Rooms/StardustPeak" unique_id=1497182953 instance=ExtResource("59_o2uig")]
 position = Vector2(-10880, -22976)
+hidden_room = true
+
+[node name="SaveTube" parent="Rooms/StardustPeak/Ascent3" unique_id=625601514 instance=ExtResource("8_hev0n")]
+z_index = -2
+position = Vector2(-1216, 2176)
+
+[node name="Main4" parent="Rooms/StardustPeak" unique_id=1145047744 instance=ExtResource("60_h23k6")]
+position = Vector2(-15488, -18624)
 
 [node name="CloudTemple" type="Node" parent="Rooms" unique_id=873201279]
 script = ExtResource("6_lqys3")

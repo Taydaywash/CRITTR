@@ -41,6 +41,7 @@ z_index = -1
 
 [node name="Background" parent="." unique_id=355725617 instance=ExtResource("4_guhhy")]
 z_index = -2
+tile_map_data = PackedByteArray("AADy/xQAAgAAAAIAAADy/xMAAgAAAAEAAADy/xIAAgAAAAEAAADy/xEAAgAAAAEAAADy/xAAAgAAAAEAAADy/w8AAgAKAAMAAADz/w8AAgALAAMAAADz/w4AAgALAAAAAADy/w4AAgAKAAAAAADx/w8AAgAIAAMAAADx/w4AAgAIAAAAAAA=")
 
 [node name="defaultPlayerCameraReference" parent="." unique_id=1700913832 instance=ExtResource("6_jmtuc")]
 visible = false

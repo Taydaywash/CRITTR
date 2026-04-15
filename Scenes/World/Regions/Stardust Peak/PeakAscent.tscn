@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://chw8hqqtntr1r"]
+[gd_scene format=4 uid="uid://04jyo4mouahk"]
 
 [ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://Scenes/World/room_controller.gd" id="1_pccsk"]
 [ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://Scenes/World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="2_u33lm"]
