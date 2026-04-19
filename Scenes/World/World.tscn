@@ -67,7 +67,8 @@
 [ext_resource type="PackedScene" uid="uid://04jyo4mouahk" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent.tscn" id="57_cpbbu"]
 [ext_resource type="PackedScene" uid="uid://dpmi8epjb6n6m" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent2.tscn" id="58_cpbbu"]
 [ext_resource type="PackedScene" uid="uid://c6bk7jrp4ym3r" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent3.tscn" id="59_o2uig"]
-[ext_resource type="PackedScene" uid="uid://c3laww78x1ovg" path="res://Scenes/World/LevelEditor/Templates/PeakMainPath4.tscn" id="60_h23k6"]
+[ext_resource type="PackedScene" uid="uid://c3laww78x1ovg" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath4.tscn" id="60_h23k6"]
+[ext_resource type="PackedScene" uid="uid://dfccg54iyyrk2" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath5.tscn" id="60_knfie"]
 
 [sub_resource type="Gradient" id="Gradient_dw2uc"]
 offsets = PackedFloat32Array(1)
@@ -2062,6 +2063,7 @@ z_index = -9
 position = Vector2(977, 0)
 scale = Vector2(1, 1.5999994)
 texture = ExtResource("54_2shhw")
+flip_v = true
 
 [node name="EnterFromCrashSite" parent="Rooms/StardustPeak" unique_id=1408682025 instance=ExtResource("53_i3env")]
 position = Vector2(-10880, -7616)
@@ -2076,6 +2078,16 @@ position = Vector2(-10880, -12736)
 [node name="Ascent2" parent="Rooms/StardustPeak" unique_id=2072174143 instance=ExtResource("58_cpbbu")]
 position = Vector2(-10880, -17856)
 
+[node name="Main4" parent="Rooms/StardustPeak" unique_id=1145047744 instance=ExtResource("60_h23k6")]
+position = Vector2(-15488, -18624)
+
+[node name="Main5" parent="Rooms/StardustPeak" unique_id=1515400931 instance=ExtResource("60_knfie")]
+position = Vector2(-20096, -25280)
+
+[node name="SaveTube" parent="Rooms/StardustPeak/Main5" unique_id=2095833707 instance=ExtResource("8_hev0n")]
+z_index = 0
+position = Vector2(1792, 4736)
+
 [node name="Ascent3" parent="Rooms/StardustPeak" unique_id=1497182953 instance=ExtResource("59_o2uig")]
 position = Vector2(-10880, -22976)
 hidden_room = true
@@ -2083,9 +2095,6 @@ hidden_room = true
 [node name="SaveTube" parent="Rooms/StardustPeak/Ascent3" unique_id=625601514 instance=ExtResource("8_hev0n")]
 z_index = -2
 position = Vector2(-1216, 2176)
-
-[node name="Main4" parent="Rooms/StardustPeak" unique_id=1145047744 instance=ExtResource("60_h23k6")]
-position = Vector2(-15488, -18624)
 
 [node name="CloudTemple" type="Node" parent="Rooms" unique_id=873201279]
 script = ExtResource("6_lqys3")
