@@ -21,7 +21,7 @@ shader_parameter/wave_strength = 0.1
 shader_parameter/distortion = 0.03
 shader_parameter/water_color = Color(0, 0.3, 0.7, 0.45)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5kk1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t56xq"]
 size = Vector2(640, 640)
 
 [node name="Ocean" type="CanvasGroup" unique_id=1779537781]
@@ -43,9 +43,10 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1124854935]
-shape = SubResource("RectangleShape2D_n5kk1")
+shape = SubResource("RectangleShape2D_t56xq")
 
 [node name="BreathTimer" type="Timer" parent="." unique_id=2127096141]
+process_callback = 0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]

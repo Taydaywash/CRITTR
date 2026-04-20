@@ -1988,62 +1988,6 @@ texture = ExtResource("41_4kbg2")
 [node name="Room2" parent="Rooms/ToxicMarsh" unique_id=231607869 instance=ExtResource("54_jvctc")]
 position = Vector2(65024, -6080)
 
-[node name="Miscellaneous" type="Node" parent="Rooms" unique_id=1513619106]
-script = ExtResource("6_lqys3")
-music = ExtResource("7_qs546")
-map_color = Color(1, 0, 0, 1)
-metadata/_custom_type_script = "uid://5wurrbpk32od"
-
-[node name="WeirdJump" parent="Rooms/Miscellaneous" unique_id=1258557933 instance=ExtResource("21_863yi")]
-z_as_relative = false
-position = Vector2(22592, 1920)
-zoom_to_fit = false
-interior_room = true
-hidden_room = false
-
-[node name="SaveTube" parent="Rooms/Miscellaneous/WeirdJump" unique_id=668956422 instance=ExtResource("8_hev0n")]
-z_index = -2
-position = Vector2(-2176, 640)
-
-[node name="BackgroundElements" type="Node2D" parent="Rooms/Miscellaneous/WeirdJump" unique_id=646154312]
-
-[node name="ManyVinesT" type="Sprite2D" parent="Rooms/Miscellaneous/WeirdJump/BackgroundElements" unique_id=1711102797]
-z_index = -2
-z_as_relative = false
-position = Vector2(-960, 832)
-rotation = -3.1415925
-texture = ExtResource("22_c4j8x")
-
-[node name="VinesT" type="Sprite2D" parent="Rooms/Miscellaneous/WeirdJump/BackgroundElements" unique_id=1093083450]
-z_index = -1
-z_as_relative = false
-position = Vector2(320.0005, 0)
-rotation = -3.1415925
-scale = Vector2(0.74816006, 0.7821118)
-texture = ExtResource("24_2neov")
-
-[node name="BigTHill2" type="Sprite2D" parent="Rooms/Miscellaneous/WeirdJump/BackgroundElements" unique_id=447066029]
-modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
-z_index = -3
-z_as_relative = false
-position = Vector2(704, 192)
-texture = ExtResource("29_eoa2q")
-
-[node name="BigTHill3" type="Sprite2D" parent="Rooms/Miscellaneous/WeirdJump/BackgroundElements" unique_id=1170766454]
-modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
-z_index = -3
-z_as_relative = false
-position = Vector2(-1408, 320)
-texture = ExtResource("29_eoa2q")
-
-[node name="VinesT2" type="Sprite2D" parent="Rooms/Miscellaneous/WeirdJump/BackgroundElements" unique_id=949010000]
-z_index = -3
-z_as_relative = false
-position = Vector2(192, 320)
-rotation = -3.1415925
-texture = ExtResource("24_2neov")
-flip_h = true
-
 [node name="StardustPeak" type="Node" parent="Rooms" unique_id=1537704255]
 script = ExtResource("6_lqys3")
 music = ExtResource("54_qf2ks")
@@ -2279,6 +2223,13 @@ position = Vector2(-31616, -11200)
 [node name="SaveTube" parent="Rooms/GlassSea/GlassSeaEnterFromPeak" unique_id=902754513 instance=ExtResource("8_hev0n")]
 z_index = 0
 position = Vector2(4352, 256)
+
+[node name="WeirdJump" parent="Rooms/GlassSea" unique_id=1258557933 instance=ExtResource("21_863yi")]
+z_as_relative = false
+position = Vector2(-39168, -11840)
+zoom_to_fit = false
+interior_room = true
+hidden_room = false
 
 [node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "animation_player", "player_reference", "map") instance=ExtResource("5_o14yy")]
 unique_name_in_owner = true
