@@ -25,7 +25,6 @@ tile_map_data = PackedByteArray("AAD//wkAAwAKAAAAAADu/woAAwAJAAMAAADu/wkAAwAGAAE
 z_index = -1
 
 [node name="Background" parent="." unique_id=355725617 instance=ExtResource("3_2e5dh")]
-z_index = -2
 
 [node name="defaultPlayerCameraReference" parent="." unique_id=1700913832 instance=ExtResource("5_6vusl")]
 visible = false

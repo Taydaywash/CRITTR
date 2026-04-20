@@ -591,6 +591,26 @@ texture_region_size = Vector2i(128, 128)
 2:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-64, -32, 64, -32, 64, 0, -64, 0)
 2:0/0/physics_layer_2/polygon_0/one_way = true
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_anj27"]
+resource_name = "GlassSeaSpikes"
+texture = ExtResource("2_r3612")
+texture_region_size = Vector2i(128, 128)
+2:1/0 = 0
+2:1/0/texture_origin = Vector2i(0, -20)
+2:1/0/z_index = -1
+2:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-64, 32, 64, 32, 64, 96, 64, 96, -64, 96)
+2:2/0 = 0
+2:2/0/z_index = -1
+2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:1/0 = 0
+1:1/0/texture_origin = Vector2i(0, -20)
+1:1/0/z_index = -1
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, 32, 64, 32, 64, 96, -32, 96)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -20)
+2:0/0/z_index = -1
+2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, 32, 32, 32, 32, 96, -32, 96)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m8soc"]
 texture = ExtResource("4_833lq")
 texture_region_size = Vector2i(128, 128)
@@ -2889,3 +2909,4 @@ sources/12 = SubResource("TileSetAtlasSource_8p2cl")
 sources/11 = SubResource("TileSetAtlasSource_6eyha")
 sources/13 = SubResource("TileSetAtlasSource_3lt27")
 sources/14 = SubResource("TileSetAtlasSource_213ja")
+sources/15 = SubResource("TileSetAtlasSource_anj27")
