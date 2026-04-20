@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://djycc6um71t4a" path="res://Scenes/World/LevelEditor/Objects/Ocean/ocean.gd" id="1_b75ng"]
 [ext_resource type="Shader" uid="uid://dvhfgornlgb4q" path="res://Scenes/World/LevelEditor/Objects/Ocean/water.gdshader" id="2_nrcqx"]
+[ext_resource type="AudioStream" uid="uid://dx5wi3isujatq" path="res://Assets/Sound Effects/LevelObjects/Water/water1.mp3" id="2_t56xq"]
+[ext_resource type="PackedScene" uid="uid://q7ugdp4ofe35" path="res://Scenes/Particle Controller/Particles/Player/bubbles.tscn" id="3_t56xq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nrcqx"]
 frequency = 0.001
@@ -19,7 +21,7 @@ shader_parameter/wave_strength = 0.1
 shader_parameter/distortion = 0.03
 shader_parameter/water_color = Color(0, 0.3, 0.7, 0.45)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrcqx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5kk1"]
 size = Vector2(640, 640)
 
 [node name="Ocean" type="CanvasGroup" unique_id=1779537781]
@@ -27,6 +29,10 @@ z_index = 10
 fit_margin = 16.0
 clear_margin = 0.0
 script = ExtResource("1_b75ng")
+water_enter_splash = ExtResource("2_t56xq")
+water_exit_splash = ExtResource("2_t56xq")
+water_enter_particle = ExtResource("3_t56xq")
+water_exit_particle = ExtResource("3_t56xq")
 
 [node name="WaterShape" type="Polygon2D" parent="." unique_id=1670521723]
 material = SubResource("ShaderMaterial_17do7")
@@ -37,7 +43,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1124854935]
-shape = SubResource("RectangleShape2D_nrcqx")
+shape = SubResource("RectangleShape2D_n5kk1")
 
 [node name="BreathTimer" type="Timer" parent="." unique_id=2127096141]
 

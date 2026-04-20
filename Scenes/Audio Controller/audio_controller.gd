@@ -34,6 +34,12 @@ func enable_low_pass():
 	AudioServer.set_bus_effect_enabled(1,0,true)
 func disable_low_pass():
 	AudioServer.set_bus_effect_enabled(1,0,false)
+func enable_water_sound_filters():
+	AudioServer.set_bus_effect_enabled(2,0,true)
+	AudioServer.set_bus_effect_enabled(2,1,true)
+func disable_water_sound_filters():
+	AudioServer.set_bus_effect_enabled(2,0,false)
+	AudioServer.set_bus_effect_enabled(2,1,false)
 
 func change_master_volume_to(value: float):
 	AudioServer.set_bus_volume_linear(0,value)

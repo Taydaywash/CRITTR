@@ -11,6 +11,7 @@ extends Node2D
 @onready var level_bounds: CollisionShape2D = $Area2D/LevelBounds
 @onready var player: Player = $"../../../Player"
 @onready var audio_controller : AudioController = %AudioController
+@onready var particle_controller : ParticleController = %"Particle Controller"
 var camera_boundary_top_left
 var camera_boundary_bottom_right
 var room_visited : bool = false

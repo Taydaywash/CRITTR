@@ -12,8 +12,20 @@ var player_in_water: Node2D = null
 var in_air_pocket: bool = false
 var tween: Tween = null
 
+@onready var room : Room = $".."
+@export_category("Sounds")
+@export var water_enter_splash : AudioStream
+@export var water_exit_splash : AudioStream
+@export_category("Particles")
+@export var water_enter_particle : PackedScene
+@export var water_exit_particle : PackedScene
+
+var audio_controller: AudioController
+var particle_controller: ParticleController
+
 func _ready() -> void:
 	update_shape()
+	room = $".."
 	EventController.connect("player_death", _player_death)
 	EventController.connect("player_respawn", _player_death)
 
@@ -44,13 +56,25 @@ func update_shape() -> void:
 		$Area2D/CollisionShape2D.shape = shape
 
 func _on_body_entered(body: Node2D) -> void:
+	audio_controller = room.audio_controller
+	audio_controller.enable_water_sound_filters()
+	particle_controller = room.particle_controller
 	start_tween(body)
+
 	player_in_water = body
+	particle_controller.spawn_particle($"../../../../Player",water_enter_particle)
+	audio_controller.play_sound(water_enter_splash)
 	start_breath_timer()
 
 func _on_body_exited(body: Node2D) -> void:
+	audio_controller = room.audio_controller
+	audio_controller.disable_water_sound_filters()
+	particle_controller = room.particle_controller
 	end_tween(body)
+	
 	player_in_water = null
+	particle_controller.spawn_particle($"../../../../Player",water_exit_particle)
+	audio_controller.play_sound(water_exit_splash)
 	$BreathTimer.stop()
 
 func _on_breath_timeout() -> void:
@@ -70,11 +94,19 @@ func start_breath_timer() -> void:
 
 func enter_air_pocket(body: Node2D) -> void:
 	end_tween(body)
+	audio_controller = room.audio_controller
+	audio_controller.disable_water_sound_filters()
+	particle_controller.spawn_particle($"../../../../Player",water_exit_particle)
+	audio_controller.play_sound(water_exit_splash)
 	in_air_pocket = true
 	$BreathTimer.stop()
 
 func exit_air_pocket(body: Node2D) -> void:
 	start_tween(body)
+	audio_controller = room.audio_controller
+	audio_controller.enable_water_sound_filters()
+	particle_controller.spawn_particle($"../../../../Player",water_enter_particle)
+	audio_controller.play_sound(water_enter_splash)
 	in_air_pocket = false
 	if player_in_water:
 		start_breath_timer()
