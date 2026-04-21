@@ -678,7 +678,7 @@ enter_particle_when_entering_from_state_state = [NodePath("../../Abilities/Dashi
 enter_particle_when_entering_from_state_particle = Array[PackedScene]([ExtResource("8_avv4g")])
 enter_particle_when_entering_from_state_parent_to_player = Array[bool]([true])
 
-[node name="Falling" type="Node" parent="StateMachine" unique_id=18701263 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left", "exit_sound_excluded_states", "exit_particle_excluded_states")]
+[node name="Falling" type="Node" parent="StateMachine" unique_id=18701263 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "right_ray2", "low_right_ray", "high_right_ray", "left_ray", "left_ray2", "low_left_ray", "high_left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left", "exit_sound_excluded_states", "exit_particle_excluded_states")]
 script = ExtResource("11_v55cd")
 move_speed = 800
 acceleration_speed = 20000
@@ -688,7 +688,13 @@ coyote_time_patience = 0.15
 jump_input_buffer = NodePath("../../JumpInputBuffer")
 jump_input_buffer_patience = 0.2
 right_ray = NodePath("../../WallJumpRayReference/RightRay")
+right_ray2 = NodePath("../../WallJumpRayReference/RightRay2")
+low_right_ray = NodePath("../../LowWallJumpRay/LowRightRay")
+high_right_ray = NodePath("../../HighWallJumpRay/HighRightRay")
 left_ray = NodePath("../../WallJumpRayReference/LeftRay")
+left_ray2 = NodePath("../../WallJumpRayReference/LeftRay2")
+low_left_ray = NodePath("../../LowWallJumpRay/LowLeftRay")
+high_left_ray = NodePath("../../HighWallJumpRay/HighLeftRay")
 nudge_right_range_left = NodePath("../../CornerNudging/NudgeRightRangeLeft")
 nudge_right_range_right = NodePath("../../CornerNudging/NudgeRightRangeRight")
 nudge_left_range_right = NodePath("../../CornerNudging/NudgeLeftRangeLeft")

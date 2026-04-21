@@ -13,7 +13,13 @@ extends State
 @export var jump_input_buffer_patience : float
 @export_category("Wall Jumping Raycasts")
 @export var right_ray: RayCast2D
+@export var right_ray2: RayCast2D
+@export var low_right_ray: RayCast2D
+@export var high_right_ray: RayCast2D
 @export var left_ray: RayCast2D
+@export var left_ray2: RayCast2D
+@export var low_left_ray: RayCast2D
+@export var high_left_ray: RayCast2D
 @export_category("Corner Nudging Raycasts")
 @export var nudge_right_range_left: RayCast2D
 @export var nudge_right_range_right: RayCast2D
@@ -88,7 +94,7 @@ func process_physics(delta) -> State:
 				star.deactivate()
 				return star_bounce_state
 		
-	if (left_ray.is_colliding() or right_ray.is_colliding()):
+	if (left_ray.is_colliding() or left_ray2.is_colliding() or low_left_ray.is_colliding() or high_left_ray.is_colliding() or right_ray.is_colliding() or right_ray2.is_colliding() or high_right_ray.is_colliding() or low_right_ray.is_colliding()):
 		if jump_input_buffer.time_left > 0:
 			return wall_jumping_state
 	if player.is_on_wall() and horizontal_input != 0:
