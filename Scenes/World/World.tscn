@@ -2229,6 +2229,7 @@ position = Vector2(4352, 256)
 
 [node name="Explore1" parent="Rooms/GlassSea" unique_id=2055663519 instance=ExtResource("64_3vk5c")]
 position = Vector2(-33920, -13760)
+zoom_to_fit = true
 
 [node name="WeirdJump" parent="Rooms/GlassSea" unique_id=1258557933 instance=ExtResource("21_863yi")]
 z_as_relative = false
