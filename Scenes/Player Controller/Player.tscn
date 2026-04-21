@@ -722,7 +722,7 @@ grappling_state = NodePath("Grappling")
 climbing_state = NodePath("Climbing")
 drill_state = NodePath("Drill")
 
-[node name="Dashing" type="Node" parent="StateMachine/Abilities" unique_id=868337417 node_paths=PackedStringArray("jump_input_buffer", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left", "right_ray", "left_ray")]
+[node name="Dashing" type="Node" parent="StateMachine/Abilities" unique_id=868337417 node_paths=PackedStringArray("jump_input_buffer", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_right", "nudge_left_range_left", "right_ray", "right_ray_2", "right_ray_high", "right_ray_low", "left_ray", "left_ray_2", "left_ray_high", "left_ray_low")]
 script = ExtResource("12_evkiq")
 icon = ExtResource("19_j8lbh")
 dashing_speed = 2000
@@ -738,7 +738,13 @@ nudge_right_range_right = NodePath("../../../CornerNudging/NudgeRightRangeRight"
 nudge_left_range_right = NodePath("../../../CornerNudging/NudgeLeftRangeRight")
 nudge_left_range_left = NodePath("../../../CornerNudging/NudgeLeftRangeLeft")
 right_ray = NodePath("../../../WallJumpRayReference/RightRay")
+right_ray_2 = NodePath("../../../WallJumpRayReference/RightRay2")
+right_ray_high = NodePath("../../../HighWallJumpRay/HighRightRay")
+right_ray_low = NodePath("../../../LowWallJumpRay/LowRightRay")
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")
+left_ray_2 = NodePath("../../../WallJumpRayReference/LeftRay2")
+left_ray_high = NodePath("../../../HighWallJumpRay/HighLeftRay")
+left_ray_low = NodePath("../../../LowWallJumpRay/LowLeftRay")
 animation_name = "dash"
 placeholder_animation_color = Color(1, 1, 1, 1)
 enter_sound_sounds = Array[AudioStream]([ExtResource("31_rkbq1")])
@@ -791,14 +797,18 @@ line = NodePath("ClimbingRay/Line2D")
 default_hitbox = NodePath("../../../NormalHitbox")
 crouching_hitbox = NodePath("../../../CrouchedHitbox")
 
-[node name="ClimbingSlide" type="Node" parent="StateMachine/Abilities/Climbing" unique_id=988233789 node_paths=PackedStringArray("climbing_ray", "default_hitbox", "crouching_hitbox", "left_ray", "right_ray")]
+[node name="ClimbingSlide" type="Node" parent="StateMachine/Abilities/Climbing" unique_id=988233789 node_paths=PackedStringArray("climbing_ray", "climbing_buffer_state", "default_hitbox", "crouching_hitbox", "ceiling_detection", "floor_detection", "floor_detection_2", "left_ray", "right_ray")]
 script = ExtResource("14_hl1jv")
 jump_input_buffer_patience = 0.2
 max_speed = 2000.0
 speed_increment = 20.0
 climbing_ray = NodePath("../ClimbingRay")
+climbing_buffer_state = NodePath("..")
 default_hitbox = NodePath("../../../../NormalHitbox")
 crouching_hitbox = NodePath("../../../../CrouchedHitbox")
+ceiling_detection = NodePath("../../../../CeilingDetection")
+floor_detection = NodePath("../../../../FloorDetection")
+floor_detection_2 = NodePath("../../../../FloorDetection2")
 left_ray = NodePath("../../../../WallJumpRayReference/LeftRay")
 right_ray = NodePath("../../../../WallJumpRayReference/RightRay")
 placeholder_animation_color = Color(0.30563596, 0.3749689, 0.15632111, 1)
@@ -1185,6 +1195,19 @@ texture = SubResource("GradientTexture2D_rkbq1")
 texture_scale = 5.9
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=394306511]
+
+[node name="CeilingDetection" type="RayCast2D" parent="." unique_id=692757985]
+target_position = Vector2(0, -100)
+
+[node name="FloorDetection" type="RayCast2D" parent="." unique_id=907719085]
+position = Vector2(-35.5, 0)
+target_position = Vector2(0, 100)
+collision_mask = 17
+
+[node name="FloorDetection2" type="RayCast2D" parent="." unique_id=238860509]
+position = Vector2(35.5, 0)
+target_position = Vector2(0, 100)
+collision_mask = 17
 
 [connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Up" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="StateMachine/Abilities/BounceAttack/Down" to="StateMachine/Abilities/BounceAttack" method="_on_area_2d_body_entered"]

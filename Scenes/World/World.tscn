@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://Assets/Decals/Tundra/Background/bg layer tundra 2.png" id="20_3ql1f"]
 [ext_resource type="PackedScene" uid="uid://cyqcaabmh0e7d" path="res://Scenes/World/Regions/Crash Site/ToDash.tscn" id="21_2ytws"]
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Scenes/Audio Controller/AudioController.tscn" id="21_3ql1f"]
-[ext_resource type="PackedScene" uid="uid://djg64wdak2hx4" path="res://Scenes/World/Regions/Crash Site/SecondaryPlatforms.tscn" id="21_863yi"]
+[ext_resource type="PackedScene" uid="uid://djg64wdak2hx4" path="res://Scenes/World/Regions/GlassSea/weirdJump.tscn" id="21_863yi"]
 [ext_resource type="Texture2D" uid="uid://c6owixld7ssqg" path="res://Assets/Decals/Tundra/Background/tundra hill.png" id="21_eucu0"]
 [ext_resource type="Texture2D" uid="uid://cneyuseemoqek" path="res://Assets/Decals/Tundra/Background/many vines t.png" id="22_c4j8x"]
 [ext_resource type="PackedScene" uid="uid://bh54xsgst7ooj" path="res://Scenes/World/Regions/Crash Site/DashTestOfSkill2.tscn" id="23_2wmbs"]
@@ -70,8 +70,11 @@
 [ext_resource type="PackedScene" uid="uid://c3laww78x1ovg" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath4.tscn" id="60_h23k6"]
 [ext_resource type="PackedScene" uid="uid://dfccg54iyyrk2" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath5.tscn" id="60_knfie"]
 [ext_resource type="PackedScene" uid="uid://cxyc2dui8qc3t" path="res://Scenes/World/Regions/Stardust Peak/PeakToSea.tscn" id="62_0a2lt"]
+[ext_resource type="PackedScene" uid="uid://kw0ele6ukenx" path="res://Scenes/World/LevelEditor/Templates/SeaExplore1.tscn" id="64_3vk5c"]
 [ext_resource type="PackedScene" uid="uid://bljjd3lfrfnkb" path="res://Scenes/World/Regions/GlassSea/GlassSeaEnterFromPeak.tscn" id="64_bvw2n"]
 [ext_resource type="PackedScene" uid="uid://c2mrrxh4wsub4" path="res://Scenes/World/Regions/Stardust Peak/PeakTransitionDrop.tscn" id="64_vleej"]
+[ext_resource type="PackedScene" uid="uid://djl8p01as5wfy" path="res://Scenes/World/Regions/GlassSea/wet1.tscn" id="65_1fesm"]
+[ext_resource type="PackedScene" uid="uid://1awc3p5rore7" path="res://Scenes/World/Regions/GlassSea/wet2.tscn" id="66_f8dxr"]
 
 [sub_resource type="Gradient" id="Gradient_dw2uc"]
 offsets = PackedFloat32Array(1)
@@ -2224,12 +2227,21 @@ position = Vector2(-31616, -11200)
 z_index = 0
 position = Vector2(4352, 256)
 
+[node name="Explore1" parent="Rooms/GlassSea" unique_id=2055663519 instance=ExtResource("64_3vk5c")]
+position = Vector2(-33920, -13760)
+
 [node name="WeirdJump" parent="Rooms/GlassSea" unique_id=1258557933 instance=ExtResource("21_863yi")]
 z_as_relative = false
 position = Vector2(-39168, -11840)
 zoom_to_fit = false
-interior_room = true
+interior_room = false
 hidden_room = false
+
+[node name="Wet1" parent="Rooms/GlassSea" unique_id=109912080 instance=ExtResource("65_1fesm")]
+position = Vector2(-44416, -11840)
+
+[node name="Wet2" parent="Rooms/GlassSea" unique_id=1428155619 instance=ExtResource("66_f8dxr")]
+position = Vector2(-51328, -11840)
 
 [node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "animation_player", "player_reference", "map") instance=ExtResource("5_o14yy")]
 unique_name_in_owner = true

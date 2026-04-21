@@ -43,8 +43,9 @@ func activate(last_state : State) -> void:
 	jump_input_buffer.stop()
 	gravity = player.normal_gravity
 	max_falling_speed = player.max_falling_speed
-	player.velocity.y = -wall_jump_vertical_velocity
-	if last_state == dashing_state:
+	if player.velocity.y > -wall_jump_vertical_velocity:
+		player.velocity.y = -wall_jump_vertical_velocity
+	if last_state == dashing_state and dashing_state.direction == "up":
 		player.velocity.y = -wall_dash_jump_vertical_velocity
 		dash_jumping = true
 		

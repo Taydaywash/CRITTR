@@ -20,7 +20,13 @@ extends State
 @export var nudge_left_range_left: RayCast2D
 @export_category("Wall detection Raycasts")
 @export var right_ray: RayCast2D
+@export var right_ray_2: RayCast2D
+@export var right_ray_high: RayCast2D
+@export var right_ray_low: RayCast2D
 @export var left_ray: RayCast2D
+@export var left_ray_2: RayCast2D
+@export var left_ray_high: RayCast2D
+@export var left_ray_low: RayCast2D
 
 var gravity : int
 var max_falling_speed : int
@@ -101,8 +107,9 @@ func process_physics(_delta) -> State:
 	if dive_input_buffer.time_left > 0 and dash_timer.time_left == 0:
 		return diving_state
 	# and player.velocity.y == 0
-	if (left_ray.is_colliding() and direction == "left") or (right_ray.is_colliding() and direction == "right"):
-		return ascending_state
+	if (((left_ray.is_colliding() or left_ray_2.is_colliding() or left_ray_high.is_colliding() or left_ray_low.is_colliding()) and direction == "left") 
+	or ((right_ray.is_colliding() or right_ray_2.is_colliding() or right_ray_high.is_colliding() or right_ray_low.is_colliding()) and direction == "right")):
+		return falling_state
 	if (right_ray.is_colliding() or left_ray.is_colliding()) and (direction == "up" or direction == "down") and jump_input_buffer.time_left:
 		return wall_jumping_state
 	if player.is_on_ceiling():

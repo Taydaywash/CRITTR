@@ -22,6 +22,7 @@ var climbing_input_buffer: Timer
 var direction : String
 var gravity : float
 var max_falling_speed : float
+var pre_slide_velocity : Vector2
 
 func _ready() -> void:
 	climbing_input_buffer = Timer.new()
@@ -33,6 +34,8 @@ func set_direction(ability_direction : String) -> void:
 	direction = ability_direction
 
 func activate(last_state : State) -> void:
+	pre_slide_velocity = player.velocity
+	print(pre_slide_velocity)
 	super(last_state)
 	gravity = player.normal_gravity
 	max_falling_speed = player.max_falling_speed
@@ -46,15 +49,21 @@ func activate(last_state : State) -> void:
 			"right":
 				climbing_ray.target_position = Vector2(push_target_length,0)
 				line.set_point_position(1, Vector2(push_target_length,0))
+				player.position.x += 10
+				player.position.y -= 10
 			"left":
 				climbing_ray.target_position = Vector2(-push_target_length,0)
 				line.set_point_position(1, Vector2(-push_target_length,0))
+				player.position.x -= 10
+				player.position.y -= 10
 			"up":
 				climbing_ray.target_position = Vector2(0, -push_target_length)
 				line.set_point_position(1, Vector2(0, -push_target_length))
+				player.position.y -= 10
 			"down":
 				climbing_ray.target_position = Vector2(0, push_target_length)
 				line.set_point_position(1, Vector2(0, push_target_length))
+				player.position.y += 10
 				
 
 func process_input(_event : InputEvent) -> State:

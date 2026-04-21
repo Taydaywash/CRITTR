@@ -7,18 +7,22 @@ extends State
 
 @export_category("References")
 @export var climbing_ray: RayCast2D
+@export var climbing_buffer_state : State
 
 @export_category("Colliders")
 @export var default_hitbox : CollisionShape2D
 @export var crouching_hitbox : CollisionShape2D
+@export var ceiling_detection : RayCast2D
+@export var floor_detection : RayCast2D
+@export var floor_detection_2 : RayCast2D
 @export var left_ray : RayCast2D
 @export var right_ray : RayCast2D
 
 var jump_input_buffer: Timer
 var climbing_input_buffer: Timer
 var direction : String
-var one_frame_passed : bool = false
 var last_position: Vector2
+var pre_velocity_speed_set: bool = false
 
 func _ready() -> void:
 	#Input buffer setup:
@@ -33,8 +37,22 @@ func set_direction(ability_direction : String) -> void:
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:c
 	change_collider_to(crouching_hitbox)
-	player.set_collision_mask_value(6,false)
-	one_frame_passed = false
+	match direction:
+		"up":
+			player.velocity.x = climbing_buffer_state.pre_slide_velocity.x
+			player.velocity.y = -10
+		"down":
+			player.velocity.x = climbing_buffer_state.pre_slide_velocity.x
+			player.velocity.y = 10
+		"right":
+			player.velocity.y = climbing_buffer_state.pre_slide_velocity.y
+			player.velocity.x = 10
+		"left":
+			player.velocity.y = climbing_buffer_state.pre_slide_velocity.y
+			player.velocity.x = -10
+	if player.velocity.y > 500:
+		player.velocity.y = 500
+	pre_velocity_speed_set = true
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -44,36 +62,36 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(_delta) -> State:
+	player.move_and_slide()
+	if not pre_velocity_speed_set:
+		return
 	match direction:
 		"up":
-			player.velocity.y = -speed_increment
+			player.velocity.y = -10
 		"down":
-			player.velocity.y = speed_increment
+			player.velocity.y = 10
 		"right":
-			player.velocity.x = speed_increment
+			player.velocity.x = 10
 		"left":
-			player.velocity.x = -speed_increment
-	
-	player.move_and_slide()
-
-	if direction == "down" and player.is_on_floor():
+			player.velocity.x = -10
+	if direction == "down" and (player.is_on_floor() or floor_detection.is_colliding()):
 		if sprite.flip_h == true:
 			player.velocity.x = move_toward(player.velocity.x, -max_speed, speed_increment)
 			climbing_ray.target_position = Vector2(-30,0)
 		elif sprite.flip_h == false: 
 			player.velocity.x = move_toward(player.velocity.x, max_speed, speed_increment)
 			climbing_ray.target_position = Vector2(30,0)
-	elif direction == "up" and player.is_on_ceiling():
+	elif direction == "up" and (player.is_on_ceiling() or ceiling_detection.is_colliding()):
 		if sprite.flip_h == true:
 			player.velocity.x = move_toward(player.velocity.x, -max_speed, speed_increment)
 			climbing_ray.target_position = Vector2(-30,0)
 		elif sprite.flip_h == false: 
 			player.velocity.x = move_toward(player.velocity.x, max_speed, speed_increment)
 			climbing_ray.target_position = Vector2(30,0)
-	elif direction == "right" and player.is_on_wall():
+	elif direction == "right" and (player.is_on_wall() or right_ray.is_colliding()):
 		player.velocity.y = move_toward(player.velocity.y, -max_speed, speed_increment)
 		climbing_ray.target_position = Vector2(0, -40)
-	elif direction == "left" and player.is_on_wall():
+	elif direction == "left" and (player.is_on_wall() or left_ray.is_colliding()):
 		player.velocity.y = move_toward(player.velocity.y, -max_speed, speed_increment)
 		climbing_ray.target_position = Vector2(0, -40)
 	elif jump_input_buffer.time_left > 0:
@@ -86,22 +104,29 @@ func process_physics(_delta) -> State:
 		return falling_state
 		
 	if jump_input_buffer.time_left > 0:
+		match direction:
+			"up":
+				if floor_detection.is_colliding() or floor_detection_2.is_colliding():
+					return
+			"down":
+				if ceiling_detection.is_colliding():
+					return
 		if player.is_on_wall() or left_ray.is_colliding() or right_ray.is_colliding():
 			return wall_jumping_state
 		return jumping_state
 		
 	if climbing_ray.is_colliding():
 		return falling_state
-		
-	if one_frame_passed:
-		return null
-	else:
-		one_frame_passed = true
-	
+
 	return null
 
 func deactivate(_next_state) -> void:
 	super(_next_state)
+	match direction:
+		"left":
+			player.position.x += 10
+		"right":
+			player.position.x -= 10
+	pre_velocity_speed_set = false
 	change_collider_to(default_hitbox)
-	player.set_collision_mask_value(6,true)
 	climbing_ray.target_position = Vector2.ZERO
