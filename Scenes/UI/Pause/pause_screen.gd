@@ -14,6 +14,7 @@ extends CanvasLayer
 @export var map : Node2D
 @export var options_tab : Panel
 @export var stuff_tab : Panel
+@onready var ui: UI = %UI
 
 var paused = false
 var current_tab : Panel
@@ -33,7 +34,9 @@ func can_pause() -> bool:
 	return true
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not player_reference.is_on_floor():
+	#if not player_reference.is_on_floor():
+		#return
+	if ui.screen_overlay.modulate.a != 0.0:
 		return
 	if animation_player.is_playing():
 		return

@@ -35,7 +35,6 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(last_state : State) -> void:
 	pre_slide_velocity = player.velocity
-	print(pre_slide_velocity)
 	super(last_state)
 	gravity = player.normal_gravity
 	max_falling_speed = player.max_falling_speed
