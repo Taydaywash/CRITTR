@@ -70,11 +70,13 @@
 [ext_resource type="PackedScene" uid="uid://c3laww78x1ovg" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath4.tscn" id="60_h23k6"]
 [ext_resource type="PackedScene" uid="uid://dfccg54iyyrk2" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath5.tscn" id="60_knfie"]
 [ext_resource type="PackedScene" uid="uid://cxyc2dui8qc3t" path="res://Scenes/World/Regions/Stardust Peak/PeakToSea.tscn" id="62_0a2lt"]
-[ext_resource type="PackedScene" uid="uid://kw0ele6ukenx" path="res://Scenes/World/LevelEditor/Templates/SeaExplore1.tscn" id="64_3vk5c"]
+[ext_resource type="PackedScene" uid="uid://kw0ele6ukenx" path="res://Scenes/World/Regions/GlassSea/SeaExplore1.tscn" id="64_3vk5c"]
 [ext_resource type="PackedScene" uid="uid://bljjd3lfrfnkb" path="res://Scenes/World/Regions/GlassSea/GlassSeaEnterFromPeak.tscn" id="64_bvw2n"]
 [ext_resource type="PackedScene" uid="uid://c2mrrxh4wsub4" path="res://Scenes/World/Regions/Stardust Peak/PeakTransitionDrop.tscn" id="64_vleej"]
 [ext_resource type="PackedScene" uid="uid://djl8p01as5wfy" path="res://Scenes/World/Regions/GlassSea/wet1.tscn" id="65_1fesm"]
 [ext_resource type="PackedScene" uid="uid://1awc3p5rore7" path="res://Scenes/World/Regions/GlassSea/wet2.tscn" id="66_f8dxr"]
+[ext_resource type="PackedScene" uid="uid://dw8x2kn1v0can" path="res://Scenes/World/Regions/GlassSea/Wet3.tscn" id="68_awmuf"]
+[ext_resource type="Script" uid="uid://mxruhp3ro1vh" path="res://Scenes/UI/Map/map_choicer_handler_same_room.gd" id="72_8nm4g"]
 
 [sub_resource type="Gradient" id="Gradient_dw2uc"]
 offsets = PackedFloat32Array(1)
@@ -2244,6 +2246,13 @@ position = Vector2(-44416, -11840)
 [node name="Wet2" parent="Rooms/GlassSea" unique_id=1428155619 instance=ExtResource("66_f8dxr")]
 position = Vector2(-51328, -11840)
 
+[node name="Wet3" parent="Rooms/GlassSea" unique_id=1976470463 instance=ExtResource("68_awmuf")]
+position = Vector2(-51328, -9280)
+
+[node name="SaveTube2" parent="Rooms/GlassSea/Wet3" unique_id=1099742681 instance=ExtResource("8_hev0n")]
+z_index = 0
+position = Vector2(-3520, -768)
+
 [node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "animation_player", "player_reference", "map") instance=ExtResource("5_o14yy")]
 unique_name_in_owner = true
 offset = Vector2(0, 1000)
@@ -2253,7 +2262,7 @@ animation_player = NodePath("../AnimationPlayer")
 player_reference = NodePath("../Player")
 map = NodePath("Map")
 
-[node name="Map" parent="PauseScreen" unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager", "map_tab_default_focus", "choicer_handler") instance=ExtResource("18_hev0n")]
+[node name="Map" parent="PauseScreen" unique_id=2004255828 node_paths=PackedStringArray("player", "rooms_manager", "map_tab_default_focus", "choicer_handler", "choicer_handler_same_room") instance=ExtResource("18_hev0n")]
 process_mode = 3
 z_index = 10
 z_as_relative = false
@@ -2262,9 +2271,13 @@ player = NodePath("../../Player")
 rooms_manager = NodePath("../../Rooms")
 map_tab_default_focus = NodePath("../MapTab/MapFocus")
 choicer_handler = NodePath("MapChoicerHandler")
+choicer_handler_same_room = NodePath("MapChoicerHandlerSameRoom")
 
 [node name="MapChoicerHandler" type="Node" parent="PauseScreen/Map" unique_id=1660640687]
 script = ExtResource("37_2lagq")
+
+[node name="MapChoicerHandlerSameRoom" type="Node" parent="PauseScreen/Map" unique_id=1158177433]
+script = ExtResource("72_8nm4g")
 
 [node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("21_3ql1f")]
 unique_name_in_owner = true

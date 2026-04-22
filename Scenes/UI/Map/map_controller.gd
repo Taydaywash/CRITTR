@@ -24,6 +24,7 @@ extends Node2D
 @export var teleport_confirm_button : Button
 @export var teleport_cancel_button : Button
 @export var choicer_handler : ChoicerHandler
+@export var choicer_handler_same_room : ChoicerHandler
 
 @onready var ui : UI = %UI
 @onready var base_map_room = preload("res://Scenes/UI/Map/mapRoom.tscn")
@@ -134,8 +135,12 @@ func handle_input(event: InputEvent) -> void:
 		return
 	if (event.is_action_released("ui_accept") and ui.choicer_dialog.visible == false
 	and hovered_room.corresponding_room.has_save_point and hovered_room.corresponding_room.room_visited
-	and hovered_room.corresponding_room.room_transition_controller.current_room != hovered_room.corresponding_room):
-		ui.start_typing_choicer_text(Dialog.TELEPORT_CONFIRMATION,choicer_handler)
+	#and hovered_room.corresponding_room.room_transition_controller.current_room != hovered_room.corresponding_room
+	):
+		if hovered_room.corresponding_room.room_transition_controller.current_room == hovered_room.corresponding_room:
+			ui.start_typing_choicer_text(Dialog.TELEPORT_CONFIRMATION,choicer_handler_same_room)
+		else:
+			ui.start_typing_choicer_text(Dialog.TELEPORT_CONFIRMATION,choicer_handler)
 		teleport_confirm_choicer.grab_focus()
 	
 func _on_confirm_teleport() -> void:
@@ -148,6 +153,20 @@ func _on_confirm_teleport() -> void:
 	player.state_machine.force_change_state(player.state_machine.teleporting_enter_state, false)
 	await player.animated_player_sprite.animation_finished
 	ui.screen_overlay.modulate.a = 1.0
+	player.global_position = current_respawn_room.corresponding_room.save_point_ref.respawn_point.get_respawn_point()
+	player.state_machine.force_change_state(player.state_machine.teleporting_exit_state, false)
+	await player.animated_player_sprite.animation_finished
+	player.state_machine.force_change_state(player.state_machine.idle_state, false)
+
+func _on_confirm_teleport_same_room() -> void:
+	var current_respawn_room = hovered_room
+	pause_screen.toggle_pause()
+	player.velocity = Vector2.ZERO
+	player.state_machine.force_change_state(player.state_machine.no_control_no_gravity_state, false)
+	ui.reset_choicer_text()
+	await pause_screen.animation_player.animation_finished
+	player.state_machine.force_change_state(player.state_machine.teleporting_enter_state, false)
+	await player.animated_player_sprite.animation_finished
 	player.global_position = current_respawn_room.corresponding_room.save_point_ref.respawn_point.get_respawn_point()
 	player.state_machine.force_change_state(player.state_machine.teleporting_exit_state, false)
 	await player.animated_player_sprite.animation_finished
