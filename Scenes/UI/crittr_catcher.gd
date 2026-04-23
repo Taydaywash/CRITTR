@@ -98,9 +98,3 @@ func exit_crittr_catcher():
 	change_level_to(EMPTY_LEVEL)
 	await animation_player.animation_finished
 	get_tree().paused = false
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Debug Menu"):
-		initial_level += 1
-		change_level_to(level_pool[initial_level])
-		start_player_turn.emit()

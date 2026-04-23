@@ -25,6 +25,8 @@ var map_controller = null
 var corresponding_room : Room = null
 var corresponding_region : Region
 
+var tiles = []
+
 func _process(_delta: float) -> void:
 	if not corresponding_room:
 		return
@@ -32,17 +34,28 @@ func _process(_delta: float) -> void:
 	collectible_icon.position.x = int(corresponding_room.has_save_point) * -1500
 	collectible_icon.visible = corresponding_room.room_visited
 	save_point_icon.visible = corresponding_room.room_visited
-	if not corresponding_room.has_collectible:
-		collectible_icon.visible = false
-	if not corresponding_room.has_save_point:
-		save_point_icon.visible = false
 	outline.width = outline_thickness
 	outline.default_color = color - Color(outline_darkness,outline_darkness,outline_darkness,0.0)
+	if corresponding_room.has_collectible and corresponding_room.room_visited and not (map_controller.show_geometry and corresponding_room.room_visited and map_controller.hovered_room == self):
+		collectible_icon.visible = true
+	else:
+		collectible_icon.visible = false
+	if corresponding_room.has_save_point and corresponding_room.room_visited and not (map_controller.show_geometry and map_controller.hovered_room == self):
+		save_point_icon.visible = true
+	else:
+		save_point_icon.visible = false
+		
 	if map_controller:
 		if map_controller.show_regions:
 			visible = false
 		else:
 			visible = true
+		if map_controller.show_geometry and corresponding_room.room_visited and map_controller.hovered_room == self:
+			for tileset in tiles:
+				tileset.visible = true
+		else:
+			for tileset in tiles:
+				tileset.visible = false
 			
 		if map_controller.hovered_room == self:
 			outline.default_color = hovered_outline_color
@@ -50,12 +63,14 @@ func _process(_delta: float) -> void:
 		else:
 			outline.default_color = color - Color(outline_darkness,outline_darkness,outline_darkness,0.0)
 			z_index = 0
+			
 	if corresponding_room.room_transition_controller.current_room == corresponding_room: #if in room
 		if not corresponding_room.hidden_room: 
 			color = current_room_color
 			return
 		color = current_hidden_room_color
 		return
+		
 	if corresponding_room.room_visited: 
 		if not corresponding_room.hidden_room:
 			color = corresponding_region.map_color
@@ -63,9 +78,11 @@ func _process(_delta: float) -> void:
 		color = visited_hidden_room_color
 		outline.default_color.a = 0.1
 		return
+		
 	if not corresponding_room.hidden_room:
 		color = corresponding_region.map_color - Color(not_visited_room_darkness,not_visited_room_darkness,not_visited_room_darkness,0.0)
 		return
+		
 	outline.default_color = current_hidden_room_outline_color
 	outline.default_color.a = 0.0
 	color.a = 0.0

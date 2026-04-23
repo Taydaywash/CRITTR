@@ -7,6 +7,7 @@ extends Node2D
 @export var max_zoom : float
 @export var min_zoom : float
 @export var region_show_zoom : float
+@export var geometry_show_zoom : float
 @export_category("References")
 @onready var pause_screen = get_parent()
 @export var not_focused_overlay : Polygon2D
@@ -33,6 +34,7 @@ extends Node2D
 
 var hovered_room
 var show_regions : bool = false
+var show_geometry : bool = false
 
 func show_map(should_show : bool) -> void:
 	if should_show and not viewport_container.visible:
@@ -61,7 +63,16 @@ func _ready() -> void:
 					room_instance.corresponding_region = child
 					room_instance.map_controller = self
 					room_instance.corresponding_room = room
-
+					
+					if room.has_node("MidgroundFront"):
+						room_instance.tiles.append(room.get_node("MidgroundFront").duplicate())
+					if room.has_node("MidgroundBack"):
+						room_instance.tiles.append(room.get_node("MidgroundBack").duplicate())
+					if room.has_node("HiddenWallTiles"):
+						room_instance.tiles.append(room.get_node("HiddenWallTiles").duplicate())
+					for tileset : TileMapLayer in room_instance.tiles:
+						tileset.self_modulate = Color(20,20,20)
+						room_instance.add_child(tileset)
 					room_instance.global_position = room.global_position
 					map_region_part.global_position = room.global_position
 					
@@ -101,10 +112,14 @@ func _process(delta: float) -> void:
 	if pause_screen.map_tab.default_focus.has_focus():
 		not_focused_overlay.visible = false
 		not_focused_overlay_text.visible = false
-		if camera.zoom < Vector2(region_show_zoom,region_show_zoom):
+		if camera.zoom.x < region_show_zoom:
 			show_regions = true
 		else:
 			show_regions = false
+		if camera.zoom.x > geometry_show_zoom:
+			show_geometry = true
+		else:
+			show_geometry = false
 		if Input.is_action_pressed("zoom_in"):
 			if camera.zoom < Vector2(max_zoom,max_zoom):
 				camera.zoom += Vector2(camera_zoom_speed,camera_zoom_speed) * 100 *  delta
@@ -128,7 +143,7 @@ func _process(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
-		if ui.text_box_choicer.visible:
+		if ui.choicer_dialog.visible:
 			ui.reset_choicer_text()
 			map_tab_default_focus.grab_focus()
 	if not hovered_room:

@@ -14,8 +14,9 @@ func handle_input(event: InputEvent) -> void:
 		return
 		
 	if event.is_action_released("ui_cancel"):
-		pause_screen.map_button.grab_focus()
-		return
+		if not pause_screen.ui.choicer_dialog.visible:
+			pause_screen.map_button.grab_focus()
+			return
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):

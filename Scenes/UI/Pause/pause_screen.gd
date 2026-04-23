@@ -43,11 +43,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not can_pause():
 		return
 	if event.is_action_pressed("pause"):
-		toggle_pause()
-		return
+		if not ui.choicer_dialog.visible:
+			toggle_pause()
+			return
 	if event.is_action_pressed("quick_map"):
-		toggle_pause(false, "map")
-		return
+		if not ui.choicer_dialog.visible:
+			toggle_pause(false, "map")
+			return
 	if event.is_action_released("ui_cancel") and paused:
 		if dna_button.has_focus() or map_button.has_focus() or options_button.has_focus() or stuff_button.has_focus():
 			toggle_pause()

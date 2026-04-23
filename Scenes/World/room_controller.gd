@@ -36,6 +36,10 @@ var room_id : String
 signal room_is_active
 signal room_is_inactive
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Debug Menu"):
+		room_visited = true
+
 func _ready() -> void:
 	for child in get_children():
 		child.visible = false
