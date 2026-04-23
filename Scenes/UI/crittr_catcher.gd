@@ -38,6 +38,12 @@ const ACID_FROG_LEVEL_POOL : Dictionary = {
 	2 : ARCTIC_HARE_LEVEL_THREE,
 	3 : ARCTIC_HARE_LEVEL_FOUR,
 }
+const PUFFER_LEVEL_POOL : Dictionary = {
+	0 : ARCTIC_HARE_LEVEL_ONE,
+	1 : ARCTIC_HARE_LEVEL_TWO,
+	2 : ARCTIC_HARE_LEVEL_THREE,
+	3 : ARCTIC_HARE_LEVEL_FOUR,
+}
 
 #Changes depending on the den interacted with
 var level_pool : Dictionary

@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://Assets/Decals/Tundra/Background/bg layer tundra 2.png" id="20_3ql1f"]
 [ext_resource type="PackedScene" uid="uid://cyqcaabmh0e7d" path="res://Scenes/World/Regions/Crash Site/ToDash.tscn" id="21_2ytws"]
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Scenes/Audio Controller/AudioController.tscn" id="21_3ql1f"]
-[ext_resource type="PackedScene" uid="uid://djg64wdak2hx4" path="res://Scenes/World/Regions/GlassSea/weirdJump.tscn" id="21_863yi"]
+[ext_resource type="PackedScene" uid="uid://djg64wdak2hx4" path="res://Scenes/World/Regions/GlassSea/shallows/weirdJump.tscn" id="21_863yi"]
 [ext_resource type="Texture2D" uid="uid://c6owixld7ssqg" path="res://Assets/Decals/Tundra/Background/tundra hill.png" id="21_eucu0"]
 [ext_resource type="Texture2D" uid="uid://cneyuseemoqek" path="res://Assets/Decals/Tundra/Background/many vines t.png" id="22_c4j8x"]
 [ext_resource type="PackedScene" uid="uid://bh54xsgst7ooj" path="res://Scenes/World/Regions/Crash Site/DashTestOfSkill2.tscn" id="23_2wmbs"]
@@ -56,9 +56,8 @@
 [ext_resource type="PackedScene" uid="uid://b3frr1yrpech7" path="res://Scenes/World/Regions/Toxic Marsh/ToGrapple.tscn" id="41_ioxf4"]
 [ext_resource type="Script" uid="uid://bfgeg66mnkl4x" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_choicer_handler.gd" id="41_rgk46"]
 [ext_resource type="PackedScene" uid="uid://b37w5ehcx43d6" path="res://Scenes/World/Regions/Toxic Marsh/GrappleDen.tscn" id="42_kcg70"]
-[ext_resource type="PackedScene" uid="uid://duc72rfl0kqfl" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/AcidFrogDen.tscn" id="43_44hbs"]
-[ext_resource type="Script" uid="uid://ytr5q3hl5ncj" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/acid_den_choicer.gd" id="44_tejqv"]
 [ext_resource type="PackedScene" uid="uid://bkru2b6d01p7k" path="res://Scenes/World/Regions/Toxic Marsh/Hooks.tscn" id="46_k3b55"]
+[ext_resource type="Script" uid="uid://ytr5q3hl5ncj" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/grapple_den_handler.gd" id="49_7foer"]
 [ext_resource type="PackedScene" uid="uid://cagiuhwdbmyso" path="res://Scenes/World/Regions/Stardust Peak/PeakEnterFromCrashSite.tscn" id="53_i3env"]
 [ext_resource type="Texture2D" uid="uid://d32yuf72l022w" path="res://Assets/Decals/Peak/starbg.png" id="54_2shhw"]
 [ext_resource type="PackedScene" uid="uid://c3pylhdry0xgb" path="res://Scenes/World/Regions/Cloud Temple/TempleDoor.tscn" id="54_jvctc"]
@@ -70,13 +69,18 @@
 [ext_resource type="PackedScene" uid="uid://c3laww78x1ovg" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath4.tscn" id="60_h23k6"]
 [ext_resource type="PackedScene" uid="uid://dfccg54iyyrk2" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath5.tscn" id="60_knfie"]
 [ext_resource type="PackedScene" uid="uid://cxyc2dui8qc3t" path="res://Scenes/World/Regions/Stardust Peak/PeakToSea.tscn" id="62_0a2lt"]
-[ext_resource type="PackedScene" uid="uid://kw0ele6ukenx" path="res://Scenes/World/Regions/GlassSea/SeaExplore1.tscn" id="64_3vk5c"]
-[ext_resource type="PackedScene" uid="uid://bljjd3lfrfnkb" path="res://Scenes/World/Regions/GlassSea/GlassSeaEnterFromPeak.tscn" id="64_bvw2n"]
+[ext_resource type="PackedScene" uid="uid://kw0ele6ukenx" path="res://Scenes/World/Regions/GlassSea/shallows/SeaExplore1.tscn" id="64_3vk5c"]
+[ext_resource type="PackedScene" uid="uid://bljjd3lfrfnkb" path="res://Scenes/World/Regions/GlassSea/shallows/GlassSeaEnterFromPeak.tscn" id="64_bvw2n"]
 [ext_resource type="PackedScene" uid="uid://c2mrrxh4wsub4" path="res://Scenes/World/Regions/Stardust Peak/PeakTransitionDrop.tscn" id="64_vleej"]
-[ext_resource type="PackedScene" uid="uid://djl8p01as5wfy" path="res://Scenes/World/Regions/GlassSea/wet1.tscn" id="65_1fesm"]
-[ext_resource type="PackedScene" uid="uid://1awc3p5rore7" path="res://Scenes/World/Regions/GlassSea/wet2.tscn" id="66_f8dxr"]
-[ext_resource type="PackedScene" uid="uid://dw8x2kn1v0can" path="res://Scenes/World/Regions/GlassSea/Wet3.tscn" id="68_awmuf"]
+[ext_resource type="PackedScene" uid="uid://djl8p01as5wfy" path="res://Scenes/World/Regions/GlassSea/shallows/wet1.tscn" id="65_1fesm"]
+[ext_resource type="PackedScene" uid="uid://1awc3p5rore7" path="res://Scenes/World/Regions/GlassSea/shallows/wet2.tscn" id="66_f8dxr"]
+[ext_resource type="PackedScene" uid="uid://dw8x2kn1v0can" path="res://Scenes/World/Regions/GlassSea/shallows/Wet3.tscn" id="68_awmuf"]
+[ext_resource type="PackedScene" uid="uid://cyr82pseo0sxj" path="res://Scenes/World/Regions/GlassSea/shallows/Wet4.tscn" id="69_lc1us"]
+[ext_resource type="PackedScene" uid="uid://bktmamt8uwtvm" path="res://Scenes/World/Regions/GlassSea/shallows/Wet5.tscn" id="70_7foer"]
+[ext_resource type="PackedScene" uid="uid://bym3el16rnhym" path="res://Scenes/World/Regions/GlassSea/shallows/GlassSeaCrittr.tscn" id="71_kwmhw"]
+[ext_resource type="PackedScene" uid="uid://dfqu16n7uadui" path="res://Scenes/World/Regions/GlassSea/depths/depthsEnterFromshallows.tscn" id="72_7foer"]
 [ext_resource type="Script" uid="uid://mxruhp3ro1vh" path="res://Scenes/UI/Map/map_choicer_handler_same_room.gd" id="72_8nm4g"]
+[ext_resource type="Script" uid="uid://dx8a1vqtpjj35" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/inflate_den_handler.gd" id="72_kwmhw"]
 
 [sub_resource type="Gradient" id="Gradient_dw2uc"]
 offsets = PackedFloat32Array(1)
@@ -159,6 +163,15 @@ width = 1920
 height = 4320
 fill_from = Vector2(0.46802327, 0)
 fill_to = Vector2(0.47965115, 1)
+
+[sub_resource type="Gradient" id="Gradient_8nm4g"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.6509804, 0.7529412, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jyavj"]
+gradient = SubResource("Gradient_8nm4g")
+fill_from = Vector2(0.4869565, 0)
+fill_to = Vector2(0.5304348, 1)
 
 [sub_resource type="Animation" id="Animation_h71dq"]
 length = 0.001
@@ -1926,16 +1939,6 @@ position = Vector2(42624, -9536)
 [node name="GrappleDen" parent="Rooms/ToxicMarsh" unique_id=1683543638 instance=ExtResource("42_kcg70")]
 position = Vector2(42624, -5440)
 
-[node name="GrappleDen" parent="Rooms/ToxicMarsh/GrappleDen" unique_id=1896317581 node_paths=PackedStringArray("choicer_handler") instance=ExtResource("43_44hbs")]
-position = Vector2(3776, 256)
-collision_layer = 0
-collision_mask = 8
-choicer_handler = NodePath("GrappleDenChoicerHandler")
-dialog_string = "ACID_FROG_DEN"
-
-[node name="GrappleDenChoicerHandler" type="Node" parent="Rooms/ToxicMarsh/GrappleDen/GrappleDen" unique_id=1932465122]
-script = ExtResource("44_tejqv")
-
 [node name="Node2D" type="Node2D" parent="Rooms/ToxicMarsh/GrappleDen" unique_id=1319262303]
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/ToxicMarsh/GrappleDen/Node2D" unique_id=1733236442]
@@ -1989,6 +1992,14 @@ z_index = -2
 position = Vector2(2688, 512)
 scale = Vector2(0.295, 0.295)
 texture = ExtResource("41_4kbg2")
+
+[node name="DenColliderArea" parent="Rooms/ToxicMarsh/GrappleDen" unique_id=248021816 node_paths=PackedStringArray("choicer_handler") instance=ExtResource("27_nlkji")]
+position = Vector2(3712, 320)
+choicer_handler = NodePath("GrappleDenHandler")
+dialog_string = "ACID_FROG_DEN"
+
+[node name="GrappleDenHandler" type="Node" parent="Rooms/ToxicMarsh/GrappleDen/DenColliderArea" unique_id=160254345]
+script = ExtResource("49_7foer")
 
 [node name="Room2" parent="Rooms/ToxicMarsh" unique_id=231607869 instance=ExtResource("54_jvctc")]
 position = Vector2(65024, -6080)
@@ -2220,7 +2231,7 @@ repeat_size = Vector2(1920, 1920)
 z_index = -11
 position = Vector2(2478, -2038.0002)
 scale = Vector2(166.31343, 159.33415)
-texture = SubResource("GradientTexture2D_3ql1f")
+texture = SubResource("GradientTexture2D_jyavj")
 
 [node name="GlassSeaEnterFromPeak" parent="Rooms/GlassSea" unique_id=1871997503 instance=ExtResource("64_bvw2n")]
 position = Vector2(-31616, -11200)
@@ -2252,6 +2263,71 @@ position = Vector2(-51328, -9280)
 [node name="SaveTube2" parent="Rooms/GlassSea/Wet3" unique_id=1099742681 instance=ExtResource("8_hev0n")]
 z_index = 0
 position = Vector2(-3520, -768)
+
+[node name="Wet4" parent="Rooms/GlassSea" unique_id=1973423524 instance=ExtResource("69_lc1us")]
+position = Vector2(-42112, -9280)
+
+[node name="Wet5" parent="Rooms/GlassSea" unique_id=273238548 instance=ExtResource("70_7foer")]
+position = Vector2(-40704, -6720)
+
+[node name="CrittrRoom" parent="Rooms/GlassSea" unique_id=71675922 instance=ExtResource("71_kwmhw")]
+position = Vector2(-45312, -6720)
+
+[node name="DenColliderArea" parent="Rooms/GlassSea" unique_id=633835220 node_paths=PackedStringArray("choicer_handler") instance=ExtResource("27_nlkji")]
+position = Vector2(-47104, -7296)
+choicer_handler = NodePath("InflateDenHandler")
+dialog_string = "INFLATE_DEN"
+
+[node name="InflateDenHandler" type="Node" parent="Rooms/GlassSea/DenColliderArea" unique_id=906565166]
+script = ExtResource("72_kwmhw")
+
+[node name="GlassSeaDepths" type="Node" parent="Rooms" unique_id=1140803169]
+script = ExtResource("6_lqys3")
+map_color = Color(0, 0.37576166, 0.37576166, 1)
+metadata/_custom_type_script = "uid://5wurrbpk32od"
+
+[node name="CrashSiteBackground" type="Node2D" parent="Rooms/GlassSeaDepths" unique_id=1880576835]
+visible = false
+
+[node name="Parallax2D" type="Parallax2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground" unique_id=1934934937]
+scroll_scale = Vector2(0.12, 0)
+scroll_offset = Vector2(0, 500)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground/Parallax2D" unique_id=1719466420]
+z_index = -10
+position = Vector2(963, 128)
+scale = Vector2(1, 1.5600003)
+texture = ExtResource("19_vdgnt")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground" unique_id=844960808]
+scroll_scale = Vector2(0.28, 0)
+scroll_offset = Vector2(0, 800)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground/Parallax2D2" unique_id=1427895794]
+z_index = -9
+position = Vector2(977, 0)
+scale = Vector2(1, 1.5999994)
+texture = ExtResource("20_3ql1f")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground" unique_id=1925752380]
+repeat_size = Vector2(1920, 1920)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground/Parallax2D3" unique_id=312056246]
+z_index = -11
+position = Vector2(2478, -2038.0002)
+scale = Vector2(166.31343, 159.33415)
+texture = SubResource("GradientTexture2D_jyavj")
+
+[node name="EnterFromShallows" parent="Rooms/GlassSeaDepths" unique_id=1964576440 instance=ExtResource("72_7foer")]
+position = Vector2(-36096, -6720)
+
+[node name="SaveTube2" parent="Rooms/GlassSeaDepths/EnterFromShallows" unique_id=1579084219 instance=ExtResource("8_hev0n")]
+z_index = 0
+position = Vector2(-1728, -832)
 
 [node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "animation_player", "player_reference", "map") instance=ExtResource("5_o14yy")]
 unique_name_in_owner = true

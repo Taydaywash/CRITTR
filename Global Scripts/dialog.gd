@@ -19,8 +19,12 @@ const ACID_FROG_DEN = ("A den sits before you. Croaking and sploinking can be he
 Scans suggest that this den belongs to a 'Grapple Frog'.
 \nInsert Crittr Catcher 9000?")
 
+const INFLATE_DEN = ("A den sits before you. Balloon-like stretching can be heard from inside.
+Scans suggest that this den belongs to a 'Pufferfly'.
+\nInsert Crittr Catcher 9000?")
+
 const SCRAP_COLLECTED = ("You got a Strange Scrap!
-...Its use isn't implemented yet though")
+Maybe it'll come in handy some day?")
 
 const ABILITY_GAINED = ("You gained a new ability! 
 Equip it at any save point 

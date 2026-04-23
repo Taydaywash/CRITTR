@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://duc72rfl0kqfl"]
+[gd_scene format=3 uid="uid://b66racrowmixn"]
 
 [ext_resource type="Script" uid="uid://ddji4xq14xuq6" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/crittr_den.gd" id="1_rxd07"]
 [ext_resource type="Texture2D" uid="uid://dwto3j7h3l5xa" path="res://Assets/Level Editor/Objects/CrittrDens/ArcticHareDen.png" id="2_q6sw3"]

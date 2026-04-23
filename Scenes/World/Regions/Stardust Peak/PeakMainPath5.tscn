@@ -25,6 +25,9 @@ script = ExtResource("1_ygx83")
 [node name="RespawnPoint" parent="." unique_id=262928423 instance=ExtResource("2_l6rwt")]
 position = Vector2(2112, 4704)
 
+[node name="RespawnPoint2" parent="." unique_id=3531767 instance=ExtResource("2_l6rwt")]
+position = Vector2(-2176, -4672)
+
 [node name="Foreground" parent="." unique_id=622969364 instance=ExtResource("3_7o0rx")]
 z_index = 2
 
