@@ -21,3 +21,5 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if map_controller:
 		visible = map_controller.show_regions
+	if not corresponding_region.region_visited:
+		visible = false

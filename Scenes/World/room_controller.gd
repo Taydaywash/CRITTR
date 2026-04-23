@@ -47,6 +47,7 @@ func _ready() -> void:
 	room_id = "%s(%s,%s)" % [name,global_position.x,global_position.y]
 	if room_id in GameController.game_state.explored_rooms:
 		room_visited = true
+		region.region_visited = true
 	
 	for child in get_children():
 		if child is Collectable:
@@ -75,6 +76,7 @@ func _exited_room_collider(_body: Node2D) -> void:
 
 func _process(_delta: float) -> void:
 	if is_room_active():
+		region.region_visited = true
 		room_transition_controller.play_music(room_transition_controller.current_room.region.music)
 
 func is_room_active():

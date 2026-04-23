@@ -64,6 +64,9 @@ func _process(_delta: float) -> void:
 			outline.default_color = color - Color(outline_darkness,outline_darkness,outline_darkness,0.0)
 			z_index = 0
 			
+	if not corresponding_region.region_visited:
+		visible = false
+		
 	if corresponding_room.room_transition_controller.current_room == corresponding_room: #if in room
 		if not corresponding_room.hidden_room: 
 			color = current_room_color
@@ -82,7 +85,6 @@ func _process(_delta: float) -> void:
 	if not corresponding_room.hidden_room:
 		color = corresponding_region.map_color - Color(not_visited_room_darkness,not_visited_room_darkness,not_visited_room_darkness,0.0)
 		return
-		
 	outline.default_color = current_hidden_room_outline_color
 	outline.default_color.a = 0.0
 	color.a = 0.0
