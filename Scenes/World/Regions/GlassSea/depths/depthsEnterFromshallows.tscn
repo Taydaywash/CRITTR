@@ -45,8 +45,8 @@ script = ExtResource("7_t85qj")
 [node name="Ocean" parent="." unique_id=1779537781 instance=ExtResource("8_fvhmg")]
 size = Vector2(4608, 2560)
 
-[node name="AirPocket" parent="." unique_id=979559312 instance=ExtResource("9_p8cxs")]
-position = Vector2(-1696, -896)
+[node name="AirPocket" parent="Ocean" unique_id=979559312 instance=ExtResource("9_p8cxs")]
+position = Vector2(-1696, -928)
 radius = 308.71
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]

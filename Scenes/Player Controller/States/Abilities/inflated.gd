@@ -52,6 +52,7 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	change_collider_to(inflated_hitbox)
 	change_hurtbox_to(inflated_hurtbox)
+	EventController.emit_signal("entered_inflate_state")
 	#sprite.scale.x = 1.5
 	#sprite.scale.y = 1.5
 	sprite.offset.y = -50
@@ -139,6 +140,7 @@ func bounced():
 
 func deactivate(next_state : State) -> void:
 	super(next_state)
+	EventController.emit_signal("exited_inflate_state")
 	sprite.offset.y = -70
 	sprite.scale.x = 1
 	sprite.scale.y = 1

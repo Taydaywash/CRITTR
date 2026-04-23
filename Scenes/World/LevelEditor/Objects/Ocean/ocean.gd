@@ -9,7 +9,7 @@ extends CanvasGroup
 @export var breath_duration: float = 8.0
 
 var player_in_water: Node2D = null
-var in_air_pocket: bool = false
+var in_air_pockets: int = 0
 var tween: Tween = null
 
 @onready var room : Room = $".."
@@ -28,6 +28,8 @@ func _ready() -> void:
 	room = $".."
 	EventController.connect("player_death", _player_death)
 	EventController.connect("player_respawn", _player_death)
+	EventController.connect("entered_inflate_state",enter_air_pocket)
+	EventController.connect("exited_inflate_state",exit_air_pocket)
 
 	if not Engine.is_editor_hint():
 		$BreathTimer.wait_time = breath_duration
@@ -92,24 +94,33 @@ func start_breath_timer() -> void:
 	$BreathTimer.wait_time = breath_duration
 	$BreathTimer.start()
 
-func enter_air_pocket(body: Node2D) -> void:
+func enter_air_pocket(body: Node2D = $"../../../../Player") -> void:
+	in_air_pockets += 1
 	end_tween(body)
 	audio_controller = room.audio_controller
 	audio_controller.disable_water_sound_filters()
+	particle_controller = room.particle_controller
 	particle_controller.spawn_particle($"../../../../Player",water_exit_particle)
 	audio_controller.play_sound(water_exit_splash)
-	in_air_pocket = true
 	$BreathTimer.stop()
 
-func exit_air_pocket(body: Node2D) -> void:
+func exit_air_pocket(body: Node2D = $"../../../../Player") -> void:
+	in_air_pockets -= 1
+	if in_air_pockets > 0:
+		return
+	if not player_in_water:
+		return
+	in_air_pockets = 0
 	start_tween(body)
 	audio_controller = room.audio_controller
 	audio_controller.enable_water_sound_filters()
+	particle_controller = room.particle_controller
 	particle_controller.spawn_particle($"../../../../Player",water_enter_particle)
 	audio_controller.play_sound(water_enter_splash)
-	in_air_pocket = false
+	
 	if player_in_water:
 		start_breath_timer()
+
 		
 func start_tween(body: Node2D) -> void:
 	if tween:

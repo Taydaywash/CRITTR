@@ -5,7 +5,7 @@ var abilities_unlocked: Dictionary = {
 	"dash" : true,
 	"grapple" : true,
 	"climb" : true,
-	"inflate" : false,
+	"inflate" : true,
 	"drill" : false,
 	"bounce" : false,
 }
