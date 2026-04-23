@@ -81,6 +81,15 @@
 [ext_resource type="PackedScene" uid="uid://dfqu16n7uadui" path="res://Scenes/World/Regions/GlassSea/depths/depthsEnterFromshallows.tscn" id="72_7foer"]
 [ext_resource type="Script" uid="uid://mxruhp3ro1vh" path="res://Scenes/UI/Map/map_choicer_handler_same_room.gd" id="72_8nm4g"]
 [ext_resource type="Script" uid="uid://dx8a1vqtpjj35" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/inflate_den_handler.gd" id="72_kwmhw"]
+[ext_resource type="PackedScene" uid="uid://klvs58rfb8mj" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold1.tscn" id="73_wj4oh"]
+[ext_resource type="PackedScene" uid="uid://t2bak8m1nj1y" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold2.tscn" id="74_icms3"]
+[ext_resource type="PackedScene" uid="uid://c62mfrcnc8247" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold3.tscn" id="75_thcod"]
+[ext_resource type="PackedScene" uid="uid://blspqqelho0s5" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold4.tscn" id="76_g04sn"]
+[ext_resource type="PackedScene" uid="uid://gscjepmq6iss" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold5.tscn" id="77_ll777"]
+[ext_resource type="PackedScene" uid="uid://chvu6roex3dyt" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold6.tscn" id="78_ixxyk"]
+[ext_resource type="PackedScene" uid="uid://b7lx6f4o42mr7" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold7.tscn" id="79_qyaep"]
+[ext_resource type="PackedScene" uid="uid://df5dvukcm113v" path="res://Scenes/World/Regions/GlassSea/depths/DepthsBonus1.tscn" id="80_wawgj"]
+[ext_resource type="PackedScene" uid="uid://brm2nyavy2dmq" path="res://Scenes/World/Regions/GlassSea/depths/DepthsBonus2.tscn" id="81_xjk1d"]
 
 [sub_resource type="Gradient" id="Gradient_dw2uc"]
 offsets = PackedFloat32Array(1)
@@ -666,7 +675,7 @@ color_ramp = SubResource("Gradient_kcg70")
 
 [node name="InsideShip" parent="Rooms/CrashSite" unique_id=845230466 instance=ExtResource("8_jacc8")]
 z_as_relative = false
-position = Vector2(3072, 1375)
+position = Vector2(-640, -3392)
 zoom_to_fit = true
 interior_room = true
 
@@ -2328,6 +2337,33 @@ position = Vector2(-36096, -6720)
 [node name="SaveTube2" parent="Rooms/GlassSeaDepths/EnterFromShallows" unique_id=1579084219 instance=ExtResource("8_hev0n")]
 z_index = 0
 position = Vector2(-1728, -896)
+
+[node name="WetAndCold1" parent="Rooms/GlassSeaDepths" unique_id=1613597936 instance=ExtResource("73_wj4oh")]
+position = Vector2(-33792, -2880)
+
+[node name="WetAndCold2" parent="Rooms/GlassSeaDepths" unique_id=1608240730 instance=ExtResource("74_icms3")]
+position = Vector2(-31488, -6720)
+
+[node name="WetAndCold3" parent="Rooms/GlassSeaDepths" unique_id=774577803 instance=ExtResource("75_thcod")]
+position = Vector2(-26880, -7680)
+
+[node name="WetAndCold4" parent="Rooms/GlassSeaDepths" unique_id=1254107393 instance=ExtResource("76_g04sn")]
+position = Vector2(-26880, -2880)
+
+[node name="WetAndCold5" parent="Rooms/GlassSeaDepths" unique_id=21515057 instance=ExtResource("77_ll777")]
+position = Vector2(-26880, 960)
+
+[node name="WetAndCold6" parent="Rooms/GlassSeaDepths" unique_id=811090254 instance=ExtResource("78_ixxyk")]
+position = Vector2(-17664, 960)
+
+[node name="WetAndCold7" parent="Rooms/GlassSeaDepths" unique_id=1935191818 instance=ExtResource("79_qyaep")]
+position = Vector2(-8576, 4800)
+
+[node name="DepthsBonus1" parent="Rooms/GlassSeaDepths" unique_id=1074546216 instance=ExtResource("80_wawgj")]
+position = Vector2(-22272, -8640)
+
+[node name="DeptshBonus2" parent="Rooms/GlassSeaDepths" unique_id=1956516219 instance=ExtResource("81_xjk1d")]
+position = Vector2(-31488, 960)
 
 [node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "animation_player", "player_reference", "map") instance=ExtResource("5_o14yy")]
 unique_name_in_owner = true

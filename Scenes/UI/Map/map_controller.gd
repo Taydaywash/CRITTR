@@ -71,7 +71,7 @@ func _ready() -> void:
 					if room.has_node("HiddenWallTiles"):
 						room_instance.tiles.append(room.get_node("HiddenWallTiles").duplicate())
 					for tileset : TileMapLayer in room_instance.tiles:
-						tileset.self_modulate = Color(20,20,20)
+						tileset.self_modulate = Color(0,0,0)
 						tileset.z_index = 1
 						room_instance.add_child(tileset)
 					room_instance.global_position = room.global_position
