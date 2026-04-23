@@ -83,6 +83,13 @@ func activate(last_state : State) -> void:
 		else:
 			player.velocity.x = initial_velocity
 
+func process_input(event : InputEvent) -> State:
+	if event.is_action_pressed("use_ability"):
+		return ability_state
+	if event.is_action_pressed("dive"):
+		return diving_state
+	return null
+
 func process_physics(delta) -> State:
 	if player.velocity.y > -max_ascent_speed:
 		player.velocity.y = player.velocity.move_toward(Vector2(player.velocity.x,-max_ascent_speed),upwards_acceleration * delta).y
@@ -101,10 +108,10 @@ func process_physics(delta) -> State:
 		player.velocity.y = bounce_velocity
 		bounced()
 	if player.is_on_wall():
-		if left_ray.is_colliding() or left_ray_low.is_colliding() or left_ray_high.is_colliding():
+		if (left_ray.is_colliding() or left_ray_low.is_colliding() or left_ray_high.is_colliding()) and player.velocity.x > 10:
 			player.velocity.x = bounce_velocity
 			bounced()
-		elif right_ray.is_colliding() or right_ray_low.is_colliding() or right_ray_high.is_colliding():
+		elif (right_ray.is_colliding() or right_ray_low.is_colliding() or right_ray_high.is_colliding()) and player.velocity.x < -10:
 			player.velocity.x = -bounce_velocity
 			bounced()
 	if player.is_on_floor():

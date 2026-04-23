@@ -323,8 +323,8 @@ size = Vector2(35.555553, 71.11115)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5i1rd"]
 size = Vector2(30.028448, 59.25926)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_885dk"]
-size = Vector2(82.96296, 82.96297)
+[sub_resource type="CircleShape2D" id="CircleShape2D_bx382"]
+radius = 41.48148
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_068uq"]
 size = Vector2(30.028448, 47.40741)
@@ -333,8 +333,8 @@ size = Vector2(30.028448, 47.40741)
 custom_solver_bias = 1.0
 size = Vector2(71.11111, 5.92593)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_avv4g"]
-size = Vector2(165.92592, 165.92592)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bx382"]
+size = Vector2(165.92593, 165.92593)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxerk"]
 size = Vector2(71.112, 142.22195)
@@ -1107,7 +1107,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InflatedHurtbox" unique_id=1873734836]
 position = Vector2(3.532127e-07, 1.0596381e-06)
 scale = Vector2(1, 0.9999999)
-shape = SubResource("RectangleShape2D_885dk")
+shape = SubResource("CircleShape2D_bx382")
 disabled = true
 debug_color = Color(0.5882353, 0.13725491, 0.1764706, 0.41960785)
 
@@ -1137,8 +1137,8 @@ shape = ExtResource("36_uneaa")
 
 [node name="InflatedHitbox" type="CollisionShape2D" parent="." unique_id=1109653388]
 z_index = -1
-position = Vector2(0, -4.2385523e-06)
-shape = SubResource("RectangleShape2D_avv4g")
+position = Vector2(-2.8257016e-06, 0)
+shape = SubResource("RectangleShape2D_bx382")
 disabled = true
 
 [node name="CrouchedHitbox" type="CollisionShape2D" parent="." unique_id=982923523]
