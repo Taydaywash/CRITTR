@@ -58,6 +58,8 @@ func update_shape() -> void:
 		$Area2D/CollisionShape2D.shape = shape
 
 func _on_body_entered(body: Node2D) -> void:
+	if in_air_pockets > 0:
+		return
 	audio_controller = room.audio_controller
 	audio_controller.enable_water_sound_filters()
 	particle_controller = room.particle_controller
@@ -69,6 +71,8 @@ func _on_body_entered(body: Node2D) -> void:
 	start_breath_timer()
 
 func _on_body_exited(body: Node2D) -> void:
+	if not player_in_water:
+		return
 	audio_controller = room.audio_controller
 	audio_controller.disable_water_sound_filters()
 	particle_controller = room.particle_controller
@@ -95,6 +99,8 @@ func start_breath_timer() -> void:
 	$BreathTimer.start()
 
 func enter_air_pocket(body: Node2D = $"../../../../Player") -> void:
+	if not player_in_water:
+		return
 	in_air_pockets += 1
 	end_tween(body)
 	audio_controller = room.audio_controller
@@ -105,10 +111,10 @@ func enter_air_pocket(body: Node2D = $"../../../../Player") -> void:
 	$BreathTimer.stop()
 
 func exit_air_pocket(body: Node2D = $"../../../../Player") -> void:
+	if not player_in_water:
+		return
 	in_air_pockets -= 1
 	if in_air_pockets > 0:
-		return
-	if not player_in_water:
 		return
 	in_air_pockets = 0
 	start_tween(body)
@@ -117,10 +123,7 @@ func exit_air_pocket(body: Node2D = $"../../../../Player") -> void:
 	particle_controller = room.particle_controller
 	particle_controller.spawn_particle($"../../../../Player",water_enter_particle)
 	audio_controller.play_sound(water_enter_splash)
-	
-	if player_in_water:
-		start_breath_timer()
-
+	start_breath_timer()
 		
 func start_tween(body: Node2D) -> void:
 	if tween:

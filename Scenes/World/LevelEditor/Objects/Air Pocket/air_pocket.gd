@@ -49,7 +49,6 @@ func update_shape() -> void:
 		$Area2D/CollisionShape2D.shape = shape
 
 func _on_body_entered(body: Node2D) -> void:
-	print("entered")
 	if get_parent().has_method("enter_air_pocket"):
 		get_parent().enter_air_pocket(body)
 
