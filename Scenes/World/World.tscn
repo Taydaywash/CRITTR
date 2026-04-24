@@ -182,6 +182,15 @@ gradient = SubResource("Gradient_8nm4g")
 fill_from = Vector2(0.4869565, 0)
 fill_to = Vector2(0.5304348, 1)
 
+[sub_resource type="Gradient" id="Gradient_wj4oh"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.00925786, 5.6782254e-05, 0.25134742, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_icms3"]
+gradient = SubResource("Gradient_wj4oh")
+fill_from = Vector2(0.4869565, 0)
+fill_to = Vector2(0.5304348, 1)
+
 [sub_resource type="Animation" id="Animation_h71dq"]
 length = 0.001
 tracks/0/type = "value"
@@ -324,7 +333,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("CrashSite/CrashedShip")
+starting_room = NodePath("GlassSeaDepths/WetAndCold1")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -355,6 +364,7 @@ music = ExtResource("5_ypq4w")
 map_color = Color(3.5616756e-06, 0.5399312, 0.71786386, 1)
 
 [node name="CrashSiteBackground" type="Node2D" parent="Rooms/CrashSite" unique_id=332236146]
+visible = false
 
 [node name="Parallax2D" type="Parallax2D" parent="Rooms/CrashSite/CrashSiteBackground" unique_id=1796784597]
 scroll_scale = Vector2(0.12, 0)
@@ -2305,10 +2315,12 @@ repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground/Parallax2D" unique_id=1719466420]
+modulate = Color(0.061934136, 0.19454053, 0.51016366, 1)
 z_index = -10
-position = Vector2(963, 128)
+position = Vector2(960, -532.00024)
 scale = Vector2(1, 1.5600003)
 texture = ExtResource("19_vdgnt")
+flip_v = true
 
 [node name="Parallax2D2" type="Parallax2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground" unique_id=844960808]
 scroll_scale = Vector2(0.28, 0)
@@ -2317,10 +2329,12 @@ repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground/Parallax2D2" unique_id=1427895794]
+modulate = Color(0.00014493373, 0.07974102, 0.34773824, 1)
 z_index = -9
-position = Vector2(977, 0)
+position = Vector2(960, -1088.0002)
 scale = Vector2(1, 1.5999994)
 texture = ExtResource("20_3ql1f")
+flip_v = true
 
 [node name="Parallax2D3" type="Parallax2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground" unique_id=1925752380]
 repeat_size = Vector2(1920, 1920)
@@ -2329,7 +2343,7 @@ repeat_size = Vector2(1920, 1920)
 z_index = -11
 position = Vector2(2478, -2038.0002)
 scale = Vector2(166.31343, 159.33415)
-texture = SubResource("GradientTexture2D_jyavj")
+texture = SubResource("GradientTexture2D_icms3")
 
 [node name="EnterFromShallows" parent="Rooms/GlassSeaDepths" unique_id=1964576440 instance=ExtResource("72_7foer")]
 position = Vector2(-36096, -6720)

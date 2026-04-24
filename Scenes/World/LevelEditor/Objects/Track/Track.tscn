@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://rjr0axi6j344"]
 
 [ext_resource type="Script" uid="uid://cij4m4bq8axp" path="res://Scenes/World/LevelEditor/Objects/Track/track.gd" id="1_gf5la"]
-[ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://Assets/Misc/icon.svg" id="1_q4fnl"]
+[ext_resource type="Texture2D" uid="uid://bidfflaquwek2" path="res://Assets/Level Editor/Objects/TrackEnemy/evilFuzzy.png" id="2_gf5la"]
 
 [sub_resource type="Curve2D" id="Curve2D_q4fnl"]
 
@@ -24,4 +24,4 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_pkkc8")
 
 [node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/Area2D" unique_id=2002827025]
-texture = ExtResource("1_q4fnl")
+texture = ExtResource("2_gf5la")
