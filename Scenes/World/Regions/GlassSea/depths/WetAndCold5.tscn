@@ -8,9 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://0tnhb2x8d6l8" path="res://Scenes/World/LevelEditor/Objects/Ocean/Ocean.tscn" id="6_oyn3q"]
 [ext_resource type="PackedScene" uid="uid://cjw3t1a4kan5s" path="res://Scenes/World/LevelEditor/Objects/Air Pocket/Air Pocket.tscn" id="7_cwlo7"]
 [ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Tools/level_bounds_auto_center_tool.gd" id="8_hpopt"]
+[ext_resource type="Script" uid="uid://r63htp46ehug" path="res://Scenes/World/LevelEditor/Objects/EditorNotes/EditorNotes.gd" id="9_pyy2c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vagb"]
 size = Vector2(4608, 2560)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w7xin"]
+font_size = 80
 
 [node name="Room2" type="Node2D" unique_id=721111038]
 script = ExtResource("1_umbuj")
@@ -50,6 +54,24 @@ z_index = 1
 shape = SubResource("RectangleShape2D_0vagb")
 debug_color = Color(1, 1, 1, 0.21568628)
 script = ExtResource("8_hpopt")
+
+[node name="Editor Notes" type="Control" parent="." unique_id=1756546441]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_pyy2c")
+
+[node name="Label" type="Label" parent="Editor Notes" unique_id=1820314338]
+z_index = 2
+layout_mode = 0
+offset_left = -2144.0
+offset_top = -1152.0
+offset_right = -331.0
+offset_bottom = -590.0
+text = "Ability combos:
+^ Inflate, V dash, < grapple, > dash"
+label_settings = SubResource("LabelSettings_w7xin")
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

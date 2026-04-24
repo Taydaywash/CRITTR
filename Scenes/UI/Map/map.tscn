@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://kt2omd4601yo"]
 
 [ext_resource type="Script" uid="uid://bfduagc130a2n" path="res://Scenes/UI/Map/map_controller.gd" id="1_evwka"]
+[ext_resource type="Texture2D" uid="uid://cm5a0kjv22qep" path="res://Assets/Animations/Player/idle/i1.png" id="2_8dhgj"]
 [ext_resource type="Texture2D" uid="uid://c2l3hevass14c" path="res://Assets/UI/Map/cursor.png" id="2_48iyi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xtf6f"]
@@ -68,6 +69,12 @@ grow_vertical = 2
 handle_input_locally = false
 size = Vector2i(1014, 468)
 render_target_update_mode = 4
+
+[node name="PlayerProxie" type="Sprite2D" parent="SubViewportContainer/SubViewport2" unique_id=38777529]
+unique_name_in_owner = true
+z_index = 6
+scale = Vector2(5, 5)
+texture = ExtResource("2_8dhgj")
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport2" unique_id=719413850]
 zoom = Vector2(0.035, 0.035)

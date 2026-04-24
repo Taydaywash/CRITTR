@@ -43,7 +43,6 @@ func show_map(should_show : bool) -> void:
 	viewport_container.visible = should_show
 
 func _ready() -> void:
-	
 	for child in rooms_manager.get_children():
 		if child is Region:
 			for room in child.get_children(): 
@@ -104,6 +103,7 @@ func _ready() -> void:
 						region_instance.add_child(map_region_part)
 
 func _process(delta: float) -> void:
+	%PlayerProxie.global_position = player.global_position
 	if not ui.choicer_dialog.visible:
 		hovered_room = null
 	if ui.choicer_dialog.visible:

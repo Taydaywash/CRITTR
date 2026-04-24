@@ -770,6 +770,7 @@ jump_input_buffer_patience = 0.2
 grapple_ray = NodePath("GrappleRay")
 line = NodePath("GrappleRay/Line2D")
 jump_input_buffer = NodePath("../../../JumpInputBuffer")
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="GrapplingPull" type="Node" parent="StateMachine/Abilities/Grappling" unique_id=967336177 node_paths=PackedStringArray("grapple_ray", "line", "jump_input_buffer")]
 script = ExtResource("23_0wxel")
@@ -781,6 +782,7 @@ vertical_jump_velocity = 2500.0
 grapple_ray = NodePath("../GrappleRay")
 line = NodePath("../GrappleRay/Line2D")
 jump_input_buffer = NodePath("../../../../JumpInputBuffer")
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="GrappleRay" type="RayCast2D" parent="StateMachine/Abilities/Grappling" unique_id=2019285064]
 scale = Vector2(1.35, 1.35)
@@ -802,6 +804,7 @@ climbing_ray = NodePath("ClimbingRay")
 line = NodePath("ClimbingRay/Line2D")
 default_hitbox = NodePath("../../../NormalHitbox")
 crouching_hitbox = NodePath("../../../CrouchedHitbox")
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="ClimbingSlide" type="Node" parent="StateMachine/Abilities/Climbing" unique_id=988233789 node_paths=PackedStringArray("climbing_ray", "climbing_buffer_state", "default_hitbox", "crouching_hitbox", "ceiling_detection", "floor_detection", "floor_detection_2", "left_ray", "right_ray")]
 script = ExtResource("14_hl1jv")
@@ -817,7 +820,7 @@ floor_detection = NodePath("../../../../FloorDetection")
 floor_detection_2 = NodePath("../../../../FloorDetection2")
 left_ray = NodePath("../../../../WallJumpRayReference/LeftRay")
 right_ray = NodePath("../../../../WallJumpRayReference/RightRay")
-placeholder_animation_color = Color(0.30563596, 0.3749689, 0.15632111, 1)
+placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="ClimbingRay" type="RayCast2D" parent="StateMachine/Abilities/Climbing" unique_id=1636057079]
 scale = Vector2(1.35, 1.35)
@@ -843,6 +846,7 @@ max_ascent_speed = 1000.0
 max_move_speed = 600.0
 horizontal_acceleration = 300.0
 horizontal_decceleration = 100.0
+can_exit_state_delay = 0.5
 grow_speed = 10.0
 color_return_speed = 0.2
 left_ray = NodePath("../../../WallJumpRayReference/LeftRay")

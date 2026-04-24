@@ -17,6 +17,7 @@ extends State
 @export var max_move_speed : float
 @export var horizontal_acceleration : float
 @export var horizontal_decceleration : float
+@export var can_exit_state_delay : float
 @export_category("Animation")
 @export var grow_speed : float
 @export var color_return_speed : float
@@ -38,6 +39,7 @@ var max_falling_speed : int
 var horizontal_input : int = 0
 var direction : String
 var inflated_duration_timer : Timer
+var can_exit_state : bool = false
 
 func _ready() -> void:
 	#Dash timer setup:
@@ -50,6 +52,7 @@ func set_direction(ability_direction : String) -> void:
 
 func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
+	can_exit_state = false
 	change_collider_to(inflated_hitbox)
 	change_hurtbox_to(inflated_hurtbox)
 	EventController.emit_signal("entered_inflate_state")
@@ -82,8 +85,12 @@ func activate(last_state : State) -> void:
 			player.velocity.x += additive_velocity
 		else:
 			player.velocity.x = initial_velocity
-
+	await get_tree().create_timer(can_exit_state_delay).timeout
+	can_exit_state = true
+		
 func process_input(event : InputEvent) -> State:
+	if not can_exit_state:
+		return
 	if event.is_action_pressed("use_ability"):
 		return ability_state
 	if event.is_action_pressed("dive"):
