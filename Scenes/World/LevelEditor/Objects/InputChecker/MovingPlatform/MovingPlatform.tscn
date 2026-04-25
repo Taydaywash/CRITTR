@@ -1,25 +1,24 @@
 [gd_scene format=3 uid="uid://sm76n0ie5ypj"]
 
 [ext_resource type="Script" uid="uid://wv1m1inl4y4s" path="res://Scenes/World/LevelEditor/Objects/InputChecker/MovingPlatform/moving_platform.gd" id="1_8t1pe"]
+[ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://Scenes/World/LevelEditor/Objects/Tiles/CollideableTiles.tscn" id="2_58i84"]
 
 [sub_resource type="Curve2D" id="Curve2D_2l3qn"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3qn"]
-size = Vector2(128, 128)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2l3qn"]
-size = Vector2(128, 128)
 
 [node name="MovingPlatform" type="Path2D" unique_id=640720163]
 curve = SubResource("Curve2D_2l3qn")
 script = ExtResource("1_8t1pe")
 
-[node name="Path2D" type="PathFollow2D" parent="." unique_id=1226625252]
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1226625252]
+rotates = false
+loop = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Path2D" unique_id=157548575]
+[node name="MidgroundFront" parent="PathFollow2D" unique_id=920181655 instance=ExtResource("2_58i84")]
+z_index = 1
+position = Vector2(64, 64)
+tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 7, 0, 0, 0, 3, 0, 0, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/StaticBody2D" unique_id=449443120]
-shape = SubResource("RectangleShape2D_2l3qn")
+[node name="Timer" type="Timer" parent="." unique_id=1196334435]
+wait_time = 3.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/StaticBody2D/CollisionShape2D" unique_id=1496744119]
-texture = SubResource("PlaceholderTexture2D_2l3qn")
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

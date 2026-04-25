@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b350fb22korkf"]
+
+[ext_resource type="Script" uid="uid://wv1m1inl4y4s" path="res://Scenes/World/LevelEditor/Objects/InputChecker/MovingPlatform/moving_platform.gd" id="1_flyta"]
+[ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://Scenes/World/LevelEditor/Objects/Tiles/CollideableTiles.tscn" id="2_8fb2s"]
+
+[sub_resource type="Curve2D" id="Curve2D_2l3qn"]
+
+[node name="MovingPlatform" type="Path2D" unique_id=640720163]
+curve = SubResource("Curve2D_2l3qn")
+script = ExtResource("1_flyta")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1226625252]
+rotates = false
+loop = false
+
+[node name="MidgroundFront" parent="PathFollow2D" unique_id=920181655 instance=ExtResource("2_8fb2s")]
+z_index = 1
+position = Vector2(0, 64)
+tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 7, 0, 1, 0, 3, 0, 0, 0, 0, 0, 255, 255, 7, 0, 3, 0, 3, 0, 0, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=1196334435]
+wait_time = 3.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

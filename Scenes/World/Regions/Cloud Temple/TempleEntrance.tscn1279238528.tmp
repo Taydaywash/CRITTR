@@ -1,0 +1,58 @@
+[gd_scene format=4 uid="uid://2m0v2mi16lcm"]
+
+[ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://Scenes/World/room_controller.gd" id="1_2jin5"]
+[ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://Scenes/World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="2_txieh"]
+[ext_resource type="PackedScene" uid="uid://8ykotcb867ae" path="res://Scenes/World/LevelEditor/Objects/Tiles/NoCollisionTiles.tscn" id="3_ngd5k"]
+[ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://Scenes/World/LevelEditor/Objects/Tiles/CollideableTiles.tscn" id="4_xk2v5"]
+[ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_a81rx"]
+[ext_resource type="Shape2D" uid="uid://kcu3cvf74df6" path="res://Scenes/World/LevelEditor/Objects/Camera/baseCamera.tres" id="6_r2t82"]
+[ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Tools/level_bounds_auto_center_tool.gd" id="7_kmxmt"]
+[ext_resource type="PackedScene" uid="uid://cesp7imm7vll7" path="res://Scenes/World/LevelEditor/Objects/InputChecker/InputChecker.tscn" id="8_6btj0"]
+[ext_resource type="PackedScene" uid="uid://sm76n0ie5ypj" path="res://Scenes/World/LevelEditor/Objects/InputChecker/MovingPlatform/MovingPlatform.tscn" id="9_sk38q"]
+
+[node name="Room2" type="Node2D" unique_id=721111038]
+script = ExtResource("1_2jin5")
+
+[node name="RespawnPoint" parent="." unique_id=262928423 instance=ExtResource("2_txieh")]
+position = Vector2(-1848, 704)
+
+[node name="Foreground" parent="." unique_id=622969364 instance=ExtResource("3_ngd5k")]
+z_index = 2
+
+[node name="MidgroundFront" parent="." unique_id=1729108735 instance=ExtResource("4_xk2v5")]
+z_index = 1
+tile_map_data = PackedByteArray("AAD//wkABwAKAAAAAADu/woABwAJAAMAAADu/wkABwAKAAAAAADu//b/BwAJAAMAAADu//X/BwAKAAAAAADt/woABwAIAAMAAADt/wkABwAIAAAAAADt//b/BwAIAAMAAADt//X/BwAIAAAAAAASAAoABwALAAMAAAASAAkABwALAAIAAAARAAoABwAJAAMAAAARAAkABwAFAAEAAAAQAAoABwAJAAMAAAAQAAkABwAKAAAAAAAPAAoABwAJAAMAAAAPAAkABwAKAAAAAAAOAAoABwAJAAMAAAAOAAkABwAKAAAAAAANAAoABwAJAAMAAAANAAkABwAKAAAAAAAMAAoABwAJAAMAAAAMAAkABwAKAAAAAAALAAoABwAJAAMAAAALAAkABwAKAAAAAAAKAAoABwAJAAMAAAAKAAkABwAKAAAAAAAJAAoABwAJAAMAAAAJAAkABwAKAAAAAAAIAAoABwAJAAMAAAAIAAkABwAKAAAAAAAHAAoABwAJAAMAAAAHAAkABwAKAAAAAAAGAAoABwAJAAMAAAAGAAkABwAKAAAAAAAFAAoABwAJAAMAAAAFAAkABwAKAAAAAAAEAAoABwAJAAMAAAAEAAkABwAKAAAAAAADAAoABwAJAAMAAAADAAkABwAKAAAAAAACAAoABwAJAAMAAAACAAkABwAKAAAAAAABAAoABwAJAAMAAAABAAkABwAKAAAAAAAAAAoABwAJAAMAAAAAAAkABwAKAAAAAAD//woABwAJAAMAAAD+/woABwAJAAMAAAD+/wkABwAKAAAAAAD9/woABwAJAAMAAAD9/wkABwAKAAAAAAD8/woABwAJAAMAAAD8/wkABwAKAAAAAAD7/woABwAJAAMAAAD7/wkABwAKAAAAAAD6/woABwAJAAMAAAD6/wkABwAKAAAAAAD5/woABwAJAAMAAAD5/wkABwAKAAAAAAD4/woABwAJAAMAAAD4/wkABwAKAAAAAAD3/woABwAJAAMAAAD3/wkABwAKAAAAAAD2/woABwAJAAMAAAD2/wkABwAKAAAAAAD1/woABwAJAAMAAAD1/wkABwAKAAAAAAD0/woABwAJAAMAAAD0/wkABwAKAAAAAADz/woABwAJAAMAAADz/wkABwAKAAAAAADy/woABwAJAAMAAADy/wkABwAKAAAAAADx/woABwAJAAMAAADx/wkABwAKAAAAAADw/woABwAJAAMAAADw/wkABwAKAAAAAADv/woABwAJAAMAAADv/wkABwAKAAAAAAASAAgABwALAAIAAAASAAcABwALAAIAAAASAAYABwALAAIAAAASAAUABwALAAIAAAASAAQABwALAAIAAAASAAMABwALAAIAAAASAAIABwALAAIAAAASAAEABwALAAIAAAASAAAABwALAAIAAAASAP//BwALAAIAAAASAP7/BwALAAIAAAASAP3/BwALAAIAAAASAPz/BwALAAIAAAASAPv/BwALAAIAAAASAPr/BwALAAIAAAASAPn/BwALAAIAAAASAPj/BwALAAIAAAASAPf/BwALAAIAAAASAPb/BwALAAIAAAASAPX/BwALAAAAAAARAAgABwAIAAEAAAARAAcABwAIAAEAAAARAAYABwAIAAEAAAARAAUABwAIAAEAAAARAAQABwAIAAEAAAARAAMABwAIAAEAAAARAAIABwAIAAEAAAARAAEABwAIAAEAAAARAAAABwAIAAEAAAARAP//BwAIAAEAAAARAP7/BwAIAAEAAAARAP3/BwAIAAEAAAARAPz/BwAIAAEAAAARAPv/BwAIAAEAAAARAPr/BwAIAAEAAAARAPn/BwAIAAEAAAARAPj/BwAIAAEAAAARAPf/BwAIAAEAAAARAPb/BwAFAAIAAAARAPX/BwAKAAAAAAAQAPb/BwAJAAMAAAAQAPX/BwAKAAAAAAAPAPb/BwAJAAMAAAAPAPX/BwAKAAAAAAAOAPb/BwAJAAMAAAAOAPX/BwAKAAAAAAANAPb/BwAJAAMAAAANAPX/BwAKAAAAAAAMAPb/BwAJAAMAAAAMAPX/BwAKAAAAAAALAPb/BwAJAAMAAAALAPX/BwAKAAAAAAAKAPb/BwAJAAMAAAAKAPX/BwAKAAAAAAAJAPb/BwAJAAMAAAAJAPX/BwAKAAAAAAAIAPb/BwAJAAMAAAAIAPX/BwAKAAAAAAAHAPb/BwAJAAMAAAAHAPX/BwAKAAAAAAAGAPb/BwAJAAMAAAAGAPX/BwAKAAAAAAAFAPb/BwAJAAMAAAAFAPX/BwAKAAAAAAAEAPb/BwAJAAMAAAAEAPX/BwAKAAAAAAADAPb/BwAJAAMAAAADAPX/BwAKAAAAAAACAPb/BwAJAAMAAAACAPX/BwAKAAAAAAABAPb/BwAJAAMAAAABAPX/BwAKAAAAAAAAAPb/BwAJAAMAAAAAAPX/BwAKAAAAAAD///b/BwAJAAMAAAD///X/BwAKAAAAAAD+//b/BwAJAAMAAAD+//X/BwAKAAAAAAD9//b/BwAJAAMAAAD9//X/BwAKAAAAAAD8//b/BwAJAAMAAAD8//X/BwAKAAAAAAD7//b/BwAJAAMAAAD7//X/BwAKAAAAAAD6//b/BwAJAAMAAAD6//X/BwAKAAAAAAD5//b/BwAJAAMAAAD5//X/BwAKAAAAAAD4//b/BwAJAAMAAAD4//X/BwAKAAAAAAD3//b/BwAJAAMAAAD3//X/BwAKAAAAAAD2//b/BwAJAAMAAAD2//X/BwAKAAAAAAD1//b/BwAJAAMAAAD1//X/BwAKAAAAAAD0//b/BwAJAAMAAAD0//X/BwAKAAAAAADz//b/BwAJAAMAAADz//X/BwAKAAAAAADy//b/BwAJAAMAAADy//X/BwAKAAAAAADx//b/BwAJAAMAAADx//X/BwAKAAAAAADw//b/BwAJAAMAAADw//X/BwAKAAAAAADv//b/BwAJAAMAAADv//X/BwAKAAAAAAA=")
+
+[node name="MidgroundBack" parent="." unique_id=711483977 instance=ExtResource("4_xk2v5")]
+z_index = -1
+
+[node name="Background" parent="." unique_id=355725617 instance=ExtResource("3_ngd5k")]
+z_index = -2
+
+[node name="defaultPlayerCameraReference" parent="." unique_id=1700913832 instance=ExtResource("5_a81rx")]
+visible = false
+
+[node name="Area2D" type="Area2D" parent="." unique_id=526693370]
+collision_layer = 128
+collision_mask = 8
+
+[node name="LevelBounds" type="CollisionShape2D" parent="Area2D" unique_id=673057049]
+z_index = 1
+shape = ExtResource("6_r2t82")
+debug_color = Color(1, 1, 1, 0.21568628)
+script = ExtResource("7_kmxmt")
+
+[node name="InputChecker" parent="." unique_id=1734738149 instance=ExtResource("8_6btj0")]
+position = Vector2(-1152, 832)
+sequences = Array[String](["move_down", "move_down", "move_down"])
+
+[node name="MovingPlatform" parent="InputChecker" unique_id=640720163 instance=ExtResource("9_sk38q")]
+position = Vector2(1152, -832)
+
+[node name="PathFollow2D" parent="InputChecker/MovingPlatform" index="0" unique_id=1226625252]
+position = Vector2(-448, 1088)
+
+[connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
+[connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]
+
+[editable path="InputChecker/MovingPlatform"]
