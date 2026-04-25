@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://Scenes/World/Regions/Crash Site/InsideShip.tscn" id="8_jacc8"]
 [ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://Scenes/World/Regions/Crash Site/ClimbToPeak.tscn" id="14_7in0u"]
 [ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://Scenes/World/Regions/Crash Site/DiveTutorial.tscn" id="16_vdgnt"]
-[ext_resource type="Script" path="res://Scenes/World/fire_particle_deletion_logic.gd" id="17_44hbs"]
+[ext_resource type="Script" uid="uid://ly7ivf5nvuar" path="res://Scenes/World/fire_particle_deletion_logic.gd" id="17_44hbs"]
 [ext_resource type="Texture2D" uid="uid://bkmii5ukk00pn" path="res://Assets/Particles/puff cloud.png" id="18_eoa2q"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/UI/Map/map.tscn" id="18_hev0n"]
 [ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://Scenes/World/Regions/Crash Site/PlatformsTwo.tscn" id="19_hlwfy"]

@@ -13,6 +13,7 @@ signal on_hidden_tile_entered(body) #Emitted From Player
 signal wall_revealed(id) #Emitted from hidden wall tiles
 signal screen_is_black(current_room)
 signal player_death()
+signal player_teleport()
 signal player_respawn()
 signal lock_entry(category_name: String, entry_title: String)
 signal unlock_entry(category_name: String, entry_title: String)

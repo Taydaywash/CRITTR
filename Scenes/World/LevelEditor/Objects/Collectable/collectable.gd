@@ -11,11 +11,8 @@ var original_location : Vector2
 
 func _ready() -> void: 
 	original_location = global_position
-	EventController.connect("player_death",func ():
-		following_player = false
-		set_deferred("monitoring",true)
-		global_position = original_location
-		)
+	EventController.connect("player_teleport",reset)
+	EventController.connect("player_death",reset)
 	EventController.connect("collectable_following",func collectable_following(identifier,player_ref):
 		if identifier == id:
 			player = player_ref
@@ -27,6 +24,11 @@ func _ready() -> void:
 	if GameController.is_collected(id):
 		queue_free()
 		return
+
+func reset():
+	following_player = false
+	set_deferred("monitoring",true)
+	global_position = original_location
 
 func _on_body_entered(body):
 	if body is Player:

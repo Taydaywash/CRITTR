@@ -165,6 +165,7 @@ func _on_confirm_teleport() -> void:
 	player.velocity = Vector2.ZERO
 	player.state_machine.force_change_state(player.state_machine.no_control_no_gravity_state, false)
 	ui.reset_choicer_text()
+	EventController.emit_signal("player_teleport")
 	await pause_screen.animation_player.animation_finished
 	player.state_machine.force_change_state(player.state_machine.teleporting_enter_state, false)
 	await player.animated_player_sprite.animation_finished
@@ -180,7 +181,7 @@ func _on_confirm_teleport_same_room() -> void:
 	player.velocity = Vector2.ZERO
 	player.state_machine.force_change_state(player.state_machine.no_control_no_gravity_state, false)
 	ui.reset_choicer_text()
-	EventController.emit_signal("player_death")
+	EventController.emit_signal("player_teleport")
 	await pause_screen.animation_player.animation_finished
 	player.state_machine.force_change_state(player.state_machine.teleporting_enter_state, false)
 	await player.animated_player_sprite.animation_finished
