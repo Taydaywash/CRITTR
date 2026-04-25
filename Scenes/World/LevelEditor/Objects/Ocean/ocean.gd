@@ -60,6 +60,7 @@ func update_shape() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if in_air_pockets > 0:
 		return
+	print("enterd watera")
 	audio_controller = room.audio_controller
 	audio_controller.enable_water_sound_filters()
 	particle_controller = room.particle_controller
@@ -99,6 +100,7 @@ func start_breath_timer() -> void:
 	$BreathTimer.start()
 
 func enter_air_pocket(body: Node2D = $"../../../../Player") -> void:
+	await get_tree().process_frame
 	if not player_in_water:
 		return
 	in_air_pockets += 1

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cjw3t1a4kan5s" path="res://Scenes/World/LevelEditor/Objects/Air Pocket/Air Pocket.tscn" id="7_cwlo7"]
 [ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Tools/level_bounds_auto_center_tool.gd" id="8_hpopt"]
 [ext_resource type="Script" uid="uid://r63htp46ehug" path="res://Scenes/World/LevelEditor/Objects/EditorNotes/EditorNotes.gd" id="9_pyy2c"]
+[ext_resource type="PackedScene" uid="uid://rjr0axi6j344" path="res://Scenes/World/LevelEditor/Objects/Track/Track.tscn" id="10_w7xin"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vagb"]
 size = Vector2(4608, 2560)
@@ -18,6 +19,12 @@ font_size = 80
 
 [sub_resource type="LabelSettings" id="LabelSettings_pyy2c"]
 font_size = 80
+
+[sub_resource type="Curve2D" id="Curve2D_68gof"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1024, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
 
 [node name="Room2" type="Node2D" unique_id=721111038]
 script = ExtResource("1_umbuj")
@@ -116,6 +123,11 @@ offset_bottom = -718.0
 text = "Ability combos:
 ^ Inflate, V dash, < grapple, > dash"
 label_settings = SubResource("LabelSettings_pyy2c")
+
+[node name="Path2D" parent="." unique_id=1366413837 instance=ExtResource("10_w7xin")]
+z_index = 1
+position = Vector2(704, -384)
+curve = SubResource("Curve2D_68gof")
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

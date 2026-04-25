@@ -74,14 +74,14 @@ func process_physics(delta) -> State:
 			player.position.x -= 14
 	if (left_ray.is_colliding() or right_ray.is_colliding()) and jump_input_buffer.time_left > 0:
 		return wall_jumping_state
-	if player.is_on_floor():
-		if jump_input_buffer.time_left > 0:
-			return self
-		else:
-			if abs(player.velocity.x) > 0:
-				return walking_state
-			else:
-				return idle_state
+	#if player.is_on_floor():
+		#if jump_input_buffer.time_left > 0:
+			#return jumping_state
+		#else:
+			#if abs(player.velocity.x) > 0:
+				#return walking_state
+			#else:
+				#return idle_state
 	if (left_ray.is_colliding()  or right_ray.is_colliding()) and jump_input_buffer.time_left > 0:
 		return wall_jumping_state
 	return null

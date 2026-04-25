@@ -96,6 +96,7 @@ func process_input(event : InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
+	var velocity_before_slide : Vector2 = player.velocity
 	if player.velocity.y > -max_ascent_speed:
 		player.velocity.y = player.velocity.move_toward(Vector2(player.velocity.x,-max_ascent_speed),upwards_acceleration * delta).y
 	if player.velocity.y > 0:
@@ -113,10 +114,10 @@ func process_physics(delta) -> State:
 		player.velocity.y = bounce_velocity
 		bounced()
 	if player.is_on_wall():
-		if (left_ray.is_colliding() or left_ray_low.is_colliding() or left_ray_high.is_colliding()):
+		if (left_ray.is_colliding() or left_ray_low.is_colliding() or left_ray_high.is_colliding()) and velocity_before_slide.x < -10:
 			player.velocity.x = bounce_velocity
 			bounced()
-		elif (right_ray.is_colliding() or right_ray_low.is_colliding() or right_ray_high.is_colliding()):
+		elif (right_ray.is_colliding() or right_ray_low.is_colliding() or right_ray_high.is_colliding()) and velocity_before_slide.x > 10:
 			player.velocity.x = -bounce_velocity
 			bounced()
 	if player.is_on_floor():

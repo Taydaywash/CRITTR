@@ -5,9 +5,12 @@ var from_string : Dictionary = {
 	"ARCTIC_HARE_DEN":ARCTIC_HARE_DEN,
 	"ACID_FROG_DEN":ACID_FROG_DEN,
 	"INFLATE_DEN":INFLATE_DEN,
+	"END_GAME_CONFIRMATION":END_GAME_CONFIRMATION,
 }
 
 const TELEPORT_CONFIRMATION = ("Are you sure you want to teleport to this save tube?")
+
+const END_GAME_CONFIRMATION = ("Are you sure you want to end the crittr demo? \n (Game progress will be saved)")
 
 const CRITTR_CATCHER_LEAVE = ("Are you sure you want to exit this crittr den? 
 (progress will be lost)")

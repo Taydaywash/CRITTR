@@ -90,7 +90,9 @@
 [ext_resource type="PackedScene" uid="uid://chvu6roex3dyt" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold6.tscn" id="78_ixxyk"]
 [ext_resource type="PackedScene" uid="uid://b7lx6f4o42mr7" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold7.tscn" id="79_qyaep"]
 [ext_resource type="PackedScene" uid="uid://df5dvukcm113v" path="res://Scenes/World/Regions/GlassSea/depths/DepthsBonus1.tscn" id="80_wawgj"]
+[ext_resource type="Script" uid="uid://cu187bnu1f6w2" path="res://Scenes/World/interactable_popup_start.gd" id="81_g04sn"]
 [ext_resource type="PackedScene" uid="uid://brm2nyavy2dmq" path="res://Scenes/World/Regions/GlassSea/depths/DepthsBonus2.tscn" id="81_xjk1d"]
+[ext_resource type="Script" uid="uid://b8hh2yugl6eid" path="res://Scenes/World/end_game_choicer_handler.gd" id="82_ll777"]
 
 [sub_resource type="Gradient" id="Gradient_dw2uc"]
 offsets = PackedFloat32Array(1)
@@ -191,6 +193,9 @@ colors = PackedColorArray(0.00925786, 5.6782254e-05, 0.25134742, 1)
 gradient = SubResource("Gradient_wj4oh")
 fill_from = Vector2(0.4869565, 0)
 fill_to = Vector2(0.5304348, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixxyk"]
+size = Vector2(256, 256)
 
 [sub_resource type="Animation" id="Animation_h71dq"]
 length = 0.001
@@ -2385,7 +2390,21 @@ z_index = 0
 position = Vector2(-6528, 384)
 
 [node name="WetAndCold7" parent="Rooms/GlassSeaDepths" unique_id=1935191818 instance=ExtResource("79_qyaep")]
-position = Vector2(-8576, 4800)
+position = Vector2(-10112, 3520)
+
+[node name="interactable" type="Area2D" parent="Rooms/GlassSeaDepths/WetAndCold7" unique_id=247354675 node_paths=PackedStringArray("choicer_handler")]
+position = Vector2(768, 512)
+script = ExtResource("81_g04sn")
+choicer_handler = NodePath("ChoicerHandler")
+dialog_string = "END_GAME_CONFIRMATION"
+metadata/_custom_type_script = "uid://4t3jjrtphc6j"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/GlassSeaDepths/WetAndCold7/interactable" unique_id=1342078511]
+shape = SubResource("RectangleShape2D_ixxyk")
+
+[node name="ChoicerHandler" type="Node" parent="Rooms/GlassSeaDepths/WetAndCold7/interactable" unique_id=1543628056]
+script = ExtResource("82_ll777")
+metadata/_custom_type_script = "uid://djbpfy38vrjy8"
 
 [node name="DepthsBonus1" parent="Rooms/GlassSeaDepths" unique_id=1074546216 instance=ExtResource("80_wawgj")]
 position = Vector2(-22272, -8640)
