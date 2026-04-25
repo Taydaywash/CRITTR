@@ -56,8 +56,6 @@ func activate(last_state : State) -> void:
 	change_collider_to(inflated_hitbox)
 	change_hurtbox_to(inflated_hurtbox)
 	EventController.emit_signal("entered_inflate_state")
-	#sprite.scale.x = 1.5
-	#sprite.scale.y = 1.5
 	sprite.offset.y = -50
 	if direction == "up":
 		inflated_duration_timer.wait_time = inflated_duration
@@ -73,7 +71,7 @@ func activate(last_state : State) -> void:
 		inflated_duration_timer.wait_time = inflated_duration
 		player.velocity.y /= vertical_velocity_dampen_multiplier
 		inflated_duration_timer.start()
-		if abs(player.velocity.x) > initial_velocity:
+		if abs(player.velocity.x) > initial_velocity and player.velocity.x < 0:
 			player.velocity.x += -additive_velocity
 		else:
 			player.velocity.x = -initial_velocity
@@ -81,7 +79,7 @@ func activate(last_state : State) -> void:
 		inflated_duration_timer.wait_time = inflated_duration
 		player.velocity.y /= vertical_velocity_dampen_multiplier
 		inflated_duration_timer.start()
-		if abs(player.velocity.x) > initial_velocity:
+		if abs(player.velocity.x) > initial_velocity and player.velocity.x > 0:
 			player.velocity.x += additive_velocity
 		else:
 			player.velocity.x = initial_velocity
@@ -115,10 +113,10 @@ func process_physics(delta) -> State:
 		player.velocity.y = bounce_velocity
 		bounced()
 	if player.is_on_wall():
-		if (left_ray.is_colliding() or left_ray_low.is_colliding() or left_ray_high.is_colliding()) and player.velocity.x > 10:
+		if (left_ray.is_colliding() or left_ray_low.is_colliding() or left_ray_high.is_colliding()):
 			player.velocity.x = bounce_velocity
 			bounced()
-		elif (right_ray.is_colliding() or right_ray_low.is_colliding() or right_ray_high.is_colliding()) and player.velocity.x < -10:
+		elif (right_ray.is_colliding() or right_ray_low.is_colliding() or right_ray_high.is_colliding()):
 			player.velocity.x = -bounce_velocity
 			bounced()
 	if player.is_on_floor():

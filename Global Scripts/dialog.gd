@@ -4,6 +4,7 @@ var from_string : Dictionary = {
 	"TELEPORT_CONFIRMATION":TELEPORT_CONFIRMATION,
 	"ARCTIC_HARE_DEN":ARCTIC_HARE_DEN,
 	"ACID_FROG_DEN":ACID_FROG_DEN,
+	"INFLATE_DEN":INFLATE_DEN,
 }
 
 const TELEPORT_CONFIRMATION = ("Are you sure you want to teleport to this save tube?")

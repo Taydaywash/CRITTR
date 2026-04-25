@@ -45,7 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://c0yxdqvvnh8u3" path="res://Assets/Decals/Marsh/Background/BigLeafPlant.png" id="36_0hcbc"]
 [ext_resource type="PackedScene" uid="uid://bfvw3u7lagu3r" path="res://Scenes/World/Regions/Toxic Marsh/WallSteam2.tscn" id="36_150fk"]
 [ext_resource type="PackedScene" uid="uid://f4g8bo43v373" path="res://Scenes/World/Regions/Toxic Marsh/Ascent.tscn" id="36_k3b55"]
-[ext_resource type="Script" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
+[ext_resource type="Script" uid="uid://debb4cff3jagh" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
 [ext_resource type="Texture2D" uid="uid://dlb8x8m772hoq" path="res://Assets/Decals/Marsh/Background/MedLeafPlant.png" id="37_4kbg2"]
 [ext_resource type="PackedScene" uid="uid://bm3kvosdi8puf" path="res://Scenes/World/Regions/Toxic Marsh/Endurance2.tscn" id="37_150fk"]
 [ext_resource type="PackedScene" uid="uid://bc75uokokv1wd" path="res://Scenes/UI/crittr_catcher.tscn" id="38_hb1o8"]
@@ -58,6 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://b37w5ehcx43d6" path="res://Scenes/World/Regions/Toxic Marsh/GrappleDen.tscn" id="42_kcg70"]
 [ext_resource type="PackedScene" uid="uid://bkru2b6d01p7k" path="res://Scenes/World/Regions/Toxic Marsh/Hooks.tscn" id="46_k3b55"]
 [ext_resource type="Script" uid="uid://ytr5q3hl5ncj" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/grapple_den_handler.gd" id="49_7foer"]
+[ext_resource type="PackedScene" uid="uid://kwtryae5rahr" path="res://Scenes/World/Regions/Toxic Marsh/WasteInflateSecret.tscn" id="51_icms3"]
 [ext_resource type="PackedScene" uid="uid://cagiuhwdbmyso" path="res://Scenes/World/Regions/Stardust Peak/PeakEnterFromCrashSite.tscn" id="53_i3env"]
 [ext_resource type="Texture2D" uid="uid://d32yuf72l022w" path="res://Assets/Decals/Peak/starbg.png" id="54_2shhw"]
 [ext_resource type="PackedScene" uid="uid://c3pylhdry0xgb" path="res://Scenes/World/Regions/Cloud Temple/TempleDoor.tscn" id="54_jvctc"]
@@ -2023,6 +2024,11 @@ script = ExtResource("49_7foer")
 [node name="Room2" parent="Rooms/ToxicMarsh" unique_id=231607869 instance=ExtResource("54_jvctc")]
 position = Vector2(65024, -6080)
 
+[node name="Room3" parent="Rooms/ToxicMarsh" unique_id=2026563077 instance=ExtResource("51_icms3")]
+position = Vector2(36864, -5440)
+zoom_to_fit = true
+hidden_room = true
+
 [node name="StardustPeak" type="Node" parent="Rooms" unique_id=1537704255]
 script = ExtResource("6_lqys3")
 music = ExtResource("54_qf2ks")
@@ -2368,10 +2374,6 @@ position = Vector2(-1984, 64)
 [node name="WetAndCold4" parent="Rooms/GlassSeaDepths" unique_id=1254107393 instance=ExtResource("76_g04sn")]
 position = Vector2(-26880, -2880)
 
-[node name="SaveTube2" parent="Rooms/GlassSeaDepths/WetAndCold4" unique_id=1037939659 instance=ExtResource("8_hev0n")]
-z_index = 0
-position = Vector2(1728, -2176)
-
 [node name="WetAndCold5" parent="Rooms/GlassSeaDepths" unique_id=21515057 instance=ExtResource("77_ll777")]
 position = Vector2(-26880, 960)
 
@@ -2380,7 +2382,7 @@ position = Vector2(-17664, 960)
 
 [node name="SaveTube2" parent="Rooms/GlassSeaDepths/WetAndCold6" unique_id=2073227596 instance=ExtResource("8_hev0n")]
 z_index = 0
-position = Vector2(-6528, 448)
+position = Vector2(-6528, 384)
 
 [node name="WetAndCold7" parent="Rooms/GlassSeaDepths" unique_id=1935191818 instance=ExtResource("79_qyaep")]
 position = Vector2(-8576, 4800)
