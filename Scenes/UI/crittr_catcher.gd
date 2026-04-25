@@ -26,23 +26,34 @@ const ARCTIC_HARE_LEVEL_TWO = preload("uid://du1qntg4cje4j")
 const ARCTIC_HARE_LEVEL_THREE = preload("uid://dr2aaabjokk7i")
 const ARCTIC_HARE_LEVEL_FOUR = preload("uid://cehn5odetaf3e")
 
+const ACID_FROG_LEVEL_1 = preload("uid://eignvh3i5tmp")
+const ACID_FROG_LEVEL_2 = preload("uid://dd3axxmt8i3b3")
+const ACID_FROG_LEVEL_3 = preload("uid://dajjvbkvhgjqq")
+const ACID_FROG_LEVEL_4 = preload("uid://bmohfj03gt625")
+
+const INFLATE_LEVEL_1 = preload("uid://dmmcbx8olfqrp")
+const INFLATE_LEVEL_2 = preload("uid://dndjikwjscbsl")
+const INFLATE_LEVEL_3 = preload("uid://bixxcojlqp58n")
+const INFLATE_LEVEL_4 = preload("uid://b076cx5ktiurd")
+
+
 const ARCTIC_HARE_LEVEL_POOL : Dictionary = {
 	0 : ARCTIC_HARE_LEVEL_ONE,
 	1 : ARCTIC_HARE_LEVEL_TWO,
-	2 : ARCTIC_HARE_LEVEL_THREE,
-	3 : ARCTIC_HARE_LEVEL_FOUR,
+	2 : ARCTIC_HARE_LEVEL_FOUR,
+	3 : ARCTIC_HARE_LEVEL_THREE,
 }
 const ACID_FROG_LEVEL_POOL : Dictionary = {
-	0 : ARCTIC_HARE_LEVEL_ONE,
-	1 : ARCTIC_HARE_LEVEL_TWO,
-	2 : ARCTIC_HARE_LEVEL_THREE,
-	3 : ARCTIC_HARE_LEVEL_FOUR,
+	0 : ACID_FROG_LEVEL_1,
+	1 : ACID_FROG_LEVEL_2,
+	2 : ACID_FROG_LEVEL_3,
+	3 : ACID_FROG_LEVEL_4,
 }
 const PUFFER_LEVEL_POOL : Dictionary = {
-	0 : ARCTIC_HARE_LEVEL_ONE,
-	1 : ARCTIC_HARE_LEVEL_TWO,
-	2 : ARCTIC_HARE_LEVEL_THREE,
-	3 : ARCTIC_HARE_LEVEL_FOUR,
+	0 : INFLATE_LEVEL_1,
+	1 : INFLATE_LEVEL_2,
+	2 : INFLATE_LEVEL_3,
+	3 : INFLATE_LEVEL_4,
 }
 
 #Changes depending on the den interacted with

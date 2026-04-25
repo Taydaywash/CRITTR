@@ -83,10 +83,10 @@ position = Vector2(896, 192)
 position = Vector2(768, 192)
 
 [node name="Node13" parent="." unique_id=612531275 instance=ExtResource("1_wn182")]
-position = Vector2(640, 320.5)
+position = Vector2(128, 448)
 
 [node name="Node14" parent="." unique_id=392858126 instance=ExtResource("1_wn182")]
-position = Vector2(640, 192.5)
+position = Vector2(256, 448)
 
 [node name="Node7" parent="." unique_id=1491682710 instance=ExtResource("1_wn182")]
 position = Vector2(640, 448)
@@ -101,14 +101,20 @@ position = Vector2(384, 448)
 position = Vector2(512, 576)
 
 [node name="Node11" parent="." unique_id=1198916166 instance=ExtResource("1_wn182")]
-position = Vector2(640, 576)
+position = Vector2(384, 576)
+
+[node name="Node15" parent="." unique_id=1685201762 instance=ExtResource("1_wn182")]
+position = Vector2(256, 576)
+
+[node name="Node16" parent="." unique_id=665182078 instance=ExtResource("1_wn182")]
+position = Vector2(128, 576)
 
 [node name="Node12" parent="." unique_id=1145503066 instance=ExtResource("1_wn182")]
-position = Vector2(384, 320)
+position = Vector2(768, 576)
 
 [node name="Crittr" parent="." unique_id=1473794053 instance=ExtResource("2_i6vg6")]
 unique_name_in_owner = true
-position = Vector2(384, 448)
+position = Vector2(128, 448)
 
 [node name="Player" parent="." unique_id=559711742 instance=ExtResource("3_tjrv4")]
 unique_name_in_owner = true

@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://dmmcbx8olfqrp"]
+
+[ext_resource type="PackedScene" uid="uid://bu3gg42y6lj8c" path="res://Scenes/UI/Crittr Catcher/CrittrCatcherNode.tscn" id="1_d1rws"]
+[ext_resource type="PackedScene" uid="uid://ctbjffqplmjia" path="res://Scenes/UI/Crittr Catcher/hare_crittr.tscn" id="2_ddeqt"]
+[ext_resource type="PackedScene" uid="uid://bse151u6i26pm" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_player.tscn" id="3_3uiak"]
+[ext_resource type="PackedScene" uid="uid://cumgssnhnl1te" path="res://Scenes/UI/Crittr Catcher/CrittrCatcherExitNode.tscn" id="4_skl1g"]
+
+[sub_resource type="Animation" id="Animation_2jeen"]
+resource_name = "Fade_In"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(6.276664, 7.464262),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_58bir"]
+resource_name = "Fade_Out"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3186401, 6.276664),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_m742m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_15ap5"]
+_data = {
+&"Fade_In": SubResource("Animation_2jeen"),
+&"Fade_Out": SubResource("Animation_58bir"),
+&"RESET": SubResource("Animation_m742m")
+}
+
+[node name="Level" type="Node2D" unique_id=162368665]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Node2" parent="." unique_id=512139541 instance=ExtResource("1_d1rws")]
+position = Vector2(514, 361.5)
+
+[node name="Node6" parent="." unique_id=238242525 instance=ExtResource("1_d1rws")]
+position = Vector2(642, 361.5)
+
+[node name="Node8" parent="." unique_id=312082478 instance=ExtResource("1_d1rws")]
+position = Vector2(386, 233.5)
+
+[node name="Node12" parent="." unique_id=1401284775 instance=ExtResource("1_d1rws")]
+position = Vector2(514, 233.5)
+
+[node name="Node13" parent="." unique_id=1826847463 instance=ExtResource("1_d1rws")]
+position = Vector2(769, 616)
+
+[node name="Node3" parent="." unique_id=1705774450 instance=ExtResource("1_d1rws")]
+position = Vector2(386, 489.5)
+
+[node name="Node10" parent="." unique_id=279353276 instance=ExtResource("1_d1rws")]
+position = Vector2(386, 361.5)
+
+[node name="Node4" parent="." unique_id=97764460 instance=ExtResource("1_d1rws")]
+position = Vector2(514, 489.5)
+
+[node name="Node15" parent="." unique_id=9764604 instance=ExtResource("1_d1rws")]
+position = Vector2(514, 617.5)
+
+[node name="Node5" parent="." unique_id=303415819 instance=ExtResource("1_d1rws")]
+position = Vector2(386, 617.5)
+
+[node name="Node16" parent="." unique_id=1943574430 instance=ExtResource("1_d1rws")]
+position = Vector2(257, 617.5)
+
+[node name="Node7" parent="." unique_id=1096718239 instance=ExtResource("1_d1rws")]
+position = Vector2(770, 489.5)
+
+[node name="Node9" parent="." unique_id=45417010 instance=ExtResource("1_d1rws")]
+position = Vector2(642, 489.5)
+
+[node name="Node11" parent="." unique_id=459897024 instance=ExtResource("1_d1rws")]
+position = Vector2(898, 489.5)
+
+[node name="Node14" parent="." unique_id=1365938650 instance=ExtResource("1_d1rws")]
+position = Vector2(1026, 489.5)
+
+[node name="Crittr" parent="." unique_id=1473794053 instance=ExtResource("2_ddeqt")]
+unique_name_in_owner = true
+position = Vector2(513, 232)
+
+[node name="Player" parent="." unique_id=559711742 instance=ExtResource("3_3uiak")]
+unique_name_in_owner = true
+position = Vector2(1026, 489.5)
+
+[node name="ExitNode" parent="." unique_id=2043294869 instance=ExtResource("4_skl1g")]
+position = Vector2(1154, 489.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=92729003]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_15ap5")
+autoplay = &"Fade_In"

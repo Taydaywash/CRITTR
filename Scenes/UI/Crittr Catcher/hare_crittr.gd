@@ -32,6 +32,20 @@ func _ready() -> void:
 		)
 
 func _process(_delta: float) -> void:
+	match facing:
+		"north":
+			%FacingArrow.rotation_degrees = 270
+			%FacingArrow.position = Vector2(0,-250)
+		"east":
+			%FacingArrow.rotation_degrees = 0
+			%FacingArrow.position = Vector2(250,0)
+		"south":
+			%FacingArrow.rotation_degrees = 90
+			%FacingArrow.position = Vector2(0,250)
+		"west":
+			%FacingArrow.rotation_degrees = 180
+			%FacingArrow.position = Vector2(-250,0)
+	
 	if overlapping.is_colliding() and not level_deactivated:
 		level_deactivated = true
 		var overlapping_collider = overlapping.get_collider().get_parent()

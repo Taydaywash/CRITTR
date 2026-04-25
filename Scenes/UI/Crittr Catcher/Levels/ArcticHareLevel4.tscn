@@ -61,44 +61,29 @@ _data = {
 &"RESET": SubResource("Animation_m742m")
 }
 
-[node name="Level" type="Node2D" unique_id=162368665]
+[node name="Level2" type="Node2D" unique_id=162368665]
 modulate = Color(1, 1, 1, 0)
 
 [node name="Node" parent="." unique_id=238242525 instance=ExtResource("1_wn182")]
-position = Vector2(558.05, 489.5)
-
-[node name="Node2" parent="." unique_id=512139541 instance=ExtResource("1_wn182")]
-position = Vector2(942.05, 625.5)
+position = Vector2(1072.05, 359.5)
 
 [node name="Node3" parent="." unique_id=1705774450 instance=ExtResource("1_wn182")]
-position = Vector2(430.05, 361.5)
+position = Vector2(430.09998, 489)
 
 [node name="Node10" parent="." unique_id=279353276 instance=ExtResource("1_wn182")]
-position = Vector2(430.05, 233.5)
+position = Vector2(430.09998, 361)
 
 [node name="Node4" parent="." unique_id=97764460 instance=ExtResource("1_wn182")]
-position = Vector2(558.05, 233.5)
+position = Vector2(943.05, 361.5)
 
 [node name="Node11" parent="." unique_id=907587672 instance=ExtResource("1_wn182")]
-position = Vector2(686.05, 233.5)
-
-[node name="Node12" parent="." unique_id=614619205 instance=ExtResource("1_wn182")]
-position = Vector2(686.05, 361.5)
-
-[node name="Node13" parent="." unique_id=94898248 instance=ExtResource("1_wn182")]
-position = Vector2(814.05, 361.5)
+position = Vector2(686.1, 361)
 
 [node name="Node14" parent="." unique_id=1337055646 instance=ExtResource("1_wn182")]
-position = Vector2(814.05, 233.5)
-
-[node name="Node15" parent="." unique_id=1354902354 instance=ExtResource("1_wn182")]
-position = Vector2(686.05, 617.5)
-
-[node name="Node16" parent="." unique_id=971918373 instance=ExtResource("1_wn182")]
-position = Vector2(558.05, 617.5)
+position = Vector2(814.1, 361)
 
 [node name="Node5" parent="." unique_id=303415819 instance=ExtResource("1_wn182")]
-position = Vector2(430.05, 489.5)
+position = Vector2(558.05, 361.5)
 
 [node name="Node6" parent="." unique_id=24035211 instance=ExtResource("1_wn182")]
 position = Vector2(814.05, 489.5)
@@ -112,12 +97,9 @@ position = Vector2(686.05, 489.5)
 [node name="Node9" parent="." unique_id=45417010 instance=ExtResource("1_wn182")]
 position = Vector2(1071.05, 491)
 
-[node name="Node17" parent="." unique_id=480538176 instance=ExtResource("1_wn182")]
-position = Vector2(1070.05, 361.5)
-
 [node name="Crittr" parent="." unique_id=1473794053 instance=ExtResource("2_i6vg6")]
 unique_name_in_owner = true
-position = Vector2(432.00003, 368)
+position = Vector2(432.05002, 495.5)
 facing = "north"
 
 [node name="Player" parent="." unique_id=559711742 instance=ExtResource("3_tjrv4")]
@@ -125,7 +107,7 @@ unique_name_in_owner = true
 position = Vector2(1070.05, 489.5)
 
 [node name="ExitNode" parent="." unique_id=2043294869 instance=ExtResource("4_kdvwp")]
-position = Vector2(1199.05, 491)
+position = Vector2(1208, 491)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1685004639]
 unique_name_in_owner = true

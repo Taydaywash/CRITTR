@@ -2429,7 +2429,10 @@ position = Vector2(-6528, 384)
 position = Vector2(-10112, 3520)
 
 [node name="interactable" type="Area2D" parent="Rooms/GlassSeaDepths/WetAndCold7" unique_id=247354675 node_paths=PackedStringArray("choicer_handler")]
+z_index = 1
 position = Vector2(768, 512)
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("81_g04sn")
 choicer_handler = NodePath("ChoicerHandler")
 dialog_string = "END_GAME_CONFIRMATION"
@@ -2441,6 +2444,10 @@ shape = SubResource("RectangleShape2D_ixxyk")
 [node name="ChoicerHandler" type="Node" parent="Rooms/GlassSeaDepths/WetAndCold7/interactable" unique_id=1543628056]
 script = ExtResource("82_ll777")
 metadata/_custom_type_script = "uid://djbpfy38vrjy8"
+
+[node name="SaveTube2" parent="Rooms/GlassSeaDepths/WetAndCold7" unique_id=32832224 instance=ExtResource("8_hev0n")]
+z_index = 0
+position = Vector2(128, 512)
 
 [node name="DepthsBonus1" parent="Rooms/GlassSeaDepths" unique_id=1074546216 instance=ExtResource("80_wawgj")]
 position = Vector2(-22272, -8640)

@@ -65,51 +65,52 @@ _data = {
 modulate = Color(1, 1, 1, 0)
 
 [node name="Node" parent="." unique_id=238242525 instance=ExtResource("1_omvul")]
-position = Vector2(512, 128)
+position = Vector2(638.05, 377.5)
 
 [node name="Node2" parent="." unique_id=127396628 instance=ExtResource("1_omvul")]
-position = Vector2(384, 128)
+position = Vector2(510.05, 377.5)
 
 [node name="Node3" parent="." unique_id=1112049523 instance=ExtResource("1_omvul")]
-position = Vector2(384, 256)
+position = Vector2(510.05, 505.5)
 
 [node name="Node4" parent="." unique_id=741721049 instance=ExtResource("1_omvul")]
-position = Vector2(256, 256)
+position = Vector2(382.05, 505.5)
 
 [node name="Node5" parent="." unique_id=1021656107 instance=ExtResource("1_omvul")]
-position = Vector2(256, 384)
+position = Vector2(382.05, 633.5)
 
 [node name="Node6" parent="." unique_id=932530211 instance=ExtResource("1_omvul")]
-position = Vector2(256, 128)
+position = Vector2(382.05, 377.5)
 
 [node name="Node7" parent="." unique_id=463373795 instance=ExtResource("1_omvul")]
-position = Vector2(384, 384)
+position = Vector2(510.05, 633.5)
 
 [node name="Node8" parent="." unique_id=12254680 instance=ExtResource("1_omvul")]
-position = Vector2(256, 0)
+position = Vector2(382.05, 249.5)
 
 [node name="Node9" parent="." unique_id=2017951915 instance=ExtResource("1_omvul")]
-position = Vector2(512, 256)
+position = Vector2(638.05, 505.5)
 
 [node name="Node10" parent="." unique_id=1580778217 instance=ExtResource("1_omvul")]
-position = Vector2(640, 256)
+position = Vector2(766.05, 505.5)
 
 [node name="Node11" parent="." unique_id=1161387653 instance=ExtResource("1_omvul")]
-position = Vector2(768, 256)
+position = Vector2(894.05, 505.5)
 
 [node name="Node12" parent="." unique_id=1189329645 instance=ExtResource("1_omvul")]
-position = Vector2(896, 256)
+position = Vector2(1022.05005, 505.5)
 
 [node name="Crittr" parent="." unique_id=1473794053 instance=ExtResource("2_f0r1y")]
 unique_name_in_owner = true
-position = Vector2(256, 384)
+modulate = Color(0.45882353, 1, 0.4745098, 1)
+position = Vector2(382.05, 633.5)
 
 [node name="Player" parent="." unique_id=559711742 instance=ExtResource("3_adgx0")]
 unique_name_in_owner = true
-position = Vector2(768, 256)
+position = Vector2(1024, 505.5)
 
 [node name="ExitNode" parent="." unique_id=2043294869 instance=ExtResource("4_eo7hu")]
-position = Vector2(1024, 256)
+position = Vector2(1150.05, 505.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=535432168]
 unique_name_in_owner = true
