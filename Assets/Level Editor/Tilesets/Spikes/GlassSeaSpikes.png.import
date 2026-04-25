@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do1v7nd4pb8ok"
-path="res://.godot/imported/star.png-109298194dba82b7675069fa964a70a7.ctex"
+uid="uid://dvnqek3otnike"
+path="res://.godot/imported/GlassSeaSpikes.png-321bcb84a183238266c97a1268d41ca4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Level Editor/Objects/StarJump/star.png"
-dest_files=["res://.godot/imported/star.png-109298194dba82b7675069fa964a70a7.ctex"]
+source_file="res://Assets/Level Editor/Tilesets/Spikes/GlassSeaSpikes.png"
+dest_files=["res://.godot/imported/GlassSeaSpikes.png-321bcb84a183238266c97a1268d41ca4.ctex"]
 
 [params]
 
