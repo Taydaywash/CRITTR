@@ -2363,10 +2363,14 @@ position = Vector2(-26880, -7680)
 
 [node name="SaveTube2" parent="Rooms/GlassSeaDepths/WetAndCold3" unique_id=426551044 instance=ExtResource("8_hev0n")]
 z_index = 0
-position = Vector2(-1920, 64)
+position = Vector2(-1984, 64)
 
 [node name="WetAndCold4" parent="Rooms/GlassSeaDepths" unique_id=1254107393 instance=ExtResource("76_g04sn")]
 position = Vector2(-26880, -2880)
+
+[node name="SaveTube2" parent="Rooms/GlassSeaDepths/WetAndCold4" unique_id=1037939659 instance=ExtResource("8_hev0n")]
+z_index = 0
+position = Vector2(1728, -2176)
 
 [node name="WetAndCold5" parent="Rooms/GlassSeaDepths" unique_id=21515057 instance=ExtResource("77_ll777")]
 position = Vector2(-26880, 960)
