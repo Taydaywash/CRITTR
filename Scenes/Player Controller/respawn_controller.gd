@@ -9,6 +9,7 @@ extends Node
 var respawn_position : Vector2
 
 func _ready() -> void:
+	respawn_position = GameController.game_state.last_respawn_point
 	EventController.connect("player_death", trigger_respawn)
 
 func _on_body_entered(_body: Node2D) -> void:
