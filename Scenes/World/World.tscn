@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://Scenes/World/Regions/Crash Site/InsideShip.tscn" id="8_jacc8"]
 [ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://Scenes/World/Regions/Crash Site/ClimbToPeak.tscn" id="14_7in0u"]
 [ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://Scenes/World/Regions/Crash Site/DiveTutorial.tscn" id="16_vdgnt"]
-[ext_resource type="Script" uid="uid://ly7ivf5nvuar" path="res://Scenes/World/fire_particle_deletion_logic.gd" id="17_44hbs"]
+[ext_resource type="Script" path="res://Scenes/World/fire_particle_deletion_logic.gd" id="17_44hbs"]
 [ext_resource type="Texture2D" uid="uid://bkmii5ukk00pn" path="res://Assets/Particles/puff cloud.png" id="18_eoa2q"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/UI/Map/map.tscn" id="18_hev0n"]
 [ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://Scenes/World/Regions/Crash Site/PlatformsTwo.tscn" id="19_hlwfy"]
@@ -70,14 +70,23 @@
 [ext_resource type="PackedScene" uid="uid://c3laww78x1ovg" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath4.tscn" id="60_h23k6"]
 [ext_resource type="PackedScene" uid="uid://dfccg54iyyrk2" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath5.tscn" id="60_knfie"]
 [ext_resource type="PackedScene" uid="uid://cxyc2dui8qc3t" path="res://Scenes/World/Regions/Stardust Peak/PeakToSea.tscn" id="62_0a2lt"]
+[ext_resource type="PackedScene" uid="uid://d0csf5tf7njpi" path="res://Scenes/World/Regions/Cloud Temple/Temple1.tscn" id="62_thcod"]
+[ext_resource type="PackedScene" uid="uid://dki6llxwmngif" path="res://Scenes/World/Regions/Cloud Temple/Temple2.tscn" id="63_yit7x"]
 [ext_resource type="PackedScene" uid="uid://kw0ele6ukenx" path="res://Scenes/World/Regions/GlassSea/shallows/SeaExplore1.tscn" id="64_3vk5c"]
 [ext_resource type="PackedScene" uid="uid://bljjd3lfrfnkb" path="res://Scenes/World/Regions/GlassSea/shallows/GlassSeaEnterFromPeak.tscn" id="64_bvw2n"]
+[ext_resource type="PackedScene" uid="uid://htexe4p7u8xe" path="res://Scenes/World/Regions/Cloud Temple/Temple3.tscn" id="64_syrig"]
 [ext_resource type="PackedScene" uid="uid://c2mrrxh4wsub4" path="res://Scenes/World/Regions/Stardust Peak/PeakTransitionDrop.tscn" id="64_vleej"]
 [ext_resource type="PackedScene" uid="uid://djl8p01as5wfy" path="res://Scenes/World/Regions/GlassSea/shallows/wet1.tscn" id="65_1fesm"]
+[ext_resource type="PackedScene" uid="uid://dqlxjaik4qvpy" path="res://Scenes/World/Regions/Cloud Temple/Temple4.tscn" id="65_fnn3e"]
 [ext_resource type="PackedScene" uid="uid://1awc3p5rore7" path="res://Scenes/World/Regions/GlassSea/shallows/wet2.tscn" id="66_f8dxr"]
+[ext_resource type="PackedScene" uid="uid://cc3bukrc0s8x4" path="res://Scenes/World/Regions/Cloud Temple/Temple5.tscn" id="66_j4mdk"]
+[ext_resource type="PackedScene" uid="uid://bs508e1g7je2k" path="res://Scenes/World/Regions/Cloud Temple/Temple6.tscn" id="67_83uwj"]
 [ext_resource type="PackedScene" uid="uid://dw8x2kn1v0can" path="res://Scenes/World/Regions/GlassSea/shallows/Wet3.tscn" id="68_awmuf"]
+[ext_resource type="PackedScene" uid="uid://chsfkqsro785y" path="res://Scenes/World/Regions/Cloud Temple/Temple7.tscn" id="68_nr1jb"]
+[ext_resource type="PackedScene" uid="uid://4e8ffbpqobx7" path="res://Scenes/World/Regions/Cloud Temple/Temple8.tscn" id="69_6hlb6"]
 [ext_resource type="PackedScene" uid="uid://cyr82pseo0sxj" path="res://Scenes/World/Regions/GlassSea/shallows/Wet4.tscn" id="69_lc1us"]
 [ext_resource type="PackedScene" uid="uid://bktmamt8uwtvm" path="res://Scenes/World/Regions/GlassSea/shallows/Wet5.tscn" id="70_7foer"]
+[ext_resource type="PackedScene" uid="uid://b5p0w0uadvv4p" path="res://Scenes/World/Regions/Cloud Temple/Temple9.tscn" id="70_du7of"]
 [ext_resource type="PackedScene" uid="uid://bym3el16rnhym" path="res://Scenes/World/Regions/GlassSea/shallows/GlassSeaCrittr.tscn" id="71_kwmhw"]
 [ext_resource type="PackedScene" uid="uid://dfqu16n7uadui" path="res://Scenes/World/Regions/GlassSea/depths/depthsEnterFromshallows.tscn" id="72_7foer"]
 [ext_resource type="Script" uid="uid://mxruhp3ro1vh" path="res://Scenes/UI/Map/map_choicer_handler_same_room.gd" id="72_8nm4g"]
@@ -339,7 +348,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("CloudTemple/Room2")
+starting_room = NodePath("CloudTemple/TempleEntrance")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -2167,8 +2176,35 @@ position = Vector2(963, 128)
 scale = Vector2(1, 1.5600003)
 texture = ExtResource("32_dw2uc")
 
-[node name="Room2" parent="Rooms/CloudTemple" unique_id=500714182 instance=ExtResource("55_mt2bu")]
+[node name="TempleEntrance" parent="Rooms/CloudTemple" unique_id=500714182 instance=ExtResource("55_mt2bu")]
 position = Vector2(71296, -6080)
+
+[node name="Temple1" parent="Rooms/CloudTemple" unique_id=1470681711 instance=ExtResource("62_thcod")]
+position = Vector2(75904, -9536)
+
+[node name="Temple2" parent="Rooms/CloudTemple" unique_id=615059710 instance=ExtResource("63_yit7x")]
+position = Vector2(80512, -9536)
+
+[node name="Temple3" parent="Rooms/CloudTemple" unique_id=1676500056 instance=ExtResource("64_syrig")]
+position = Vector2(85120, -9536)
+
+[node name="Temple4" parent="Rooms/CloudTemple" unique_id=1660298061 instance=ExtResource("65_fnn3e")]
+position = Vector2(75904, -6976)
+
+[node name="Temple5" parent="Rooms/CloudTemple" unique_id=577290687 instance=ExtResource("66_j4mdk")]
+position = Vector2(80512, -6976)
+
+[node name="Temple6" parent="Rooms/CloudTemple" unique_id=1737818132 instance=ExtResource("67_83uwj")]
+position = Vector2(85120, -6970)
+
+[node name="Temple7" parent="Rooms/CloudTemple" unique_id=1932311082 instance=ExtResource("68_nr1jb")]
+position = Vector2(75904, -4416)
+
+[node name="Temple8" parent="Rooms/CloudTemple" unique_id=1551971948 instance=ExtResource("69_6hlb6")]
+position = Vector2(80512, -4416)
+
+[node name="Temple9" parent="Rooms/CloudTemple" unique_id=495660520 instance=ExtResource("70_du7of")]
+position = Vector2(85120, -4416)
 
 [node name="StardustPeakGlassSeaTransition" type="Node" parent="Rooms" unique_id=1712321999]
 script = ExtResource("6_lqys3")
