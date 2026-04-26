@@ -1,6 +1,8 @@
 extends Area2D
 
 signal sequence_matched()
+signal entered()
+signal exited()
 
 @export var buffer_size: int = 10
 @export var input_timeout: float = 2.0
@@ -46,12 +48,14 @@ func _on_body_entered(body):
 	if body is Player:
 		player_inside = true
 		input_buffer.clear()
+		entered.emit()
 
 func _on_body_exited(body):
 	if body is Player:
 		player_inside = false
 		input_buffer.clear()
 		$Timer.stop()
+		exited.emit()
 
 func _on_timer_timeout():
 	input_buffer.clear()

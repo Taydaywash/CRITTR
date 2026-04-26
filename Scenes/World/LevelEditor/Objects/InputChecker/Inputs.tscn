@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ck20o7e40ef2g"]
+
+[ext_resource type="Script" uid="uid://br3cy3gdtucfb" path="res://Scenes/World/LevelEditor/Objects/InputChecker/inputs.gd" id="1_oe35n"]
+
+[sub_resource type="Animation" id="Animation_oe35n"]
+resource_name = "movement"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k8lw7"]
+_data = {
+&"movement": SubResource("Animation_oe35n")
+}
+
+[node name="Inputs" type="Node2D" unique_id=1590715658]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_oe35n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1735060295]
+position = Vector2(-256, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=367493405]
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=2046046379]
+position = Vector2(256, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1681260987]
+libraries/ = SubResource("AnimationLibrary_k8lw7")
