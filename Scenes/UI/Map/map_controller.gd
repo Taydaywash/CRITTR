@@ -104,6 +104,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	%PlayerProxie.global_position = player.global_position
+	%PlayerProxie.visible = false
+	if %PlayerProxie.get_child(0).has_overlapping_areas():
+		%PlayerProxie.visible = true
 	if not ui.choicer_dialog.visible:
 		hovered_room = null
 	if ui.choicer_dialog.visible:

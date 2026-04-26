@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://cm5a0kjv22qep" path="res://Assets/Animations/Player/idle/i1.png" id="2_8dhgj"]
 [ext_resource type="Texture2D" uid="uid://c2l3hevass14c" path="res://Assets/UI/Map/cursor.png" id="2_48iyi"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dhgj"]
+size = Vector2(6.4000015, 6.400002)
+
 [sub_resource type="LabelSettings" id="LabelSettings_xtf6f"]
 font_size = 50
 
@@ -75,6 +78,15 @@ unique_name_in_owner = true
 z_index = 6
 scale = Vector2(5, 5)
 texture = ExtResource("2_8dhgj")
+
+[node name="Area2D" type="Area2D" parent="SubViewportContainer/SubViewport2/PlayerProxie" unique_id=863751644]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewportContainer/SubViewport2/PlayerProxie/Area2D" unique_id=2027927174]
+position = Vector2(-3.8146962e-07, 3.8146968e-07)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_8dhgj")
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport2" unique_id=719413850]
 zoom = Vector2(0.035, 0.035)
