@@ -2,10 +2,10 @@ extends Node
 
 var ability_usages: int = 2
 var abilities_unlocked: Dictionary = {
-	"dash" : true,
-	"grapple" : true,
-	"climb" : true,
-	"inflate" : true,
+	"dash" : false,
+	"grapple" : false,
+	"climb" : false,
+	"inflate" : false,
 	"drill" : false,
 	"bounce" : false,
 }
@@ -81,6 +81,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_2"):
 		game_state.total_collectables = 18
 		SaveLoadManager.save_game(game_state)
+	if event.is_action_pressed("debug_3"):
+		EventController.emit_signal("unlock_ability","dash")
+		EventController.emit_signal("unlock_ability","grapple")
+		EventController.emit_signal("unlock_ability","slide")
+		EventController.emit_signal("unlock_ability","inflate")
+		EventController.emit_signal("unlock_ability","bounce")
+		EventController.emit_signal("unlock_ability","drill")
 
 func collectable_collected(id: String, value: int = 1) -> void:
 	if game_state.collected_ids.has(id):
