@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dyi8fqwxlvrpk"
+path="res://.godot/imported/crittr_catcher_crittr_move.mp3-7189cd6e10639ccb5dbf5c860b52e598.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound Effects/crittr_catcher_crittr_move.mp3"
+dest_files=["res://.godot/imported/crittr_catcher_crittr_move.mp3-7189cd6e10639ccb5dbf5c860b52e598.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

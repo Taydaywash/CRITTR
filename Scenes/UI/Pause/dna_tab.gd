@@ -24,6 +24,11 @@ var ability_data = {
 
 var ability_queue = []
 
+const UI_HOVER = preload("uid://bvfiha76ltfmi")
+const UI_CANCEL = preload("uid://ejjyhdoxq4xd")
+const UI_CONFIRM = preload("uid://c3jo2nkgwvncg")
+@onready var audio_controller : AudioController = get_parent().audio_controller
+
 func _ready() -> void:
 	ability_queue = indices_to_states(GameController.get_current_abilities())
 	update_abilities()
@@ -35,6 +40,8 @@ func handle_input(event: InputEvent) -> void:
 		elif pause_screen.current_tab == pause_screen.dna_tab:
 			pause_screen.dna_button.grab_focus()
 func dna_tab_opened() -> void:
+	if pause_screen.paused:
+		audio_controller.play_sound(UI_CONFIRM)
 	update_ability_unlocks(GameController.get_abilities_unlocked())
 	update_ability_icons()
 	
@@ -53,8 +60,10 @@ func update_ability_icons() -> void:
 	left_ability.icon = abilities.abilities_in_use.ability_left.texture
 	right_ability.icon = abilities.abilities_in_use.ability_right.texture
 func _on_dna_button_pressed() -> void:
+	audio_controller.play_sound(UI_CONFIRM)
 	default_focus.grab_focus()
 func _on_dna_buttons_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
 	if not pause_screen.used_save_point:
 		pause_screen.dna_button.grab_focus()
 func _on_dash_pressed() -> void:

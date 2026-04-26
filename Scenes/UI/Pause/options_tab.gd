@@ -65,7 +65,8 @@ func options_opened() -> void:
 	update_disable_particles_button()
 
 func options_closed() -> void:
-	audio_controller.play_sound(UI_CANCEL)
+	if pause_screen.paused:
+		audio_controller.play_sound(UI_CANCEL)
 	temp_options = current_options.duplicate()
 
 func update_screen_settings() -> void:
@@ -121,7 +122,7 @@ func handle_input(event: InputEvent) -> void:
 			_on_close_keybinds_pressed()
 			return
 	if event.is_action_released("ui_cancel"):
-		if pause_screen.current_tab == pause_screen.options_tab:
+		if pause_screen.current_tab == pause_screen.options_tab and pause_screen.paused:
 			pause_screen.options_button.grab_focus()
 	if event.is_action_released("ui_accept"):
 		if pause_screen.current_tab == pause_screen.options_tab and pause_screen.options_button.has_focus():

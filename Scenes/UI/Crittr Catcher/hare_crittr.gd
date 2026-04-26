@@ -9,8 +9,10 @@ extends Sprite2D
 @onready var overlapping: RayCast2D = $Overlapping
 
 @onready var crittr_catcher_ref = get_parent().get_parent().get_parent()
+@onready var audio_controller : AudioController = crittr_catcher_ref.audio_controller
 
-
+const CRITTR_CATCHER_CRITTR_MOVE = preload("uid://dyi8fqwxlvrpk")
+const CRITTR_CATCHER_MOVE_PLAYER = preload("uid://b1xousfer2ggp")
 
 const HARE_IDLE = preload("uid://tj5sev1pwfaa")
 const HARE_LOOK_DOWN = preload("uid://buvkr6x3vl2qv")
@@ -94,6 +96,7 @@ func _process(_delta: float) -> void:
 		crittr_catcher_ref.restart_level()
 
 func move() -> void:
+	audio_controller.play_sound(CRITTR_CATCHER_MOVE_PLAYER)
 	north.force_raycast_update()
 	east.force_raycast_update()
 	south.force_raycast_update()
@@ -133,6 +136,7 @@ func move() -> void:
 		"west":
 			position.x -= 128.0
 	move_direction = ""
+	audio_controller.play_sound(CRITTR_CATCHER_CRITTR_MOVE)
 	crittr_catcher_ref.emit_signal("start_player_turn")
 
 func look(direction : String) -> void:
