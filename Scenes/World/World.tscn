@@ -71,6 +71,7 @@
 [ext_resource type="PackedScene" uid="uid://c3laww78x1ovg" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath4.tscn" id="60_h23k6"]
 [ext_resource type="PackedScene" uid="uid://dfccg54iyyrk2" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath5.tscn" id="60_knfie"]
 [ext_resource type="Texture2D" uid="uid://bfvmdvvjmytc4" path="res://Assets/Decals/Cloud Temple/Background/Cloudbg3.png" id="61_6hlb6"]
+[ext_resource type="Script" uid="uid://doykniksbhx74" path="res://Custom Classes/door.gd" id="61_upkxk"]
 [ext_resource type="PackedScene" uid="uid://cxyc2dui8qc3t" path="res://Scenes/World/Regions/Stardust Peak/PeakToSea.tscn" id="62_0a2lt"]
 [ext_resource type="Texture2D" uid="uid://dyue8uiobet5m" path="res://Assets/Decals/Cloud Temple/Background/Cloudbg2.png" id="62_du7of"]
 [ext_resource type="PackedScene" uid="uid://d0csf5tf7njpi" path="res://Scenes/World/Regions/Cloud Temple/Temple1.tscn" id="62_thcod"]
@@ -179,6 +180,12 @@ gradient = SubResource("Gradient_cpbbu")
 width = 5000
 height = 1920
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1anx8"]
+size = Vector2(256, 256)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f2i4o"]
+font_size = 95
+
 [sub_resource type="Gradient" id="Gradient_1fesm"]
 offsets = PackedFloat32Array(0, 0.24375, 0.625, 0.8625, 1)
 colors = PackedColorArray(0.11764706, 0.14117648, 0.32156864, 1, 0.23137255, 0.12156863, 0.52156866, 0.7764706, 0.80784315, 0.44705883, 0.8, 0.42745098, 0.9137255, 0.73333335, 0.84705883, 0.2784314, 0.9137255, 0.73333335, 0.84705883, 0)
@@ -203,7 +210,7 @@ fill_to = Vector2(0.47965115, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jyavj"]
 gradient = SubResource("Gradient_3vk5c")
-width = 1920
+width = 9600
 height = 4320
 fill_from = Vector2(0.4869565, 0)
 fill_to = Vector2(0.5304348, 1)
@@ -2136,12 +2143,46 @@ z_index = -2
 position = Vector2(1792, 4736)
 
 [node name="Ascent3" parent="Rooms/StardustPeak" unique_id=1497182953 instance=ExtResource("59_o2uig")]
-position = Vector2(-10880, -22976)
+position = Vector2(-10880, -21696)
 hidden_room = true
 
 [node name="SaveTube" parent="Rooms/StardustPeak/Ascent3" unique_id=2095833707 instance=ExtResource("8_hev0n")]
 z_index = 0
-position = Vector2(-1344, 2176)
+position = Vector2(-1152, 896)
+
+[node name="PeakToDrill" type="Area2D" parent="Rooms/StardustPeak/Ascent3" unique_id=1805480959]
+position = Vector2(384, -896)
+script = ExtResource("61_upkxk")
+metadata/_custom_type_script = "uid://doykniksbhx74"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/StardustPeak/Ascent3/PeakToDrill" unique_id=1962541002]
+shape = SubResource("RectangleShape2D_1anx8")
+
+[node name="Label" type="Label" parent="Rooms/StardustPeak/Ascent3/PeakToDrill" unique_id=257469924]
+offset_left = -128.0
+offset_top = -256.0
+offset_right = 94.0
+offset_bottom = -104.0
+text = "Drill"
+label_settings = SubResource("LabelSettings_f2i4o")
+horizontal_alignment = 1
+
+[node name="PeakToBounce" type="Area2D" parent="Rooms/StardustPeak/Ascent3" unique_id=1603438679]
+position = Vector2(-1152, -896)
+script = ExtResource("61_upkxk")
+metadata/_custom_type_script = "uid://doykniksbhx74"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/StardustPeak/Ascent3/PeakToBounce" unique_id=2002603235]
+shape = SubResource("RectangleShape2D_1anx8")
+
+[node name="Label" type="Label" parent="Rooms/StardustPeak/Ascent3/PeakToBounce" unique_id=1340468601]
+offset_left = -192.0
+offset_top = -256.0
+offset_right = 151.0
+offset_bottom = -104.0
+text = "Bounce"
+label_settings = SubResource("LabelSettings_f2i4o")
+horizontal_alignment = 1
 
 [node name="ToSea" parent="Rooms/StardustPeak" unique_id=1328657960 instance=ExtResource("62_0a2lt")]
 position = Vector2(-24704, -25280)
@@ -2348,11 +2389,12 @@ scale = Vector2(1, 1.5999994)
 texture = ExtResource("20_3ql1f")
 
 [node name="Parallax2D3" type="Parallax2D" parent="Rooms/GlassSea/GlassSeaBackground" unique_id=215158991]
+scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(1920, 1920)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Rooms/GlassSea/GlassSeaBackground/Parallax2D3" unique_id=985247283]
 z_index = -11
-position = Vector2(2478, -2038.0002)
+position = Vector2(1088, -2624)
 texture = SubResource("GradientTexture2D_jyavj")
 
 [node name="GlassSeaEnterFromPeak" parent="Rooms/GlassSea" unique_id=1871997503 instance=ExtResource("64_bvw2n")]
@@ -2863,6 +2905,51 @@ position = Vector2(-22272, -8640)
 
 [node name="DeptshBonus2" parent="Rooms/GlassSeaDepths" unique_id=1956516219 instance=ExtResource("81_xjk1d")]
 position = Vector2(-31488, 960)
+
+[node name="BonusContent" type="Node" parent="Rooms" unique_id=2027894309]
+script = ExtResource("6_lqys3")
+music = ExtResource("7_qs546")
+metadata/_custom_type_script = "uid://5wurrbpk32od"
+
+[node name="StardustPeakBackground" type="Node2D" parent="Rooms/BonusContent" unique_id=1772224040]
+visible = false
+
+[node name="Parallax2D" type="Parallax2D" parent="Rooms/BonusContent/StardustPeakBackground" unique_id=1119004486]
+scroll_scale = Vector2(0.12, 0)
+scroll_offset = Vector2(0, 500)
+repeat_size = Vector2(1920, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/BonusContent/StardustPeakBackground/Parallax2D" unique_id=264792647]
+z_index = -10
+position = Vector2(963, 128)
+rotation = 1.5707964
+texture = SubResource("GradientTexture2D_qf2ks")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Rooms/BonusContent/StardustPeakBackground" unique_id=553562784]
+scroll_scale = Vector2(1, 0.5)
+repeat_size = Vector2(1920, 1080)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/BonusContent/StardustPeakBackground/Parallax2D2" unique_id=582143062]
+z_index = -9
+position = Vector2(977, 0)
+scale = Vector2(1, 1.5999994)
+texture = ExtResource("54_2shhw")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Rooms/BonusContent/StardustPeakBackground" unique_id=1536165298]
+modulate = Color(1, 1, 1, 0.5568628)
+scroll_scale = Vector2(1, 0.3)
+scroll_offset = Vector2(0, 0.5)
+repeat_size = Vector2(1920, 1080)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/BonusContent/StardustPeakBackground/Parallax2D3" unique_id=1313802761]
+z_index = -9
+position = Vector2(977, 0)
+scale = Vector2(1, 1.5999994)
+texture = ExtResource("54_2shhw")
+flip_v = true
 
 [node name="PauseScreen" parent="." unique_id=679717548 node_paths=PackedStringArray("audio_controller", "animation_player", "player_reference", "map") instance=ExtResource("5_o14yy")]
 unique_name_in_owner = true

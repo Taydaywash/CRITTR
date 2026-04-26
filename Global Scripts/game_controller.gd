@@ -69,6 +69,11 @@ func _ready():
 )
 	#reset_game()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_2"):
+		game_state.total_collectables = 18
+		SaveLoadManager.save_game(game_state)
+
 func collectable_collected(id: String, value: int = 1) -> void:
 	if game_state.collected_ids.has(id):
 		return
