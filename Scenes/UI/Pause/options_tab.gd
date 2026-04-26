@@ -25,6 +25,8 @@ var text_speeds_index = 1
 const UI_HOVER = preload("uid://bvfiha76ltfmi")
 const UI_CANCEL = preload("uid://ejjyhdoxq4xd")
 const UI_CONFIRM = preload("uid://c3jo2nkgwvncg")
+
+
 const CONTROLS = preload("uid://7hc7riw8mwuj")
 const CONTROLS_CONTROLLER = preload("uid://cgtb1bosiuvgx")
 

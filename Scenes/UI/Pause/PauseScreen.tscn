@@ -577,12 +577,16 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_n358k")
 script = ExtResource("11_c2hr7")
 
 [connection signal="focus_entered" from="DnaButton" to="." method="_on_dna_button_focus_entered"]
+[connection signal="mouse_entered" from="DnaButton" to="." method="_on_dna_button_mouse_entered"]
 [connection signal="pressed" from="DnaButton" to="DnaTab" method="_on_dna_button_pressed"]
 [connection signal="focus_entered" from="MapButton" to="." method="_on_map_button_pressed"]
+[connection signal="mouse_entered" from="MapButton" to="." method="_on_map_button_mouse_entered"]
 [connection signal="pressed" from="MapButton" to="." method="_on_map_button_pressed"]
 [connection signal="focus_entered" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="OptionsButton" to="." method="_on_options_button_mouse_entered"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="focus_entered" from="StuffButton" to="." method="_on_stuff_button_pressed"]
+[connection signal="mouse_entered" from="StuffButton" to="." method="_on_stuff_button_mouse_entered"]
 [connection signal="pressed" from="StuffButton" to="." method="_on_stuff_button_pressed"]
 [connection signal="focus_entered" from="DnaTab/Dash" to="DnaTab" method="_on_dna_buttons_focus_entered"]
 [connection signal="pressed" from="DnaTab/Dash" to="DnaTab" method="_on_dash_pressed"]

@@ -16,6 +16,11 @@ extends CanvasLayer
 @export var stuff_tab : Panel
 @onready var ui: UI = %UI
 
+const UI_HOVER = preload("uid://bvfiha76ltfmi")
+const UI_CANCEL = preload("uid://ejjyhdoxq4xd")
+const UI_CONFIRM = preload("uid://c3jo2nkgwvncg")
+const GAME_PAUSED = preload("uid://cqcynq3bkc6br")
+
 var paused = false
 var current_tab : Panel
 var used_save_point: bool = false
@@ -71,6 +76,7 @@ func toggle_pause(from_save_point : bool = false, starting_tab : String = "dna")
 		animation_player.play("close_pause_menu")
 		
 	if paused:
+		audio_controller.play_sound(GAME_PAUSED)
 		match starting_tab:
 			"dna":
 				dna_button.grab_focus()
@@ -88,13 +94,17 @@ func toggle_pause(from_save_point : bool = false, starting_tab : String = "dna")
 		show_layer(dna_tab)
 func _on_dna_button_focus_entered() -> void:
 	show_layer(dna_tab)
+	audio_controller.play_sound(UI_CONFIRM)
 	dna_tab.dna_tab_opened()
 func _on_map_button_pressed() -> void:
 	show_layer(map_tab)
+	audio_controller.play_sound(UI_CONFIRM)
 func _on_options_button_pressed() -> void:
 	show_layer(options_tab)
+	audio_controller.play_sound(UI_CONFIRM)
 	options_tab.options_opened()
 func _on_stuff_button_pressed() -> void:
+	audio_controller.play_sound(UI_CONFIRM)
 	show_layer(stuff_tab)
 
 func show_layer(tab : Panel):
@@ -106,3 +116,13 @@ func show_layer(tab : Panel):
 	tab.visible = true
 	current_tab = tab
 	map.show_map(map_tab.visible)
+
+
+func _on_dna_button_mouse_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_map_button_mouse_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_options_button_mouse_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_stuff_button_mouse_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
