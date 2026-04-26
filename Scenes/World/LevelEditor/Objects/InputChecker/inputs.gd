@@ -4,6 +4,7 @@ extends Node2D
 @export var second_sprite: Texture2D
 @export var third_sprite: Texture2D
 @export var unknown: bool = false
+@export var special: bool = false
 
 func _ready() -> void:
 	modulate.a = 0

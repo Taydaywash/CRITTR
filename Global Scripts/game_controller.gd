@@ -73,7 +73,7 @@ func _ready():
 		var key: String = category + "/" + title
 		game_state.entries_unlocked[key] = true
 		SaveLoadManager.save_game(game_state)
-	EventController.connect("update_sequence")
+	#EventController.connect("update_sequence")
 )
 	#reset_game()
 
