@@ -26,6 +26,8 @@ func activate(_last_state : State) -> void:
 	super(_last_state)
 	player.z_index = 2
 	one_frame_passed = false
+	sprite.offset = Vector2.ZERO
+	sprite.position = Vector2.ZERO
 	line.add_point(Vector2.ZERO)
 	line.add_point(Vector2.ZERO)
 	player.set_collision_mask_value(7,false)
@@ -83,6 +85,8 @@ func process_frame(_delta) -> State:
 	return null
 
 func deactivate(_next_state : State) -> void:
+	sprite.offset = Vector2(0,-70)
+	sprite.position = Vector2(0,70)
 	super(_next_state)
 	player.z_index = 0
 	player.velocity = player.velocity * wall_exit_speed_multiplier

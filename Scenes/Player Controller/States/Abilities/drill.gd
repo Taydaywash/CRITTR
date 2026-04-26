@@ -36,7 +36,8 @@ func activate(_last_state : State) -> void:
 	line.add_point(Vector2.ZERO)
 	winding_up = true
 	player.velocity = Vector2(0,0)
-	
+	sprite.offset = Vector2.ZERO
+	sprite.position = Vector2.ZERO
 	if direction == "up":
 		player.velocity.y = wind_up_velocity
 	elif direction == "down":
@@ -96,5 +97,7 @@ func process_frame(_delta) -> State:
 	return null
 
 func deactivate(_next_state : State) -> void:
+	sprite.offset = Vector2(0,-70)
+	sprite.position = Vector2(0,70)
 	super(_next_state)
 	line.clear_points()
