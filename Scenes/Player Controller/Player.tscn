@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://bwdpd2vsi0pnv" path="res://Scenes/Player Controller/States/crouching.gd" id="12_068uq"]
 [ext_resource type="Script" uid="uid://c8h0fivvgxc74" path="res://Scenes/Player Controller/States/Abilities/dashing.gd" id="12_evkiq"]
 [ext_resource type="AudioStream" uid="uid://dh7xdipbgyacc" path="res://Assets/Sound Effects/Player/Walking/player_walk.ogg" id="12_k212d"]
+[ext_resource type="AudioStream" uid="uid://buhu257kcja8n" path="res://Assets/Sound Effects/Player/boost!.mp3" id="13_g0iqj"]
 [ext_resource type="Script" uid="uid://bm7yhxmomtxag" path="res://Scenes/Player Controller/States/Abilities/grappling.gd" id="13_vpgwe"]
 [ext_resource type="Script" uid="uid://bm41wexjew65w" path="res://Scenes/Player Controller/States/Abilities/climbing.gd" id="14_hl1jv"]
 [ext_resource type="AudioStream" uid="uid://k83oi4wx8exn" path="res://Assets/Sound Effects/Player/Squish.mp3" id="14_pesqw"]
@@ -84,6 +85,10 @@
 [ext_resource type="Texture2D" uid="uid://b66n7y812l426" path="res://Assets/Animations/Player/Diving/diving.png" id="44_hk2wy"]
 [ext_resource type="AudioStream" uid="uid://dpt7n2s2tjlcw" path="res://Assets/Sound Effects/Player/Abilities/GrapplingPull.mp3" id="44_ri4rn"]
 [ext_resource type="Texture2D" uid="uid://io8id0xi0edl" path="res://Assets/Animations/Player/Diving/diving2.png" id="45_qy6yu"]
+[ext_resource type="AudioStream" uid="uid://kscrncj47pa7" path="res://Assets/Sound Effects/Player/Abilities/sliding.mp3" id="48_xb6ji"]
+[ext_resource type="AudioStream" uid="uid://bnxkvt4o6b17e" path="res://Assets/Sound Effects/Player/Abilities/inflate.mp3" id="50_7pfke"]
+[ext_resource type="AudioStream" uid="uid://bludj5knwhbe8" path="res://Assets/Sound Effects/Player/Abilities/inflated.mp3" id="51_xb6ji"]
+[ext_resource type="AudioStream" uid="uid://cfjlxhfpixtnl" path="res://Assets/Sound Effects/Player/Abilities/deflate.mp3" id="52_g0iqj"]
 [ext_resource type="Texture2D" uid="uid://1yl4eif1rq1x" path="res://Assets/Animations/Player/Dash/dash.png" id="58_ap1o6"]
 [ext_resource type="Texture2D" uid="uid://dbarw8eo8no6g" path="res://Assets/Animations/Player/Grapple/grapple.png" id="70_w6arm"]
 [ext_resource type="Texture2D" uid="uid://bi6sagpgkdwt" path="res://Assets/Animations/Player/Inflate/Inflate.png" id="74_oxamp"]
@@ -472,7 +477,7 @@ animation_name = "teleporting exit"
 placeholder_animation_color = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://cu350rjri3jpk"
 
-[node name="Jumping" type="Node" parent="StateMachine" unique_id=2088144188 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "default_hitbox", "jumping_hitbox", "enter_particle_when_entering_from_state_state")]
+[node name="Jumping" type="Node" parent="StateMachine" unique_id=2088144188 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "default_hitbox", "jumping_hitbox", "enter_sound_when_entering_from_state_state", "enter_particle_when_entering_from_state_state")]
 script = ExtResource("8_2fk5g")
 move_speed = 800
 jump_velocity = 1500
@@ -496,6 +501,8 @@ jumping_hitbox = NodePath("../../Jumping")
 animation_name = "jump"
 placeholder_animation_color = Color(1, 1, 1, 1)
 enter_sound_sounds = Array[AudioStream]([ExtResource("6_74b0n")])
+enter_sound_when_entering_from_state_state = [NodePath("../Abilities/Dashing")]
+enter_sound_when_entering_from_state_sound = Array[AudioStream]([ExtResource("13_g0iqj")])
 enter_particle_particle = ExtResource("7_7icb5")
 enter_particle_when_entering_from_state_state = [NodePath("../Abilities/Dashing")]
 enter_particle_when_entering_from_state_particle = Array[PackedScene]([ExtResource("8_avv4g")])
@@ -669,14 +676,15 @@ right_ray = NodePath("../../WallJumpRayReference/RightRay")
 left_ray = NodePath("../../WallJumpRayReference/LeftRay")
 animation_name = "WallCling"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("12_k212d")])
 enter_sound_pitch_low = 0.5
-enter_sound_pitch_high = 0.6
+enter_sound_pitch_high = 0.7
 while_in_state_sounds = Array[AudioStream]([ExtResource("12_k212d")])
 while_in_state_sound_low = 0.5
 while_in_state_sound_high = 0.7
-while_in_state_repeat_sound_after_seconds = 0.3
+while_in_state_repeat_sound_after_seconds = 0.2
 
-[node name="WallJumping" type="Node" parent="StateMachine/WallCling" unique_id=1649015882 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "right_ray2", "left_ray2", "high_right_ray", "high_left_ray", "low_right_ray", "low_left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "enter_particle_when_entering_from_state_state")]
+[node name="WallJumping" type="Node" parent="StateMachine/WallCling" unique_id=1649015882 node_paths=PackedStringArray("jump_input_buffer", "right_ray", "left_ray", "right_ray2", "left_ray2", "high_right_ray", "high_left_ray", "low_right_ray", "low_left_ray", "nudge_right_range_left", "nudge_right_range_right", "nudge_left_range_left", "nudge_left_range_right", "enter_sound_when_entering_from_state_state", "enter_particle_when_entering_from_state_state")]
 script = ExtResource("10_dpx4d")
 move_speed = 800
 wall_jump_horizontal_velocity = 1000
@@ -704,6 +712,8 @@ nudge_left_range_right = NodePath("../../../CornerNudging/NudgeLeftRangeRight")
 animation_name = "WallJumping"
 placeholder_animation_color = Color(1, 1, 1, 1)
 enter_sound_sounds = Array[AudioStream]([ExtResource("6_74b0n")])
+enter_sound_when_entering_from_state_state = [NodePath("../../Abilities/Dashing")]
+enter_sound_when_entering_from_state_sound = Array[AudioStream]([ExtResource("13_g0iqj")])
 enter_particle_when_entering_from_state_state = [NodePath("../../Abilities/Dashing")]
 enter_particle_when_entering_from_state_particle = Array[PackedScene]([ExtResource("8_avv4g")])
 enter_particle_when_entering_from_state_parent_to_player = Array[bool]([true])
@@ -861,6 +871,8 @@ right_ray = NodePath("../../../../WallJumpRayReference/RightRay")
 animation_name = "slide"
 placeholder_animation_color = Color(1, 1, 1, 1)
 enter_sound_sounds = Array[AudioStream]([ExtResource("14_pesqw")])
+while_in_state_sounds = Array[AudioStream]([ExtResource("48_xb6ji")])
+while_in_state_repeat_sound_after_seconds = 0.1
 
 [node name="ClimbingRay" type="RayCast2D" parent="StateMachine/Abilities/Climbing" unique_id=1636057079]
 scale = Vector2(1.35, 1.35)
@@ -902,6 +914,10 @@ inflated_hitbox = NodePath("../../../InflatedHitbox")
 inflated_hurtbox = NodePath("../../../InflatedHurtbox")
 animation_name = "inflate"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("50_7pfke")])
+while_in_state_sounds = Array[AudioStream]([ExtResource("51_xb6ji")])
+while_in_state_repeat_sound_after_seconds = 0.5
+exit_sound_sounds = Array[AudioStream]([ExtResource("52_g0iqj")])
 
 [node name="BounceAttack" type="Node" parent="StateMachine/Abilities" unique_id=60864109 node_paths=PackedStringArray("up_area", "down_area", "right_area", "left_area", "jump_input_buffer")]
 script = ExtResource("16_2bslk")

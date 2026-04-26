@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://kscrncj47pa7"
+path="res://.godot/imported/sliding.mp3-05ebfb66385450ba5a0faa0ee805a926.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound Effects/Player/Abilities/sliding.mp3"
+dest_files=["res://.godot/imported/sliding.mp3-05ebfb66385450ba5a0faa0ee805a926.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
