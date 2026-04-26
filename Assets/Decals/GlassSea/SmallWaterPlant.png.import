@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do1v7nd4pb8ok"
-path="res://.godot/imported/star.png-109298194dba82b7675069fa964a70a7.ctex"
+uid="uid://cqhxju4343jvh"
+path="res://.godot/imported/SmallWaterPlant.png-ff0621d94d0969418fb0b0e41ad58df9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Level Editor/Objects/StarJump/star.png"
-dest_files=["res://.godot/imported/star.png-109298194dba82b7675069fa964a70a7.ctex"]
+source_file="res://Assets/Decals/GlassSea/SmallWaterPlant.png"
+dest_files=["res://.godot/imported/SmallWaterPlant.png-ff0621d94d0969418fb0b0e41ad58df9.ctex"]
 
 [params]
 

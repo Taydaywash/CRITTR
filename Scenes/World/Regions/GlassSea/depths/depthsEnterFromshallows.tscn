@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://0tnhb2x8d6l8" path="res://Scenes/World/LevelEditor/Objects/Ocean/Ocean.tscn" id="8_fvhmg"]
 [ext_resource type="PackedScene" uid="uid://cjw3t1a4kan5s" path="res://Scenes/World/LevelEditor/Objects/Air Pocket/Air Pocket.tscn" id="9_p8cxs"]
 [ext_resource type="Script" uid="uid://r63htp46ehug" path="res://Scenes/World/LevelEditor/Objects/EditorNotes/EditorNotes.gd" id="10_p8cxs"]
+[ext_resource type="Texture2D" uid="uid://bks52sue5vko4" path="res://Assets/Decals/GlassSea/MediumSeaweed.png" id="11_2l6dl"]
+[ext_resource type="Texture2D" uid="uid://wc6mrfg8qk3r" path="res://Assets/Decals/GlassSea/LargeSeaweed.png" id="12_hdgkx"]
+[ext_resource type="Texture2D" uid="uid://438rcn14dfn7" path="res://Assets/Decals/GlassSea/SmallSeaweed.png" id="13_lvfxo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sks7p"]
 font_size = 80
@@ -80,6 +83,37 @@ text = "Ability combos:
 ^ Inflate, V slide, < Dash/Grap
 ^ Inflate, > dash(hard)"
 label_settings = SubResource("LabelSettings_sks7p")
+
+[node name="MediumSeaweed" type="Sprite2D" parent="." unique_id=330603909]
+z_index = -3
+position = Vector2(1209, -132)
+texture = ExtResource("11_2l6dl")
+
+[node name="MediumSeaweed2" type="Sprite2D" parent="." unique_id=1033695012]
+z_index = -3
+position = Vector2(567, -127)
+texture = ExtResource("11_2l6dl")
+
+[node name="LargeSeaweed" type="Sprite2D" parent="." unique_id=1255961762]
+z_index = -3
+position = Vector2(-1222, -594)
+texture = ExtResource("12_hdgkx")
+
+[node name="SmallSeaweed" type="Sprite2D" parent="." unique_id=2040569080]
+position = Vector2(-1899, 886)
+texture = ExtResource("13_lvfxo")
+
+[node name="SmallSeaweed2" type="Sprite2D" parent="." unique_id=2085672725]
+position = Vector2(-43, 357)
+texture = ExtResource("13_lvfxo")
+
+[node name="SmallSeaweed3" type="Sprite2D" parent="." unique_id=2062375259]
+position = Vector2(-1182, 366)
+texture = ExtResource("13_lvfxo")
+
+[node name="LargeSeaweed2" type="Sprite2D" parent="." unique_id=2142741693]
+position = Vector2(-1549, 559)
+texture = ExtResource("12_hdgkx")
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]
