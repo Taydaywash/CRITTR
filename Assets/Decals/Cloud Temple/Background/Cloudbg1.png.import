@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do1v7nd4pb8ok"
-path="res://.godot/imported/star.png-109298194dba82b7675069fa964a70a7.ctex"
+uid="uid://x6rj10g0txkr"
+path="res://.godot/imported/Cloudbg1.png-3387626aa2a33da5144a6040d4786585.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Level Editor/Objects/StarJump/star.png"
-dest_files=["res://.godot/imported/star.png-109298194dba82b7675069fa964a70a7.ctex"]
+source_file="res://Assets/Decals/Cloud Temple/Background/Cloudbg1.png"
+dest_files=["res://.godot/imported/Cloudbg1.png-3387626aa2a33da5144a6040d4786585.ctex"]
 
 [params]
 
