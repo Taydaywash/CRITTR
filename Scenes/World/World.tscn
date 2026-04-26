@@ -104,6 +104,7 @@
 [ext_resource type="PackedScene" uid="uid://blspqqelho0s5" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold4.tscn" id="76_g04sn"]
 [ext_resource type="Texture2D" uid="uid://cqhxju4343jvh" path="res://Assets/Decals/GlassSea/SmallWaterPlant.png" id="77_83uwj"]
 [ext_resource type="PackedScene" uid="uid://gscjepmq6iss" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold5.tscn" id="77_ll777"]
+[ext_resource type="AudioStream" uid="uid://bc8a4by0esvuo" path="res://Assets/Music/wind.mp3" id="78_1cq84"]
 [ext_resource type="PackedScene" uid="uid://chvu6roex3dyt" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold6.tscn" id="78_ixxyk"]
 [ext_resource type="Texture2D" uid="uid://wc6mrfg8qk3r" path="res://Assets/Decals/GlassSea/LargeSeaweed.png" id="78_nr1jb"]
 [ext_resource type="Texture2D" uid="uid://bv7m2brq12nyq" path="res://Assets/Decals/GlassSea/LargeWaterPlant.png" id="79_6hlb6"]
@@ -196,12 +197,10 @@ height = 4320
 fill_from = Vector2(0.46802327, 0)
 fill_to = Vector2(0.47965115, 1)
 
-[sub_resource type="Gradient" id="Gradient_8nm4g"]
-offsets = PackedFloat32Array(0.0375, 0.53125, 1)
-colors = PackedColorArray(0.36078432, 0.58431375, 0.7490196, 1, 0.36862746, 0.69411767, 0.8666667, 1, 0.4745098, 0.73333335, 0.8745098, 1)
-
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jyavj"]
-gradient = SubResource("Gradient_8nm4g")
+gradient = SubResource("Gradient_3vk5c")
+width = 1920
+height = 4320
 fill_from = Vector2(0.4869565, 0)
 fill_to = Vector2(0.5304348, 1)
 
@@ -2118,6 +2117,10 @@ position = Vector2(-15488, -18624)
 [node name="Main5" parent="Rooms/StardustPeak" unique_id=1515400931 instance=ExtResource("60_knfie")]
 position = Vector2(-20096, -25280)
 
+[node name="SaveTube" parent="Rooms/StardustPeak/Main5" unique_id=625601514 instance=ExtResource("8_hev0n")]
+z_index = -2
+position = Vector2(1792, 4736)
+
 [node name="Ascent3" parent="Rooms/StardustPeak" unique_id=1497182953 instance=ExtResource("59_o2uig")]
 position = Vector2(-10880, -22976)
 hidden_room = true
@@ -2128,10 +2131,6 @@ position = Vector2(-1344, 2176)
 
 [node name="ToSea" parent="Rooms/StardustPeak" unique_id=1328657960 instance=ExtResource("62_0a2lt")]
 position = Vector2(-24704, -25280)
-
-[node name="SaveTube" parent="Rooms/StardustPeak/ToSea" unique_id=625601514 instance=ExtResource("8_hev0n")]
-z_index = -2
-position = Vector2(1920, -4608)
 
 [node name="CloudTemple" type="Node" parent="Rooms" unique_id=873201279]
 script = ExtResource("6_lqys3")
@@ -2249,6 +2248,7 @@ position = Vector2(69696, -9728)
 
 [node name="StardustPeakGlassSeaTransition" type="Node" parent="Rooms" unique_id=1712321999]
 script = ExtResource("6_lqys3")
+music = ExtResource("78_1cq84")
 map_color = Color(0.5137255, 0.84705883, 0.61960787, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
 
@@ -2305,42 +2305,39 @@ music = ExtResource("7_qs546")
 map_color = Color(0, 1, 0.9137255, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
 
-[node name="CrashSiteBackground" type="Node2D" parent="Rooms/GlassSea" unique_id=1937121985]
+[node name="GlassSeaBackground" type="Node2D" parent="Rooms/GlassSea" unique_id=1937121985]
 visible = false
 
-[node name="Parallax2D" type="Parallax2D" parent="Rooms/GlassSea/CrashSiteBackground" unique_id=209656584]
-visible = false
+[node name="Parallax2D" type="Parallax2D" parent="Rooms/GlassSea/GlassSeaBackground" unique_id=209656584]
 scroll_scale = Vector2(0.12, 0)
 scroll_offset = Vector2(0, 500)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/CrashSiteBackground/Parallax2D" unique_id=1656402085]
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/GlassSeaBackground/Parallax2D" unique_id=1656402085]
 z_index = -10
 position = Vector2(963, 128)
 scale = Vector2(1, 1.5600003)
 texture = ExtResource("19_vdgnt")
 
-[node name="Parallax2D2" type="Parallax2D" parent="Rooms/GlassSea/CrashSiteBackground" unique_id=572779066]
-visible = false
+[node name="Parallax2D2" type="Parallax2D" parent="Rooms/GlassSea/GlassSeaBackground" unique_id=572779066]
 scroll_scale = Vector2(0.28, 0)
 scroll_offset = Vector2(0, 800)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/CrashSiteBackground/Parallax2D2" unique_id=1703530494]
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/GlassSeaBackground/Parallax2D2" unique_id=1703530494]
 z_index = -9
 position = Vector2(977, 0)
 scale = Vector2(1, 1.5999994)
 texture = ExtResource("20_3ql1f")
 
-[node name="Parallax2D3" type="Parallax2D" parent="Rooms/GlassSea/CrashSiteBackground" unique_id=215158991]
+[node name="Parallax2D3" type="Parallax2D" parent="Rooms/GlassSea/GlassSeaBackground" unique_id=215158991]
 repeat_size = Vector2(1920, 1920)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Rooms/GlassSea/CrashSiteBackground/Parallax2D3" unique_id=985247283]
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/GlassSea/GlassSeaBackground/Parallax2D3" unique_id=985247283]
 z_index = -11
 position = Vector2(2478, -2038.0002)
-scale = Vector2(166.31343, 159.33415)
 texture = SubResource("GradientTexture2D_jyavj")
 
 [node name="GlassSeaEnterFromPeak" parent="Rooms/GlassSea" unique_id=1871997503 instance=ExtResource("64_bvw2n")]
