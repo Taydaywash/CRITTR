@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do1v7nd4pb8ok"
-path="res://.godot/imported/Star.png-c38e4cfcdb2c4de5d127876181c79052.ctex"
+uid="uid://30onrtd08d6v"
+path="res://.godot/imported/PuffishIdle.png-b7bf31e5b26d18e1a7b1591bc01100e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Level Editor/Objects/StarJump/Star.png"
-dest_files=["res://.godot/imported/Star.png-c38e4cfcdb2c4de5d127876181c79052.ctex"]
+source_file="res://Assets/Animations/Crittr/Puffish/Idle/PuffishIdle.png"
+dest_files=["res://.godot/imported/PuffishIdle.png-b7bf31e5b26d18e1a7b1591bc01100e8.ctex"]
 
 [params]
 
