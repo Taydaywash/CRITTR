@@ -10,7 +10,6 @@ var player = null
 var original_location : Vector2
 
 func _ready() -> void: 
-	print("Collectable")
 	original_location = global_position
 	EventController.connect("player_teleport",reset)
 	EventController.connect("player_death",reset)
