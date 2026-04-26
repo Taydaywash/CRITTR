@@ -1,16 +1,15 @@
 [gd_scene format=3 uid="uid://bse151u6i26pm"]
 
-[ext_resource type="Texture2D" uid="uid://1clbbmtfpdsa" path="res://Assets/Misc/icon.svg" id="1_lxa0e"]
+[ext_resource type="Texture2D" uid="uid://bb0c8rtjq1sxh" path="res://Assets/Level Editor/Objects/crittrCatcherPlayer.png" id="1_0gsf2"]
 [ext_resource type="Script" uid="uid://bopqm1jonxm1a" path="res://Scenes/UI/Crittr Catcher/crittr_catcher_player.gd" id="2_0gsf2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lxa0e"]
 size = Vector2(192, 192)
 
 [node name="CrittrCatcherPlayer" type="Sprite2D" unique_id=559711742]
-modulate = Color(1, 0, 1, 1)
 z_index = 1
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_lxa0e")
+texture = ExtResource("1_0gsf2")
 script = ExtResource("2_0gsf2")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1088499723]

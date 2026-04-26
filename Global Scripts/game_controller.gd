@@ -84,7 +84,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_3"):
 		EventController.emit_signal("unlock_ability","dash")
 		EventController.emit_signal("unlock_ability","grapple")
-		EventController.emit_signal("unlock_ability","slide")
+		EventController.emit_signal("unlock_ability","climb")
 		EventController.emit_signal("unlock_ability","inflate")
 		EventController.emit_signal("unlock_ability","bounce")
 		EventController.emit_signal("unlock_ability","drill")
