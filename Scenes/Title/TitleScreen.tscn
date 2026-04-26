@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://djvd1qk1dn7wc" path="res://Scenes/Title/title_screen.gd" id="1_2tuh7"]
 [ext_resource type="PackedScene" uid="uid://db2kjtaybxxaa" path="res://Scenes/UI/Pause/Options.tscn" id="2_7kha8"]
+[ext_resource type="AudioStream" uid="uid://baekjbxxk8tda" path="res://Assets/Music/CRITTR_TrialSong1.mp3" id="2_m6fc7"]
 [ext_resource type="FontFile" uid="uid://k5gu03eirhw8" path="res://Assets/UI/TitleScreen/Thesead.otf" id="2_tm67p"]
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Scenes/Audio Controller/AudioController.tscn" id="3_cb5jd"]
 [ext_resource type="Texture2D" uid="uid://dtrgxv2nliwuw" path="res://Assets/UI/TitleScreen/CrittrLogo.png" id="5_vksqd"]
@@ -34,6 +35,7 @@ play_button = NodePath("PlayButton")
 options_tab = NodePath("OptionsTab")
 options_tab_back = NodePath("OptionsTabBack")
 audio_controller = NodePath("AudioController")
+music = ExtResource("2_m6fc7")
 
 [node name="PlayButton" type="Button" parent="." unique_id=1691731345]
 layout_mode = 1
