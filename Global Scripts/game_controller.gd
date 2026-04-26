@@ -83,15 +83,20 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_2"):
+		EventController.emit_signal("unlock_ability","dash")
+	if event.is_action_pressed("debug_3"):
+		EventController.emit_signal("unlock_ability","grapple")
+	if event.is_action_pressed("debug_4"):
+		EventController.emit_signal("unlock_ability","climb")
+	if event.is_action_pressed("debug_5"):
+		EventController.emit_signal("unlock_ability","inflate")
+	if event.is_action_pressed("debug_6"):
+		EventController.emit_signal("unlock_ability","bounce")
+	if event.is_action_pressed("debug_7"):
+		EventController.emit_signal("unlock_ability","drill")
+	if event.is_action_pressed("debug_8"):
 		game_state.total_collectables = 18
 		SaveLoadManager.save_game(game_state)
-	if event.is_action_pressed("debug_3"):
-		EventController.emit_signal("unlock_ability","dash")
-		EventController.emit_signal("unlock_ability","grapple")
-		EventController.emit_signal("unlock_ability","climb")
-		EventController.emit_signal("unlock_ability","inflate")
-		EventController.emit_signal("unlock_ability","bounce")
-		EventController.emit_signal("unlock_ability","drill")
 
 func collectable_collected(id: String, value: int = 1) -> void:
 	if game_state.collected_ids.has(id):

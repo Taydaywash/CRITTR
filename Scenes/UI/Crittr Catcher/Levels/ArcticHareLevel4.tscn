@@ -104,7 +104,7 @@ facing = "north"
 
 [node name="Player" parent="." unique_id=559711742 instance=ExtResource("3_tjrv4")]
 unique_name_in_owner = true
-position = Vector2(1070.05, 489.5)
+position = Vector2(1071, 360)
 
 [node name="ExitNode" parent="." unique_id=2043294869 instance=ExtResource("4_kdvwp")]
 position = Vector2(1208, 491)

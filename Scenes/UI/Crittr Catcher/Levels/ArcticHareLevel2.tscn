@@ -118,7 +118,7 @@ position = Vector2(254.05, 448)
 
 [node name="Player" parent="." unique_id=559711742 instance=ExtResource("3_tjrv4")]
 unique_name_in_owner = true
-position = Vector2(1022.05, 192)
+position = Vector2(1024, 192)
 
 [node name="ExitNode" parent="." unique_id=2043294869 instance=ExtResource("4_kdvwp")]
 position = Vector2(1150.05, 448)

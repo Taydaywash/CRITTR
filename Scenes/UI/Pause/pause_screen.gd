@@ -41,8 +41,8 @@ func can_pause() -> bool:
 func _unhandled_input(event: InputEvent) -> void:
 	#if not player_reference.is_on_floor():
 		#return
-	if ui.screen_overlay.modulate.a != 0.0:
-		return
+	#if ui.screen_overlay.modulate.a != 0.0:
+		#return
 	if animation_player.is_playing():
 		return
 	if not can_pause():

@@ -11,6 +11,7 @@ const UI_HOVER = preload("uid://bvfiha76ltfmi")
 const UI_CANCEL = preload("uid://ejjyhdoxq4xd")
 const UI_CONFIRM = preload("uid://c3jo2nkgwvncg")
 
+@onready var credits: Panel = $Credits2
 
 func _ready() -> void:
 	audio_controller.play_music(music)
@@ -54,3 +55,13 @@ func _on_setting_button_focus_entered() -> void:
 	audio_controller.play_sound(UI_HOVER)
 func _on_quit_button_focus_entered() -> void:
 	audio_controller.play_sound(UI_HOVER)
+func _on_credits_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+
+func _on_credits_pressed() -> void:
+	audio_controller.play_sound(UI_CONFIRM)
+	credits.visible = true
+	$Credits2/Credits3/Back.grab_focus()
+func _on_credits_back_pressed() -> void:
+	credits.visible = false
+	play_button.grab_focus()
