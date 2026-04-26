@@ -36,6 +36,11 @@ const INFLATE_LEVEL_2 = preload("uid://dndjikwjscbsl")
 const INFLATE_LEVEL_3 = preload("uid://bixxcojlqp58n")
 const INFLATE_LEVEL_4 = preload("uid://b076cx5ktiurd")
 
+const LIZARD_LEVEL_1 = preload("uid://blkvvpolltq5y")
+const LIZARD_LEVEL_2 = preload("uid://c0086yxv726rx")
+const LIZARD_LEVEL_3 = preload("uid://caqqiamrb30ub")
+const LIZARD_LEVEL_4 = preload("uid://ojci0go743a1")
+
 
 const ARCTIC_HARE_LEVEL_POOL : Dictionary = {
 	0 : ARCTIC_HARE_LEVEL_ONE,
@@ -56,10 +61,10 @@ const PUFFER_LEVEL_POOL : Dictionary = {
 	3 : INFLATE_LEVEL_4,
 }
 const LIZARD_LEVEL_POOL : Dictionary = {
-	0 : INFLATE_LEVEL_1,
-	1 : INFLATE_LEVEL_2,
-	2 : INFLATE_LEVEL_3,
-	3 : INFLATE_LEVEL_4,
+	0 : LIZARD_LEVEL_1,
+	1 : LIZARD_LEVEL_2,
+	2 : LIZARD_LEVEL_3,
+	3 : LIZARD_LEVEL_4,
 }
 
 #Changes depending on the den interacted with

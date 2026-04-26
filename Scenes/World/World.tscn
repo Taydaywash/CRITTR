@@ -2157,6 +2157,8 @@ position = Vector2(-1152, 896)
 
 [node name="PeakToDrill" type="Area2D" parent="Rooms/StardustPeak/Ascent3" unique_id=1805480959 node_paths=PackedStringArray("go_to_door")]
 position = Vector2(384, -896)
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("61_upkxk")
 go_to_door = NodePath("../../../BonusContent/DrillBonus/DrillBonus")
 metadata/_custom_type_script = "uid://doykniksbhx74"
@@ -2175,6 +2177,8 @@ horizontal_alignment = 1
 
 [node name="PeakToBounce" type="Area2D" parent="Rooms/StardustPeak/Ascent3" unique_id=1603438679 node_paths=PackedStringArray("go_to_door")]
 position = Vector2(-1152, -896)
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("61_upkxk")
 go_to_door = NodePath("../../../BonusContent/BounceBonus/BounceBonus")
 metadata/_custom_type_script = "uid://doykniksbhx74"
@@ -2971,6 +2975,8 @@ interior_room = true
 
 [node name="BounceBonus" type="Area2D" parent="Rooms/BonusContent/BounceBonus" unique_id=1736539661 node_paths=PackedStringArray("go_to_door")]
 position = Vector2(-4096, -2048)
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("61_upkxk")
 go_to_door = NodePath("../../../StardustPeak/Ascent3/PeakToBounce")
 metadata/_custom_type_script = "uid://doykniksbhx74"
@@ -2988,6 +2994,8 @@ interior_room = true
 
 [node name="DrillBonus" type="Area2D" parent="Rooms/BonusContent/DrillBonus" unique_id=273345086 node_paths=PackedStringArray("go_to_door")]
 position = Vector2(-4096, -512)
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("61_upkxk")
 go_to_door = NodePath("../../../StardustPeak/Ascent3/PeakToDrill")
 metadata/_custom_type_script = "uid://doykniksbhx74"
