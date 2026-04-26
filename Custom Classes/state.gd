@@ -103,6 +103,9 @@ func activate(last_state : State) -> void:
 			var state_index = enter_sound_when_entering_from_state_state.find(last_state)
 			audio_controller.play_sound( enter_sound_when_entering_from_state_sound[state_index],
 			enter_sound_when_entering_from_state_pitch_low[state_index], enter_sound_when_entering_from_state_pitch_high[state_index])
+		else:
+			if enter_sound_sounds: 
+				audio_controller.play_sound(enter_sound_sounds.pick_random(), enter_sound_pitch_low, enter_sound_pitch_high)
 	else:
 		if enter_sound_sounds: 
 			audio_controller.play_sound(enter_sound_sounds.pick_random(), enter_sound_pitch_low, enter_sound_pitch_high)
