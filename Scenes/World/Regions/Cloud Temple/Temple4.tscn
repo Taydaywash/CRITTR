@@ -75,7 +75,7 @@ script = ExtResource("7_0g1cl")
 [node name="InputChecker" parent="." unique_id=1734738149 instance=ExtResource("8_ci1nj")]
 z_index = 0
 position = Vector2(0, -32)
-sequences = Array[String](["move_down", "move_down", "move_down"])
+sequences = Array[String](["move_down", "move_down", "move_down", "", "", "", "", "", ""])
 
 [node name="Inputs" parent="InputChecker" unique_id=1590715658 instance=ExtResource("13_5vsc3")]
 position = Vector2(0, -448)

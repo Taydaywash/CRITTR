@@ -14,10 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://Scenes/World/Regions/Crash Site/InsideShip.tscn" id="8_jacc8"]
 [ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://Scenes/World/Regions/Crash Site/ClimbToPeak.tscn" id="14_7in0u"]
 [ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://Scenes/World/Regions/Crash Site/DiveTutorial.tscn" id="16_vdgnt"]
-[ext_resource type="Script" uid="uid://ly7ivf5nvuar" path="res://Scenes/World/fire_particle_deletion_logic.gd" id="17_44hbs"]
+[ext_resource type="Script" path="res://Scenes/World/fire_particle_deletion_logic.gd" id="17_44hbs"]
 [ext_resource type="Texture2D" uid="uid://bkmii5ukk00pn" path="res://Assets/Particles/puff cloud.png" id="18_eoa2q"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/UI/Map/map.tscn" id="18_hev0n"]
-[ext_resource type="Script" path="res://Scenes/World/Regions/Crash Site/collectable_counter.gd" id="18_ru2km"]
+[ext_resource type="Script" uid="uid://br3i284d5pbxo" path="res://Scenes/World/Regions/Crash Site/collectable_counter.gd" id="18_ru2km"]
 [ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://Scenes/World/Regions/Crash Site/PlatformsTwo.tscn" id="19_hlwfy"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://Assets/Decals/Tundra/Background/background layer tundra 1.png" id="19_vdgnt"]
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://Assets/Decals/Tundra/Background/bg layer tundra 2.png" id="20_3ql1f"]
@@ -46,7 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://c0yxdqvvnh8u3" path="res://Assets/Decals/Marsh/Background/BigLeafPlant.png" id="36_0hcbc"]
 [ext_resource type="PackedScene" uid="uid://bfvw3u7lagu3r" path="res://Scenes/World/Regions/Toxic Marsh/WallSteam2.tscn" id="36_150fk"]
 [ext_resource type="PackedScene" uid="uid://f4g8bo43v373" path="res://Scenes/World/Regions/Toxic Marsh/Ascent.tscn" id="36_k3b55"]
-[ext_resource type="Script" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
+[ext_resource type="Script" uid="uid://debb4cff3jagh" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
 [ext_resource type="Texture2D" uid="uid://dlb8x8m772hoq" path="res://Assets/Decals/Marsh/Background/MedLeafPlant.png" id="37_4kbg2"]
 [ext_resource type="PackedScene" uid="uid://bm3kvosdi8puf" path="res://Scenes/World/Regions/Toxic Marsh/Endurance2.tscn" id="37_150fk"]
 [ext_resource type="PackedScene" uid="uid://bc75uokokv1wd" path="res://Scenes/UI/crittr_catcher.tscn" id="38_hb1o8"]
@@ -361,7 +361,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("GlassSeaDepths/EnterFromShallows")
+starting_room = NodePath("CloudTemple/TempleEntrance")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -2259,8 +2259,13 @@ go_to_door = NodePath("../OutsideSeq2")
 position = Vector2(83712, -5184)
 go_to_door = NodePath("../InsideSeq2")
 
-[node name="InsideSeq3" parent="Rooms/CloudTemple" unique_id=1376871368 instance=ExtResource("7_jacc8")]
+[node name="InsideSeq3" parent="Rooms/CloudTemple" unique_id=1376871368 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
 position = Vector2(69696, -9728)
+go_to_door = NodePath("../OutsideSeq3")
+
+[node name="OutsideSeq3" parent="Rooms/CloudTemple" unique_id=1028645464 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
+position = Vector2(86528, -10304)
+go_to_door = NodePath("../InsideSeq3")
 
 [node name="StardustPeakGlassSeaTransition" type="Node" parent="Rooms" unique_id=1712321999]
 script = ExtResource("6_lqys3")

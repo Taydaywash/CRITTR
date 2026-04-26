@@ -14,7 +14,7 @@ func _ready() -> void:
 	
 func matched() -> void:
 	if not is_open:
-		camera.trigger_shake(6.0)
+		camera.trigger_shake(5.0)
 		animation_player.play("open")
 		await animation_player.animation_finished
 		is_open = true
@@ -22,7 +22,7 @@ func matched() -> void:
 	
 func close() -> void:
 	if is_open: 
-		camera.trigger_shake(6.0)
+		camera.trigger_shake(5.0)
 		animation_player.play_backwards("open")
 		await animation_player.animation_finished
 		is_open = false

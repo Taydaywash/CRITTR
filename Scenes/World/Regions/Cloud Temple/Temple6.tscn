@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://cesp7imm7vll7" path="res://Scenes/World/LevelEditor/Objects/InputChecker/InputChecker.tscn" id="8_2nna4"]
 [ext_resource type="PackedScene" uid="uid://pims4jpy75j4" path="res://Scenes/World/LevelEditor/Objects/InputChecker/MovingPlatform/MovingPlatform4.tscn" id="9_h5wtt"]
 [ext_resource type="PackedScene" uid="uid://b350fb22korkf" path="res://Scenes/World/LevelEditor/Objects/InputChecker/MovingPlatform/MovingPlatform2.tscn" id="10_ob7t3"]
+[ext_resource type="PackedScene" uid="uid://ck20o7e40ef2g" path="res://Scenes/World/LevelEditor/Objects/InputChecker/Inputs.tscn" id="12_j17wo"]
+[ext_resource type="Texture2D" uid="uid://cbv4ichvfxdf2" path="res://Assets/Decals/Cloud Temple/Background/left_glyph.png" id="13_qreyi"]
+[ext_resource type="Texture2D" uid="uid://bu2j0n2xmy66e" path="res://Assets/Decals/Cloud Temple/Background/right_glyph.png" id="14_s4ejn"]
 
 [sub_resource type="Curve2D" id="Curve2D_ob7t3"]
 _data = {
@@ -95,7 +98,7 @@ script = ExtResource("7_i2g0h")
 [node name="InputChecker" parent="." unique_id=1734738149 instance=ExtResource("8_2nna4")]
 z_index = 0
 position = Vector2(-1600, -32)
-sequences = Array[String](["move_left", "jump", "move_right"])
+sequences = Array[String](["move_left", "move_right", "move_left"])
 
 [node name="MovingPlatform" parent="InputChecker" unique_id=640720163 instance=ExtResource("9_h5wtt")]
 position = Vector2(1600, 32)
@@ -134,6 +137,12 @@ duration = 6.5
 position = Vector2(1984, 800)
 curve = SubResource("Curve2D_j17wo")
 duration = 6.5
+
+[node name="Inputs" parent="InputChecker" unique_id=1590715658 instance=ExtResource("12_j17wo")]
+position = Vector2(0, -96)
+first_sprite = ExtResource("13_qreyi")
+second_sprite = ExtResource("14_s4ejn")
+third_sprite = ExtResource("13_qreyi")
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://do1v7nd4pb8ok"
-path="res://.godot/imported/star.png-109298194dba82b7675069fa964a70a7.ctex"
+path="res://.godot/imported/Star.png-c38e4cfcdb2c4de5d127876181c79052.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Level Editor/Objects/StarJump/star.png"
-dest_files=["res://.godot/imported/star.png-109298194dba82b7675069fa964a70a7.ctex"]
+source_file="res://Assets/Level Editor/Objects/StarJump/Star.png"
+dest_files=["res://.godot/imported/Star.png-c38e4cfcdb2c4de5d127876181c79052.ctex"]
 
 [params]
 
