@@ -10,18 +10,54 @@ extends Sprite2D
 
 @onready var crittr_catcher_ref = get_parent().get_parent().get_parent()
 
-const IDLE = preload("uid://tj5sev1pwfaa")
-const LOOK_DOWN = preload("uid://buvkr6x3vl2qv")
-const LOOK_UP = preload("uid://dt1j4pxolbmjs")
+
+
+const HARE_IDLE = preload("uid://tj5sev1pwfaa")
+const HARE_LOOK_DOWN = preload("uid://buvkr6x3vl2qv")
+const HARE_LOOK_UP = preload("uid://dt1j4pxolbmjs")
+
+const FROG_IDLE = preload("uid://dao8xsxy0m5db")
+const FROG_LOOK_DOWN = preload("uid://gfbrycuk24yw")
+const FROG_LOOK_UP = preload("uid://cg7s0vrcq6gd3")
+
+const LIZARD_IDLE = preload("uid://c35245rkb81mk")
+const LIZARD_LOOK_DOWN = preload("uid://biliwq8n5ny3e")
+const LIZARD_LOOK_UP = preload("uid://c8rmaqo3rke8c")
+
+const PUFFER_IDLE = preload("uid://30onrtd08d6v")
+const PUFFER_LOOK_DOWN = preload("uid://cup2g5bjtf01x")
+const PUFFER_LOOK_UP = preload("uid://tidnwhpolj20")
+
+var IDLE = HARE_IDLE
+var LOOK_DOWN = HARE_LOOK_DOWN
+var LOOK_UP = HARE_LOOK_UP
 
 var move_direction : String = ""
 @export var facing : String = "east"
 var between_look_delay : float = 0.1
 var level_deactivated : bool = false
 
+@export var crittr = "hare"
 var crittr_turn : bool = false
 
 func _ready() -> void:
+	match crittr:
+		"hare":
+			IDLE = HARE_IDLE
+			LOOK_DOWN = HARE_LOOK_DOWN
+			LOOK_UP = HARE_LOOK_UP
+		"frog":
+			IDLE = FROG_IDLE
+			LOOK_DOWN = FROG_LOOK_DOWN
+			LOOK_UP = FROG_LOOK_UP
+		"lizard":
+			IDLE = LIZARD_IDLE
+			LOOK_DOWN = LIZARD_LOOK_DOWN
+			LOOK_UP = LIZARD_LOOK_UP
+		"puffer":
+			IDLE = PUFFER_IDLE
+			LOOK_DOWN = PUFFER_LOOK_DOWN
+			LOOK_UP = PUFFER_LOOK_UP
 	look(facing)
 	crittr_catcher_ref.connect("start_crittr_turn",func end_player_turn():
 		crittr_turn = true
@@ -30,6 +66,7 @@ func _ready() -> void:
 	crittr_catcher_ref.connect("close_crittr_catcher",func end_player_turn():
 		crittr_turn = false
 		)
+
 
 func _process(_delta: float) -> void:
 	match facing:
@@ -102,16 +139,16 @@ func look(direction : String) -> void:
 	match direction:
 		"north":
 			#flip_h = sprite_flipped
-			self.texture = LOOK_UP
+			texture = LOOK_UP
 		"east":
 			flip_h = false
-			self.texture = IDLE
+			texture = IDLE
 		"south":
 			#flip_h = sprite_flipped
-			self.texture = LOOK_DOWN
+			texture = LOOK_DOWN
 		"west":
 			flip_h = true
-			self.texture = IDLE
+			texture = IDLE
 
 func check_right() -> void:
 	match facing:

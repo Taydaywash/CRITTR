@@ -96,9 +96,9 @@ position = Vector2(384, 383.45)
 
 [node name="Crittr" parent="." unique_id=1473794053 instance=ExtResource("2_huqwl")]
 unique_name_in_owner = true
-modulate = Color(0.48235294, 1, 0.5019608, 1)
 position = Vector2(384, 255.45)
 facing = "north"
+crittr = "frog"
 
 [node name="Player" parent="." unique_id=559711742 instance=ExtResource("3_pthwq")]
 unique_name_in_owner = true

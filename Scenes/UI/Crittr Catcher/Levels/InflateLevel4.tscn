@@ -125,6 +125,7 @@ position = Vector2(1022.05, 360)
 unique_name_in_owner = true
 position = Vector2(382.05002, 368)
 facing = "north"
+crittr = "puffer"
 
 [node name="Player" parent="." unique_id=559711742 instance=ExtResource("3_latyi")]
 unique_name_in_owner = true

@@ -118,6 +118,7 @@ position = Vector2(894.05, 641.5)
 [node name="Crittr" parent="." unique_id=1473794053 instance=ExtResource("2_j731d")]
 unique_name_in_owner = true
 position = Vector2(254.05, 513.5)
+crittr = "puffer"
 
 [node name="Player" parent="." unique_id=559711742 instance=ExtResource("3_58oe1")]
 unique_name_in_owner = true

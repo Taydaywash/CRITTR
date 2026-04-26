@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dkr2godkpmr3g" path="res://Scenes/World/Regions/Crash Site/InsideShip.tscn" id="8_jacc8"]
 [ext_resource type="PackedScene" uid="uid://bitnekua2kh6i" path="res://Scenes/World/Regions/Crash Site/ClimbToPeak.tscn" id="14_7in0u"]
 [ext_resource type="PackedScene" uid="uid://d35akktui3qne" path="res://Scenes/World/Regions/Crash Site/DiveTutorial.tscn" id="16_vdgnt"]
-[ext_resource type="Script" path="res://Scenes/World/fire_particle_deletion_logic.gd" id="17_44hbs"]
+[ext_resource type="Script" uid="uid://ly7ivf5nvuar" path="res://Scenes/World/fire_particle_deletion_logic.gd" id="17_44hbs"]
 [ext_resource type="Texture2D" uid="uid://bkmii5ukk00pn" path="res://Assets/Particles/puff cloud.png" id="18_eoa2q"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/UI/Map/map.tscn" id="18_hev0n"]
 [ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://Scenes/World/Regions/Crash Site/PlatformsTwo.tscn" id="19_hlwfy"]
@@ -101,9 +101,13 @@
 [ext_resource type="PackedScene" uid="uid://t2bak8m1nj1y" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold2.tscn" id="74_icms3"]
 [ext_resource type="PackedScene" uid="uid://c62mfrcnc8247" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold3.tscn" id="75_thcod"]
 [ext_resource type="PackedScene" uid="uid://blspqqelho0s5" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold4.tscn" id="76_g04sn"]
+[ext_resource type="Texture2D" uid="uid://cqhxju4343jvh" path="res://Assets/Decals/GlassSea/SmallWaterPlant.png" id="77_83uwj"]
 [ext_resource type="PackedScene" uid="uid://gscjepmq6iss" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold5.tscn" id="77_ll777"]
 [ext_resource type="PackedScene" uid="uid://chvu6roex3dyt" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold6.tscn" id="78_ixxyk"]
+[ext_resource type="Texture2D" uid="uid://wc6mrfg8qk3r" path="res://Assets/Decals/GlassSea/LargeSeaweed.png" id="78_nr1jb"]
+[ext_resource type="Texture2D" uid="uid://bv7m2brq12nyq" path="res://Assets/Decals/GlassSea/LargeWaterPlant.png" id="79_6hlb6"]
 [ext_resource type="PackedScene" uid="uid://b7lx6f4o42mr7" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold7.tscn" id="79_qyaep"]
+[ext_resource type="Texture2D" uid="uid://438rcn14dfn7" path="res://Assets/Decals/GlassSea/SmallSeaweed.png" id="80_du7of"]
 [ext_resource type="PackedScene" uid="uid://df5dvukcm113v" path="res://Scenes/World/Regions/GlassSea/depths/DepthsBonus1.tscn" id="80_wawgj"]
 [ext_resource type="Script" uid="uid://cu187bnu1f6w2" path="res://Scenes/World/interactable_popup_start.gd" id="81_g04sn"]
 [ext_resource type="PackedScene" uid="uid://brm2nyavy2dmq" path="res://Scenes/World/Regions/GlassSea/depths/DepthsBonus2.tscn" id="81_xjk1d"]
@@ -2134,9 +2138,10 @@ map_color = Color(0.571977, 0.33051977, 0.11207227, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
 
 [node name="ToxicMarshBackground" type="Node2D" parent="Rooms/CloudTemple" unique_id=459764810]
+visible = false
 
 [node name="Parallax2D3" type="Parallax2D" parent="Rooms/CloudTemple/ToxicMarshBackground" unique_id=1467282693]
-scroll_scale = Vector2(0.1, 1)
+scroll_scale = Vector2(0.1, 0)
 repeat_size = Vector2(1920, 1080)
 repeat_times = 4
 
@@ -2183,6 +2188,9 @@ position = Vector2(85120, -9536)
 [node name="Temple4" parent="Rooms/CloudTemple" unique_id=1660298061 instance=ExtResource("65_fnn3e")]
 position = Vector2(75904, -6976)
 
+[node name="SaveTube" parent="Rooms/CloudTemple/Temple4" unique_id=1618485981 instance=ExtResource("8_hev0n")]
+position = Vector2(-1600, 128)
+
 [node name="Temple5" parent="Rooms/CloudTemple" unique_id=577290687 instance=ExtResource("66_j4mdk")]
 position = Vector2(80512, -6976)
 
@@ -2228,9 +2236,6 @@ go_to_door = NodePath("../InsideSeq2")
 
 [node name="InsideSeq3" parent="Rooms/CloudTemple" unique_id=1376871368 instance=ExtResource("7_jacc8")]
 position = Vector2(69696, -9728)
-
-[node name="SaveTube" parent="Rooms/CloudTemple" unique_id=1618485981 instance=ExtResource("8_hev0n")]
-position = Vector2(74304, -6848)
 
 [node name="StardustPeakGlassSeaTransition" type="Node" parent="Rooms" unique_id=1712321999]
 script = ExtResource("6_lqys3")
@@ -2345,11 +2350,186 @@ zoom_to_fit = false
 interior_room = false
 hidden_room = false
 
+[node name="Node2D" type="Node2D" parent="Rooms/GlassSea/WeirdJump" unique_id=1495508238]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/WeirdJump/Node2D" unique_id=1700750328]
+z_index = -4
+position = Vector2(-2240, -63.999973)
+rotation = 0.49230236
+scale = Vector2(1.65, 1.65)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Rooms/GlassSea/WeirdJump/Node2D" unique_id=298484406]
+z_index = -4
+position = Vector2(-1728, 192)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Rooms/GlassSea/WeirdJump/Node2D" unique_id=385552806]
+z_index = -3
+position = Vector2(-64, 832)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Rooms/GlassSea/WeirdJump/Node2D" unique_id=616370672]
+z_index = -3
+position = Vector2(-384, 512)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Rooms/GlassSea/WeirdJump/Node2D" unique_id=50876502]
+z_index = -4
+position = Vector2(1216.0002, 896.0001)
+scale = Vector2(0.685, 0.685)
+texture = ExtResource("78_nr1jb")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/GlassSea/WeirdJump/Node2D" unique_id=1623957175]
+z_index = -4
+position = Vector2(896, 768)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("79_6hlb6")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/GlassSea/WeirdJump/Node2D" unique_id=506376271]
+z_index = -4
+position = Vector2(-767.9999, 384.00006)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("79_6hlb6")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Rooms/GlassSea/WeirdJump/Node2D" unique_id=1816166740]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(-960.00024, 768.00006)
+texture = ExtResource("80_du7of")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Rooms/GlassSea/WeirdJump/Node2D" unique_id=1473081147]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -5
+position = Vector2(704, 895.9999)
+texture = ExtResource("80_du7of")
+flip_h = true
+
 [node name="Wet1" parent="Rooms/GlassSea" unique_id=109912080 instance=ExtResource("65_1fesm")]
 position = Vector2(-44416, -11840)
 
+[node name="Node2D" type="Node2D" parent="Rooms/GlassSea/Wet1" unique_id=711680782]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/Wet1/Node2D" unique_id=1752077595]
+z_index = -4
+position = Vector2(-448.00012, 512)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Rooms/GlassSea/Wet1/Node2D" unique_id=1447046644]
+z_index = -4
+position = Vector2(-1984, 384)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Rooms/GlassSea/Wet1/Node2D" unique_id=151346893]
+z_index = -3
+position = Vector2(-1152, 768)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Rooms/GlassSea/Wet1/Node2D" unique_id=1559466205]
+z_index = -3
+position = Vector2(320, 576)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Rooms/GlassSea/Wet1/Node2D" unique_id=194070705]
+z_index = -4
+position = Vector2(-1472, 640.00006)
+scale = Vector2(0.685, 0.685)
+texture = ExtResource("78_nr1jb")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/GlassSea/Wet1/Node2D" unique_id=1470601516]
+z_index = -4
+position = Vector2(960, 128.00003)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("79_6hlb6")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/GlassSea/Wet1/Node2D" unique_id=1995106336]
+z_index = -4
+position = Vector2(-767.9999, 896)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("79_6hlb6")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Rooms/GlassSea/Wet1/Node2D" unique_id=1430945259]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(1663.9998, 256.00006)
+texture = ExtResource("80_du7of")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Rooms/GlassSea/Wet1/Node2D" unique_id=271587557]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(1984, 639.9999)
+texture = ExtResource("80_du7of")
+flip_h = true
+
 [node name="Wet2" parent="Rooms/GlassSea" unique_id=1428155619 instance=ExtResource("66_f8dxr")]
 position = Vector2(-51328, -11840)
+
+[node name="Node2D" type="Node2D" parent="Rooms/GlassSea/Wet2" unique_id=1553887861]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/Wet2/Node2D" unique_id=1059910150]
+z_index = -4
+position = Vector2(-704.0001, 256)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Rooms/GlassSea/Wet2/Node2D" unique_id=182577941]
+z_index = -4
+position = Vector2(-1344, 256)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Rooms/GlassSea/Wet2/Node2D" unique_id=1968162978]
+z_index = -3
+position = Vector2(2368, 512)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Rooms/GlassSea/Wet2/Node2D" unique_id=49447718]
+z_index = -3
+position = Vector2(3456, -64)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Rooms/GlassSea/Wet2/Node2D" unique_id=855369332]
+z_index = -4
+position = Vector2(2112.0005, 576.00006)
+scale = Vector2(0.685, 0.685)
+texture = ExtResource("78_nr1jb")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/GlassSea/Wet2/Node2D" unique_id=408195542]
+z_index = -4
+position = Vector2(576, 256.00003)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("79_6hlb6")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/GlassSea/Wet2/Node2D" unique_id=366696873]
+z_index = -4
+position = Vector2(-2303.9998, 128.00003)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("79_6hlb6")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Rooms/GlassSea/Wet2/Node2D" unique_id=2043924133]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(1535.9998, 512.00006)
+texture = ExtResource("80_du7of")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Rooms/GlassSea/Wet2/Node2D" unique_id=1014075352]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(3968, 319.99988)
+texture = ExtResource("80_du7of")
+flip_h = true
 
 [node name="Wet3" parent="Rooms/GlassSea" unique_id=1976470463 instance=ExtResource("68_awmuf")]
 position = Vector2(-51328, -9280)
@@ -2358,8 +2538,183 @@ position = Vector2(-51328, -9280)
 z_index = 0
 position = Vector2(-3520, -768)
 
+[node name="Node2D" type="Node2D" parent="Rooms/GlassSea/Wet3" unique_id=248800128]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=1148303174]
+z_index = -4
+position = Vector2(-3456, 511.99997)
+rotation = 0.49230236
+scale = Vector2(1.65, 1.65)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=1345877427]
+z_index = -4
+position = Vector2(-2496, 192)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=1273644614]
+z_index = -3
+position = Vector2(-1536, 640)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=587052890]
+z_index = -3
+position = Vector2(-2816, 896)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=1602250673]
+z_index = -4
+position = Vector2(-1856.0002, 704.0001)
+scale = Vector2(0.685, 0.685)
+texture = ExtResource("78_nr1jb")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=1139169384]
+z_index = -4
+position = Vector2(-127.99994, 768)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("79_6hlb6")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=324310640]
+z_index = -4
+position = Vector2(-575.9999, 640.00006)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("79_6hlb6")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=425690719]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(191.99976, 384.00006)
+texture = ExtResource("80_du7of")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=863623934]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(-2752, 767.9999)
+texture = ExtResource("80_du7of")
+flip_h = true
+
+[node name="Sprite2D10" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=56507948]
+z_index = -4
+position = Vector2(104.82422, 725.2266)
+rotation = 0.49230236
+scale = Vector2(1.65, 1.65)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=820486233]
+z_index = -4
+position = Vector2(1064.8242, 405.22656)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D12" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=414416723]
+z_index = -3
+position = Vector2(2112, 512)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D13" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=415744723]
+z_index = -3
+position = Vector2(832, 896)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D14" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=949778367]
+z_index = -4
+position = Vector2(1408.0002, 832.0001)
+scale = Vector2(0.685, 0.685)
+texture = ExtResource("78_nr1jb")
+flip_h = true
+
+[node name="Sprite2D15" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=2437579]
+z_index = -4
+position = Vector2(3199.9998, 768)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("79_6hlb6")
+
+[node name="Sprite2D16" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=1610190295]
+z_index = -4
+position = Vector2(2944, 640.00006)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("79_6hlb6")
+
+[node name="Sprite2D17" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=1557472934]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(3775.9998, 768.00006)
+texture = ExtResource("80_du7of")
+
+[node name="Sprite2D18" type="Sprite2D" parent="Rooms/GlassSea/Wet3/Node2D" unique_id=1119044869]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(3520, 511.99988)
+scale = Vector2(1.61, 1.61)
+texture = ExtResource("80_du7of")
+flip_h = true
+
 [node name="Wet4" parent="Rooms/GlassSea" unique_id=1973423524 instance=ExtResource("69_lc1us")]
 position = Vector2(-42112, -9280)
+
+[node name="Node2D" type="Node2D" parent="Rooms/GlassSea/Wet4" unique_id=2087888051]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/Wet4/Node2D" unique_id=238710024]
+z_index = -4
+position = Vector2(-2240, -511.99994)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Rooms/GlassSea/Wet4/Node2D" unique_id=481539174]
+z_index = -4
+position = Vector2(-2688, -320)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Rooms/GlassSea/Wet4/Node2D" unique_id=1812895225]
+z_index = -4
+position = Vector2(-1216, 64)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Rooms/GlassSea/Wet4/Node2D" unique_id=411793540]
+z_index = -3
+position = Vector2(320, -256)
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("77_83uwj")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Rooms/GlassSea/Wet4/Node2D" unique_id=1364014724]
+z_index = -4
+position = Vector2(-3968.0002, 512.00006)
+scale = Vector2(0.685, 0.685)
+texture = ExtResource("78_nr1jb")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rooms/GlassSea/Wet4/Node2D" unique_id=1385210548]
+z_index = -4
+position = Vector2(-1535.9998, 640)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("79_6hlb6")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Rooms/GlassSea/Wet4/Node2D" unique_id=2081185440]
+z_index = -4
+position = Vector2(-2943.9998, -383.99994)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("79_6hlb6")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Rooms/GlassSea/Wet4/Node2D" unique_id=1589683418]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(-320.00024, 640.00006)
+texture = ExtResource("80_du7of")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Rooms/GlassSea/Wet4/Node2D" unique_id=245826431]
+self_modulate = Color(0.06100855, 0.56294864, 0.8100489, 1)
+z_index = -4
+position = Vector2(-2624, 639.9999)
+texture = ExtResource("80_du7of")
+flip_h = true
 
 [node name="Wet5" parent="Rooms/GlassSea" unique_id=273238548 instance=ExtResource("70_7foer")]
 position = Vector2(-40704, -6720)
