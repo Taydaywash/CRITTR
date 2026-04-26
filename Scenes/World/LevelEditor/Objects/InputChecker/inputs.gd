@@ -3,21 +3,20 @@ extends Node2D
 @export var first_sprite: Texture2D
 @export var second_sprite: Texture2D
 @export var third_sprite: Texture2D
+@export var unknown: bool = false
 
 func _ready() -> void:
 	modulate.a = 0
 	get_parent().connect("entered", unhide_sprite)
 	get_parent().connect("exited", hide_sprite)
-	if first_sprite != null:
-		$Sprite2D.texture = first_sprite
-		print("yesyes")
-	if second_sprite != null:
-		$Sprite2D2.texture = second_sprite
-		print("yesyes")
-	if third_sprite != null:
-		$Sprite2D3.texture = third_sprite
-		print("yesyes")
-	
+	if (!unknown):
+		if first_sprite != null:
+			$Sprite2D.texture = first_sprite
+		if second_sprite != null:
+			$Sprite2D2.texture = second_sprite
+		if third_sprite != null:
+			$Sprite2D3.texture = third_sprite
+
 
 func unhide_sprite() -> void:
 	var tween
