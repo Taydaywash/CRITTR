@@ -30,6 +30,20 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:
 	jump_input_buffer.wait_time = jump_buffer_patience
 	global_point = grapple_ray.get_collision_point()
+	match direction:
+		"right":
+			sprite.rotation_degrees = 0
+		"left":
+			sprite.rotation_degrees = 0
+		"up":
+			sprite.offset = Vector2.ZERO
+			sprite.position = Vector2.ZERO
+			sprite.rotation_degrees = 90
+			
+		"down":
+			sprite.offset = Vector2.ZERO
+			sprite.position = Vector2.ZERO
+			sprite.rotation_degrees = -90
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):
@@ -68,6 +82,9 @@ func process_physics(_delta) -> State:
 	return null
 
 func deactivate(_next_state) -> void:
+	sprite.rotation_degrees = 0
+	sprite.position = Vector2(0,70)
+	sprite.offset = Vector2(0,-70)
 	super(_next_state)
 	player.velocity.x = player.velocity.x * horizontal_end_speed_multiplier
 	grapple_ray.target_position = Vector2.ZERO

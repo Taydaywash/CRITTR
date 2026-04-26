@@ -5,6 +5,7 @@ var from_string : Dictionary = {
 	"ARCTIC_HARE_DEN":ARCTIC_HARE_DEN,
 	"ACID_FROG_DEN":ACID_FROG_DEN,
 	"INFLATE_DEN":INFLATE_DEN,
+	"LIZARD_DEN":LIZARD_DEN,
 	"END_GAME_CONFIRMATION":END_GAME_CONFIRMATION,
 }
 
@@ -25,6 +26,10 @@ Scans suggest that this den belongs to a 'Grapple Frog'.
 
 const INFLATE_DEN = ("A den sits before you. Balloon-like stretching can be heard from inside.
 Scans suggest that this den belongs to a 'Pufferfly'.
+\nInsert Crittr Catcher 9000?")
+
+const LIZARD_DEN = ("A den sits before you. Sticky-sounding sliding can be heard from inside.
+Scans suggest that this den belongs to a 'Cloud Clinger'.
 \nInsert Crittr Catcher 9000?")
 
 const SCRAP_COLLECTED = ("You got a Strange Scrap!

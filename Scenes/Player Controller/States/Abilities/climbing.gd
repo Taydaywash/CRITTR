@@ -38,6 +38,22 @@ func activate(last_state : State) -> void:
 	super(last_state) #Call activate as defined in state.gd and then also do:c
 	change_collider_to(crouching_hitbox)
 	match direction:
+		"right":
+			sprite.offset = Vector2.ZERO
+			sprite.position = Vector2.ZERO
+			sprite.rotation_degrees = -90
+			sprite.position.x = -35
+		"left":
+			sprite.offset = Vector2.ZERO
+			sprite.position = Vector2.ZERO
+			sprite.position.x = 35
+			sprite.rotation_degrees = 90
+		"up":
+			sprite.flip_v = true
+			sprite.rotation_degrees = 0
+		"down":
+			sprite.rotation_degrees = 0
+	match direction:
 		"up":
 			player.velocity.x = climbing_buffer_state.pre_slide_velocity.x
 			player.velocity.y = -10
@@ -122,6 +138,10 @@ func process_physics(_delta) -> State:
 
 func deactivate(_next_state) -> void:
 	super(_next_state)
+	sprite.flip_v = false
+	sprite.rotation_degrees = 0
+	sprite.position = Vector2(0,70)
+	sprite.offset = Vector2(0,-70)
 	match direction:
 		"left":
 			player.position.x += 10

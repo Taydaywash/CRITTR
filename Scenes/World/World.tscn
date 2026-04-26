@@ -87,6 +87,7 @@
 [ext_resource type="PackedScene" uid="uid://dw8x2kn1v0can" path="res://Scenes/World/Regions/GlassSea/shallows/Wet3.tscn" id="68_awmuf"]
 [ext_resource type="PackedScene" uid="uid://chsfkqsro785y" path="res://Scenes/World/Regions/Cloud Temple/Temple7.tscn" id="68_nr1jb"]
 [ext_resource type="PackedScene" uid="uid://4e8ffbpqobx7" path="res://Scenes/World/Regions/Cloud Temple/Temple8.tscn" id="69_6hlb6"]
+[ext_resource type="Script" uid="uid://c4k7e86123h4j" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/lizard_choicer_handler.gd" id="69_evici"]
 [ext_resource type="PackedScene" uid="uid://cyr82pseo0sxj" path="res://Scenes/World/Regions/GlassSea/shallows/Wet4.tscn" id="69_lc1us"]
 [ext_resource type="PackedScene" uid="uid://bktmamt8uwtvm" path="res://Scenes/World/Regions/GlassSea/shallows/Wet5.tscn" id="70_7foer"]
 [ext_resource type="PackedScene" uid="uid://b5p0w0uadvv4p" path="res://Scenes/World/Regions/Cloud Temple/Temple9.tscn" id="70_du7of"]
@@ -2190,6 +2191,14 @@ position = Vector2(75904, -6976)
 
 [node name="SaveTube" parent="Rooms/CloudTemple/Temple4" unique_id=1618485981 instance=ExtResource("8_hev0n")]
 position = Vector2(-1600, 128)
+
+[node name="DenColliderArea" parent="Rooms/CloudTemple/Temple4" unique_id=1626826708 instance=ExtResource("27_nlkji")]
+position = Vector2(-1600, 1088)
+dialog_string = "LIZARD"
+
+[node name="ChoicerHandler" type="Node" parent="Rooms/CloudTemple/Temple4/DenColliderArea" unique_id=623097780]
+script = ExtResource("69_evici")
+metadata/_custom_type_script = "uid://djbpfy38vrjy8"
 
 [node name="Temple5" parent="Rooms/CloudTemple" unique_id=577290687 instance=ExtResource("66_j4mdk")]
 position = Vector2(80512, -6976)

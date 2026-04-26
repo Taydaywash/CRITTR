@@ -43,6 +43,15 @@ func activate(last_state : State) -> void:
 	gravity = player.normal_gravity
 	max_falling_speed = player.max_falling_speed
 	match direction:
+		"right":
+			sprite.rotation_degrees = 0
+		"left":
+			sprite.rotation_degrees = 0
+		"up":
+			sprite.rotation_degrees = -90
+		"down":
+			sprite.rotation_degrees = 90
+	match direction:
 			"right":
 				right_area.monitoring = true
 				right_area.visible = true
@@ -93,6 +102,7 @@ func process_physics(delta) -> State:
 	return null
 
 func deactivate(_next_state : State) -> void:
+	sprite.rotation_degrees = 0
 	match direction:
 			"right":
 				right_area.monitoring = false

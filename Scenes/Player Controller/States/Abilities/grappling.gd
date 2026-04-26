@@ -37,6 +37,21 @@ func activate(last_state : State) -> void:
 	line.add_point(Vector2.ZERO)
 	line.add_point(Vector2.ZERO)
 	player.velocity = Vector2(0,0)
+	match direction:
+		"right":
+			sprite.rotation_degrees = 0
+		"left":
+			sprite.rotation_degrees = 0
+		"up":
+			sprite.offset = Vector2.ZERO
+			sprite.position = Vector2.ZERO
+			sprite.rotation_degrees = 90
+			
+		"down":
+			sprite.offset = Vector2.ZERO
+			sprite.position = Vector2.ZERO
+			sprite.rotation_degrees = -90
+			
 
 
 func process_input(event : InputEvent) -> State:
@@ -97,6 +112,9 @@ func process_physics(delta) -> State:
 	return null
 
 func deactivate(next_state) -> void:
+	sprite.rotation_degrees = 0
+	sprite.position = Vector2(0,70)
+	sprite.offset = Vector2(0,-70)
 	if next_state != grappling_pull_state:
 		super(next_state)
 		grapple_ray.target_position = Vector2.ZERO

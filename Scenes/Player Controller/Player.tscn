@@ -82,6 +82,9 @@
 [ext_resource type="Texture2D" uid="uid://b66n7y812l426" path="res://Assets/Animations/Player/Diving/diving.png" id="44_hk2wy"]
 [ext_resource type="Texture2D" uid="uid://io8id0xi0edl" path="res://Assets/Animations/Player/Diving/diving2.png" id="45_qy6yu"]
 [ext_resource type="Texture2D" uid="uid://1yl4eif1rq1x" path="res://Assets/Animations/Player/Dash/dash.png" id="58_ap1o6"]
+[ext_resource type="Texture2D" uid="uid://dbarw8eo8no6g" path="res://Assets/Animations/Player/Grapple/grapple.png" id="70_w6arm"]
+[ext_resource type="Texture2D" uid="uid://bi6sagpgkdwt" path="res://Assets/Animations/Player/Inflate/Inflate.png" id="74_oxamp"]
+[ext_resource type="Texture2D" uid="uid://butrea2ke6rq4" path="res://Assets/Animations/Player/Slide/slide.png" id="75_hie4x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wxel"]
 size = Vector2(70, 50)
@@ -187,6 +190,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("70_w6arm")
+}],
+"loop": true,
+"name": &"grapple",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("21_hfsnk")
 }, {
 "duration": 1.0,
@@ -204,6 +215,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("74_oxamp")
+}],
+"loop": true,
+"name": &"inflate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("26_7xxh7")
 }],
 "loop": true,
@@ -216,6 +235,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"no animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("75_hie4x")
+}],
+"loop": true,
+"name": &"slide",
 "speed": 5.0
 }, {
 "frames": [{
@@ -770,6 +797,7 @@ jump_input_buffer_patience = 0.2
 grapple_ray = NodePath("GrappleRay")
 line = NodePath("GrappleRay/Line2D")
 jump_input_buffer = NodePath("../../../JumpInputBuffer")
+animation_name = "grapple"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="GrapplingPull" type="Node" parent="StateMachine/Abilities/Grappling" unique_id=967336177 node_paths=PackedStringArray("grapple_ray", "line", "jump_input_buffer")]
@@ -782,6 +810,7 @@ vertical_jump_velocity = 2500.0
 grapple_ray = NodePath("../GrappleRay")
 line = NodePath("../GrappleRay/Line2D")
 jump_input_buffer = NodePath("../../../../JumpInputBuffer")
+animation_name = "grapple"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="GrappleRay" type="RayCast2D" parent="StateMachine/Abilities/Grappling" unique_id=2019285064]
@@ -804,6 +833,7 @@ climbing_ray = NodePath("ClimbingRay")
 line = NodePath("ClimbingRay/Line2D")
 default_hitbox = NodePath("../../../NormalHitbox")
 crouching_hitbox = NodePath("../../../CrouchedHitbox")
+animation_name = "slide"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="ClimbingSlide" type="Node" parent="StateMachine/Abilities/Climbing" unique_id=988233789 node_paths=PackedStringArray("climbing_ray", "climbing_buffer_state", "default_hitbox", "crouching_hitbox", "ceiling_detection", "floor_detection", "floor_detection_2", "left_ray", "right_ray")]
@@ -820,6 +850,7 @@ floor_detection = NodePath("../../../../FloorDetection")
 floor_detection_2 = NodePath("../../../../FloorDetection2")
 left_ray = NodePath("../../../../WallJumpRayReference/LeftRay")
 right_ray = NodePath("../../../../WallJumpRayReference/RightRay")
+animation_name = "slide"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="ClimbingRay" type="RayCast2D" parent="StateMachine/Abilities/Climbing" unique_id=1636057079]
@@ -829,6 +860,7 @@ collision_mask = 65
 collide_with_areas = true
 
 [node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Climbing/ClimbingRay" unique_id=944559949]
+visible = false
 default_color = Color(1, 0.43460146, 0.9889626, 1)
 
 [node name="Inflated" type="Node" parent="StateMachine/Abilities" unique_id=948011255 node_paths=PackedStringArray("left_ray", "left_ray_low", "left_ray_high", "right_ray", "right_ray_low", "right_ray_high", "normal_hitbox", "normal_hurtbox", "inflated_hitbox", "inflated_hurtbox")]
@@ -859,6 +891,7 @@ normal_hitbox = NodePath("../../../NormalHitbox")
 normal_hurtbox = NodePath("../../../Hurtbox")
 inflated_hitbox = NodePath("../../../InflatedHitbox")
 inflated_hurtbox = NodePath("../../../InflatedHurtbox")
+animation_name = "inflate"
 placeholder_animation_color = Color(1, 1, 1, 1)
 
 [node name="BounceAttack" type="Node" parent="StateMachine/Abilities" unique_id=60864109 node_paths=PackedStringArray("up_area", "down_area", "right_area", "left_area", "jump_input_buffer")]
@@ -976,6 +1009,7 @@ collision_mask = 64
 hit_from_inside = true
 
 [node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Drill/DrillRayDigable" unique_id=1871000791]
+visible = false
 width = 2.0
 default_color = Color(1, 0.43460146, 0.9889626, 1)
 
@@ -1079,8 +1113,9 @@ one_shot = true
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
 position = Vector2(0, 70)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"dash"
+animation = &"slide"
 offset = Vector2(0, -70)
+flip_h = true
 
 [node name="TriggerHitbox" type="Area2D" parent="." unique_id=936426999]
 scale = Vector2(2, 2)

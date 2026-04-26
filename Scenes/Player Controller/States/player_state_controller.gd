@@ -43,12 +43,12 @@ func _physics_process(delta: float) -> void:
 	global_position_last_frame = global_position
 
 func _process(delta: float) -> void:
+	var horizontal_input = Input.get_axis("move_left","move_right")
 	if velocity.x < 0:
 		animated_player_sprite.flip_h = true
 	elif velocity.x > 0:
 		animated_player_sprite.flip_h = false
 	else:
-		var horizontal_input = Input.get_axis("move_left","move_right")
 		match horizontal_input:
 			-1:
 				animated_player_sprite.flip_h = true

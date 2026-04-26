@@ -55,6 +55,12 @@ const PUFFER_LEVEL_POOL : Dictionary = {
 	2 : INFLATE_LEVEL_3,
 	3 : INFLATE_LEVEL_4,
 }
+const LIZARD_LEVEL_POOL : Dictionary = {
+	0 : INFLATE_LEVEL_1,
+	1 : INFLATE_LEVEL_2,
+	2 : INFLATE_LEVEL_3,
+	3 : INFLATE_LEVEL_4,
+}
 
 #Changes depending on the den interacted with
 var level_pool : Dictionary

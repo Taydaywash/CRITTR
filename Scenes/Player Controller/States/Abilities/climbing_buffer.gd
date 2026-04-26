@@ -30,6 +30,7 @@ func _ready() -> void:
 	climbing_input_buffer.one_shot = true
 	add_child(climbing_input_buffer)
 	
+	
 func set_direction(ability_direction : String) -> void:
 	direction = ability_direction
 
@@ -43,7 +44,22 @@ func activate(last_state : State) -> void:
 	line.add_point(Vector2.ZERO)
 	line.add_point(Vector2.ZERO)
 	climbing_input_buffer.start()
-	
+	match direction:
+		"right":
+			sprite.offset = Vector2.ZERO
+			sprite.position = Vector2.ZERO
+			sprite.rotation_degrees = -90
+			sprite.position.x = -35
+		"left":
+			sprite.offset = Vector2.ZERO
+			sprite.position = Vector2.ZERO
+			sprite.rotation_degrees = 90
+			sprite.position.x = 35
+		"up":
+			sprite.flip_v = true
+			sprite.rotation_degrees = 0
+		"down":
+			sprite.rotation_degrees = 0
 	match direction:
 			"right":
 				climbing_ray.target_position = Vector2(push_target_length,0)
@@ -94,6 +110,10 @@ func process_physics(delta) -> State:
 	
 
 func deactivate(_next_state) -> void:
+	sprite.flip_v = false
+	sprite.rotation_degrees = 0
+	sprite.position = Vector2(0,70)
+	sprite.offset = Vector2(0,-70)
 	super(_next_state)
 	change_collider_to(default_hitbox)
 	climbing_ray.target_position = Vector2.ZERO
