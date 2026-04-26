@@ -20,6 +20,12 @@ var entries_unlocked: Dictionary = {
 	"Other/Collectables": true,
 }
 
+var sequence_unlocked: Dictionary = {
+	"1": false,
+	"2": false,
+	"3": false,
+}
+
 var BASE_GAME_STATE : Dictionary = {
 	"collected_ids": {},
 	"viewed_tutorial_text": {},
@@ -28,6 +34,7 @@ var BASE_GAME_STATE : Dictionary = {
 	"current_abilities": [],
 	"abilities_unlocked": abilities_unlocked.duplicate(),
 	"entries_unlocked": entries_unlocked.duplicate(),
+	"sequence_unlocked": sequence_unlocked.duplicate(),
 	"last_respawn_point": Vector2.ZERO,
 	"total_collectables": 0
 }
@@ -66,6 +73,7 @@ func _ready():
 		var key: String = category + "/" + title
 		game_state.entries_unlocked[key] = true
 		SaveLoadManager.save_game(game_state)
+	EventController.connect("update_sequence")
 )
 	#reset_game()
 
