@@ -87,10 +87,13 @@
 [ext_resource type="PackedScene" uid="uid://cyr82pseo0sxj" path="res://Scenes/World/Regions/GlassSea/shallows/Wet4.tscn" id="69_lc1us"]
 [ext_resource type="PackedScene" uid="uid://bktmamt8uwtvm" path="res://Scenes/World/Regions/GlassSea/shallows/Wet5.tscn" id="70_7foer"]
 [ext_resource type="PackedScene" uid="uid://b5p0w0uadvv4p" path="res://Scenes/World/Regions/Cloud Temple/Temple9.tscn" id="70_du7of"]
+[ext_resource type="PackedScene" uid="uid://cjrku6koktmmd" path="res://Scenes/World/Regions/Cloud Temple/TempleRoom1.tscn" id="71_j4mdk"]
 [ext_resource type="PackedScene" uid="uid://bym3el16rnhym" path="res://Scenes/World/Regions/GlassSea/shallows/GlassSeaCrittr.tscn" id="71_kwmhw"]
 [ext_resource type="PackedScene" uid="uid://dfqu16n7uadui" path="res://Scenes/World/Regions/GlassSea/depths/depthsEnterFromshallows.tscn" id="72_7foer"]
 [ext_resource type="Script" uid="uid://mxruhp3ro1vh" path="res://Scenes/UI/Map/map_choicer_handler_same_room.gd" id="72_8nm4g"]
+[ext_resource type="PackedScene" uid="uid://n32wqkheqigl" path="res://Scenes/World/Regions/Cloud Temple/TempleRoom2.tscn" id="72_83uwj"]
 [ext_resource type="Script" uid="uid://dx8a1vqtpjj35" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/inflate_den_handler.gd" id="72_kwmhw"]
+[ext_resource type="PackedScene" uid="uid://0vkk1qpqdmd6" path="res://Scenes/World/Regions/Cloud Temple/TempleRoom3.tscn" id="73_nr1jb"]
 [ext_resource type="PackedScene" uid="uid://klvs58rfb8mj" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold1.tscn" id="73_wj4oh"]
 [ext_resource type="PackedScene" uid="uid://t2bak8m1nj1y" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold2.tscn" id="74_icms3"]
 [ext_resource type="PackedScene" uid="uid://c62mfrcnc8247" path="res://Scenes/World/Regions/GlassSea/depths/WetAndCold3.tscn" id="75_thcod"]
@@ -347,7 +350,11 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
+<<<<<<< Updated upstream
 starting_room = NodePath("GlassSeaDepths/EnterFromShallows")
+=======
+starting_room = NodePath("CloudTemple/Temple4")
+>>>>>>> Stashed changes
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -2190,6 +2197,9 @@ position = Vector2(85120, -9536)
 [node name="Temple4" parent="Rooms/CloudTemple" unique_id=1660298061 instance=ExtResource("65_fnn3e")]
 position = Vector2(75904, -6976)
 
+[node name="SaveTube" parent="Rooms/CloudTemple/Temple4" unique_id=301765984 instance=ExtResource("8_hev0n")]
+position = Vector2(-1664, 128)
+
 [node name="Temple5" parent="Rooms/CloudTemple" unique_id=577290687 instance=ExtResource("66_j4mdk")]
 position = Vector2(80512, -6976)
 
@@ -2204,6 +2214,24 @@ position = Vector2(80512, -4416)
 
 [node name="Temple9" parent="Rooms/CloudTemple" unique_id=495660520 instance=ExtResource("70_du7of")]
 position = Vector2(85120, -4416)
+
+[node name="TempleRoom1" parent="Rooms/CloudTemple" unique_id=2125459573 instance=ExtResource("71_j4mdk")]
+position = Vector2(65216, -10673)
+
+[node name="TempleInside1" parent="Rooms/CloudTemple/TempleRoom1" unique_id=360079394 instance=ExtResource("7_jacc8")]
+position = Vector2(-832, 401)
+
+[node name="TempleRoom2" parent="Rooms/CloudTemple" unique_id=653804354 instance=ExtResource("72_83uwj")]
+position = Vector2(67520, -10673)
+
+[node name="TempleInside2" parent="Rooms/CloudTemple/TempleRoom2" unique_id=1484897676 instance=ExtResource("7_jacc8")]
+position = Vector2(-832, 401)
+
+[node name="TempleRoom3" parent="Rooms/CloudTemple" unique_id=1966785471 instance=ExtResource("73_nr1jb")]
+position = Vector2(69824, -10673)
+
+[node name="TempleInside3" parent="Rooms/CloudTemple/TempleRoom3" unique_id=1527431594 instance=ExtResource("7_jacc8")]
+position = Vector2(-832, 433)
 
 [node name="StardustPeakGlassSeaTransition" type="Node" parent="Rooms" unique_id=1712321999]
 script = ExtResource("6_lqys3")
