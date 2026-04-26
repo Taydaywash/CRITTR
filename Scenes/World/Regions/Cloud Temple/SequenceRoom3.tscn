@@ -6,9 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://Scenes/World/LevelEditor/Objects/Tiles/CollideableTiles.tscn" id="4_g8lk6"]
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_fg6h7"]
 [ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Tools/level_bounds_auto_center_tool.gd" id="6_1rlm2"]
+[ext_resource type="Script" uid="uid://c3sshfokirehw" path="res://Scenes/World/LevelEditor/Objects/InputChecker/sequence_saver.gd" id="7_apcl7"]
+[ext_resource type="Texture2D" uid="uid://bfvmdvvjmytc4" path="res://Assets/Decals/Cloud Temple/Background/Cloudbg3.png" id="8_yva7e"]
+[ext_resource type="Texture2D" uid="uid://dw2qpbixavuag" path="res://Assets/Decals/Cloud Temple/Background/jump_glyph.png" id="9_1rlm2"]
+[ext_resource type="Texture2D" uid="uid://yuix7jaw52py" path="res://Assets/Decals/Cloud Temple/Background/crouch_glyph.png" id="10_gwkxp"]
+[ext_resource type="Texture2D" uid="uid://bu2j0n2xmy66e" path="res://Assets/Decals/Cloud Temple/Background/right_glyph.png" id="11_mp6u7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6nc1"]
 size = Vector2(2304, 1280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yva7e"]
+size = Vector2(2048, 1061)
 
 [node name="Room2" type="Node2D" unique_id=721111038]
 script = ExtResource("1_no6bs")
@@ -41,5 +49,36 @@ shape = SubResource("RectangleShape2D_q6nc1")
 debug_color = Color(1, 1, 1, 0.21568628)
 script = ExtResource("6_1rlm2")
 
+[node name="Area2D2" type="Area2D" parent="." unique_id=801049768]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("7_apcl7")
+id = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=2010828886]
+position = Vector2(0, 18.5)
+shape = SubResource("RectangleShape2D_yva7e")
+
+[node name="Cloudbg3" type="Sprite2D" parent="Area2D2" unique_id=703002665]
+position = Vector2(0, 14)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("8_yva7e")
+
+[node name="JumpGlyph" type="Sprite2D" parent="Area2D2" unique_id=1614028932]
+position = Vector2(-320, -192)
+scale = Vector2(2, 2)
+texture = ExtResource("9_1rlm2")
+
+[node name="CrouchGlyph" type="Sprite2D" parent="Area2D2" unique_id=1894246135]
+position = Vector2(0, -192)
+scale = Vector2(2, 2)
+texture = ExtResource("10_gwkxp")
+
+[node name="RightGlyph" type="Sprite2D" parent="Area2D2" unique_id=924155606]
+position = Vector2(320, -192)
+scale = Vector2(2, 2)
+texture = ExtResource("11_mp6u7")
+
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]

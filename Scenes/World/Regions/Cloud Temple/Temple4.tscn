@@ -12,7 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://cesp7imm7vll7" path="res://Scenes/World/LevelEditor/Objects/InputChecker/InputChecker.tscn" id="8_ci1nj"]
 [ext_resource type="PackedScene" uid="uid://pims4jpy75j4" path="res://Scenes/World/LevelEditor/Objects/InputChecker/MovingPlatform/MovingPlatform4.tscn" id="9_fevxp"]
 [ext_resource type="PackedScene" uid="uid://2qo4nl7dvk62" path="res://Scenes/World/LevelEditor/Objects/Collectable/Collectable.tscn" id="10_ur1fp"]
+[ext_resource type="Texture2D" uid="uid://yuix7jaw52py" path="res://Assets/Decals/Cloud Temple/Background/crouch_glyph.png" id="11_qwhn2"]
+[ext_resource type="Texture2D" uid="uid://cbv4ichvfxdf2" path="res://Assets/Decals/Cloud Temple/Background/left_glyph.png" id="12_dm8mn"]
 [ext_resource type="PackedScene" uid="uid://ck20o7e40ef2g" path="res://Scenes/World/LevelEditor/Objects/InputChecker/Inputs.tscn" id="13_5vsc3"]
+[ext_resource type="Texture2D" uid="uid://bu2j0n2xmy66e" path="res://Assets/Decals/Cloud Temple/Background/right_glyph.png" id="13_w3hjq"]
+[ext_resource type="Texture2D" uid="uid://dw2qpbixavuag" path="res://Assets/Decals/Cloud Temple/Background/jump_glyph.png" id="14_fokll"]
 
 [sub_resource type="Curve2D" id="Curve2D_fevxp"]
 _data = {
@@ -75,16 +79,31 @@ script = ExtResource("7_0g1cl")
 [node name="InputChecker" parent="." unique_id=1734738149 instance=ExtResource("8_ci1nj")]
 z_index = 0
 position = Vector2(0, -32)
-sequences = Array[String](["move_down", "move_down", "move_down", "", "", "", "", "", ""])
+sequences = Array[String](["move_down", "move_down", "move_left", "move_right", "move_left", "jump", "jump", "move_down", "move_right"])
 
-[node name="Inputs" parent="InputChecker" unique_id=1590715658 instance=ExtResource("13_5vsc3")]
-position = Vector2(0, -448)
+[node name="InputSpecial1" parent="InputChecker" unique_id=1590715658 instance=ExtResource("13_5vsc3")]
+position = Vector2(-896, -512)
+first_sprite = ExtResource("11_qwhn2")
+second_sprite = ExtResource("11_qwhn2")
+third_sprite = ExtResource("12_dm8mn")
+unknown = true
+special = true
 
-[node name="Inputs2" parent="InputChecker" unique_id=1590800568 instance=ExtResource("13_5vsc3")]
-position = Vector2(0, -256)
+[node name="InputSpecial2" parent="InputChecker" unique_id=1590800568 instance=ExtResource("13_5vsc3")]
+position = Vector2(-896, -224)
+first_sprite = ExtResource("13_w3hjq")
+second_sprite = ExtResource("12_dm8mn")
+third_sprite = ExtResource("14_fokll")
+unknown = true
+special = true
 
-[node name="Inputs3" parent="InputChecker" unique_id=110234835 instance=ExtResource("13_5vsc3")]
-position = Vector2(0, -64)
+[node name="InputSpecial3" parent="InputChecker" unique_id=110234835 instance=ExtResource("13_5vsc3")]
+position = Vector2(-896, 61)
+first_sprite = ExtResource("14_fokll")
+second_sprite = ExtResource("11_qwhn2")
+third_sprite = ExtResource("13_w3hjq")
+unknown = true
+special = true
 
 [node name="MovingPlatform" parent="InputChecker" unique_id=640720163 instance=ExtResource("9_fevxp")]
 position = Vector2(0, -32)

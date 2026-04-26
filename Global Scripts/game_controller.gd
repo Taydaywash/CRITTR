@@ -20,10 +20,10 @@ var entries_unlocked: Dictionary = {
 	"Other/Collectables": true,
 }
 
-var sequence_unlocked: Dictionary = {
-	"1": false,
-	"2": false,
-	"3": false,
+var sequences_unlocked: Dictionary = {
+	1: false,
+	2: false,
+	3: false,
 }
 
 var BASE_GAME_STATE : Dictionary = {
@@ -34,7 +34,7 @@ var BASE_GAME_STATE : Dictionary = {
 	"current_abilities": [],
 	"abilities_unlocked": abilities_unlocked.duplicate(),
 	"entries_unlocked": entries_unlocked.duplicate(),
-	"sequence_unlocked": sequence_unlocked.duplicate(),
+	"sequences_unlocked": sequences_unlocked.duplicate(),
 	"last_respawn_point": Vector2.ZERO,
 	"total_collectables": 0
 }
@@ -73,8 +73,12 @@ func _ready():
 		var key: String = category + "/" + title
 		game_state.entries_unlocked[key] = true
 		SaveLoadManager.save_game(game_state)
-	#EventController.connect("update_sequence")
-)
+		)
+	EventController.connect("update_sequence", func(seq_id: int):
+		game_state.sequences_unlocked[seq_id] = true
+		print(game_state.sequences_unlocked[seq_id])
+		SaveLoadManager.save_game(game_state)
+		)
 	#reset_game()
 
 func _input(event: InputEvent) -> void:

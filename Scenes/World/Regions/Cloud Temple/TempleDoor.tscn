@@ -6,16 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://Scenes/World/LevelEditor/Objects/Tiles/CollideableTiles.tscn" id="4_nedfq"]
 [ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_2pd2r"]
 [ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Tools/level_bounds_auto_center_tool.gd" id="7_d0bbf"]
+[ext_resource type="PackedScene" uid="uid://ck20o7e40ef2g" path="res://Scenes/World/LevelEditor/Objects/InputChecker/Inputs.tscn" id="8_br76w"]
 [ext_resource type="PackedScene" uid="uid://cesp7imm7vll7" path="res://Scenes/World/LevelEditor/Objects/InputChecker/InputChecker.tscn" id="8_mw8ka"]
 [ext_resource type="Script" uid="uid://c5vbaqys6ruhs" path="res://Scenes/World/LevelEditor/Objects/InputChecker/big_door.gd" id="8_omflv"]
+[ext_resource type="Texture2D" uid="uid://dw2qpbixavuag" path="res://Assets/Decals/Cloud Temple/Background/jump_glyph.png" id="9_qgeal"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vm6c8"]
 size = Vector2(7936, 2560)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw8ka"]
-size = Vector2(256, 2304)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_omflv"]
 size = Vector2(256, 2304)
 
 [sub_resource type="Animation" id="Animation_mw8ka"]
@@ -98,8 +97,14 @@ script = ExtResource("7_d0bbf")
 
 [node name="InputChecker" parent="." unique_id=1734738149 instance=ExtResource("8_mw8ka")]
 position = Vector2(384, 448)
-sequences = Array[String](["move_down", "move_down", "move_down"])
+sequences = Array[String](["jump", "jump", "jump"])
 metadata/_edit_group_ = true
+
+[node name="Inputs" parent="InputChecker" unique_id=1590715658 instance=ExtResource("8_br76w")]
+position = Vector2(0, -128)
+first_sprite = ExtResource("9_qgeal")
+second_sprite = ExtResource("9_qgeal")
+third_sprite = ExtResource("9_qgeal")
 
 [node name="BigDoor" type="StaticBody2D" parent="." unique_id=1828275937]
 position = Vector2(2176, 0)
@@ -108,11 +113,11 @@ script = ExtResource("8_omflv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BigDoor" unique_id=1564901355]
 shape = SubResource("RectangleShape2D_mw8ka")
 
-[node name="Sprite2D" type="Sprite2D" parent="BigDoor" unique_id=497988242]
-texture = SubResource("PlaceholderTexture2D_omflv")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BigDoor" unique_id=1418542336]
 libraries/ = SubResource("AnimationLibrary_qgeal")
+
+[node name="TileSets" parent="BigDoor" unique_id=920181655 instance=ExtResource("4_nedfq")]
+tile_map_data = PackedByteArray("AAD///f/BwAIAAAAAAAAAPf/BwALAAAAAAAAAPj/BwALAAIAAAD///j/BwAIAAEAAAAAAPn/BwALAAIAAAD///n/BwAIAAEAAAD///r/BwAIAAEAAAD///v/BwAIAAEAAAAAAPv/BwALAAIAAAAAAPr/BwALAAIAAAD///z/BwAIAAEAAAAAAPz/BwALAAIAAAAAAP3/BwALAAIAAAD///7/BwAIAAEAAAD///3/BwAIAAEAAAAAAP7/BwALAAIAAAAAAP//BwALAAIAAAAAAAAABwALAAIAAAD//wAABwAIAAEAAAD/////BwAIAAEAAAD//wEABwAIAAEAAAD//wIABwAIAAEAAAD//wMABwAIAAEAAAD//wQABwAIAAEAAAAAAAEABwALAAIAAAAAAAIABwALAAIAAAAAAAMABwALAAIAAAAAAAQABwALAAIAAAAAAAUABwALAAIAAAD//wUABwAIAAEAAAAAAAYABwALAAIAAAD//wYABwAIAAEAAAD//wcABwAIAAEAAAAAAAcABwALAAIAAAD//wgABwAIAAMAAAAAAAgABwALAAMAAAA=")
 
 [node name="DoorCloseTrigger" type="Area2D" parent="." unique_id=1327403826]
 position = Vector2(1600, 0)

@@ -5,7 +5,7 @@ signal entered()
 signal exited()
 
 @export var buffer_size: int = 10
-@export var input_timeout: float = 2.0
+@export var input_timeout: float = 5
 @export var sequences: Array[String]
 
 var watched_actions: Array[String] = ["jump", "dive", "move_left", "move_right", "move_up", "move_down"]
@@ -20,7 +20,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 		return
 	for action in watched_actions:
 		if Input.is_action_just_pressed(action):
-			print(action)
 			register_input(action)
 
 func register_input(action_name: String) -> void:
@@ -33,14 +32,11 @@ func register_input(action_name: String) -> void:
 
 func check_sequences() -> void:
 	var length: int = sequences.size()
-	#print("Buffer: ", input_buffer)  # add this
-	#print("Expecting: ", sequences)  # add this
 	if input_buffer.size() < length:
 		return
 	var tail = input_buffer.slice(input_buffer.size() - length)
 	if tail == sequences:
 		sequence_matched.emit()
-		print("match")
 		input_buffer.clear()
 		$Timer.stop()
 
