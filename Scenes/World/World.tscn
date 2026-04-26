@@ -191,8 +191,8 @@ fill_from = Vector2(0.52034885, 0)
 fill_to = Vector2(0.5261628, 1)
 
 [sub_resource type="Gradient" id="Gradient_3vk5c"]
-offsets = PackedFloat32Array(0, 0.5201613, 1)
-colors = PackedColorArray(0.17254902, 0.5411765, 1, 1, 0.44313726, 0.92941177, 1, 1, 0.72156864, 1, 1, 1)
+offsets = PackedFloat32Array(0.0375, 0.50625, 1)
+colors = PackedColorArray(0.4745098, 0.73333335, 0.8745098, 1, 0.36862746, 0.69411767, 0.8666667, 1, 0.36078432, 0.58431375, 0.7490196, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_awmuf"]
 gradient = SubResource("Gradient_3vk5c")
@@ -205,8 +205,8 @@ fill_to = Vector2(0.47965115, 1)
 gradient = SubResource("Gradient_3vk5c")
 width = 1920
 height = 4320
-fill_from = Vector2(0.4869565, 0)
-fill_to = Vector2(0.5304348, 1)
+fill_from = Vector2(0.4679487, 0)
+fill_to = Vector2(0.4871795, 1)
 
 [sub_resource type="Gradient" id="Gradient_wj4oh"]
 colors = PackedColorArray(0, 0, 0, 1, 0.012291836, 0.012326869, 0.18266603, 1)
@@ -361,7 +361,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("CloudTemple/Temple9")
+starting_room = NodePath("GlassSeaDepths/EnterFromShallows")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -2325,31 +2325,36 @@ metadata/_custom_type_script = "uid://5wurrbpk32od"
 visible = false
 
 [node name="Parallax2D" type="Parallax2D" parent="Rooms/GlassSea/GlassSeaBackground" unique_id=209656584]
+visible = false
 scroll_scale = Vector2(0.12, 0)
 scroll_offset = Vector2(0, 500)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/GlassSeaBackground/Parallax2D" unique_id=1656402085]
+visible = false
 z_index = -10
 position = Vector2(963, 128)
 scale = Vector2(1, 1.5600003)
 texture = ExtResource("19_vdgnt")
 
 [node name="Parallax2D2" type="Parallax2D" parent="Rooms/GlassSea/GlassSeaBackground" unique_id=572779066]
+visible = false
 scroll_scale = Vector2(0.28, 0)
 scroll_offset = Vector2(0, 800)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/GlassSeaBackground/Parallax2D2" unique_id=1703530494]
+visible = false
 z_index = -9
 position = Vector2(977, 0)
 scale = Vector2(1, 1.5999994)
 texture = ExtResource("20_3ql1f")
 
 [node name="Parallax2D3" type="Parallax2D" parent="Rooms/GlassSea/GlassSeaBackground" unique_id=215158991]
-repeat_size = Vector2(1920, 1920)
+repeat_size = Vector2(1920, 4320)
+repeat_times = 4
 
 [node name="Sprite2D2" type="Sprite2D" parent="Rooms/GlassSea/GlassSeaBackground/Parallax2D3" unique_id=985247283]
 z_index = -11
@@ -2771,6 +2776,7 @@ repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground/Parallax2D" unique_id=1719466420]
+visible = false
 modulate = Color(0, 0, 0, 1)
 z_index = -10
 position = Vector2(960, -532.00024)
@@ -2786,6 +2792,7 @@ repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground/Parallax2D2" unique_id=1427895794]
+visible = false
 modulate = Color(0, 0, 0, 1)
 z_index = -9
 position = Vector2(960, -1088.0002)
