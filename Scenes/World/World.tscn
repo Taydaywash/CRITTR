@@ -350,7 +350,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("CloudTemple/Temple2")
+starting_room = NodePath("CloudTemple/Temple8")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -2127,7 +2127,7 @@ position = Vector2(1920, -4608)
 
 [node name="CloudTemple" type="Node" parent="Rooms" unique_id=873201279]
 script = ExtResource("6_lqys3")
-map_color = Color(0.8901961, 0.90588236, 0.9137255, 1)
+map_color = Color(0.571977, 0.33051977, 0.11207227, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
 
 [node name="ToxicMarshBackground" type="Node2D" parent="Rooms/CloudTemple" unique_id=459764810]
@@ -2210,12 +2210,15 @@ position = Vector2(85120, -4416)
 
 [node name="SequenceRoom1" parent="Rooms/CloudTemple" unique_id=515969867 instance=ExtResource("71_j4mdk")]
 position = Vector2(65920, -10112)
+interior_room = true
 
 [node name="SequenceRoom2" parent="Rooms/CloudTemple" unique_id=1401484955 instance=ExtResource("72_83uwj")]
 position = Vector2(68224, -10112)
+interior_room = true
 
 [node name="SequenceRoom3" parent="Rooms/CloudTemple" unique_id=2086987206 instance=ExtResource("73_nr1jb")]
 position = Vector2(70528, -10112)
+interior_room = true
 
 [node name="InsideSeq1" parent="Rooms/CloudTemple" unique_id=2135449086 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
 position = Vector2(65088, -9728)
@@ -2225,8 +2228,13 @@ go_to_door = NodePath("../OutsideSeq1")
 position = Vector2(77312, -10304)
 go_to_door = NodePath("../InsideSeq1")
 
-[node name="InsideSeq2" parent="Rooms/CloudTemple" unique_id=130413938 instance=ExtResource("7_jacc8")]
+[node name="InsideSeq2" parent="Rooms/CloudTemple" unique_id=130413938 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
 position = Vector2(67392, -9728)
+go_to_door = NodePath("../OutsideSeq2")
+
+[node name="OutsideSeq2" parent="Rooms/CloudTemple" unique_id=591898023 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
+position = Vector2(83712, -5184)
+go_to_door = NodePath("../InsideSeq2")
 
 [node name="InsideSeq3" parent="Rooms/CloudTemple" unique_id=1376871368 instance=ExtResource("7_jacc8")]
 position = Vector2(69696, -9728)
