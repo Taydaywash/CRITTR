@@ -3154,6 +3154,8 @@ texture_region_size = Vector2i(128, 128)
 11:3/0/terrains_peering_bit/top_left_corner = 4
 11:3/0/terrains_peering_bit/top_side = 4
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6eyha"]
+
 [resource]
 tile_size = Vector2i(128, 128)
 occlusion_layer_0/light_mask = 1
@@ -3199,3 +3201,4 @@ sources/13 = SubResource("TileSetAtlasSource_3lt27")
 sources/14 = SubResource("TileSetAtlasSource_213ja")
 sources/15 = SubResource("TileSetAtlasSource_anj27")
 sources/16 = SubResource("TileSetAtlasSource_urvl0")
+sources/9 = SubResource("TileSetScenesCollectionSource_6eyha")
