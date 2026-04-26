@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c44ypq5h1em32"
+path="res://.godot/imported/grappling_spit.mp3-764d3204855dec47160f5d30b4ab7f72.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound Effects/Player/Abilities/grappling_spit.mp3"
+dest_files=["res://.godot/imported/grappling_spit.mp3-764d3204855dec47160f5d30b4ab7f72.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

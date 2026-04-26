@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://ly7ivf5nvuar" path="res://Scenes/World/fire_particle_deletion_logic.gd" id="17_44hbs"]
 [ext_resource type="Texture2D" uid="uid://bkmii5ukk00pn" path="res://Assets/Particles/puff cloud.png" id="18_eoa2q"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/UI/Map/map.tscn" id="18_hev0n"]
+[ext_resource type="Script" uid="uid://br3i284d5pbxo" path="res://Scenes/World/Regions/Crash Site/collectable_counter.gd" id="18_ru2km"]
 [ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://Scenes/World/Regions/Crash Site/PlatformsTwo.tscn" id="19_hlwfy"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://Assets/Decals/Tundra/Background/background layer tundra 1.png" id="19_vdgnt"]
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://Assets/Decals/Tundra/Background/bg layer tundra 2.png" id="20_3ql1f"]
@@ -158,6 +159,9 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_kcg70"]
 offsets = PackedFloat32Array(0, 0.11157025, 0.49173555, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0.26666668, 1, 1, 0.043137256, 0.011764706, 1, 0, 0, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upkxk"]
+size = Vector2(136, 273)
 
 [sub_resource type="Gradient" id="Gradient_vdgnt"]
 offsets = PackedFloat32Array(0.99596775)
@@ -717,6 +721,16 @@ interior_room = true
 position = Vector2(-896, 289)
 scale = Vector2(1.8826075, 2.024576)
 go_to_door = NodePath("../../CrashedShip/ShipDoorOutside")
+
+[node name="interactable2" type="Area2D" parent="Rooms/CrashSite/InsideShip" unique_id=851573189]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("18_ru2km")
+metadata/_custom_type_script = "uid://4t3jjrtphc6j"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/CrashSite/InsideShip/interactable2" unique_id=635311370]
+position = Vector2(-572, 248.5)
+shape = SubResource("RectangleShape2D_upkxk")
 
 [node name="MovementTut" parent="Rooms/CrashSite" unique_id=1846956963 instance=ExtResource("5_04mge")]
 z_as_relative = false
