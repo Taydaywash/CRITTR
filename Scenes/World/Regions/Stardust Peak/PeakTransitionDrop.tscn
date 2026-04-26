@@ -56,27 +56,33 @@ debug_color = Color(1, 1, 1, 0.21568628)
 script = ExtResource("7_rivue")
 
 [node name="SmallWaterPlant" type="Sprite2D" parent="Area2D" unique_id=1017502884]
+modulate = Color(1, 0.6745098, 0.7058824, 1)
 position = Vector2(-33, 4613)
 texture = ExtResource("8_y4n0y")
 
 [node name="LargeWaterPlant" type="Sprite2D" parent="Area2D" unique_id=837635128]
+modulate = Color(1, 0.6745098, 0.7058824, 1)
 position = Vector2(388, 3918)
 texture = ExtResource("9_o4vc2")
 
 [node name="LargeWaterPlant2" type="Sprite2D" parent="Area2D" unique_id=1939284525]
+modulate = Color(1, 0.6745098, 0.7058824, 1)
 position = Vector2(-1100, 3977)
 texture = ExtResource("9_o4vc2")
 flip_h = true
 
 [node name="SmallWaterPlant2" type="Sprite2D" parent="Area2D" unique_id=1458155093]
+modulate = Color(1, 0.6745098, 0.7058824, 1)
 position = Vector2(-824, 4480)
 texture = ExtResource("8_y4n0y")
 
 [node name="SmallWaterPlant3" type="Sprite2D" parent="Area2D" unique_id=1412295660]
+modulate = Color(1, 0.6745098, 0.7058824, 1)
 position = Vector2(1149, 4722)
 texture = ExtResource("8_y4n0y")
 
 [node name="SmallWaterPlant4" type="Sprite2D" parent="Area2D" unique_id=721211322]
+modulate = Color(1, 0.6745098, 0.7058824, 1)
 position = Vector2(1708, 4649)
 texture = ExtResource("8_y4n0y")
 
