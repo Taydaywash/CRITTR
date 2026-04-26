@@ -358,7 +358,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("CloudTemple/Temple9")
+starting_room = NodePath("CrashSite/CrashedShip")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -2135,6 +2135,7 @@ position = Vector2(1920, -4608)
 
 [node name="CloudTemple" type="Node" parent="Rooms" unique_id=873201279]
 script = ExtResource("6_lqys3")
+music = ExtResource("54_qf2ks")
 map_color = Color(0.571977, 0.33051977, 0.11207227, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
 
@@ -2300,6 +2301,7 @@ position = Vector2(-24704, -15040)
 
 [node name="GlassSea" type="Node" parent="Rooms" unique_id=1098364487]
 script = ExtResource("6_lqys3")
+music = ExtResource("7_qs546")
 map_color = Color(0, 1, 0.9137255, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
 
@@ -2741,6 +2743,7 @@ script = ExtResource("72_kwmhw")
 
 [node name="GlassSeaDepths" type="Node" parent="Rooms" unique_id=1140803169]
 script = ExtResource("6_lqys3")
+music = ExtResource("7_qs546")
 map_color = Color(0, 0.37576166, 0.37576166, 1)
 metadata/_custom_type_script = "uid://5wurrbpk32od"
 

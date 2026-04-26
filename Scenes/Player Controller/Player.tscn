@@ -852,6 +852,7 @@ left_ray = NodePath("../../../../WallJumpRayReference/LeftRay")
 right_ray = NodePath("../../../../WallJumpRayReference/RightRay")
 animation_name = "slide"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("14_pesqw")])
 
 [node name="ClimbingRay" type="RayCast2D" parent="StateMachine/Abilities/Climbing" unique_id=1636057079]
 scale = Vector2(1.35, 1.35)

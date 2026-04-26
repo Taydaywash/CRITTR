@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dvnqek3otnike" path="res://Assets/Level Editor/Tilesets/Spikes/GlassSeaSpikes.png" id="8_3lt27"]
 [ext_resource type="Texture2D" uid="uid://cqxml4ui330vu" path="res://Assets/Level Editor/Tilesets/CloudTemple.png" id="8_6eyha"]
 [ext_resource type="Texture2D" uid="uid://bg6ude2ro27u0" path="res://Assets/Level Editor/Tilesets/DepthsTileset.png" id="9_6eyha"]
+[ext_resource type="Texture2D" uid="uid://cf5igfmj8do2g" path="res://Assets/Level Editor/Tilesets/Spikes/CloudTempleSpikes.png" id="10_3lt27"]
 [ext_resource type="Texture2D" uid="uid://cq206kjxfgekv" path="res://Assets/Level Editor/Tilesets/StardustTileset.png" id="13_8p2cl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ymlln"]
@@ -998,6 +999,22 @@ texture_region_size = Vector2i(128, 128)
 11:3/0/terrains_peering_bit/left_side = 7
 11:3/0/terrains_peering_bit/top_left_corner = 7
 11:3/0/terrains_peering_bit/top_side = 7
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pqp2i"]
+texture = ExtResource("10_3lt27")
+texture_region_size = Vector2i(128, 128)
+2:2/0 = 0
+2:2/0/texture_origin = Vector2i(0, -20)
+2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -16, 32, -16, 32, 48, -32, 48)
+2:1/0 = 0
+2:1/0/texture_origin = Vector2i(0, -20)
+2:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-64, 32, 64, 32, 64, 96, 64, 96, -64, 96)
+1:1/0 = 0
+1:1/0/texture_origin = Vector2i(0, -20)
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, 32, 64, 32, 64, 80, -32, 80)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -20)
+2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(0, 32, 64, 32, 64, 96, 0, 96)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m8soc"]
 texture = ExtResource("4_833lq")
@@ -3202,3 +3219,4 @@ sources/14 = SubResource("TileSetAtlasSource_213ja")
 sources/15 = SubResource("TileSetAtlasSource_anj27")
 sources/16 = SubResource("TileSetAtlasSource_urvl0")
 sources/9 = SubResource("TileSetScenesCollectionSource_6eyha")
+sources/17 = SubResource("TileSetAtlasSource_pqp2i")
