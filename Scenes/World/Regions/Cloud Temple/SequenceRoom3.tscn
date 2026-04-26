@@ -1,0 +1,45 @@
+[gd_scene format=4 uid="uid://b7x68bgbbm20j"]
+
+[ext_resource type="Script" uid="uid://ddxur7vrjcu25" path="res://Scenes/World/room_controller.gd" id="1_no6bs"]
+[ext_resource type="PackedScene" uid="uid://c6tgehyvfiy28" path="res://Scenes/World/LevelEditor/Objects/Triggers/RespawnPoint.tscn" id="2_apcl7"]
+[ext_resource type="PackedScene" uid="uid://8ykotcb867ae" path="res://Scenes/World/LevelEditor/Objects/Tiles/NoCollisionTiles.tscn" id="3_yva7e"]
+[ext_resource type="PackedScene" uid="uid://dmloe3r5xxddf" path="res://Scenes/World/LevelEditor/Objects/Tiles/CollideableTiles.tscn" id="4_g8lk6"]
+[ext_resource type="PackedScene" uid="uid://c2kkt7g31y0ml" path="res://Scenes/World/LevelEditor/Objects/Camera/defaultPlayerCameraReference.tscn" id="5_fg6h7"]
+[ext_resource type="Script" uid="uid://cv1j7ri6ggnkr" path="res://Tools/level_bounds_auto_center_tool.gd" id="6_1rlm2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6nc1"]
+size = Vector2(2304, 1280)
+
+[node name="Room2" type="Node2D" unique_id=721111038]
+script = ExtResource("1_no6bs")
+
+[node name="RespawnPoint" parent="." unique_id=262928423 instance=ExtResource("2_apcl7")]
+position = Vector2(-832, 64)
+
+[node name="Foreground" parent="." unique_id=622969364 instance=ExtResource("3_yva7e")]
+z_index = 2
+
+[node name="MidgroundFront" parent="." unique_id=1729108735 instance=ExtResource("4_g8lk6")]
+z_index = 1
+tile_map_data = PackedByteArray("AAAHAPv/BwACAAMAAAAGAPv/BwACAAMAAAAFAPv/BwACAAMAAAAEAPv/BwACAAMAAAADAPv/BwACAAMAAAACAPv/BwACAAMAAAABAPv/BwACAAMAAAAAAPv/BwACAAMAAAD///v/BwACAAMAAAD+//v/BwACAAMAAAD9//v/BwACAAMAAAD8//v/BwACAAMAAAD7//v/BwACAAMAAAD6//v/BwACAAMAAAD5//v/BwACAAMAAAD4//v/BwACAAMAAAD3//v/BwABAAAAAAAIAPv/BwADAAAAAAD3/wQABwABAAIAAAD3/wMABwAAAAEAAAD3/wIABwAAAAEAAAD3/wEABwAAAAEAAAD3/wAABwAAAAEAAAD3////BwAAAAEAAAD3//7/BwAAAAEAAAD3//3/BwAAAAEAAAD3//z/BwAAAAEAAAAIAAQABwADAAIAAAAHAAQABwACAAMAAAAGAAQABwACAAMAAAAFAAQABwACAAMAAAAEAAQABwACAAMAAAADAAQABwACAAMAAAACAAQABwACAAMAAAABAAQABwACAAMAAAAAAAQABwACAAMAAAD//wQABwACAAMAAAD+/wQABwACAAMAAAD9/wQABwACAAMAAAD8/wQABwACAAMAAAD7/wQABwACAAMAAAD6/wQABwACAAMAAAD5/wQABwACAAMAAAD4/wQABwACAAMAAAAIAAMABwAAAAEAAAAIAAIABwAAAAEAAAAIAAEABwAAAAEAAAAIAAAABwAAAAEAAAAIAP//BwAAAAEAAAAIAP7/BwAAAAEAAAAIAP3/BwAAAAEAAAAIAPz/BwAAAAEAAAA=")
+
+[node name="MidgroundBack" parent="." unique_id=711483977 instance=ExtResource("4_g8lk6")]
+z_index = -1
+
+[node name="Background" parent="." unique_id=355725617 instance=ExtResource("3_yva7e")]
+
+[node name="defaultPlayerCameraReference" parent="." unique_id=1700913832 instance=ExtResource("5_fg6h7")]
+visible = false
+
+[node name="Area2D" type="Area2D" parent="." unique_id=526693370]
+collision_layer = 128
+collision_mask = 8
+
+[node name="LevelBounds" type="CollisionShape2D" parent="Area2D" unique_id=673057049]
+z_index = 1
+shape = SubResource("RectangleShape2D_q6nc1")
+debug_color = Color(1, 1, 1, 0.21568628)
+script = ExtResource("6_1rlm2")
+
+[connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
+[connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]

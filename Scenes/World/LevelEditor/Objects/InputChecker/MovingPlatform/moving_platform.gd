@@ -5,6 +5,7 @@ extends Path2D
 var moving_forward = true
 @export var duration: float = 5
 @export var timer_offset: float = 0
+@export var stay: bool = false
 
 func _ready():
 	get_parent().connect("sequence_matched", start_timer)
@@ -17,5 +18,6 @@ func start_timer() -> void:
 	tween.tween_property(path, "progress_ratio", 1.0, 1.0 + timer_offset).set_trans(Tween.TRANS_SINE)
 
 func _on_timer_timeout() -> void:
-	var tween = create_tween()
-	tween.tween_property(path, "progress_ratio", 0.0, 1.0 + timer_offset).set_trans(Tween.TRANS_SINE)
+	if (!stay): 
+		var tween = create_tween()
+		tween.tween_property(path, "progress_ratio", 0.0, 1.0 + timer_offset).set_trans(Tween.TRANS_SINE)

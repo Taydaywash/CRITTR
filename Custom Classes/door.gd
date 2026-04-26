@@ -1,8 +1,8 @@
 @icon("res://Assets/Editor Icons/Level Editor Objects/Door Icon.png")
-class_name door
+class_name Door
 extends interactable
 
-@export var go_to_door : Node2D
+@export var go_to_door : Door
 var fade_player_out : bool = false
 
 func _input(_event: InputEvent) -> void:
