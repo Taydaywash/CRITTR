@@ -130,6 +130,9 @@ func process_physics(delta) -> State:
 	return null
 
 func process_frame(delta) -> State:
+	sprite.offset = Vector2.ZERO
+	sprite.position = Vector2.ZERO
+	sprite.rotate(delta)
 	sprite.scale = sprite.scale.move_toward(Vector2(1.5,1.5),grow_speed * delta)
 
 	player.modulate = lerp(player.modulate, Color(1,1,1), color_return_speed)
@@ -152,6 +155,9 @@ func bounced():
 		inflated_duration_timer.stop()
 
 func deactivate(next_state : State) -> void:
+	sprite.rotation_degrees = 0
+	sprite.position = Vector2(0,70)
+	sprite.offset = Vector2(0,-70)
 	super(next_state)
 	EventController.emit_signal("exited_inflate_state")
 	sprite.offset.y = -70
