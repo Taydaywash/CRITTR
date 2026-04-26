@@ -70,25 +70,29 @@ debug_color = Color(1, 1, 1, 0.21568628)
 script = ExtResource("7_kmxmt")
 
 [node name="InputChecker" parent="." unique_id=1734738149 instance=ExtResource("8_6btj0")]
-position = Vector2(-1152, 832)
+z_index = 0
+position = Vector2(-1152, 864)
 sequences = Array[String](["move_down", "move_down", "jump"])
 
+[node name="Inputs" parent="InputChecker" unique_id=1590715658 instance=ExtResource("9_hsiq6")]
+position = Vector2(0, -131)
+first_sprite = ExtResource("12_xjayd")
+second_sprite = ExtResource("12_xjayd")
+third_sprite = ExtResource("11_aawq8")
+
 [node name="MovingPlatform" parent="InputChecker" unique_id=640720163 instance=ExtResource("9_sk38q")]
+position = Vector2(0, -32)
 curve = SubResource("Curve2D_croy0")
 
 [node name="MovingPlatform2" parent="InputChecker" unique_id=296004627 instance=ExtResource("9_sk38q")]
+position = Vector2(0, -32)
 curve = SubResource("Curve2D_hsiq6")
 timer_offset = 0.25
 
 [node name="MovingPlatform3" parent="InputChecker" unique_id=1076348316 instance=ExtResource("9_sk38q")]
+position = Vector2(0, -32)
 curve = SubResource("Curve2D_uwjhl")
 timer_offset = 0.5
-
-[node name="Inputs" parent="InputChecker" unique_id=1590715658 instance=ExtResource("9_hsiq6")]
-position = Vector2(0, -256)
-first_sprite = ExtResource("12_xjayd")
-second_sprite = ExtResource("12_xjayd")
-third_sprite = ExtResource("11_aawq8")
 
 [connection signal="body_entered" from="Area2D" to="." method="_entered_room_collider"]
 [connection signal="body_exited" from="Area2D" to="." method="_exited_room_collider"]
