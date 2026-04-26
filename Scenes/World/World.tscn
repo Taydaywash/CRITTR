@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://ly7ivf5nvuar" path="res://Scenes/World/fire_particle_deletion_logic.gd" id="17_44hbs"]
 [ext_resource type="Texture2D" uid="uid://bkmii5ukk00pn" path="res://Assets/Particles/puff cloud.png" id="18_eoa2q"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/UI/Map/map.tscn" id="18_hev0n"]
-[ext_resource type="Script" uid="uid://br3i284d5pbxo" path="res://Scenes/World/Regions/Crash Site/collectable_counter.gd" id="18_ru2km"]
+[ext_resource type="Script" path="res://Scenes/World/Regions/Crash Site/collectable_counter.gd" id="18_ru2km"]
 [ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://Scenes/World/Regions/Crash Site/PlatformsTwo.tscn" id="19_hlwfy"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://Assets/Decals/Tundra/Background/background layer tundra 1.png" id="19_vdgnt"]
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://Assets/Decals/Tundra/Background/bg layer tundra 2.png" id="20_3ql1f"]
@@ -46,7 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://c0yxdqvvnh8u3" path="res://Assets/Decals/Marsh/Background/BigLeafPlant.png" id="36_0hcbc"]
 [ext_resource type="PackedScene" uid="uid://bfvw3u7lagu3r" path="res://Scenes/World/Regions/Toxic Marsh/WallSteam2.tscn" id="36_150fk"]
 [ext_resource type="PackedScene" uid="uid://f4g8bo43v373" path="res://Scenes/World/Regions/Toxic Marsh/Ascent.tscn" id="36_k3b55"]
-[ext_resource type="Script" uid="uid://debb4cff3jagh" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
+[ext_resource type="Script" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
 [ext_resource type="Texture2D" uid="uid://dlb8x8m772hoq" path="res://Assets/Decals/Marsh/Background/MedLeafPlant.png" id="37_4kbg2"]
 [ext_resource type="PackedScene" uid="uid://bm3kvosdi8puf" path="res://Scenes/World/Regions/Toxic Marsh/Endurance2.tscn" id="37_150fk"]
 [ext_resource type="PackedScene" uid="uid://bc75uokokv1wd" path="res://Scenes/UI/crittr_catcher.tscn" id="38_hb1o8"]
@@ -70,9 +70,9 @@
 [ext_resource type="PackedScene" uid="uid://c6bk7jrp4ym3r" path="res://Scenes/World/Regions/Stardust Peak/PeakAscent3.tscn" id="59_o2uig"]
 [ext_resource type="PackedScene" uid="uid://c3laww78x1ovg" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath4.tscn" id="60_h23k6"]
 [ext_resource type="PackedScene" uid="uid://dfccg54iyyrk2" path="res://Scenes/World/Regions/Stardust Peak/PeakMainPath5.tscn" id="60_knfie"]
-[ext_resource type="Texture2D" uid="uid://bfvmdvvjmytc4" path="res://Assets/Decals/Cloud Temple/Background/Cloudbg3.png" id="61_6hlb6"]
 [ext_resource type="PackedScene" uid="uid://cxyc2dui8qc3t" path="res://Scenes/World/Regions/Stardust Peak/PeakToSea.tscn" id="62_0a2lt"]
 [ext_resource type="Texture2D" uid="uid://dyue8uiobet5m" path="res://Assets/Decals/Cloud Temple/Background/Cloudbg2.png" id="62_du7of"]
+[ext_resource type="Texture2D" uid="uid://cgkl27cm3pkmr" path="res://Assets/Decals/Cloud Temple/Background/IMG_0326.png" id="62_ru2km"]
 [ext_resource type="PackedScene" uid="uid://d0csf5tf7njpi" path="res://Scenes/World/Regions/Cloud Temple/Temple1.tscn" id="62_thcod"]
 [ext_resource type="Texture2D" uid="uid://x6rj10g0txkr" path="res://Assets/Decals/Cloud Temple/Background/Cloudbg1.png" id="63_uqo7i"]
 [ext_resource type="PackedScene" uid="uid://dki6llxwmngif" path="res://Scenes/World/Regions/Cloud Temple/Temple2.tscn" id="63_yit7x"]
@@ -88,7 +88,7 @@
 [ext_resource type="PackedScene" uid="uid://dw8x2kn1v0can" path="res://Scenes/World/Regions/GlassSea/shallows/Wet3.tscn" id="68_awmuf"]
 [ext_resource type="PackedScene" uid="uid://chsfkqsro785y" path="res://Scenes/World/Regions/Cloud Temple/Temple7.tscn" id="68_nr1jb"]
 [ext_resource type="PackedScene" uid="uid://4e8ffbpqobx7" path="res://Scenes/World/Regions/Cloud Temple/Temple8.tscn" id="69_6hlb6"]
-[ext_resource type="Script" uid="uid://c4k7e86123h4j" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/lizard_choicer_handler.gd" id="69_evici"]
+[ext_resource type="Script" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/lizard_choicer_handler.gd" id="69_evici"]
 [ext_resource type="PackedScene" uid="uid://cyr82pseo0sxj" path="res://Scenes/World/Regions/GlassSea/shallows/Wet4.tscn" id="69_lc1us"]
 [ext_resource type="PackedScene" uid="uid://bktmamt8uwtvm" path="res://Scenes/World/Regions/GlassSea/shallows/Wet5.tscn" id="70_7foer"]
 [ext_resource type="PackedScene" uid="uid://b5p0w0uadvv4p" path="res://Scenes/World/Regions/Cloud Temple/Temple9.tscn" id="70_du7of"]
@@ -2162,7 +2162,7 @@ repeat_times = 4
 
 [node name="Sprite2D2" type="Sprite2D" parent="Rooms/CloudTemple/ToxicMarshBackground/Parallax2D3" unique_id=1606377491]
 z_index = -11
-texture = ExtResource("61_6hlb6")
+texture = ExtResource("62_ru2km")
 
 [node name="Parallax2D2" type="Parallax2D" parent="Rooms/CloudTemple/ToxicMarshBackground" unique_id=1933533607]
 scroll_scale = Vector2(0.2, 0)
@@ -2171,6 +2171,7 @@ repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/CloudTemple/ToxicMarshBackground/Parallax2D2" unique_id=1997128267]
+modulate = Color(1, 1, 1, 0.8)
 z_index = -10
 position = Vector2(976, -384)
 scale = Vector2(1, 1.5999994)
@@ -2183,6 +2184,7 @@ repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/CloudTemple/ToxicMarshBackground/Parallax2D4" unique_id=958449060]
+modulate = Color(1, 1, 1, 0.83137256)
 z_index = -9
 position = Vector2(976, 68)
 scale = Vector2(1, 1.5600003)
@@ -2213,7 +2215,6 @@ dialog_string = "LIZARD_DEN"
 
 [node name="ChoicerHandler" type="Node" parent="Rooms/CloudTemple/Temple4/DenColliderArea" unique_id=623097780]
 script = ExtResource("69_evici")
-metadata/_custom_type_script = "uid://djbpfy38vrjy8"
 
 [node name="Temple5" parent="Rooms/CloudTemple" unique_id=577290687 instance=ExtResource("66_j4mdk")]
 position = Vector2(80512, -6976)
