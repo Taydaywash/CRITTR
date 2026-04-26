@@ -2,37 +2,37 @@
 
 [ext_resource type="Script" uid="uid://bvq23mfdpcl1v" path="res://Scenes/World/LevelEditor/Objects/InputChecker/input_checker.gd" id="1_x4w5c"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4w5c"]
-size = Vector2(768, 768)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mojuv"]
-size = Vector2(768, 128)
-
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1dflf"]
 size = Vector2(768, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mojuv"]
+size = Vector2(768, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4w5c"]
+size = Vector2(768, 800)
 
 [node name="InputChecker" type="Area2D" unique_id=1734738149]
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_x4w5c")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336906191]
-position = Vector2(0, -192)
-shape = SubResource("RectangleShape2D_x4w5c")
-debug_color = Color(0.8341381, 0.1890794, 0.83297867, 0.41960785)
-
-[node name="Timer" type="Timer" parent="." unique_id=1946088221]
-one_shot = true
-
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1900028963]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=885559198]
-position = Vector2(0, 256)
-shape = SubResource("RectangleShape2D_mojuv")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1704447894]
 position = Vector2(0, 256)
 texture = SubResource("PlaceholderTexture2D_1dflf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=885559198]
+position = Vector2(0, 272)
+shape = SubResource("RectangleShape2D_mojuv")
+
+[node name="Timer" type="Timer" parent="." unique_id=1946088221]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336906191]
+position = Vector2(0, -176)
+shape = SubResource("RectangleShape2D_x4w5c")
+debug_color = Color(0.8341381, 0.1890794, 0.83297867, 0.41960785)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
