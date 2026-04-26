@@ -350,7 +350,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("GlassSeaDepths/EnterFromShallows")
+starting_room = NodePath("CloudTemple/Temple2")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -2217,8 +2217,13 @@ position = Vector2(68224, -10112)
 [node name="SequenceRoom3" parent="Rooms/CloudTemple" unique_id=2086987206 instance=ExtResource("73_nr1jb")]
 position = Vector2(70528, -10112)
 
-[node name="InsideSeq1" parent="Rooms/CloudTemple" unique_id=2135449086 instance=ExtResource("7_jacc8")]
+[node name="InsideSeq1" parent="Rooms/CloudTemple" unique_id=2135449086 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
 position = Vector2(65088, -9728)
+go_to_door = NodePath("../OutsideSeq1")
+
+[node name="OutsideSeq1" parent="Rooms/CloudTemple" unique_id=464373600 node_paths=PackedStringArray("go_to_door") instance=ExtResource("7_jacc8")]
+position = Vector2(77312, -10304)
+go_to_door = NodePath("../InsideSeq1")
 
 [node name="InsideSeq2" parent="Rooms/CloudTemple" unique_id=130413938 instance=ExtResource("7_jacc8")]
 position = Vector2(67392, -9728)
