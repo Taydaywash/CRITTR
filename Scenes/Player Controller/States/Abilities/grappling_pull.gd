@@ -38,12 +38,17 @@ func activate(last_state : State) -> void:
 		"up":
 			sprite.offset = Vector2.ZERO
 			sprite.position = Vector2.ZERO
-			sprite.rotation_degrees = 90
-			
+			if sprite.flip_h:
+				sprite.rotation_degrees = 90
+			else:
+				sprite.rotation_degrees = -90
 		"down":
 			sprite.offset = Vector2.ZERO
 			sprite.position = Vector2.ZERO
-			sprite.rotation_degrees = -90
+			if sprite.flip_h:
+				sprite.rotation_degrees = -90
+			else:
+				sprite.rotation_degrees = 90
 
 func process_input(event : InputEvent) -> State:
 	if event.is_action_pressed("jump"):

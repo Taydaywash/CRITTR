@@ -79,7 +79,10 @@
 [ext_resource type="Texture2D" uid="uid://dtumsrqtcpvky" path="res://Assets/Animations/Player/WallCling/wallcling1.png" id="38_0xda7"]
 [ext_resource type="Texture2D" uid="uid://boh5bad4fpj3h" path="res://Assets/Animations/Player/WallCling/wallcling2.png" id="39_omh5x"]
 [ext_resource type="Texture2D" uid="uid://b4ov3tf3qq5y5" path="res://Assets/Animations/Player/WallCling/wallcling3.png" id="40_5v0xw"]
+[ext_resource type="AudioStream" uid="uid://c44ypq5h1em32" path="res://Assets/Sound Effects/Player/Abilities/grappling_spit.mp3" id="41_aoaq7"]
+[ext_resource type="AudioStream" uid="uid://bbvmyhdtbmj33" path="res://Assets/Sound Effects/Player/Abilities/grapplingHit.mp3" id="43_gpoab"]
 [ext_resource type="Texture2D" uid="uid://b66n7y812l426" path="res://Assets/Animations/Player/Diving/diving.png" id="44_hk2wy"]
+[ext_resource type="AudioStream" uid="uid://dpt7n2s2tjlcw" path="res://Assets/Sound Effects/Player/Abilities/GrapplingPull.mp3" id="44_ri4rn"]
 [ext_resource type="Texture2D" uid="uid://io8id0xi0edl" path="res://Assets/Animations/Player/Diving/diving2.png" id="45_qy6yu"]
 [ext_resource type="Texture2D" uid="uid://1yl4eif1rq1x" path="res://Assets/Animations/Player/Dash/dash.png" id="58_ap1o6"]
 [ext_resource type="Texture2D" uid="uid://dbarw8eo8no6g" path="res://Assets/Animations/Player/Grapple/grapple.png" id="70_w6arm"]
@@ -799,6 +802,7 @@ line = NodePath("GrappleRay/Line2D")
 jump_input_buffer = NodePath("../../../JumpInputBuffer")
 animation_name = "grapple"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("41_aoaq7")])
 
 [node name="GrapplingPull" type="Node" parent="StateMachine/Abilities/Grappling" unique_id=967336177 node_paths=PackedStringArray("grapple_ray", "line", "jump_input_buffer")]
 script = ExtResource("23_0wxel")
@@ -812,15 +816,19 @@ line = NodePath("../GrappleRay/Line2D")
 jump_input_buffer = NodePath("../../../../JumpInputBuffer")
 animation_name = "grapple"
 placeholder_animation_color = Color(1, 1, 1, 1)
+enter_sound_sounds = Array[AudioStream]([ExtResource("43_gpoab")])
+while_in_state_sounds = Array[AudioStream]([ExtResource("44_ri4rn")])
+while_in_state_repeat_sound_after_seconds = 0.1
 
 [node name="GrappleRay" type="RayCast2D" parent="StateMachine/Abilities/Grappling" unique_id=2019285064]
+z_index = -1
 scale = Vector2(1.35, 1.35)
 target_position = Vector2(0, 0)
 collision_mask = 97
 collide_with_areas = true
 
 [node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Grappling/GrappleRay" unique_id=1217359713]
-default_color = Color(1, 0.43460146, 0.9889626, 1)
+default_color = Color(0.2509804, 0.75686276, 0.65882355, 1)
 
 [node name="Climbing" type="Node" parent="StateMachine/Abilities" unique_id=1959426882 node_paths=PackedStringArray("climbing_state", "climbing_ray", "line", "default_hitbox", "crouching_hitbox")]
 script = ExtResource("23_31xm6")
@@ -862,7 +870,7 @@ collide_with_areas = true
 
 [node name="Line2D" type="Line2D" parent="StateMachine/Abilities/Climbing/ClimbingRay" unique_id=944559949]
 visible = false
-default_color = Color(1, 0.43460146, 0.9889626, 1)
+default_color = Color(0.29803923, 0.79607844, 0.7372549, 1)
 
 [node name="Inflated" type="Node" parent="StateMachine/Abilities" unique_id=948011255 node_paths=PackedStringArray("left_ray", "left_ray_low", "left_ray_high", "right_ray", "right_ray_low", "right_ray_high", "normal_hitbox", "normal_hurtbox", "inflated_hitbox", "inflated_hurtbox")]
 script = ExtResource("15_melbr")
@@ -1114,9 +1122,8 @@ one_shot = true
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1524874358]
 position = Vector2(0, 70)
 sprite_frames = SubResource("SpriteFrames_hl1jv")
-animation = &"slide"
+animation = &"grapple"
 offset = Vector2(0, -70)
-flip_h = true
 
 [node name="TriggerHitbox" type="Area2D" parent="." unique_id=936426999]
 scale = Vector2(2, 2)

@@ -69,7 +69,7 @@ func _ready():
 )
 	#reset_game()
 
-func collectable_collected(id: String, value: int) -> void:
+func collectable_collected(id: String, value: int = 1) -> void:
 	if game_state.collected_ids.has(id):
 		return
 	game_state.collected_ids[id] = true
