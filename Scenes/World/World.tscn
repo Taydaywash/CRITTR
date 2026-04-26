@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://ly7ivf5nvuar" path="res://Scenes/World/fire_particle_deletion_logic.gd" id="17_44hbs"]
 [ext_resource type="Texture2D" uid="uid://bkmii5ukk00pn" path="res://Assets/Particles/puff cloud.png" id="18_eoa2q"]
 [ext_resource type="PackedScene" uid="uid://kt2omd4601yo" path="res://Scenes/UI/Map/map.tscn" id="18_hev0n"]
-[ext_resource type="Script" uid="uid://br3i284d5pbxo" path="res://Scenes/World/Regions/Crash Site/collectable_counter.gd" id="18_ru2km"]
+[ext_resource type="Script" path="res://Scenes/World/Regions/Crash Site/collectable_counter.gd" id="18_ru2km"]
 [ext_resource type="PackedScene" uid="uid://bmi5lrt8ygavl" path="res://Scenes/World/Regions/Crash Site/PlatformsTwo.tscn" id="19_hlwfy"]
 [ext_resource type="Texture2D" uid="uid://dn7h2eduj0tu8" path="res://Assets/Decals/Tundra/Background/background layer tundra 1.png" id="19_vdgnt"]
 [ext_resource type="Texture2D" uid="uid://b05jmmn5uam33" path="res://Assets/Decals/Tundra/Background/bg layer tundra 2.png" id="20_3ql1f"]
@@ -46,7 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://c0yxdqvvnh8u3" path="res://Assets/Decals/Marsh/Background/BigLeafPlant.png" id="36_0hcbc"]
 [ext_resource type="PackedScene" uid="uid://bfvw3u7lagu3r" path="res://Scenes/World/Regions/Toxic Marsh/WallSteam2.tscn" id="36_150fk"]
 [ext_resource type="PackedScene" uid="uid://f4g8bo43v373" path="res://Scenes/World/Regions/Toxic Marsh/Ascent.tscn" id="36_k3b55"]
-[ext_resource type="Script" uid="uid://debb4cff3jagh" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
+[ext_resource type="Script" path="res://Scenes/UI/Map/map_choicer_handler.gd" id="37_2lagq"]
 [ext_resource type="Texture2D" uid="uid://dlb8x8m772hoq" path="res://Assets/Decals/Marsh/Background/MedLeafPlant.png" id="37_4kbg2"]
 [ext_resource type="PackedScene" uid="uid://bm3kvosdi8puf" path="res://Scenes/World/Regions/Toxic Marsh/Endurance2.tscn" id="37_150fk"]
 [ext_resource type="PackedScene" uid="uid://bc75uokokv1wd" path="res://Scenes/UI/crittr_catcher.tscn" id="38_hb1o8"]
@@ -74,6 +74,7 @@
 [ext_resource type="Script" uid="uid://doykniksbhx74" path="res://Custom Classes/door.gd" id="61_upkxk"]
 [ext_resource type="PackedScene" uid="uid://cxyc2dui8qc3t" path="res://Scenes/World/Regions/Stardust Peak/PeakToSea.tscn" id="62_0a2lt"]
 [ext_resource type="Texture2D" uid="uid://dyue8uiobet5m" path="res://Assets/Decals/Cloud Temple/Background/Cloudbg2.png" id="62_du7of"]
+[ext_resource type="Texture2D" uid="uid://cgkl27cm3pkmr" path="res://Assets/Decals/Cloud Temple/Background/IMG_0326.png" id="62_ru2km"]
 [ext_resource type="PackedScene" uid="uid://d0csf5tf7njpi" path="res://Scenes/World/Regions/Cloud Temple/Temple1.tscn" id="62_thcod"]
 [ext_resource type="Texture2D" uid="uid://x6rj10g0txkr" path="res://Assets/Decals/Cloud Temple/Background/Cloudbg1.png" id="63_uqo7i"]
 [ext_resource type="PackedScene" uid="uid://dki6llxwmngif" path="res://Scenes/World/Regions/Cloud Temple/Temple2.tscn" id="63_yit7x"]
@@ -89,7 +90,7 @@
 [ext_resource type="PackedScene" uid="uid://dw8x2kn1v0can" path="res://Scenes/World/Regions/GlassSea/shallows/Wet3.tscn" id="68_awmuf"]
 [ext_resource type="PackedScene" uid="uid://chsfkqsro785y" path="res://Scenes/World/Regions/Cloud Temple/Temple7.tscn" id="68_nr1jb"]
 [ext_resource type="PackedScene" uid="uid://4e8ffbpqobx7" path="res://Scenes/World/Regions/Cloud Temple/Temple8.tscn" id="69_6hlb6"]
-[ext_resource type="Script" uid="uid://c4k7e86123h4j" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/lizard_choicer_handler.gd" id="69_evici"]
+[ext_resource type="Script" path="res://Scenes/World/LevelEditor/Objects/CrittrDen/lizard_choicer_handler.gd" id="69_evici"]
 [ext_resource type="PackedScene" uid="uid://cyr82pseo0sxj" path="res://Scenes/World/Regions/GlassSea/shallows/Wet4.tscn" id="69_lc1us"]
 [ext_resource type="PackedScene" uid="uid://bktmamt8uwtvm" path="res://Scenes/World/Regions/GlassSea/shallows/Wet5.tscn" id="70_7foer"]
 [ext_resource type="PackedScene" uid="uid://b5p0w0uadvv4p" path="res://Scenes/World/Regions/Cloud Temple/Temple9.tscn" id="70_du7of"]
@@ -198,8 +199,8 @@ fill_from = Vector2(0.52034885, 0)
 fill_to = Vector2(0.5261628, 1)
 
 [sub_resource type="Gradient" id="Gradient_3vk5c"]
-offsets = PackedFloat32Array(0, 0.5201613, 1)
-colors = PackedColorArray(0.17254902, 0.5411765, 1, 1, 0.44313726, 0.92941177, 1, 1, 0.72156864, 1, 1, 1)
+offsets = PackedFloat32Array(0.0375, 0.50625, 1)
+colors = PackedColorArray(0.4745098, 0.73333335, 0.8745098, 1, 0.36862746, 0.69411767, 0.8666667, 1, 0.36078432, 0.58431375, 0.7490196, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_awmuf"]
 gradient = SubResource("Gradient_3vk5c")
@@ -212,8 +213,8 @@ fill_to = Vector2(0.47965115, 1)
 gradient = SubResource("Gradient_3vk5c")
 width = 9600
 height = 4320
-fill_from = Vector2(0.4869565, 0)
-fill_to = Vector2(0.5304348, 1)
+fill_from = Vector2(0.4679487, 0)
+fill_to = Vector2(0.4871795, 1)
 
 [sub_resource type="Gradient" id="Gradient_wj4oh"]
 colors = PackedColorArray(0, 0, 0, 1, 0.012291836, 0.012326869, 0.18266603, 1)
@@ -368,7 +369,7 @@ unique_name_in_owner = true
 
 [node name="Rooms" type="Node" parent="." unique_id=708015112 node_paths=PackedStringArray("starting_room", "default_room", "ui", "player", "audio_controller", "state_machine", "room_distance_detection_ray_up", "room_distance_detection_ray_down", "room_distance_detection_ray_left", "room_distance_detection_ray_right")]
 script = ExtResource("1_il6x7")
-starting_room = NodePath("CloudTemple/Temple9")
+starting_room = NodePath("GlassSeaDepths/EnterFromShallows")
 default_room = NodePath("CrashSite/CrashedShip")
 ui = NodePath("../UI")
 player = NodePath("../Player")
@@ -2203,7 +2204,7 @@ repeat_times = 4
 
 [node name="Sprite2D2" type="Sprite2D" parent="Rooms/CloudTemple/ToxicMarshBackground/Parallax2D3" unique_id=1606377491]
 z_index = -11
-texture = ExtResource("61_6hlb6")
+texture = ExtResource("62_ru2km")
 
 [node name="Parallax2D2" type="Parallax2D" parent="Rooms/CloudTemple/ToxicMarshBackground" unique_id=1933533607]
 scroll_scale = Vector2(0.2, 0)
@@ -2212,6 +2213,7 @@ repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/CloudTemple/ToxicMarshBackground/Parallax2D2" unique_id=1997128267]
+modulate = Color(1, 1, 1, 0.8)
 z_index = -10
 position = Vector2(976, -384)
 scale = Vector2(1, 1.5999994)
@@ -2224,6 +2226,7 @@ repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/CloudTemple/ToxicMarshBackground/Parallax2D4" unique_id=958449060]
+modulate = Color(1, 1, 1, 0.83137256)
 z_index = -9
 position = Vector2(976, 68)
 scale = Vector2(1, 1.5600003)
@@ -2254,7 +2257,6 @@ dialog_string = "LIZARD_DEN"
 
 [node name="ChoicerHandler" type="Node" parent="Rooms/CloudTemple/Temple4/DenColliderArea" unique_id=623097780]
 script = ExtResource("69_evici")
-metadata/_custom_type_script = "uid://djbpfy38vrjy8"
 
 [node name="Temple5" parent="Rooms/CloudTemple" unique_id=577290687 instance=ExtResource("66_j4mdk")]
 position = Vector2(80512, -6976)
@@ -2365,24 +2367,28 @@ metadata/_custom_type_script = "uid://5wurrbpk32od"
 visible = false
 
 [node name="Parallax2D" type="Parallax2D" parent="Rooms/GlassSea/GlassSeaBackground" unique_id=209656584]
+visible = false
 scroll_scale = Vector2(0.12, 0)
 scroll_offset = Vector2(0, 500)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/GlassSeaBackground/Parallax2D" unique_id=1656402085]
+visible = false
 z_index = -10
 position = Vector2(963, 128)
 scale = Vector2(1, 1.5600003)
 texture = ExtResource("19_vdgnt")
 
 [node name="Parallax2D2" type="Parallax2D" parent="Rooms/GlassSea/GlassSeaBackground" unique_id=572779066]
+visible = false
 scroll_scale = Vector2(0.28, 0)
 scroll_offset = Vector2(0, 800)
 repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSea/GlassSeaBackground/Parallax2D2" unique_id=1703530494]
+visible = false
 z_index = -9
 position = Vector2(977, 0)
 scale = Vector2(1, 1.5999994)
@@ -2812,6 +2818,7 @@ repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground/Parallax2D" unique_id=1719466420]
+visible = false
 modulate = Color(0, 0, 0, 1)
 z_index = -10
 position = Vector2(960, -532.00024)
@@ -2827,6 +2834,7 @@ repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Rooms/GlassSeaDepths/CrashSiteBackground/Parallax2D2" unique_id=1427895794]
+visible = false
 modulate = Color(0, 0, 0, 1)
 z_index = -9
 position = Vector2(960, -1088.0002)
