@@ -283,10 +283,20 @@ scale_amount_min = 0.2
 scale_amount_max = 0.2
 color = Color(0.7882353, 1, 1, 1)
 
+[connection signal="focus_entered" from="PlayButton" to="." method="_on_play_button_focus_entered"]
+[connection signal="mouse_entered" from="PlayButton" to="." method="_on_play_button_focus_entered"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="focus_entered" from="ResetGameState" to="." method="_on_reset_game_state_focus_entered"]
+[connection signal="mouse_entered" from="ResetGameState" to="." method="_on_reset_game_state_focus_entered"]
 [connection signal="pressed" from="ResetGameState" to="." method="_on_reset_game_state_pressed"]
+[connection signal="focus_entered" from="SettingButton" to="." method="_on_setting_button_focus_entered"]
+[connection signal="mouse_entered" from="SettingButton" to="." method="_on_setting_button_focus_entered"]
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="focus_entered" from="QuitButton" to="." method="_on_quit_button_focus_entered"]
+[connection signal="mouse_entered" from="QuitButton" to="." method="_on_quit_button_focus_entered"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="focus_entered" from="OptionsTab/Back" to="." method="_on_back_mouse_entered"]
+[connection signal="mouse_entered" from="OptionsTab/Back" to="." method="_on_back_mouse_entered"]
 [connection signal="pressed" from="OptionsTab/Back" to="." method="_on_back_pressed"]
 
 [editable path="OptionsTab"]

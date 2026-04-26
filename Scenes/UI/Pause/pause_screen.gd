@@ -117,7 +117,6 @@ func show_layer(tab : Panel):
 	current_tab = tab
 	map.show_map(map_tab.visible)
 
-
 func _on_dna_button_mouse_entered() -> void:
 	audio_controller.play_sound(UI_HOVER)
 func _on_map_button_mouse_entered() -> void:
