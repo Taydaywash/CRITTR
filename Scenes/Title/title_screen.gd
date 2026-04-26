@@ -5,6 +5,7 @@ const WORLD = preload("res://Scenes/World/World.tscn")
 @export var options_tab : Panel
 @export var options_tab_back : Panel
 @export var audio_controller : AudioController
+@export var music : AudioStream
 
 const UI_HOVER = preload("uid://bvfiha76ltfmi")
 const UI_CANCEL = preload("uid://ejjyhdoxq4xd")
@@ -12,6 +13,7 @@ const UI_CONFIRM = preload("uid://c3jo2nkgwvncg")
 
 
 func _ready() -> void:
+	audio_controller.play_music(music)
 	$PlayButton.grab_focus()
 	get_tree().paused = false
 
