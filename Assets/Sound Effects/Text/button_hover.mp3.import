@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bvfiha76ltfmi"
+path="res://.godot/imported/button_hover.mp3-77ecf5402c899851b5baaa2c6bedaa7a.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound Effects/Text/button_hover.mp3"
+dest_files=["res://.godot/imported/button_hover.mp3-77ecf5402c899851b5baaa2c6bedaa7a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

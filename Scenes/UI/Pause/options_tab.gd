@@ -20,8 +20,11 @@ var text_speeds_index = 1
 @export var keybinds_screen : Panel
 @export var swap_controls_image_button : Button
 @export var controls_image_rect : TextureRect
-@onready var audio_controller : AudioListener2D = get_parent().audio_controller
+@onready var audio_controller : AudioController = get_parent().audio_controller
 
+const UI_HOVER = preload("uid://bvfiha76ltfmi")
+const UI_CANCEL = preload("uid://ejjyhdoxq4xd")
+const UI_CONFIRM = preload("uid://c3jo2nkgwvncg")
 const CONTROLS = preload("uid://7hc7riw8mwuj")
 const CONTROLS_CONTROLLER = preload("uid://cgtb1bosiuvgx")
 
@@ -49,6 +52,7 @@ func _process(_delta: float) -> void:
 		keybinds_screen.visible = false
 
 func options_opened() -> void:
+	audio_controller.play_sound(UI_HOVER)
 	temp_options = current_options.duplicate()
 	resolution_dropdown.select(get_resolution_dropdown_index())
 	screen_size_dropdown.select(get_screen_size_dropdown_index())
@@ -59,6 +63,7 @@ func options_opened() -> void:
 	update_disable_particles_button()
 
 func options_closed() -> void:
+	audio_controller.play_sound(UI_CANCEL)
 	temp_options = current_options.duplicate()
 
 func update_screen_settings() -> void:
@@ -79,6 +84,7 @@ func get_resolution_dropdown_index() -> int:
 	return index
 
 func _on_resolution_item_selected(index: int) -> void:
+	audio_controller.play_sound(UI_CONFIRM)
 	match index:
 		0: temp_options.screen_resolution = Vector2(3840, 2160) #print("3840 x 2160")
 		1: temp_options.screen_resolution = Vector2(1920, 1080) #print("1920 x 1080")
@@ -120,6 +126,7 @@ func handle_input(event: InputEvent) -> void:
 			default_focus.grab_focus()
 
 func _on_main_menu_pressed() -> void:
+	audio_controller.play_sound(UI_CONFIRM)
 	var data : Dictionary = {
 		"last_respawn_point": pause_screen.player_reference.respawn_controller_reference.respawn_position
 	}
@@ -127,11 +134,13 @@ func _on_main_menu_pressed() -> void:
 	get_tree().change_scene_to_file(TITLE_SCREEN)
 
 func _on_decrease_pressed() -> void:
+	audio_controller.play_sound(UI_CONFIRM)
 	if text_speeds_index > 0:
 		text_speeds_index -= 1
 	temp_options.text_speed = TEXT_SPEEDS[text_speeds_index]
 	update_text_scroll_speed_text()
 func _on_increase_pressed() -> void:
+	audio_controller.play_sound(UI_CONFIRM)
 	if text_speeds_index < 2:
 		text_speeds_index += 1
 	temp_options.text_speed = TEXT_SPEEDS[text_speeds_index]
@@ -164,21 +173,25 @@ func update_disable_particles_button() -> void:
 		disable_partilces_button.text = "x"
 
 func _on_save_changes_pressed() -> void:
+	audio_controller.play_sound(UI_CONFIRM)
 	current_options = temp_options.duplicate()
 	apply_settings()
 	SaveLoadManager.save_options(current_options)
 
 func apply_settings():
+	audio_controller.play_sound(UI_CONFIRM)
 	update_screen_settings()
 	audio_controller.change_master_volume_to(temp_options.master_volume/100.0)
 	audio_controller.change_music_volume_to(temp_options.music_volume/100.0)
 	audio_controller.change_sfx_volume_to(temp_options.sfx_volume/100.0)
 
 func _on_show_keybinds_pressed() -> void:
+	audio_controller.play_sound(UI_CONFIRM)
 	keybinds_screen.visible = true
 	swap_controls_image_button.grab_focus()
 
 func _on_close_keybinds_pressed() -> void:
+	audio_controller.play_sound(UI_CANCEL)
 	keybinds_screen.visible = false
 	default_focus.grab_focus()
 
@@ -189,3 +202,29 @@ func _on_swap_controls_image() -> void:
 	else:
 		controls_image_rect.texture = CONTROLS
 		swap_controls_image_button.text = "Show Controller"
+func _on_master_volume_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_music_volume_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_sfx_volume_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_screen_size_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_resolution_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_decrease_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_increase_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_disable_particles_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_show_keybinds_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_save_changes_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_main_menu_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_swap_control_image_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
+func _on_close_keybinds_focus_entered() -> void:
+	audio_controller.play_sound(UI_HOVER)
