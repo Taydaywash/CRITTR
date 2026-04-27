@@ -65,7 +65,7 @@ func options_opened() -> void:
 	update_disable_particles_button()
 
 func options_closed() -> void:
-	if pause_screen.paused:
+	if pause_screen and pause_screen.paused:
 		audio_controller.play_sound(UI_CANCEL)
 	temp_options = current_options.duplicate()
 
